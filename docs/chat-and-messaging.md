@@ -1,6 +1,6 @@
 ---
 title: 会话与消息(chat)
-source_refs: internal/helpers/chat.go, internal/shortcut/chat/unified_send.go, internal/shortcut/chat/chat_message.go, internal/shortcut/chat/chat_group.go, internal/shortcut/chat/chat_bot.go, internal/shortcut/chat/lark_alignment.go, internal/shortcut/chat/resource_download.go, internal/shortcut/chatmsg/chatmsg.go, internal/shortcut/builtin/builtin.go, internal/shortcut/adapter.go, internal/shortcut/runner.go, internal/helpers/ding.go, internal/shortcut/ding/ding.go
+source_refs: internal/helpers/chat.go, internal/helpers/chat_media_upload.go, internal/shortcut/chat/unified_send.go, internal/shortcut/chat/chat_message.go, internal/shortcut/chat/chat_group.go, internal/shortcut/chat/chat_bot.go, internal/shortcut/chat/lark_alignment.go, internal/shortcut/chat/resource_download.go, internal/shortcut/chatmsg/chatmsg.go, internal/shortcut/builtin/builtin.go, internal/shortcut/adapter.go, internal/shortcut/runner.go, internal/helpers/ding.go, internal/shortcut/ding/ding.go
 ---
 
 # 会话与消息(chat)
@@ -9,13 +9,15 @@ chat 能力分两层组织:原子 MCP 命令层与快捷命令层;DING 消息独
 
 ## 原子 MCP 命令层
 
-`internal/helpers/chat.go`(约 6000 行)定义 `chatCmd`,`Use` 为 `chat`,下含:
+`internal/helpers/chat.go`(约 10500 行)定义 `chatCmd`,`Use` 为 `chat`,下含:
 
 - `group`:create / members add / remove / add-bot / rename;
-- `message`:list / send / send-by-bot / send-by-webhook / recall / edit / read-status / query-send-status;
-- `bot search`、`category`、`file upload`、`emoji` 等。
+- `message`:list / list-direct / list-all / list-by-sender / list-mentions / list-focused / list-topic-replies / search / search-advanced / send / send-by-bot / send-by-webhook / recall / recall-by-bot / edit / reply / forward / download-media / read-status / query-send-status,以及 emoji 回应(add-emoji / remove-emoji)、文字表情、置顶、收藏等消息级操作;
+- `bot search`、`category`、`text` 等。
 
-经 `callMCPTool` / `callMCPToolOnServer("im"|"bot", ...)` 路由到不同 MCP server。
+`file upload` 与 `media upload` 兼容入口(`internal/helpers/chat_media_upload.go`)均已下线:CLI 不再提供本地文件到 mediaId 的上传,发送本地图片/文件统一走 `chat message send --msg-type file --file`(CLI 内部完成上传并以可下载文件消息发送,不渲染为内联图片);已有 mediaId 时可用 `--msg-type image --media-id`。
+
+经 `callMCPTool` / `callMCPToolOnServer("im"|"bot"|"chat", ...)` 路由到不同 MCP server。
 
 ## 快捷命令层
 

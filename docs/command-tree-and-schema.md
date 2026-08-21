@@ -25,7 +25,7 @@ Cobra 命令树由 `app.NewRootCommand` 构建;`cobracmd/tree.go` 仅提供树�
 
 | 输入 | 路径 | 职责 |
 |---|---|---|
-| 参数概念 | `param_concepts.json` | `morphological_rules` + `concepts`,经 `param_concepts.go` go:embed 加载为 `Concept`、`ParamMorphRule`;argv 同义词/概念词典 |
+| 参数概念 | `param_concepts.json` | `morphological_rules`、`concepts`、`command_overrides`、`validation_fixture` 四段,经 `param_concepts.go` go:embed 加载为 `ParamMorphRule`、`Concept`、`CommandOverride`、`ParamFixtureCase`;argv 同义词/概念词典,`command_overrides` 承载逐命令 bind/scoped_aliases/block/ambiguous 歧义防护,`validation_fixture` 是评审过的归一化回归用例 |
 | 排除 | `schema_command_exclusions.go` | `reviewedRuntimeSchemaExclusionGroups`,精确排除(如 schema 自身),必须有非空原因 |
 | 映射台账 | `schema_parameter_mapping_ledger.go` | `reviewedSchemaParameterMappingExclusions`、`reviewedSchemaParameterBindingRemovals`;只管理 mapping_exclusions / removals |
 | 身份收集 | `schema_identity_collect.go` | `CollectIdentitySpecs`、`BuildEffectiveFromSpecs`、`IdentityCollectionReport`;从 live Cobra 叶子的 `ContractFinal.Identity` 收集命令身份 |

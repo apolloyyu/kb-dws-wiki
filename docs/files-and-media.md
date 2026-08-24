@@ -45,12 +45,12 @@ source_refs: internal/helpers/drive.go, internal/helpers/drive_transfer.go, inte
 
 ## 媒体上传（文档附件 / 群文件）
 
-- 文档媒体上传：`internal/helpers/doc_media_upload.go` 的 `runDocMediaUpload`，流程为 `get_doc_attachment_upload_info` → PUT；doc media 命令组在 doc.go 约 L2826。
+- 文档媒体上传：`internal/helpers/doc_media_upload.go` 的 `runDocMediaUpload`，流程为 `get_doc_attachment_upload_info` → PUT；doc media 命令组在 doc.go 约 L2847。
 - 群聊文件上传：`internal/helpers/chat_media_upload.go`，命令挂在 chat.go 约 L2130。
 
 ## doc / sheet 命令组织
 
-- 文档：`newDocCommand()`（internal/helpers/doc.go 约 L1153）；快捷层在 `internal/shortcut/doc/`。
+- 文档：`newDocCommand()`（internal/helpers/doc.go 约 L1154）；快捷层在 `internal/shortcut/doc/`。
 - 电子表格：`newSheetCommand()`（internal/helpers/sheet.go 约 L23），按能力细分为 `sheet_dimension` / `sheet_chart` / `sheet_comment` / `sheet_float_image` / `sheet_filter_view` / `sheet_batch.go` 等文件；快捷层在 `internal/shortcut/sheet/`。
 
 ## internal/localio：产品共享的安全本地 I/O

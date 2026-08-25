@@ -54,3 +54,17 @@ source_refs: internal/event/types.go, internal/event/bus/hub.go, internal/event/
 - `list`、`schema`、`status`、`stop`、隐藏的 `_bus`。
 
 `--as` 仅支持 `user`(app/bot 未开放)。相关环境变量:`DWS_STREAM_TICKET_MODE` / `SOURCE_ID` / `URL`。
+
+## 行为语义与常见误解(评测驱动补全;人工核实于 commit 3fd0d97)
+
+1. **多个 `event consume` 同时运行,事件投递给谁?** 全部匹配者(**扇出**)。`Hub.Deliver`(`internal/event/bus/hub.go:297`)先收集所有 matcher 命中的 consumer 再逐一投递,不存在"只有第一个能收到";实例间隔离靠 `subscribe_id` 精确匹配。误解澄清:"后续实例连上了但拿不到投递"不是锁导致的——先查其 filter/`--subscribe-id` 是否匹配。
+
+2. **`bus.lock` 锁的是什么?** 锁的是 **bus 守护进程的单实例**(`internal/event/bus/lockfile.go:31`,`Acquire` 写入 PID 见 `:59`),与 consumer 数量无关。多个 consume 共享同一个 bus、经 IPC 连接,不会因该锁收不到事件。
+
+3. **`--force` 何时生效?** 仅 `--foreground` 模式(`internal/app/event_command.go:336-337` 帮助原文:"仅 --foreground 模式生效:跳过单实例锁(慎用:会让云事件被随机切分)")。
+
+4. **个人事件有没有 ACK?** 有。`PersonalSource.handleFrame`(`internal/event/source/personal.go:336`)每收一帧即回写 `NewSuccessDataFrameResponse`(`:344`);写 ACK 失败按 `retryPersonal` 断线重连(`:349`),服务端据未确认状态重投。误解澄清:"个人事件 fire-and-forget、无 ACK"与源码相悖。
+
+5. **重连导致的重复投递谁负责去重?** bus 内置 LRU 去重集合,容量 `DefaultCapacity = 8192`(`internal/event/dedup/lru.go:28`),专为吸收 Stream SDK 重连时的重复投递;业务侧仍建议按事件唯一 ID 做幂等(LRU 只护住重连窗口,不是端到端 exactly-once)。
+
+6. **Windows 支持吗?走什么传输?** 支持:Windows 使用命名管道 `\\.\pipe\dws-event-…`(`internal/event/endpoint.go:70-71`),其余平台 Unix socket。历史缺陷:`event stop` 在 Windows 上曾因信号实现失效,已于 1.0.59-beta.3 修复(见 `docs/CHANGELOG.md`)。

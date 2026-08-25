@@ -1,7 +1,6 @@
 ---
 source_path: "skills/mono/references/products/whiteboard/open-nodes-v1/01-overview.md"
-source_commit: "3fd0d97a"
-mirrored_at: "2026-08-25 14:24:14"
+source_commit: "3fd0d97"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 

@@ -44,7 +44,6 @@ def frontmatter(source_path, commit):
     return ("---\n"
             f"source_path: \"{source_path}\"\n"
             f"source_commit: \"{commit}\"\n"
-            f"mirrored_at: \"{time.strftime('%F %T')}\"\n"
             "layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改\n"
             "---\n\n")
 
@@ -341,7 +340,7 @@ def main():
     os.makedirs(os.path.join(REPO, "meta"), exist_ok=True)
     ndocs = build_documents_jsonl()
     flagged = sum(1 for r in rows if r["flags"])
-    report = (f"# 构建对账 {time.strftime('%F %T')}\n\n"
+    report = (f"# 构建对账\n\n"
               f"- 源码 commit:{commit}\n- 镜像文件:{len(copied)}\n"
               f"- 主命令:{len(rows)}(带 flags:{flagged},归属未定:{len(unresolved)})\n"
               f"- shortcuts:{len(shortcuts)}\n- 文档索引:{ndocs} 篇\n\n"

@@ -1,13 +1,28 @@
-# dws 域 — 检索协议
+# dws 域 — 检索协议(v2,三层结构)
 
-本目录是 dws CLI(DingTalk Workspace CLI,开源命令行工具)的整理版知识层,
-由模型实读源码生成;生成时的源码 commit 见 `meta/MANIFEST.json` 的 `source_commit`,
-每篇 frontmatter 的 `source_refs` 列出该篇事实来源的源码文件路径。
+本库是 dws CLI(DingTalk Workspace CLI,开源命令行工具)的知识库,结构对齐
+kb-dingtalk-open-platform 范式:**事实走确定性层(零 LLM),行为语义走生成+审阅层**。
+构建信息见 `meta/MANIFEST.json`(source_commit / build_time / 各层统计)。
 
-用法:
-1. 先查 `index.md` 选主题篇目,读正文;
-2. **本层是加速层,不是权威层**:参数/flag 以 `dws <cmd> --help` 实测为准,
-   行为细节求证下钻源码仓库(github.com/DingTalk-Real-AI/dingtalk-workspace-cli);
-3. 时效判断:对照 `meta/MANIFEST.json` 的 source_commit 与上游 CHANGELOG;
-4. 本层由流水线整目录再生成维护,不做手工增量修改;发现事实错误,
-   走上游仓库 issue 或触发重新生成,不要改本目录文件。
+## 三层结构
+
+| 层 | 内容 | 生成方式 | 可信度 |
+|---|---|---|---|
+| `graph/` | commands.jsonl(主命令+flags+源码行号)、shortcuts.jsonl(+xxx 短命令) | 源码静态提取,lint 对账 | **命中即事实**,可直接回引 文件:行号 |
+| `docs/` | command-index.md、CHANGELOG.md、products/**(上游人写的产品线文档) | 逐字镜像 | 与上游仓库原文一致 |
+| `notes/` | 行为语义篇(投递模型/锁/ACK 等"为什么") | LLM 实读源码生成+人工审阅 | 加速层,行号结论仍以源码为准 |
+
+## 检索顺序(强烈建议)
+
+1. **命令/flag 存在性与拼写** → `python3 bin/dwsdoc cmd|short|flag <词>`
+   命中即得 flags 全表+源码行号;查不到≠不存在,回退源码 grep(见 4)。
+2. **产品用法/使用场景** → `python3 bin/dwsdoc find <词>` 定位 `docs/products/<产品>.md` 后 cat 原文。
+3. **行为语义(为什么/机制)** → `notes/` 对应篇;结论须以其标注的 文件:行号 回源码复核。
+4. **兜底** → dws 源码仓库(github.com/DingTalk-Real-AI/dingtalk-workspace-cli)grep,
+   版本判定看 `docs/CHANGELOG.md`(本库镜像,与上游同源)。
+
+## 硬性纪律
+
+- 说「命令/flag 不存在」前,必须 dwsdoc cmd+short+flag 三查皆空,并回源码枚举确认;
+- `docs/` 与 `notes/` 冲突时以 `docs/`(镜像)与源码为准;
+- 本库 `docs/`+`graph/` 由流水线确定性重建,**勿手工修改**;`notes/` 走候选-审阅制(dws_regen --deepen)。

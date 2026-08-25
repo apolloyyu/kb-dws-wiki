@@ -1,7 +1,7 @@
 ---
 source_path: "skills/mono/references/products/sheet/sheet-media-image.md"
-source_commit: "3fd0d97"
-mirrored_at: "2026-08-25 11:52:22"
+source_commit: "3fd0d97a"
+mirrored_at: "2026-08-25 14:23:57"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 

@@ -1,15 +1,16 @@
 # 构建对账
 
-- 源码 commit:e9de6856
+- 源码 commit:8b783f1b
 - 镜像文件:116
-- 主命令:783(带 flags:675,归属未定:14)
-- shortcuts:466
+- 主命令:785(带 flags:676,归属未定:15)
+- shortcuts:468
 - 文档索引:125 篇
 
 ## 归属未定(退回源码 grep,不影响存在性判断)
 - aitable workflow history
 - aitable workflow run
 - chat thread create-group
+- chat thread promote
 - chat thread recall-message
 - dev app event subscribe
 - dev app event unsubscribe

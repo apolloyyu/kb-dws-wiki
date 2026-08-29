@@ -1,6 +1,6 @@
 ---
 source_path: "skills/mono/references/products/wiki.md"
-source_commit: "47c3ff18"
+source_commit: "a7d36856"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 

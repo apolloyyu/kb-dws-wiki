@@ -2,6 +2,7 @@
 """dwsdoc — kb-dws-wiki 实体检索 CLI(对齐 kb-dingtalk-open-platform 的 dkdoc)。
 
 用法:
+  dwsdoc ctx <词>     ★一次打包检索:cmd/short/flag 三表命中+相关篇目正文+notes 节+审计(默认入口)
   dwsdoc cmd <词>     按命令名/描述搜主命令树(graph/commands.jsonl),显示 flags+源码行号
   dwsdoc short <词>   搜 +xxx 短命令(graph/shortcuts.jsonl)
   dwsdoc flag <名>    跨全部命令搜某个 flag 名(答"哪个命令有 --xxx")
@@ -12,6 +13,83 @@
 import json
 import os
 import sys
+
+_CTX_BODY_CAP = 8000
+_CTX_TOTAL_CAP = 20000
+
+
+def ctx_impl(q, raw_terms):
+    """打包检索。异常由 main 捕获转 CTX_ERROR。"""
+    out = []
+    cmds = [r for r in load("commands.jsonl") if q in r["cmd"].lower() or q in r["desc"].lower()]
+    shorts = [r for r in load("shortcuts.jsonl") if q in r["cmd"].lower() or q in r["desc"].lower()]
+    qq = q.lstrip("-")
+    flag_hits = []
+    for r in load("commands.jsonl"):
+        for f in r.get("flags", []):
+            if qq == f["name"] or qq in f["name"]:
+                flag_hits.append(f"dws {r['cmd']}  --{f['name']}({f['type']})  {f.get('help','')[:60]}")
+    docs_hits = []
+    mp = os.path.join(ROOT, "meta", "documents.jsonl")
+    if os.path.exists(mp):
+        for l in open(mp, encoding="utf-8"):
+            r = json.loads(l)
+            hay = (r["path"] + " " + " ".join(r.get("headings", []))).lower()
+            if q in hay:
+                docs_hits.append(r)
+
+    if cmds:
+        out.append("== 命令命中(cmd) ==")
+        for r in cmds[:8]:
+            out.append(f"● dws {r['cmd']}  —  {r['desc']}")
+            for d in r.get("defs", [])[:1]:
+                out.append(f"  源码: {d['file']}:{d['line']}")
+            if len(cmds) <= 3:
+                for f in r.get("flags", []):
+                    marks = "(必填)" if f.get("required") else ""
+                    out.append(f"    --{f['name']}  {f['type']}{marks}  {f.get('help','')[:70]}")
+    if shorts:
+        out.append("== 短命令命中(short) ==")
+        for r in shorts[:6]:
+            out.append(f"● dws {r['product']} {r['cmd']}  —  {r['desc']}\n  源码: {r['file']}:{r['line']}")
+    if flag_hits:
+        out.append("== flag 命中 ==")
+        out.extend(flag_hits[:8])
+
+    # 相关篇目:products/command-index 优先于 notes;各取 top,正文入包
+    body_docs = sorted(docs_hits, key=lambda r: (0 if r["layer"] == "mirror" else 1, r["path"]))[:2]
+    for i, r in enumerate(body_docs):
+        p = os.path.join(ROOT, r["path"])
+        if not os.path.exists(p):
+            continue
+        body = open(p, encoding="utf-8", errors="replace").read()
+        if len(body) > _CTX_BODY_CAP:
+            body = body[:_CTX_BODY_CAP] + f"\n…[已截断,完整: dwsdoc cat {r['path']}]"
+        out.append(f"\n== 篇目[{i+1}/{len(body_docs)}] {r['path']} [{r['layer']}] ==")
+        out.append(body)
+    others = [r["path"] for r in docs_hits if r not in body_docs][:8]
+    if others:
+        out.append("\n== 其他篇目(未展开) ==")
+        out.extend("  " + p for p in others)
+
+    out.append("\n== 检索审计 ==")
+    out.append(f"已检索: cmd/short/flag/find · 关键词: {' '.join(raw_terms)}"
+               f" · 命中: cmd={len(cmds)} short={len(shorts)} flag={len(flag_hits)} find={len(docs_hits)}")
+    out.append("== 继续 ==")
+    out.append("盘点问法用 dwsdoc cmd <产品>+short <产品> 枚举全量;版本判定 cat docs/CHANGELOG.md;"
+               "所问为数值/时限/配额且上文未含→二级拉源码后 grep 常量;机制题读 notes/ 与源码实现。")
+
+    if not (cmds or shorts or flag_hits or docs_hits):
+        print("== 检索审计 ==")
+        print(f"已检索: cmd/short/flag/find · 关键词: {' '.join(raw_terms)} · 命中: 0")
+        print("== 继续 ==")
+        print("换中文能力词/英文命令词重试 ctx(如 永久授权→permanent);仍无→二级拉源码 grep;查不到只可标「待确认」。")
+        return 1
+    text = "\n".join(out)
+    if len(text) > _CTX_TOTAL_CAP:
+        text = text[:_CTX_TOTAL_CAP] + "\n…[ctx 总量截断,用 dwsdoc cat 读完整篇目]"
+    print(text)
+    return 0
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 
@@ -49,6 +127,12 @@ def main():
         print(__doc__)
         return 2
     op, q = sys.argv[1], " ".join(sys.argv[2:]).lower()
+    if op == "ctx":
+        try:
+            return ctx_impl(q, sys.argv[2:])
+        except Exception as e:
+            print(f"CTX_ERROR: {type(e).__name__}: {e};请改用分步命令(cmd/short/flag→find→cat)")
+            return 1
     if op == "cmd":
         hits = [r for r in load("commands.jsonl")
                 if q in r["cmd"].lower() or q in r["desc"].lower()]

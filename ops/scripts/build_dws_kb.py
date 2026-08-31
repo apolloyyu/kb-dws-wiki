@@ -15,7 +15,13 @@ lint(不过即退出非零,不产出半成品):
   - commands.jsonl 条数 == command-index.md 表格条数
   - shortcuts.jsonl 条数 == 源码 `Command: "+..."` 声明数
 行为语义(notes/)不归本脚本管——那层走 LLM 生成+候选审阅(dws_regen.py --deepen)。
-"""
+
+
+【bin 工具数据契约】bin/dwsdoc(含 ctx)依赖本构建器产物的以下字段,改动前先同步 bin 并跑冒烟:
+  graph/commands.jsonl: cmd/desc/when/defs[{file,line}]/flags[{name,short,type,required,hidden,help,line}]
+  graph/shortcuts.jsonl: product/cmd/desc/file/line/flags[{name,type,desc}]
+  meta/documents.jsonl: path/layer/headings
+冒烟由 ECS det_build 在 push 前执行(dwsdoc cmd chat + dwsdoc ctx chat)。"""
 import json
 import os
 import re

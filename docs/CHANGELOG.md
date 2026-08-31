@@ -1,6 +1,6 @@
 ---
 source_path: "CHANGELOG.md"
-source_commit: "a7d36856"
+source_commit: "97097b91"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 
@@ -11,6 +11,20 @@ All notable changes to this project will be documented in this file.
 The format is inspired by [Keep a Changelog](https://keepachangelog.com/) and this project follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
+
+## [1.0.61-beta.3] - 2026-08-30
+
+### Added
+
+- **Static MCP development and invocation** — moves MCP authoring under `dws dev mcp` and adds reviewed `dws mcp published` commands for inspecting and invoking published tools without dynamic command injection or credential-bearing endpoint caches.
+
+- **DingTalk task personal lifecycle events** — adds personal Stream subscriptions for task creation, updates, and deletion, with catalog discovery for task events, validated creator/executor/participant role filters, typed flattened payloads, multi-event consumption, and documented DWS-to-task HSF backend routing.
+
+- **VoIP call invite events** — adds `user_voip_call_receive_invite` support to `dws event consume`, including event discovery, Schema, validation, flattened NDJSON output, and mono/multi Skill guidance.
+
+### Fixed
+
+- **AITable routing and composite recovery** — tighten view-filter and reference guidance, recognize reviewed empty-query responses, and make Base copy target validation, rename recovery, and read-back verification deterministic.
 
 ## [1.0.61-beta.2] - 2026-08-28
 

@@ -1,6 +1,6 @@
 ---
 source_path: "skills/mono/references/products/doc/format/doc-jsonml-cookbook.md"
-source_commit: "a7d36856"
+source_commit: "97097b91"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 

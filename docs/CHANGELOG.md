@@ -1,6 +1,6 @@
 ---
 source_path: "CHANGELOG.md"
-source_commit: "297c3aeb"
+source_commit: "02e3f031"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 
@@ -11,6 +11,26 @@ All notable changes to this project will be documented in this file.
 The format is inspired by [Keep a Changelog](https://keepachangelog.com/) and this project follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
+
+## [1.0.62-beta.1] - 2026-09-01
+
+### Added
+
+- **Runtime request context** (#1221) — packages an optional runtime payload, reports redacted readiness in `dws doctor`, and attaches compact context metadata to supported business requests.
+
+- **hrbrain talent-pool save** — creates or updates a talent pool. Omit `--pool-code` to create a new pool (only `--pool-name` is required) or pass `--pool-code` to update an existing one; optional `--pool-desc`, `--rule-json` (auto in/out rule, validated as a JSON object), and `--pool-tags` (validated as a non-empty JSON array) are forwarded to the `create_or_update_pool` MCP tool. The write is gated by a confirmation prompt (`--yes` to skip).
+- **hrbrain talent-pool move-members** — batch-moves staff into or out of a talent pool via the `entering_or_leaving_pool` MCP tool. Requires `--pool-code`, `--opt-type` (`ENTERING`/`LEAVING`), and `--staff-ids` (comma-separated work numbers), with an optional `--remark`. The write is gated by a confirmation prompt (`--yes` to skip).
+
+### Changed
+
+- **Single-executable runtime payload** (#1233) — bundles the platform payload into `dws`, removes the sidecar tree from new archives and installers, and retains sidecar discovery for existing installations.
+
+### Fixed
+
+- **Chat atomic message results** — normalizes message fields across atomic list and search commands, keeps nested search results aligned with top-level messages, and exposes stable send-status workflow references without removing raw response fields.
+
+- **IM message AI provenance** — preserves the lower `messageAiSendFlag` value across message search, list, mget, @-mention, Pin, quoted-message, forwarded-message, and thread-reply projections.
+
 
 ## [1.0.61] - 2026-08-31
 

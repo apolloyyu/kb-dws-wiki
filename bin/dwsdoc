@@ -57,14 +57,16 @@ def ctx_impl(q, raw_terms):
         out.extend(flag_hits[:8])
 
     # 相关篇目:products/command-index 优先于 notes;各取 top,正文入包
-    body_docs = sorted(docs_hits, key=lambda r: (0 if r["layer"] == "mirror" else 1, r["path"]))[:2]
+    ent_total = len(cmds) + len(shorts) + len(flag_hits)
+    body_cap = 5000 if ent_total >= 1 else _CTX_BODY_CAP
+    body_docs = sorted(docs_hits, key=lambda r: (0 if r["layer"] == "mirror" else 1, r["path"]))[:1 if ent_total >= 1 else 2]
     for i, r in enumerate(body_docs):
         p = os.path.join(ROOT, r["path"])
         if not os.path.exists(p):
             continue
         body = open(p, encoding="utf-8", errors="replace").read()
-        if len(body) > _CTX_BODY_CAP:
-            body = body[:_CTX_BODY_CAP] + f"\n…[已截断,完整: dwsdoc cat {r['path']}]"
+        if len(body) > body_cap:
+            body = body[:body_cap] + f"\n…[已截断,完整: dwsdoc cat {r['path']}]"
         out.append(f"\n== 篇目[{i+1}/{len(body_docs)}] {r['path']} [{r['layer']}] ==")
         out.append(body)
     others = [r["path"] for r in docs_hits if r not in body_docs][:8]

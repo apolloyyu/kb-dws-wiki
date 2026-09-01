@@ -14,6 +14,9 @@ kb-dingtalk-open-platform 范式:**事实走确定性层(零 LLM),行为语义�
 
 ## 检索顺序(强烈建议)
 
+0. **首选一次打包** → `python3 bin/dwsdoc ctx <词>`
+   一条命令返回 cmd/short/flag 三表命中(带源码行号)+相关篇目正文+检索审计行
+   (三表+find 各命中数——「三查」的机械凭证);未覆盖所问再走下面分步。
 1. **命令/flag 存在性与拼写** → `python3 bin/dwsdoc cmd|short|flag <词>`
    命中即得 flags 全表+源码行号;查不到≠不存在,回退源码 grep(见 4)。
 2. **产品用法/使用场景** → `python3 bin/dwsdoc find <词>` 定位 `docs/products/<产品>.md` 后 cat 原文。
@@ -23,6 +26,6 @@ kb-dingtalk-open-platform 范式:**事实走确定性层(零 LLM),行为语义�
 
 ## 硬性纪律
 
-- 说「命令/flag 不存在」前,必须 dwsdoc cmd+short+flag 三查皆空,并回源码枚举确认;
+- 说「命令/flag 不存在」前,必须三查皆空(ctx 审计行即凭证,或 cmd+short+flag 逐一查),并回源码枚举确认;
 - `docs/` 与 `notes/` 冲突时以 `docs/`(镜像)与源码为准;
 - 本库 `docs/`+`graph/` 由流水线确定性重建,**勿手工修改**;`notes/` 走候选-审阅制(dws_regen --deepen)。

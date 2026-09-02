@@ -49,13 +49,20 @@ def ctx_impl(q, raw_terms):
     docs_hits = []
     mp = os.path.join(ROOT, "meta", "documents.jsonl")
     if os.path.exists(mp):
+        # 词权重:泛用中文词(去重/服务端/消息…)在几十篇里都出现,靠"命中词数"排序会让
+        # 无关篇挤掉关键篇(实录:aitable-record-stats 因标题含"去重+服务端"压过 event-system)。
+        # 英文技术词/长词更具区分度,给高权重。
+        def _w(word):
+            if re.fullmatch(r"[a-z0-9_\-]+", word):
+                return 5          # ack / consume / webhook 这类
+            return 2 if len(word) >= 4 else 1
         sd = []
         for l in open(mp, encoding="utf-8"):
             r = json.loads(l)
             hay = (r["path"] + " " + " ".join(r.get("headings", []))).lower()
-            nh = sum(1 for w in kw if w in hay)
-            if nh:
-                sd.append((-nh, r["path"], r))
+            sc = sum(_w(w) for w in kw if w in hay)
+            if sc:
+                sd.append((-sc, r["path"], r))
         sd.sort()
         docs_hits = [r for _, _, r in sd]
 
@@ -80,7 +87,12 @@ def ctx_impl(q, raw_terms):
     # 相关篇目:products/command-index 优先于 notes;各取 top,正文入包
     ent_total = len(cmds) + len(shorts) + len(flag_hits)
     body_cap = 5000 if ent_total >= 1 else _CTX_BODY_CAP
-    body_docs = sorted(docs_hits, key=lambda r: (0 if r["layer"] == "mirror" else 1, r["path"]))[:1 if ent_total >= 1 else 2]
+    # 机制/支持性问法:答案在 notes 而非产品文档,此时篇目正文常是噪音
+    # (实录:问 ACK 机制,aitable-advperm 因标题含"服务端"抢占正文位,把正解挤到第408行)。
+    # 故此类问法下篇目只列标题,正文版面留给 notes。
+    _mech = intent["why"] or intent["support"]
+    _n_body = 0 if (_mech and not (cmds or shorts)) else (1 if ent_total >= 1 else 2)
+    body_docs = sorted(docs_hits, key=lambda r: (0 if r["layer"] == "mirror" else 1, r["path"]))[:_n_body]
     for i, r in enumerate(body_docs):
         p = os.path.join(ROOT, r["path"])
         if not os.path.exists(p):
@@ -136,7 +148,7 @@ def ctx_impl(q, raw_terms):
                     continue
                 body = open(os.path.join(nd, fn), encoding="utf-8", errors="replace").read()
                 low = body.lower()
-                distinct = sum(1 for w in words if w in low)
+                distinct = sum(_w(w) for w in words if w in low)
                 total = sum(low.count(w) for w in words)
                 if total:
                     ranked.append((-(distinct * 100 + total), fn, body))

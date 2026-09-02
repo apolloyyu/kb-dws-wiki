@@ -1,6 +1,6 @@
 ---
 source_path: "skills/mono/references/products/whiteboard.md"
-source_commit: "02e3f031"
+source_commit: "e6661a8f"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 

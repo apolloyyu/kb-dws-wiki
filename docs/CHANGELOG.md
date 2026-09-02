@@ -1,6 +1,6 @@
 ---
 source_path: "CHANGELOG.md"
-source_commit: "02e3f031"
+source_commit: "e6661a8f"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 
@@ -11,6 +11,17 @@ All notable changes to this project will be documented in this file.
 The format is inspired by [Keep a Changelog](https://keepachangelog.com/) and this project follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
+
+## [1.0.62-beta.2] - 2026-09-02
+
+### Added
+
+- **Chat A2UI cards** (#1140) — adds `chat message send-a2ui-card` and
+  `chat message update-a2ui-card` as dedicated A2UI commands while preserving
+  the existing streaming card commands. A2UI content is delivered as a JSON
+  string array, and update status accepts enum names plus compatible numbers
+  1-9. The streaming update status flag is published as a string while
+  preserving its numeric 1-5 inputs and integer RPC payload.
 
 ## [1.0.62-beta.1] - 2026-09-01
 

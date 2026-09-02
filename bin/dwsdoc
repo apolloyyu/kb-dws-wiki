@@ -87,9 +87,11 @@ def ctx_impl(q, raw_terms):
     # 机制类问法:直接并入 notes/ 命中节,免去"查完发现要读 notes"的第二轮。
     # 必须在"0 命中提前返回"之前执行——机制题常在三表查不到(问的是行为不是命令名),
     # 恰恰最需要 notes,若放在后面会被短路掉。
-    # 机制/数值题大概率要读源码:此刻后台并行开拉,模型读完上文再需要时通常已就位。
-    # 纯优化,失败无副作用(二级脚本自带缓存与重试);路径按 fetch 脚本约定。
-    if intent["why"] or intent["howmany"]:
+    # 机制/数值题大概率要读源码:后台预拉,模型读完上文再需要时通常已就位。
+    # ⚠️ 实测教训(2026-09-02):预拉若与主 wiki 下载并发会抢带宽,首题被拖到 168s、
+    # 次题直接超时。故:① 仅在 wiki 已就位(本进程能正常读到 graph/)时才拉——
+    # 此时主下载必然已完成;② 加 --limit-rate 留出余量;③ 全程 nice 降优先级。
+    if (intent["why"] or intent["howmany"]) and os.path.exists(os.path.join(ROOT, "graph", "commands.jsonl")):
         try:
             kb = os.environ.get("QA_KB_DIR") or os.path.join(os.path.expanduser("~"), ".knowledge")
             src = os.path.join(kb, "dingtalk-workspace-cli-main")
@@ -98,8 +100,8 @@ def ctx_impl(q, raw_terms):
                 sh = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "ops", "fetch_source.sh")
                 url = "https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli/archive/refs/heads/main.tar.gz"
                 subprocess.Popen(
-                    ["bash", "-c",
-                     f'curl -sfL -m 300 -o "{kb}/.src.tgz" "{url}" && '
+                    ["nice", "-n", "19", "bash", "-c",
+                     f'sleep 3; curl -sfL -m 600 --limit-rate 2M -o "{kb}/.src.tgz" "{url}" && '
                      f'python3 -c "import tarfile,sys;t=tarfile.open(\'{kb}/.src.tgz\');'
                      f't.extractall(\'{kb}/.tsrc\')" && '
                      f'mv "{kb}/.tsrc/dingtalk-workspace-cli-main" "{src}" 2>/dev/null; '

@@ -12,6 +12,7 @@
 """
 import json
 import os
+import re
 import sys
 
 _CTX_BODY_CAP = 8000
@@ -39,14 +40,24 @@ def ctx_impl(q, raw_terms):
         for f in r.get("flags", []):
             if qq == f["name"] or qq in f["name"]:
                 flag_hits.append(f"dws {r['cmd']}  --{f['name']}({f['type']})  {f.get('help','')[:60]}")
+    # 篇目检索:整句子串对自然问句必落空("去重 ack 服务端"整串查不到,逐词各能命中),
+    # 改为逐词 OR + 命中数排序;问法虚词不参与检索。
+    _STOP = {"有没有", "支持", "能不能", "可以吗", "是否", "多少", "上限", "有效期", "配额",
+             "几个", "多久", "时长", "过期", "为什么", "原理", "机制", "原因", "怎么回事",
+             "需要", "客户端", "吗", "呢", "的", "做"}
+    kw = [w.lower() for w in raw_terms if w.lower() not in _STOP and len(w) > 1] or [q]
     docs_hits = []
     mp = os.path.join(ROOT, "meta", "documents.jsonl")
     if os.path.exists(mp):
+        sd = []
         for l in open(mp, encoding="utf-8"):
             r = json.loads(l)
             hay = (r["path"] + " " + " ".join(r.get("headings", []))).lower()
-            if q in hay:
-                docs_hits.append(r)
+            nh = sum(1 for w in kw if w in hay)
+            if nh:
+                sd.append((-nh, r["path"], r))
+        sd.sort()
+        docs_hits = [r for _, _, r in sd]
 
     if cmds:
         out.append("== 命令命中(cmd) ==")
@@ -111,23 +122,30 @@ def ctx_impl(q, raw_terms):
             pass
 
     notes_hit = 0
-    if intent["why"] or intent["howmany"]:
+    # support 也查 notes:"有没有 ACK/重试/去重机制"实质是机制题,只查命令表必空
+    if intent["why"] or intent["howmany"] or intent["support"]:
         nd = os.path.join(ROOT, "notes")
         # 整句常匹配不上,按词拆(去掉问法词本身),命中任一实词即取该节
-        stop = ("为什么", "原理", "机制", "原因", "怎么回事", "多少", "上限", "有效期",
-                "配额", "几个", "多久", "时长", "过期", "的", "是", "吗")
-        words = [w for w in raw_terms if w.lower() not in stop and len(w) > 1]
+        words = kw
         if os.path.isdir(nd) and words:
             picked = []
-            for fn in sorted(os.listdir(nd)):
-                if not fn.endswith(".md") or len(picked) >= 2:
+            # 按命中密度挑文件与小节:泛词几乎每篇都有,字母序会让无关篇先占满名额
+            ranked = []
+            for fn in os.listdir(nd):
+                if not fn.endswith(".md"):
                     continue
                 body = open(os.path.join(nd, fn), encoding="utf-8", errors="replace").read()
                 low = body.lower()
-                if not any(w.lower() in low for w in words):
-                    continue
-                secs = [s for s in body.split("\n## ") if any(w.lower() in s.lower() for w in words)]
-                picked.append(f"--- notes/{fn} ---\n" + (("## " + secs[0]) if secs else body[:2500])[:2500])
+                distinct = sum(1 for w in words if w in low)
+                total = sum(low.count(w) for w in words)
+                if total:
+                    ranked.append((-(distinct * 100 + total), fn, body))
+            ranked.sort()
+            for _, fn, body in ranked[:2]:
+                secs = re.split(r"\n(?=#{2,3} )", body)
+                sc = sorted(((sum(1 for w in words if w in s.lower()), s) for s in secs), key=lambda x: -x[0])
+                hit = [s for n_, s in sc[:2] if n_ > 0]
+                picked.append(f"--- notes/{fn} ---\n" + ("\n".join(hit) if hit else body[:2000])[:3000])
             if picked:
                 notes_hit = len(picked)
                 out.append("\n== 行为语义(notes,机制/数值类问法自动并入) ==")

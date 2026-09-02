@@ -224,7 +224,12 @@ def main():
     op, q = sys.argv[1], " ".join(sys.argv[2:]).lower()
     if op == "ctx":
         try:
-            return ctx_impl(q, sys.argv[2:])
+            # 调用方可能传多参数(ctx a b c)也可能传引号整串(ctx "a b c"),
+            # 后者若不再拆分,逐词检索会退化成整句子串匹配而全部落空。
+            terms = sys.argv[2:]
+            if len(terms) == 1:
+                terms = [w for w in re.split(r"[\s,，、]+", terms[0]) if w]
+            return ctx_impl(q, terms)
         except Exception as e:
             print(f"CTX_ERROR: {type(e).__name__}: {e};请改用分步命令(cmd/short/flag→find→cat)")
             return 1

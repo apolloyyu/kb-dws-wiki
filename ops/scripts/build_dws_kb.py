@@ -8,12 +8,15 @@
                        skills/mono/references/products/,上游人写的产品线使用文档)
   graph/commands.jsonl 主命令树:命令+描述+适用场景(来自 command-index)+flags(源码静态提取,带 文件:行号)
   graph/shortcuts.jsonl +xxx 短命令:声明式 Flag 结构直接解析(带 文件:行号)
+  cards/cmd/*.md       主命令与 shortcut 的确定性答案卡(full/partial 自判)
+  cards/index.jsonl    命令 key → 卡片路径/完整度
   meta/documents.jsonl docs/+notes/ 逐篇索引
-  meta/BUILD_REPORT.md 对账报告(命令数/归属率/未归属清单)
+  meta/BUILD_REPORT.md 对账报告(命令数/归属率/卡片覆盖率/未归属清单)
 
-lint(不过即退出非零,不产出半成品):
-  - commands.jsonl 条数 == command-index.md 表格条数
+lint(不过即退出非零):
+  - commands.jsonl 条数 == command-index + CLIPath + cobra 树去重后的并集
   - shortcuts.jsonl 条数 == 源码 `Command: "+..."` 声明数
+  - 卡片数 == commands + shortcuts、总数 >=900、full 完整率 >=70%
 行为语义(notes/)不归本脚本管——那层走 LLM 生成+候选审阅(dws_regen.py --deepen)。
 
 
@@ -36,6 +39,11 @@ REPO = os.path.abspath(os.path.join(HERE, "..", ".."))
 
 def rel(p, base):
     return os.path.relpath(p, base)
+
+
+def load_jsonl(path):
+    with open(path, encoding="utf-8") as f:
+        return [json.loads(line) for line in f if line.strip()]
 
 
 def git_head(src):
@@ -199,7 +207,11 @@ def extract_clipaths(src):
             path = os.path.join(dirpath, fn)
             text = open(path, encoding="utf-8", errors="replace").read()
             for m in CP.finditer(text):
-                out.setdefault(m.group(1), rel(path, src))
+                # 源码个别 CLIPath 带尾空格；不 strip 会与 index/cobra 的同名路径并存，
+                # 生成 aisearch 与 "aisearch " 两条实体，卡片文件名归一后发生覆盖。
+                cp = m.group(1).strip()
+                if cp:
+                    out.setdefault(cp, rel(path, src))
     return out
 
 
@@ -437,13 +449,28 @@ def main():
         for r in shortcuts:
             f.write(json.dumps(r, ensure_ascii=False) + "\n")
 
+    # 图谱落盘后立即生成答案卡；build_cards 自带原子替换与三道地板，失败则本构建失败，
+    # 不允许每日流水线把半套/低覆盖率卡片 push 出去。
+    card_script = os.path.join(HERE, "build_cards.py")
+    card_run = subprocess.run([sys.executable, card_script, "--repo", REPO],
+                              capture_output=True, text=True)
+    if card_run.returncode:
+        print(card_run.stdout + card_run.stderr, end="")
+        return 1
+    print(card_run.stdout.strip())
+    card_index = load_jsonl(os.path.join(REPO, "cards", "index.jsonl"))
+    card_full = sum(r.get("completeness") == "full" for r in card_index)
+
     os.makedirs(os.path.join(REPO, "meta"), exist_ok=True)
     ndocs = build_documents_jsonl()
     flagged = sum(1 for r in rows if r["flags"])
     report = (f"# 构建对账\n\n"
               f"- 源码 commit:{commit}\n- 镜像文件:{len(copied)}\n"
               f"- 主命令:{len(rows)}(带 flags:{flagged},归属未定:{len(unresolved)})\n"
-              f"- shortcuts:{len(shortcuts)}\n- 文档索引:{ndocs} 篇\n\n"
+              f"- shortcuts:{len(shortcuts)}\n"
+              f"- 答案卡:{len(card_index)}(full:{card_full},"
+              f"{card_full/len(card_index):.1%};partial:{len(card_index)-card_full})\n"
+              f"- 文档索引:{ndocs} 篇\n\n"
               "## 归属未定(退回源码 grep,不影响存在性判断)\n"
               + "\n".join(f"- {u}" for u in unresolved) + "\n")
     open(os.path.join(REPO, "meta", "BUILD_REPORT.md"), "w", encoding="utf-8").write(report)
@@ -454,10 +481,13 @@ def main():
     except (OSError, ValueError):
         mf = {}
     mf.update({"build_time": time.strftime("%FT%T+08:00"), "source_commit": commit,
-               "layers": {"docs": "mirror", "graph": "extracted", "notes": "generated+reviewed"},
-               "commands": len(rows), "shortcuts": len(shortcuts), "pages": ndocs})
+               "layers": {"docs": "mirror", "graph": "extracted", "cards": "deterministic",
+                          "notes": "generated+reviewed"},
+               "commands": len(rows), "shortcuts": len(shortcuts), "pages": ndocs,
+               "cards": len(card_index), "cards_full": card_full})
     json.dump(mf, open(mfp, "w"), ensure_ascii=False, indent=2)
     print(f"OK: 命令 {len(rows)}(flags {flagged}) · shortcuts {len(shortcuts)} · "
+          f"cards {len(card_index)}(full {card_full/len(card_index):.1%}) · "
           f"未归属 {len(unresolved)} · 文档 {ndocs}")
     return 0
 

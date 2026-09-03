@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws aitable view duplicate
 description: 复制视图
+example: dws aitable view duplicate --base-id BASE_ID --table-id TABLE_ID --view-id VIEW_ID
 source: internal/helpers/aitable.go:5034
 visible_flags: 4
 

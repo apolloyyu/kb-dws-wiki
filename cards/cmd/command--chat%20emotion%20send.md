@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws chat emotion send
 description: Send a personal favorite emotion to a group or direct chat as the authenticated user.
+example: dws chat emotion send --media-id <mediaId> --group <openConversationId>
 use_when: When the agent needs to send a known personal emotion mediaId to exactly one group, userId, or openDingTalkId target.
 source: internal/helpers/chat_personal_emotion.go:86
 visible_flags: 8

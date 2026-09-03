@@ -1,13 +1,17 @@
 # dws contact ext-field delete
 
 kind: command
-completeness: full
-description: 删除角色或角色组
-source: internal/helpers/contact.go:349
-visible_flags: 1
+completeness: partial
+usage: dws contact ext-field delete
+description: 删除自定义字段
+example: dws contact ext-field delete --code "rank"
+source: internal/helpers/contact.go:629
+visible_flags: 2
+partial_reason: unverified_flags
 
 ## Flags
-- --id <String>: 要删除的角色或角色组 ID (必填)
+- --code <String>: 自定义字段编码 (必填)
+- --org-self-tag <String>: 字段类型：1 企业个性化字段，0 默认扩展字段
 
 ## Related
 - dws contact ext-field create

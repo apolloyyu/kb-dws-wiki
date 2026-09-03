@@ -2,6 +2,7 @@
 
 kind: command
 completeness: full
+usage: dws markdown
 description: Markdown 文件处理
 source: internal/helpers/markdown.go:55
 visible_flags: 0

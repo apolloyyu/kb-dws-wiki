@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws doc +background-delete
 description: 清除文档背景色
 source: internal/shortcut/doc/media_style_shortcuts.go:228
 visible_flags: 1

@@ -2,14 +2,18 @@
 
 kind: command
 completeness: full
-description: 搜索知识库
-source: internal/helpers/wiki.go:376
-visible_flags: 3
+usage: dws wiki node search
+description: 在知识库中搜索节点
+example: dws wiki node search --workspace <workspaceId> --query "产品方案"
+source: internal/helpers/wiki.go:1333
+visible_flags: 5
 
 ## Flags
-- --query <String>: 搜索关键词 (搜索组织知识库时必填)
-- --type <String>: 知识库类型: myWikiSpace 时直接返回「我的文档」，省略则搜索组织知识库
-- --limit <String>: 返回数量 1-20 (默认 10)
+- --workspace <String>: 知识库 ID (必填)
+- --query <String>: 搜索关键词 (必填)
+- --extensions <StringSlice>: 按文件扩展名过滤 (如 adoc,asheet,pdf)
+- --limit <Int>: 每页数量 (默认 10，最大 30)
+- --cursor <String>: 分页游标
 
 ## Related
 - dws wiki node copy

@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws todo +get-my-tasks
 description: 查询当前组织下我的待办列表
 source: internal/shortcut/todo/todo.go:35
 visible_flags: 9

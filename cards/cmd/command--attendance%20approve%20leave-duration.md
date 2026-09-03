@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws attendance approve leave-duration
 description: 计算请假时长（服务端口径，与客户端发起页一致）
+example: dws attendance approve leave-duration --leave-code <leaveCode> --start "2026-08-13 09:00" --end "2026-08-14 18:00"
 source: internal/helpers/attendance.go:1097
 visible_flags: 4
 

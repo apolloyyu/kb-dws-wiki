@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws aitable +base-copy
 description: 复制 AI 表格到指定目录（可仅复制结构）
 source: internal/shortcut/aitable/aitable.go:417
 visible_flags: 4

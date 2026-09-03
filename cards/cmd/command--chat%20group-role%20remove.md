@@ -2,13 +2,15 @@
 
 kind: command
 completeness: full
-description: 移除群成员
-source: internal/helpers/chat.go:3237
+usage: dws chat group-role remove
+description: 删除群身份
+example: dws chat group-role remove --conversation-id <openConversationId> --role-id <openRoleId>
+source: internal/helpers/chat.go:8327
 visible_flags: 2
 
 ## Flags
-- --id <String> required: 群 ID / openconversation_id (必填)
-- --users <String> required: 要移除的用户 userId 列表，逗号分隔 (必填)
+- --conversation-id <String> required: 群聊 openConversationId (必填)
+- --role-id <String> required: 群身份 openRoleId，由 group-role list 返回 (必填)
 
 ## Related
 - dws chat group-role add

@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws aitable +table-copy
 description: 跨 Base 同步复制一张表的可创建字段结构，并可同步复制全部记录
 source: internal/shortcut/aitable/table_copy.go:36
 visible_flags: 6

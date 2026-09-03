@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet comment list
 description: 查询表格评论列表
+example: dws sheet comment list --node <SHEET_ID>
 source: internal/helpers/sheet_comment.go:17
 visible_flags: 6
 

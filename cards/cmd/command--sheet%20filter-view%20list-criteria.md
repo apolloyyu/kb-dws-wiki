@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet filter-view list-criteria
 description: 列出筛选视图所有列条件
+example: dws sheet filter-view list-criteria --node NODE_ID --sheet-id SHEET_ID --filter-view-id FV_ID
 source: internal/helpers/sheet_filter_view.go:1088
 visible_flags: 3
 

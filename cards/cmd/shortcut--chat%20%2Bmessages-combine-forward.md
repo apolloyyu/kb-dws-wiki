@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws chat +messages-combine-forward
 description: 合并转发多条消息
 source: internal/shortcut/chat/chat_message.go:1920
 visible_flags: 4

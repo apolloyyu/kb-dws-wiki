@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +replace-batch
 description: 预检并批量执行多组听记文字替换，逐项验证且失败必定非零
 source: internal/shortcut/smart/replace_batch.go:46
 visible_flags: 5

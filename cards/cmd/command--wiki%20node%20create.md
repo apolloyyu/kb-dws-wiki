@@ -2,14 +2,17 @@
 
 kind: command
 completeness: full
-description: 创建知识库
-source: internal/helpers/wiki.go:179
-visible_flags: 3
+usage: dws wiki node create
+description: 在知识库中创建节点
+example: dws wiki node create --workspace <workspaceId> --name "新文档"
+source: internal/helpers/wiki.go:1049
+visible_flags: 4
 
 ## Flags
-- --name <String>: 知识库名称 (必填，不超过 32 字符)
-- --desc <String>: 知识库描述 (选填，不超过 500 字符)
-- --icon <String>: 知识库图标标识 (选填)
+- --workspace <String>: 知识库 ID (必填)
+- --name <String>: 节点名称 (必填)
+- --type <String>: 节点类型: adoc / axls / able / appt / adraw / amind / folder（asheet 不支持）
+- --folder <String>: 父节点 nodeId (选填，不传则在根目录创建)
 
 ## Related
 - dws wiki node copy

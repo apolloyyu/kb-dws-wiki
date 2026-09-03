@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws attendance +update-group-members
 description: 更新考勤组成员（增删考勤人员/部门/无需考勤人员）
 source: internal/shortcut/attendance/attendance.go:1442
 visible_flags: 7

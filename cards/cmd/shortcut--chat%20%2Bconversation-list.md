@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws chat +conversation-list
 description: 分页或一键全量获取当前用户的会话列表（单聊+群聊）
 source: internal/shortcut/chat/chat_conversation.go:290
 visible_flags: 5

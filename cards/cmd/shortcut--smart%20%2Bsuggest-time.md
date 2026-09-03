@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +suggest-time
 description: 按姓名解析多位参与者，推荐大家都有空的可开会时间段（自动解析 userId）
 source: internal/shortcut/smart/suggest_time.go:37
 visible_flags: 4

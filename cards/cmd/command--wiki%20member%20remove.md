@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws wiki member remove
 description: 移除知识库成员
+example: dws wiki member remove --workspace <workspaceId> --users uid1
 source: internal/helpers/wiki.go:856
 visible_flags: 3
 

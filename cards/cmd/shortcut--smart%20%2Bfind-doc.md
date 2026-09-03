@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +find-doc
 description: 按关键词搜索云文档并投影关键字段（只读）
 source: internal/shortcut/smart/find_doc.go:44
 visible_flags: 2

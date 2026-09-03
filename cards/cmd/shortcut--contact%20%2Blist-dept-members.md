@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws contact +list-dept-members
 description: 查看部门成员（仅本部门，不含下级）
 source: internal/shortcut/contact/contact.go:688
 visible_flags: 1

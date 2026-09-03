@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +dept-members
 description: 按部门名列出部门成员（自动解析 deptId）
 source: internal/shortcut/smart/dept_members.go:48
 visible_flags: 1

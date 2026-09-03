@@ -2,13 +2,14 @@
 
 kind: command
 completeness: full
-description: 禁用指定工作流（高危）
-source: internal/helpers/aitable.go:5900
-visible_flags: 2
+usage: dws aitable advperm disable
+description: 关闭高级权限总开关（高危）
+example: dws aitable advperm disable --base-id BASE_ID --yes
+source: internal/helpers/aitable.go:7044
+visible_flags: 1
 
 ## Flags
 - --base-id <String>: 目标 Base ID (必填)
-- --workflow-id <String>: 目标工作流 ID (必填)
 
 ## Related
 - dws aitable advperm enable

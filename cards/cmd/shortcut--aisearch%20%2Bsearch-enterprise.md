@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws aisearch +search-enterprise
 description: 按主题搜索企业知识、消息、邮件与协作内容
 source: internal/shortcut/aisearch/aisearch.go:119
 visible_flags: 3

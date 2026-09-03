@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws oa +list-pending
 description: 查询当前登录用户待处理的审批任务列表
 source: internal/shortcut/oa/oa.go:208
 visible_flags: 0

@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws attendance +get-leave-records
 description: 查询指定员工的假期余额变更记录
 source: internal/shortcut/attendance/attendance.go:1981
 visible_flags: 4

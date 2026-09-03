@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws hrbrain search employees-structured
 description: 使用高级条件搜索人员
+example: dws hrbrain search employees-structured --origin-json '{"rules":[{"field":"name","operator":"contains","value":"张"}],"combinator":"and"}' --fields '[{"label":"姓名","value":"name"}]' --page 1 --page-size 20
 source: internal/helpers/hrbrain.go:753
 visible_flags: 5
 

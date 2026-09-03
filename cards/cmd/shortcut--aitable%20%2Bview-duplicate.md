@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws aitable +view-duplicate
 description: 复制视图，生成配置相同的新视图
 source: internal/shortcut/aitable/aitable.go:1333
 visible_flags: 4

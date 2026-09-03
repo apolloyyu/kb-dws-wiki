@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws wiki space list
 description: 列出空间（知识库 / 钉盘空间）
+example: dws wiki space list
 source: internal/helpers/wiki.go:291
 visible_flags: 3
 

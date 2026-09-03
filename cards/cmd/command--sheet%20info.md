@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet info
 description: 获取指定工作表详情
+example: dws sheet info --node NODE_ID
 source: internal/helpers/sheet_workbook.go:122
 visible_flags: 3
 
@@ -14,7 +16,7 @@ visible_flags: 3
 ## Related
 - dws sheet add-dimension
 - dws sheet append
-- dws sheet batch-set-style
 - dws sheet batch-update
 - dws sheet changeset-get
+- dws sheet chart
 - dws sheet comment

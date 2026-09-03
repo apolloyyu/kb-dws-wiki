@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws agoal strategy detail
 description: 获取战略解码详情
+example: dws agoal strategy detail --profile-id PROFILE_ID
 source: internal/helpers/agoal.go:77
 visible_flags: 2
 
@@ -11,4 +13,5 @@ visible_flags: 2
 - --request-id <String>: requestId (可选)
 
 ## Related
+- dws agoal strategy list
 - dws agoal strategy update

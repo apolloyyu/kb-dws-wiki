@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws todo +reminder
 description: 设置或清除待办提醒（仅终端回执）
 source: internal/shortcut/todo/lifecycle.go:413
 visible_flags: 5

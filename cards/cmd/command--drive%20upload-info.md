@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws drive upload-info
 description: Obtain a presigned upload URL and token for pushing a local file into DingTalk Drive.
+example: dws drive upload-info --file-name "报告.pdf" --file-size 102400
 use_when: When the agent starts a Drive upload; pairs with `drive commit` to finalize.
 source: internal/helpers/drive.go:1266
 visible_flags: 5

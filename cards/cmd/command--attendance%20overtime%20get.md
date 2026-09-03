@@ -2,13 +2,14 @@
 
 kind: command
 completeness: full
-description: 查询个人考勤详情
-source: internal/helpers/attendance.go:589
-visible_flags: 2
+usage: dws attendance overtime get
+description: 根据加班规则主键 ID 查询加班规则详情
+example: dws attendance overtime get --overtime-id 12345
+source: internal/helpers/attendance.go:1990
+visible_flags: 1
 
 ## Flags
-- --user <String>: 钉钉用户 ID (必填)
-- --date <String>: 查询日期，格式 YYYY-MM-DD (必填)
+- --overtime-id <Int64>: 加班规则主键 ID（必填）
 
 ## Related
 - dws attendance overtime search

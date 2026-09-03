@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws oa +my-initiated
 description: 列出我发起（提交）的审批单据
 source: internal/shortcut/oa/smart.go:111
 visible_flags: 3

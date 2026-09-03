@@ -2,15 +2,20 @@
 
 kind: command
 completeness: full
-description: 更新班次
-source: internal/helpers/attendance.go:1749
-visible_flags: 5
+usage: dws attendance group update
+description: 更新考勤组配置（仅修改需要变更的字段）
+example: dws attendance group update --group-id 123456 --name "研发考勤组" --timeout 10
+source: internal/helpers/attendance.go:2669
+visible_flags: 8
 
 ## Flags
-- --class-id <Int64>: 班次 ID（必填）
-- --name <String>: 班次名称（可选，不传则保持原值）
-- --owner <String>: 班次负责人 userId（可选，不传则保持原值）
-- --class-vo <String>: 完整 TopAtClassVO JSON 字符串，包含 sections 等复杂子对象（可选）
+- --group-id <Int64>: 考勤组 ID（必填）
+- --name <String>: 考勤组名称（可选）
+- --type <String>: 考勤组类型：FIXED 固定班制 / TURN 排班制 / NONE 自由工时（可选）
+- --owner <String>: 考勤组主负责人 userId（可选）
+- --enable-outside-check <String>: 是否允许外勤打卡，传 true 或 false（可选）
+- --classIds <String>: 所选班次 id 列表，JSON 数组格式，如 '[123,456]'（可选）
+- --group-vo <String>: 完整 groupVO JSON 字符串，用于修改复杂子对象（可选）
 - --yes <Bool>: 跳过确认提示
 
 ## Related

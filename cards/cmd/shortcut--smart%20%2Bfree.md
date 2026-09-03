@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +free
 description: 按姓名查询某人在指定时间段内的忙闲状态（自动解析 userId）
 source: internal/shortcut/smart/freebusy.go:36
 visible_flags: 3

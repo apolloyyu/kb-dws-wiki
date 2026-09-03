@@ -2,13 +2,15 @@
 
 kind: command
 completeness: full
-description: 新增待办评论
-source: internal/helpers/todo.go:1314
+usage: dws todo tag add
+description: 给待办打标
+example: dws todo tag add --task-id <taskId> --tag-codes code1,code2
+source: internal/helpers/todo.go:1485
 visible_flags: 2
 
 ## Flags
 - --task-id <String>: 待办任务 ID (必填)
-- --content <String>: 评论内容 (必填)
+- --tag-codes <String>: 标签编码列表，逗号分隔 (必填)
 
 ## Related
 - dws todo tag create

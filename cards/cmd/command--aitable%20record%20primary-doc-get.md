@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws aitable record primary-doc-get
 description: 查询记录的主键文档
+example: dws aitable record primary-doc-get --base-id BASE_ID --table-id TABLE_ID --record-id RECORD_ID
 source: internal/helpers/aitable.go:3560
 visible_flags: 3
 

@@ -2,6 +2,7 @@
 
 kind: command
 completeness: full
+usage: dws markdown comment
 description: Markdown 评论
 source: internal/helpers/markdown_comment.go:64
 visible_flags: 0

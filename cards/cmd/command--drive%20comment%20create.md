@@ -1,15 +1,15 @@
 # dws drive comment create
 
 kind: command
-completeness: full
-description: 创建文件夹（deprecated）
-source: internal/helpers/drive.go:3410
-visible_flags: 3
+completeness: partial
+usage: dws drive comment create
+description: —
+source: internal/helpers/file_comment.go:174
+visible_flags: 0
+partial_reason: unverified_usage,unverified_flags,missing_description
 
 ## Flags
-- --name <String>: 文件夹名称（必填）
-- --folder <String>: 父文件夹 nodeId 或 URL
-- --workspace <String>: 目标知识库 ID
+- none
 
 ## Related
 - dws drive comment list

@@ -1,11 +1,13 @@
 # dws chat thread reply
 
 kind: command
-completeness: full
+completeness: partial
+usage: dws chat thread reply
 description: Append a direct reply to an `openConvThreadId`.
 use_when: When the agent needs to reply inside an existing Thread without quoting a message.
 source: internal/helpers/chat.go:7576
 visible_flags: 6
+partial_reason: unverified_flags
 
 ## Flags
 - --ref-msg-id <String> required: 被引用的消息 openMessageId (必填)

@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet append
 description: 在工作表末尾追加数据
+example: dws sheet append --node NODE_ID --sheet-id SHEET_ID --values '[["张三","销售部",50000]]'
 source: internal/helpers/sheet_data.go:226
 visible_flags: 3
 
@@ -13,8 +15,8 @@ visible_flags: 3
 
 ## Related
 - dws sheet add-dimension
-- dws sheet batch-set-style
 - dws sheet batch-update
 - dws sheet changeset-get
+- dws sheet chart
 - dws sheet comment
-- dws sheet copy
+- dws sheet cond-format

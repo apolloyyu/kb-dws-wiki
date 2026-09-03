@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws chat +messages-list-direct
 description: 拉取单聊会话消息
 source: internal/shortcut/chat/chat_message.go:426
 visible_flags: 9

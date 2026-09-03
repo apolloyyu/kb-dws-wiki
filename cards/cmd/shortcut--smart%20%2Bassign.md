@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +assign
 description: 按姓名给某人创建并指派一条待办（自动解析 userId）
 source: internal/shortcut/smart/assign.go:37
 visible_flags: 3

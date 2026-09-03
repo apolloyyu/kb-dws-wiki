@@ -1,10 +1,13 @@
 # dws sheet create-with-data
 
 kind: command
-completeness: full
+completeness: partial
+usage: dws sheet create-with-data
 description: 创建钉钉表格文档并写入初始数据（可选样式）
+example: dws sheet create-with-data --name "名单" --values '[["姓名","分数"],["张三","90"]]'
 source: internal/helpers/sheet_create_with_data.go:40
 visible_flags: 6
+partial_reason: unverified_flags
 
 ## Flags
 - --name <String>: 表格名称 (必填)
@@ -17,7 +20,7 @@ visible_flags: 6
 ## Related
 - dws sheet add-dimension
 - dws sheet append
-- dws sheet batch-set-style
 - dws sheet batch-update
 - dws sheet changeset-get
+- dws sheet chart
 - dws sheet comment

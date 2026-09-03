@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws doc import
 description: 导入本地文件为在线文档 (支持 docx / xlsx / md 等)
+example: dws doc import get --task-id <taskId> --workspace <原目标WORKSPACE_ID>
 source: internal/helpers/doc.go:4297
 visible_flags: 4
 
@@ -13,9 +15,9 @@ visible_flags: 4
 - --name (-n) <String>: 导入后文档名称 (可选，默认取文件名)
 
 ## Related
+- dws doc block
+- dws doc comment
 - dws doc copy
 - dws doc create
 - dws doc delete
 - dws doc download
-- dws doc export
-- dws doc info

@@ -2,14 +2,18 @@
 
 kind: command
 completeness: full
-description: 创建群（支持内部群/外部群/普通群）
-source: internal/helpers/chat.go:2905
-visible_flags: 3
+usage: dws chat group notice create
+description: 发布群公告
+example: dws chat group notice create --conversation-id <openConversationId> --content "今晚 22 点系统维护，请提前保存工作内容"
+source: internal/helpers/chat.go:10428
+visible_flags: 5
 
 ## Flags
-- --name <String> required: 群名称 (必填)
-- --users <String> required: 成员 userId 或 openDingTalkId（可混传），逗号分隔 (必填)
-- --type <String>: 群类型: INTERNAL(内部群,默认)/EXTERNAL(外部群)/NORMAL(普通群)
+- --conversation-id <String> required: 群聊 openConversationId (必填)
+- --content <String> required: 公告正文，Markdown 格式 (必填)
+- --sticky <Bool>: 是否吊顶置顶（默认 false）
+- --send-ding <Bool>: 是否发 DING 提醒（默认 false）
+- --run-at <String>: 定时发布时间 ISO-8601（如 2026-07-03T09:00:00+08:00，传入则定时发布）
 
 ## Related
 - dws chat group notice edit

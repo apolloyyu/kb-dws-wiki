@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws aitable +section-list-nodes
 description: 列出指定 Base 当前版本下的全部 nsheet 节点
 source: internal/shortcut/aitable/aitable.go:3056
 visible_flags: 1

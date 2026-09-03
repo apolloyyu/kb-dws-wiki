@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws whiteboard +update
 description: 确认后更新白板并按同一稳定目标精确读回
 source: internal/shortcut/whiteboard/whiteboard.go:228
 visible_flags: 3

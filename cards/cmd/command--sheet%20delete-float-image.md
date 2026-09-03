@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet delete-float-image
 description: 删除浮动图片
+example: dws sheet delete-float-image --node NODE_ID --sheet-id SHEET_ID --float-image-id FI_ID --yes
 source: internal/helpers/sheet_float_image.go:396
 visible_flags: 3
 
@@ -14,7 +16,7 @@ visible_flags: 3
 ## Related
 - dws sheet add-dimension
 - dws sheet append
-- dws sheet batch-set-style
 - dws sheet batch-update
 - dws sheet changeset-get
+- dws sheet chart
 - dws sheet comment

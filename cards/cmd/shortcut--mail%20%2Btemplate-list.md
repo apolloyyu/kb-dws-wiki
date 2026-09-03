@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws mail +template-list
 description: 列出指定邮箱的所有邮件模板
 source: internal/shortcut/mail/mail.go:401
 visible_flags: 3

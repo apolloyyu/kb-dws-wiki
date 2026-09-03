@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws doc list
 description: List the child nodes (files and subfolders) of a folder or knowledge base.
+example: dws doc list
 use_when: When the agent traverses the document hierarchy to find or enumerate items.
 source: internal/helpers/doc.go:1331
 visible_flags: 4
@@ -14,9 +16,9 @@ visible_flags: 4
 - --cursor <String>: 分页游标 (从上次结果的 nextPageToken 获取)
 
 ## Related
+- dws doc block
+- dws doc comment
 - dws doc copy
 - dws doc create
 - dws doc delete
 - dws doc download
-- dws doc export
-- dws doc import

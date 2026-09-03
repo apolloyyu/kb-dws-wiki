@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws mail folder update
 description: 更新邮件文件夹
+example: dws mail folder update --email user@company.com --id <folderId> --name "新文件夹名"
 source: internal/helpers/mail.go:779
 visible_flags: 3
 

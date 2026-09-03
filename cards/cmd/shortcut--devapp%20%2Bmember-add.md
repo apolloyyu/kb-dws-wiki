@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws devapp +member-add
 description: 添加开放平台应用成员
 source: internal/shortcut/devapp/devapp.go:1423
 visible_flags: 3

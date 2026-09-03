@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet filter-view delete-criteria
 description: 删除筛选视图列条件
+example: dws sheet filter-view delete-criteria --node NODE_ID --sheet-id SHEET_ID --filter-view-id FV_ID --column 0 --yes
 source: internal/helpers/sheet_filter_view.go:962
 visible_flags: 4
 

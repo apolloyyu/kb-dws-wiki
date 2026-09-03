@@ -2,10 +2,12 @@
 
 kind: command
 completeness: partial
+usage: dws drive revert
 description: [危险] 回滚文件到指定历史版本
+example: dws drive revert --node <dentryUuid> --version 3 --yes
 source: internal/helpers/drive.go:3998
 visible_flags: 2
-partial_reason: empty_flag_name
+partial_reason: unverified_flags,empty_flag_name
 
 ## Flags
 - --node <String>: 文件 ID (dentryUuid) 或 URL (必填)

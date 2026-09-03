@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws chat data-auth cross-org
 description: 授予跨组织 chat 数据访问权限
+example: dws chat data-auth cross-org --target-org-id 439446171
 source: internal/helpers/chat.go:2832
 visible_flags: 7
 

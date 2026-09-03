@@ -2,17 +2,22 @@
 
 kind: command
 completeness: full
-description: 创建 AI 表格
-source: internal/helpers/aitable.go:1849
-visible_flags: 3
+usage: dws aitable form create
+description: 创建表单视图
+example: dws aitable form create --base-id BASE_ID --table-id TABLE_ID --name "员工信息收集"
+source: internal/helpers/aitable.go:5190
+visible_flags: 4
 
 ## Flags
-- --name <String>: Base 名称，1-50 字符；会去除首尾空格后校验 (必填)
-- --folder-id <String>: 目标父节点的 dentryUuid (知识库节点 ID)，也可传入标准节点 URL，MCP 会在创建前解析出实际生效的节点 ID
-- --template-id <String>: 创建 Base 模板 ID，默认创建一个空 Base。可通过 template search 获取模板
+- --base-id <String>: 所属 Base ID (必填)
+- --table-id <String>: 所属 Table ID (必填)
+- --name <String>: 新表单名称 (必填)
+- --description <String>: 表单描述（创建后可用 form update 调整）
 
 ## Related
 - dws aitable form delete
+- dws aitable form field
 - dws aitable form get
 - dws aitable form list
-- dws aitable form update
+- dws aitable form questions
+- dws aitable form share

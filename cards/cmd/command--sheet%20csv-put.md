@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet csv-put
 description: 将 CSV 数据写入表格指定位置（支持公式，自动扩容）
+example: dws sheet csv-put --node NODE_ID --sheet-id SHEET_ID --start-cell A1
 source: internal/helpers/sheet_data.go:291
 visible_flags: 6
 
@@ -17,7 +19,7 @@ visible_flags: 6
 ## Related
 - dws sheet add-dimension
 - dws sheet append
-- dws sheet batch-set-style
 - dws sheet batch-update
 - dws sheet changeset-get
+- dws sheet chart
 - dws sheet comment

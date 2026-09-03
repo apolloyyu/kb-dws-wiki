@@ -1,10 +1,12 @@
 # dws event status
 
 kind: command
-completeness: full
+completeness: partial
+usage: dws event status
 description: 显示个人事件订阅和本地消费状态
 source: internal/app/event_command.go:890
 visible_flags: 11
+partial_reason: unverified_flags
 
 ## Flags
 - --all <Bool>: 当前 edition 下所有 ClientID
@@ -15,12 +17,9 @@ visible_flags: 11
 - --as <String>: 事件身份: user
 - --event <String>: 个人事件 event_key 过滤
 - --status <String>: 个人订阅状态过滤: active|paused|error|deleted|all
-- --subscribe-id <String>: 个人订阅 ID 过滤
-- --personal-event-base-url <String>: 个人事件控制面 base URL；默认由 MCP base 派生 /dws
-- --stream-source-id <String>: 个人事件 sourceId；开源版默认 open，可由 edition 覆盖
+- … 3 more; use dwsdoc cmd/short for full flags
 
 ## Related
-- dws event +listen-im
 - dws event _bus
 - dws event consume
 - dws event list

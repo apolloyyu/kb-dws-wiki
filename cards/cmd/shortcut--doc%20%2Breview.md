@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws doc +review
 description: 聚合未解决评论、引用原文和块上下文
 source: internal/shortcut/doc/review_shortcuts.go:18
 visible_flags: 1

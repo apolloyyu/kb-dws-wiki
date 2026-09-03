@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws chat message unset-pin-msg
 description: 取消钉住消息（Unpin）
+example: dws chat message unset-pin-msg --open-conversation-id <openConversationId> --message-id <openMessageId>
 source: internal/helpers/chat.go:9049
 visible_flags: 2
 

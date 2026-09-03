@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws aitable +view-update
 description: 更新视图名称 / 描述 / 配置（visibleFieldIds、filter、sort、group 等）
 source: internal/shortcut/aitable/aitable.go:1289
 visible_flags: 6

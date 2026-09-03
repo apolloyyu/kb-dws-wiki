@@ -1,15 +1,16 @@
 # dws contact ext-field create
 
 kind: command
-completeness: full
-description: 创建部门
-source: internal/helpers/contact.go:180
-visible_flags: 3
+completeness: partial
+usage: dws contact ext-field create
+description: 创建自定义字段
+example: dws contact ext-field create --name "职级"
+source: internal/helpers/contact.go:536
+visible_flags: 1
+partial_reason: unverified_flags
 
 ## Flags
-- --name <String>: 部门名称 (必填)
-- --parent <String>: 父部门 ID（可选，不传默认根部门）
-- --create-dept-group <Bool>: 是否创建部门群 (必填，需显式传 true 或 false)
+- --name <String>: 自定义字段显示名称 (必填)
 
 ## Related
 - dws contact ext-field delete

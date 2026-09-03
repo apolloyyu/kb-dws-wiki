@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws chat message update-a2ui-card
 description: 更新 A2UI 卡片内容和状态
+example: dws chat message update-a2ui-card --biz-id <bizId> --content '["{\"version\":\"v1.0\",\"updateDataModel\":{\"surfaceId\":\"surface\",\"path\":\"/status\",\"value\":\"finished\"}}"]' --flow-status FINISH
 source: internal/helpers/chat.go:6948
 visible_flags: 3
 

@@ -2,13 +2,15 @@
 
 kind: command
 completeness: full
-description: 删除邮件文件夹
-source: internal/helpers/mail.go:724
+usage: dws mail template delete
+description: 删除邮件模板
+example: dws mail template delete --email user@company.com --id <templateId>
+source: internal/helpers/mail.go:3013
 visible_flags: 2
 
 ## Flags
-- --email <String>: 邮件所属邮箱地址 (必填)
-- --id <String>: 要删除的邮件文件夹 ID (必填)
+- --email <String>: 用户邮箱地址 (必填)
+- --id <String>: 模板唯一标识 (必填)
 
 ## Related
 - dws mail template create

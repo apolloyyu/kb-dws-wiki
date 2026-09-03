@@ -1,10 +1,13 @@
 # dws chat toolbar sort
 
 kind: command
-completeness: full
+completeness: partial
+usage: dws chat toolbar sort
 description: 排序快捷栏入口
+example: dws chat toolbar sort --conversation-id <cid> --sorted-ids 101,102,103
 source: internal/helpers/chat/toolbar_sort.go:26
 visible_flags: 3
+partial_reason: unverified_flags
 
 ## Flags
 - --conversation-id <String> required: 会话 openConversationId

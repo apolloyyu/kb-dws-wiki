@@ -2,10 +2,12 @@
 
 kind: command
 completeness: partial
+usage: dws doc whiteboard insert
 description: 插入白板卡片
+example: dws doc whiteboard insert --node DOC_ID
 source: internal/helpers/doc_whiteboard.go:217
 visible_flags: 6
-partial_reason: empty_flag_name
+partial_reason: unverified_flags,empty_flag_name
 
 ## Flags
 - --node <String>: 文档 ID 或 URL (必填)

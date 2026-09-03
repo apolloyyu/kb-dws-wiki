@@ -1,10 +1,13 @@
 # dws chat toolbar update-custom
 
 kind: command
-completeness: full
+completeness: partial
+usage: dws chat toolbar update-custom
 description: 更新自定义快捷栏入口
+example: dws chat toolbar update-custom --conversation-id <cid> --shortcut-id 123 --title "周报" --url "https://example.com" --icon-url "https://example.com/icon.png" --pc-url "https://example.com"
 source: internal/helpers/chat/toolbar_update_custom.go:23
 visible_flags: 10
+partial_reason: unverified_flags
 
 ## Flags
 - --conversation-id <String> required: 会话 openConversationId

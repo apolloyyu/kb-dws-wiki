@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +resolve-dept
 description: 按名称搜索部门并解析出唯一 deptId（只读）
 source: internal/shortcut/smart/resolve_dept.go:47
 visible_flags: 1

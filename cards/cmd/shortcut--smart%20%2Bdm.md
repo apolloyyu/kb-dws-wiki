@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +dm
 description: 按姓名直接给某人发单聊消息（自动解析唯一 openDingTalkId）
 source: internal/shortcut/smart/dm.go:37
 visible_flags: 2

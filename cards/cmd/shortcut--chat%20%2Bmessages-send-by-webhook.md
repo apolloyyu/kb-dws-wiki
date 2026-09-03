@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws chat +messages-send-by-webhook
 description: 兼容旧入口的自定义机器人 Webhook 群消息发送
 source: internal/shortcut/chat/chat_message.go:124
 visible_flags: 6

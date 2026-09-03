@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws hrbrain talent-pool move-members
 description: 人才池人员出入池
+example: dws hrbrain talent-pool move-members --pool-code POOL_CODE --opt-type ENTERING --staff-ids WORK_NO1,WORK_NO2
 source: internal/helpers/hrbrain.go:331
 visible_flags: 4
 

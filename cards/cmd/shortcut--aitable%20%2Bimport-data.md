@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws aitable +import-data
 description: 将已上传文件导入 AI 表格（新建表或追加到已有表）
 source: internal/shortcut/aitable/aitable.go:2663
 visible_flags: 6

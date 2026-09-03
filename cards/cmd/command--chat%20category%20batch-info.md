@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws chat category batch-info
 description: 批量拉取用户自定义会话分组信息
+example: dws chat category batch-info --category-ids 123,456
 source: internal/helpers/chat.go:6103
 visible_flags: 1
 

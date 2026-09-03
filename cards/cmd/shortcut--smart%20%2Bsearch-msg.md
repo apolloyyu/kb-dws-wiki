@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: partial
+usage: dws smart +search-msg
 description: 按稳定 ID、内容、时间等条件搜索消息，可校验会话范围、全量翻页并批量富化
 source: internal/shortcut/smart/search_msg.go:45
 visible_flags: 35

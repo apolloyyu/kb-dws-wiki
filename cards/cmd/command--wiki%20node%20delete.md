@@ -2,12 +2,15 @@
 
 kind: command
 completeness: full
-description: 删除知识库
-source: internal/helpers/wiki.go:464
-visible_flags: 1
+usage: dws wiki node delete
+description: 删除知识库节点
+example: dws wiki node delete --workspace <workspaceId> --node <nodeId>
+source: internal/helpers/wiki.go:1273
+visible_flags: 2
 
 ## Flags
-- --workspace <String>: 知识库 ID 或 URL (必填)
+- --workspace <String>: 知识库 ID (必填，用于权限校验)
+- --node <String>: 节点 ID (必填)
 
 ## Related
 - dws wiki node copy

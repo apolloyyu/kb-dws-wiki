@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws minutes hot-word delete
 description: 批量删除个人热词
+example: dws minutes hot-word delete --words "天气"
 source: internal/helpers/minutes.go:1350
 visible_flags: 1
 

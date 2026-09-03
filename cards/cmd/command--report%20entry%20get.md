@@ -2,12 +2,14 @@
 
 kind: command
 completeness: full
-description: 读取单个日志模版的字段定义
-source: internal/helpers/report.go:135
-visible_flags: 0
+usage: dws report entry get
+description: 读取单份日报正文（含字段明细 + 钉钉跳转链接）
+example: dws report entry get --report-id <reportId>
+source: internal/helpers/report.go:190
+visible_flags: 1
 
 ## Flags
-- none
+- --report-id <String>: 日志 ID (必填)
 
 ## Related
 - dws report entry stats

@@ -2,7 +2,9 @@
 
 kind: command
 completeness: partial
+usage: dws calendar event update
 description: Update an existing calendar event's fields such as time, title, participants, or location.
+example: dws calendar event update --id EVENT_ID --title "新标题"
 use_when: When the agent needs to reschedule or amend a previously created event.
 source: internal/helpers/calendar.go:356
 visible_flags: 19

@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws aitable +record-upsert
 description: 按 recordId 自动拆分 create/update，按 100 条分片并读回验证
 source: internal/shortcut/aitable/aitable.go:969
 visible_flags: 3

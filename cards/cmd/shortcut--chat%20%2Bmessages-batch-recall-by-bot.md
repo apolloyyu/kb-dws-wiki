@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws chat +messages-batch-recall-by-bot
 description: 机器人撤回单聊消息
 source: internal/shortcut/chat/chat_message.go:268
 visible_flags: 2

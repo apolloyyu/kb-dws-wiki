@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet replace
 description: 查找替换/批量替换/精确匹配替换/正则替换文本
+example: dws sheet replace --node NODE_ID --sheet-id SHEET_ID --find "旧文本" --replacement "新文本"
 source: internal/helpers/sheet_data.go:123
 visible_flags: 10
 
@@ -21,7 +23,7 @@ visible_flags: 10
 ## Related
 - dws sheet add-dimension
 - dws sheet append
-- dws sheet batch-set-style
 - dws sheet batch-update
 - dws sheet changeset-get
+- dws sheet chart
 - dws sheet comment

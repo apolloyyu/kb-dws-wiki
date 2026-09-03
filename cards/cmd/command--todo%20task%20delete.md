@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws todo task delete
 description: Delete a todo item by ID.
+example: dws todo task delete --task-id <taskId>
 use_when: When the agent removes a todo that is no longer relevant.
 source: internal/helpers/todo.go:592
 visible_flags: 1

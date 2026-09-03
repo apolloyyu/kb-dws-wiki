@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws todo task update
 description: Update a todo's title, description, due time, or executors.
+example: dws todo task update --task-id <taskId> --title "新标题"
 use_when: When the agent edits an existing todo after new information comes in.
 source: internal/helpers/todo.go:366
 visible_flags: 5

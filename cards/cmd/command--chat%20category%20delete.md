@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws chat category delete
 description: 删除用户自定义会话分组
+example: dws chat category delete --category-id <分组ID>
 source: internal/helpers/chat.go:5826
 visible_flags: 1
 

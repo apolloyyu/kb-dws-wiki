@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws aitable +export-data
 description: 导出 AI 表格数据（创建导出任务或按 taskId 续等）
 source: internal/shortcut/aitable/aitable.go:2583
 visible_flags: 7

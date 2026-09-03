@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +detail
 description: 批量聚合听记基础信息、摘要、关键词、完整逐字稿和行动项，支持安全文件输出
 source: internal/shortcut/smart/minutes_detail.go:55
 visible_flags: 9

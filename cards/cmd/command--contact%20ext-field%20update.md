@@ -1,14 +1,19 @@
 # dws contact ext-field update
 
 kind: command
-completeness: full
-description: 修改角色名称
-source: internal/helpers/contact.go:309
-visible_flags: 2
+completeness: partial
+usage: dws contact ext-field update
+description: 更新自定义字段设置
+example: dws contact ext-field update --code "rank" --client-display true --is-search false
+source: internal/helpers/contact.go:566
+visible_flags: 4
+partial_reason: unverified_flags
 
 ## Flags
-- --id <String>: 角色 ID (必填)
-- --name <String>: 角色新名称 (必填)
+- --code <String>: 自定义字段编码 (必填)
+- --org-self-tag <String>: 字段类型：1 企业个性化字段，0 默认扩展字段
+- --client-display <String>: 是否在客户端展示：true / false (必填)
+- --is-search <String>: 是否支持搜索：true / false (必填)
 
 ## Related
 - dws contact ext-field create

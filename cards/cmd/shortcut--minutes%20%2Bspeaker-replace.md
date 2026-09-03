@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws minutes +speaker-replace
 description: 预检逐字稿中的发言人昵称，替换后重新读回验证
 source: internal/shortcut/minutes/alignment.go:220
 visible_flags: 5

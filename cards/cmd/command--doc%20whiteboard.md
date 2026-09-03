@@ -2,6 +2,7 @@
 
 kind: command
 completeness: full
+usage: dws doc whiteboard
 description: 白板卡片管理
 source: internal/helpers/doc_whiteboard.go:210
 visible_flags: 0
@@ -10,9 +11,9 @@ visible_flags: 0
 - none
 
 ## Related
+- dws doc block
+- dws doc comment
 - dws doc copy
 - dws doc create
 - dws doc delete
 - dws doc download
-- dws doc export
-- dws doc import

@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws mail +draft-create
 description: 创建邮件草稿并按 messageId 读回验证
 source: internal/shortcut/mail/writes.go:191
 visible_flags: 5

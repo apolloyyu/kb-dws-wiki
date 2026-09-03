@@ -2,16 +2,20 @@
 
 kind: command
 completeness: full
+usage: dws doc block list
 description: List the blocks of a DingTalk Doc with their IDs, types, and content.
+example: dws doc block list --node DOC_ID
 use_when: When the agent needs the structured block tree of a doc before modifying specific blocks.
-source: internal/helpers/doc.go:1331
-visible_flags: 4
+source: internal/helpers/doc.go:2100
+visible_flags: 6
 
 ## Flags
-- --folder <String>: 文档文件夹 nodeId 或 alidocs 文件夹 URL；不要传 drive dentryId/parent-id
-- --workspace <String>: 知识库 ID
-- --limit <Int>: 每页数量 (默认 50，最大 50)
-- --cursor <String>: 分页游标 (从上次结果的 nextPageToken 获取)
+- --node <String>: 文档 ID 或 URL (必填)
+- --start-index <Int>: 起始位置 (从 0 开始)
+- --end-index <Int>: 终止位置 (含)
+- --block-type <String>: 按块类型过滤
+- --content-format <String>: 输出格式: 默认为 element，可选 jsonml（返回 JSONML 节点数组）
+- --block-id <String>: 指定块 UUID（content-format=jsonml 时读取完整子树）
 
 ## Related
 - dws doc block delete

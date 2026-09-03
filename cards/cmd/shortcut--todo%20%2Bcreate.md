@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws todo +create
 description: 创建待办并读回验证
 source: internal/shortcut/todo/lifecycle.go:112
 visible_flags: 4

@@ -2,15 +2,19 @@
 
 kind: command
 completeness: full
-description: 获取 AI 表格列表
-source: internal/helpers/aitable.go:1722
-visible_flags: 2
+usage: dws aitable list
+description: 获取 AI 表格列表（dws aitable base list 的别名）
+example: dws aitable list
+source: internal/helpers/aitable.go:8986
+visible_flags: 0
 
 ## Flags
-- --limit <Int>: 每页数量，默认 10，最大 10
-- --cursor <String>: 首次不传；传入上次返回的游标继续获取下一页
+- none
 
 ## Related
+- dws aitable advperm
+- dws aitable attachment
+- dws aitable base
+- dws aitable chart
 - dws aitable create
-- dws aitable info
-- dws aitable search
+- dws aitable dashboard

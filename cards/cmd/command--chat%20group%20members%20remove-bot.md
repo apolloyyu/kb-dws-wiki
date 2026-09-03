@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws chat group members remove-bot
 description: 从群内移除机器人
+example: dws chat group members remove-bot --id <openConversationId> --bot-id <openBotId>
 source: internal/helpers/chat.go:8642
 visible_flags: 2
 

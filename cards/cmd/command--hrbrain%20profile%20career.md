@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws hrbrain profile career
 description: 查询员工公司内职业历程
+example: dws hrbrain profile career --work-no WORK_NO
 source: internal/helpers/hrbrain.go:576
 visible_flags: 1
 

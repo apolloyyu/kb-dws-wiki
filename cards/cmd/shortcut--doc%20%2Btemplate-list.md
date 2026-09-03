@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws doc +template-list
 description: 浏览可用文档模板；默认只读取一页
 source: internal/shortcut/doc/doc.go:857
 visible_flags: 6

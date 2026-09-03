@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws minutes +record-pause
 description: 暂停听记录音
 source: internal/shortcut/minutes/minutes.go:423
 visible_flags: 2

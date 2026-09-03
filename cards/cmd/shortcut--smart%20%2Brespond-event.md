@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +respond-event
 description: 接受 / 拒绝 / 暂定回复一个日程邀请（作为参会人设置自己的响应状态）
 source: internal/shortcut/smart/respond_event.go:38
 visible_flags: 2

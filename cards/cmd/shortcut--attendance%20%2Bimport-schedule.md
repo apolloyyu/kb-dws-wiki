@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws attendance +import-schedule
 description: 导入排班记录到排班制考勤组
 source: internal/shortcut/attendance/attendance.go:644
 visible_flags: 2

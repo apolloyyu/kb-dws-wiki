@@ -2,15 +2,19 @@
 
 kind: command
 completeness: full
-description: 查询当前用户可管理的所有班次详情
-source: internal/helpers/attendance.go:1518
-visible_flags: 4
+usage: dws attendance group search
+description: 查询当前用户可管理的考勤组列表
+example: dws attendance group search --query "研发"
+source: internal/helpers/attendance.go:2115
+visible_flags: 6
 
 ## Flags
-- --page <Int>: 页码，从 1 开始（可选）
-- --limit <Int>: 每页条数，最大 200（可选）
-- --query <String>: 班次名称关键字，模糊搜索（可选）
-- --filter-type <String>: 班次类型：ALL 全部班次 / MINE_OWN 我负责的（可选）
+- --query <String>: 考勤组名称关键字，模糊搜索（可选）
+- --type <String>: 考勤组类型：FIXED 固定班制 / TURN 排班制 / NONE 自由工时（可选）
+- --query-position <Bool>: 是否查询地理定位和 Wifi 名称（可选）
+- --query-ble <Bool>: 是否查询蓝牙设备列表（可选）
+- --page <Int>: 页码，从 1 开始（默认 1，可选）
+- --limit <Int>: 每页条数，200 以内（默认 20，可选）
 
 ## Related
 - dws attendance group create

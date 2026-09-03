@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws aitable +record-share-url
 description: 按 recordId 批量获取记录分享链接，单次最多 20 条
 source: internal/shortcut/aitable/aitable.go:916
 visible_flags: 4

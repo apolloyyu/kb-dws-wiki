@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws drive publish unset
 description: [危险] 关闭文件互联网公开
+example: dws drive publish unset --node <fileId> --yes
 source: internal/helpers/drive.go:3573
 visible_flags: 1
 

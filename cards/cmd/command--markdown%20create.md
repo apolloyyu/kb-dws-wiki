@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws markdown create
 description: 创建原生 .md 文件
+example: dws markdown create --name README.md --content "
 source: internal/helpers/markdown.go:237
 visible_flags: 6
 

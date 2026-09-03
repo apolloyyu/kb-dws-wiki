@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws chat +messages-add-text-emotion
 description: 对消息添加文字表情回应
 source: internal/shortcut/chat/chat_message.go:1378
 visible_flags: 6

@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +cancel-event
 description: 取消（删除）一个已有日程（删除前先确认它真实存在）
 source: internal/shortcut/smart/cancel_event.go:42
 visible_flags: 1

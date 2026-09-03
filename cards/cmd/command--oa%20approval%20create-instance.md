@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws oa approval create-instance
 description: Create a real approval process instance from validated form values or a complete request payload.
+example: dws oa approval create-instance --process-code <processCode> --form-values '{"事由":"测试"}' --yes
 use_when: After the agent has inspected the form Schema, forecast the route, resolved any selectable approvers, and obtained explicit user confirmation.
 source: internal/helpers/oa.go:2071
 visible_flags: 9
@@ -19,9 +21,9 @@ visible_flags: 9
 - --cc-position <String>: 抄送时点：START、FINISH 或 START_FINISH
 
 ## Related
+- dws oa approval append-task
 - dws oa approval approve
+- dws oa approval attachment
 - dws oa approval detail
+- dws oa approval ding-info
 - dws oa approval forecast-process
-- dws oa approval form-schema
-- dws oa approval list-by-admin
-- dws oa approval list-cc

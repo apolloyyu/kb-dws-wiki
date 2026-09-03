@@ -1,15 +1,15 @@
 # dws skill find
 
 kind: command
-completeness: full
+completeness: partial
+usage: dws skill find
 description: 兼容旧用法，提示使用 skill search
-source: internal/helpers/chat.go:8698
-visible_flags: 3
+source: internal/app/skill_command.go:338
+visible_flags: 0
+partial_reason: unverified_flags
 
 ## Flags
-- --query <String>: 搜索关键词 (必填)
-- --limit <Int>: 每页返回数量（默认 20）
-- --cursor <String>: 分页游标（首次调用不传，翻页时传上次返回的 nextCursor）
+- none
 
 ## Related
 - dws skill add

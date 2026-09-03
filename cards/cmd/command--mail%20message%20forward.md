@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws mail message forward
 description: 转发邮件
+example: dws mail message forward --from user@company.com --to colleague@company.com --id <messageId> --subject "Fwd: 周报"
 source: internal/helpers/mail.go:1515
 visible_flags: 7
 
@@ -17,8 +19,8 @@ visible_flags: 7
 
 ## Related
 - dws mail message batch-delete
+- dws mail message batch-get
 - dws mail message batch-move
+- dws mail message batch-update
 - dws mail message export
 - dws mail message get
-- dws mail message list
-- dws mail message reply

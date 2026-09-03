@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet filter create
 description: 创建全局筛选
+example: dws sheet filter create --node NODE_ID --sheet-id SHEET_ID --range "A1:E100"
 source: internal/helpers/sheet_filter_view.go:218
 visible_flags: 4
 

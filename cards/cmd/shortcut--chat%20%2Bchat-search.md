@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws chat +chat-search
 description: 按关键词分页搜索群聊，支持有界自动翻页和完整性检查
 source: internal/shortcut/chat/chat_group.go:39
 visible_flags: 10

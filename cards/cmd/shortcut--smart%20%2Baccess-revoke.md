@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +access-revoke
 description: 预检并移除指定协作者的文档权限
 source: internal/shortcut/smart/doc_access.go:138
 visible_flags: 0

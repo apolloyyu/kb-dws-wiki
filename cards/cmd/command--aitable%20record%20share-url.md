@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws aitable record share-url
 description: 批量获取记录分享链接
+example: dws aitable record share-url --base-id BASE_ID --table-id TABLE_ID --record-ids rec1,rec2,rec3
 source: internal/helpers/aitable.go:3428
 visible_flags: 4
 

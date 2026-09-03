@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws hrbrain profile metadata
 description: 查询员工档案元数据结构
+example: dws hrbrain profile metadata --work-no WORK_NO
 source: internal/helpers/hrbrain.go:415
 visible_flags: 1
 

@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws calendar +room-find
 description: 按时间段搜索可用会议室（不传时间默认当前起 1 小时）
 source: internal/shortcut/calendar/calendar.go:433
 visible_flags: 7

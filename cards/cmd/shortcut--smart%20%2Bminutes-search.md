@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +minutes-search
 description: 按关键词搜索我的妙记并投影列表
 source: internal/shortcut/smart/minutes_search.go:39
 visible_flags: 1

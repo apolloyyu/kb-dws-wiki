@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +group-members
 description: 按群名唯一解析后全量列出用户成员并公开分页完整性
 source: internal/shortcut/smart/group_members.go:49
 visible_flags: 2

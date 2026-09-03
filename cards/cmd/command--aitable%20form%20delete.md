@@ -2,16 +2,21 @@
 
 kind: command
 completeness: full
-description: 删除 AI 表格
-source: internal/helpers/aitable.go:1945
-visible_flags: 2
+usage: dws aitable form delete
+description: 删除表单
+example: dws aitable form delete --base-id BASE_ID --table-id TABLE_ID --view-id VIEW_ID --yes
+source: internal/helpers/aitable.go:5297
+visible_flags: 3
 
 ## Flags
-- --base-id <String>: 待删除 Base ID。建议先通过 base get 确认目标 (必填)
-- --reason <String>: 一句话描述删除的原因
+- --base-id <String>: 所属 Base ID (必填)
+- --table-id <String>: 所属 Table ID (必填)
+- --view-id <String>: 目标表单视图 ID（通过 form list 获取）(必填)
 
 ## Related
 - dws aitable form create
+- dws aitable form field
 - dws aitable form get
 - dws aitable form list
-- dws aitable form update
+- dws aitable form questions
+- dws aitable form share

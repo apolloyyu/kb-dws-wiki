@@ -2,14 +2,17 @@
 
 kind: command
 completeness: full
-description: 更新 AI 表格
-source: internal/helpers/aitable.go:1897
-visible_flags: 3
+usage: dws aitable workflow update
+description: 更新并发布已有自动化工作流
+example: dws aitable workflow update --base-id BASE_ID --workflow-id WORKFLOW_ID --dsl @workflow.json --locale zh-CN
+source: internal/helpers/aitable.go:5796
+visible_flags: 4
 
 ## Flags
 - --base-id <String>: 目标 Base ID (必填)
-- --name <String>: 新名称，1-50 字符 (必填)
-- --desc <String>: 备注文本
+- --workflow-id <String>: 目标工作流 ID (必填)
+- --dsl <String>: workflow-dsl/v1 JSON 对象；支持内联 JSON、@文件路径或 - 从 stdin 读取 (必填)
+- --locale <String>: 请求语言，例如 zh-CN 或 zh_CN (可选)
 
 ## Related
 - dws aitable workflow create

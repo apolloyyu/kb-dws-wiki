@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws agoal +contract-fields
 description: 查询经营合约字段配置
 source: internal/shortcut/agoal/agoal.go:289
 visible_flags: 1

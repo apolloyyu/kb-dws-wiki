@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws attendance +get-group
 description: 根据考勤组 ID 查询考勤组全量信息
 source: internal/shortcut/attendance/attendance.go:1394
 visible_flags: 1

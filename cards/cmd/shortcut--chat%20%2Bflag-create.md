@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws chat +flag-create
 description: 收藏一条或多条消息（最多 10 条）
 source: internal/shortcut/chat/lark_alignment.go:431
 visible_flags: 3

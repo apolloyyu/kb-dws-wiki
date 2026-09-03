@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws report +template-search
 description: 按名称搜索可用日志模板
 source: internal/shortcut/report/report.go:242
 visible_flags: 1

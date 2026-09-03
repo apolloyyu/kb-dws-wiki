@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws aitable +chart-update
 description: 更新指定 chart 的配置或布局（--config 必填）
 source: internal/shortcut/aitable/aitable.go:2456
 visible_flags: 5

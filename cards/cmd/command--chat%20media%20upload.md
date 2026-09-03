@@ -2,6 +2,7 @@
 
 kind: command
 completeness: full
+usage: dws chat media upload
 description: 已下线：请通过 chat message send 直接发送本地文件
 source: internal/helpers/chat_media_upload.go:41
 visible_flags: 2

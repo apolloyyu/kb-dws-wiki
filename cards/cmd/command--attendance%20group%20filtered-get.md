@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws attendance group filtered-get
 description: 根据考勤组 ID 按需查询成员/打卡地址/蓝牙/Wifi 信息
+example: dws attendance group filtered-get --group-id 123456 --member
 source: internal/helpers/attendance.go:2263
 visible_flags: 5
 

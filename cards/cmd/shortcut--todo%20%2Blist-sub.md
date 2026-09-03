@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws todo +list-sub
 description: 查询子待办列表
 source: internal/shortcut/todo/todo.go:227
 visible_flags: 1

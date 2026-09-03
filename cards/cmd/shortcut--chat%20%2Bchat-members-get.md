@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws chat +chat-members-get
 description: 根据成员 openDingTalkId 批量查询群成员详情
 source: internal/shortcut/chat/chat_group.go:401
 visible_flags: 2

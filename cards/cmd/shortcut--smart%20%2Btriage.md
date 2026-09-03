@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +triage
 description: 列出或筛选邮件摘要，自动解析邮箱与收件箱
 source: internal/shortcut/smart/triage_mail.go:18
 visible_flags: 4

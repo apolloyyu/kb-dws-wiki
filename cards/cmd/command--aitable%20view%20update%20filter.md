@@ -2,12 +2,14 @@
 
 kind: command
 completeness: full
-description: 获取视图 filter 配置
-source: internal/helpers/aitable.go:3913
-visible_flags: 0
+usage: dws aitable view update filter
+description: 更新视图 filter 配置
+example: dws aitable view update filter --base-id BASE_ID --table-id TABLE_ID --view-id VIEW_ID --json '[{"operator":"eq","operands":["fldX","value"]}]'
+source: internal/helpers/aitable.go:4519
+visible_flags: 1
 
 ## Flags
-- none
+- --json <String>: filter 数组 JSON
 
 ## Related
 - dws aitable view update aggregate

@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws contact +get-roster
 description: 查询员工花名册字段信息（学历、家庭、银行卡、合同等）
 source: internal/shortcut/contact/contact.go:763
 visible_flags: 2

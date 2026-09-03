@@ -1,10 +1,13 @@
 # dws chat toolbar add
 
 kind: command
-completeness: full
+completeness: partial
+usage: dws chat toolbar add
 description: 将入口添加到快捷栏可见区
+example: dws chat toolbar add --conversation-id <cid> --shortcut-ids 101,102
 source: internal/helpers/chat/toolbar_add.go:25
 visible_flags: 2
+partial_reason: unverified_flags
 
 ## Flags
 - --conversation-id <String> required: 会话 openConversationId

@@ -2,13 +2,14 @@
 
 kind: command
 completeness: full
-description: 启用指定工作流
-source: internal/helpers/aitable.go:5857
-visible_flags: 2
+usage: dws aitable advperm enable
+description: 开启高级权限总开关
+example: dws aitable advperm enable --base-id BASE_ID
+source: internal/helpers/aitable.go:7005
+visible_flags: 1
 
 ## Flags
 - --base-id <String>: 目标 Base ID (必填)
-- --workflow-id <String>: 目标工作流 ID (必填)
 
 ## Related
 - dws aitable advperm disable

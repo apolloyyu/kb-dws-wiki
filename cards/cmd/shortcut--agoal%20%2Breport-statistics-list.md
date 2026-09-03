@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws agoal +report-statistics-list
 description: 查询周月报规则提交统计
 source: internal/shortcut/agoal/agoal.go:156
 visible_flags: 1

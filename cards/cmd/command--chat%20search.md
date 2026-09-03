@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws chat search [query]
 description: Search group conversations the user belongs to by group name keyword.
+example: dws chat search --query "项目冲刺"
 use_when: When the agent needs to resolve a group name to a conversation ID.
 source: internal/helpers/chat.go:1487
 visible_flags: 4
@@ -14,9 +16,9 @@ visible_flags: 4
 - --exclude-muted <Bool>: 是否排除已设置免打扰的群聊（默认 false）
 
 ## Related
+- dws chat bot
+- dws chat category
 - dws chat chmod
 - dws chat clear-all-red-point
 - dws chat clear-messages
 - dws chat clear-red-point
-- dws chat conversation-info
-- dws chat emotion

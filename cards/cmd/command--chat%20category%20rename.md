@@ -2,13 +2,15 @@
 
 kind: command
 completeness: full
-description: 更新群名称
-source: internal/helpers/chat.go:3138
+usage: dws chat category rename
+description: 更新用户自定义会话分组的名称
+example: dws chat category rename --category-id <分组ID> --title "新名称"
+source: internal/helpers/chat.go:5882
 visible_flags: 2
 
 ## Flags
-- --id <String> required: 群 ID / openconversation_id (必填)
-- --name <String> required: 修改后的群名称 (必填)
+- --category-id <Int64>: 会话分组 ID (必填)
+- --title <String> required: 新的分组名称，最多 15 个字符 (必填)
 
 ## Related
 - dws chat category add-conv

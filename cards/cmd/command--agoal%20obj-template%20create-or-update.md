@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws agoal obj-template create-or-update
 description: 新增或更新目标模板
+example: dws agoal obj-template create-or-update --title "业绩模板" --dimensions '[{"title":"维度1","weight":100}]'
 source: internal/helpers/agoal.go:553
 visible_flags: 7
 

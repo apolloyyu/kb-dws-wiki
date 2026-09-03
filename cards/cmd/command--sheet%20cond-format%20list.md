@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet cond-format list
 description: 获取条件格式规则
+example: dws sheet cond-format list --node NODE_ID --sheet-id SHEET_ID
 source: internal/helpers/sheet_cond_format.go:14
 visible_flags: 3
 

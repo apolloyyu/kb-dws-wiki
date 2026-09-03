@@ -1,10 +1,13 @@
 # dws contact dept create
 
 kind: command
-completeness: full
+completeness: partial
+usage: dws contact dept create
 description: 创建部门
+example: dws contact dept create --name "新产品部" --create-dept-group=true
 source: internal/helpers/contact.go:180
 visible_flags: 3
+partial_reason: unverified_flags
 
 ## Flags
 - --name <String>: 部门名称 (必填)

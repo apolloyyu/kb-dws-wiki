@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws attendance approve leave-check
 description: 提交前校验请假资格（时间冲突 / 可撤销单 / 额度）
+example: dws attendance approve leave-check --leave-code <leaveCode> --process-code <processCode> --start "2026-08-13 09:00" --end "2026-08-14 18:00" --duration-day 1.65 --duration-hour 14.87
 source: internal/helpers/attendance.go:1173
 visible_flags: 8
 

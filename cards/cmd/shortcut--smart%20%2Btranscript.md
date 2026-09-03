@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +transcript
 description: 读取指定或我最新一条听记的完整逐字稿，并交付分页完整性证据
 source: internal/shortcut/smart/transcript.go:45
 visible_flags: 6

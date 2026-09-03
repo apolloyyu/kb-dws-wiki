@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet filter update
 description: 批量更新筛选条件
+example: dws sheet filter update --node NODE_ID --sheet-id SHEET_ID
 source: internal/helpers/sheet_filter_view.go:341
 visible_flags: 3
 

@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet range fill
 description: 自动填充工作表指定区域
+example: dws sheet range fill --node NODE_ID --sheet-id SHEET_ID
 source: internal/helpers/sheet_range_ops.go:442
 visible_flags: 5
 

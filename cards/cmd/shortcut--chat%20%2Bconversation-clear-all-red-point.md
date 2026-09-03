@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws chat +conversation-clear-all-red-point
 description: 清除所有会话红点（全部已读）
 source: internal/shortcut/chat/chat_conversation.go:251
 visible_flags: 0

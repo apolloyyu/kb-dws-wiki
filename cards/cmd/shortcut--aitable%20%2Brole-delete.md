@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws aitable +role-delete
 description: 删除 Base 下指定的自定义角色（不可逆）
 source: internal/shortcut/aitable/aitable.go:2892
 visible_flags: 2

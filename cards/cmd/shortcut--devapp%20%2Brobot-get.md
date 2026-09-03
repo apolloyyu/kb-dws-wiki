@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws devapp +robot-get
 description: 查询现有应用的机器人配置
 source: internal/shortcut/devapp/devapp.go:1600
 visible_flags: 1

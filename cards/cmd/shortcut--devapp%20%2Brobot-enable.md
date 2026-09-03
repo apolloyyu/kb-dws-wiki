@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws devapp +robot-enable
 description: 启用现有应用机器人能力（纯启用，无需配置字段）
 source: internal/shortcut/devapp/devapp.go:1784
 visible_flags: 1

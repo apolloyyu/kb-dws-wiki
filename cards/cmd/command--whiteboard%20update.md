@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws whiteboard update
 description: 追加或整页重建白板内容
+example: dws whiteboard update --node DOC_ID_OR_URL --part-id WHITEBOARD_PART_ID --source ./whiteboard.json --format json
 source: internal/helpers/whiteboard.go:115
 visible_flags: 4
 

@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws oa +search-forms
 description: 按关键字模糊搜索当前用户可见的审批表单
 source: internal/shortcut/oa/oa.go:286
 visible_flags: 1

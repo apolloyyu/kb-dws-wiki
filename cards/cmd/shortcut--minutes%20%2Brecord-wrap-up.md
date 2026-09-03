@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws minutes +record-wrap-up
 description: 停止实时录音并有界等待听记产物，失败时保留恢复句柄
 source: internal/shortcut/minutes/workflows.go:40
 visible_flags: 5

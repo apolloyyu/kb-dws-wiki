@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws chat +category-remove-conversation
 description: 将会话从指定的自定义分组中移出
 source: internal/shortcut/chat/chat_conversation.go:1221
 visible_flags: 2

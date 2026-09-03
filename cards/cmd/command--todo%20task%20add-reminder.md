@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws todo task add-reminder
 description: 添加待办提醒
+example: dws todo task add-reminder --task-id <taskId> --base-time dueTime --due-date-offset -30
 source: internal/helpers/todo.go:877
 visible_flags: 4
 

@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +overdue
 description: 列出我已过期未完成的待办
 source: internal/shortcut/smart/overdue.go:48
 visible_flags: 0

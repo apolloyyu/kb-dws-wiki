@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws auth login
 description: 登录钉钉（自动刷新 token，必要时扫码）
+example: dws auth login
 source: internal/app/auth_command.go:116
 visible_flags: 9
 
@@ -19,7 +21,8 @@ visible_flags: 9
 
 ## Related
 - dws auth exchange
+- dws auth export
+- dws auth import
 - dws auth logout
 - dws auth migrate-keychain
 - dws auth reset
-- dws auth status

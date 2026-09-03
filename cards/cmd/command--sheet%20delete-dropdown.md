@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet delete-dropdown
 description: 删除下拉列表
+example: dws sheet delete-dropdown --node NODE_ID --sheet-id SHEET_ID --range "A2:A100" --yes
 source: internal/helpers/sheet_dimension.go:1002
 visible_flags: 3
 
@@ -14,7 +16,7 @@ visible_flags: 3
 ## Related
 - dws sheet add-dimension
 - dws sheet append
-- dws sheet batch-set-style
 - dws sheet batch-update
 - dws sheet changeset-get
+- dws sheet chart
 - dws sheet comment

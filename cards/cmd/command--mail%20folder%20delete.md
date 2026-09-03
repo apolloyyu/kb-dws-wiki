@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws mail folder delete
 description: 删除邮件文件夹
+example: dws mail folder delete --email user@company.com --id <folderId>
 source: internal/helpers/mail.go:724
 visible_flags: 2
 

@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws aitable +advperm-disable
 description: 关闭指定 Base 的高级权限总开关（所有自定义角色失效）
 source: internal/shortcut/aitable/aitable.go:2729
 visible_flags: 1

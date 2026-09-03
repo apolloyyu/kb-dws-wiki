@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws attendance +search-group
 description: 查询当前用户可管理的考勤组列表
 source: internal/shortcut/attendance/attendance.go:1280
 visible_flags: 6

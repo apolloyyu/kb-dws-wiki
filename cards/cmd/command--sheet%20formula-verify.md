@@ -1,10 +1,13 @@
 # dws sheet formula-verify
 
 kind: command
-completeness: full
+completeness: partial
+usage: dws sheet formula-verify
 description: 校验表格公式错误
+example: dws sheet formula-verify --node NODE_ID
 source: internal/helpers/sheet_formula_verify.go:18
 visible_flags: 7
+partial_reason: unverified_flags
 
 ## Flags
 - --node <String>: 表格文档 ID 或 URL (必填)
@@ -18,7 +21,7 @@ visible_flags: 7
 ## Related
 - dws sheet add-dimension
 - dws sheet append
-- dws sheet batch-set-style
 - dws sheet batch-update
 - dws sheet changeset-get
+- dws sheet chart
 - dws sheet comment

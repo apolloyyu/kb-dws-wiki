@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws chat group-role set-user
 description: 设置用户的群身份（覆盖该用户的全部群身份）
+example: dws chat group-role set-user --conversation-id <openConversationId> --user <userId> --role-id <openRoleId>
 source: internal/helpers/chat.go:8377
 visible_flags: 3
 

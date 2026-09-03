@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet filter get
 description: 获取全局筛选信息
+example: dws sheet filter get --node NODE_ID --sheet-id SHEET_ID
 source: internal/helpers/sheet_filter_view.go:169
 visible_flags: 2
 

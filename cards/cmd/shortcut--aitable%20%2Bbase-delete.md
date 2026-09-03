@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws aitable +base-delete
 description: 删除指定 Base（不可逆）
 source: internal/shortcut/aitable/aitable.go:395
 visible_flags: 2

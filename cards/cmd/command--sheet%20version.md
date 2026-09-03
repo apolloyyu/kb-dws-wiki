@@ -2,6 +2,7 @@
 
 kind: command
 completeness: full
+usage: dws sheet version
 description: 表格历史版本管理
 source: internal/helpers/sheet_version.go:11
 visible_flags: 0
@@ -12,7 +13,7 @@ visible_flags: 0
 ## Related
 - dws sheet add-dimension
 - dws sheet append
-- dws sheet batch-set-style
 - dws sheet batch-update
 - dws sheet changeset-get
+- dws sheet chart
 - dws sheet comment

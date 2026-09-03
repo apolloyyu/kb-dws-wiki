@@ -1,10 +1,12 @@
 # dws dev app version publish
 
 kind: command
-completeness: full
-description: 发布 MCP 工具草稿
-source: internal/helpers/dev_mcp.go:554
+completeness: partial
+usage: dws dev app version publish
+description: —
+source: internal/cli/param_aliases_generated.go:5559
 visible_flags: 0
+partial_reason: unverified_usage,unverified_flags,missing_description
 
 ## Flags
 - none

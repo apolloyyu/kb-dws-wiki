@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws minutes get audio
 description: 获取听记音频/视频地址
+example: dws minutes get audio --id <taskUuid>
 source: internal/helpers/minutes.go:450
 visible_flags: 0
 

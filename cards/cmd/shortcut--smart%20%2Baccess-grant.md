@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +access-grant
 description: 按姓名解析后批量授予文档权限
 source: internal/shortcut/smart/doc_access.go:74
 visible_flags: 0

@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws attendance class update
 description: 更新班次
+example: dws attendance class update --class-id 1170996821 --name "新早班" --timeout 10
 source: internal/helpers/attendance.go:1749
 visible_flags: 5
 

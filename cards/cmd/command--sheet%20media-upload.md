@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet media-upload
 description: 上传附件到表格
+example: dws sheet media-upload --node SHEET_DOC_ID --file ./report.pdf
 source: internal/helpers/sheet_media.go:271
 visible_flags: 4
 
@@ -15,7 +17,7 @@ visible_flags: 4
 ## Related
 - dws sheet add-dimension
 - dws sheet append
-- dws sheet batch-set-style
 - dws sheet batch-update
 - dws sheet changeset-get
+- dws sheet chart
 - dws sheet comment

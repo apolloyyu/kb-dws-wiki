@@ -2,14 +2,19 @@
 
 kind: command
 completeness: full
-description: 创建邮件文件夹
-source: internal/helpers/mail.go:666
-visible_flags: 3
+usage: dws mail contact create
+description: 创建邮件联系人
+example: dws mail contact create --email user@company.com --contact-email colleague@company.com --display-name "张三"
+source: internal/helpers/mail.go:3068
+visible_flags: 6
 
 ## Flags
-- --email <String>: 邮件所属邮箱地址 (必填)
-- --name <String>: 新建邮件文件夹名称 (必填)
-- --folder <String>: 父文件夹 ID，不传则创建顶层文件夹 (可选)
+- --email <String>: 用户邮箱地址 (必填)
+- --contact-email <String>: 联系人邮箱地址 (必填)
+- --first-name <String>: 联系人名 (可选)
+- --middle-name <String>: 联系人中间名 (可选)
+- --last-name <String>: 联系人姓 (可选)
+- --display-name <String>: 联系人显示名称 (可选)
 
 ## Related
 - dws mail contact batch-delete

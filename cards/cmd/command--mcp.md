@@ -1,18 +1,20 @@
 # dws mcp
 
 kind: command
-completeness: full
-description: MCP 服务与工具管理
-source: internal/helpers/dev_mcp.go:74
+completeness: partial
+usage: dws mcp
+description: —
+use_when: (derived parent:由规范子命令路径证明)
+source: —
 visible_flags: 0
+partial_reason: unverified_flags,missing_description,missing_source
 
 ## Flags
 - none
 
 ## Related
-- dws mcp create
-- dws mcp create-hsf
-- dws mcp debug
-- dws mcp delete
-- dws mcp get
-- dws mcp list
+- dws mcp published
+- dws mcp published invoke
+- dws mcp published tools
+- dws mcp url
+- dws mcp url get

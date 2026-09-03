@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +assign-multi
 description: 把一条待办按姓名一次性指派给多个人（自动把每个姓名解析成 userId）
 source: internal/shortcut/smart/assign_multi.go:49
 visible_flags: 2

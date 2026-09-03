@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws chat group share-invite
 description: 分享群聊链接到会话
+example: dws chat group share-invite --source <被分享群openConversationId> --target <目标会话openConversationId>
 source: internal/helpers/chat.go:10689
 visible_flags: 6
 

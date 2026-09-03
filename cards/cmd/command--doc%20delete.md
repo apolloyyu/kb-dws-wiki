@@ -2,18 +2,19 @@
 
 kind: command
 completeness: full
-description: 删除块元素
-source: internal/helpers/doc.go:2399
-visible_flags: 2
+usage: dws doc delete
+description: 删除文档/文件到回收站
+example: dws doc delete --node DOC_ID --yes
+source: internal/helpers/doc.go:2623
+visible_flags: 1
 
 ## Flags
-- --node <String>: 文档 ID 或 URL (必填)
-- --block-id <String>: 目标块 ID (必填)
+- --node <String>: 文档/文件 ID 或 URL (必填)
 
 ## Related
+- dws doc block
+- dws doc comment
 - dws doc copy
 - dws doc create
 - dws doc download
 - dws doc export
-- dws doc import
-- dws doc info

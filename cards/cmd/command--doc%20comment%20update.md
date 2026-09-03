@@ -2,20 +2,18 @@
 
 kind: command
 completeness: full
-description: 更新文档内容
-source: internal/helpers/doc.go:1719
-visible_flags: 9
+usage: dws doc comment update
+description: 更新文档评论
+example: dws doc comment update --node DOC_ID --comment-key COMMENT_KEY --content "已按最新数据修正"
+source: internal/helpers/doc.go:3343
+visible_flags: 5
 
 ## Flags
-- --node <String>: 文档 ID 或 URL (必填)
-- --content <String>: 文档内容（短文本字面量）；传 - 表示从 stdin 读取
-- --content-file <String>: 从文件读取文档内容（UTF-8）。推荐长/多行/表格内容使用
-- --mode <String> required: 更新模式: overwrite=覆盖, append=追加 (必填)
-- --index <Int>: 插入位置（从 0 开始），仅在 mode=append 时生效。指定将内容插入到文档第几个 block 之前。不传时追加到末尾
-- --yes <Bool>: 确认执行破坏性写入 (仅 --mode overwrite 需要)
-- --dry-run <Bool>: 预览覆盖写入差异，不调用远端 update
-- --content-format <String>: 内容格式: 默认为 markdown，可选 jsonml
-- --revision <Int>: 传则触发并发检查（与服务端不一致时拒绝写入），不传则直接覆盖
+- --node <String>: 目标文档的标识，支持传入 URL 或 ID (必填)
+- --comment-key <String>: 待更新评论的 commentKey，可从 list/create/create-inline 结果获取 (必填)
+- --content <String>: 更新后的评论文字内容，纯文本 (必填)
+- --mention <String>: 被 @ 的用户 uid 列表，逗号分隔
+- --mentioned-open-conversation-id <StringSlice>: 被 @ 的群 openConversationId，可重复指定或逗号分隔
 
 ## Related
 - dws doc comment create

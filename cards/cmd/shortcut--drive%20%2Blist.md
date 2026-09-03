@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws drive +list
 description: 严格分页列出钉盘文件和文件夹
 source: internal/shortcut/drive/drive.go:40
 visible_flags: 10

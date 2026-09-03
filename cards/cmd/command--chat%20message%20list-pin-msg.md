@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws chat message list-pin-msg
 description: 拉取会话中钉住的消息列表
+example: dws chat message list-pin-msg --open-conversation-id <openConversationId>
 source: internal/helpers/chat.go:9106
 visible_flags: 3
 

@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws attendance check result
 description: 查询打卡结果
+example: dws attendance check result --users userId1,userId2 --start 2026-04-01 --end 2026-04-30 --limit 50
 source: internal/helpers/attendance.go:652
 visible_flags: 5
 

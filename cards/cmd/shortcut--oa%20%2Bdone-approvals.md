@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws oa +done-approvals
 description: 只读列出我已处理过的审批任务（审批历史）并投影为可读列表
 source: internal/shortcut/oa/smart.go:79
 visible_flags: 1

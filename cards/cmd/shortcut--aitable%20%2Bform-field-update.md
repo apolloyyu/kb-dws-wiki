@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws aitable +form-field-update
 description: 更新表单字段的必填状态或描述
 source: internal/shortcut/aitable/aitable.go:1849
 visible_flags: 6

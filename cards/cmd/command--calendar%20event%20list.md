@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws calendar event list
 description: List calendar events on the user's calendar within a given time range.
+example: dws calendar event list
 use_when: When the agent needs an overview of the user's upcoming schedule or a day's agenda.
 source: internal/helpers/calendar.go:72
 visible_flags: 5

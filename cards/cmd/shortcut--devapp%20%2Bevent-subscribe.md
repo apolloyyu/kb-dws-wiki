@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws devapp +event-subscribe
 description: 订阅应用事件回调
 source: internal/shortcut/devapp/devapp.go:1983
 visible_flags: 2

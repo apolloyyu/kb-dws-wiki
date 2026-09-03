@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws chat message query-send-status
 description: 查询消息发送状态
+example: dws chat message query-send-status --open-task-id <openTaskId>
 source: internal/helpers/chat.go:4725
 visible_flags: 1
 

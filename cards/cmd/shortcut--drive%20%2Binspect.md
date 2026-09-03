@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws drive +inspect
 description: 聚合检查节点元数据及可选统计、公开状态和封面
 source: internal/shortcut/drive/operations.go:16
 visible_flags: 5

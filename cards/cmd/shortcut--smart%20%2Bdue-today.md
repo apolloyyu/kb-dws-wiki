@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +due-today
 description: 列出我今天到期的待办
 source: internal/shortcut/smart/due_today.go:53
 visible_flags: 1

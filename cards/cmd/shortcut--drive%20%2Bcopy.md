@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws drive +copy
 description: 复制文件/文档到指定位置
 source: internal/shortcut/drive/drive.go:425
 visible_flags: 3

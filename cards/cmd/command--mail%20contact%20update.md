@@ -2,14 +2,20 @@
 
 kind: command
 completeness: full
-description: 更新邮件文件夹
-source: internal/helpers/mail.go:779
-visible_flags: 3
+usage: dws mail contact update
+description: 更新邮件联系人
+example: dws mail contact update --email user@company.com --contact-id <contactId> --display-name "李四"
+source: internal/helpers/mail.go:3201
+visible_flags: 7
 
 ## Flags
-- --email <String>: 邮件所属邮箱地址 (必填)
-- --id <String>: 要更新的邮件文件夹 ID (必填)
-- --name <String>: 更新后的邮件文件夹名称 (必填)
+- --email <String>: 用户邮箱地址 (必填)
+- --contact-id <String>: 联系人唯一标识 (必填)
+- --contact-email <String>: 联系人邮箱地址 (可选)
+- --first-name <String>: 联系人名 (可选)
+- --middle-name <String>: 联系人中间名 (可选)
+- --last-name <String>: 联系人姓 (可选)
+- --display-name <String>: 联系人显示名称 (可选)
 
 ## Related
 - dws mail contact batch-delete

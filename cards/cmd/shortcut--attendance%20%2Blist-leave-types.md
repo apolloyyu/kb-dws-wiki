@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws attendance +list-leave-types
 description: 查询当前用户可用的假期规则列表
 source: internal/shortcut/attendance/attendance.go:1912
 visible_flags: 0

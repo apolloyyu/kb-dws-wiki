@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws doc +version-revert
 description: 回滚文档到指定历史版本
 source: internal/shortcut/doc/doc.go:810
 visible_flags: 2

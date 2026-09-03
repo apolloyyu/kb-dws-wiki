@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws todo task reset-reminder
 description: 重置待办提醒
+example: dws todo task reset-reminder --task-id <taskId>
 source: internal/helpers/todo.go:967
 visible_flags: 2
 

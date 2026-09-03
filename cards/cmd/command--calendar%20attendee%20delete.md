@@ -2,13 +2,14 @@
 
 kind: command
 completeness: full
-description: 删除日程
-source: internal/helpers/calendar.go:453
-visible_flags: 2
+usage: dws calendar attendee delete
+description: 移除参会人
+example: dws calendar attendee delete --event EVENT_ID --attendees userId1
+source: internal/helpers/calendar.go:772
+visible_flags: 1
 
 ## Flags
-- --id <String>: 日程 ID (必填)
-- --calendar-id <String>: 日历 ID (可选，默认 primary 主日历；指定其他日历本时填写，可通过 book list 获取)
+- --attendees <String>: 参会人 userId 列表，逗号分隔 (必填)
 
 ## Related
 - dws calendar attendee add

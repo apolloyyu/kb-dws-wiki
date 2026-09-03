@@ -2,12 +2,15 @@
 
 kind: command
 completeness: full
-description: 批量获取用户详情（组织管理信息）
-source: internal/helpers/contact.go:1134
-visible_flags: 1
+usage: dws contact user profile get
+description: 查询员工花名册字段信息（个人档案）
+example: dws contact user profile get --staff-id STAFF_ID
+source: internal/helpers/contact.go:1790
+visible_flags: 2
 
 ## Flags
-- --ids <String>: 用户 ID 列表 (必填)
+- --staff-id <String>: 查询员工 ID（可选）
+- --fields <String>: 指定字段集合, 逗号分隔, 可通过 profile fields 获取（可选）
 
 ## Related
 - dws contact user profile fields

@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet export
 description: 导出表格为 xlsx（异步任务一站式）
+example: dws sheet export --node NODE_ID
 source: internal/helpers/sheet_export.go:247
 visible_flags: 2
 
@@ -13,7 +15,7 @@ visible_flags: 2
 ## Related
 - dws sheet add-dimension
 - dws sheet append
-- dws sheet batch-set-style
 - dws sheet batch-update
 - dws sheet changeset-get
+- dws sheet chart
 - dws sheet comment

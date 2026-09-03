@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws aitable section rename
 description: 重命名文件夹
+example: dws aitable section rename --base-id BASE_ID --section-id SECTION_ID --new-name 新名称
 source: internal/helpers/aitable.go:7537
 visible_flags: 3
 

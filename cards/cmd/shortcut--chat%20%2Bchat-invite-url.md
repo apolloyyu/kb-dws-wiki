@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws chat +chat-invite-url
 description: 获取群邀请链接
 source: internal/shortcut/chat/chat_group.go:457
 visible_flags: 4

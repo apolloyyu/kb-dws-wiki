@@ -2,14 +2,17 @@
 
 kind: command
 completeness: full
-description: 创建 AI 表格
-source: internal/helpers/aitable.go:1849
-visible_flags: 3
+usage: dws aitable section create
+description: 创建文件夹
+example: dws aitable section create --base-id BASE_ID --name 我的文件夹
+source: internal/helpers/aitable.go:7482
+visible_flags: 4
 
 ## Flags
-- --name <String>: Base 名称，1-50 字符；会去除首尾空格后校验 (必填)
-- --folder-id <String>: 目标父节点的 dentryUuid (知识库节点 ID)，也可传入标准节点 URL，MCP 会在创建前解析出实际生效的节点 ID
-- --template-id <String>: 创建 Base 模板 ID，默认创建一个空 Base。可通过 template search 获取模板
+- --base-id <String>: Base ID (必填)
+- --name <String>: 文件夹名称 (必填)
+- --parent-section-id <String>: 父文件夹 ID；不传或空字符串表示创建在 Base 根目录下
+- --index <Int>: 在父文件夹下的目标位置（0-based）；不传则追加到末尾
 
 ## Related
 - dws aitable section delete

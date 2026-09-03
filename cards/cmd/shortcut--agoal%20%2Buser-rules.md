@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws agoal +user-rules
 description: 查询用户 Agoal 规则周期
 source: internal/shortcut/agoal/agoal.go:331
 visible_flags: 2

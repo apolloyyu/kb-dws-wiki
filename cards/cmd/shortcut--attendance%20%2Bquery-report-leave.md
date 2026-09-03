@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws attendance +query-report-leave
 description: 查询用户假期数据（仅管理员）
 source: internal/shortcut/attendance/attendance.go:1875
 visible_flags: 4

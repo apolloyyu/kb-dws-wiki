@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws chat +messages-send-by-bot
 description: 机器人向群聊发送 Markdown 消息
 source: internal/shortcut/chat/chat_message.go:43
 visible_flags: 7

@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws chat message remove-text-emotion
 description: 移除消息的文字表情回应
+example: dws chat message remove-text-emotion --conversation-id <openConversationId> --message-id <openMsgId> --emotion-id <emotionId> --emotion-name "赞" --text "nice" --background-id <backgroundId>
 source: internal/helpers/chat.go:6459
 visible_flags: 10
 

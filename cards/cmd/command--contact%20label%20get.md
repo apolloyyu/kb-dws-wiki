@@ -2,17 +2,19 @@
 
 kind: command
 completeness: full
-description: 批量获取用户详情（组织管理信息）
-source: internal/helpers/contact.go:1134
+usage: dws contact label get
+description: 根据角色名称查询角色
+example: dws contact label get --names "管理员"
+source: internal/helpers/contact.go:1254
 visible_flags: 1
 
 ## Flags
-- --ids <String>: 用户 ID 列表 (必填)
+- --names <String>: 角色名称，逗号分隔 (必填)
 
 ## Related
 - dws contact label add-members
 - dws contact label create
 - dws contact label delete
+- dws contact label list
 - dws contact label list-members
 - dws contact label remove-members
-- dws contact label update

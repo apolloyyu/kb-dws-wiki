@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws agoal +obj-template-list
 description: 分页查询 Agoal 目标模板
 source: internal/shortcut/agoal/agoal.go:204
 visible_flags: 3

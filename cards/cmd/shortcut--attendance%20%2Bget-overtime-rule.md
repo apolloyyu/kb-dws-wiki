@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws attendance +get-overtime-rule
 description: 根据加班规则主键 ID 查询加班规则详情
 source: internal/shortcut/attendance/attendance.go:1139
 visible_flags: 1

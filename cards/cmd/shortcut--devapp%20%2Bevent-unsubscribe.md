@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws devapp +event-unsubscribe
 description: 取消订阅应用事件
 source: internal/shortcut/devapp/devapp.go:2112
 visible_flags: 2

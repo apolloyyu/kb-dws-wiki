@@ -2,8 +2,10 @@
 
 kind: command
 completeness: full
-description: 听记列表
-source: internal/helpers/minutes.go:37
+usage: dws minutes hot-word list
+description: 查询我的热词列表
+example: dws minutes hot-word list
+source: internal/helpers/minutes.go:1308
 visible_flags: 0
 
 ## Flags

@@ -1,14 +1,18 @@
 # dws contact dept update
 
 kind: command
-completeness: full
-description: 修改角色名称
-source: internal/helpers/contact.go:309
-visible_flags: 2
+completeness: partial
+usage: dws contact dept update
+description: 更新部门信息
+example: dws contact dept update --dept 12345 --name "新部门名"
+source: internal/helpers/contact.go:677
+visible_flags: 3
+partial_reason: unverified_flags
 
 ## Flags
-- --id <String>: 角色 ID (必填)
-- --name <String>: 角色新名称 (必填)
+- --dept <String>: 部门 ID (必填)
+- --name <String>: 新部门名称 (必填)
+- --parent <String>: 新父部门 ID（可选）
 
 ## Related
 - dws contact dept create

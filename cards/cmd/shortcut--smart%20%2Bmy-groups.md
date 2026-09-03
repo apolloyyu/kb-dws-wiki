@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +my-groups
 description: 列出我加入的群，可按类型过滤并投影关键字段
 source: internal/shortcut/smart/my_groups.go:52
 visible_flags: 5

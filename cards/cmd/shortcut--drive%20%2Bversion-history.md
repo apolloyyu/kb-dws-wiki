@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws drive +version-history
 description: 严格分页列出普通文件历史版本
 source: internal/shortcut/drive/version_operations.go:16
 visible_flags: 3

@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws chat +chat-create
 description: 按成员和可选群主全量预检后创建一个钉钉群聊
 source: internal/shortcut/chat/lark_alignment.go:32
 visible_flags: 7

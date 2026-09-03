@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet range sort
 description: 对工作表指定区域排序
+example: dws sheet range sort --node NODE_ID --sheet-id SHEET_ID --range "A1:D10"
 source: internal/helpers/sheet_range_ops.go:364
 visible_flags: 5
 

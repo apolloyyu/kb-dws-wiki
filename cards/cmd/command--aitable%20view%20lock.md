@@ -2,12 +2,17 @@
 
 kind: command
 completeness: full
-description: 获取视图锁定状态
-source: internal/helpers/aitable.go:4692
-visible_flags: 0
+usage: dws aitable view lock
+description: 锁定/解锁视图
+example: dws aitable view lock --base-id BASE_ID --table-id TABLE_ID --view-id VIEW_ID
+source: internal/helpers/aitable.go:4728
+visible_flags: 4
 
 ## Flags
-- none
+- --base-id <String>: 所属 Base ID (必填)
+- --table-id <String>: 所属 Table ID (必填)
+- --view-id <String>: 目标 View ID (必填)
+- --off <Bool>: 解锁视图（不传则锁定）
 
 ## Related
 - dws aitable view create

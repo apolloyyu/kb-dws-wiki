@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws attendance +search-adjustment-rule
 description: 查询当前用户可管理的补卡规则列表
 source: internal/shortcut/attendance/attendance.go:1018
 visible_flags: 3

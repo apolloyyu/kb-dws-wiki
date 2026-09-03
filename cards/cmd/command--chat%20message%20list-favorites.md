@@ -1,10 +1,13 @@
 # dws chat message list-favorites
 
 kind: command
-completeness: full
+completeness: partial
+usage: dws chat message list-favorites
 description: 查询收藏的消息列表
+example: dws chat message list-favorites
 source: internal/helpers/chat.go:9268
 visible_flags: 2
+partial_reason: unverified_flags
 
 ## Flags
 - --cursor <Int64>: 数字分页游标（默认 0；翻页时传上次返回的 nextCursor）

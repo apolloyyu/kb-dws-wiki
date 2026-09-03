@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws drive +version-get
 description: 按版本号精确读取普通文件版本元数据
 source: internal/shortcut/drive/version_operations.go:46
 visible_flags: 2

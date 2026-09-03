@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws doc +export-submit
 description: 提交在线文档导出任务 (docx/markdown/pdf)，返回 jobId
 source: internal/shortcut/doc/doc.go:621
 visible_flags: 2

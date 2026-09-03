@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws calendar event instances
 description: 查询循环日程的实例列表
+example: dws calendar event instances --id EVENT_ID
 source: internal/helpers/calendar.go:1911
 visible_flags: 6
 

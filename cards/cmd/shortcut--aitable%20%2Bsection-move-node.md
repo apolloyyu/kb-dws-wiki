@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws aitable +section-move-node
 description: 把任意 nsheet 节点移动到目标文件夹下（可选调整位置）
 source: internal/shortcut/aitable/aitable.go:3098
 visible_flags: 4

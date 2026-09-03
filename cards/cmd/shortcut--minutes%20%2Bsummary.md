@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws minutes +summary
 description: 读取当前纪要、校验图片引用、全量覆盖并读回验证
 source: internal/shortcut/minutes/alignment.go:202
 visible_flags: 2

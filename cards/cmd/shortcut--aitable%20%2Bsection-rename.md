@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws aitable +section-rename
 description: 重命名指定文件夹
 source: internal/shortcut/aitable/aitable.go:2947
 visible_flags: 3

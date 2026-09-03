@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws aitable +view-preset-apply
 description: 按视图精确名称幂等创建或更新预设，并读回校验类型和 config
 source: internal/shortcut/aitable/view_preset.go:23
 visible_flags: 5

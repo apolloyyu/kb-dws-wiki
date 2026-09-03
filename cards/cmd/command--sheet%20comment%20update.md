@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet comment update
 description: 更新单元格评论
+example: dws sheet comment update --node <SHEET_ID> --comment-key <COMMENT_KEY> --content "已按最新数据修正"
 source: internal/helpers/sheet_comment.go:202
 visible_flags: 3
 

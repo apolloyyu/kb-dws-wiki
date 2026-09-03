@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet chart update
 description: 更新浮动图表
+example: dws sheet chart update --node NODE_ID --sheet-id SHEET_ID --chart-id CHART_ID --properties '{
 source: internal/helpers/sheet_chart.go:286
 visible_flags: 4
 

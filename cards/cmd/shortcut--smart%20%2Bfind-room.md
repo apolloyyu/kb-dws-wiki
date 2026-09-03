@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +find-room
 description: 查询指定时间段内所有可用的会议室
 source: internal/shortcut/smart/find_room.go:44
 visible_flags: 2

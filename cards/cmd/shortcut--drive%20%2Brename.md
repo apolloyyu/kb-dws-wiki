@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws drive +rename
 description: 重命名文件或文件夹并读回验证
 source: internal/shortcut/drive/operations.go:221
 visible_flags: 2

@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws mail +folder-list
 description: 列出顶层文件夹或指定父文件夹下的子文件夹
 source: internal/shortcut/mail/mail.go:154
 visible_flags: 2

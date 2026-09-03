@@ -1,10 +1,13 @@
 # dws contact label update-member-scope
 
 kind: command
-completeness: full
+completeness: partial
+usage: dws contact label update-member-scope
 description: 修改角色管理范围
+example: dws contact label update-member-scope --user user1 --id 12345 --depts 1,2
 source: internal/helpers/contact.go:466
 visible_flags: 3
+partial_reason: unverified_flags
 
 ## Flags
 - --user <String>: 成员 staffId / userId (必填)
@@ -16,5 +19,5 @@ visible_flags: 3
 - dws contact label create
 - dws contact label delete
 - dws contact label get
+- dws contact label list
 - dws contact label list-members
-- dws contact label remove-members

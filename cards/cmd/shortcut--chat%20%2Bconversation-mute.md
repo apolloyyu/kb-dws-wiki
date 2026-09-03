@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws chat +conversation-mute
 description: 会话消息免打扰（支持单聊/群聊）
 source: internal/shortcut/chat/chat_conversation.go:147
 visible_flags: 2

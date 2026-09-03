@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws mail message reply
 description: 回复邮件
+example: dws mail message reply --from user@company.com --id <messageId> --subject "Re: 周报" --content "已收到，谢谢！"
 source: internal/helpers/mail.go:1354
 visible_flags: 7
 
@@ -17,8 +19,8 @@ visible_flags: 7
 
 ## Related
 - dws mail message batch-delete
+- dws mail message batch-get
 - dws mail message batch-move
+- dws mail message batch-update
 - dws mail message export
 - dws mail message forward
-- dws mail message get
-- dws mail message list

@@ -2,8 +2,10 @@
 
 kind: command
 completeness: full
-description: 移除文档封面
-source: internal/helpers/doc_style.go:79
+usage: dws doc style background clear
+description: 清除文档背景
+example: dws doc style background clear --node DOC_ID
+source: internal/helpers/doc_style.go:152
 visible_flags: 1
 
 ## Flags

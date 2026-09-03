@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: partial
+usage: dws doc +search
 description: 按关键词或过滤条件搜索有权限的文档；默认只读取一页
 source: internal/shortcut/doc/doc.go:38
 visible_flags: 15

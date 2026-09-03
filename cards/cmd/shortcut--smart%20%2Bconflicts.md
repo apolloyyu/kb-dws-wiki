@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +conflicts
 description: 检测我某天日程的时间冲突（重叠/双重预订，默认今天）
 source: internal/shortcut/smart/conflicts.go:39
 visible_flags: 1

@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet cond-format create
 description: 创建条件格式规则
+example: dws sheet cond-format create --node NODE_ID --sheet-id SHEET_ID
 source: internal/helpers/sheet_cond_format.go:75
 visible_flags: 6
 

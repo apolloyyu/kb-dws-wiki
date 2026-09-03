@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws calendar +agenda
 description: 查询日程列表（不传时间默认查询今天）
 source: internal/shortcut/calendar/calendar.go:48
 visible_flags: 5

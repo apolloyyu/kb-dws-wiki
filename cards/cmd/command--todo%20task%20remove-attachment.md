@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws todo task remove-attachment
 description: 删除待办任务的附件
+example: dws todo task remove-attachment --task-id <taskId> --attachment-id <attachmentId>
 source: internal/helpers/todo.go:1191
 visible_flags: 2
 

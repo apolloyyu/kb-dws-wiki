@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws drive +create-shortcut
 description: 为已有节点创建快捷方式并验证新节点
 source: internal/shortcut/drive/operations.go:167
 visible_flags: 3

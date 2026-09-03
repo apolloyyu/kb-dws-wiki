@@ -2,14 +2,18 @@
 
 kind: command
 completeness: full
-description: 获取战略解码详情
-source: internal/helpers/agoal.go:77
-visible_flags: 2
+usage: dws agoal scorecard detail
+description: 获取计分卡详情
+example: dws agoal scorecard detail --selected-time "2026-01-01T00:00:00+08:00" --dept-id DEPT_ID
+source: internal/helpers/agoal.go:263
+visible_flags: 3
 
 ## Flags
-- --profile-id <String>: 战略解码 id (必填)
+- --selected-time <String>: ISO-8601 时间字符串，如 \"2026-01-01T00:00:00+08:00\" (必填)
+- --dept-id <String>: 部门 id (必填)
 - --request-id <String>: requestId (可选)
 
 ## Related
 - dws agoal scorecard entity-detail
+- dws agoal scorecard search-entities
 - dws agoal scorecard update

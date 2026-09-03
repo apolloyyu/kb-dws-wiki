@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws attendance +query-report-data
 description: 根据字段查询考勤报表数据（仅管理员）
 source: internal/shortcut/attendance/attendance.go:1803
 visible_flags: 4

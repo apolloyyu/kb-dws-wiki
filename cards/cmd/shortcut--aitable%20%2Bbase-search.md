@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws aitable +base-search
 description: 按名称关键词搜索 AI 表格 Base
 source: internal/shortcut/aitable/aitable.go:240
 visible_flags: 2

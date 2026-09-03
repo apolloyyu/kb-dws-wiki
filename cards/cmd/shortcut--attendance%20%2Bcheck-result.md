@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws attendance +check-result
 description: 查询用户打卡结果（迟到/早退/缺卡等）
 source: internal/shortcut/attendance/attendance.go:171
 visible_flags: 5

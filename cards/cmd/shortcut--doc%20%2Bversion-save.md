@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws doc +version-save
 description: 手动保存文档版本快照
 source: internal/shortcut/doc/doc.go:719
 visible_flags: 1

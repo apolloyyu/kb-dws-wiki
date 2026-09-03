@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws sheet +read
 description: 完整读取并严格校验在线电子表格范围；截断结果失败关闭
 source: internal/shortcut/sheet/sheet.go:159
 visible_flags: 4

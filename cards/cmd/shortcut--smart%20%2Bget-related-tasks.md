@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +get-related-tasks
 description: 一次性列出与我相关的全部待办（我作为创建人/执行人/参与人三种角色的并集，按 taskId 去重）
 source: internal/shortcut/smart/related_tasks.go:55
 visible_flags: 2

@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws calendar event get
 description: Retrieve the full details of a calendar event, including participants, location, and body.
+example: dws calendar event get --id EVENT_ID
 use_when: When the agent needs to inspect an event before updating or referencing it.
 source: internal/helpers/calendar.go:178
 visible_flags: 2

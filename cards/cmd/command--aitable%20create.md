@@ -2,8 +2,10 @@
 
 kind: command
 completeness: full
-description: 创建 AI 表格
-source: internal/helpers/aitable.go:1849
+usage: dws aitable create
+description: 创建 AI 表格（dws aitable base create 的别名）
+example: dws aitable create --name "项目跟踪"
+source: internal/helpers/aitable.go:9020
 visible_flags: 3
 
 ## Flags
@@ -12,6 +14,9 @@ visible_flags: 3
 - --template-id <String>: 创建 Base 模板 ID，默认创建一个空 Base。可通过 template search 获取模板
 
 ## Related
-- dws aitable info
-- dws aitable list
-- dws aitable search
+- dws aitable advperm
+- dws aitable attachment
+- dws aitable base
+- dws aitable chart
+- dws aitable dashboard
+- dws aitable datasource

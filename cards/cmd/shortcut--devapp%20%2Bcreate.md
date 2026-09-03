@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws devapp +create
 description: 创建开放平台企业内部应用
 source: internal/shortcut/devapp/devapp.go:609
 visible_flags: 3

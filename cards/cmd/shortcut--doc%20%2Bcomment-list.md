@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws doc +comment-list
 description: 查询文档评论列表
 source: internal/shortcut/doc/doc.go:430
 visible_flags: 5

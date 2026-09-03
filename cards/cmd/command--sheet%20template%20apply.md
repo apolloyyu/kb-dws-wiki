@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet template apply
 description: 应用表格模板
+example: dws sheet template apply --template-id TPL_ID --name "月度预算表"
 source: internal/helpers/sheet_template.go:137
 visible_flags: 4
 

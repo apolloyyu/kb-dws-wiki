@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws drive +version-download
 description: 安全下载普通文件指定历史版本
 source: internal/shortcut/drive/version_operations.go:81
 visible_flags: 3

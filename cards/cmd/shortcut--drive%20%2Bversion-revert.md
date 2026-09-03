@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws drive +version-revert
 description: 预检并回滚普通文件到指定历史版本
 source: internal/shortcut/drive/version_operations.go:139
 visible_flags: 2

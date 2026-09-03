@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws attendance +check-record
 description: 查询用户打卡流水（打卡时间/地点/定位方式）
 source: internal/shortcut/attendance/attendance.go:287
 visible_flags: 3

@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws ding +list
 description: 查询 DING 消息列表
 source: internal/shortcut/ding/ding.go:18
 visible_flags: 2

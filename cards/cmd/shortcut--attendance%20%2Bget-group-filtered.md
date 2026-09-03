@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws attendance +get-group-filtered
 description: 按需查询考勤组成员/打卡地址/蓝牙/Wifi 子集
 source: internal/shortcut/attendance/attendance.go:1413
 visible_flags: 5

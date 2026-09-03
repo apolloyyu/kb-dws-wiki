@@ -2,6 +2,7 @@
 
 kind: command
 completeness: full
+usage: dws drive
 description: 钉盘文件管理
 source: internal/helpers/drive.go:482
 visible_flags: 0

@@ -2,6 +2,7 @@
 
 kind: command
 completeness: full
+usage: dws skill install <skillId> <target>
 description: 下载并安装技能到指定目录
 source: internal/app/skill_command.go:352
 visible_flags: 0

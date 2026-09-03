@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +remind
 description: 给自己创建一条带可选截止时间的待办
 source: internal/shortcut/smart/remind.go:44
 visible_flags: 2

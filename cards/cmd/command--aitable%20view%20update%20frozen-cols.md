@@ -2,12 +2,14 @@
 
 kind: command
 completeness: full
-description: 获取视图冻结列数
-source: internal/helpers/aitable.go:4770
-visible_flags: 0
+usage: dws aitable view update frozen-cols
+description: 更新视图冻结列数
+example: dws aitable view update frozen-cols --base-id BASE_ID --table-id TABLE_ID --view-id VIEW_ID --count 1
+source: internal/helpers/aitable.go:4806
+visible_flags: 1
 
 ## Flags
-- none
+- --count <Int>: 冻结列数（>=0；0 表示取消冻结）(必填)
 
 ## Related
 - dws aitable view update aggregate

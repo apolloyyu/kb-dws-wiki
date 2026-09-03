@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws agoal report list-statistics
 description: 获取周月报数据跟催列表
+example: dws agoal report list-statistics
 source: internal/helpers/agoal.go:450
 visible_flags: 2
 

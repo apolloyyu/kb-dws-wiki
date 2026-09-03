@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws devapp +security-config
 description: 更新开放平台应用安全配置（整组覆盖，非追加）
 source: internal/shortcut/devapp/devapp.go:1567
 visible_flags: 4

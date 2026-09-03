@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws chat +chat-list
 description: 分页列出当前用户加入的会话（默认群聊；可选包含单聊）
 source: internal/shortcut/chat/lark_alignment.go:935
 visible_flags: 8

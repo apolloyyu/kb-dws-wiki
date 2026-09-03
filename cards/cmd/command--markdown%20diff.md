@@ -1,10 +1,13 @@
 # dws markdown diff
 
 kind: command
-completeness: full
+completeness: partial
+usage: dws markdown diff
 description: 比较 Markdown 内容差异
+example: dws markdown diff --node <dentryUuid> --version 3 --version2 5
 source: internal/helpers/markdown_diff.go:194
 visible_flags: 5
+partial_reason: unverified_flags
 
 ## Flags
 - --node <String>: 文件 ID (dentryUuid) 或 URL (必填)

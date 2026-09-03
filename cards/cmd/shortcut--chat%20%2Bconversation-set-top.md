@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws chat +conversation-set-top
 description: 批量会话置顶 / 取消置顶（最多 10 个）
 source: internal/shortcut/chat/chat_conversation.go:90
 visible_flags: 3

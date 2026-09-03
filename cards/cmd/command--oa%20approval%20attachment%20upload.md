@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws oa approval attachment upload
 description: 上传本地文件为审批附件（初始化+PUT+提交，一步完成）
+example: dws oa approval attachment upload --file ./合同.pdf
 source: internal/helpers/oa.go:549
 visible_flags: 3
 

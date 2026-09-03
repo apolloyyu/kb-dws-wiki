@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws doc +media-list
 description: 列出文档正文中的图片和附件资源
 source: internal/shortcut/doc/media_style_shortcuts.go:18
 visible_flags: 1

@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws minutes +list-mine
 description: 查询我创建的听记列表
 source: internal/shortcut/minutes/minutes.go:38
 visible_flags: 5

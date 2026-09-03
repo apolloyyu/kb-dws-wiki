@@ -2,6 +2,7 @@
 
 kind: command
 completeness: full
+usage: dws calendar participant list
 description: List current participants of a calendar event along with their response status.
 use_when: When the agent needs to check who is attending before sending follow-up reminders.
 source: internal/helpers/calendar.go:72

@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet write-image
 description: 上传图片并写入表格单元格
+example: dws sheet write-image --node SHEET_DOC_ID --sheet-id SHEET_ID --range A1:A1 --file ./chart.png
 source: internal/helpers/sheet_media.go:330
 visible_flags: 8
 
@@ -19,7 +21,7 @@ visible_flags: 8
 ## Related
 - dws sheet add-dimension
 - dws sheet append
-- dws sheet batch-set-style
 - dws sheet batch-update
 - dws sheet changeset-get
+- dws sheet chart
 - dws sheet comment

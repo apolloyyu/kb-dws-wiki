@@ -2,6 +2,7 @@
 
 kind: command
 completeness: full
+usage: dws event _bus
 description: Internal event bus daemon (do not call directly)
 source: internal/app/event_command.go:591
 visible_flags: 6
@@ -15,7 +16,6 @@ visible_flags: 6
 - --stream-ticket-url <String>: 用户 Stream 取票 URL；personal_stream 默认由 MCP base URL 派生
 
 ## Related
-- dws event +listen-im
 - dws event consume
 - dws event list
 - dws event schema

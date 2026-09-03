@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet hide-gridline
 description: 隐藏工作表网格线
+example: dws sheet hide-gridline --node NODE_ID --sheet-id SHEET_ID
 source: internal/helpers/sheet_workbook.go:553
 visible_flags: 2
 
@@ -13,7 +15,7 @@ visible_flags: 2
 ## Related
 - dws sheet add-dimension
 - dws sheet append
-- dws sheet batch-set-style
 - dws sheet batch-update
 - dws sheet changeset-get
+- dws sheet chart
 - dws sheet comment

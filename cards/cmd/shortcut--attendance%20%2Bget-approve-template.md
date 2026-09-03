@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws attendance +get-approve-template
 description: 查询补卡/请假/加班/外出/出差审批提交链接
 source: internal/shortcut/attendance/attendance.go:495
 visible_flags: 1

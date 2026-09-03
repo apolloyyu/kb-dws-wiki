@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws drive +move
 description: 移动文件/文档到指定位置
 source: internal/shortcut/drive/drive.go:507
 visible_flags: 3

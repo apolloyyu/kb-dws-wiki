@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws report +report-latest
 description: 读取我最近提交的一篇日志详情
 source: internal/shortcut/report/latest.go:26
 visible_flags: 3

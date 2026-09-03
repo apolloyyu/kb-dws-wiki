@@ -2,11 +2,13 @@
 
 kind: command
 completeness: partial
+usage: dws chat message send
 description: Send a message into a group chat or single chat as the authenticated user.
+example: dws chat message send --conversation-id <openconversation_id> --content "hello"
 use_when: When the agent needs to relay a response to a user or notify a group on behalf of the human operator.
 source: internal/helpers/chat.go:3517
 visible_flags: 14
-partial_reason: empty_flag_name
+partial_reason: unverified_flags,empty_flag_name
 
 ## Flags
 - --conversation-id <String>: 群聊 openconversation_id（群聊时必填）

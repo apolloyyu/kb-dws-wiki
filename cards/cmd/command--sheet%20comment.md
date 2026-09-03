@@ -2,6 +2,7 @@
 
 kind: command
 completeness: full
+usage: dws sheet comment
 description: 表格评论 / 单元格评论管理
 source: internal/helpers/sheet_comment.go:10
 visible_flags: 0
@@ -12,7 +13,7 @@ visible_flags: 0
 ## Related
 - dws sheet add-dimension
 - dws sheet append
-- dws sheet batch-set-style
 - dws sheet batch-update
 - dws sheet changeset-get
-- dws sheet copy
+- dws sheet chart
+- dws sheet cond-format

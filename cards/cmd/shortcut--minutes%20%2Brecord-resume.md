@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws minutes +record-resume
 description: 恢复听记录音
 source: internal/shortcut/minutes/minutes.go:454
 visible_flags: 2

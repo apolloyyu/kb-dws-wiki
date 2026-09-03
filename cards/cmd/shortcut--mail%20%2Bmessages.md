@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws mail +messages
 description: 按请求顺序读取多封邮件并逐封验证身份
 source: internal/shortcut/mail/reads.go:137
 visible_flags: 2

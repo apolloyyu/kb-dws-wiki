@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws aitable +chart-widgets-example
 description: 获取所有图表类型的 widget config 示例
 source: internal/shortcut/aitable/aitable.go:2368
 visible_flags: 0

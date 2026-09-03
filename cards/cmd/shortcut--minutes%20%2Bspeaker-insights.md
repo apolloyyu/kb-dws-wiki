@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws minutes +speaker-insights
 description: 创建发言人段落总结并轮询结果，保留异步任务恢复句柄
 source: internal/shortcut/minutes/workflows.go:124
 visible_flags: 5

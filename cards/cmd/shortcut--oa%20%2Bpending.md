@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws oa +pending
 description: 只读列出待我审批的审批任务并投影为可读列表（只看不批）
 source: internal/shortcut/oa/smart.go:40
 visible_flags: 1

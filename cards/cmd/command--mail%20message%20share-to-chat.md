@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws mail message share-to-chat
 description: [危险] 分享邮件至IM聊天
+example: dws mail message share-to-chat --email user@company.com --id <messageId> --users uid1,uid2 --yes
 source: internal/helpers/mail.go:2337
 visible_flags: 4
 
@@ -14,8 +16,8 @@ visible_flags: 4
 
 ## Related
 - dws mail message batch-delete
+- dws mail message batch-get
 - dws mail message batch-move
+- dws mail message batch-update
 - dws mail message export
 - dws mail message forward
-- dws mail message get
-- dws mail message list

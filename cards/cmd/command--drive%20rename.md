@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws drive rename
 description: 重命名文件/文档
+example: dws drive rename --node DOC_ID --name "新名称"
 source: internal/helpers/drive.go:2027
 visible_flags: 2
 

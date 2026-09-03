@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws hrbrain profile query
 description: 按模块批量查询员工档案数据
+example: dws hrbrain profile query --work-no WORK_NO --data-queries '[{"modelCode":"basic","fields":["name","dept"]}]'
 source: internal/helpers/hrbrain.go:461
 visible_flags: 2
 

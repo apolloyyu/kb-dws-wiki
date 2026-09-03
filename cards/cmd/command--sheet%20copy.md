@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet copy
 description: 复制工作表
+example: dws sheet copy --node NODE_ID --sheet-id SHEET_ID
 source: internal/helpers/sheet_workbook.go:372
 visible_flags: 5
 
@@ -16,7 +18,7 @@ visible_flags: 5
 ## Related
 - dws sheet add-dimension
 - dws sheet append
-- dws sheet batch-set-style
 - dws sheet batch-update
 - dws sheet changeset-get
+- dws sheet chart
 - dws sheet comment

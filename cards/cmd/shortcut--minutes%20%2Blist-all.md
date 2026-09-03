@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws minutes +list-all
 description: 预览或完整查询我有权限访问的听记列表
 source: internal/shortcut/minutes/minutes.go:138
 visible_flags: 5

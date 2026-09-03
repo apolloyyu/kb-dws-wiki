@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws devapp +robot-disable
 description: 停用现有应用的机器人能力
 source: internal/shortcut/devapp/devapp.go:1819
 visible_flags: 1

@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws mail +template-update
 description: 更新草稿模板并按原 ID 读回验证
 source: internal/shortcut/mail/writes.go:377
 visible_flags: 5

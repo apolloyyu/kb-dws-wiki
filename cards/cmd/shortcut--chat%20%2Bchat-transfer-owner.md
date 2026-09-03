@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws chat +chat-transfer-owner
 description: 转让群主
 source: internal/shortcut/chat/chat_group.go:429
 visible_flags: 2

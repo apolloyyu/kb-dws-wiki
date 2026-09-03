@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet range copy-to
 description: 复制工作表指定区域到目标位置
+example: dws sheet range copy-to --node NODE_ID --sheet-id SHEET_ID
 source: internal/helpers/sheet_range_ops.go:511
 visible_flags: 6
 

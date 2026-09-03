@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws aitable +record-upsert-by-key
 description: 按唯一字段值有则更新、无则创建记录，并读回验证
 source: internal/shortcut/aitable/record_upsert_by_key.go:25
 visible_flags: 6

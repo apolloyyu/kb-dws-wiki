@@ -2,12 +2,14 @@
 
 kind: command
 completeness: full
-description: 查询可用邮箱地址
-source: internal/helpers/mail.go:131
-visible_flags: 0
+usage: dws mail calendar list
+description: 列出用户可访问的日历列表
+example: dws mail calendar list --email user@company.com
+source: internal/helpers/mail.go:3723
+visible_flags: 1
 
 ## Flags
-- none
+- --email <String>: 用户的邮箱地址 (必填)
 
 ## Related
 - none

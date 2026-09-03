@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws chat +category-add-conversation
 description: 将会话移动到指定的自定义分组中
 source: internal/shortcut/chat/chat_conversation.go:1196
 visible_flags: 2

@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws attendance class search
 description: 查询当前用户可管理的所有班次详情
+example: dws attendance class search
 source: internal/helpers/attendance.go:1518
 visible_flags: 4
 

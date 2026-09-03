@@ -2,15 +2,17 @@
 
 kind: command
 completeness: full
-description: 分页列出群聊中的话题主消息
-source: internal/helpers/chat_thread.go:305
+usage: dws chat group notice list
+description: 查看群公告列表
+example: dws chat group notice list --conversation-id <openConversationId>
+source: internal/helpers/chat.go:10621
 visible_flags: 4
 
 ## Flags
-- --conversation-id <String> required: 会话 openConversationId (必填)
-- --time <String>: 开始时间，格式: yyyy-MM-dd HH:mm:ss（可选，默认上海时间当前时间）
-- --limit <Int>: 返回数量，不传则不限制
-- --direction <String>: 时间方向: newer=从给定时间往现在拉，older=从给定时间往以前拉（未传 --time 时默认 older）
+- --conversation-id <String> required: 群聊 openConversationId (必填)
+- --limit <Int>: 每页返回数量（默认 10，最大 100）
+- --cursor <String>: 分页游标（首次不传，翻页传返回的 nextPageCursor）
+- --scheduled <Bool>: 是否查询定时公告列表（默认 false，查询已发布公告）
 
 ## Related
 - dws chat group notice create

@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws calendar +attendee-list
 description: 查看日程参会人
 source: internal/shortcut/calendar/calendar.go:221
 visible_flags: 2

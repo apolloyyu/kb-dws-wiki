@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws attendance +save-leave-balance
 description: 设置员工假期余额（SET 覆盖，非累加）
 source: internal/shortcut/attendance/attendance.go:2135
 visible_flags: 6

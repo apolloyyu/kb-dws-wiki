@@ -1,10 +1,13 @@
 # dws dev doc search
 
 kind: command
-completeness: full
+completeness: partial
+usage: dws dev doc search [keyword]
 description: 搜索开放平台文档
-source: internal/helpers/devdoc.go:48
+example: dws dev doc search "MCP"
+source: internal/helpers/devdoc.go:139
 visible_flags: 3
+partial_reason: unverified_flags
 
 ## Flags
 - --query <String>: 搜索关键词 (必填)

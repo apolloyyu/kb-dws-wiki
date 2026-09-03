@@ -2,10 +2,11 @@
 
 kind: command
 completeness: partial
+usage: dws chat thread promote
 description: —
-source: —
+source: internal/helpers/chat_thread.go:108
 visible_flags: 0
-partial_reason: missing_description,missing_source
+partial_reason: unverified_usage,unverified_flags,missing_description
 
 ## Flags
 - none

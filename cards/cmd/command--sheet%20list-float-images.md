@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet list-float-images
 description: 列出工作表所有浮动图片
+example: dws sheet list-float-images --node NODE_ID --sheet-id SHEET_ID
 source: internal/helpers/sheet_float_image.go:196
 visible_flags: 2
 
@@ -13,7 +15,7 @@ visible_flags: 2
 ## Related
 - dws sheet add-dimension
 - dws sheet append
-- dws sheet batch-set-style
 - dws sheet batch-update
 - dws sheet changeset-get
+- dws sheet chart
 - dws sheet comment

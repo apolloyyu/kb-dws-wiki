@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws doc +comment-create
 description: 创建全文评论，或按 selection 创建划词评论
 source: internal/shortcut/doc/doc.go:493
 visible_flags: 8

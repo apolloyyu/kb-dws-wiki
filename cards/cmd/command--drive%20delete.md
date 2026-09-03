@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws drive delete
 description: 删除文件/文件夹到回收站
+example: dws drive delete --node <dentryUuid> --yes
 source: internal/helpers/drive.go:1810
 visible_flags: 1
 

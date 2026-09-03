@@ -2,10 +2,12 @@
 
 kind: command
 completeness: partial
-description: —
-source: —
+usage: dws sheet range batch-clear
+description: 批量清除多个区域（原子事务）
+example: dws sheet range batch-clear --node NODE_ID --ranges '["Sheet1!A1:B3","Sheet2!C1:D5"]'
+source: internal/helpers/sheet_batch.go:1602
 visible_flags: 0
-partial_reason: missing_description,missing_source
+partial_reason: unverified_flags
 
 ## Flags
 - none

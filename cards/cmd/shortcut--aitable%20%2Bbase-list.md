@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws aitable +base-list
 description: 获取当前用户可访问的 AI 表格 Base 列表（最近访问，支持游标分页）
 source: internal/shortcut/aitable/aitable.go:129
 visible_flags: 2

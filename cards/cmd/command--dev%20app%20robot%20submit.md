@@ -1,10 +1,12 @@
 # dws dev app robot submit
 
 kind: command
-completeness: full
-description: 提交一份新日报（按模版）
-source: internal/helpers/report.go:282
+completeness: partial
+usage: dws dev app robot submit
+description: —
+source: internal/cli/param_aliases_generated.go:5469
 visible_flags: 0
+partial_reason: unverified_usage,unverified_flags,missing_description
 
 ## Flags
 - none

@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws attendance +update-leave-type
 description: 更新已有假期规则（仅传要修改的字段）
 source: internal/shortcut/attendance/attendance.go:2065
 visible_flags: 7

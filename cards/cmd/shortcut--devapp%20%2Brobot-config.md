@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws devapp +robot-config
 description: 创建或更新现有应用的机器人配置（upsert）
 source: internal/shortcut/devapp/devapp.go:1647
 visible_flags: 11

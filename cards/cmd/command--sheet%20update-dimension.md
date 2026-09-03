@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet update-dimension
 description: 更新指定范围行/列属性（显隐、行高/列宽）
+example: dws sheet update-dimension --node NODE_ID --sheet-id SHEET_ID --dimension ROWS --start-index "3" --length 2 --hidden
 source: internal/helpers/sheet_dimension.go:520
 visible_flags: 8
 
@@ -19,7 +21,7 @@ visible_flags: 8
 ## Related
 - dws sheet add-dimension
 - dws sheet append
-- dws sheet batch-set-style
 - dws sheet batch-update
 - dws sheet changeset-get
+- dws sheet chart
 - dws sheet comment

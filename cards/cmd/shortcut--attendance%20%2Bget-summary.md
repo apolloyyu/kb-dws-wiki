@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws attendance +get-summary
 description: 查询某个人的考勤统计摘要（周/月）
 source: internal/shortcut/attendance/attendance.go:1597
 visible_flags: 3

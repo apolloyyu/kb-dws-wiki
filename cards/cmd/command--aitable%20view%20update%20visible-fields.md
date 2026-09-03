@@ -2,12 +2,15 @@
 
 kind: command
 completeness: full
-description: 获取视图 visible-fields 配置
-source: internal/helpers/aitable.go:4015
-visible_flags: 0
+usage: dws aitable view update visible-fields
+description: 更新视图可见字段列表
+example: dws aitable view update visible-fields --base-id BASE_ID --table-id TABLE_ID --view-id VIEW_ID --field-ids fld1,fld2,fld3
+source: internal/helpers/aitable.go:4452
+visible_flags: 2
 
 ## Flags
-- none
+- --field-ids <String>: 可见字段 ID 列表 (CSV)，整组替换原有顺序
+- --json <String>: 可见字段 ID 数组 JSON
 
 ## Related
 - dws aitable view update aggregate

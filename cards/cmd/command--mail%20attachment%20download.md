@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws mail attachment download
 description: 下载邮件附件到本地
+example: dws mail attachment download --email user@company.com --message-id <messageId> --attachment-id <attachmentId> --name report.pdf
 source: internal/helpers/mail.go:2045
 visible_flags: 5
 

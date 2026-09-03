@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws chat +conversation-list-top
 description: 拉取置顶会话列表，可只看群聊或单聊
 source: internal/shortcut/chat/chat_conversation.go:579
 visible_flags: 4

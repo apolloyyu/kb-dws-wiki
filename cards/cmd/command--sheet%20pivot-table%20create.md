@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet pivot-table create
 description: 创建透视表
+example: dws sheet pivot-table create --node NODE_ID
 source: internal/helpers/sheet_pivot_table.go:196
 visible_flags: 5
 

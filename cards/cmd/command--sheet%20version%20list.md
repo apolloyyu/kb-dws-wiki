@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet version list
 description: 查看表格历史版本列表
+example: dws sheet version list --node SHEET_ID
 source: internal/helpers/sheet_version.go:61
 visible_flags: 3
 

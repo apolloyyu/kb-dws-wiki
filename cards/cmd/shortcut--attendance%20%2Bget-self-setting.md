@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws attendance +get-self-setting
 description: 查询个人规则设置（打卡提醒/极速打卡/缺卡提醒等）
 source: internal/shortcut/attendance/attendance.go:1654
 visible_flags: 2

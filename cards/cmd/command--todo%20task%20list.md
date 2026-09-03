@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws todo task list
 description: List todos for the current user within the current organization.
+example: dws todo task list --page 1 --size 20 --status false --priority 40,30,10 --role-types creator,executor,participant
 use_when: When the agent surfaces the user's outstanding tasks or builds a daily focus list.
 source: internal/helpers/todo.go:277
 visible_flags: 8

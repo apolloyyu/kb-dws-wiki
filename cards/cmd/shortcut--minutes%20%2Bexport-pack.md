@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws minutes +export-pack
 description: 把完整听记产物写入受控目录并生成不含签名 URL 的 manifest
 source: internal/shortcut/minutes/workflows.go:189
 visible_flags: 5

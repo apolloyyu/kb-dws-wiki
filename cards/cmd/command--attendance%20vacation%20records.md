@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws attendance vacation records
 description: 查询指定员工假期余额变更记录
+example: dws attendance vacation records --user USER_ID --leave-code a1b2c3d4-e5f6-7890-abcd-ef1234567890 --start 2026-04-01 --end 2026-04-22
 source: internal/helpers/attendance.go:3801
 visible_flags: 4
 

@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet filter-view info
 description: 获取单个筛选视图详情
+example: dws sheet filter-view info --node NODE_ID --sheet-id SHEET_ID --filter-view-id FV_ID
 source: internal/helpers/sheet_filter_view.go:1036
 visible_flags: 3
 

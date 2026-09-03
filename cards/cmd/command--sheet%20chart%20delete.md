@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet chart delete
 description: 删除浮动图表
+example: dws sheet chart delete --node NODE_ID --sheet-id SHEET_ID --chart-id CHART_ID --yes
 source: internal/helpers/sheet_chart.go:371
 visible_flags: 3
 

@@ -2,11 +2,12 @@
 
 kind: command
 completeness: partial
+usage: dws chat thread recall-message
 description: Recall one message from a Thread.
 use_when: When the agent needs to retract one Thread reply or root message.
-source: —
+source: internal/helpers/chat_thread.go:668
 visible_flags: 0
-partial_reason: missing_source
+partial_reason: unverified_usage,unverified_flags
 
 ## Flags
 - none

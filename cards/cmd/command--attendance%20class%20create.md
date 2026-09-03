@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws attendance class create
 description: 创建班次
+example: dws attendance class create --name "早班" --class-vo '{"sections":[{"times":[{"checkType":"OnDuty","checkTime":"08:00","across":0},{"checkType":"OffDuty","checkTime":"17:00","across":0}]}]}' --timeout 10
 source: internal/helpers/attendance.go:1642
 visible_flags: 4
 

@@ -1,13 +1,15 @@
 # dws recruit job get
 
 kind: command
-completeness: full
-description: 获取技能压缩文件
-source: internal/app/skill_command.go:308
-visible_flags: 1
+completeness: partial
+usage: dws recruit job get
+description: —
+source: internal/cli/param_aliases_generated.go:9543
+visible_flags: 0
+partial_reason: unverified_usage,unverified_flags,missing_description
 
 ## Flags
-- --skill-id <String> required: 技能 ID（必填）
+- none
 
 ## Related
 - dws recruit job create

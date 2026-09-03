@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +grant-and-share
 description: 确保目标角色后按姓名逐人发送文档链接
 source: internal/shortcut/smart/doc_access.go:177
 visible_flags: 6

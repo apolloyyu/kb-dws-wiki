@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet cond-format update
 description: 更新条件格式规则
+example: dws sheet cond-format update --node NODE_ID --sheet-id SHEET_ID --rule-id RULE_ID
 source: internal/helpers/sheet_cond_format.go:232
 visible_flags: 7
 

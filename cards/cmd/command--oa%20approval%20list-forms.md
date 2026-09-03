@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws oa approval list-forms
 description: List approval process templates (forms) the current user is allowed to initiate.
+example: dws oa approval list-forms --cursor 0 --limit 100
 use_when: When the agent needs to pick the right approval form before submitting a new request.
 source: internal/helpers/oa.go:1360
 visible_flags: 3
@@ -13,9 +15,9 @@ visible_flags: 3
 - --size <String>: 每页大小（默认 100，最大 100）
 
 ## Related
+- dws oa approval append-task
 - dws oa approval approve
+- dws oa approval attachment
 - dws oa approval create-instance
 - dws oa approval detail
-- dws oa approval forecast-process
-- dws oa approval form-schema
-- dws oa approval list-by-admin
+- dws oa approval ding-info

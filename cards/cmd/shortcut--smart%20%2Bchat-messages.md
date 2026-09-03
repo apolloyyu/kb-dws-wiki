@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: partial
+usage: dws smart +chat-messages
 description: 读取指定群聊或单聊的消息记录，支持有界全量分页与原子 JSON 导出
 source: internal/shortcut/smart/chat_messages.go:57
 visible_flags: 27

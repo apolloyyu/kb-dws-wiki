@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws minutes +prepare-asr
 description: 读取个人热词、只新增缺失项并读回验证
 source: internal/shortcut/minutes/workflows.go:147
 visible_flags: 2

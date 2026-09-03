@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws aitable base get
 description: Retrieve metadata for a single AI table (Base), including name, owner, and structural summary.
+example: dws aitable base get --base-id BASE_ID
 use_when: When the agent needs to inspect a specific Base before performing further operations on it.
 source: internal/helpers/aitable.go:1812
 visible_flags: 1

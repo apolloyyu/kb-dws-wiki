@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws drive +recent
 description: 获取最近访问/编辑的文档列表
 source: internal/shortcut/drive/drive.go:604
 visible_flags: 7

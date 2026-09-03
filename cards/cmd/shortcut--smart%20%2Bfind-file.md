@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +find-file
 description: 按名称关键词搜索钉盘文件并投影关键字段（只读）
 source: internal/shortcut/smart/find_file.go:43
 visible_flags: 1

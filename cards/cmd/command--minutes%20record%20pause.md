@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws minutes record pause
 description: 暂停听记录音
+example: dws minutes record pause --id <taskUuid>
 source: internal/helpers/minutes.go:714
 visible_flags: 0
 

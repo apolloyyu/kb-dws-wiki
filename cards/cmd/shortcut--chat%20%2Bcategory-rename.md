@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws chat +category-rename
 description: 更新用户自定义会话分组的名称
 source: internal/shortcut/chat/chat_conversation.go:1142
 visible_flags: 2

@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws drive +delete
 description: 将已确认节点移入回收站
 source: internal/shortcut/drive/operations.go:303
 visible_flags: 2

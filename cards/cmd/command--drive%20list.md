@@ -2,7 +2,9 @@
 
 kind: command
 completeness: partial
+usage: dws drive list
 description: List the files and subfolders of a DingTalk Drive folder.
+example: dws drive list --limit 20
 use_when: When the agent needs to enumerate Drive contents to find or pick items.
 source: internal/helpers/drive.go:490
 visible_flags: 17

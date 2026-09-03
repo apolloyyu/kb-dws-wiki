@@ -2,11 +2,12 @@
 
 kind: command
 completeness: partial
+usage: dws chat thread create-group
 description: Create a group with Thread mode enabled.
 use_when: When the agent needs a new topic-circle container rather than an ordinary group chat.
-source: —
+source: internal/helpers/chat_thread.go:190
 visible_flags: 0
-partial_reason: missing_source
+partial_reason: unverified_usage,unverified_flags
 
 ## Flags
 - none

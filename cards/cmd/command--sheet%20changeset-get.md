@@ -2,10 +2,11 @@
 
 kind: command
 completeness: partial
+usage: dws sheet changeset-get
 description: —
-source: —
+source: internal/helpers/sheet_revision.go:315
 visible_flags: 0
-partial_reason: missing_description,missing_source
+partial_reason: unverified_usage,unverified_flags,missing_description
 
 ## Flags
 - none
@@ -13,7 +14,7 @@ partial_reason: missing_description,missing_source
 ## Related
 - dws sheet add-dimension
 - dws sheet append
-- dws sheet batch-set-style
 - dws sheet batch-update
+- dws sheet chart
 - dws sheet comment
-- dws sheet copy
+- dws sheet cond-format

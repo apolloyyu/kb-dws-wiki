@@ -2,15 +2,18 @@
 
 kind: command
 completeness: full
-description: 搜索邮件 (KQL 语法)
-source: internal/helpers/mail.go:274
-visible_flags: 4
+usage: dws mail user search
+description: 搜索邮箱用户
+example: dws mail user search --keyword "张三"
+source: internal/helpers/mail.go:2614
+visible_flags: 5
 
 ## Flags
-- --email <String>: 搜索目标邮箱地址 (必填)
-- --query <String>: KQL 查询表达式 (必填), 其中 date 格式必须遵循 ISO8601 规范
-- --limit <String>: 每页返回数量(最大限制 100, 默认 20)
-- --cursor <String>: 邮件的起始偏移标识, 其值取自响应中的nextCursor字段。\"\"表示从头开始
+- --email <String>: 搜索目标邮箱地址 (可选)
+- --keyword <String>: 搜索关键词（未提供 --employee-no 时为必填）
+- --employee-no <String>: 按工号搜索用户；提供此参数时 keyword 不再必填
+- --cursor <String>: 分页游标，取自响应中的 nextCursor 字段
+- --limit <String>: 每页返回数量
 
 ## Related
 - none

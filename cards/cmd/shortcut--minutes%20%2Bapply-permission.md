@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws minutes +apply-permission
 description: 为当前用户申请语义化的听记访问权限
 source: internal/shortcut/minutes/alignment.go:184
 visible_flags: 2

@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws agoal scorecard entity-detail
 description: 获取计分卡实体详情
+example: dws agoal scorecard entity-detail --sc-id SC_ID --entity-id ENTITY_ID
 source: internal/helpers/agoal.go:293
 visible_flags: 3
 
@@ -13,4 +15,5 @@ visible_flags: 3
 
 ## Related
 - dws agoal scorecard detail
+- dws agoal scorecard search-entities
 - dws agoal scorecard update

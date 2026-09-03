@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws whiteboard +query
 description: 严格读取已有文档白板的 OpenNodes 快照
 source: internal/shortcut/whiteboard/whiteboard.go:181
 visible_flags: 2

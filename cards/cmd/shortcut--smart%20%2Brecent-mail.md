@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +recent-mail
 description: 列出收件箱近期邮件会话并投影列表（主题/发件人/时间/threadId）
 source: internal/shortcut/smart/recent_mail.go:54
 visible_flags: 4

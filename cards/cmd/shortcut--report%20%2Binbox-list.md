@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws report +inbox-list
 description: 列出我收到的日志
 source: internal/shortcut/report/report.go:78
 visible_flags: 5

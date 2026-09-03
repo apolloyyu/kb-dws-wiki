@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws chat group members remove
 description: Remove one or more members from a group chat.
+example: dws chat group members remove --id <openconversation_id> --users userId1,userId2
 use_when: When the agent kicks users who should no longer have access to the group.
 source: internal/helpers/chat.go:3237
 visible_flags: 2

@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +share-doc
 description: 按姓名把文档链接私信发给某人（自动解析 userId）
 source: internal/shortcut/smart/share_doc.go:38
 visible_flags: 3

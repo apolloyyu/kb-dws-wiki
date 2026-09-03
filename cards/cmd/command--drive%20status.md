@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws drive status
 description: 比较本地文件夹与钉盘文件夹的差异
+example: dws drive status --local-folder /abs/path/repo --remote-folder <dentryUuid>
 source: internal/helpers/drive.go:4064
 visible_flags: 4
 

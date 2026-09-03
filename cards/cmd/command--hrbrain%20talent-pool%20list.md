@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws hrbrain talent-pool list
 description: 人才池列表
+example: dws hrbrain talent-pool list --page 1 --page-size 20
 source: internal/helpers/hrbrain.go:64
 visible_flags: 6
 

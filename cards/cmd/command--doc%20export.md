@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws doc export
 description: 导出在线文档 (支持 docx / markdown / pdf)
+example: dws doc export get --job-id <jobId>
 source: internal/helpers/doc.go:4024
 visible_flags: 3
 
@@ -12,9 +14,9 @@ visible_flags: 3
 - --output <String>: 本地保存路径，文件路径或目录 (必填)
 
 ## Related
+- dws doc block
+- dws doc comment
 - dws doc copy
 - dws doc create
 - dws doc delete
 - dws doc download
-- dws doc import
-- dws doc info

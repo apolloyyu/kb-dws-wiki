@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws doc version revert
 description: 回滚文档到指定版本
+example: dws doc version revert --node DOC_ID --version 3 --yes
 source: internal/helpers/doc.go:4508
 visible_flags: 2
 

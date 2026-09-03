@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws aitable view get filter
 description: 获取视图 filter 配置
+example: dws aitable view get filter --base-id BASE_ID --table-id TABLE_ID --view-id VIEW_ID
 source: internal/helpers/aitable.go:3913
 visible_flags: 0
 

@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws minutes +upload-and-notify
 description: 上传本地音视频创建听记，并在生成后推送闪记卡片
 source: internal/shortcut/minutes/alignment.go:129
 visible_flags: 7

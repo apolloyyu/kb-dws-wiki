@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws contact +search-mobile
 description: 按手机号搜索通讯录用户
 source: internal/shortcut/contact/contact.go:216
 visible_flags: 1

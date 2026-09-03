@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet get-dropdown
 description: 获取下拉列表配置
+example: dws sheet get-dropdown --node NODE_ID --sheet-id SHEET_ID --range "A2:A100"
 source: internal/helpers/sheet_dimension.go:939
 visible_flags: 3
 
@@ -14,7 +16,7 @@ visible_flags: 3
 ## Related
 - dws sheet add-dimension
 - dws sheet append
-- dws sheet batch-set-style
 - dws sheet batch-update
 - dws sheet changeset-get
+- dws sheet chart
 - dws sheet comment

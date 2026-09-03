@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws aitable +record-delete
 description: 批量删除记录（不可逆），自动按 100 条分片并逐批确认记录已不存在
 source: internal/shortcut/aitable/aitable.go:787
 visible_flags: 3

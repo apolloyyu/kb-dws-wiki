@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws drive +recycle-list
 description: 严格分页列出钉盘回收站
 source: internal/shortcut/drive/catalog_operations.go:32
 visible_flags: 3

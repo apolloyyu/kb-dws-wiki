@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet update-float-image
 description: 更新浮动图片属性
+example: dws sheet update-float-image --node NODE_ID --sheet-id SHEET_ID --float-image-id FI_ID --range C5
 source: internal/helpers/sheet_float_image.go:243
 visible_flags: 10
 
@@ -21,7 +23,7 @@ visible_flags: 10
 ## Related
 - dws sheet add-dimension
 - dws sheet append
-- dws sheet batch-set-style
 - dws sheet batch-update
 - dws sheet changeset-get
+- dws sheet chart
 - dws sheet comment

@@ -1,11 +1,14 @@
 # dws chat thread list-replies
 
 kind: command
-completeness: full
+completeness: partial
+usage: dws chat thread list-replies
 description: List replies under an `openConvThreadId`.
+example: dws chat thread list-replies --conversation-id <openConversationId> --topic-id <openConvThreadId>
 use_when: When the agent needs one page of replies for a Thread.
 source: internal/helpers/chat_thread.go:397
 visible_flags: 5
+partial_reason: unverified_flags
 
 ## Flags
 - --conversation-id <String> required: 父会话 openConversationId (必填)

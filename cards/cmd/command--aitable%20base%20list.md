@@ -1,11 +1,14 @@
 # dws aitable base list
 
 kind: command
-completeness: full
+completeness: partial
+usage: dws aitable base list
 description: List AI tables (Bases) accessible to the current user, paginated.
+example: dws aitable base list
 use_when: When the agent needs to enumerate the user's Bases to pick one by name or index.
 source: internal/helpers/aitable.go:1722
 visible_flags: 2
+partial_reason: unverified_flags
 
 ## Flags
 - --limit <Int>: 每页数量，默认 10，最大 10

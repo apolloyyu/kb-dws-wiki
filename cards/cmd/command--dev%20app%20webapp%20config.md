@@ -1,10 +1,12 @@
 # dws dev app webapp config
 
 kind: command
-completeness: full
-description: 配置管理
-source: internal/app/config_command.go:26
+completeness: partial
+usage: dws dev app webapp config
+description: —
+source: internal/cli/param_aliases_generated.go:5580
 visible_flags: 0
+partial_reason: unverified_usage,unverified_flags,missing_description
 
 ## Flags
 - none

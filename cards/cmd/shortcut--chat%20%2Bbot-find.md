@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws chat +bot-find
 description: 搜索全部可用机器人（含他人/官方，返回 openDingTalkId 可发单聊）
 source: internal/shortcut/chat/chat_bot.go:144
 visible_flags: 4

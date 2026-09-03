@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws chat +conversation-mute-red-envelope
 description: 关闭/开启红包消息提醒
 source: internal/shortcut/chat/chat_conversation.go:190
 visible_flags: 2

@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws minutes permission apply
 description: 为当前用户申请听记权限
+example: dws minutes permission apply --id <taskUuid> --policy 4
 source: internal/helpers/minutes.go:1879
 visible_flags: 2
 

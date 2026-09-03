@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws aitable +workflow-disable
 description: 禁用指定 Base 中的自动化工作流（影响业务自动化）
 source: internal/shortcut/aitable/aitable.go:2009
 visible_flags: 2

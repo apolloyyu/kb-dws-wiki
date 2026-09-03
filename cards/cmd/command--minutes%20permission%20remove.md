@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws minutes permission remove
 description: 批量移除听记成员权限
+example: dws minutes permission remove --ids <uuid1,uuid2> --member-uids 123456,789012
 source: internal/helpers/minutes.go:1817
 visible_flags: 2
 

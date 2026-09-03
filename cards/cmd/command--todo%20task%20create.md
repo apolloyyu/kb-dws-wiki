@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws todo task create
 description: Create a personal todo item for the current user with title, due time, and optional executors.
+example: dws todo task create --title "修复线上Bug" --executors userId1,userId2 --priority 40
 use_when: When the agent captures an action item as a tracked todo in the user's DingTalk todo list.
 source: internal/helpers/todo.go:87
 visible_flags: 5

@@ -2,9 +2,11 @@
 
 kind: command
 completeness: full
+usage: dws contact dept search
 description: Search departments in the organization's contact directory by keyword.
+example: dws contact dept search --query "技术部"
 use_when: When the agent needs to resolve a department name to a department ID.
-source: internal/helpers/contact.go:1043
+source: internal/helpers/contact.go:1541
 visible_flags: 1
 
 ## Flags

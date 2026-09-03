@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet chart create
 description: 创建浮动图表
+example: dws sheet chart create --node NODE_ID --sheet-id SHEET_ID --properties '{
 source: internal/helpers/sheet_chart.go:184
 visible_flags: 3
 

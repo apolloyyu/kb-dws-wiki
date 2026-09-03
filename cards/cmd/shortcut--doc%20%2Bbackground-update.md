@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws doc +background-update
 description: 设置文档 #RRGGBB 背景纯色
 source: internal/shortcut/doc/media_style_shortcuts.go:199
 visible_flags: 2

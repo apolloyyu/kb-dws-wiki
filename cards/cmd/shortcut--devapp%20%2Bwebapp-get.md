@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws devapp +webapp-get
 description: 查询网页应用配置
 source: internal/shortcut/devapp/devapp.go:982
 visible_flags: 1

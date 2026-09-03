@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws sheet +list-sheets
 description: 严格列出在线电子表格的工作表，并可按完整标题精确筛选
 source: internal/shortcut/sheet/sheet.go:40
 visible_flags: 2

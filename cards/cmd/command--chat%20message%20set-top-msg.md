@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws chat message set-top-msg
 description: 置顶消息
+example: dws chat message set-top-msg --open-conversation-id <openConversationId> --message-id <openMessageId>
 source: internal/helpers/chat.go:9956
 visible_flags: 2
 

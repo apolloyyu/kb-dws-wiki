@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet delete-dimension
 description: 删除指定位置的行或列
+example: dws sheet delete-dimension --node NODE_ID --sheet-id SHEET_ID --dimension ROWS --position "3" --length 2 --yes
 source: internal/helpers/sheet_dimension.go:434
 visible_flags: 5
 
@@ -16,7 +18,7 @@ visible_flags: 5
 ## Related
 - dws sheet add-dimension
 - dws sheet append
-- dws sheet batch-set-style
 - dws sheet batch-update
 - dws sheet changeset-get
+- dws sheet chart
 - dws sheet comment

@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +lookup
 description: 按姓名查询某人的完整资料（自动解析 userId 后取详情）
 source: internal/shortcut/smart/lookup.go:31
 visible_flags: 1

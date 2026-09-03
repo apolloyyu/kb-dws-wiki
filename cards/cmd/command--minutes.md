@@ -1,18 +1,20 @@
 # dws minutes
 
 kind: command
-completeness: full
-description: AI 听记 / 会议纪要
-source: internal/helpers/minutes.go:2181
+completeness: partial
+usage: dws minutes
+description: —
+source: internal/shortcut/smart/minutes_contract.go:127
 visible_flags: 0
+partial_reason: unverified_usage,unverified_flags,missing_description
 
 ## Flags
 - none
 
 ## Related
+- dws minutes audio-memo
 - dws minutes audio-memo list
+- dws minutes get
 - dws minutes get audio
 - dws minutes get batch
 - dws minutes get info
-- dws minutes get keywords
-- dws minutes get summary

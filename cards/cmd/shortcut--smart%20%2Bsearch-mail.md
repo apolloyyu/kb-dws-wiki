@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +search-mail
 description: 按 KQL 关键词搜索邮件并投影列表（主题/发件人/时间/messageId）
 source: internal/shortcut/smart/search_mail.go:47
 visible_flags: 4

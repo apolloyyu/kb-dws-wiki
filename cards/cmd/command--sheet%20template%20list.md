@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet template list
 description: 获取表格模板列表
+example: dws sheet template list
 source: internal/helpers/sheet_template.go:18
 visible_flags: 3
 

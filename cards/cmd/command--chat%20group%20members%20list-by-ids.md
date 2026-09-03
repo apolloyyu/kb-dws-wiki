@@ -2,12 +2,15 @@
 
 kind: command
 completeness: full
-description: 根据消息 ID 批量查询消息
-source: internal/helpers/chat.go:6197
-visible_flags: 1
+usage: dws chat group members list-by-ids
+description: 根据成员 ID 批量查询群成员详情
+example: dws chat group members list-by-ids --id <openConversationId> --users openDingTalkId1,openDingTalkId2
+source: internal/helpers/chat.go:10371
+visible_flags: 2
 
 ## Flags
-- --msg-ids <String> required: 消息 ID 列表，逗号分隔，最多 50 条 (必填)
+- --id <String> required: 群 ID / openConversationId (必填)
+- --users <String> required: 成员 openDingTalkId 列表，逗号分隔 (必填)
 
 ## Related
 - dws chat group members add

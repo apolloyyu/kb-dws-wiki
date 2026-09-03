@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws aitable +view-set-fill-color-rule
 description: 全量覆盖 Grid 视图的条件填色规则（传 '[]' 清空）
 source: internal/shortcut/aitable/aitable.go:1607
 visible_flags: 4

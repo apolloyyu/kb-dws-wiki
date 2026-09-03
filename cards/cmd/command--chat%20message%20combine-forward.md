@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws chat message combine-forward
 description: 合并转发多条消息
+example: dws chat message combine-forward --src-conversation-id <srcOpenCid> --msg-ids <id1>,<id2>,<id3> --dest-conversation-id <destOpenCid>
 source: internal/helpers/chat.go:8887
 visible_flags: 4
 

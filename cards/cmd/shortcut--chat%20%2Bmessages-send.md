@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: partial
+usage: dws chat +messages-send
 description: 按身份和目标统一发送消息，Bot 多群返回逐目标 ledger
 source: internal/shortcut/chat/unified_send.go:43
 visible_flags: 27

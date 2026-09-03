@@ -9,7 +9,7 @@
   cards/index.jsonl      精确 key → 卡片路径/完整度
 
 生成规则只依赖 graph schema，不跟具体产品/命令名走；新增命令无需改代码。
-卡片仅在 description、source 齐全且可见 flag <=14、无空 flag 名时标 full；
+卡片仅在完整 Usage(含位置参数)、flags 抽取已验证、description、source 齐全且可见 flag <=14、无空 flag 名时标 full；
 其余标 partial，由 dwsdoc ctx 自动回落产品正文，宁可慢也不丢字段。
 """
 import argparse
@@ -76,10 +76,11 @@ def related_shortcuts(row, shortcuts):
     return sorted(dict.fromkeys(hits))[:6]
 
 
-def render(kind, key, desc, when, source, flags, related):
+def render(kind, key, usage, usage_verified, flags_verified, example, desc, when, source, flags, related):
     visible = [f for f in flags if not f.get("hidden") and f.get("name")]
     bad_flag = any(not f.get("name") for f in flags)
-    full = bool(desc and source and len(visible) <= VISIBLE_FLAG_LIMIT and not bad_flag)
+    full = bool(usage_verified and flags_verified and desc and source
+                and len(visible) <= VISIBLE_FLAG_LIMIT and not bad_flag)
     completeness = "full" if full else "partial"
     shown = visible if full else ([f for f in visible if f.get("required")]
                                   + [f for f in visible if not f.get("required")][:PARTIAL_FLAG_LIMIT])
@@ -91,13 +92,19 @@ def render(kind, key, desc, when, source, flags, related):
             uniq.append(f)
 
     lines = [f"# dws {key}", "", f"kind: {kind}", f"completeness: {completeness}",
-             f"description: {clean(desc) or '—'}"]
+             f"usage: dws {clean(usage) or key}", f"description: {clean(desc) or '—'}"]
+    if example:
+        lines.append(f"example: {clean(example)}")
     if when and not str(when).startswith("(source-only:"):
         lines.append(f"use_when: {clean(when)}")
     lines.append(f"source: {source or '—'}")
     lines.append(f"visible_flags: {len(visible)}")
     if not full:
         reasons = []
+        if not usage_verified:
+            reasons.append("unverified_usage")
+        if not flags_verified:
+            reasons.append("unverified_flags")
         if not desc:
             reasons.append("missing_description")
         if not source:
@@ -139,7 +146,9 @@ def build(repo):
     for r in sorted(commands, key=lambda x: x["cmd"].strip()):
         key = r["cmd"].strip()
         fn = card_name("command", key)
-        body, completeness = render("command", key, r.get("desc"), r.get("when"),
+        body, completeness = render("command", key, r.get("usage") or key,
+                                    bool(r.get("usage_verified")), bool(r.get("flags_verified")),
+                                    r.get("example"), r.get("desc"), r.get("when"),
                                     command_source(r), r.get("flags") or [],
                                     related_commands(r, commands))
         with open(os.path.join(tmp, fn), "w", encoding="utf-8") as f:
@@ -152,7 +161,7 @@ def build(repo):
     for r in sorted(shortcuts, key=lambda x: (x.get("product", ""), x["cmd"])):
         key = f"{r.get('product', '')} {r['cmd']}".strip()
         fn = card_name("shortcut", key)
-        body, completeness = render("shortcut", key, r.get("desc"), "",
+        body, completeness = render("shortcut", key, key, True, True, "", r.get("desc"), "",
                                     shortcut_source(r), r.get("flags") or [],
                                     related_shortcuts(r, shortcuts))
         with open(os.path.join(tmp, fn), "w", encoding="utf-8") as f:
@@ -162,22 +171,27 @@ def build(repo):
                       "path": f"cards/cmd/{fn}", "completeness": completeness,
                       "product": r.get("product") or ""})
 
-    # 构建成功后再替换，避免中途失败留下半套 cards。
-    shutil.rmtree(target, ignore_errors=True)
-    os.replace(tmp, target)
-    os.makedirs(cards_root, exist_ok=True)
-    with open(os.path.join(cards_root, "index.jsonl"), "w", encoding="utf-8") as f:
+    # 所有地板必须在替换线上目录之前检查；失败时删构建临时目录，旧 cards 原样保留。
+    files = [x for x in os.listdir(tmp) if x.endswith(".md")]
+    ratio = full_count / len(index)
+    error = ""
+    if len(files) != len(index):
+        error = f"卡片数不符: files={len(files)} index={len(index)}"
+    elif len(index) < 900:
+        error = f"卡片地板未达标: {len(index)} < 900"
+    elif ratio < 0.70:
+        error = f"full 完整率未达标: {ratio:.1%} < 70%"
+    if error:
+        shutil.rmtree(tmp, ignore_errors=True)
+        raise RuntimeError(error)
+
+    index_tmp = os.path.join(cards_root, ".index-building.jsonl")
+    with open(index_tmp, "w", encoding="utf-8") as f:
         for r in sorted(index, key=lambda x: (x["kind"], x["key"])):
             f.write(json.dumps(r, ensure_ascii=False, sort_keys=True) + "\n")
-
-    files = [x for x in os.listdir(target) if x.endswith(".md")]
-    if len(files) != len(index):
-        raise RuntimeError(f"卡片数不符: files={len(files)} index={len(index)}")
-    ratio = full_count / len(index)
-    if len(index) < 900:
-        raise RuntimeError(f"卡片地板未达标: {len(index)} < 900")
-    if ratio < 0.70:
-        raise RuntimeError(f"full 完整率未达标: {ratio:.1%} < 70%")
+    shutil.rmtree(target, ignore_errors=True)
+    os.replace(tmp, target)
+    os.replace(index_tmp, os.path.join(cards_root, "index.jsonl"))
     return {"cards": len(index), "full": full_count, "partial": len(index) - full_count,
             "full_ratio": ratio, "commands": len(commands), "shortcuts": len(shortcuts)}
 

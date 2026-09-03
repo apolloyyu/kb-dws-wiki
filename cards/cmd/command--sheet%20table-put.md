@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet table-put
 description: 写入结构化 table 数据
+example: dws sheet table-put --node NODE_ID
 source: internal/helpers/sheet_table.go:96
 visible_flags: 2
 
@@ -13,7 +15,7 @@ visible_flags: 2
 ## Related
 - dws sheet add-dimension
 - dws sheet append
-- dws sheet batch-set-style
 - dws sheet batch-update
 - dws sheet changeset-get
+- dws sheet chart
 - dws sheet comment

@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws mail +tag-list
 description: 列出指定邮箱下的所有邮件标签
 source: internal/shortcut/mail/mail.go:225
 visible_flags: 1

@@ -2,25 +2,182 @@
 
 - 源码 commit:e6661a8
 - 镜像文件:118
-- 主命令:881(带 flags:723,归属未定:16)
+- 主命令:1106(带 flags:771,归属未定:173)
 - shortcuts:468
-- 答案卡:1349(full:1305,96.7%;partial:44)
+- 答案卡:1574(full:1218,77.4%;partial:356)
 - 文档索引:127 篇
 
 ## 归属未定(退回源码 grep,不影响存在性判断)
-- aitable workflow history
-- aitable workflow run
-- auth reset
-- chat thread create-group
-- chat thread promote
-- chat thread recall-message
-- dev app event subscribe
-- dev app event unsubscribe
-- dev app version check-approval
+- agoal contract
+- agoal obj-template
+- agoal report
+- agoal scorecard
+- agoal strategy
+- agoal user
+- aitable advperm
+- aitable attachment
+- aitable base
+- aitable chart
+- aitable chart share
+- aitable dashboard
+- aitable dashboard share
+- aitable datasource
+- aitable export
+- aitable field
+- aitable form
+- aitable form field
+- aitable form questions
+- aitable form share
+- aitable import
+- aitable record
+- aitable section
+- aitable table
+- aitable template
+- aitable view
+- aitable workflow
+- attendance
+- attendance adjustment
+- attendance approve
+- attendance check
+- attendance checkin
+- attendance class
+- attendance globalsetting
+- attendance group
+- attendance overtime
+- attendance record
+- attendance report
+- attendance schedule
+- attendance selfsetting
+- attendance shift
+- attendance vacation
+- calendar acl
+- calendar attachment
+- calendar attendee
+- calendar book
+- calendar busy
+- calendar event
+- calendar participant
+- calendar room
+- chat bot
+- chat category
+- chat conversation-file
+- chat data-auth
+- chat group
+- chat group notice
+- chat group user-settings
+- chat group-role
+- chat message
+- chat text
+- conference
+- conference meeting
+- conference member
+- contact account
+- contact dept
+- contact ext-field
+- contact label
+- contact org
+- contact relation
+- contact user
+- contact user dismission
+- contact user profile
+- dev
+- dev app
+- dev app credentials
+- dev app event
+- dev app member
+- dev app permission
+- dev app robot
+- dev app security
+- dev app version
+- dev app webapp
+- dev doc
+- dev mcp
+- dev mcp auth
+- dev mcp credential
+- dev mcp hsf
+- dev mcp member
+- dev mcp service
+- dev mcp tool
+- dev mcp url
+- devdoc article
+- devdoc error
 - devdoc error diagnose
-- oa approval attachment authorize-download
-- oa approval attachment authorize-preview
-- oa approval attachment download-url
-- sheet changeset-get
-- sheet range batch-clear
-- sheet revision-get
+- ding
+- ding message
+- doc block
+- doc comment
+- doc file
+- doc folder
+- doc media
+- doc permission
+- doc style background
+- doc style cover
+- doc template
+- doc version
+- drive permission
+- drive publish
+- drive recycle
+- drive star
+- hrbrain profile
+- hrbrain search
+- hrbrain talent-pool
+- live
+- live stream
+- mail
+- mail allow-list
+- mail attachment
+- mail auto-reply
+- mail block-list
+- mail calendar
+- mail calendar-event
+- mail contact
+- mail draft
+- mail folder
+- mail mailbox
+- mail message
+- mail rule
+- mail sent-message
+- mail tag
+- mail template
+- mail thread
+- mail user
+- mcp
+- mcp published
+- mcp url
+- minutes audio-memo
+- minutes get
+- minutes hot-word
+- minutes list
+- minutes mind-graph
+- minutes permission
+- minutes record
+- minutes speaker
+- minutes speaker summary
+- minutes tag
+- minutes update
+- minutes upload
+- oa approval
+- oa approval attachment
+- plugin
+- plugin config
+- recruit
+- recruit job
+- report
+- report entry
+- report outbox
+- report template
+- sheet chart
+- sheet cond-format
+- sheet filter
+- sheet filter-view
+- sheet pivot-table
+- sheet range
+- sheet template
+- todo comment
+- todo tag
+- todo task
+- whiteboard
+- wiki feed
+- wiki member
+- wiki node
+- wiki space

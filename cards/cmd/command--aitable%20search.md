@@ -2,15 +2,19 @@
 
 kind: command
 completeness: full
-description: 搜索 AI 表格
-source: internal/helpers/aitable.go:1765
-visible_flags: 2
+usage: dws aitable search
+description: AI 表格搜索（dws aitable base search 的别名）
+example: dws aitable search --query "项目管理"
+source: internal/helpers/aitable.go:8951
+visible_flags: 0
 
 ## Flags
-- --query <String>: Base 名称关键词，建议至少 2 个字符 (必填)
-- --cursor <String>: 分页游标，首次不传
+- none
 
 ## Related
+- dws aitable advperm
+- dws aitable attachment
+- dws aitable base
+- dws aitable chart
 - dws aitable create
-- dws aitable info
-- dws aitable list
+- dws aitable dashboard

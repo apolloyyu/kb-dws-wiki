@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws doc read
 description: Read the content of a DingTalk Doc as Markdown.
+example: dws doc read --node DOC_ID
 use_when: When the agent needs the document body as text for summarization, Q&A, or further editing.
 source: internal/helpers/doc.go:1456
 visible_flags: 10
@@ -20,9 +22,9 @@ visible_flags: 10
 - --version <Int>: 读取指定历史版本内容(版本号从 doc version list 获取, 0 表示初始版本, 需要文档编辑权限)；缺省读最新版
 
 ## Related
+- dws doc block
+- dws doc comment
 - dws doc copy
 - dws doc create
 - dws doc delete
 - dws doc download
-- dws doc export
-- dws doc import

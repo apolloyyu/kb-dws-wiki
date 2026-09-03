@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws devapp +version-create
 description: 基于当前配置创建应用新版本
 source: internal/shortcut/devapp/devapp.go:2137
 visible_flags: 3

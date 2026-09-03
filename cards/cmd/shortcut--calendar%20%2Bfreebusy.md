@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws calendar +freebusy
 description: 查询用户 / 会议室闲忙状态（--users 与 --rooms 至少其一）
 source: internal/shortcut/calendar/calendar.go:678
 visible_flags: 4

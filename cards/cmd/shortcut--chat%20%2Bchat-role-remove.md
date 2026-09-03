@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws chat +chat-role-remove
 description: 删除群身份
 source: internal/shortcut/chat/chat_group.go:1861
 visible_flags: 2

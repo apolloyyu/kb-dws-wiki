@@ -1,22 +1,20 @@
 # dws dev app update
 
 kind: command
-completeness: full
-description: 修改 MCP 服务信息
-source: internal/helpers/dev_mcp.go:323
-visible_flags: 5
+completeness: partial
+usage: dws dev app update
+description: —
+source: internal/cli/param_aliases_generated.go:5498
+visible_flags: 0
+partial_reason: unverified_usage,unverified_flags,missing_description
 
 ## Flags
-- --name <String>: 新服务名称
-- --description <String>: 新服务描述
-- --icon-url <String>: 新图标 URL
-- --introduction <String>: 新详情介绍
-- --server-name <String>: 新服务英文标识，kebab-case
+- none
 
 ## Related
 - dws dev app create
+- dws dev app credentials
 - dws dev app delete
 - dws dev app disable
 - dws dev app enable
-- dws dev app get
-- dws dev app list
+- dws dev app event

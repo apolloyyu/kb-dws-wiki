@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet delete-sheet
 description: 删除工作表
+example: dws sheet delete-sheet --node NODE_ID --sheet-id SHEET_ID --yes
 source: internal/helpers/sheet_workbook.go:449
 visible_flags: 2
 
@@ -13,7 +15,7 @@ visible_flags: 2
 ## Related
 - dws sheet add-dimension
 - dws sheet append
-- dws sheet batch-set-style
 - dws sheet batch-update
 - dws sheet changeset-get
+- dws sheet chart
 - dws sheet comment

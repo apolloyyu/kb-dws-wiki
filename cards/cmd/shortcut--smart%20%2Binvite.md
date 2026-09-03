@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +invite
 description: 按姓名把参会人加入已有日程（自动解析 userId 后批量添加）
 source: internal/shortcut/smart/invite.go:35
 visible_flags: 2

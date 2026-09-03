@@ -1,18 +1,20 @@
 # dws contact
 
 kind: command
-completeness: full
-description: 通讯录 / 用户 / 部门 / 角色 / 人员关系
-source: internal/helpers/contact.go:923
+completeness: partial
+usage: dws contact
+description: —
+source: internal/shortcut/contact/common.go:89
 visible_flags: 0
+partial_reason: unverified_usage,unverified_flags,missing_description
 
 ## Flags
 - none
 
 ## Related
+- dws contact account
 - dws contact account create
 - dws contact account update
+- dws contact dept
 - dws contact dept create
 - dws contact dept get-info
-- dws contact dept list-children
-- dws contact dept list-members

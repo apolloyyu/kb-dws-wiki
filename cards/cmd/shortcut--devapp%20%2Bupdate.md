@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws devapp +update
 description: 修改开放平台企业内部应用基础信息
 source: internal/shortcut/devapp/devapp.go:692
 visible_flags: 4

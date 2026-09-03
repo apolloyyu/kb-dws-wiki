@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws doc +comment-delete
 description: 永久删除指定文档评论
 source: internal/shortcut/doc/review_shortcuts.go:81
 visible_flags: 2

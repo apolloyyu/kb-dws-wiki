@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws attendance group update-members
 description: 更新考勤组成员（添加/删除考勤人员、部门、无需考勤人员）
+example: dws attendance group update-members --group-id 123456 --add-users userId1,userId2 --timeout 10
 source: internal/helpers/attendance.go:2328
 visible_flags: 8
 

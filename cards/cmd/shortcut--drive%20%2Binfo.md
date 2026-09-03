@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws drive +info
 description: 获取钉盘文件/文件夹元数据
 source: internal/shortcut/drive/drive.go:123
 visible_flags: 2

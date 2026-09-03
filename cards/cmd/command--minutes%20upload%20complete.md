@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws minutes upload complete
 description: Complete an upload session and create a meeting note from the uploaded audio/video.
+example: dws minutes upload complete --session-id <sessionId>
 use_when: When the agent finalizes a minutes upload, triggering transcription and AI processing.
 source: internal/helpers/minutes.go:1587
 visible_flags: 1

@@ -1,13 +1,15 @@
 # dws contact ext-field list
 
 kind: command
-completeness: full
-description: 列出企业自定义成员字段
-source: internal/helpers/contact.go:521
-visible_flags: 0
+completeness: partial
+usage: dws contact ext-field list
+description: 列出角色/部门成员/用户详情（兼容入口）
+source: internal/helpers/contact.go:2794
+visible_flags: 1
+partial_reason: unverified_flags
 
 ## Flags
-- none
+- --depts <String>: 部门 ID 列表
 
 ## Related
 - dws contact ext-field create

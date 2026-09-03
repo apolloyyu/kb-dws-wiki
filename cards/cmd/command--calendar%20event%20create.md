@@ -2,7 +2,9 @@
 
 kind: command
 completeness: partial
+usage: dws calendar event create
 description: Create a new calendar event on the user's calendar with title, time, attendees, and optional meeting room.
+example: dws calendar event create --title "Q1 复盘会"
 use_when: When the agent schedules a meeting or reminder on behalf of the user.
 source: internal/helpers/calendar.go:232
 visible_flags: 22

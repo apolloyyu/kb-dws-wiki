@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws hrbrain talent-pool detail
 description: 获取人才池详情
+example: dws hrbrain talent-pool detail --pool-code POOL_CODE
 source: internal/helpers/hrbrain.go:140
 visible_flags: 1
 

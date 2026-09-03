@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws chat group rename
 description: Update the display name of a group chat.
+example: dws chat group rename --id <openconversation_id> --name "新群名"
 use_when: When the agent is rebranding or clarifying the purpose of an existing group.
 source: internal/helpers/chat.go:3138
 visible_flags: 2

@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws aitable +role-create
 description: 在指定 Base 下创建自定义角色
 source: internal/shortcut/aitable/aitable.go:2812
 visible_flags: 5

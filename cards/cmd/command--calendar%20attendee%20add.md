@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws calendar attendee add
 description: 添加参会人
+example: dws calendar attendee add --event EVENT_ID --attendees userId1,userId2
 source: internal/helpers/calendar.go:703
 visible_flags: 2
 

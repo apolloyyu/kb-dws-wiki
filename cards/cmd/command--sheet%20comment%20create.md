@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet comment create
 description: 创建单元格评论
+example: dws sheet comment create --node <SHEET_ID> --sheet-id Sheet1 --range A2 --content "这个数字有问题"
 source: internal/helpers/sheet_comment.go:81
 visible_flags: 5
 

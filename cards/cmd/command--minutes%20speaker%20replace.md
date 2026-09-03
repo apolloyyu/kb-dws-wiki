@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws minutes speaker replace
 description: Reassign speaker labels in a meeting note (e.g. map "Speaker 1" to a specific user).
+example: dws minutes speaker replace --id <taskUuid> --from "张三" --to "李四"
 use_when: When the agent cleans up speaker diarization after automatic labels came out wrong.
 source: internal/helpers/minutes.go:1070
 visible_flags: 4
@@ -14,4 +16,4 @@ visible_flags: 4
 - --target-uid <String>: 目标发言人钉钉 UID (可选)
 
 ## Related
-- none
+- dws minutes speaker summary

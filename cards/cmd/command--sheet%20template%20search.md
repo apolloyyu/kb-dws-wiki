@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet template search
 description: 搜索表格模板
+example: dws sheet template search --query "预算"
 source: internal/helpers/sheet_template.go:71
 visible_flags: 4
 

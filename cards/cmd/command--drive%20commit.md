@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws drive commit
 description: Commit a file upload to DingTalk Drive after the binary has been pushed to the presigned URL.
+example: dws drive commit --file-name "报告.pdf" --file-size 102400 --upload-id <uploadId>
 use_when: When the agent finalizes a Drive upload step; pairs with `drive upload-info`.
 source: internal/helpers/drive.go:1332
 visible_flags: 5

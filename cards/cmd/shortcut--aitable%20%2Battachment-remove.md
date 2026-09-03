@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws aitable +attachment-remove
 description: 从 attachment 字段清空全部或按文件名移除，写前确保剩余项具有可重写 fileToken，并读回验证
 source: internal/shortcut/aitable/attachment_composite.go:67
 visible_flags: 6

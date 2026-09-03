@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws chat +conversation-clear-messages
 description: 清空当前用户指定会话的聊天记录（仅本人视角，不可逆）
 source: internal/shortcut/chat/chat_conversation.go:776
 visible_flags: 1

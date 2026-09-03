@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws chat chmod <scope>
 description: 授予 chat 高风险操作权限
+example: dws chat chmod chat.message:send --agentCode agt-wukong-xxxx --grant-type timed --ttl 24h --permParam openCid=cidXXXXXXXXXX
 source: internal/helpers/chat.go:2738
 visible_flags: 9
 
@@ -18,9 +20,9 @@ visible_flags: 9
 - --yes (-y) <Bool>: 确认执行 chat 高风险授权操作
 
 ## Related
+- dws chat bot
+- dws chat category
 - dws chat clear-all-red-point
 - dws chat clear-messages
 - dws chat clear-red-point
-- dws chat conversation-info
-- dws chat emotion
-- dws chat group-mute
+- dws chat conversation-file

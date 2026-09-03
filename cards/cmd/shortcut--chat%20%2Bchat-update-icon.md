@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws chat +chat-update-icon
 description: 更新群头像
 source: internal/shortcut/chat/chat_group.go:536
 visible_flags: 2

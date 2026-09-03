@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws chat +messages-query-send-status
 description: 查询消息投递状态并衔接后续消息操作
 source: internal/shortcut/chat/chat_message.go:1221
 visible_flags: 1

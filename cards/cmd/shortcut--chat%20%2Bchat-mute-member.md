@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws chat +chat-mute-member
 description: 指定群成员禁言 / 取消禁言
 source: internal/shortcut/chat/chat_group.go:1521
 visible_flags: 4

@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws doc +comment-update
 description: 更新指定文档评论正文和 mention
 source: internal/shortcut/doc/review_shortcuts.go:52
 visible_flags: 4

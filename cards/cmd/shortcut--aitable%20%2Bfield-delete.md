@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws aitable +field-delete
 description: 删除指定字段（不可逆）
 source: internal/shortcut/aitable/aitable.go:653
 visible_flags: 3

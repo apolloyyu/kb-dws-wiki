@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws devapp +member-list
 description: 查询开放平台应用成员
 source: internal/shortcut/devapp/devapp.go:1294
 visible_flags: 2

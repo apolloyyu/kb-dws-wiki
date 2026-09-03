@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws doc +version-list
 description: 查看文档历史版本列表
 source: internal/shortcut/doc/doc.go:760
 visible_flags: 3

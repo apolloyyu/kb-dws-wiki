@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws doc +resource-update
 description: 从本地图片或 HTTPS URL 设置文档封面
 source: internal/shortcut/doc/media_style_shortcuts.go:132
 visible_flags: 3

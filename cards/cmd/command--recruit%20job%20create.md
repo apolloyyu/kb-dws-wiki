@@ -2,13 +2,14 @@
 
 kind: command
 completeness: partial
+usage: dws recruit job create
 description: —
-source: internal/app/plugin_cmd.go:243
-visible_flags: 1
-partial_reason: missing_description
+source: internal/cli/param_aliases_generated.go:9531
+visible_flags: 0
+partial_reason: unverified_usage,unverified_flags,missing_description
 
 ## Flags
-- --description <String>: Plugin description
+- none
 
 ## Related
 - dws recruit job get

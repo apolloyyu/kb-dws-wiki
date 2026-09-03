@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +latest
 description: 取我最新的一条妙记（听记）详情
 source: internal/shortcut/smart/latest_minutes.go:37
 visible_flags: 1

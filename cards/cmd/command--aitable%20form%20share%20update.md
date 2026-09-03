@@ -2,14 +2,17 @@
 
 kind: command
 completeness: full
-description: 更新 AI 表格
-source: internal/helpers/aitable.go:1897
-visible_flags: 3
+usage: dws aitable form share update
+description: 开启/关闭分享表单
+example: dws aitable form share update --base-id BASE_ID --table-id TABLE_ID --view-id VIEW_ID --enabled true
+source: internal/helpers/aitable.go:5649
+visible_flags: 4
 
 ## Flags
-- --base-id <String>: 目标 Base ID (必填)
-- --name <String>: 新名称，1-50 字符 (必填)
-- --desc <String>: 备注文本
+- --base-id <String>: 所属 Base ID (必填)
+- --table-id <String>: 所属 Table ID (必填)
+- --view-id <String>: 目标表单视图 ID (必填)
+- --enabled <String>: 分享开关：true 开启，false 关闭 (必填)
 
 ## Related
 - dws aitable form share get

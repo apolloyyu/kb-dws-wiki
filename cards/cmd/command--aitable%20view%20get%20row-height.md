@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws aitable view get row-height
 description: 获取视图行高（单元格高度）
+example: dws aitable view get row-height --base-id BASE_ID --table-id TABLE_ID --view-id VIEW_ID
 source: internal/helpers/aitable.go:4854
 visible_flags: 0
 

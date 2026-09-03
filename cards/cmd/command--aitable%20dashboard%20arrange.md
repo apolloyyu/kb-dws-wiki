@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws aitable dashboard arrange
 description: 自动重排仪表盘图表布局
+example: dws aitable dashboard arrange --base-id BASE_ID --dashboard-id DASHBOARD_ID
 source: internal/helpers/aitable.go:6402
 visible_flags: 2
 
@@ -15,4 +17,5 @@ visible_flags: 2
 - dws aitable dashboard create
 - dws aitable dashboard delete
 - dws aitable dashboard get
+- dws aitable dashboard share
 - dws aitable dashboard update

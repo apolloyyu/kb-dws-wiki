@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws drive +search
 description: 搜索钉盘文件
 source: internal/shortcut/drive/drive.go:239
 visible_flags: 14

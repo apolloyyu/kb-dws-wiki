@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws aitable export data
 description: Export data from a datasheet (optionally scoped to a view) to a downloadable file such as Excel or CSV.
+example: dws aitable export data --base-id BASE_ID --scope all --export-format excel --format json
 use_when: When the agent needs to hand off Base data to an external system or deliver it as an attachment.
 source: internal/helpers/aitable.go:6896
 visible_flags: 7

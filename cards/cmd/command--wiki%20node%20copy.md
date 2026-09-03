@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws wiki node copy
 description: 复制知识库节点
+example: dws wiki node copy --workspace <workspaceId> --node <nodeId>
 source: internal/helpers/wiki.go:1134
 visible_flags: 3
 

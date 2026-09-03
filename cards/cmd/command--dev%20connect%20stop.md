@@ -1,14 +1,15 @@
 # dws dev connect stop
 
 kind: command
-completeness: full
-description: 优雅停止后台连接器守护进程（释放单实例锁与 Stream 连接）
-source: internal/helpers/connect_daemon.go:753
-visible_flags: 2
+completeness: partial
+usage: dws dev connect stop
+description: —
+source: internal/cli/param_aliases_generated.go:5622
+visible_flags: 0
+partial_reason: unverified_usage,unverified_flags,missing_description
 
 ## Flags
-- --robot-client-id <String>: 机器人 clientId（定位守护进程）
-- --unified-app-id <String>: 统一应用 ID（当未用 clientId 起守护进程时定位）
+- none
 
 ## Related
 - dws dev connect list

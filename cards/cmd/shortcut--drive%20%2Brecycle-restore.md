@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws drive +recycle-restore
 description: 恢复已确认的回收站条目并读回节点
 source: internal/shortcut/drive/catalog_operations.go:82
 visible_flags: 1

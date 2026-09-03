@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws attendance +get-checkin-record
 description: 查询指定员工一段时间内的签到记录
 source: internal/shortcut/attendance/attendance.go:2185
 visible_flags: 5

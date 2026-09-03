@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws chat +category-list
 description: 获取用户自定义会话分组
 source: internal/shortcut/chat/chat_conversation.go:839
 visible_flags: 0

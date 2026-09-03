@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws calendar +book-search
 description: 按名称模糊搜索日历本
 source: internal/shortcut/calendar/calendar.go:872
 visible_flags: 1

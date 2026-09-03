@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws pat +browser-policy
 description: 安全配置 PAT 授权时是否允许打开本地浏览器
 source: internal/shortcut/pat/pat.go:45
 visible_flags: 2

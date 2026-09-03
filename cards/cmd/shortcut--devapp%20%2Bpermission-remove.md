@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws devapp +permission-remove
 description: 取消开放平台应用权限点
 source: internal/shortcut/devapp/devapp.go:1269
 visible_flags: 2

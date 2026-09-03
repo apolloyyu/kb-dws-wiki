@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws chat emotion favorite
 description: Add a media ID or a local image (jpg/jpeg/png/gif/webp/bmp, ≤10MB) to the current user's personal favorite emotions.
+example: dws chat emotion favorite --media-id <mediaId> --name "赞"
 use_when: When the agent needs to save an available mediaId or a local image file as a reusable personal emotion; local images are uploaded through dingtalk-file/upload_media (bizType=chat_emoticon) first, optionally preserving source message context.
 source: internal/helpers/chat_personal_emotion.go:141
 visible_flags: 5

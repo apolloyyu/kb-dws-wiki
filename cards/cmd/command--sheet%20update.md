@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet update
 description: 更新工作表属性
+example: dws sheet update --node NODE_ID --sheet-id SHEET_ID --name "汇总表" --frozen-row-count 2 --frozen-column-count 1
 source: internal/helpers/sheet_workbook.go:241
 visible_flags: 9
 
@@ -20,7 +22,7 @@ visible_flags: 9
 ## Related
 - dws sheet add-dimension
 - dws sheet append
-- dws sheet batch-set-style
 - dws sheet batch-update
 - dws sheet changeset-get
+- dws sheet chart
 - dws sheet comment

@@ -2,13 +2,15 @@
 
 kind: command
 completeness: full
-description: 添加群成员
-source: internal/helpers/chat.go:3185
+usage: dws chat group-role add
+description: 添加群身份
+example: dws chat group-role add --conversation-id <openConversationId> --name "管理员"
+source: internal/helpers/chat.go:8225
 visible_flags: 2
 
 ## Flags
-- --id <String> required: 群 ID / openconversation_id (必填)
-- --users <String> required: 要添加的用户 userId 或 openDingTalkId（可混传），逗号分隔 (必填)
+- --conversation-id <String> required: 群聊 openConversationId (必填)
+- --name <String> required: 群身份名称 (必填)
 
 ## Related
 - dws chat group-role list

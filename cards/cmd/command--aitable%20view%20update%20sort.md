@@ -2,12 +2,14 @@
 
 kind: command
 completeness: full
-description: 获取视图 sort 配置
-source: internal/helpers/aitable.go:3947
-visible_flags: 0
+usage: dws aitable view update sort
+description: 更新视图 sort 配置
+example: dws aitable view update sort --base-id BASE_ID --table-id TABLE_ID --view-id VIEW_ID --json '[{"fieldId":"fldX","direction":"asc"}]'
+source: internal/helpers/aitable.go:4554
+visible_flags: 1
 
 ## Flags
-- none
+- --json <String>: sort 数组 JSON
 
 ## Related
 - dws aitable view update aggregate

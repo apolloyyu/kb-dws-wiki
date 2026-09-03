@@ -1,19 +1,20 @@
 # dws dev app disable
 
 kind: command
-completeness: full
-description: 禁用指定工作流（高危）
-source: internal/helpers/aitable.go:5900
-visible_flags: 2
+completeness: partial
+usage: dws dev app disable
+description: —
+source: internal/cli/param_aliases_generated.go:5248
+visible_flags: 0
+partial_reason: unverified_usage,unverified_flags,missing_description
 
 ## Flags
-- --base-id <String>: 目标 Base ID (必填)
-- --workflow-id <String>: 目标工作流 ID (必填)
+- none
 
 ## Related
 - dws dev app create
+- dws dev app credentials
 - dws dev app delete
 - dws dev app enable
+- dws dev app event
 - dws dev app get
-- dws dev app list
-- dws dev app update

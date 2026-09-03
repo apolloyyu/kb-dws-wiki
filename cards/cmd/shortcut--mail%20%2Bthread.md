@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws mail +thread
 description: 读取完整邮件会话并精确验证 conversationId
 source: internal/shortcut/mail/reads.go:188
 visible_flags: 2

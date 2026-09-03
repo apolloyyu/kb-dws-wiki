@@ -1,10 +1,13 @@
 # dws markdown patch
 
 kind: command
-completeness: full
+completeness: partial
+usage: dws markdown patch
 description: 局部替换 Markdown 文本
+example: dws markdown patch --node <id> --pattern old --content new --dry-run
 source: internal/helpers/markdown.go:603
 visible_flags: 7
+partial_reason: unverified_flags
 
 ## Flags
 - --node <String>: 目标文件 ID (必填)

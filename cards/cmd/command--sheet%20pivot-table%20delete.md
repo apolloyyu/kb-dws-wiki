@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet pivot-table delete
 description: [危险] 删除透视表
+example: dws sheet pivot-table delete --node NODE_ID --sheet-id SHEET_ID --pivot-table-id PT_ID --yes
 source: internal/helpers/sheet_pivot_table.go:322
 visible_flags: 3
 

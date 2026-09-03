@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws mail +template-create
 description: 创建个人邮件模板并按模板 ID 读回
 source: internal/shortcut/mail/writes.go:328
 visible_flags: 5

@@ -1,19 +1,24 @@
 # dws contact user update
 
 kind: command
-completeness: full
-description: 修改角色名称
-source: internal/helpers/contact.go:309
-visible_flags: 2
+completeness: partial
+usage: dws contact user update
+description: 修改员工信息
+example: dws contact user update --user-id user001 --org-user-name "张三三"
+source: internal/helpers/contact.go:721
+visible_flags: 4
+partial_reason: unverified_flags
 
 ## Flags
-- --id <String>: 角色 ID (必填)
-- --name <String>: 角色新名称 (必填)
+- --user-id <String>: 要修改的员工 userId (必填)
+- --org-user-name <String>: 员工在企业内的名称（可选）
+- --depts <String>: 员工所属部门列表 JSON 数组（可选），格式: [{\"deptId\":1}]
+- --master-user-id <String>: 直属主管 userId（可选）
 
 ## Related
+- dws contact user dismission
 - dws contact user get
 - dws contact user get-self
 - dws contact user invite
+- dws contact user profile
 - dws contact user search
-- dws contact user search-mobile
-- dws contact user update-ownness

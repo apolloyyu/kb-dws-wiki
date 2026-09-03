@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws attendance +get-class
 description: 根据班次 ID 查询班次详情
 source: internal/shortcut/attendance/attendance.go:833
 visible_flags: 1

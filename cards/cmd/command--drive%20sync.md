@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws drive sync
 description: 本地文件夹与钉盘文件夹双向同步（本地 ⇄ Drive）
+example: dws drive sync --local-folder /abs/path/repo --remote-folder <dentryUuid>
 source: internal/helpers/drive.go:4142
 visible_flags: 5
 

@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet filter-view get-criteria
 description: 获取单列筛选条件
+example: dws sheet filter-view get-criteria --node NODE_ID --sheet-id SHEET_ID --filter-view-id FV_ID --column 0
 source: internal/helpers/sheet_filter_view.go:1142
 visible_flags: 4
 

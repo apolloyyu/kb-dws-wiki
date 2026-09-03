@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws chat +feed-group-query-item
 description: 在会话分组结果中按会话 ID 精确查询多项
 source: internal/shortcut/chat/lark_alignment.go:848
 visible_flags: 3

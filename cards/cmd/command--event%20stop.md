@@ -1,10 +1,12 @@
 # dws event stop
 
 kind: command
-completeness: full
+completeness: partial
+usage: dws event stop [subscribe_id]
 description: 取消个人事件订阅并停止本地消费
 source: internal/app/event_command.go:1205
 visible_flags: 4
+partial_reason: unverified_flags
 
 ## Flags
 - --as <String>: 事件身份: user
@@ -13,7 +15,6 @@ visible_flags: 4
 - --all <Bool>: 取消当前身份下本地记录的所有个人订阅
 
 ## Related
-- dws event +listen-im
 - dws event _bus
 - dws event consume
 - dws event list

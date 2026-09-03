@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws chat message add-emoji
 description: 对消息添加 emoji 表情回应
+example: dws chat message add-emoji --conversation-id <openConversationId> --message-id <openMsgId> --emoji "赞"
 source: internal/helpers/chat.go:6248
 visible_flags: 7
 

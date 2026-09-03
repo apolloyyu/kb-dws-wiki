@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws attendance vacation save-balance
 description: 设置员工假期余额
+example: dws attendance vacation save-balance --target user001 --leave-code a1b2c3d4-e5f6-7890-abcd-ef1234567890 --num 8 --reason "年度发放"
 source: internal/helpers/attendance.go:4076
 visible_flags: 7
 

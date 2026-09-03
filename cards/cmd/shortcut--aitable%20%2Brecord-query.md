@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws aitable +record-query
 description: 查询表格记录（按 ID / 条件 / 关键词，并支持字段投影和分页）
 source: internal/shortcut/aitable/aitable.go:680
 visible_flags: 9

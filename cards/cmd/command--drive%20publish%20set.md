@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws drive publish set
 description: [危险] 设置文件为互联网公开
+example: dws drive publish set --node <fileId> --format json
 source: internal/helpers/drive.go:3446
 visible_flags: 4
 

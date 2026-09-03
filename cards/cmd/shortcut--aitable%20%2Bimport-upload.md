@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws aitable +import-upload
 description: 为导入任务申请 OSS 直传地址（uploadUrl / importId）
 source: internal/shortcut/aitable/aitable.go:2626
 visible_flags: 3

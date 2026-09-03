@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws aitable +table-bootstrap
 description: 在已有 Base 中一次创建数据表和字段，自动分片并读回验证
 source: internal/shortcut/aitable/table_bootstrap.go:19
 visible_flags: 3

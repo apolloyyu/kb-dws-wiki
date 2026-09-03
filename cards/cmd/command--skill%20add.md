@@ -1,13 +1,15 @@
 # dws skill add
 
 kind: command
-completeness: full
+completeness: partial
+usage: dws skill add
 description: 兼容旧用法，提示使用 skill install
-source: internal/helpers/minutes.go:1254
-visible_flags: 1
+source: internal/app/skill_command.go:379
+visible_flags: 0
+partial_reason: unverified_flags
 
 ## Flags
-- --words <String>: 要添加的热词，多个用逗号分隔 (必填)
+- none
 
 ## Related
 - dws skill find

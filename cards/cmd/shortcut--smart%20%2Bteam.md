@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +team
 description: 按姓名列出某人所在部门的成员（自动解析 userId 与 deptId）
 source: internal/shortcut/smart/team.go:40
 visible_flags: 1

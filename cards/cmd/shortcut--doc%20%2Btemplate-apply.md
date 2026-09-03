@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws doc +template-apply
 description: 使用指定模板创建新文档
 source: internal/shortcut/doc/doc.go:1019
 visible_flags: 4

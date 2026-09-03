@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +my-free
 description: 查我自己在某时间段的忙闲（默认今天，无需输入姓名）
 source: internal/shortcut/smart/my_free.go:42
 visible_flags: 2

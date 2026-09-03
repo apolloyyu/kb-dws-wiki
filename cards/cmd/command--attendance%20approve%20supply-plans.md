@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws attendance approve supply-plans
 description: 匹配补卡目标异常班次（服务端口径，与客户端发起页一致）
+example: dws attendance approve supply-plans --time "2026-08-05 04:00"
 source: internal/helpers/attendance.go:1284
 visible_flags: 2
 

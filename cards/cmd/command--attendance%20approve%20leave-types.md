@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws attendance approve leave-types
 description: 查询可用假期类型及余额
+example: dws attendance approve leave-types
 source: internal/helpers/attendance.go:1037
 visible_flags: 1
 

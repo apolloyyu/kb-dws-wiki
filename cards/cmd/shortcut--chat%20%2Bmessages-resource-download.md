@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws chat +messages-resource-download
 description: 安全下载消息资源（图片/视频/语音/文件）到本地
 source: internal/shortcut/chat/resource_download.go:55
 visible_flags: 6

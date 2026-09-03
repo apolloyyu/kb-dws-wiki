@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet create-float-image
 description: 创建浮动图片
+example: dws sheet create-float-image --node NODE_ID --sheet-id SHEET_ID
 source: internal/helpers/sheet_float_image.go:11
 visible_flags: 9
 
@@ -20,7 +22,7 @@ visible_flags: 9
 ## Related
 - dws sheet add-dimension
 - dws sheet append
-- dws sheet batch-set-style
 - dws sheet batch-update
 - dws sheet changeset-get
+- dws sheet chart
 - dws sheet comment

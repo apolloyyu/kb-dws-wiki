@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +send-to-group
 description: 按群名或 openConversationId 直接给群发消息
 source: internal/shortcut/smart/send_to_group.go:39
 visible_flags: 2

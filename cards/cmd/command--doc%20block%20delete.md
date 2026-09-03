@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws doc block delete
 description: Delete a block from a DingTalk Doc by block ID.
+example: dws doc block delete --node DOC_ID --block-id BLOCK_ID --yes
 use_when: When the agent is editing a document and needs to remove a specific paragraph, table, or other block.
 source: internal/helpers/doc.go:2399
 visible_flags: 2

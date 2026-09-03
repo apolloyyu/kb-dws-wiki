@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws profile switch [profile-selector|-]
 description: 切换当前账号 profile
+example: dws profile switch
 source: internal/app/profile_command.go:106
 visible_flags: 2
 

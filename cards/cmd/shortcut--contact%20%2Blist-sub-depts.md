@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws contact +list-sub-depts
 description: 查看指定部门的子部门
 source: internal/shortcut/contact/contact.go:565
 visible_flags: 1

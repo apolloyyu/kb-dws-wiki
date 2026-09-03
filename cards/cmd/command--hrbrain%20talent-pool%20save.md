@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws hrbrain talent-pool save
 description: 创建或更新人才池
+example: dws hrbrain talent-pool save --pool-name "储备干部池"
 source: internal/helpers/hrbrain.go:243
 visible_flags: 5
 

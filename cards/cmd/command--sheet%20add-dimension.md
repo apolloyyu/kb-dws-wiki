@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet add-dimension
 description: 在末尾追加空行或空列
+example: dws sheet add-dimension --node NODE_ID --sheet-id SHEET_ID --dimension ROWS --length 5
 source: internal/helpers/sheet_dimension.go:228
 visible_flags: 4
 
@@ -14,8 +16,8 @@ visible_flags: 4
 
 ## Related
 - dws sheet append
-- dws sheet batch-set-style
 - dws sheet batch-update
 - dws sheet changeset-get
+- dws sheet chart
 - dws sheet comment
-- dws sheet copy
+- dws sheet cond-format

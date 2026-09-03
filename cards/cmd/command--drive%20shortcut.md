@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws drive shortcut
 description: 为节点创建快捷方式
+example: dws drive shortcut --node <dentryUuid>
 source: internal/helpers/drive.go:2447
 visible_flags: 3
 

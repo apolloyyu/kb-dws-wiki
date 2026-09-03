@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws doc +copy
 description: 复制文档/文件到指定文件夹或知识库
 source: internal/shortcut/doc/doc.go:322
 visible_flags: 3

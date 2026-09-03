@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet range move-to
 description: 移动工作表指定区域到目标位置
+example: dws sheet range move-to --node NODE_ID --sheet-id SHEET_ID
 source: internal/helpers/sheet_range_ops.go:585
 visible_flags: 5
 

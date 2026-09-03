@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +thread-replies
 description: 按主消息 ID 或 thread/topic ID 分页读取话题回复，支持完整排序与有界自动翻页
 source: internal/shortcut/smart/thread_replies.go:54
 visible_flags: 12

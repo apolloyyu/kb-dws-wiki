@@ -2,6 +2,7 @@
 
 kind: command
 completeness: full
+usage: dws skill
 description: 技能管理
 source: internal/app/skill_command.go:284
 visible_flags: 0

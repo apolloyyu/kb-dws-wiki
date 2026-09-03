@@ -2,6 +2,7 @@
 
 kind: command
 completeness: full
+usage: dws todo
 description: 待办任务管理
 source: internal/helpers/todo.go:78
 visible_flags: 0
@@ -10,9 +11,9 @@ visible_flags: 0
 - none
 
 ## Related
+- dws todo comment
 - dws todo comment add
 - dws todo comment delete
 - dws todo comment list
+- dws todo tag
 - dws todo tag add
-- dws todo tag create
-- dws todo tag delete

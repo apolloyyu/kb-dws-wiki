@@ -1,21 +1,21 @@
 # dws sheet batch-update
 
 kind: command
-completeness: full
-description: 批量修改邮件会话状态
-source: internal/helpers/mail.go:1169
-visible_flags: 4
+completeness: partial
+usage: dws sheet batch-update
+description: 批量执行多个写操作（原子事务）
+example: dws sheet batch-update --node NODE_ID --operations '[
+source: internal/helpers/sheet_batch.go:1499
+visible_flags: 0
+partial_reason: unverified_flags
 
 ## Flags
-- --email <String>: 会话所属邮箱地址 (必填)
-- --ids <String>: 会话 ID 列表，多个用英文逗号分隔，最多 100 个 (必填)
-- --action <String>: 操作类型：markRead、markUnread、addTags、removeTags (必填)
-- --tag-ids <String>: 标签 ID 列表，多个用英文逗号分隔；addTags/removeTags 时必填 (可选)
+- none
 
 ## Related
 - dws sheet add-dimension
 - dws sheet append
-- dws sheet batch-set-style
 - dws sheet changeset-get
+- dws sheet chart
 - dws sheet comment
-- dws sheet copy
+- dws sheet cond-format

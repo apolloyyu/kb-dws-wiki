@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws wiki member add
 description: 添加知识库成员
+example: dws wiki member add --workspace <workspaceId> --users uid1 --role READER
 source: internal/helpers/wiki.go:536
 visible_flags: 5
 

@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws minutes +sync-asr
 description: 把个人热词精确同步为目标集合，删除多余项后读回验证
 source: internal/shortcut/minutes/workflows.go:172
 visible_flags: 1

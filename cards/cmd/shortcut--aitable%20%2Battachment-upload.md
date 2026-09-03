@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws aitable +attachment-upload
 description: 为 attachment 字段申请 OSS 直传地址（uploadUrl / fileToken）
 source: internal/shortcut/aitable/aitable.go:1145
 visible_flags: 4

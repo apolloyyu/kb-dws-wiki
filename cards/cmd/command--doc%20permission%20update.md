@@ -2,20 +2,19 @@
 
 kind: command
 completeness: full
-description: 更新文档内容
-source: internal/helpers/doc.go:1719
-visible_flags: 9
+usage: dws doc permission update
+description: 更新文档协作者权限
+example: dws doc permission update --node DOC_ID --users uid1 --role EDITOR
+source: internal/helpers/doc.go:3706
+visible_flags: 6
 
 ## Flags
-- --node <String>: 文档 ID 或 URL (必填)
-- --content <String>: 文档内容（短文本字面量）；传 - 表示从 stdin 读取
-- --content-file <String>: 从文件读取文档内容（UTF-8）。推荐长/多行/表格内容使用
-- --mode <String> required: 更新模式: overwrite=覆盖, append=追加 (必填)
-- --index <Int>: 插入位置（从 0 开始），仅在 mode=append 时生效。指定将内容插入到文档第几个 block 之前。不传时追加到末尾
-- --yes <Bool>: 确认执行破坏性写入 (仅 --mode overwrite 需要)
-- --dry-run <Bool>: 预览覆盖写入差异，不调用远端 update
-- --content-format <String>: 内容格式: 默认为 markdown，可选 jsonml
-- --revision <Int>: 传则触发并发检查（与服务端不一致时拒绝写入），不传则直接覆盖
+- --node <String>: 目标节点的标识（文档/文件夹/文件），支持传入 URL 或 ID (必填)
+- --users <String>: 被更新的用户 userId 列表，逗号分隔 (旧格式，单次最多 30 个)
+- --role <String>: 新权限角色: MANAGER / EDITOR / DOWNLOADER / READER (旧格式必填，大小写不敏感)
+- --workspace <String>: 目标知识库 ID 或 URL（选填，仅用于辅助构造返回的 docUrl）
+- --members <String>: 成员列表 JSON 数组（新格式），支持 USER/DEPT/CONVERSATION/TAG 类型（TAG=角色组），与 --users 互斥
+- --notify <Bool>: 是否通知被变更的成员（仅 --members 新格式时生效）
 
 ## Related
 - dws doc permission add

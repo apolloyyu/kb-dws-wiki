@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet pivot-table list
 description: 获取透视表列表或详情
+example: dws sheet pivot-table list --node NODE_ID --sheet-id SHEET_ID
 source: internal/helpers/sheet_pivot_table.go:143
 visible_flags: 3
 

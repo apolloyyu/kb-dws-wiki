@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +unread-mail
 description: 列出未读邮件并投影列表（主题/发件人/时间/messageId）
 source: internal/shortcut/smart/unread_mail.go:44
 visible_flags: 3

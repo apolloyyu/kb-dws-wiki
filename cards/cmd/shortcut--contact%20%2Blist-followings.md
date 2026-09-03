@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws contact +list-followings
 description: 获取当前用户的特别关注列表
 source: internal/shortcut/contact/contact.go:31
 visible_flags: 1

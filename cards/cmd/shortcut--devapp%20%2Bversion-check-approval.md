@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws devapp +version-check-approval
 description: 预检版本发布是否需要审批（不实际发布）
 source: internal/shortcut/devapp/devapp.go:2415
 visible_flags: 2

@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws attendance approve list
 description: 查询用户审批单（补卡/加班/请假/出差外出）
+example: dws attendance approve list --users userId1 --types overtime,leave --start 2026-04-01 --end 2026-04-30
 source: internal/helpers/attendance.go:862
 visible_flags: 4
 

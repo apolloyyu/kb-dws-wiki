@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet table-get
 description: 读取结构化 table 数据
+example: dws sheet table-get --node NODE_ID
 source: internal/helpers/sheet_table.go:29
 visible_flags: 4
 
@@ -15,7 +17,7 @@ visible_flags: 4
 ## Related
 - dws sheet add-dimension
 - dws sheet append
-- dws sheet batch-set-style
 - dws sheet batch-update
 - dws sheet changeset-get
+- dws sheet chart
 - dws sheet comment

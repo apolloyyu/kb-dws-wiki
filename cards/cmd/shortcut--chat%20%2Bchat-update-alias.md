@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws chat +chat-update-alias
 description: 设置群备注（仅自己可见）
 source: internal/shortcut/chat/chat_group.go:714
 visible_flags: 2

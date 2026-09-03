@@ -2,12 +2,15 @@
 
 kind: command
 completeness: full
-description: 查询可用邮箱地址
-source: internal/helpers/mail.go:131
-visible_flags: 0
+usage: dws mail attachment list
+description: 列举邮件附件
+example: dws mail attachment list --email user@company.com --id <messageId>
+source: internal/helpers/mail.go:1986
+visible_flags: 2
 
 ## Flags
-- none
+- --email <String>: 用户邮箱地址 (必填)
+- --id <String>: 邮件唯一标识 messageId (必填)
 
 ## Related
 - dws mail attachment download

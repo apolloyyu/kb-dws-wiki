@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws agoal report submit-detail
 description: 获取周月报规则提交详情
+example: dws agoal report submit-detail --template-id TPL_ID --submit-state ON_TIME
 source: internal/helpers/agoal.go:470
 visible_flags: 7
 

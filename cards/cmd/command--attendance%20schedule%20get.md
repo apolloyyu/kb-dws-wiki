@@ -2,13 +2,16 @@
 
 kind: command
 completeness: full
-description: 查询个人考勤详情
-source: internal/helpers/attendance.go:589
-visible_flags: 2
+usage: dws attendance schedule get
+description: 获取指定用户的排班记录
+example: dws attendance schedule get --users user001,user002 --start 2026-04-01 --end 2026-04-30
+source: internal/helpers/attendance.go:4387
+visible_flags: 3
 
 ## Flags
-- --user <String>: 钉钉用户 ID (必填)
-- --date <String>: 查询日期，格式 YYYY-MM-DD (必填)
+- --users <String>: 用户ID列表，逗号分隔（必填）
+- --start <String>: 开始日期，格式 YYYY-MM-DD 或 YYYY-MM-DD HH:mm:ss（必填）
+- --end <String>: 结束日期，格式 YYYY-MM-DD 或 YYYY-MM-DD HH:mm:ss（必填）
 
 ## Related
 - dws attendance schedule import

@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws aitable +form-field-hide
 description: 切换表单字段的隐藏/显示状态
 source: internal/shortcut/aitable/aitable.go:1883
 visible_flags: 5

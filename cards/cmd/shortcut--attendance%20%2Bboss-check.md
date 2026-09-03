@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws attendance +boss-check
 description: BOSS 改签打卡记录（管理员修改打卡时间/结果）
 source: internal/shortcut/attendance/attendance.go:2281
 visible_flags: 6

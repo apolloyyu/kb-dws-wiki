@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws skill get
 description: 获取技能压缩文件
+example: dws skill get --skill-id <skillId>
 source: internal/app/skill_command.go:308
 visible_flags: 1
 

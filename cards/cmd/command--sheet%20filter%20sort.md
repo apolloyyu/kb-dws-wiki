@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet filter sort
 description: 筛选排序
+example: dws sheet filter sort --node NODE_ID --sheet-id SHEET_ID --column 0 --ascending
 source: internal/helpers/sheet_filter_view.go:467
 visible_flags: 4
 

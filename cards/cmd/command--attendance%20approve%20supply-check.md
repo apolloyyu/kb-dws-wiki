@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws attendance approve supply-check
 description: 提交前校验补卡资格（期限 / 次数 / 状态）
+example: dws attendance approve supply-check --timestamp 1785873600000
 source: internal/helpers/attendance.go:1355
 visible_flags: 2
 

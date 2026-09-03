@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws mail +contact-list
 description: 列出指定邮箱的所有邮件联系人
 source: internal/shortcut/mail/mail.go:483
 visible_flags: 3

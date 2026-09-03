@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet find
 description: 在工作表中搜索单元格内容
+example: dws sheet find --node NODE_ID --sheet-id SHEET_ID --query "销售额"
 source: internal/helpers/sheet_data.go:20
 visible_flags: 9
 
@@ -20,7 +22,7 @@ visible_flags: 9
 ## Related
 - dws sheet add-dimension
 - dws sheet append
-- dws sheet batch-set-style
 - dws sheet batch-update
 - dws sheet changeset-get
+- dws sheet chart
 - dws sheet comment

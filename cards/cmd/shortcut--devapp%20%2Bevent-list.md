@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws devapp +event-list
 description: 查询应用可用事件目录与订阅状态
 source: internal/shortcut/devapp/devapp.go:1881
 visible_flags: 2

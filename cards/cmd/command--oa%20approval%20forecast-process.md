@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws oa approval forecast-process
 description: Forecast the approval route for a template and its proposed form values.
+example: dws oa approval forecast-process --process-code <processCode> --dept-id -1 --form-values '{"金额":"100"}'
 use_when: Before creating an instance, especially when the route contains user-selectable approver or notifier nodes.
 source: internal/helpers/oa.go:1889
 visible_flags: 4
@@ -14,9 +16,9 @@ visible_flags: 4
 - --request <String>: 完整请求 JSON（高级模式；与简单模式参数互斥）
 
 ## Related
+- dws oa approval append-task
 - dws oa approval approve
+- dws oa approval attachment
 - dws oa approval create-instance
 - dws oa approval detail
-- dws oa approval form-schema
-- dws oa approval list-by-admin
-- dws oa approval list-cc
+- dws oa approval ding-info

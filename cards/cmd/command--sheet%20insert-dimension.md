@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet insert-dimension
 description: 在指定位置插入行或列
+example: dws sheet insert-dimension --node NODE_ID --sheet-id SHEET_ID --dimension ROWS --position "3" --length 2
 source: internal/helpers/sheet_dimension.go:42
 visible_flags: 5
 
@@ -16,7 +18,7 @@ visible_flags: 5
 ## Related
 - dws sheet add-dimension
 - dws sheet append
-- dws sheet batch-set-style
 - dws sheet batch-update
 - dws sheet changeset-get
+- dws sheet chart
 - dws sheet comment

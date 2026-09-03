@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +chat-members-list
 description: 列出群成员并把用户与机器人分桶（支持群名语义解析）
 source: internal/shortcut/smart/group_members.go:109
 visible_flags: 7

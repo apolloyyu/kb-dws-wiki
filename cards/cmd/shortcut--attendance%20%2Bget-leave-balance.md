@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws attendance +get-leave-balance
 description: 查询指定员工的假期余额
 source: internal/shortcut/attendance/attendance.go:1955
 visible_flags: 2

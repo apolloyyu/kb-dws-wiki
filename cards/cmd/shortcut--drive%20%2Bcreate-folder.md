@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws drive +create-folder
 description: 创建钉盘文件夹并读回验证
 source: internal/shortcut/drive/operations.go:97
 visible_flags: 3

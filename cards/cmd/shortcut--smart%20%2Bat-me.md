@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +at-me
 description: 查最近 @我 的消息（自动算时间窗，投影发送人/时间/内容/会话）
 source: internal/shortcut/smart/at_me.go:60
 visible_flags: 9

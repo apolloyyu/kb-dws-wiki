@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws whiteboard query
 description: 读取白板内容
+example: dws whiteboard query --node DOC_ID_OR_URL --part-id WHITEBOARD_PART_ID --format json
 source: internal/helpers/whiteboard.go:64
 visible_flags: 2
 

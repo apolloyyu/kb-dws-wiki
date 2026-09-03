@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet version revert
 description: [危险] 回滚表格到指定历史版本或 revision
+example: dws sheet version revert --node SHEET_ID --version 3
 source: internal/helpers/sheet_version.go:113
 visible_flags: 2
 

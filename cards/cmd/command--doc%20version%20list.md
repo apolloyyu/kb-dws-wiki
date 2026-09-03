@@ -2,15 +2,16 @@
 
 kind: command
 completeness: full
-description: 遍历文件列表
-source: internal/helpers/doc.go:1331
-visible_flags: 4
+usage: dws doc version list
+description: 查看文档历史版本列表
+example: dws doc version list --node DOC_ID
+source: internal/helpers/doc.go:4450
+visible_flags: 3
 
 ## Flags
-- --folder <String>: 文档文件夹 nodeId 或 alidocs 文件夹 URL；不要传 drive dentryId/parent-id
-- --workspace <String>: 知识库 ID
-- --limit <Int>: 每页数量 (默认 50，最大 50)
-- --cursor <String>: 分页游标 (从上次结果的 nextPageToken 获取)
+- --node <String>: 文档 ID 或 URL (必填)
+- --limit <Int>: 返回版本数量上限
+- --cursor <String>: 分页游标
 
 ## Related
 - dws doc version revert

@@ -2,10 +2,12 @@
 
 kind: command
 completeness: partial
+usage: dws drive cover
 description: 获取节点封面地址
+example: dws drive cover --node <dentryUuid>
 source: internal/helpers/drive.go:3951
 visible_flags: 1
-partial_reason: empty_flag_name
+partial_reason: unverified_flags,empty_flag_name
 
 ## Flags
 - --node <String>: 节点 ID (dentryUuid) 或文档 URL (必填)

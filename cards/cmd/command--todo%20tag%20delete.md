@@ -2,12 +2,14 @@
 
 kind: command
 completeness: full
-description: 删除待办
-source: internal/helpers/todo.go:592
+usage: dws todo tag delete
+description: 删除待办标签
+example: dws todo tag delete --tag-codes code1,code2 --yes
+source: internal/helpers/todo.go:1539
 visible_flags: 1
 
 ## Flags
-- --task-id <String>: 待办任务 ID (必填)
+- --tag-codes <String>: 要删除的标签编码列表，逗号分隔 (必填)
 
 ## Related
 - dws todo tag add

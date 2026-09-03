@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +free-slots
 description: 找我某天工作时段内的空闲时间段（默认今天 09:00-18:00）
 source: internal/shortcut/smart/free_slots.go:40
 visible_flags: 3

@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws doc template apply
 description: 应用文档模板
+example: dws doc template apply --template-id TPL_ID --name "我的周报"
 source: internal/helpers/doc.go:4718
 visible_flags: 4
 

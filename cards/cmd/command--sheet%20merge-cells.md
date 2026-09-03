@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet merge-cells
 description: 合并单元格
+example: dws sheet merge-cells --node NODE_ID --sheet-id SHEET_ID --range "A1:B3"
 source: internal/helpers/sheet_dimension.go:299
 visible_flags: 4
 
@@ -15,7 +17,7 @@ visible_flags: 4
 ## Related
 - dws sheet add-dimension
 - dws sheet append
-- dws sheet batch-set-style
 - dws sheet batch-update
 - dws sheet changeset-get
+- dws sheet chart
 - dws sheet comment

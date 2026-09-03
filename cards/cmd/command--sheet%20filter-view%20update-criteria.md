@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet filter-view update-criteria
 description: 更新筛选视图列条件
+example: dws sheet filter-view update-criteria --node NODE_ID --sheet-id SHEET_ID --filter-view-id FV_ID
 source: internal/helpers/sheet_filter_view.go:848
 visible_flags: 5
 

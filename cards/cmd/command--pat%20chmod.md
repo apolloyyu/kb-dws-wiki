@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws pat chmod <scope>...
 description: 授予指定权限
+example: dws pat chmod 支持一次传多个 scope 直接批量授予。
 source: internal/pat/chmod.go:246
 visible_flags: 8
 

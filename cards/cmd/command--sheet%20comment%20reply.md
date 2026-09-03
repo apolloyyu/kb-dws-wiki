@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet comment reply
 description: 回复单元格评论
+example: dws sheet comment reply --node <SHEET_ID> --comment-key <COMMENT_KEY> --content "已核实"
 source: internal/helpers/sheet_comment.go:139
 visible_flags: 5
 

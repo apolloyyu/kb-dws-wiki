@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws calendar +book-list
 description: 查询用户的日历本列表
 source: internal/shortcut/calendar/calendar.go:808
 visible_flags: 0

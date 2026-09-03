@@ -1,10 +1,12 @@
 # dws aisearch
 
 kind: command
-completeness: full
-description: AI 搜问
-source: internal/helpers/aisearch.go:206
+completeness: partial
+usage: dws aisearch
+description: —
+source: internal/shortcut/aisearch/aisearch.go:56
 visible_flags: 0
+partial_reason: unverified_usage,unverified_flags,missing_description
 
 ## Flags
 - none

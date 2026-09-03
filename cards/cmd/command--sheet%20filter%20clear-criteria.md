@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet filter clear-criteria
 description: 清除单列筛选条件
+example: dws sheet filter clear-criteria --node NODE_ID --sheet-id SHEET_ID --column 1
 source: internal/helpers/sheet_filter_view.go:411
 visible_flags: 3
 

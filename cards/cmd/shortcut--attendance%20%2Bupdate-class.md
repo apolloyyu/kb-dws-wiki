@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws attendance +update-class
 description: 更新已有班次（仅传要修改的字段）
 source: internal/shortcut/attendance/attendance.go:936
 visible_flags: 4

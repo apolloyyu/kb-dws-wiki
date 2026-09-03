@@ -2,8 +2,10 @@
 
 kind: command
 completeness: full
-description: 听记列表
-source: internal/helpers/minutes.go:37
+usage: dws minutes tag list
+description: 查询我的听记标签/分组列表
+example: dws minutes tag list
+source: internal/helpers/minutes.go:1958
 visible_flags: 0
 
 ## Flags

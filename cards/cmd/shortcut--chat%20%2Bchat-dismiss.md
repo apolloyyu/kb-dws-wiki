@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws chat +chat-dismiss
 description: 解散群聊（不可逆，需群主权限）
 source: internal/shortcut/chat/chat_group.go:580
 visible_flags: 1

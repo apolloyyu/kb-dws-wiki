@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws calendar +room-search
 description: 按名称模糊搜索会议室（不检查可用性）
 source: internal/shortcut/calendar/calendar.go:331
 visible_flags: 1

@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet range update
 description: 更新工作表指定区域内容
+example: dws sheet range update --node NODE_ID --sheet-id SHEET_ID --range "A1:B2"
 source: internal/helpers/sheet_range_ops.go:119
 visible_flags: 4
 

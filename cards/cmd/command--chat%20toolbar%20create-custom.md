@@ -1,10 +1,13 @@
 # dws chat toolbar create-custom
 
 kind: command
-completeness: full
+completeness: partial
+usage: dws chat toolbar create-custom
 description: 创建自定义快捷栏入口
+example: dws chat toolbar create-custom --conversation-id <cid> --title "周报" --url "https://example.com" --icon-url "https://example.com/icon.png" --pc-url "https://example.com"
 source: internal/helpers/chat/toolbar_create_custom.go:23
 visible_flags: 9
+partial_reason: unverified_flags
 
 ## Flags
 - --conversation-id <String> required: 会话 openConversationId

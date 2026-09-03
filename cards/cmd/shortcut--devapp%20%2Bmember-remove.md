@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws devapp +member-remove
 description: 移除开放平台应用成员
 source: internal/shortcut/devapp/devapp.go:1493
 visible_flags: 3

@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws devapp +version-status
 description: 查询版本发布/审批状态
 source: internal/shortcut/devapp/devapp.go:2502
 visible_flags: 2

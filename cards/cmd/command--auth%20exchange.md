@@ -1,10 +1,12 @@
 # dws auth exchange
 
 kind: command
-completeness: full
+completeness: partial
+usage: dws auth exchange
 description: Exchange an authorization code for credentials
 source: internal/app/auth_command.go:957
 visible_flags: 8
+partial_reason: unverified_flags
 
 ## Flags
 - --code <String>: Authorization code
@@ -17,8 +19,9 @@ visible_flags: 8
 - --scopes <String>: Compatibility flag
 
 ## Related
+- dws auth export
+- dws auth import
 - dws auth login
 - dws auth logout
 - dws auth migrate-keychain
 - dws auth reset
-- dws auth status

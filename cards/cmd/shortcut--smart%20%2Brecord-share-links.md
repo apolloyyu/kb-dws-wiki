@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +record-share-links
 description: 批量（可 >20 条）获取多维表记录分享链接：去重+分片+合并
 source: internal/shortcut/smart/record_share_links.go:43
 visible_flags: 4

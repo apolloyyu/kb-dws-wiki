@@ -2,18 +2,18 @@
 
 kind: command
 completeness: full
+usage: dws doc comment create
 description: Create a document-level comment on a DingTalk Doc.
+example: dws doc comment create --node DOC_ID --content "这里需要修改"
 use_when: When the agent leaves feedback or follow-up notes that apply to the entire document.
-source: internal/helpers/doc.go:1591
-visible_flags: 6
+source: internal/helpers/doc.go:3167
+visible_flags: 4
 
 ## Flags
-- --name <String>: 文档名称 (必填)
-- --folder <String>: 目标文档文件夹 nodeId 或 alidocs 文件夹 URL；不要传 drive dentryId/parent-id
-- --workspace <String>: 目标知识库 ID
-- --content <String>: 文档初始内容（短文本字面量）；传 - 表示从 stdin 读取
-- --content-file <String>: 从文件读取文档内容（UTF-8）。推荐长/多行/表格内容使用
-- --content-format <String>: 内容格式: 默认为 markdown，可选 jsonml
+- --node <String>: 目标文档的标识，支持传入 URL 或 ID (必填)
+- --content <String>: 评论的文字内容，纯文本 (必填)
+- --mention <String>: 被 @ 的用户 uid 列表，逗号分隔
+- --mentioned-open-conversation-id <StringSlice>: 被 @ 的群 openConversationId，可重复指定或逗号分隔
 
 ## Related
 - dws doc comment create-inline

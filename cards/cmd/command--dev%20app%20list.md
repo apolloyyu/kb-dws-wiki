@@ -1,19 +1,20 @@
 # dws dev app list
 
 kind: command
-completeness: full
-description: 查询有开发权限的 MCP 服务列表（含 serverName）
-source: internal/helpers/dev_mcp.go:214
-visible_flags: 2
+completeness: partial
+usage: dws dev app list
+description: —
+source: internal/cli/param_aliases_generated.go:5315
+visible_flags: 0
+partial_reason: unverified_usage,unverified_flags,missing_description
 
 ## Flags
-- --keyword <String>: 按服务名关键词过滤
-- --creator-user-id <String>: 按创建人 staffId 过滤
+- none
 
 ## Related
 - dws dev app create
+- dws dev app credentials
 - dws dev app delete
 - dws dev app disable
 - dws dev app enable
-- dws dev app get
-- dws dev app update
+- dws dev app event

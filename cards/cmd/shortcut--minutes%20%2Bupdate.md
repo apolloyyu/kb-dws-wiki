@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws minutes +update
 description: 读取现状、预览差异、更新听记标题并读回验证
 source: internal/shortcut/minutes/alignment.go:166
 visible_flags: 2

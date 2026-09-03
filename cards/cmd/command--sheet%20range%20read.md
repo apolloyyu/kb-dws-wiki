@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet range read
 description: 读取工作表数据（别名: get）
+example: dws sheet range read --node NODE_ID
 source: internal/helpers/sheet_range_ops.go:17
 visible_flags: 4
 

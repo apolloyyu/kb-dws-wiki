@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws calendar +room-groups
 description: 会议室分组列表
 source: internal/shortcut/calendar/calendar.go:566
 visible_flags: 2

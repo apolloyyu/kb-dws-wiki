@@ -2,17 +2,21 @@
 
 kind: command
 completeness: full
-description: 导入本地表格文件为在线电子表格 (xlsx / xls)
-source: internal/helpers/sheet_import.go:65
-visible_flags: 0
+usage: dws sheet create
+description: 创建钉钉表格文档
+example: dws sheet create --name "销售数据"
+source: internal/helpers/sheet_workbook.go:11
+visible_flags: 3
 
 ## Flags
-- none
+- --name <String>: 表格名称 (必填)
+- --folder <String>: 目标文件夹 ID 或 URL
+- --workspace <String>: 目标知识库 ID
 
 ## Related
 - dws sheet add-dimension
 - dws sheet append
-- dws sheet batch-set-style
 - dws sheet batch-update
 - dws sheet changeset-get
+- dws sheet chart
 - dws sheet comment

@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +find-mail-user
 description: 按关键词搜索邮箱联系人并投影列表（姓名/昵称/邮箱/工号等）
 source: internal/shortcut/smart/find_mail_user.go:52
 visible_flags: 3

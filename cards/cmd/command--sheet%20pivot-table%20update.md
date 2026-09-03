@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet pivot-table update
 description: 更新透视表配置
+example: dws sheet pivot-table update --node NODE_ID --sheet-id SHEET_ID
 source: internal/helpers/sheet_pivot_table.go:265
 visible_flags: 4
 

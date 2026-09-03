@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws aitable +base-get-primary-doc-id
 description: 根据 baseId/tableId/recordId 获取主键文档的 dentryUuid
 source: internal/shortcut/aitable/aitable.go:345
 visible_flags: 3

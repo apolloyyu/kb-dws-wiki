@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws chat +messages-reply
 description: 引用回复一条已有消息，并返回可继续查询或撤回的发送上下文
 source: internal/shortcut/chat/lark_alignment.go:197
 visible_flags: 7

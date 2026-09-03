@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws minutes tag query
 description: 根据标签ID查询听记列表
+example: dws minutes tag query --tag-id <tagId>
 source: internal/helpers/minutes.go:2004
 visible_flags: 3
 

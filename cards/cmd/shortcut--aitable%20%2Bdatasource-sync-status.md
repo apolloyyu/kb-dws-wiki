@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws aitable +datasource-sync-status
 description: 按任务 ID 查询指定数据源表的同步任务状态。与 +datasource-sync / +datasource-create / +datasource-update 配对使用：这些指令触发同步后返回 taskId，本指令通过 taskId 查询最终结果。支持批量查询（单次最多 5 个 taskId），整体仍返回 su
 source: internal/shortcut/aitable/datasource.go:284
 visible_flags: 3

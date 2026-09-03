@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws pat +authorize
 description: 将 PAT 行为 scope 授权路由到原子命令 pat chmod
 source: internal/shortcut/pat/pat.go:119
 visible_flags: 0

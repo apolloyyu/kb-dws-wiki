@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws oa approval oa-cc-noticer
 description: 对审批实例进行抄送
+example: dws oa approval oa-cc-noticer --instance-id <processInstanceId> --users "68674200835816"
 source: internal/helpers/oa.go:1695
 visible_flags: 4
 
@@ -13,9 +15,9 @@ visible_flags: 4
 - --operator-id <String>: 操作人 ID (可选)
 
 ## Related
+- dws oa approval append-task
 - dws oa approval approve
+- dws oa approval attachment
 - dws oa approval create-instance
 - dws oa approval detail
-- dws oa approval forecast-process
-- dws oa approval form-schema
-- dws oa approval list-by-admin
+- dws oa approval ding-info

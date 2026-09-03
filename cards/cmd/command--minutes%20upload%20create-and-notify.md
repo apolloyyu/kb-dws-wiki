@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws minutes upload create-and-notify
 description: 创建上传会话并在生成后推送闪记卡片
+example: dws minutes upload create-and-notify --file-name "meeting.mp4" --file-size 102400
 source: internal/helpers/minutes.go:1535
 visible_flags: 5
 

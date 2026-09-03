@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet unmerge-cells
 description: 取消合并单元格
+example: dws sheet unmerge-cells --node NODE_ID --sheet-id SHEET_ID --range "A1:D5"
 source: internal/helpers/sheet_dimension.go:376
 visible_flags: 3
 
@@ -14,7 +16,7 @@ visible_flags: 3
 ## Related
 - dws sheet add-dimension
 - dws sheet append
-- dws sheet batch-set-style
 - dws sheet batch-update
 - dws sheet changeset-get
+- dws sheet chart
 - dws sheet comment

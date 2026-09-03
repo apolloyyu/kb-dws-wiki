@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws aitable +view-get
 description: 获取视图完整信息（列顺序、筛选、排序、分组等）
 source: internal/shortcut/aitable/aitable.go:1177
 visible_flags: 3

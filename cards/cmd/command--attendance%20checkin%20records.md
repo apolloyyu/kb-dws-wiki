@@ -2,15 +2,18 @@
 
 kind: command
 completeness: full
-description: 查询指定员工假期余额变更记录
-source: internal/helpers/attendance.go:3801
-visible_flags: 4
+usage: dws attendance checkin records
+description: 查询指定员工的签到记录
+example: dws attendance checkin records --operator-corp-id dingXXXXXX --operator-staff-id op001 --staff-ids user001,user002 --start "2026-04-01 00:00:00" --end "2026-04-07 00:00:00"
+source: internal/helpers/attendance.go:4719
+visible_flags: 5
 
 ## Flags
-- --user <String>: 指定查询员工 ID (必填)
-- --leave-code <String>: 假期规则 code (必填，服务端要求非空，不传返回 INVALID_PARAMS)
-- --start <String>: 查询开始日期，格式 YYYY-MM-DD (必填)
-- --end <String>: 查询结束日期，格式 YYYY-MM-DD (必填)
+- --operator-corp-id <String>: 操作者企业 ID（必填）
+- --operator-staff-id <String>: 操作者员工 ID（必填）
+- --staff-ids <String>: 目标员工 ID 列表, 逗号分隔（必填），最多100人
+- --start <String>: 开始时间, 格式 yyyy-MM-dd HH:mm:ss（必填），开始到结束最多7天
+- --end <String>: 结束时间, 格式 yyyy-MM-dd HH:mm:ss（必填），开始到结束最多7天
 
 ## Related
 - none

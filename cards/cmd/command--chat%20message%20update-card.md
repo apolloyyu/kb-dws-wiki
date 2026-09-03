@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws chat message update-card
 description: 流式更新卡片内容
+example: dws chat message update-card --biz-id <bizId> --content "更新的卡片内容" --flow-status 2
 source: internal/helpers/chat.go:6848
 visible_flags: 3
 

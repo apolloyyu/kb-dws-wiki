@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws aitable +workflow-enable
 description: 启用指定 Base 中的自动化工作流
 source: internal/shortcut/aitable/aitable.go:1988
 visible_flags: 2

@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +find-record
 description: 在指定多维表里按关键词查记录（只读）
 source: internal/shortcut/smart/find_record.go:40
 visible_flags: 3

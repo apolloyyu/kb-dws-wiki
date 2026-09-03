@@ -2,6 +2,7 @@
 
 kind: command
 completeness: full
+usage: dws drive comment
 description: 普通文件评论管理
 source: internal/helpers/file_comment.go:77
 visible_flags: 0

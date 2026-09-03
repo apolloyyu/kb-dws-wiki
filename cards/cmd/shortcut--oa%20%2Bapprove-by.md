@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws oa +approve-by
 description: 按关键词把我的一条待审批单据一键通过（自动定位实例与任务 ID）
 source: internal/shortcut/oa/smart.go:179
 visible_flags: 2

@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws mail +message
 description: 读取一封邮件的完整正文与附件元数据
 source: internal/shortcut/mail/reads.go:110
 visible_flags: 2

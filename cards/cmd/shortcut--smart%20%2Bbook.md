@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +book
 description: 创建日程，并可按姓名邀请参会人（自动解析 userId，失败自动回滚删除日程）
 source: internal/shortcut/smart/book.go:41
 visible_flags: 4

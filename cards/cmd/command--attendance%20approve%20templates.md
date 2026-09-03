@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws attendance approve templates
 description: 查询补卡/请假/加班/外出/出差审批提交链接
+example: dws attendance approve templates --type leave
 source: internal/helpers/attendance.go:962
 visible_flags: 1
 

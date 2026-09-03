@@ -1,11 +1,14 @@
 # dws chat message list-by-sender
 
 kind: command
-completeness: full
+completeness: partial
+usage: dws chat message list-by-sender
 description: Fetch messages authored by a specific sender across both single and group chats.
+example: dws chat message list-by-sender --sender-user-id <userId> --start "2026-03-10T00:00:00+08:00" --end "2026-03-11T00:00:00+08:00" --limit 50 --cursor 0
 use_when: When the agent needs to pull everything a particular colleague said recently.
 source: internal/helpers/chat.go:4352
 visible_flags: 6
+partial_reason: unverified_flags
 
 ## Flags
 - --sender-user-id <String>: 发送者 userId（与 --sender-open-dingtalk-id 二选一）

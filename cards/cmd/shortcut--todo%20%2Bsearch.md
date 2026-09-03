@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws todo +search
 description: 搜索与我相关的全部待办
 source: internal/shortcut/todo/lifecycle.go:290
 visible_flags: 3

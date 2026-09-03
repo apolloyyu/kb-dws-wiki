@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws attendance report query-leave
 description: 查询用户假期数据
+example: dws attendance report query-leave
 source: internal/helpers/attendance.go:3591
 visible_flags: 4
 

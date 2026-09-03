@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws chat +chat-add-bot
 description: 将机器人添加到群中
 source: internal/shortcut/chat/chat_group.go:1278
 visible_flags: 2

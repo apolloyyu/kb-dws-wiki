@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +this-month
 description: 查我本月的考勤打卡记录（打卡流水，自动解析当前用户）
 source: internal/shortcut/smart/this_month_attendance.go:47
 visible_flags: 0

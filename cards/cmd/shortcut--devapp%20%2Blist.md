@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws devapp +list
 description: 查询开放平台企业内部应用列表
 source: internal/shortcut/devapp/devapp.go:424
 visible_flags: 9

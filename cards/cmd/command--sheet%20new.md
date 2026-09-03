@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet new
 description: 新建工作表
+example: dws sheet new --node NODE_ID --name "Sheet2"
 source: internal/helpers/sheet_workbook.go:190
 visible_flags: 2
 
@@ -13,7 +15,7 @@ visible_flags: 2
 ## Related
 - dws sheet add-dimension
 - dws sheet append
-- dws sheet batch-set-style
 - dws sheet batch-update
 - dws sheet changeset-get
+- dws sheet chart
 - dws sheet comment

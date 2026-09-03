@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws minutes +search
 description: 按范围、标题关键词和时间搜索听记，支持安全全量翻页
 source: internal/shortcut/minutes/alignment.go:31
 visible_flags: 8

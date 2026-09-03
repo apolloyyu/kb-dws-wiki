@@ -1,10 +1,13 @@
 # dws markdown fetch
 
 kind: command
-completeness: full
+completeness: partial
+usage: dws markdown fetch
 description: 获取 Markdown 文件内容
+example: dws markdown fetch --node <dentryUuid>
 source: internal/helpers/markdown.go:74
 visible_flags: 4
+partial_reason: unverified_flags
 
 ## Flags
 - --node <String>: 文件 ID (dentryUuid/nodeId) (必填)

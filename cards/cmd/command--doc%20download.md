@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws doc download
 description: Download a DingTalk Doc or file to a local path.
+example: dws doc download --node NODE_ID --output ./download.bin
 use_when: When the agent needs the raw file locally for processing or attachment.
 source: internal/helpers/doc.go:2045
 visible_flags: 2
@@ -12,9 +14,9 @@ visible_flags: 2
 - --output <String> required: 本地保存路径 (文件路径或目录)
 
 ## Related
+- dws doc block
+- dws doc comment
 - dws doc copy
 - dws doc create
 - dws doc delete
 - dws doc export
-- dws doc import
-- dws doc info

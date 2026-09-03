@@ -1,21 +1,33 @@
+{"completeness": "full", "key": "agoal", "kind": "command", "path": "cards/cmd/command--agoal.md", "product": "agoal"}
+{"completeness": "partial", "key": "agoal contract", "kind": "command", "path": "cards/cmd/command--agoal%20contract.md", "product": "agoal"}
 {"completeness": "full", "key": "agoal contract detail", "kind": "command", "path": "cards/cmd/command--agoal%20contract%20detail.md", "product": "agoal"}
+{"completeness": "full", "key": "agoal contract fields", "kind": "command", "path": "cards/cmd/command--agoal%20contract%20fields.md", "product": "agoal"}
+{"completeness": "full", "key": "agoal contract list", "kind": "command", "path": "cards/cmd/command--agoal%20contract%20list.md", "product": "agoal"}
 {"completeness": "full", "key": "agoal contract update", "kind": "command", "path": "cards/cmd/command--agoal%20contract%20update.md", "product": "agoal"}
+{"completeness": "partial", "key": "agoal obj-template", "kind": "command", "path": "cards/cmd/command--agoal%20obj-template.md", "product": "agoal"}
 {"completeness": "full", "key": "agoal obj-template create-or-update", "kind": "command", "path": "cards/cmd/command--agoal%20obj-template%20create-or-update.md", "product": "agoal"}
 {"completeness": "full", "key": "agoal obj-template list", "kind": "command", "path": "cards/cmd/command--agoal%20obj-template%20list.md", "product": "agoal"}
+{"completeness": "partial", "key": "agoal report", "kind": "command", "path": "cards/cmd/command--agoal%20report.md", "product": "agoal"}
 {"completeness": "full", "key": "agoal report list-statistics", "kind": "command", "path": "cards/cmd/command--agoal%20report%20list-statistics.md", "product": "agoal"}
 {"completeness": "full", "key": "agoal report submit-detail", "kind": "command", "path": "cards/cmd/command--agoal%20report%20submit-detail.md", "product": "agoal"}
+{"completeness": "partial", "key": "agoal scorecard", "kind": "command", "path": "cards/cmd/command--agoal%20scorecard.md", "product": "agoal"}
 {"completeness": "full", "key": "agoal scorecard detail", "kind": "command", "path": "cards/cmd/command--agoal%20scorecard%20detail.md", "product": "agoal"}
 {"completeness": "full", "key": "agoal scorecard entity-detail", "kind": "command", "path": "cards/cmd/command--agoal%20scorecard%20entity-detail.md", "product": "agoal"}
+{"completeness": "full", "key": "agoal scorecard search-entities", "kind": "command", "path": "cards/cmd/command--agoal%20scorecard%20search-entities.md", "product": "agoal"}
 {"completeness": "full", "key": "agoal scorecard update", "kind": "command", "path": "cards/cmd/command--agoal%20scorecard%20update.md", "product": "agoal"}
+{"completeness": "partial", "key": "agoal strategy", "kind": "command", "path": "cards/cmd/command--agoal%20strategy.md", "product": "agoal"}
 {"completeness": "full", "key": "agoal strategy detail", "kind": "command", "path": "cards/cmd/command--agoal%20strategy%20detail.md", "product": "agoal"}
+{"completeness": "full", "key": "agoal strategy list", "kind": "command", "path": "cards/cmd/command--agoal%20strategy%20list.md", "product": "agoal"}
 {"completeness": "full", "key": "agoal strategy update", "kind": "command", "path": "cards/cmd/command--agoal%20strategy%20update.md", "product": "agoal"}
+{"completeness": "partial", "key": "agoal user", "kind": "command", "path": "cards/cmd/command--agoal%20user.md", "product": "agoal"}
 {"completeness": "full", "key": "agoal user objectives", "kind": "command", "path": "cards/cmd/command--agoal%20user%20objectives.md", "product": "agoal"}
 {"completeness": "full", "key": "agoal user rules", "kind": "command", "path": "cards/cmd/command--agoal%20user%20rules.md", "product": "agoal"}
-{"completeness": "full", "key": "aisearch", "kind": "command", "path": "cards/cmd/command--aisearch.md", "product": "aisearch"}
+{"completeness": "partial", "key": "aisearch", "kind": "command", "path": "cards/cmd/command--aisearch.md", "product": "aisearch"}
 {"completeness": "full", "key": "aisearch behavior", "kind": "command", "path": "cards/cmd/command--aisearch%20behavior.md", "product": "aisearch"}
 {"completeness": "full", "key": "aisearch enterprise", "kind": "command", "path": "cards/cmd/command--aisearch%20enterprise.md", "product": "aisearch"}
 {"completeness": "partial", "key": "aisearch person", "kind": "command", "path": "cards/cmd/command--aisearch%20person.md", "product": "aisearch"}
 {"completeness": "full", "key": "aitable", "kind": "command", "path": "cards/cmd/command--aitable.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable advperm", "kind": "command", "path": "cards/cmd/command--aitable%20advperm.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable advperm disable", "kind": "command", "path": "cards/cmd/command--aitable%20advperm%20disable.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable advperm enable", "kind": "command", "path": "cards/cmd/command--aitable%20advperm%20enable.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable advperm role-create", "kind": "command", "path": "cards/cmd/command--aitable%20advperm%20role-create.md", "product": "aitable"}
@@ -23,31 +35,38 @@
 {"completeness": "full", "key": "aitable advperm role-get", "kind": "command", "path": "cards/cmd/command--aitable%20advperm%20role-get.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable advperm role-list", "kind": "command", "path": "cards/cmd/command--aitable%20advperm%20role-list.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable advperm role-update", "kind": "command", "path": "cards/cmd/command--aitable%20advperm%20role-update.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable attachment", "kind": "command", "path": "cards/cmd/command--aitable%20attachment.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable attachment upload", "kind": "command", "path": "cards/cmd/command--aitable%20attachment%20upload.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable base", "kind": "command", "path": "cards/cmd/command--aitable%20base.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable base copy", "kind": "command", "path": "cards/cmd/command--aitable%20base%20copy.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable base create", "kind": "command", "path": "cards/cmd/command--aitable%20base%20create.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable base delete", "kind": "command", "path": "cards/cmd/command--aitable%20base%20delete.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable base get", "kind": "command", "path": "cards/cmd/command--aitable%20base%20get.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable base get-primary-doc-id", "kind": "command", "path": "cards/cmd/command--aitable%20base%20get-primary-doc-id.md", "product": "aitable"}
-{"completeness": "full", "key": "aitable base list", "kind": "command", "path": "cards/cmd/command--aitable%20base%20list.md", "product": "aitable"}
-{"completeness": "full", "key": "aitable base search", "kind": "command", "path": "cards/cmd/command--aitable%20base%20search.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable base list", "kind": "command", "path": "cards/cmd/command--aitable%20base%20list.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable base search", "kind": "command", "path": "cards/cmd/command--aitable%20base%20search.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable base update", "kind": "command", "path": "cards/cmd/command--aitable%20base%20update.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable chart", "kind": "command", "path": "cards/cmd/command--aitable%20chart.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable chart create", "kind": "command", "path": "cards/cmd/command--aitable%20chart%20create.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable chart delete", "kind": "command", "path": "cards/cmd/command--aitable%20chart%20delete.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable chart get", "kind": "command", "path": "cards/cmd/command--aitable%20chart%20get.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable chart share", "kind": "command", "path": "cards/cmd/command--aitable%20chart%20share.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable chart share get", "kind": "command", "path": "cards/cmd/command--aitable%20chart%20share%20get.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable chart share update", "kind": "command", "path": "cards/cmd/command--aitable%20chart%20share%20update.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable chart update", "kind": "command", "path": "cards/cmd/command--aitable%20chart%20update.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable chart widgets-example", "kind": "command", "path": "cards/cmd/command--aitable%20chart%20widgets-example.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable create", "kind": "command", "path": "cards/cmd/command--aitable%20create.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable dashboard", "kind": "command", "path": "cards/cmd/command--aitable%20dashboard.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable dashboard arrange", "kind": "command", "path": "cards/cmd/command--aitable%20dashboard%20arrange.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable dashboard config-example", "kind": "command", "path": "cards/cmd/command--aitable%20dashboard%20config-example.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable dashboard create", "kind": "command", "path": "cards/cmd/command--aitable%20dashboard%20create.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable dashboard delete", "kind": "command", "path": "cards/cmd/command--aitable%20dashboard%20delete.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable dashboard get", "kind": "command", "path": "cards/cmd/command--aitable%20dashboard%20get.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable dashboard share", "kind": "command", "path": "cards/cmd/command--aitable%20dashboard%20share.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable dashboard share get", "kind": "command", "path": "cards/cmd/command--aitable%20dashboard%20share%20get.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable dashboard share update", "kind": "command", "path": "cards/cmd/command--aitable%20dashboard%20share%20update.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable dashboard update", "kind": "command", "path": "cards/cmd/command--aitable%20dashboard%20update.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable datasource", "kind": "command", "path": "cards/cmd/command--aitable%20datasource.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable datasource create", "kind": "command", "path": "cards/cmd/command--aitable%20datasource%20create.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable datasource get-config", "kind": "command", "path": "cards/cmd/command--aitable%20datasource%20get-config.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable datasource get-fields", "kind": "command", "path": "cards/cmd/command--aitable%20datasource%20get-fields.md", "product": "aitable"}
@@ -55,29 +74,37 @@
 {"completeness": "full", "key": "aitable datasource sync", "kind": "command", "path": "cards/cmd/command--aitable%20datasource%20sync.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable datasource sync-status", "kind": "command", "path": "cards/cmd/command--aitable%20datasource%20sync-status.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable datasource update", "kind": "command", "path": "cards/cmd/command--aitable%20datasource%20update.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable export", "kind": "command", "path": "cards/cmd/command--aitable%20export.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable export data", "kind": "command", "path": "cards/cmd/command--aitable%20export%20data.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable field", "kind": "command", "path": "cards/cmd/command--aitable%20field.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable field create", "kind": "command", "path": "cards/cmd/command--aitable%20field%20create.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable field delete", "kind": "command", "path": "cards/cmd/command--aitable%20field%20delete.md", "product": "aitable"}
-{"completeness": "full", "key": "aitable field get", "kind": "command", "path": "cards/cmd/command--aitable%20field%20get.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable field get", "kind": "command", "path": "cards/cmd/command--aitable%20field%20get.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable field list", "kind": "command", "path": "cards/cmd/command--aitable%20field%20list.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable field search-options", "kind": "command", "path": "cards/cmd/command--aitable%20field%20search-options.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable field update", "kind": "command", "path": "cards/cmd/command--aitable%20field%20update.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable form", "kind": "command", "path": "cards/cmd/command--aitable%20form.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable form create", "kind": "command", "path": "cards/cmd/command--aitable%20form%20create.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable form delete", "kind": "command", "path": "cards/cmd/command--aitable%20form%20delete.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable form field", "kind": "command", "path": "cards/cmd/command--aitable%20form%20field.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable form field hide", "kind": "command", "path": "cards/cmd/command--aitable%20form%20field%20hide.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable form field list", "kind": "command", "path": "cards/cmd/command--aitable%20form%20field%20list.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable form field update", "kind": "command", "path": "cards/cmd/command--aitable%20form%20field%20update.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable form get", "kind": "command", "path": "cards/cmd/command--aitable%20form%20get.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable form list", "kind": "command", "path": "cards/cmd/command--aitable%20form%20list.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable form questions", "kind": "command", "path": "cards/cmd/command--aitable%20form%20questions.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable form questions create", "kind": "command", "path": "cards/cmd/command--aitable%20form%20questions%20create.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable form questions delete", "kind": "command", "path": "cards/cmd/command--aitable%20form%20questions%20delete.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable form share", "kind": "command", "path": "cards/cmd/command--aitable%20form%20share.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable form share get", "kind": "command", "path": "cards/cmd/command--aitable%20form%20share%20get.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable form share update", "kind": "command", "path": "cards/cmd/command--aitable%20form%20share%20update.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable form update", "kind": "command", "path": "cards/cmd/command--aitable%20form%20update.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable import", "kind": "command", "path": "cards/cmd/command--aitable%20import.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable import data", "kind": "command", "path": "cards/cmd/command--aitable%20import%20data.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable import upload", "kind": "command", "path": "cards/cmd/command--aitable%20import%20upload.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable info", "kind": "command", "path": "cards/cmd/command--aitable%20info.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable list", "kind": "command", "path": "cards/cmd/command--aitable%20list.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable record", "kind": "command", "path": "cards/cmd/command--aitable%20record.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable record batch-update", "kind": "command", "path": "cards/cmd/command--aitable%20record%20batch-update.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable record create", "kind": "command", "path": "cards/cmd/command--aitable%20record%20create.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable record delete", "kind": "command", "path": "cards/cmd/command--aitable%20record%20delete.md", "product": "aitable"}
@@ -87,13 +114,14 @@
 {"completeness": "full", "key": "aitable record list", "kind": "command", "path": "cards/cmd/command--aitable%20record%20list.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable record primary-doc-create", "kind": "command", "path": "cards/cmd/command--aitable%20record%20primary-doc-create.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable record primary-doc-get", "kind": "command", "path": "cards/cmd/command--aitable%20record%20primary-doc-get.md", "product": "aitable"}
-{"completeness": "full", "key": "aitable record query", "kind": "command", "path": "cards/cmd/command--aitable%20record%20query.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable record query", "kind": "command", "path": "cards/cmd/command--aitable%20record%20query.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable record query-empty", "kind": "command", "path": "cards/cmd/command--aitable%20record%20query-empty.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable record share-url", "kind": "command", "path": "cards/cmd/command--aitable%20record%20share-url.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable record stats", "kind": "command", "path": "cards/cmd/command--aitable%20record%20stats.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable record update", "kind": "command", "path": "cards/cmd/command--aitable%20record%20update.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable record upsert", "kind": "command", "path": "cards/cmd/command--aitable%20record%20upsert.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable search", "kind": "command", "path": "cards/cmd/command--aitable%20search.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable section", "kind": "command", "path": "cards/cmd/command--aitable%20section.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable section create", "kind": "command", "path": "cards/cmd/command--aitable%20section%20create.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable section delete", "kind": "command", "path": "cards/cmd/command--aitable%20section%20delete.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable section list-empty", "kind": "command", "path": "cards/cmd/command--aitable%20section%20list-empty.md", "product": "aitable"}
@@ -101,16 +129,19 @@
 {"completeness": "full", "key": "aitable section move-node", "kind": "command", "path": "cards/cmd/command--aitable%20section%20move-node.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable section rename", "kind": "command", "path": "cards/cmd/command--aitable%20section%20rename.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable section reorder", "kind": "command", "path": "cards/cmd/command--aitable%20section%20reorder.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable table", "kind": "command", "path": "cards/cmd/command--aitable%20table.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable table create", "kind": "command", "path": "cards/cmd/command--aitable%20table%20create.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable table delete", "kind": "command", "path": "cards/cmd/command--aitable%20table%20delete.md", "product": "aitable"}
-{"completeness": "full", "key": "aitable table get", "kind": "command", "path": "cards/cmd/command--aitable%20table%20get.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable table get", "kind": "command", "path": "cards/cmd/command--aitable%20table%20get.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable table list", "kind": "command", "path": "cards/cmd/command--aitable%20table%20list.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable table update", "kind": "command", "path": "cards/cmd/command--aitable%20table%20update.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable template", "kind": "command", "path": "cards/cmd/command--aitable%20template.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable template search", "kind": "command", "path": "cards/cmd/command--aitable%20template%20search.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable view", "kind": "command", "path": "cards/cmd/command--aitable%20view.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable view create", "kind": "command", "path": "cards/cmd/command--aitable%20view%20create.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable view delete", "kind": "command", "path": "cards/cmd/command--aitable%20view%20delete.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable view duplicate", "kind": "command", "path": "cards/cmd/command--aitable%20view%20duplicate.md", "product": "aitable"}
-{"completeness": "full", "key": "aitable view get", "kind": "command", "path": "cards/cmd/command--aitable%20view%20get.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable view get", "kind": "command", "path": "cards/cmd/command--aitable%20view%20get.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable view get aggregate", "kind": "command", "path": "cards/cmd/command--aitable%20view%20get%20aggregate.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable view get card", "kind": "command", "path": "cards/cmd/command--aitable%20view%20get%20card.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable view get field-widths", "kind": "command", "path": "cards/cmd/command--aitable%20view%20get%20field-widths.md", "product": "aitable"}
@@ -138,6 +169,7 @@
 {"completeness": "full", "key": "aitable view update sort", "kind": "command", "path": "cards/cmd/command--aitable%20view%20update%20sort.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable view update timebar", "kind": "command", "path": "cards/cmd/command--aitable%20view%20update%20timebar.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable view update visible-fields", "kind": "command", "path": "cards/cmd/command--aitable%20view%20update%20visible-fields.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable workflow", "kind": "command", "path": "cards/cmd/command--aitable%20workflow.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable workflow create", "kind": "command", "path": "cards/cmd/command--aitable%20workflow%20create.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable workflow disable", "kind": "command", "path": "cards/cmd/command--aitable%20workflow%20disable.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable workflow edit-example", "kind": "command", "path": "cards/cmd/command--aitable%20workflow%20edit-example.md", "product": "aitable"}
@@ -147,9 +179,12 @@
 {"completeness": "full", "key": "aitable workflow list", "kind": "command", "path": "cards/cmd/command--aitable%20workflow%20list.md", "product": "aitable"}
 {"completeness": "partial", "key": "aitable workflow run", "kind": "command", "path": "cards/cmd/command--aitable%20workflow%20run.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable workflow update", "kind": "command", "path": "cards/cmd/command--aitable%20workflow%20update.md", "product": "aitable"}
-{"completeness": "full", "key": "app", "kind": "command", "path": "cards/cmd/command--app.md", "product": "app"}
+{"completeness": "full", "key": "api", "kind": "command", "path": "cards/cmd/command--api.md", "product": "api"}
+{"completeness": "partial", "key": "attendance", "kind": "command", "path": "cards/cmd/command--attendance.md", "product": "attendance"}
+{"completeness": "partial", "key": "attendance adjustment", "kind": "command", "path": "cards/cmd/command--attendance%20adjustment.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance adjustment get", "kind": "command", "path": "cards/cmd/command--attendance%20adjustment%20get.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance adjustment search", "kind": "command", "path": "cards/cmd/command--attendance%20adjustment%20search.md", "product": "attendance"}
+{"completeness": "partial", "key": "attendance approve", "kind": "command", "path": "cards/cmd/command--attendance%20approve.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance approve leave-check", "kind": "command", "path": "cards/cmd/command--attendance%20approve%20leave-check.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance approve leave-duration", "kind": "command", "path": "cards/cmd/command--attendance%20approve%20leave-duration.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance approve leave-types", "kind": "command", "path": "cards/cmd/command--attendance%20approve%20leave-types.md", "product": "attendance"}
@@ -158,34 +193,46 @@
 {"completeness": "full", "key": "attendance approve supply-plans", "kind": "command", "path": "cards/cmd/command--attendance%20approve%20supply-plans.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance approve templates", "kind": "command", "path": "cards/cmd/command--attendance%20approve%20templates.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance boss-check", "kind": "command", "path": "cards/cmd/command--attendance%20boss-check.md", "product": "attendance"}
+{"completeness": "partial", "key": "attendance check", "kind": "command", "path": "cards/cmd/command--attendance%20check.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance check record", "kind": "command", "path": "cards/cmd/command--attendance%20check%20record.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance check result", "kind": "command", "path": "cards/cmd/command--attendance%20check%20result.md", "product": "attendance"}
+{"completeness": "partial", "key": "attendance checkin", "kind": "command", "path": "cards/cmd/command--attendance%20checkin.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance checkin records", "kind": "command", "path": "cards/cmd/command--attendance%20checkin%20records.md", "product": "attendance"}
+{"completeness": "partial", "key": "attendance class", "kind": "command", "path": "cards/cmd/command--attendance%20class.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance class create", "kind": "command", "path": "cards/cmd/command--attendance%20class%20create.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance class get", "kind": "command", "path": "cards/cmd/command--attendance%20class%20get.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance class search", "kind": "command", "path": "cards/cmd/command--attendance%20class%20search.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance class update", "kind": "command", "path": "cards/cmd/command--attendance%20class%20update.md", "product": "attendance"}
+{"completeness": "partial", "key": "attendance globalsetting", "kind": "command", "path": "cards/cmd/command--attendance%20globalsetting.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance globalsetting get", "kind": "command", "path": "cards/cmd/command--attendance%20globalsetting%20get.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance globalsetting save", "kind": "command", "path": "cards/cmd/command--attendance%20globalsetting%20save.md", "product": "attendance"}
+{"completeness": "partial", "key": "attendance group", "kind": "command", "path": "cards/cmd/command--attendance%20group.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance group create", "kind": "command", "path": "cards/cmd/command--attendance%20group%20create.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance group filtered-get", "kind": "command", "path": "cards/cmd/command--attendance%20group%20filtered-get.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance group get", "kind": "command", "path": "cards/cmd/command--attendance%20group%20get.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance group search", "kind": "command", "path": "cards/cmd/command--attendance%20group%20search.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance group update", "kind": "command", "path": "cards/cmd/command--attendance%20group%20update.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance group update-members", "kind": "command", "path": "cards/cmd/command--attendance%20group%20update-members.md", "product": "attendance"}
+{"completeness": "partial", "key": "attendance overtime", "kind": "command", "path": "cards/cmd/command--attendance%20overtime.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance overtime get", "kind": "command", "path": "cards/cmd/command--attendance%20overtime%20get.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance overtime search", "kind": "command", "path": "cards/cmd/command--attendance%20overtime%20search.md", "product": "attendance"}
+{"completeness": "partial", "key": "attendance record", "kind": "command", "path": "cards/cmd/command--attendance%20record.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance record get", "kind": "command", "path": "cards/cmd/command--attendance%20record%20get.md", "product": "attendance"}
+{"completeness": "partial", "key": "attendance report", "kind": "command", "path": "cards/cmd/command--attendance%20report.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance report columns", "kind": "command", "path": "cards/cmd/command--attendance%20report%20columns.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance report query-data", "kind": "command", "path": "cards/cmd/command--attendance%20report%20query-data.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance report query-leave", "kind": "command", "path": "cards/cmd/command--attendance%20report%20query-leave.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance rules", "kind": "command", "path": "cards/cmd/command--attendance%20rules.md", "product": "attendance"}
+{"completeness": "partial", "key": "attendance schedule", "kind": "command", "path": "cards/cmd/command--attendance%20schedule.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance schedule get", "kind": "command", "path": "cards/cmd/command--attendance%20schedule%20get.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance schedule import", "kind": "command", "path": "cards/cmd/command--attendance%20schedule%20import.md", "product": "attendance"}
+{"completeness": "partial", "key": "attendance selfsetting", "kind": "command", "path": "cards/cmd/command--attendance%20selfsetting.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance selfsetting get", "kind": "command", "path": "cards/cmd/command--attendance%20selfsetting%20get.md", "product": "attendance"}
-{"completeness": "full", "key": "attendance selfsetting save", "kind": "command", "path": "cards/cmd/command--attendance%20selfsetting%20save.md", "product": "attendance"}
+{"completeness": "partial", "key": "attendance selfsetting save", "kind": "command", "path": "cards/cmd/command--attendance%20selfsetting%20save.md", "product": "attendance"}
+{"completeness": "partial", "key": "attendance shift", "kind": "command", "path": "cards/cmd/command--attendance%20shift.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance shift list", "kind": "command", "path": "cards/cmd/command--attendance%20shift%20list.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance summary", "kind": "command", "path": "cards/cmd/command--attendance%20summary.md", "product": "attendance"}
+{"completeness": "partial", "key": "attendance vacation", "kind": "command", "path": "cards/cmd/command--attendance%20vacation.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance vacation balance", "kind": "command", "path": "cards/cmd/command--attendance%20vacation%20balance.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance vacation records", "kind": "command", "path": "cards/cmd/command--attendance%20vacation%20records.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance vacation save-balance", "kind": "command", "path": "cards/cmd/command--attendance%20vacation%20save-balance.md", "product": "attendance"}
@@ -196,23 +243,33 @@
 {"completeness": "full", "key": "audit tail", "kind": "command", "path": "cards/cmd/command--audit%20tail.md", "product": "audit"}
 {"completeness": "full", "key": "audit verify", "kind": "command", "path": "cards/cmd/command--audit%20verify.md", "product": "audit"}
 {"completeness": "full", "key": "auth", "kind": "command", "path": "cards/cmd/command--auth.md", "product": "auth"}
-{"completeness": "full", "key": "auth exchange", "kind": "command", "path": "cards/cmd/command--auth%20exchange.md", "product": "auth"}
+{"completeness": "partial", "key": "auth exchange", "kind": "command", "path": "cards/cmd/command--auth%20exchange.md", "product": "auth"}
+{"completeness": "partial", "key": "auth export", "kind": "command", "path": "cards/cmd/command--auth%20export.md", "product": "auth"}
+{"completeness": "partial", "key": "auth import", "kind": "command", "path": "cards/cmd/command--auth%20import.md", "product": "auth"}
 {"completeness": "full", "key": "auth login", "kind": "command", "path": "cards/cmd/command--auth%20login.md", "product": "auth"}
-{"completeness": "full", "key": "auth logout", "kind": "command", "path": "cards/cmd/command--auth%20logout.md", "product": "auth"}
+{"completeness": "partial", "key": "auth logout", "kind": "command", "path": "cards/cmd/command--auth%20logout.md", "product": "auth"}
 {"completeness": "full", "key": "auth migrate-keychain", "kind": "command", "path": "cards/cmd/command--auth%20migrate-keychain.md", "product": "auth"}
 {"completeness": "partial", "key": "auth reset", "kind": "command", "path": "cards/cmd/command--auth%20reset.md", "product": "auth"}
-{"completeness": "full", "key": "auth status", "kind": "command", "path": "cards/cmd/command--auth%20status.md", "product": "auth"}
+{"completeness": "partial", "key": "auth status", "kind": "command", "path": "cards/cmd/command--auth%20status.md", "product": "auth"}
 {"completeness": "full", "key": "calendar", "kind": "command", "path": "cards/cmd/command--calendar.md", "product": "calendar"}
+{"completeness": "partial", "key": "calendar acl", "kind": "command", "path": "cards/cmd/command--calendar%20acl.md", "product": "calendar"}
+{"completeness": "full", "key": "calendar acl add", "kind": "command", "path": "cards/cmd/command--calendar%20acl%20add.md", "product": "calendar"}
 {"completeness": "full", "key": "calendar acl delete", "kind": "command", "path": "cards/cmd/command--calendar%20acl%20delete.md", "product": "calendar"}
 {"completeness": "full", "key": "calendar acl list", "kind": "command", "path": "cards/cmd/command--calendar%20acl%20list.md", "product": "calendar"}
+{"completeness": "partial", "key": "calendar attachment", "kind": "command", "path": "cards/cmd/command--calendar%20attachment.md", "product": "calendar"}
 {"completeness": "full", "key": "calendar attachment add", "kind": "command", "path": "cards/cmd/command--calendar%20attachment%20add.md", "product": "calendar"}
+{"completeness": "partial", "key": "calendar attendee", "kind": "command", "path": "cards/cmd/command--calendar%20attendee.md", "product": "calendar"}
 {"completeness": "full", "key": "calendar attendee add", "kind": "command", "path": "cards/cmd/command--calendar%20attendee%20add.md", "product": "calendar"}
 {"completeness": "full", "key": "calendar attendee delete", "kind": "command", "path": "cards/cmd/command--calendar%20attendee%20delete.md", "product": "calendar"}
 {"completeness": "full", "key": "calendar attendee list", "kind": "command", "path": "cards/cmd/command--calendar%20attendee%20list.md", "product": "calendar"}
+{"completeness": "partial", "key": "calendar book", "kind": "command", "path": "cards/cmd/command--calendar%20book.md", "product": "calendar"}
 {"completeness": "full", "key": "calendar book get", "kind": "command", "path": "cards/cmd/command--calendar%20book%20get.md", "product": "calendar"}
 {"completeness": "full", "key": "calendar book list", "kind": "command", "path": "cards/cmd/command--calendar%20book%20list.md", "product": "calendar"}
 {"completeness": "full", "key": "calendar book search", "kind": "command", "path": "cards/cmd/command--calendar%20book%20search.md", "product": "calendar"}
+{"completeness": "full", "key": "calendar book update", "kind": "command", "path": "cards/cmd/command--calendar%20book%20update.md", "product": "calendar"}
+{"completeness": "partial", "key": "calendar busy", "kind": "command", "path": "cards/cmd/command--calendar%20busy.md", "product": "calendar"}
 {"completeness": "full", "key": "calendar busy search", "kind": "command", "path": "cards/cmd/command--calendar%20busy%20search.md", "product": "calendar"}
+{"completeness": "partial", "key": "calendar event", "kind": "command", "path": "cards/cmd/command--calendar%20event.md", "product": "calendar"}
 {"completeness": "partial", "key": "calendar event create", "kind": "command", "path": "cards/cmd/command--calendar%20event%20create.md", "product": "calendar"}
 {"completeness": "full", "key": "calendar event delete", "kind": "command", "path": "cards/cmd/command--calendar%20event%20delete.md", "product": "calendar"}
 {"completeness": "full", "key": "calendar event get", "kind": "command", "path": "cards/cmd/command--calendar%20event%20get.md", "product": "calendar"}
@@ -222,23 +279,27 @@
 {"completeness": "full", "key": "calendar event share-info", "kind": "command", "path": "cards/cmd/command--calendar%20event%20share-info.md", "product": "calendar"}
 {"completeness": "full", "key": "calendar event suggest", "kind": "command", "path": "cards/cmd/command--calendar%20event%20suggest.md", "product": "calendar"}
 {"completeness": "partial", "key": "calendar event update", "kind": "command", "path": "cards/cmd/command--calendar%20event%20update.md", "product": "calendar"}
+{"completeness": "partial", "key": "calendar participant", "kind": "command", "path": "cards/cmd/command--calendar%20participant.md", "product": "calendar"}
 {"completeness": "full", "key": "calendar participant add", "kind": "command", "path": "cards/cmd/command--calendar%20participant%20add.md", "product": "calendar"}
 {"completeness": "full", "key": "calendar participant delete", "kind": "command", "path": "cards/cmd/command--calendar%20participant%20delete.md", "product": "calendar"}
 {"completeness": "full", "key": "calendar participant list", "kind": "command", "path": "cards/cmd/command--calendar%20participant%20list.md", "product": "calendar"}
+{"completeness": "partial", "key": "calendar room", "kind": "command", "path": "cards/cmd/command--calendar%20room.md", "product": "calendar"}
 {"completeness": "full", "key": "calendar room add", "kind": "command", "path": "cards/cmd/command--calendar%20room%20add.md", "product": "calendar"}
 {"completeness": "full", "key": "calendar room delete", "kind": "command", "path": "cards/cmd/command--calendar%20room%20delete.md", "product": "calendar"}
 {"completeness": "full", "key": "calendar room list-groups", "kind": "command", "path": "cards/cmd/command--calendar%20room%20list-groups.md", "product": "calendar"}
 {"completeness": "full", "key": "calendar room search", "kind": "command", "path": "cards/cmd/command--calendar%20room%20search.md", "product": "calendar"}
 {"completeness": "full", "key": "chat", "kind": "command", "path": "cards/cmd/command--chat.md", "product": "chat"}
+{"completeness": "partial", "key": "chat bot", "kind": "command", "path": "cards/cmd/command--chat%20bot.md", "product": "chat"}
 {"completeness": "full", "key": "chat bot find", "kind": "command", "path": "cards/cmd/command--chat%20bot%20find.md", "product": "chat"}
 {"completeness": "full", "key": "chat bot search", "kind": "command", "path": "cards/cmd/command--chat%20bot%20search.md", "product": "chat"}
+{"completeness": "partial", "key": "chat category", "kind": "command", "path": "cards/cmd/command--chat%20category.md", "product": "chat"}
 {"completeness": "full", "key": "chat category add-conv", "kind": "command", "path": "cards/cmd/command--chat%20category%20add-conv.md", "product": "chat"}
 {"completeness": "full", "key": "chat category batch-info", "kind": "command", "path": "cards/cmd/command--chat%20category%20batch-info.md", "product": "chat"}
 {"completeness": "full", "key": "chat category create", "kind": "command", "path": "cards/cmd/command--chat%20category%20create.md", "product": "chat"}
 {"completeness": "full", "key": "chat category create-smart", "kind": "command", "path": "cards/cmd/command--chat%20category%20create-smart.md", "product": "chat"}
 {"completeness": "full", "key": "chat category delete", "kind": "command", "path": "cards/cmd/command--chat%20category%20delete.md", "product": "chat"}
 {"completeness": "full", "key": "chat category list", "kind": "command", "path": "cards/cmd/command--chat%20category%20list.md", "product": "chat"}
-{"completeness": "full", "key": "chat category list-by-conv", "kind": "command", "path": "cards/cmd/command--chat%20category%20list-by-conv.md", "product": "chat"}
+{"completeness": "partial", "key": "chat category list-by-conv", "kind": "command", "path": "cards/cmd/command--chat%20category%20list-by-conv.md", "product": "chat"}
 {"completeness": "full", "key": "chat category list-conversations", "kind": "command", "path": "cards/cmd/command--chat%20category%20list-conversations.md", "product": "chat"}
 {"completeness": "full", "key": "chat category remove-conv", "kind": "command", "path": "cards/cmd/command--chat%20category%20remove-conv.md", "product": "chat"}
 {"completeness": "full", "key": "chat category rename", "kind": "command", "path": "cards/cmd/command--chat%20category%20rename.md", "product": "chat"}
@@ -246,14 +307,17 @@
 {"completeness": "full", "key": "chat clear-all-red-point", "kind": "command", "path": "cards/cmd/command--chat%20clear-all-red-point.md", "product": "chat"}
 {"completeness": "full", "key": "chat clear-messages", "kind": "command", "path": "cards/cmd/command--chat%20clear-messages.md", "product": "chat"}
 {"completeness": "full", "key": "chat clear-red-point", "kind": "command", "path": "cards/cmd/command--chat%20clear-red-point.md", "product": "chat"}
+{"completeness": "partial", "key": "chat conversation-file", "kind": "command", "path": "cards/cmd/command--chat%20conversation-file.md", "product": "chat"}
 {"completeness": "full", "key": "chat conversation-file upload", "kind": "command", "path": "cards/cmd/command--chat%20conversation-file%20upload.md", "product": "chat"}
 {"completeness": "full", "key": "chat conversation-info", "kind": "command", "path": "cards/cmd/command--chat%20conversation-info.md", "product": "chat"}
+{"completeness": "partial", "key": "chat data-auth", "kind": "command", "path": "cards/cmd/command--chat%20data-auth.md", "product": "chat"}
 {"completeness": "full", "key": "chat data-auth cross-org", "kind": "command", "path": "cards/cmd/command--chat%20data-auth%20cross-org.md", "product": "chat"}
 {"completeness": "full", "key": "chat emotion", "kind": "command", "path": "cards/cmd/command--chat%20emotion.md", "product": "chat"}
 {"completeness": "full", "key": "chat emotion favorite", "kind": "command", "path": "cards/cmd/command--chat%20emotion%20favorite.md", "product": "chat"}
 {"completeness": "full", "key": "chat emotion list", "kind": "command", "path": "cards/cmd/command--chat%20emotion%20list.md", "product": "chat"}
 {"completeness": "full", "key": "chat emotion send", "kind": "command", "path": "cards/cmd/command--chat%20emotion%20send.md", "product": "chat"}
-{"completeness": "full", "key": "chat group audit-join-validation", "kind": "command", "path": "cards/cmd/command--chat%20group%20audit-join-validation.md", "product": "chat"}
+{"completeness": "partial", "key": "chat group", "kind": "command", "path": "cards/cmd/command--chat%20group.md", "product": "chat"}
+{"completeness": "partial", "key": "chat group audit-join-validation", "kind": "command", "path": "cards/cmd/command--chat%20group%20audit-join-validation.md", "product": "chat"}
 {"completeness": "full", "key": "chat group bots", "kind": "command", "path": "cards/cmd/command--chat%20group%20bots.md", "product": "chat"}
 {"completeness": "full", "key": "chat group create", "kind": "command", "path": "cards/cmd/command--chat%20group%20create.md", "product": "chat"}
 {"completeness": "full", "key": "chat group dismiss", "kind": "command", "path": "cards/cmd/command--chat%20group%20dismiss.md", "product": "chat"}
@@ -269,6 +333,7 @@
 {"completeness": "full", "key": "chat group members list-by-ids", "kind": "command", "path": "cards/cmd/command--chat%20group%20members%20list-by-ids.md", "product": "chat"}
 {"completeness": "full", "key": "chat group members remove", "kind": "command", "path": "cards/cmd/command--chat%20group%20members%20remove.md", "product": "chat"}
 {"completeness": "full", "key": "chat group members remove-bot", "kind": "command", "path": "cards/cmd/command--chat%20group%20members%20remove-bot.md", "product": "chat"}
+{"completeness": "partial", "key": "chat group notice", "kind": "command", "path": "cards/cmd/command--chat%20group%20notice.md", "product": "chat"}
 {"completeness": "full", "key": "chat group notice create", "kind": "command", "path": "cards/cmd/command--chat%20group%20notice%20create.md", "product": "chat"}
 {"completeness": "full", "key": "chat group notice edit", "kind": "command", "path": "cards/cmd/command--chat%20group%20notice%20edit.md", "product": "chat"}
 {"completeness": "full", "key": "chat group notice get", "kind": "command", "path": "cards/cmd/command--chat%20group%20notice%20get.md", "product": "chat"}
@@ -284,10 +349,12 @@
 {"completeness": "full", "key": "chat group update-nick", "kind": "command", "path": "cards/cmd/command--chat%20group%20update-nick.md", "product": "chat"}
 {"completeness": "full", "key": "chat group update-settings", "kind": "command", "path": "cards/cmd/command--chat%20group%20update-settings.md", "product": "chat"}
 {"completeness": "full", "key": "chat group upgrade-to-external", "kind": "command", "path": "cards/cmd/command--chat%20group%20upgrade-to-external.md", "product": "chat"}
+{"completeness": "partial", "key": "chat group user-settings", "kind": "command", "path": "cards/cmd/command--chat%20group%20user-settings.md", "product": "chat"}
 {"completeness": "full", "key": "chat group user-settings query", "kind": "command", "path": "cards/cmd/command--chat%20group%20user-settings%20query.md", "product": "chat"}
 {"completeness": "full", "key": "chat group user-settings set", "kind": "command", "path": "cards/cmd/command--chat%20group%20user-settings%20set.md", "product": "chat"}
 {"completeness": "full", "key": "chat group-mute", "kind": "command", "path": "cards/cmd/command--chat%20group-mute.md", "product": "chat"}
 {"completeness": "full", "key": "chat group-mute-member", "kind": "command", "path": "cards/cmd/command--chat%20group-mute-member.md", "product": "chat"}
+{"completeness": "partial", "key": "chat group-role", "kind": "command", "path": "cards/cmd/command--chat%20group-role.md", "product": "chat"}
 {"completeness": "full", "key": "chat group-role add", "kind": "command", "path": "cards/cmd/command--chat%20group-role%20add.md", "product": "chat"}
 {"completeness": "full", "key": "chat group-role list", "kind": "command", "path": "cards/cmd/command--chat%20group-role%20list.md", "product": "chat"}
 {"completeness": "full", "key": "chat group-role query-user", "kind": "command", "path": "cards/cmd/command--chat%20group-role%20query-user.md", "product": "chat"}
@@ -302,24 +369,27 @@
 {"completeness": "full", "key": "chat mark-unread", "kind": "command", "path": "cards/cmd/command--chat%20mark-unread.md", "product": "chat"}
 {"completeness": "full", "key": "chat media", "kind": "command", "path": "cards/cmd/command--chat%20media.md", "product": "chat"}
 {"completeness": "full", "key": "chat media upload", "kind": "command", "path": "cards/cmd/command--chat%20media%20upload.md", "product": "chat"}
+{"completeness": "partial", "key": "chat message", "kind": "command", "path": "cards/cmd/command--chat%20message.md", "product": "chat"}
 {"completeness": "full", "key": "chat message add-emoji", "kind": "command", "path": "cards/cmd/command--chat%20message%20add-emoji.md", "product": "chat"}
 {"completeness": "full", "key": "chat message add-favorite", "kind": "command", "path": "cards/cmd/command--chat%20message%20add-favorite.md", "product": "chat"}
 {"completeness": "full", "key": "chat message add-text-emotion", "kind": "command", "path": "cards/cmd/command--chat%20message%20add-text-emotion.md", "product": "chat"}
 {"completeness": "full", "key": "chat message combine-forward", "kind": "command", "path": "cards/cmd/command--chat%20message%20combine-forward.md", "product": "chat"}
 {"completeness": "full", "key": "chat message create-text-emotion", "kind": "command", "path": "cards/cmd/command--chat%20message%20create-text-emotion.md", "product": "chat"}
 {"completeness": "full", "key": "chat message download-media", "kind": "command", "path": "cards/cmd/command--chat%20message%20download-media.md", "product": "chat"}
-{"completeness": "full", "key": "chat message edit", "kind": "command", "path": "cards/cmd/command--chat%20message%20edit.md", "product": "chat"}
-{"completeness": "partial", "key": "chat message forward", "kind": "command", "path": "cards/cmd/command--chat%20message%20forward.md", "product": "chat"}
-{"completeness": "full", "key": "chat message list", "kind": "command", "path": "cards/cmd/command--chat%20message%20list.md", "product": "chat"}
-{"completeness": "full", "key": "chat message list-all", "kind": "command", "path": "cards/cmd/command--chat%20message%20list-all.md", "product": "chat"}
+{"completeness": "partial", "key": "chat message edit", "kind": "command", "path": "cards/cmd/command--chat%20message%20edit.md", "product": "chat"}
+{"completeness": "full", "key": "chat message forward", "kind": "command", "path": "cards/cmd/command--chat%20message%20forward.md", "product": "chat"}
+{"completeness": "partial", "key": "chat message forward-topic", "kind": "command", "path": "cards/cmd/command--chat%20message%20forward-topic.md", "product": "chat"}
+{"completeness": "partial", "key": "chat message list", "kind": "command", "path": "cards/cmd/command--chat%20message%20list.md", "product": "chat"}
+{"completeness": "partial", "key": "chat message list-all", "kind": "command", "path": "cards/cmd/command--chat%20message%20list-all.md", "product": "chat"}
 {"completeness": "full", "key": "chat message list-by-ids", "kind": "command", "path": "cards/cmd/command--chat%20message%20list-by-ids.md", "product": "chat"}
-{"completeness": "full", "key": "chat message list-by-sender", "kind": "command", "path": "cards/cmd/command--chat%20message%20list-by-sender.md", "product": "chat"}
+{"completeness": "partial", "key": "chat message list-by-sender", "kind": "command", "path": "cards/cmd/command--chat%20message%20list-by-sender.md", "product": "chat"}
 {"completeness": "full", "key": "chat message list-direct", "kind": "command", "path": "cards/cmd/command--chat%20message%20list-direct.md", "product": "chat"}
 {"completeness": "full", "key": "chat message list-emotion-replies", "kind": "command", "path": "cards/cmd/command--chat%20message%20list-emotion-replies.md", "product": "chat"}
-{"completeness": "full", "key": "chat message list-favorites", "kind": "command", "path": "cards/cmd/command--chat%20message%20list-favorites.md", "product": "chat"}
-{"completeness": "full", "key": "chat message list-focused", "kind": "command", "path": "cards/cmd/command--chat%20message%20list-focused.md", "product": "chat"}
-{"completeness": "full", "key": "chat message list-mentions", "kind": "command", "path": "cards/cmd/command--chat%20message%20list-mentions.md", "product": "chat"}
+{"completeness": "partial", "key": "chat message list-favorites", "kind": "command", "path": "cards/cmd/command--chat%20message%20list-favorites.md", "product": "chat"}
+{"completeness": "partial", "key": "chat message list-focused", "kind": "command", "path": "cards/cmd/command--chat%20message%20list-focused.md", "product": "chat"}
+{"completeness": "partial", "key": "chat message list-mentions", "kind": "command", "path": "cards/cmd/command--chat%20message%20list-mentions.md", "product": "chat"}
 {"completeness": "full", "key": "chat message list-pin-msg", "kind": "command", "path": "cards/cmd/command--chat%20message%20list-pin-msg.md", "product": "chat"}
+{"completeness": "partial", "key": "chat message list-topic-replies", "kind": "command", "path": "cards/cmd/command--chat%20message%20list-topic-replies.md", "product": "chat"}
 {"completeness": "full", "key": "chat message list-unread-conversations", "kind": "command", "path": "cards/cmd/command--chat%20message%20list-unread-conversations.md", "product": "chat"}
 {"completeness": "full", "key": "chat message query-send-status", "kind": "command", "path": "cards/cmd/command--chat%20message%20query-send-status.md", "product": "chat"}
 {"completeness": "full", "key": "chat message read-status", "kind": "command", "path": "cards/cmd/command--chat%20message%20read-status.md", "product": "chat"}
@@ -328,13 +398,13 @@
 {"completeness": "full", "key": "chat message remove-emoji", "kind": "command", "path": "cards/cmd/command--chat%20message%20remove-emoji.md", "product": "chat"}
 {"completeness": "full", "key": "chat message remove-favorite", "kind": "command", "path": "cards/cmd/command--chat%20message%20remove-favorite.md", "product": "chat"}
 {"completeness": "full", "key": "chat message remove-text-emotion", "kind": "command", "path": "cards/cmd/command--chat%20message%20remove-text-emotion.md", "product": "chat"}
-{"completeness": "full", "key": "chat message reply", "kind": "command", "path": "cards/cmd/command--chat%20message%20reply.md", "product": "chat"}
-{"completeness": "full", "key": "chat message search", "kind": "command", "path": "cards/cmd/command--chat%20message%20search.md", "product": "chat"}
-{"completeness": "full", "key": "chat message search-advanced", "kind": "command", "path": "cards/cmd/command--chat%20message%20search-advanced.md", "product": "chat"}
+{"completeness": "partial", "key": "chat message reply", "kind": "command", "path": "cards/cmd/command--chat%20message%20reply.md", "product": "chat"}
+{"completeness": "partial", "key": "chat message search", "kind": "command", "path": "cards/cmd/command--chat%20message%20search.md", "product": "chat"}
+{"completeness": "partial", "key": "chat message search-advanced", "kind": "command", "path": "cards/cmd/command--chat%20message%20search-advanced.md", "product": "chat"}
 {"completeness": "partial", "key": "chat message send", "kind": "command", "path": "cards/cmd/command--chat%20message%20send.md", "product": "chat"}
 {"completeness": "full", "key": "chat message send-a2ui-card", "kind": "command", "path": "cards/cmd/command--chat%20message%20send-a2ui-card.md", "product": "chat"}
 {"completeness": "full", "key": "chat message send-by-bot", "kind": "command", "path": "cards/cmd/command--chat%20message%20send-by-bot.md", "product": "chat"}
-{"completeness": "full", "key": "chat message send-by-webhook", "kind": "command", "path": "cards/cmd/command--chat%20message%20send-by-webhook.md", "product": "chat"}
+{"completeness": "partial", "key": "chat message send-by-webhook", "kind": "command", "path": "cards/cmd/command--chat%20message%20send-by-webhook.md", "product": "chat"}
 {"completeness": "full", "key": "chat message send-card", "kind": "command", "path": "cards/cmd/command--chat%20message%20send-card.md", "product": "chat"}
 {"completeness": "full", "key": "chat message set-pin-msg", "kind": "command", "path": "cards/cmd/command--chat%20message%20set-pin-msg.md", "product": "chat"}
 {"completeness": "full", "key": "chat message set-top-msg", "kind": "command", "path": "cards/cmd/command--chat%20message%20set-top-msg.md", "product": "chat"}
@@ -349,121 +419,182 @@
 {"completeness": "full", "key": "chat search", "kind": "command", "path": "cards/cmd/command--chat%20search.md", "product": "chat"}
 {"completeness": "full", "key": "chat search-common", "kind": "command", "path": "cards/cmd/command--chat%20search-common.md", "product": "chat"}
 {"completeness": "full", "key": "chat set-top", "kind": "command", "path": "cards/cmd/command--chat%20set-top.md", "product": "chat"}
+{"completeness": "partial", "key": "chat text", "kind": "command", "path": "cards/cmd/command--chat%20text.md", "product": "chat"}
 {"completeness": "full", "key": "chat text translate", "kind": "command", "path": "cards/cmd/command--chat%20text%20translate.md", "product": "chat"}
 {"completeness": "full", "key": "chat thread", "kind": "command", "path": "cards/cmd/command--chat%20thread.md", "product": "chat"}
-{"completeness": "full", "key": "chat thread add-emoji", "kind": "command", "path": "cards/cmd/command--chat%20thread%20add-emoji.md", "product": "chat"}
-{"completeness": "full", "key": "chat thread add-text-emotion", "kind": "command", "path": "cards/cmd/command--chat%20thread%20add-text-emotion.md", "product": "chat"}
+{"completeness": "partial", "key": "chat thread add-emoji", "kind": "command", "path": "cards/cmd/command--chat%20thread%20add-emoji.md", "product": "chat"}
+{"completeness": "partial", "key": "chat thread add-text-emotion", "kind": "command", "path": "cards/cmd/command--chat%20thread%20add-text-emotion.md", "product": "chat"}
 {"completeness": "partial", "key": "chat thread create-group", "kind": "command", "path": "cards/cmd/command--chat%20thread%20create-group.md", "product": "chat"}
 {"completeness": "partial", "key": "chat thread forward", "kind": "command", "path": "cards/cmd/command--chat%20thread%20forward.md", "product": "chat"}
-{"completeness": "full", "key": "chat thread list", "kind": "command", "path": "cards/cmd/command--chat%20thread%20list.md", "product": "chat"}
-{"completeness": "full", "key": "chat thread list-emotion-replies", "kind": "command", "path": "cards/cmd/command--chat%20thread%20list-emotion-replies.md", "product": "chat"}
-{"completeness": "full", "key": "chat thread list-replies", "kind": "command", "path": "cards/cmd/command--chat%20thread%20list-replies.md", "product": "chat"}
+{"completeness": "partial", "key": "chat thread list", "kind": "command", "path": "cards/cmd/command--chat%20thread%20list.md", "product": "chat"}
+{"completeness": "partial", "key": "chat thread list-emotion-replies", "kind": "command", "path": "cards/cmd/command--chat%20thread%20list-emotion-replies.md", "product": "chat"}
+{"completeness": "partial", "key": "chat thread list-replies", "kind": "command", "path": "cards/cmd/command--chat%20thread%20list-replies.md", "product": "chat"}
 {"completeness": "partial", "key": "chat thread promote", "kind": "command", "path": "cards/cmd/command--chat%20thread%20promote.md", "product": "chat"}
 {"completeness": "partial", "key": "chat thread recall-message", "kind": "command", "path": "cards/cmd/command--chat%20thread%20recall-message.md", "product": "chat"}
-{"completeness": "full", "key": "chat thread remove-emoji", "kind": "command", "path": "cards/cmd/command--chat%20thread%20remove-emoji.md", "product": "chat"}
-{"completeness": "full", "key": "chat thread remove-text-emotion", "kind": "command", "path": "cards/cmd/command--chat%20thread%20remove-text-emotion.md", "product": "chat"}
-{"completeness": "full", "key": "chat thread reply", "kind": "command", "path": "cards/cmd/command--chat%20thread%20reply.md", "product": "chat"}
+{"completeness": "partial", "key": "chat thread remove-emoji", "kind": "command", "path": "cards/cmd/command--chat%20thread%20remove-emoji.md", "product": "chat"}
+{"completeness": "partial", "key": "chat thread remove-text-emotion", "kind": "command", "path": "cards/cmd/command--chat%20thread%20remove-text-emotion.md", "product": "chat"}
+{"completeness": "partial", "key": "chat thread reply", "kind": "command", "path": "cards/cmd/command--chat%20thread%20reply.md", "product": "chat"}
 {"completeness": "partial", "key": "chat thread send", "kind": "command", "path": "cards/cmd/command--chat%20thread%20send.md", "product": "chat"}
-{"completeness": "full", "key": "chat thread update-text-emotion", "kind": "command", "path": "cards/cmd/command--chat%20thread%20update-text-emotion.md", "product": "chat"}
+{"completeness": "partial", "key": "chat thread update-text-emotion", "kind": "command", "path": "cards/cmd/command--chat%20thread%20update-text-emotion.md", "product": "chat"}
 {"completeness": "full", "key": "chat toolbar", "kind": "command", "path": "cards/cmd/command--chat%20toolbar.md", "product": "chat"}
-{"completeness": "full", "key": "chat toolbar add", "kind": "command", "path": "cards/cmd/command--chat%20toolbar%20add.md", "product": "chat"}
-{"completeness": "full", "key": "chat toolbar create-custom", "kind": "command", "path": "cards/cmd/command--chat%20toolbar%20create-custom.md", "product": "chat"}
-{"completeness": "full", "key": "chat toolbar hide", "kind": "command", "path": "cards/cmd/command--chat%20toolbar%20hide.md", "product": "chat"}
+{"completeness": "partial", "key": "chat toolbar add", "kind": "command", "path": "cards/cmd/command--chat%20toolbar%20add.md", "product": "chat"}
+{"completeness": "partial", "key": "chat toolbar create-custom", "kind": "command", "path": "cards/cmd/command--chat%20toolbar%20create-custom.md", "product": "chat"}
+{"completeness": "partial", "key": "chat toolbar hide", "kind": "command", "path": "cards/cmd/command--chat%20toolbar%20hide.md", "product": "chat"}
 {"completeness": "full", "key": "chat toolbar list", "kind": "command", "path": "cards/cmd/command--chat%20toolbar%20list.md", "product": "chat"}
-{"completeness": "full", "key": "chat toolbar remove-custom", "kind": "command", "path": "cards/cmd/command--chat%20toolbar%20remove-custom.md", "product": "chat"}
-{"completeness": "full", "key": "chat toolbar sort", "kind": "command", "path": "cards/cmd/command--chat%20toolbar%20sort.md", "product": "chat"}
-{"completeness": "full", "key": "chat toolbar update-custom", "kind": "command", "path": "cards/cmd/command--chat%20toolbar%20update-custom.md", "product": "chat"}
-{"completeness": "full", "key": "config", "kind": "command", "path": "cards/cmd/command--config.md", "product": "config"}
-{"completeness": "full", "key": "config list", "kind": "command", "path": "cards/cmd/command--config%20list.md", "product": "config"}
-{"completeness": "partial", "key": "connect", "kind": "command", "path": "cards/cmd/command--connect.md", "product": "connect"}
-{"completeness": "full", "key": "connect list", "kind": "command", "path": "cards/cmd/command--connect%20list.md", "product": "connect"}
-{"completeness": "full", "key": "connect restart", "kind": "command", "path": "cards/cmd/command--connect%20restart.md", "product": "connect"}
-{"completeness": "full", "key": "connect status", "kind": "command", "path": "cards/cmd/command--connect%20status.md", "product": "connect"}
-{"completeness": "full", "key": "connect stop", "kind": "command", "path": "cards/cmd/command--connect%20stop.md", "product": "connect"}
-{"completeness": "full", "key": "contact", "kind": "command", "path": "cards/cmd/command--contact.md", "product": "contact"}
+{"completeness": "partial", "key": "chat toolbar remove-custom", "kind": "command", "path": "cards/cmd/command--chat%20toolbar%20remove-custom.md", "product": "chat"}
+{"completeness": "partial", "key": "chat toolbar sort", "kind": "command", "path": "cards/cmd/command--chat%20toolbar%20sort.md", "product": "chat"}
+{"completeness": "partial", "key": "chat toolbar update-custom", "kind": "command", "path": "cards/cmd/command--chat%20toolbar%20update-custom.md", "product": "chat"}
+{"completeness": "partial", "key": "completion", "kind": "command", "path": "cards/cmd/command--completion.md", "product": "completion"}
+{"completeness": "partial", "key": "conference", "kind": "command", "path": "cards/cmd/command--conference.md", "product": "conference"}
+{"completeness": "partial", "key": "conference meeting", "kind": "command", "path": "cards/cmd/command--conference%20meeting.md", "product": "conference"}
+{"completeness": "full", "key": "conference meeting reserve", "kind": "command", "path": "cards/cmd/command--conference%20meeting%20reserve.md", "product": "conference"}
+{"completeness": "partial", "key": "conference member", "kind": "command", "path": "cards/cmd/command--conference%20member.md", "product": "conference"}
+{"completeness": "full", "key": "conference member invite", "kind": "command", "path": "cards/cmd/command--conference%20member%20invite.md", "product": "conference"}
+{"completeness": "partial", "key": "contact", "kind": "command", "path": "cards/cmd/command--contact.md", "product": "contact"}
+{"completeness": "partial", "key": "contact account", "kind": "command", "path": "cards/cmd/command--contact%20account.md", "product": "contact"}
 {"completeness": "full", "key": "contact account create", "kind": "command", "path": "cards/cmd/command--contact%20account%20create.md", "product": "contact"}
-{"completeness": "full", "key": "contact account update", "kind": "command", "path": "cards/cmd/command--contact%20account%20update.md", "product": "contact"}
-{"completeness": "full", "key": "contact dept create", "kind": "command", "path": "cards/cmd/command--contact%20dept%20create.md", "product": "contact"}
+{"completeness": "partial", "key": "contact account update", "kind": "command", "path": "cards/cmd/command--contact%20account%20update.md", "product": "contact"}
+{"completeness": "partial", "key": "contact dept", "kind": "command", "path": "cards/cmd/command--contact%20dept.md", "product": "contact"}
+{"completeness": "partial", "key": "contact dept create", "kind": "command", "path": "cards/cmd/command--contact%20dept%20create.md", "product": "contact"}
 {"completeness": "full", "key": "contact dept get-info", "kind": "command", "path": "cards/cmd/command--contact%20dept%20get-info.md", "product": "contact"}
 {"completeness": "full", "key": "contact dept list-children", "kind": "command", "path": "cards/cmd/command--contact%20dept%20list-children.md", "product": "contact"}
 {"completeness": "full", "key": "contact dept list-members", "kind": "command", "path": "cards/cmd/command--contact%20dept%20list-members.md", "product": "contact"}
 {"completeness": "full", "key": "contact dept search", "kind": "command", "path": "cards/cmd/command--contact%20dept%20search.md", "product": "contact"}
-{"completeness": "full", "key": "contact dept update", "kind": "command", "path": "cards/cmd/command--contact%20dept%20update.md", "product": "contact"}
-{"completeness": "full", "key": "contact ext-field create", "kind": "command", "path": "cards/cmd/command--contact%20ext-field%20create.md", "product": "contact"}
-{"completeness": "full", "key": "contact ext-field delete", "kind": "command", "path": "cards/cmd/command--contact%20ext-field%20delete.md", "product": "contact"}
-{"completeness": "full", "key": "contact ext-field list", "kind": "command", "path": "cards/cmd/command--contact%20ext-field%20list.md", "product": "contact"}
-{"completeness": "full", "key": "contact ext-field update", "kind": "command", "path": "cards/cmd/command--contact%20ext-field%20update.md", "product": "contact"}
-{"completeness": "full", "key": "contact label add-members", "kind": "command", "path": "cards/cmd/command--contact%20label%20add-members.md", "product": "contact"}
-{"completeness": "full", "key": "contact label create", "kind": "command", "path": "cards/cmd/command--contact%20label%20create.md", "product": "contact"}
-{"completeness": "full", "key": "contact label delete", "kind": "command", "path": "cards/cmd/command--contact%20label%20delete.md", "product": "contact"}
+{"completeness": "partial", "key": "contact dept update", "kind": "command", "path": "cards/cmd/command--contact%20dept%20update.md", "product": "contact"}
+{"completeness": "partial", "key": "contact ext-field", "kind": "command", "path": "cards/cmd/command--contact%20ext-field.md", "product": "contact"}
+{"completeness": "partial", "key": "contact ext-field create", "kind": "command", "path": "cards/cmd/command--contact%20ext-field%20create.md", "product": "contact"}
+{"completeness": "partial", "key": "contact ext-field delete", "kind": "command", "path": "cards/cmd/command--contact%20ext-field%20delete.md", "product": "contact"}
+{"completeness": "partial", "key": "contact ext-field list", "kind": "command", "path": "cards/cmd/command--contact%20ext-field%20list.md", "product": "contact"}
+{"completeness": "partial", "key": "contact ext-field update", "kind": "command", "path": "cards/cmd/command--contact%20ext-field%20update.md", "product": "contact"}
+{"completeness": "partial", "key": "contact label", "kind": "command", "path": "cards/cmd/command--contact%20label.md", "product": "contact"}
+{"completeness": "partial", "key": "contact label add-members", "kind": "command", "path": "cards/cmd/command--contact%20label%20add-members.md", "product": "contact"}
+{"completeness": "partial", "key": "contact label create", "kind": "command", "path": "cards/cmd/command--contact%20label%20create.md", "product": "contact"}
+{"completeness": "partial", "key": "contact label delete", "kind": "command", "path": "cards/cmd/command--contact%20label%20delete.md", "product": "contact"}
 {"completeness": "full", "key": "contact label get", "kind": "command", "path": "cards/cmd/command--contact%20label%20get.md", "product": "contact"}
+{"completeness": "full", "key": "contact label list", "kind": "command", "path": "cards/cmd/command--contact%20label%20list.md", "product": "contact"}
 {"completeness": "full", "key": "contact label list-members", "kind": "command", "path": "cards/cmd/command--contact%20label%20list-members.md", "product": "contact"}
-{"completeness": "full", "key": "contact label remove-members", "kind": "command", "path": "cards/cmd/command--contact%20label%20remove-members.md", "product": "contact"}
-{"completeness": "full", "key": "contact label update", "kind": "command", "path": "cards/cmd/command--contact%20label%20update.md", "product": "contact"}
-{"completeness": "full", "key": "contact label update-member-scope", "kind": "command", "path": "cards/cmd/command--contact%20label%20update-member-scope.md", "product": "contact"}
+{"completeness": "partial", "key": "contact label remove-members", "kind": "command", "path": "cards/cmd/command--contact%20label%20remove-members.md", "product": "contact"}
+{"completeness": "partial", "key": "contact label update", "kind": "command", "path": "cards/cmd/command--contact%20label%20update.md", "product": "contact"}
+{"completeness": "partial", "key": "contact label update-member-scope", "kind": "command", "path": "cards/cmd/command--contact%20label%20update-member-scope.md", "product": "contact"}
+{"completeness": "partial", "key": "contact org", "kind": "command", "path": "cards/cmd/command--contact%20org.md", "product": "contact"}
 {"completeness": "full", "key": "contact org create", "kind": "command", "path": "cards/cmd/command--contact%20org%20create.md", "product": "contact"}
+{"completeness": "partial", "key": "contact relation", "kind": "command", "path": "cards/cmd/command--contact%20relation.md", "product": "contact"}
 {"completeness": "full", "key": "contact relation list-my-followings", "kind": "command", "path": "cards/cmd/command--contact%20relation%20list-my-followings.md", "product": "contact"}
+{"completeness": "partial", "key": "contact user", "kind": "command", "path": "cards/cmd/command--contact%20user.md", "product": "contact"}
+{"completeness": "partial", "key": "contact user dismission", "kind": "command", "path": "cards/cmd/command--contact%20user%20dismission.md", "product": "contact"}
 {"completeness": "full", "key": "contact user dismission search", "kind": "command", "path": "cards/cmd/command--contact%20user%20dismission%20search.md", "product": "contact"}
 {"completeness": "full", "key": "contact user get", "kind": "command", "path": "cards/cmd/command--contact%20user%20get.md", "product": "contact"}
 {"completeness": "full", "key": "contact user get-self", "kind": "command", "path": "cards/cmd/command--contact%20user%20get-self.md", "product": "contact"}
 {"completeness": "full", "key": "contact user invite", "kind": "command", "path": "cards/cmd/command--contact%20user%20invite.md", "product": "contact"}
+{"completeness": "partial", "key": "contact user profile", "kind": "command", "path": "cards/cmd/command--contact%20user%20profile.md", "product": "contact"}
 {"completeness": "full", "key": "contact user profile fields", "kind": "command", "path": "cards/cmd/command--contact%20user%20profile%20fields.md", "product": "contact"}
 {"completeness": "full", "key": "contact user profile get", "kind": "command", "path": "cards/cmd/command--contact%20user%20profile%20get.md", "product": "contact"}
 {"completeness": "full", "key": "contact user search", "kind": "command", "path": "cards/cmd/command--contact%20user%20search.md", "product": "contact"}
 {"completeness": "full", "key": "contact user search-mobile", "kind": "command", "path": "cards/cmd/command--contact%20user%20search-mobile.md", "product": "contact"}
-{"completeness": "full", "key": "contact user update", "kind": "command", "path": "cards/cmd/command--contact%20user%20update.md", "product": "contact"}
-{"completeness": "full", "key": "contact user update-ownness", "kind": "command", "path": "cards/cmd/command--contact%20user%20update-ownness.md", "product": "contact"}
+{"completeness": "partial", "key": "contact user update", "kind": "command", "path": "cards/cmd/command--contact%20user%20update.md", "product": "contact"}
+{"completeness": "partial", "key": "contact user update-ownness", "kind": "command", "path": "cards/cmd/command--contact%20user%20update-ownness.md", "product": "contact"}
 {"completeness": "full", "key": "contact user update-self", "kind": "command", "path": "cards/cmd/command--contact%20user%20update-self.md", "product": "contact"}
-{"completeness": "full", "key": "dev app create", "kind": "command", "path": "cards/cmd/command--dev%20app%20create.md", "product": "dev"}
-{"completeness": "full", "key": "dev app credentials get", "kind": "command", "path": "cards/cmd/command--dev%20app%20credentials%20get.md", "product": "dev"}
-{"completeness": "full", "key": "dev app delete", "kind": "command", "path": "cards/cmd/command--dev%20app%20delete.md", "product": "dev"}
-{"completeness": "full", "key": "dev app disable", "kind": "command", "path": "cards/cmd/command--dev%20app%20disable.md", "product": "dev"}
-{"completeness": "full", "key": "dev app enable", "kind": "command", "path": "cards/cmd/command--dev%20app%20enable.md", "product": "dev"}
-{"completeness": "full", "key": "dev app event list", "kind": "command", "path": "cards/cmd/command--dev%20app%20event%20list.md", "product": "dev"}
+{"completeness": "partial", "key": "dev", "kind": "command", "path": "cards/cmd/command--dev.md", "product": "dev"}
+{"completeness": "partial", "key": "dev app", "kind": "command", "path": "cards/cmd/command--dev%20app.md", "product": "dev"}
+{"completeness": "partial", "key": "dev app create", "kind": "command", "path": "cards/cmd/command--dev%20app%20create.md", "product": "dev"}
+{"completeness": "partial", "key": "dev app credentials", "kind": "command", "path": "cards/cmd/command--dev%20app%20credentials.md", "product": "dev"}
+{"completeness": "partial", "key": "dev app credentials get", "kind": "command", "path": "cards/cmd/command--dev%20app%20credentials%20get.md", "product": "dev"}
+{"completeness": "partial", "key": "dev app delete", "kind": "command", "path": "cards/cmd/command--dev%20app%20delete.md", "product": "dev"}
+{"completeness": "partial", "key": "dev app disable", "kind": "command", "path": "cards/cmd/command--dev%20app%20disable.md", "product": "dev"}
+{"completeness": "partial", "key": "dev app enable", "kind": "command", "path": "cards/cmd/command--dev%20app%20enable.md", "product": "dev"}
+{"completeness": "partial", "key": "dev app event", "kind": "command", "path": "cards/cmd/command--dev%20app%20event.md", "product": "dev"}
+{"completeness": "partial", "key": "dev app event list", "kind": "command", "path": "cards/cmd/command--dev%20app%20event%20list.md", "product": "dev"}
 {"completeness": "partial", "key": "dev app event subscribe", "kind": "command", "path": "cards/cmd/command--dev%20app%20event%20subscribe.md", "product": "dev"}
 {"completeness": "partial", "key": "dev app event unsubscribe", "kind": "command", "path": "cards/cmd/command--dev%20app%20event%20unsubscribe.md", "product": "dev"}
-{"completeness": "full", "key": "dev app get", "kind": "command", "path": "cards/cmd/command--dev%20app%20get.md", "product": "dev"}
-{"completeness": "full", "key": "dev app list", "kind": "command", "path": "cards/cmd/command--dev%20app%20list.md", "product": "dev"}
-{"completeness": "full", "key": "dev app member add", "kind": "command", "path": "cards/cmd/command--dev%20app%20member%20add.md", "product": "dev"}
-{"completeness": "full", "key": "dev app member list", "kind": "command", "path": "cards/cmd/command--dev%20app%20member%20list.md", "product": "dev"}
+{"completeness": "partial", "key": "dev app get", "kind": "command", "path": "cards/cmd/command--dev%20app%20get.md", "product": "dev"}
+{"completeness": "partial", "key": "dev app list", "kind": "command", "path": "cards/cmd/command--dev%20app%20list.md", "product": "dev"}
+{"completeness": "partial", "key": "dev app member", "kind": "command", "path": "cards/cmd/command--dev%20app%20member.md", "product": "dev"}
+{"completeness": "partial", "key": "dev app member add", "kind": "command", "path": "cards/cmd/command--dev%20app%20member%20add.md", "product": "dev"}
+{"completeness": "partial", "key": "dev app member list", "kind": "command", "path": "cards/cmd/command--dev%20app%20member%20list.md", "product": "dev"}
 {"completeness": "partial", "key": "dev app member remove", "kind": "command", "path": "cards/cmd/command--dev%20app%20member%20remove.md", "product": "dev"}
-{"completeness": "full", "key": "dev app permission add", "kind": "command", "path": "cards/cmd/command--dev%20app%20permission%20add.md", "product": "dev"}
-{"completeness": "full", "key": "dev app permission list", "kind": "command", "path": "cards/cmd/command--dev%20app%20permission%20list.md", "product": "dev"}
+{"completeness": "partial", "key": "dev app permission", "kind": "command", "path": "cards/cmd/command--dev%20app%20permission.md", "product": "dev"}
+{"completeness": "partial", "key": "dev app permission add", "kind": "command", "path": "cards/cmd/command--dev%20app%20permission%20add.md", "product": "dev"}
+{"completeness": "partial", "key": "dev app permission list", "kind": "command", "path": "cards/cmd/command--dev%20app%20permission%20list.md", "product": "dev"}
 {"completeness": "partial", "key": "dev app permission remove", "kind": "command", "path": "cards/cmd/command--dev%20app%20permission%20remove.md", "product": "dev"}
-{"completeness": "full", "key": "dev app robot config", "kind": "command", "path": "cards/cmd/command--dev%20app%20robot%20config.md", "product": "dev"}
-{"completeness": "full", "key": "dev app robot disable", "kind": "command", "path": "cards/cmd/command--dev%20app%20robot%20disable.md", "product": "dev"}
-{"completeness": "full", "key": "dev app robot enable", "kind": "command", "path": "cards/cmd/command--dev%20app%20robot%20enable.md", "product": "dev"}
-{"completeness": "full", "key": "dev app robot get", "kind": "command", "path": "cards/cmd/command--dev%20app%20robot%20get.md", "product": "dev"}
-{"completeness": "full", "key": "dev app robot result", "kind": "command", "path": "cards/cmd/command--dev%20app%20robot%20result.md", "product": "dev"}
-{"completeness": "full", "key": "dev app robot submit", "kind": "command", "path": "cards/cmd/command--dev%20app%20robot%20submit.md", "product": "dev"}
-{"completeness": "full", "key": "dev app security config", "kind": "command", "path": "cards/cmd/command--dev%20app%20security%20config.md", "product": "dev"}
-{"completeness": "full", "key": "dev app update", "kind": "command", "path": "cards/cmd/command--dev%20app%20update.md", "product": "dev"}
+{"completeness": "partial", "key": "dev app robot", "kind": "command", "path": "cards/cmd/command--dev%20app%20robot.md", "product": "dev"}
+{"completeness": "partial", "key": "dev app robot config", "kind": "command", "path": "cards/cmd/command--dev%20app%20robot%20config.md", "product": "dev"}
+{"completeness": "partial", "key": "dev app robot disable", "kind": "command", "path": "cards/cmd/command--dev%20app%20robot%20disable.md", "product": "dev"}
+{"completeness": "partial", "key": "dev app robot enable", "kind": "command", "path": "cards/cmd/command--dev%20app%20robot%20enable.md", "product": "dev"}
+{"completeness": "partial", "key": "dev app robot get", "kind": "command", "path": "cards/cmd/command--dev%20app%20robot%20get.md", "product": "dev"}
+{"completeness": "partial", "key": "dev app robot result", "kind": "command", "path": "cards/cmd/command--dev%20app%20robot%20result.md", "product": "dev"}
+{"completeness": "partial", "key": "dev app robot submit", "kind": "command", "path": "cards/cmd/command--dev%20app%20robot%20submit.md", "product": "dev"}
+{"completeness": "partial", "key": "dev app security", "kind": "command", "path": "cards/cmd/command--dev%20app%20security.md", "product": "dev"}
+{"completeness": "partial", "key": "dev app security config", "kind": "command", "path": "cards/cmd/command--dev%20app%20security%20config.md", "product": "dev"}
+{"completeness": "partial", "key": "dev app update", "kind": "command", "path": "cards/cmd/command--dev%20app%20update.md", "product": "dev"}
+{"completeness": "partial", "key": "dev app version", "kind": "command", "path": "cards/cmd/command--dev%20app%20version.md", "product": "dev"}
 {"completeness": "partial", "key": "dev app version check-approval", "kind": "command", "path": "cards/cmd/command--dev%20app%20version%20check-approval.md", "product": "dev"}
-{"completeness": "full", "key": "dev app version create", "kind": "command", "path": "cards/cmd/command--dev%20app%20version%20create.md", "product": "dev"}
-{"completeness": "full", "key": "dev app version get", "kind": "command", "path": "cards/cmd/command--dev%20app%20version%20get.md", "product": "dev"}
-{"completeness": "full", "key": "dev app version list", "kind": "command", "path": "cards/cmd/command--dev%20app%20version%20list.md", "product": "dev"}
-{"completeness": "full", "key": "dev app version publish", "kind": "command", "path": "cards/cmd/command--dev%20app%20version%20publish.md", "product": "dev"}
-{"completeness": "full", "key": "dev app version status", "kind": "command", "path": "cards/cmd/command--dev%20app%20version%20status.md", "product": "dev"}
-{"completeness": "full", "key": "dev app webapp config", "kind": "command", "path": "cards/cmd/command--dev%20app%20webapp%20config.md", "product": "dev"}
-{"completeness": "full", "key": "dev app webapp get", "kind": "command", "path": "cards/cmd/command--dev%20app%20webapp%20get.md", "product": "dev"}
+{"completeness": "partial", "key": "dev app version create", "kind": "command", "path": "cards/cmd/command--dev%20app%20version%20create.md", "product": "dev"}
+{"completeness": "partial", "key": "dev app version get", "kind": "command", "path": "cards/cmd/command--dev%20app%20version%20get.md", "product": "dev"}
+{"completeness": "partial", "key": "dev app version list", "kind": "command", "path": "cards/cmd/command--dev%20app%20version%20list.md", "product": "dev"}
+{"completeness": "partial", "key": "dev app version publish", "kind": "command", "path": "cards/cmd/command--dev%20app%20version%20publish.md", "product": "dev"}
+{"completeness": "partial", "key": "dev app version status", "kind": "command", "path": "cards/cmd/command--dev%20app%20version%20status.md", "product": "dev"}
+{"completeness": "partial", "key": "dev app webapp", "kind": "command", "path": "cards/cmd/command--dev%20app%20webapp.md", "product": "dev"}
+{"completeness": "partial", "key": "dev app webapp config", "kind": "command", "path": "cards/cmd/command--dev%20app%20webapp%20config.md", "product": "dev"}
+{"completeness": "partial", "key": "dev app webapp get", "kind": "command", "path": "cards/cmd/command--dev%20app%20webapp%20get.md", "product": "dev"}
 {"completeness": "partial", "key": "dev connect", "kind": "command", "path": "cards/cmd/command--dev%20connect.md", "product": "dev"}
 {"completeness": "full", "key": "dev connect list", "kind": "command", "path": "cards/cmd/command--dev%20connect%20list.md", "product": "dev"}
-{"completeness": "full", "key": "dev connect restart", "kind": "command", "path": "cards/cmd/command--dev%20connect%20restart.md", "product": "dev"}
-{"completeness": "full", "key": "dev connect status", "kind": "command", "path": "cards/cmd/command--dev%20connect%20status.md", "product": "dev"}
-{"completeness": "full", "key": "dev connect stop", "kind": "command", "path": "cards/cmd/command--dev%20connect%20stop.md", "product": "dev"}
-{"completeness": "full", "key": "dev doc search", "kind": "command", "path": "cards/cmd/command--dev%20doc%20search.md", "product": "dev"}
+{"completeness": "partial", "key": "dev connect restart", "kind": "command", "path": "cards/cmd/command--dev%20connect%20restart.md", "product": "dev"}
+{"completeness": "partial", "key": "dev connect status", "kind": "command", "path": "cards/cmd/command--dev%20connect%20status.md", "product": "dev"}
+{"completeness": "partial", "key": "dev connect stop", "kind": "command", "path": "cards/cmd/command--dev%20connect%20stop.md", "product": "dev"}
+{"completeness": "partial", "key": "dev doc", "kind": "command", "path": "cards/cmd/command--dev%20doc.md", "product": "dev"}
+{"completeness": "partial", "key": "dev doc search", "kind": "command", "path": "cards/cmd/command--dev%20doc%20search.md", "product": "dev"}
+{"completeness": "partial", "key": "dev mcp", "kind": "command", "path": "cards/cmd/command--dev%20mcp.md", "product": "dev"}
+{"completeness": "partial", "key": "dev mcp auth", "kind": "command", "path": "cards/cmd/command--dev%20mcp%20auth.md", "product": "dev"}
+{"completeness": "full", "key": "dev mcp auth get", "kind": "command", "path": "cards/cmd/command--dev%20mcp%20auth%20get.md", "product": "dev"}
+{"completeness": "partial", "key": "dev mcp auth save", "kind": "command", "path": "cards/cmd/command--dev%20mcp%20auth%20save.md", "product": "dev"}
+{"completeness": "partial", "key": "dev mcp credential", "kind": "command", "path": "cards/cmd/command--dev%20mcp%20credential.md", "product": "dev"}
+{"completeness": "partial", "key": "dev mcp credential list", "kind": "command", "path": "cards/cmd/command--dev%20mcp%20credential%20list.md", "product": "dev"}
+{"completeness": "partial", "key": "dev mcp credential save", "kind": "command", "path": "cards/cmd/command--dev%20mcp%20credential%20save.md", "product": "dev"}
+{"completeness": "partial", "key": "dev mcp credential unbind", "kind": "command", "path": "cards/cmd/command--dev%20mcp%20credential%20unbind.md", "product": "dev"}
+{"completeness": "partial", "key": "dev mcp hsf", "kind": "command", "path": "cards/cmd/command--dev%20mcp%20hsf.md", "product": "dev"}
+{"completeness": "partial", "key": "dev mcp hsf method-list", "kind": "command", "path": "cards/cmd/command--dev%20mcp%20hsf%20method-list.md", "product": "dev"}
+{"completeness": "partial", "key": "dev mcp member", "kind": "command", "path": "cards/cmd/command--dev%20mcp%20member.md", "product": "dev"}
+{"completeness": "partial", "key": "dev mcp member list", "kind": "command", "path": "cards/cmd/command--dev%20mcp%20member%20list.md", "product": "dev"}
+{"completeness": "partial", "key": "dev mcp service", "kind": "command", "path": "cards/cmd/command--dev%20mcp%20service.md", "product": "dev"}
+{"completeness": "partial", "key": "dev mcp service create", "kind": "command", "path": "cards/cmd/command--dev%20mcp%20service%20create.md", "product": "dev"}
+{"completeness": "full", "key": "dev mcp service delete", "kind": "command", "path": "cards/cmd/command--dev%20mcp%20service%20delete.md", "product": "dev"}
+{"completeness": "full", "key": "dev mcp service get", "kind": "command", "path": "cards/cmd/command--dev%20mcp%20service%20get.md", "product": "dev"}
+{"completeness": "partial", "key": "dev mcp service list", "kind": "command", "path": "cards/cmd/command--dev%20mcp%20service%20list.md", "product": "dev"}
+{"completeness": "partial", "key": "dev mcp service update", "kind": "command", "path": "cards/cmd/command--dev%20mcp%20service%20update.md", "product": "dev"}
+{"completeness": "partial", "key": "dev mcp tool", "kind": "command", "path": "cards/cmd/command--dev%20mcp%20tool.md", "product": "dev"}
+{"completeness": "partial", "key": "dev mcp tool create", "kind": "command", "path": "cards/cmd/command--dev%20mcp%20tool%20create.md", "product": "dev"}
+{"completeness": "partial", "key": "dev mcp tool create-hsf", "kind": "command", "path": "cards/cmd/command--dev%20mcp%20tool%20create-hsf.md", "product": "dev"}
+{"completeness": "partial", "key": "dev mcp tool debug", "kind": "command", "path": "cards/cmd/command--dev%20mcp%20tool%20debug.md", "product": "dev"}
+{"completeness": "full", "key": "dev mcp tool delete", "kind": "command", "path": "cards/cmd/command--dev%20mcp%20tool%20delete.md", "product": "dev"}
+{"completeness": "partial", "key": "dev mcp tool get", "kind": "command", "path": "cards/cmd/command--dev%20mcp%20tool%20get.md", "product": "dev"}
+{"completeness": "partial", "key": "dev mcp tool list", "kind": "command", "path": "cards/cmd/command--dev%20mcp%20tool%20list.md", "product": "dev"}
+{"completeness": "full", "key": "dev mcp tool publish", "kind": "command", "path": "cards/cmd/command--dev%20mcp%20tool%20publish.md", "product": "dev"}
+{"completeness": "partial", "key": "dev mcp tool update", "kind": "command", "path": "cards/cmd/command--dev%20mcp%20tool%20update.md", "product": "dev"}
+{"completeness": "partial", "key": "dev mcp tool update-hsf", "kind": "command", "path": "cards/cmd/command--dev%20mcp%20tool%20update-hsf.md", "product": "dev"}
+{"completeness": "partial", "key": "dev mcp tool versions", "kind": "command", "path": "cards/cmd/command--dev%20mcp%20tool%20versions.md", "product": "dev"}
+{"completeness": "partial", "key": "dev mcp url", "kind": "command", "path": "cards/cmd/command--dev%20mcp%20url.md", "product": "dev"}
+{"completeness": "full", "key": "dev mcp url get", "kind": "command", "path": "cards/cmd/command--dev%20mcp%20url%20get.md", "product": "dev"}
 {"completeness": "full", "key": "devdoc", "kind": "command", "path": "cards/cmd/command--devdoc.md", "product": "devdoc"}
-{"completeness": "full", "key": "devdoc article search", "kind": "command", "path": "cards/cmd/command--devdoc%20article%20search.md", "product": "devdoc"}
+{"completeness": "partial", "key": "devdoc article", "kind": "command", "path": "cards/cmd/command--devdoc%20article.md", "product": "devdoc"}
+{"completeness": "partial", "key": "devdoc article search", "kind": "command", "path": "cards/cmd/command--devdoc%20article%20search.md", "product": "devdoc"}
+{"completeness": "partial", "key": "devdoc error", "kind": "command", "path": "cards/cmd/command--devdoc%20error.md", "product": "devdoc"}
 {"completeness": "partial", "key": "devdoc error diagnose", "kind": "command", "path": "cards/cmd/command--devdoc%20error%20diagnose.md", "product": "devdoc"}
-{"completeness": "full", "key": "devdoc search", "kind": "command", "path": "cards/cmd/command--devdoc%20search.md", "product": "devdoc"}
+{"completeness": "partial", "key": "ding", "kind": "command", "path": "cards/cmd/command--ding.md", "product": "ding"}
+{"completeness": "partial", "key": "ding message", "kind": "command", "path": "cards/cmd/command--ding%20message.md", "product": "ding"}
+{"completeness": "full", "key": "ding message list", "kind": "command", "path": "cards/cmd/command--ding%20message%20list.md", "product": "ding"}
 {"completeness": "full", "key": "ding message recall", "kind": "command", "path": "cards/cmd/command--ding%20message%20recall.md", "product": "ding"}
+{"completeness": "full", "key": "ding message recall-personal", "kind": "command", "path": "cards/cmd/command--ding%20message%20recall-personal.md", "product": "ding"}
 {"completeness": "full", "key": "ding message receiver-status", "kind": "command", "path": "cards/cmd/command--ding%20message%20receiver-status.md", "product": "ding"}
 {"completeness": "full", "key": "ding message send", "kind": "command", "path": "cards/cmd/command--ding%20message%20send.md", "product": "ding"}
+{"completeness": "full", "key": "ding message send-by-message", "kind": "command", "path": "cards/cmd/command--ding%20message%20send-by-message.md", "product": "ding"}
+{"completeness": "full", "key": "ding message send-personal", "kind": "command", "path": "cards/cmd/command--ding%20message%20send-personal.md", "product": "ding"}
 {"completeness": "full", "key": "doc", "kind": "command", "path": "cards/cmd/command--doc.md", "product": "doc"}
+{"completeness": "partial", "key": "doc block", "kind": "command", "path": "cards/cmd/command--doc%20block.md", "product": "doc"}
 {"completeness": "full", "key": "doc block delete", "kind": "command", "path": "cards/cmd/command--doc%20block%20delete.md", "product": "doc"}
 {"completeness": "partial", "key": "doc block insert", "kind": "command", "path": "cards/cmd/command--doc%20block%20insert.md", "product": "doc"}
 {"completeness": "full", "key": "doc block list", "kind": "command", "path": "cards/cmd/command--doc%20block%20list.md", "product": "doc"}
-{"completeness": "full", "key": "doc block update", "kind": "command", "path": "cards/cmd/command--doc%20block%20update.md", "product": "doc"}
+{"completeness": "partial", "key": "doc block update", "kind": "command", "path": "cards/cmd/command--doc%20block%20update.md", "product": "doc"}
+{"completeness": "partial", "key": "doc comment", "kind": "command", "path": "cards/cmd/command--doc%20comment.md", "product": "doc"}
 {"completeness": "full", "key": "doc comment create", "kind": "command", "path": "cards/cmd/command--doc%20comment%20create.md", "product": "doc"}
 {"completeness": "full", "key": "doc comment create-inline", "kind": "command", "path": "cards/cmd/command--doc%20comment%20create-inline.md", "product": "doc"}
 {"completeness": "full", "key": "doc comment delete", "kind": "command", "path": "cards/cmd/command--doc%20comment%20delete.md", "product": "doc"}
@@ -471,21 +602,25 @@
 {"completeness": "full", "key": "doc comment reply", "kind": "command", "path": "cards/cmd/command--doc%20comment%20reply.md", "product": "doc"}
 {"completeness": "full", "key": "doc comment update", "kind": "command", "path": "cards/cmd/command--doc%20comment%20update.md", "product": "doc"}
 {"completeness": "full", "key": "doc copy", "kind": "command", "path": "cards/cmd/command--doc%20copy.md", "product": "doc"}
-{"completeness": "full", "key": "doc create", "kind": "command", "path": "cards/cmd/command--doc%20create.md", "product": "doc"}
+{"completeness": "partial", "key": "doc create", "kind": "command", "path": "cards/cmd/command--doc%20create.md", "product": "doc"}
 {"completeness": "full", "key": "doc delete", "kind": "command", "path": "cards/cmd/command--doc%20delete.md", "product": "doc"}
 {"completeness": "full", "key": "doc download", "kind": "command", "path": "cards/cmd/command--doc%20download.md", "product": "doc"}
 {"completeness": "full", "key": "doc export", "kind": "command", "path": "cards/cmd/command--doc%20export.md", "product": "doc"}
 {"completeness": "full", "key": "doc export get", "kind": "command", "path": "cards/cmd/command--doc%20export%20get.md", "product": "doc"}
+{"completeness": "partial", "key": "doc file", "kind": "command", "path": "cards/cmd/command--doc%20file.md", "product": "doc"}
 {"completeness": "full", "key": "doc file create", "kind": "command", "path": "cards/cmd/command--doc%20file%20create.md", "product": "doc"}
+{"completeness": "partial", "key": "doc folder", "kind": "command", "path": "cards/cmd/command--doc%20folder.md", "product": "doc"}
 {"completeness": "full", "key": "doc folder create", "kind": "command", "path": "cards/cmd/command--doc%20folder%20create.md", "product": "doc"}
 {"completeness": "full", "key": "doc import", "kind": "command", "path": "cards/cmd/command--doc%20import.md", "product": "doc"}
 {"completeness": "full", "key": "doc import get", "kind": "command", "path": "cards/cmd/command--doc%20import%20get.md", "product": "doc"}
 {"completeness": "full", "key": "doc info", "kind": "command", "path": "cards/cmd/command--doc%20info.md", "product": "doc"}
 {"completeness": "full", "key": "doc list", "kind": "command", "path": "cards/cmd/command--doc%20list.md", "product": "doc"}
+{"completeness": "partial", "key": "doc media", "kind": "command", "path": "cards/cmd/command--doc%20media.md", "product": "doc"}
 {"completeness": "full", "key": "doc media download", "kind": "command", "path": "cards/cmd/command--doc%20media%20download.md", "product": "doc"}
-{"completeness": "partial", "key": "doc media insert", "kind": "command", "path": "cards/cmd/command--doc%20media%20insert.md", "product": "doc"}
+{"completeness": "full", "key": "doc media insert", "kind": "command", "path": "cards/cmd/command--doc%20media%20insert.md", "product": "doc"}
 {"completeness": "full", "key": "doc media upload", "kind": "command", "path": "cards/cmd/command--doc%20media%20upload.md", "product": "doc"}
 {"completeness": "full", "key": "doc move", "kind": "command", "path": "cards/cmd/command--doc%20move.md", "product": "doc"}
+{"completeness": "partial", "key": "doc permission", "kind": "command", "path": "cards/cmd/command--doc%20permission.md", "product": "doc"}
 {"completeness": "full", "key": "doc permission add", "kind": "command", "path": "cards/cmd/command--doc%20permission%20add.md", "product": "doc"}
 {"completeness": "full", "key": "doc permission list", "kind": "command", "path": "cards/cmd/command--doc%20permission%20list.md", "product": "doc"}
 {"completeness": "full", "key": "doc permission remove", "kind": "command", "path": "cards/cmd/command--doc%20permission%20remove.md", "product": "doc"}
@@ -494,16 +629,20 @@
 {"completeness": "full", "key": "doc rename", "kind": "command", "path": "cards/cmd/command--doc%20rename.md", "product": "doc"}
 {"completeness": "full", "key": "doc search", "kind": "command", "path": "cards/cmd/command--doc%20search.md", "product": "doc"}
 {"completeness": "full", "key": "doc style", "kind": "command", "path": "cards/cmd/command--doc%20style.md", "product": "doc"}
+{"completeness": "partial", "key": "doc style background", "kind": "command", "path": "cards/cmd/command--doc%20style%20background.md", "product": "doc"}
 {"completeness": "full", "key": "doc style background clear", "kind": "command", "path": "cards/cmd/command--doc%20style%20background%20clear.md", "product": "doc"}
 {"completeness": "full", "key": "doc style background set", "kind": "command", "path": "cards/cmd/command--doc%20style%20background%20set.md", "product": "doc"}
+{"completeness": "partial", "key": "doc style cover", "kind": "command", "path": "cards/cmd/command--doc%20style%20cover.md", "product": "doc"}
 {"completeness": "full", "key": "doc style cover clear", "kind": "command", "path": "cards/cmd/command--doc%20style%20cover%20clear.md", "product": "doc"}
 {"completeness": "full", "key": "doc style cover set", "kind": "command", "path": "cards/cmd/command--doc%20style%20cover%20set.md", "product": "doc"}
 {"completeness": "full", "key": "doc style get", "kind": "command", "path": "cards/cmd/command--doc%20style%20get.md", "product": "doc"}
+{"completeness": "partial", "key": "doc template", "kind": "command", "path": "cards/cmd/command--doc%20template.md", "product": "doc"}
 {"completeness": "full", "key": "doc template apply", "kind": "command", "path": "cards/cmd/command--doc%20template%20apply.md", "product": "doc"}
 {"completeness": "full", "key": "doc template list", "kind": "command", "path": "cards/cmd/command--doc%20template%20list.md", "product": "doc"}
 {"completeness": "full", "key": "doc template search", "kind": "command", "path": "cards/cmd/command--doc%20template%20search.md", "product": "doc"}
-{"completeness": "full", "key": "doc update", "kind": "command", "path": "cards/cmd/command--doc%20update.md", "product": "doc"}
+{"completeness": "partial", "key": "doc update", "kind": "command", "path": "cards/cmd/command--doc%20update.md", "product": "doc"}
 {"completeness": "full", "key": "doc upload", "kind": "command", "path": "cards/cmd/command--doc%20upload.md", "product": "doc"}
+{"completeness": "partial", "key": "doc version", "kind": "command", "path": "cards/cmd/command--doc%20version.md", "product": "doc"}
 {"completeness": "full", "key": "doc version list", "kind": "command", "path": "cards/cmd/command--doc%20version%20list.md", "product": "doc"}
 {"completeness": "full", "key": "doc version revert", "kind": "command", "path": "cards/cmd/command--doc%20version%20revert.md", "product": "doc"}
 {"completeness": "full", "key": "doc version save", "kind": "command", "path": "cards/cmd/command--doc%20version%20save.md", "product": "doc"}
@@ -511,7 +650,7 @@
 {"completeness": "partial", "key": "doc whiteboard insert", "kind": "command", "path": "cards/cmd/command--doc%20whiteboard%20insert.md", "product": "doc"}
 {"completeness": "full", "key": "drive", "kind": "command", "path": "cards/cmd/command--drive.md", "product": "drive"}
 {"completeness": "full", "key": "drive comment", "kind": "command", "path": "cards/cmd/command--drive%20comment.md", "product": "drive"}
-{"completeness": "full", "key": "drive comment create", "kind": "command", "path": "cards/cmd/command--drive%20comment%20create.md", "product": "drive"}
+{"completeness": "partial", "key": "drive comment create", "kind": "command", "path": "cards/cmd/command--drive%20comment%20create.md", "product": "drive"}
 {"completeness": "partial", "key": "drive comment list", "kind": "command", "path": "cards/cmd/command--drive%20comment%20list.md", "product": "drive"}
 {"completeness": "full", "key": "drive commit", "kind": "command", "path": "cards/cmd/command--drive%20commit.md", "product": "drive"}
 {"completeness": "full", "key": "drive copy", "kind": "command", "path": "cards/cmd/command--drive%20copy.md", "product": "drive"}
@@ -526,14 +665,16 @@
 {"completeness": "full", "key": "drive list-spaces", "kind": "command", "path": "cards/cmd/command--drive%20list-spaces.md", "product": "drive"}
 {"completeness": "full", "key": "drive mkdir", "kind": "command", "path": "cards/cmd/command--drive%20mkdir.md", "product": "drive"}
 {"completeness": "full", "key": "drive move", "kind": "command", "path": "cards/cmd/command--drive%20move.md", "product": "drive"}
+{"completeness": "partial", "key": "drive permission", "kind": "command", "path": "cards/cmd/command--drive%20permission.md", "product": "drive"}
 {"completeness": "full", "key": "drive permission add", "kind": "command", "path": "cards/cmd/command--drive%20permission%20add.md", "product": "drive"}
 {"completeness": "full", "key": "drive permission apply", "kind": "command", "path": "cards/cmd/command--drive%20permission%20apply.md", "product": "drive"}
 {"completeness": "full", "key": "drive permission apply-info", "kind": "command", "path": "cards/cmd/command--drive%20permission%20apply-info.md", "product": "drive"}
 {"completeness": "full", "key": "drive permission get-setting", "kind": "command", "path": "cards/cmd/command--drive%20permission%20get-setting.md", "product": "drive"}
-{"completeness": "partial", "key": "drive permission list", "kind": "command", "path": "cards/cmd/command--drive%20permission%20list.md", "product": "drive"}
+{"completeness": "full", "key": "drive permission list", "kind": "command", "path": "cards/cmd/command--drive%20permission%20list.md", "product": "drive"}
 {"completeness": "full", "key": "drive permission remove", "kind": "command", "path": "cards/cmd/command--drive%20permission%20remove.md", "product": "drive"}
 {"completeness": "full", "key": "drive permission transfer-owner", "kind": "command", "path": "cards/cmd/command--drive%20permission%20transfer-owner.md", "product": "drive"}
 {"completeness": "full", "key": "drive permission update", "kind": "command", "path": "cards/cmd/command--drive%20permission%20update.md", "product": "drive"}
+{"completeness": "partial", "key": "drive publish", "kind": "command", "path": "cards/cmd/command--drive%20publish.md", "product": "drive"}
 {"completeness": "full", "key": "drive publish get", "kind": "command", "path": "cards/cmd/command--drive%20publish%20get.md", "product": "drive"}
 {"completeness": "full", "key": "drive publish set", "kind": "command", "path": "cards/cmd/command--drive%20publish%20set.md", "product": "drive"}
 {"completeness": "full", "key": "drive publish unset", "kind": "command", "path": "cards/cmd/command--drive%20publish%20unset.md", "product": "drive"}
@@ -542,62 +683,93 @@
 {"completeness": "full", "key": "drive quota", "kind": "command", "path": "cards/cmd/command--drive%20quota.md", "product": "drive"}
 {"completeness": "full", "key": "drive quota apps", "kind": "command", "path": "cards/cmd/command--drive%20quota%20apps.md", "product": "drive"}
 {"completeness": "full", "key": "drive recent", "kind": "command", "path": "cards/cmd/command--drive%20recent.md", "product": "drive"}
-{"completeness": "partial", "key": "drive recycle list", "kind": "command", "path": "cards/cmd/command--drive%20recycle%20list.md", "product": "drive"}
+{"completeness": "partial", "key": "drive recycle", "kind": "command", "path": "cards/cmd/command--drive%20recycle.md", "product": "drive"}
+{"completeness": "full", "key": "drive recycle list", "kind": "command", "path": "cards/cmd/command--drive%20recycle%20list.md", "product": "drive"}
 {"completeness": "full", "key": "drive recycle restore", "kind": "command", "path": "cards/cmd/command--drive%20recycle%20restore.md", "product": "drive"}
 {"completeness": "full", "key": "drive rename", "kind": "command", "path": "cards/cmd/command--drive%20rename.md", "product": "drive"}
 {"completeness": "partial", "key": "drive revert", "kind": "command", "path": "cards/cmd/command--drive%20revert.md", "product": "drive"}
 {"completeness": "full", "key": "drive search", "kind": "command", "path": "cards/cmd/command--drive%20search.md", "product": "drive"}
 {"completeness": "full", "key": "drive shortcut", "kind": "command", "path": "cards/cmd/command--drive%20shortcut.md", "product": "drive"}
+{"completeness": "partial", "key": "drive star", "kind": "command", "path": "cards/cmd/command--drive%20star.md", "product": "drive"}
 {"completeness": "full", "key": "drive star add", "kind": "command", "path": "cards/cmd/command--drive%20star%20add.md", "product": "drive"}
-{"completeness": "partial", "key": "drive star list", "kind": "command", "path": "cards/cmd/command--drive%20star%20list.md", "product": "drive"}
+{"completeness": "full", "key": "drive star list", "kind": "command", "path": "cards/cmd/command--drive%20star%20list.md", "product": "drive"}
 {"completeness": "full", "key": "drive star remove", "kind": "command", "path": "cards/cmd/command--drive%20star%20remove.md", "product": "drive"}
 {"completeness": "full", "key": "drive stats", "kind": "command", "path": "cards/cmd/command--drive%20stats.md", "product": "drive"}
 {"completeness": "full", "key": "drive status", "kind": "command", "path": "cards/cmd/command--drive%20status.md", "product": "drive"}
 {"completeness": "full", "key": "drive sync", "kind": "command", "path": "cards/cmd/command--drive%20sync.md", "product": "drive"}
+{"completeness": "full", "key": "drive task", "kind": "command", "path": "cards/cmd/command--drive%20task.md", "product": "drive"}
 {"completeness": "full", "key": "drive task get", "kind": "command", "path": "cards/cmd/command--drive%20task%20get.md", "product": "drive"}
 {"completeness": "full", "key": "drive upload", "kind": "command", "path": "cards/cmd/command--drive%20upload.md", "product": "drive"}
 {"completeness": "full", "key": "drive upload-info", "kind": "command", "path": "cards/cmd/command--drive%20upload-info.md", "product": "drive"}
 {"completeness": "full", "key": "event", "kind": "command", "path": "cards/cmd/command--event.md", "product": "event"}
-{"completeness": "full", "key": "event +listen-im", "kind": "command", "path": "cards/cmd/command--event%20%2Blisten-im.md", "product": "event"}
 {"completeness": "full", "key": "event _bus", "kind": "command", "path": "cards/cmd/command--event%20_bus.md", "product": "event"}
-{"completeness": "full", "key": "event consume", "kind": "command", "path": "cards/cmd/command--event%20consume.md", "product": "event"}
-{"completeness": "full", "key": "event list", "kind": "command", "path": "cards/cmd/command--event%20list.md", "product": "event"}
-{"completeness": "full", "key": "event schema", "kind": "command", "path": "cards/cmd/command--event%20schema.md", "product": "event"}
-{"completeness": "full", "key": "event status", "kind": "command", "path": "cards/cmd/command--event%20status.md", "product": "event"}
-{"completeness": "full", "key": "event stop", "kind": "command", "path": "cards/cmd/command--event%20stop.md", "product": "event"}
+{"completeness": "partial", "key": "event consume", "kind": "command", "path": "cards/cmd/command--event%20consume.md", "product": "event"}
+{"completeness": "partial", "key": "event list", "kind": "command", "path": "cards/cmd/command--event%20list.md", "product": "event"}
+{"completeness": "partial", "key": "event schema", "kind": "command", "path": "cards/cmd/command--event%20schema.md", "product": "event"}
+{"completeness": "partial", "key": "event status", "kind": "command", "path": "cards/cmd/command--event%20status.md", "product": "event"}
+{"completeness": "partial", "key": "event stop", "kind": "command", "path": "cards/cmd/command--event%20stop.md", "product": "event"}
+{"completeness": "full", "key": "hrbrain", "kind": "command", "path": "cards/cmd/command--hrbrain.md", "product": "hrbrain"}
+{"completeness": "partial", "key": "hrbrain profile", "kind": "command", "path": "cards/cmd/command--hrbrain%20profile.md", "product": "hrbrain"}
 {"completeness": "full", "key": "hrbrain profile career", "kind": "command", "path": "cards/cmd/command--hrbrain%20profile%20career.md", "product": "hrbrain"}
 {"completeness": "full", "key": "hrbrain profile labels", "kind": "command", "path": "cards/cmd/command--hrbrain%20profile%20labels.md", "product": "hrbrain"}
 {"completeness": "full", "key": "hrbrain profile metadata", "kind": "command", "path": "cards/cmd/command--hrbrain%20profile%20metadata.md", "product": "hrbrain"}
 {"completeness": "full", "key": "hrbrain profile performance", "kind": "command", "path": "cards/cmd/command--hrbrain%20profile%20performance.md", "product": "hrbrain"}
 {"completeness": "full", "key": "hrbrain profile query", "kind": "command", "path": "cards/cmd/command--hrbrain%20profile%20query.md", "product": "hrbrain"}
+{"completeness": "partial", "key": "hrbrain search", "kind": "command", "path": "cards/cmd/command--hrbrain%20search.md", "product": "hrbrain"}
 {"completeness": "full", "key": "hrbrain search employees", "kind": "command", "path": "cards/cmd/command--hrbrain%20search%20employees.md", "product": "hrbrain"}
 {"completeness": "full", "key": "hrbrain search employees-structured", "kind": "command", "path": "cards/cmd/command--hrbrain%20search%20employees-structured.md", "product": "hrbrain"}
 {"completeness": "full", "key": "hrbrain search fields", "kind": "command", "path": "cards/cmd/command--hrbrain%20search%20fields.md", "product": "hrbrain"}
+{"completeness": "partial", "key": "hrbrain talent-pool", "kind": "command", "path": "cards/cmd/command--hrbrain%20talent-pool.md", "product": "hrbrain"}
 {"completeness": "full", "key": "hrbrain talent-pool detail", "kind": "command", "path": "cards/cmd/command--hrbrain%20talent-pool%20detail.md", "product": "hrbrain"}
 {"completeness": "full", "key": "hrbrain talent-pool employees", "kind": "command", "path": "cards/cmd/command--hrbrain%20talent-pool%20employees.md", "product": "hrbrain"}
 {"completeness": "full", "key": "hrbrain talent-pool list", "kind": "command", "path": "cards/cmd/command--hrbrain%20talent-pool%20list.md", "product": "hrbrain"}
 {"completeness": "full", "key": "hrbrain talent-pool move-members", "kind": "command", "path": "cards/cmd/command--hrbrain%20talent-pool%20move-members.md", "product": "hrbrain"}
 {"completeness": "full", "key": "hrbrain talent-pool save", "kind": "command", "path": "cards/cmd/command--hrbrain%20talent-pool%20save.md", "product": "hrbrain"}
+{"completeness": "partial", "key": "live", "kind": "command", "path": "cards/cmd/command--live.md", "product": "live"}
+{"completeness": "partial", "key": "live stream", "kind": "command", "path": "cards/cmd/command--live%20stream.md", "product": "live"}
 {"completeness": "full", "key": "live stream list", "kind": "command", "path": "cards/cmd/command--live%20stream%20list.md", "product": "live"}
+{"completeness": "partial", "key": "mail", "kind": "command", "path": "cards/cmd/command--mail.md", "product": "mail"}
+{"completeness": "partial", "key": "mail allow-list", "kind": "command", "path": "cards/cmd/command--mail%20allow-list.md", "product": "mail"}
+{"completeness": "full", "key": "mail allow-list add", "kind": "command", "path": "cards/cmd/command--mail%20allow-list%20add.md", "product": "mail"}
+{"completeness": "full", "key": "mail allow-list list", "kind": "command", "path": "cards/cmd/command--mail%20allow-list%20list.md", "product": "mail"}
+{"completeness": "full", "key": "mail allow-list remove", "kind": "command", "path": "cards/cmd/command--mail%20allow-list%20remove.md", "product": "mail"}
+{"completeness": "partial", "key": "mail attachment", "kind": "command", "path": "cards/cmd/command--mail%20attachment.md", "product": "mail"}
 {"completeness": "full", "key": "mail attachment download", "kind": "command", "path": "cards/cmd/command--mail%20attachment%20download.md", "product": "mail"}
 {"completeness": "full", "key": "mail attachment list", "kind": "command", "path": "cards/cmd/command--mail%20attachment%20list.md", "product": "mail"}
+{"completeness": "partial", "key": "mail auto-reply", "kind": "command", "path": "cards/cmd/command--mail%20auto-reply.md", "product": "mail"}
+{"completeness": "full", "key": "mail auto-reply get", "kind": "command", "path": "cards/cmd/command--mail%20auto-reply%20get.md", "product": "mail"}
+{"completeness": "full", "key": "mail auto-reply update", "kind": "command", "path": "cards/cmd/command--mail%20auto-reply%20update.md", "product": "mail"}
+{"completeness": "partial", "key": "mail block-list", "kind": "command", "path": "cards/cmd/command--mail%20block-list.md", "product": "mail"}
+{"completeness": "full", "key": "mail block-list add", "kind": "command", "path": "cards/cmd/command--mail%20block-list%20add.md", "product": "mail"}
+{"completeness": "full", "key": "mail block-list list", "kind": "command", "path": "cards/cmd/command--mail%20block-list%20list.md", "product": "mail"}
+{"completeness": "full", "key": "mail block-list remove", "kind": "command", "path": "cards/cmd/command--mail%20block-list%20remove.md", "product": "mail"}
+{"completeness": "partial", "key": "mail calendar", "kind": "command", "path": "cards/cmd/command--mail%20calendar.md", "product": "mail"}
 {"completeness": "full", "key": "mail calendar list", "kind": "command", "path": "cards/cmd/command--mail%20calendar%20list.md", "product": "mail"}
+{"completeness": "partial", "key": "mail calendar-event", "kind": "command", "path": "cards/cmd/command--mail%20calendar-event.md", "product": "mail"}
 {"completeness": "full", "key": "mail calendar-event list", "kind": "command", "path": "cards/cmd/command--mail%20calendar-event%20list.md", "product": "mail"}
+{"completeness": "partial", "key": "mail contact", "kind": "command", "path": "cards/cmd/command--mail%20contact.md", "product": "mail"}
 {"completeness": "full", "key": "mail contact batch-delete", "kind": "command", "path": "cards/cmd/command--mail%20contact%20batch-delete.md", "product": "mail"}
 {"completeness": "full", "key": "mail contact create", "kind": "command", "path": "cards/cmd/command--mail%20contact%20create.md", "product": "mail"}
 {"completeness": "full", "key": "mail contact list", "kind": "command", "path": "cards/cmd/command--mail%20contact%20list.md", "product": "mail"}
 {"completeness": "full", "key": "mail contact update", "kind": "command", "path": "cards/cmd/command--mail%20contact%20update.md", "product": "mail"}
+{"completeness": "partial", "key": "mail draft", "kind": "command", "path": "cards/cmd/command--mail%20draft.md", "product": "mail"}
 {"completeness": "full", "key": "mail draft create", "kind": "command", "path": "cards/cmd/command--mail%20draft%20create.md", "product": "mail"}
 {"completeness": "full", "key": "mail draft send", "kind": "command", "path": "cards/cmd/command--mail%20draft%20send.md", "product": "mail"}
 {"completeness": "full", "key": "mail draft update", "kind": "command", "path": "cards/cmd/command--mail%20draft%20update.md", "product": "mail"}
+{"completeness": "partial", "key": "mail folder", "kind": "command", "path": "cards/cmd/command--mail%20folder.md", "product": "mail"}
 {"completeness": "full", "key": "mail folder create", "kind": "command", "path": "cards/cmd/command--mail%20folder%20create.md", "product": "mail"}
 {"completeness": "full", "key": "mail folder delete", "kind": "command", "path": "cards/cmd/command--mail%20folder%20delete.md", "product": "mail"}
 {"completeness": "full", "key": "mail folder list", "kind": "command", "path": "cards/cmd/command--mail%20folder%20list.md", "product": "mail"}
 {"completeness": "full", "key": "mail folder update", "kind": "command", "path": "cards/cmd/command--mail%20folder%20update.md", "product": "mail"}
+{"completeness": "partial", "key": "mail mailbox", "kind": "command", "path": "cards/cmd/command--mail%20mailbox.md", "product": "mail"}
 {"completeness": "full", "key": "mail mailbox list", "kind": "command", "path": "cards/cmd/command--mail%20mailbox%20list.md", "product": "mail"}
+{"completeness": "full", "key": "mail mailbox profile", "kind": "command", "path": "cards/cmd/command--mail%20mailbox%20profile.md", "product": "mail"}
 {"completeness": "full", "key": "mail mailbox shared-with-me", "kind": "command", "path": "cards/cmd/command--mail%20mailbox%20shared-with-me.md", "product": "mail"}
+{"completeness": "partial", "key": "mail message", "kind": "command", "path": "cards/cmd/command--mail%20message.md", "product": "mail"}
 {"completeness": "full", "key": "mail message batch-delete", "kind": "command", "path": "cards/cmd/command--mail%20message%20batch-delete.md", "product": "mail"}
+{"completeness": "full", "key": "mail message batch-get", "kind": "command", "path": "cards/cmd/command--mail%20message%20batch-get.md", "product": "mail"}
 {"completeness": "full", "key": "mail message batch-move", "kind": "command", "path": "cards/cmd/command--mail%20message%20batch-move.md", "product": "mail"}
+{"completeness": "full", "key": "mail message batch-update", "kind": "command", "path": "cards/cmd/command--mail%20message%20batch-update.md", "product": "mail"}
 {"completeness": "full", "key": "mail message export", "kind": "command", "path": "cards/cmd/command--mail%20message%20export.md", "product": "mail"}
 {"completeness": "full", "key": "mail message forward", "kind": "command", "path": "cards/cmd/command--mail%20message%20forward.md", "product": "mail"}
 {"completeness": "full", "key": "mail message get", "kind": "command", "path": "cards/cmd/command--mail%20message%20get.md", "product": "mail"}
@@ -607,41 +779,53 @@
 {"completeness": "full", "key": "mail message search", "kind": "command", "path": "cards/cmd/command--mail%20message%20search.md", "product": "mail"}
 {"completeness": "full", "key": "mail message send", "kind": "command", "path": "cards/cmd/command--mail%20message%20send.md", "product": "mail"}
 {"completeness": "full", "key": "mail message share-to-chat", "kind": "command", "path": "cards/cmd/command--mail%20message%20share-to-chat.md", "product": "mail"}
+{"completeness": "full", "key": "mail message verify", "kind": "command", "path": "cards/cmd/command--mail%20message%20verify.md", "product": "mail"}
+{"completeness": "partial", "key": "mail rule", "kind": "command", "path": "cards/cmd/command--mail%20rule.md", "product": "mail"}
+{"completeness": "full", "key": "mail rule adjust", "kind": "command", "path": "cards/cmd/command--mail%20rule%20adjust.md", "product": "mail"}
+{"completeness": "full", "key": "mail rule create", "kind": "command", "path": "cards/cmd/command--mail%20rule%20create.md", "product": "mail"}
+{"completeness": "full", "key": "mail rule delete", "kind": "command", "path": "cards/cmd/command--mail%20rule%20delete.md", "product": "mail"}
+{"completeness": "full", "key": "mail rule list", "kind": "command", "path": "cards/cmd/command--mail%20rule%20list.md", "product": "mail"}
+{"completeness": "full", "key": "mail rule update", "kind": "command", "path": "cards/cmd/command--mail%20rule%20update.md", "product": "mail"}
+{"completeness": "partial", "key": "mail sent-message", "kind": "command", "path": "cards/cmd/command--mail%20sent-message.md", "product": "mail"}
+{"completeness": "full", "key": "mail sent-message recall", "kind": "command", "path": "cards/cmd/command--mail%20sent-message%20recall.md", "product": "mail"}
+{"completeness": "full", "key": "mail sent-message recall-detail", "kind": "command", "path": "cards/cmd/command--mail%20sent-message%20recall-detail.md", "product": "mail"}
+{"completeness": "partial", "key": "mail tag", "kind": "command", "path": "cards/cmd/command--mail%20tag.md", "product": "mail"}
+{"completeness": "full", "key": "mail tag create", "kind": "command", "path": "cards/cmd/command--mail%20tag%20create.md", "product": "mail"}
+{"completeness": "full", "key": "mail tag delete", "kind": "command", "path": "cards/cmd/command--mail%20tag%20delete.md", "product": "mail"}
 {"completeness": "full", "key": "mail tag list", "kind": "command", "path": "cards/cmd/command--mail%20tag%20list.md", "product": "mail"}
+{"completeness": "full", "key": "mail tag update", "kind": "command", "path": "cards/cmd/command--mail%20tag%20update.md", "product": "mail"}
+{"completeness": "partial", "key": "mail template", "kind": "command", "path": "cards/cmd/command--mail%20template.md", "product": "mail"}
 {"completeness": "full", "key": "mail template create", "kind": "command", "path": "cards/cmd/command--mail%20template%20create.md", "product": "mail"}
 {"completeness": "full", "key": "mail template delete", "kind": "command", "path": "cards/cmd/command--mail%20template%20delete.md", "product": "mail"}
 {"completeness": "full", "key": "mail template get", "kind": "command", "path": "cards/cmd/command--mail%20template%20get.md", "product": "mail"}
 {"completeness": "full", "key": "mail template list", "kind": "command", "path": "cards/cmd/command--mail%20template%20list.md", "product": "mail"}
 {"completeness": "full", "key": "mail template update", "kind": "command", "path": "cards/cmd/command--mail%20template%20update.md", "product": "mail"}
+{"completeness": "partial", "key": "mail thread", "kind": "command", "path": "cards/cmd/command--mail%20thread.md", "product": "mail"}
+{"completeness": "full", "key": "mail thread batch-trash", "kind": "command", "path": "cards/cmd/command--mail%20thread%20batch-trash.md", "product": "mail"}
+{"completeness": "full", "key": "mail thread batch-update", "kind": "command", "path": "cards/cmd/command--mail%20thread%20batch-update.md", "product": "mail"}
 {"completeness": "full", "key": "mail thread get", "kind": "command", "path": "cards/cmd/command--mail%20thread%20get.md", "product": "mail"}
 {"completeness": "full", "key": "mail thread list", "kind": "command", "path": "cards/cmd/command--mail%20thread%20list.md", "product": "mail"}
+{"completeness": "full", "key": "mail thread trash", "kind": "command", "path": "cards/cmd/command--mail%20thread%20trash.md", "product": "mail"}
+{"completeness": "full", "key": "mail thread update", "kind": "command", "path": "cards/cmd/command--mail%20thread%20update.md", "product": "mail"}
+{"completeness": "partial", "key": "mail user", "kind": "command", "path": "cards/cmd/command--mail%20user.md", "product": "mail"}
 {"completeness": "full", "key": "mail user search", "kind": "command", "path": "cards/cmd/command--mail%20user%20search.md", "product": "mail"}
 {"completeness": "full", "key": "markdown", "kind": "command", "path": "cards/cmd/command--markdown.md", "product": "markdown"}
 {"completeness": "full", "key": "markdown comment", "kind": "command", "path": "cards/cmd/command--markdown%20comment.md", "product": "markdown"}
 {"completeness": "full", "key": "markdown create", "kind": "command", "path": "cards/cmd/command--markdown%20create.md", "product": "markdown"}
-{"completeness": "full", "key": "markdown diff", "kind": "command", "path": "cards/cmd/command--markdown%20diff.md", "product": "markdown"}
-{"completeness": "full", "key": "markdown fetch", "kind": "command", "path": "cards/cmd/command--markdown%20fetch.md", "product": "markdown"}
-{"completeness": "full", "key": "markdown overwrite", "kind": "command", "path": "cards/cmd/command--markdown%20overwrite.md", "product": "markdown"}
-{"completeness": "full", "key": "markdown patch", "kind": "command", "path": "cards/cmd/command--markdown%20patch.md", "product": "markdown"}
-{"completeness": "full", "key": "mcp", "kind": "command", "path": "cards/cmd/command--mcp.md", "product": "mcp"}
-{"completeness": "full", "key": "mcp create", "kind": "command", "path": "cards/cmd/command--mcp%20create.md", "product": "mcp"}
-{"completeness": "full", "key": "mcp create-hsf", "kind": "command", "path": "cards/cmd/command--mcp%20create-hsf.md", "product": "mcp"}
-{"completeness": "full", "key": "mcp debug", "kind": "command", "path": "cards/cmd/command--mcp%20debug.md", "product": "mcp"}
-{"completeness": "full", "key": "mcp delete", "kind": "command", "path": "cards/cmd/command--mcp%20delete.md", "product": "mcp"}
-{"completeness": "full", "key": "mcp get", "kind": "command", "path": "cards/cmd/command--mcp%20get.md", "product": "mcp"}
-{"completeness": "full", "key": "mcp list", "kind": "command", "path": "cards/cmd/command--mcp%20list.md", "product": "mcp"}
-{"completeness": "full", "key": "mcp method-list", "kind": "command", "path": "cards/cmd/command--mcp%20method-list.md", "product": "mcp"}
-{"completeness": "full", "key": "mcp publish", "kind": "command", "path": "cards/cmd/command--mcp%20publish.md", "product": "mcp"}
+{"completeness": "partial", "key": "markdown diff", "kind": "command", "path": "cards/cmd/command--markdown%20diff.md", "product": "markdown"}
+{"completeness": "partial", "key": "markdown fetch", "kind": "command", "path": "cards/cmd/command--markdown%20fetch.md", "product": "markdown"}
+{"completeness": "partial", "key": "markdown overwrite", "kind": "command", "path": "cards/cmd/command--markdown%20overwrite.md", "product": "markdown"}
+{"completeness": "partial", "key": "markdown patch", "kind": "command", "path": "cards/cmd/command--markdown%20patch.md", "product": "markdown"}
+{"completeness": "partial", "key": "mcp", "kind": "command", "path": "cards/cmd/command--mcp.md", "product": "mcp"}
+{"completeness": "partial", "key": "mcp published", "kind": "command", "path": "cards/cmd/command--mcp%20published.md", "product": "mcp"}
 {"completeness": "full", "key": "mcp published invoke", "kind": "command", "path": "cards/cmd/command--mcp%20published%20invoke.md", "product": "mcp"}
 {"completeness": "full", "key": "mcp published tools", "kind": "command", "path": "cards/cmd/command--mcp%20published%20tools.md", "product": "mcp"}
-{"completeness": "full", "key": "mcp save", "kind": "command", "path": "cards/cmd/command--mcp%20save.md", "product": "mcp"}
-{"completeness": "full", "key": "mcp unbind", "kind": "command", "path": "cards/cmd/command--mcp%20unbind.md", "product": "mcp"}
-{"completeness": "full", "key": "mcp update", "kind": "command", "path": "cards/cmd/command--mcp%20update.md", "product": "mcp"}
-{"completeness": "full", "key": "mcp update-hsf", "kind": "command", "path": "cards/cmd/command--mcp%20update-hsf.md", "product": "mcp"}
+{"completeness": "partial", "key": "mcp url", "kind": "command", "path": "cards/cmd/command--mcp%20url.md", "product": "mcp"}
 {"completeness": "full", "key": "mcp url get", "kind": "command", "path": "cards/cmd/command--mcp%20url%20get.md", "product": "mcp"}
-{"completeness": "full", "key": "mcp versions", "kind": "command", "path": "cards/cmd/command--mcp%20versions.md", "product": "mcp"}
-{"completeness": "full", "key": "minutes", "kind": "command", "path": "cards/cmd/command--minutes.md", "product": "minutes"}
+{"completeness": "partial", "key": "minutes", "kind": "command", "path": "cards/cmd/command--minutes.md", "product": "minutes"}
+{"completeness": "partial", "key": "minutes audio-memo", "kind": "command", "path": "cards/cmd/command--minutes%20audio-memo.md", "product": "minutes"}
 {"completeness": "full", "key": "minutes audio-memo list", "kind": "command", "path": "cards/cmd/command--minutes%20audio-memo%20list.md", "product": "minutes"}
+{"completeness": "partial", "key": "minutes get", "kind": "command", "path": "cards/cmd/command--minutes%20get.md", "product": "minutes"}
 {"completeness": "full", "key": "minutes get audio", "kind": "command", "path": "cards/cmd/command--minutes%20get%20audio.md", "product": "minutes"}
 {"completeness": "full", "key": "minutes get batch", "kind": "command", "path": "cards/cmd/command--minutes%20get%20batch.md", "product": "minutes"}
 {"completeness": "full", "key": "minutes get info", "kind": "command", "path": "cards/cmd/command--minutes%20get%20info.md", "product": "minutes"}
@@ -649,91 +833,118 @@
 {"completeness": "full", "key": "minutes get summary", "kind": "command", "path": "cards/cmd/command--minutes%20get%20summary.md", "product": "minutes"}
 {"completeness": "full", "key": "minutes get todos", "kind": "command", "path": "cards/cmd/command--minutes%20get%20todos.md", "product": "minutes"}
 {"completeness": "full", "key": "minutes get transcription", "kind": "command", "path": "cards/cmd/command--minutes%20get%20transcription.md", "product": "minutes"}
+{"completeness": "partial", "key": "minutes hot-word", "kind": "command", "path": "cards/cmd/command--minutes%20hot-word.md", "product": "minutes"}
 {"completeness": "full", "key": "minutes hot-word add", "kind": "command", "path": "cards/cmd/command--minutes%20hot-word%20add.md", "product": "minutes"}
 {"completeness": "full", "key": "minutes hot-word delete", "kind": "command", "path": "cards/cmd/command--minutes%20hot-word%20delete.md", "product": "minutes"}
 {"completeness": "full", "key": "minutes hot-word list", "kind": "command", "path": "cards/cmd/command--minutes%20hot-word%20list.md", "product": "minutes"}
+{"completeness": "partial", "key": "minutes list", "kind": "command", "path": "cards/cmd/command--minutes%20list.md", "product": "minutes"}
 {"completeness": "full", "key": "minutes list all", "kind": "command", "path": "cards/cmd/command--minutes%20list%20all.md", "product": "minutes"}
 {"completeness": "full", "key": "minutes list mine", "kind": "command", "path": "cards/cmd/command--minutes%20list%20mine.md", "product": "minutes"}
 {"completeness": "full", "key": "minutes list shared", "kind": "command", "path": "cards/cmd/command--minutes%20list%20shared.md", "product": "minutes"}
+{"completeness": "partial", "key": "minutes mind-graph", "kind": "command", "path": "cards/cmd/command--minutes%20mind-graph.md", "product": "minutes"}
 {"completeness": "full", "key": "minutes mind-graph create", "kind": "command", "path": "cards/cmd/command--minutes%20mind-graph%20create.md", "product": "minutes"}
 {"completeness": "full", "key": "minutes mind-graph status", "kind": "command", "path": "cards/cmd/command--minutes%20mind-graph%20status.md", "product": "minutes"}
-{"completeness": "full", "key": "minutes permission add", "kind": "command", "path": "cards/cmd/command--minutes%20permission%20add.md", "product": "minutes"}
+{"completeness": "partial", "key": "minutes permission", "kind": "command", "path": "cards/cmd/command--minutes%20permission.md", "product": "minutes"}
+{"completeness": "partial", "key": "minutes permission add", "kind": "command", "path": "cards/cmd/command--minutes%20permission%20add.md", "product": "minutes"}
 {"completeness": "full", "key": "minutes permission apply", "kind": "command", "path": "cards/cmd/command--minutes%20permission%20apply.md", "product": "minutes"}
 {"completeness": "full", "key": "minutes permission remove", "kind": "command", "path": "cards/cmd/command--minutes%20permission%20remove.md", "product": "minutes"}
+{"completeness": "partial", "key": "minutes record", "kind": "command", "path": "cards/cmd/command--minutes%20record.md", "product": "minutes"}
 {"completeness": "full", "key": "minutes record pause", "kind": "command", "path": "cards/cmd/command--minutes%20record%20pause.md", "product": "minutes"}
 {"completeness": "full", "key": "minutes record resume", "kind": "command", "path": "cards/cmd/command--minutes%20record%20resume.md", "product": "minutes"}
 {"completeness": "full", "key": "minutes record start", "kind": "command", "path": "cards/cmd/command--minutes%20record%20start.md", "product": "minutes"}
 {"completeness": "full", "key": "minutes record stop", "kind": "command", "path": "cards/cmd/command--minutes%20record%20stop.md", "product": "minutes"}
 {"completeness": "full", "key": "minutes replace-text", "kind": "command", "path": "cards/cmd/command--minutes%20replace-text.md", "product": "minutes"}
+{"completeness": "partial", "key": "minutes speaker", "kind": "command", "path": "cards/cmd/command--minutes%20speaker.md", "product": "minutes"}
 {"completeness": "full", "key": "minutes speaker replace", "kind": "command", "path": "cards/cmd/command--minutes%20speaker%20replace.md", "product": "minutes"}
+{"completeness": "partial", "key": "minutes speaker summary", "kind": "command", "path": "cards/cmd/command--minutes%20speaker%20summary.md", "product": "minutes"}
 {"completeness": "full", "key": "minutes speaker summary create", "kind": "command", "path": "cards/cmd/command--minutes%20speaker%20summary%20create.md", "product": "minutes"}
 {"completeness": "full", "key": "minutes speaker summary get", "kind": "command", "path": "cards/cmd/command--minutes%20speaker%20summary%20get.md", "product": "minutes"}
+{"completeness": "partial", "key": "minutes tag", "kind": "command", "path": "cards/cmd/command--minutes%20tag.md", "product": "minutes"}
 {"completeness": "full", "key": "minutes tag list", "kind": "command", "path": "cards/cmd/command--minutes%20tag%20list.md", "product": "minutes"}
 {"completeness": "full", "key": "minutes tag query", "kind": "command", "path": "cards/cmd/command--minutes%20tag%20query.md", "product": "minutes"}
+{"completeness": "partial", "key": "minutes update", "kind": "command", "path": "cards/cmd/command--minutes%20update.md", "product": "minutes"}
 {"completeness": "full", "key": "minutes update summary", "kind": "command", "path": "cards/cmd/command--minutes%20update%20summary.md", "product": "minutes"}
 {"completeness": "full", "key": "minutes update title", "kind": "command", "path": "cards/cmd/command--minutes%20update%20title.md", "product": "minutes"}
+{"completeness": "partial", "key": "minutes upload", "kind": "command", "path": "cards/cmd/command--minutes%20upload.md", "product": "minutes"}
 {"completeness": "full", "key": "minutes upload cancel", "kind": "command", "path": "cards/cmd/command--minutes%20upload%20cancel.md", "product": "minutes"}
 {"completeness": "full", "key": "minutes upload complete", "kind": "command", "path": "cards/cmd/command--minutes%20upload%20complete.md", "product": "minutes"}
 {"completeness": "full", "key": "minutes upload create", "kind": "command", "path": "cards/cmd/command--minutes%20upload%20create.md", "product": "minutes"}
 {"completeness": "full", "key": "minutes upload create-and-notify", "kind": "command", "path": "cards/cmd/command--minutes%20upload%20create-and-notify.md", "product": "minutes"}
 {"completeness": "full", "key": "oa", "kind": "command", "path": "cards/cmd/command--oa.md", "product": "oa"}
+{"completeness": "partial", "key": "oa approval", "kind": "command", "path": "cards/cmd/command--oa%20approval.md", "product": "oa"}
+{"completeness": "full", "key": "oa approval append-task", "kind": "command", "path": "cards/cmd/command--oa%20approval%20append-task.md", "product": "oa"}
 {"completeness": "full", "key": "oa approval approve", "kind": "command", "path": "cards/cmd/command--oa%20approval%20approve.md", "product": "oa"}
+{"completeness": "partial", "key": "oa approval attachment", "kind": "command", "path": "cards/cmd/command--oa%20approval%20attachment.md", "product": "oa"}
 {"completeness": "partial", "key": "oa approval attachment authorize-download", "kind": "command", "path": "cards/cmd/command--oa%20approval%20attachment%20authorize-download.md", "product": "oa"}
 {"completeness": "partial", "key": "oa approval attachment authorize-preview", "kind": "command", "path": "cards/cmd/command--oa%20approval%20attachment%20authorize-preview.md", "product": "oa"}
 {"completeness": "partial", "key": "oa approval attachment download-url", "kind": "command", "path": "cards/cmd/command--oa%20approval%20attachment%20download-url.md", "product": "oa"}
 {"completeness": "full", "key": "oa approval attachment upload", "kind": "command", "path": "cards/cmd/command--oa%20approval%20attachment%20upload.md", "product": "oa"}
 {"completeness": "full", "key": "oa approval create-instance", "kind": "command", "path": "cards/cmd/command--oa%20approval%20create-instance.md", "product": "oa"}
 {"completeness": "full", "key": "oa approval detail", "kind": "command", "path": "cards/cmd/command--oa%20approval%20detail.md", "product": "oa"}
+{"completeness": "full", "key": "oa approval ding-info", "kind": "command", "path": "cards/cmd/command--oa%20approval%20ding-info.md", "product": "oa"}
 {"completeness": "full", "key": "oa approval forecast-process", "kind": "command", "path": "cards/cmd/command--oa%20approval%20forecast-process.md", "product": "oa"}
 {"completeness": "full", "key": "oa approval form-schema", "kind": "command", "path": "cards/cmd/command--oa%20approval%20form-schema.md", "product": "oa"}
 {"completeness": "full", "key": "oa approval list-by-admin", "kind": "command", "path": "cards/cmd/command--oa%20approval%20list-by-admin.md", "product": "oa"}
-{"completeness": "full", "key": "oa approval list-cc", "kind": "command", "path": "cards/cmd/command--oa%20approval%20list-cc.md", "product": "oa"}
-{"completeness": "full", "key": "oa approval list-executed", "kind": "command", "path": "cards/cmd/command--oa%20approval%20list-executed.md", "product": "oa"}
+{"completeness": "partial", "key": "oa approval list-cc", "kind": "command", "path": "cards/cmd/command--oa%20approval%20list-cc.md", "product": "oa"}
+{"completeness": "partial", "key": "oa approval list-executed", "kind": "command", "path": "cards/cmd/command--oa%20approval%20list-executed.md", "product": "oa"}
 {"completeness": "full", "key": "oa approval list-forms", "kind": "command", "path": "cards/cmd/command--oa%20approval%20list-forms.md", "product": "oa"}
 {"completeness": "full", "key": "oa approval list-initiated", "kind": "command", "path": "cards/cmd/command--oa%20approval%20list-initiated.md", "product": "oa"}
-{"completeness": "full", "key": "oa approval list-pending", "kind": "command", "path": "cards/cmd/command--oa%20approval%20list-pending.md", "product": "oa"}
-{"completeness": "full", "key": "oa approval list-submitted", "kind": "command", "path": "cards/cmd/command--oa%20approval%20list-submitted.md", "product": "oa"}
+{"completeness": "partial", "key": "oa approval list-pending", "kind": "command", "path": "cards/cmd/command--oa%20approval%20list-pending.md", "product": "oa"}
+{"completeness": "partial", "key": "oa approval list-submitted", "kind": "command", "path": "cards/cmd/command--oa%20approval%20list-submitted.md", "product": "oa"}
 {"completeness": "full", "key": "oa approval oa-cc-noticer", "kind": "command", "path": "cards/cmd/command--oa%20approval%20oa-cc-noticer.md", "product": "oa"}
 {"completeness": "full", "key": "oa approval oa-comments", "kind": "command", "path": "cards/cmd/command--oa%20approval%20oa-comments.md", "product": "oa"}
 {"completeness": "full", "key": "oa approval records", "kind": "command", "path": "cards/cmd/command--oa%20approval%20records.md", "product": "oa"}
 {"completeness": "full", "key": "oa approval redirect-task", "kind": "command", "path": "cards/cmd/command--oa%20approval%20redirect-task.md", "product": "oa"}
 {"completeness": "full", "key": "oa approval reject", "kind": "command", "path": "cards/cmd/command--oa%20approval%20reject.md", "product": "oa"}
+{"completeness": "full", "key": "oa approval revert-activities", "kind": "command", "path": "cards/cmd/command--oa%20approval%20revert-activities.md", "product": "oa"}
+{"completeness": "full", "key": "oa approval revert-task", "kind": "command", "path": "cards/cmd/command--oa%20approval%20revert-task.md", "product": "oa"}
 {"completeness": "full", "key": "oa approval revoke", "kind": "command", "path": "cards/cmd/command--oa%20approval%20revoke.md", "product": "oa"}
 {"completeness": "full", "key": "oa approval search-forms", "kind": "command", "path": "cards/cmd/command--oa%20approval%20search-forms.md", "product": "oa"}
 {"completeness": "full", "key": "oa approval tasks", "kind": "command", "path": "cards/cmd/command--oa%20approval%20tasks.md", "product": "oa"}
-{"completeness": "full", "key": "oa attachment", "kind": "command", "path": "cards/cmd/command--oa%20attachment.md", "product": "oa"}
-{"completeness": "full", "key": "pat browser-policy", "kind": "command", "path": "cards/cmd/command--pat%20browser-policy.md", "product": "pat"}
+{"completeness": "full", "key": "pat", "kind": "command", "path": "cards/cmd/command--pat.md", "product": "pat"}
+{"completeness": "partial", "key": "pat browser-policy", "kind": "command", "path": "cards/cmd/command--pat%20browser-policy.md", "product": "pat"}
 {"completeness": "full", "key": "pat chmod", "kind": "command", "path": "cards/cmd/command--pat%20chmod.md", "product": "pat"}
+{"completeness": "partial", "key": "plugin", "kind": "command", "path": "cards/cmd/command--plugin.md", "product": "plugin"}
+{"completeness": "partial", "key": "plugin build", "kind": "command", "path": "cards/cmd/command--plugin%20build.md", "product": "plugin"}
+{"completeness": "partial", "key": "plugin config", "kind": "command", "path": "cards/cmd/command--plugin%20config.md", "product": "plugin"}
+{"completeness": "partial", "key": "plugin config set", "kind": "command", "path": "cards/cmd/command--plugin%20config%20set.md", "product": "plugin"}
+{"completeness": "partial", "key": "plugin create", "kind": "command", "path": "cards/cmd/command--plugin%20create.md", "product": "plugin"}
+{"completeness": "partial", "key": "plugin dev", "kind": "command", "path": "cards/cmd/command--plugin%20dev.md", "product": "plugin"}
+{"completeness": "partial", "key": "plugin install", "kind": "command", "path": "cards/cmd/command--plugin%20install.md", "product": "plugin"}
 {"completeness": "full", "key": "profile", "kind": "command", "path": "cards/cmd/command--profile.md", "product": "profile"}
-{"completeness": "full", "key": "profile list", "kind": "command", "path": "cards/cmd/command--profile%20list.md", "product": "profile"}
+{"completeness": "partial", "key": "profile list", "kind": "command", "path": "cards/cmd/command--profile%20list.md", "product": "profile"}
 {"completeness": "full", "key": "profile switch", "kind": "command", "path": "cards/cmd/command--profile%20switch.md", "product": "profile"}
 {"completeness": "full", "key": "profile use", "kind": "command", "path": "cards/cmd/command--profile%20use.md", "product": "profile"}
-{"completeness": "full", "key": "published", "kind": "command", "path": "cards/cmd/command--published.md", "product": "published"}
-{"completeness": "full", "key": "published invoke", "kind": "command", "path": "cards/cmd/command--published%20invoke.md", "product": "published"}
-{"completeness": "full", "key": "published tools", "kind": "command", "path": "cards/cmd/command--published%20tools.md", "product": "published"}
-{"completeness": "full", "key": "recruit", "kind": "command", "path": "cards/cmd/command--recruit.md", "product": "recruit"}
+{"completeness": "partial", "key": "recruit", "kind": "command", "path": "cards/cmd/command--recruit.md", "product": "recruit"}
+{"completeness": "partial", "key": "recruit job", "kind": "command", "path": "cards/cmd/command--recruit%20job.md", "product": "recruit"}
 {"completeness": "partial", "key": "recruit job create", "kind": "command", "path": "cards/cmd/command--recruit%20job%20create.md", "product": "recruit"}
-{"completeness": "full", "key": "recruit job get", "kind": "command", "path": "cards/cmd/command--recruit%20job%20get.md", "product": "recruit"}
-{"completeness": "full", "key": "recruit job list", "kind": "command", "path": "cards/cmd/command--recruit%20job%20list.md", "product": "recruit"}
+{"completeness": "partial", "key": "recruit job get", "kind": "command", "path": "cards/cmd/command--recruit%20job%20get.md", "product": "recruit"}
+{"completeness": "partial", "key": "recruit job list", "kind": "command", "path": "cards/cmd/command--recruit%20job%20list.md", "product": "recruit"}
+{"completeness": "partial", "key": "report", "kind": "command", "path": "cards/cmd/command--report.md", "product": "report"}
 {"completeness": "full", "key": "report create", "kind": "command", "path": "cards/cmd/command--report%20create.md", "product": "report"}
+{"completeness": "full", "key": "report created", "kind": "command", "path": "cards/cmd/command--report%20created.md", "product": "report"}
 {"completeness": "full", "key": "report detail", "kind": "command", "path": "cards/cmd/command--report%20detail.md", "product": "report"}
+{"completeness": "partial", "key": "report entry", "kind": "command", "path": "cards/cmd/command--report%20entry.md", "product": "report"}
 {"completeness": "full", "key": "report entry get", "kind": "command", "path": "cards/cmd/command--report%20entry%20get.md", "product": "report"}
 {"completeness": "full", "key": "report entry stats", "kind": "command", "path": "cards/cmd/command--report%20entry%20stats.md", "product": "report"}
 {"completeness": "full", "key": "report entry submit", "kind": "command", "path": "cards/cmd/command--report%20entry%20submit.md", "product": "report"}
+{"completeness": "full", "key": "report inbox", "kind": "command", "path": "cards/cmd/command--report%20inbox.md", "product": "report"}
 {"completeness": "full", "key": "report inbox list", "kind": "command", "path": "cards/cmd/command--report%20inbox%20list.md", "product": "report"}
 {"completeness": "full", "key": "report list", "kind": "command", "path": "cards/cmd/command--report%20list.md", "product": "report"}
+{"completeness": "partial", "key": "report outbox", "kind": "command", "path": "cards/cmd/command--report%20outbox.md", "product": "report"}
 {"completeness": "full", "key": "report outbox list", "kind": "command", "path": "cards/cmd/command--report%20outbox%20list.md", "product": "report"}
 {"completeness": "full", "key": "report sent", "kind": "command", "path": "cards/cmd/command--report%20sent.md", "product": "report"}
 {"completeness": "full", "key": "report stats", "kind": "command", "path": "cards/cmd/command--report%20stats.md", "product": "report"}
+{"completeness": "partial", "key": "report template", "kind": "command", "path": "cards/cmd/command--report%20template.md", "product": "report"}
 {"completeness": "full", "key": "report template detail", "kind": "command", "path": "cards/cmd/command--report%20template%20detail.md", "product": "report"}
 {"completeness": "full", "key": "report template get", "kind": "command", "path": "cards/cmd/command--report%20template%20get.md", "product": "report"}
 {"completeness": "full", "key": "report template list", "kind": "command", "path": "cards/cmd/command--report%20template%20list.md", "product": "report"}
 {"completeness": "full", "key": "sheet", "kind": "command", "path": "cards/cmd/command--sheet.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet add-dimension", "kind": "command", "path": "cards/cmd/command--sheet%20add-dimension.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet append", "kind": "command", "path": "cards/cmd/command--sheet%20append.md", "product": "sheet"}
-{"completeness": "full", "key": "sheet batch-set-style", "kind": "command", "path": "cards/cmd/command--sheet%20batch-set-style.md", "product": "sheet"}
-{"completeness": "full", "key": "sheet batch-update", "kind": "command", "path": "cards/cmd/command--sheet%20batch-update.md", "product": "sheet"}
+{"completeness": "partial", "key": "sheet batch-update", "kind": "command", "path": "cards/cmd/command--sheet%20batch-update.md", "product": "sheet"}
 {"completeness": "partial", "key": "sheet changeset-get", "kind": "command", "path": "cards/cmd/command--sheet%20changeset-get.md", "product": "sheet"}
+{"completeness": "partial", "key": "sheet chart", "kind": "command", "path": "cards/cmd/command--sheet%20chart.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet chart create", "kind": "command", "path": "cards/cmd/command--sheet%20chart%20create.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet chart delete", "kind": "command", "path": "cards/cmd/command--sheet%20chart%20delete.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet chart list", "kind": "command", "path": "cards/cmd/command--sheet%20chart%20list.md", "product": "sheet"}
@@ -744,6 +955,7 @@
 {"completeness": "full", "key": "sheet comment list", "kind": "command", "path": "cards/cmd/command--sheet%20comment%20list.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet comment reply", "kind": "command", "path": "cards/cmd/command--sheet%20comment%20reply.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet comment update", "kind": "command", "path": "cards/cmd/command--sheet%20comment%20update.md", "product": "sheet"}
+{"completeness": "partial", "key": "sheet cond-format", "kind": "command", "path": "cards/cmd/command--sheet%20cond-format.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet cond-format create", "kind": "command", "path": "cards/cmd/command--sheet%20cond-format%20create.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet cond-format delete", "kind": "command", "path": "cards/cmd/command--sheet%20cond-format%20delete.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet cond-format list", "kind": "command", "path": "cards/cmd/command--sheet%20cond-format%20list.md", "product": "sheet"}
@@ -751,7 +963,7 @@
 {"completeness": "full", "key": "sheet copy", "kind": "command", "path": "cards/cmd/command--sheet%20copy.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet create", "kind": "command", "path": "cards/cmd/command--sheet%20create.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet create-float-image", "kind": "command", "path": "cards/cmd/command--sheet%20create-float-image.md", "product": "sheet"}
-{"completeness": "full", "key": "sheet create-with-data", "kind": "command", "path": "cards/cmd/command--sheet%20create-with-data.md", "product": "sheet"}
+{"completeness": "partial", "key": "sheet create-with-data", "kind": "command", "path": "cards/cmd/command--sheet%20create-with-data.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet csv-get", "kind": "command", "path": "cards/cmd/command--sheet%20csv-get.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet csv-put", "kind": "command", "path": "cards/cmd/command--sheet%20csv-put.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet delete-dimension", "kind": "command", "path": "cards/cmd/command--sheet%20delete-dimension.md", "product": "sheet"}
@@ -760,12 +972,14 @@
 {"completeness": "full", "key": "sheet delete-sheet", "kind": "command", "path": "cards/cmd/command--sheet%20delete-sheet.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet export", "kind": "command", "path": "cards/cmd/command--sheet%20export.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet export-csv", "kind": "command", "path": "cards/cmd/command--sheet%20export-csv.md", "product": "sheet"}
+{"completeness": "partial", "key": "sheet filter", "kind": "command", "path": "cards/cmd/command--sheet%20filter.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet filter clear-criteria", "kind": "command", "path": "cards/cmd/command--sheet%20filter%20clear-criteria.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet filter create", "kind": "command", "path": "cards/cmd/command--sheet%20filter%20create.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet filter delete", "kind": "command", "path": "cards/cmd/command--sheet%20filter%20delete.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet filter get", "kind": "command", "path": "cards/cmd/command--sheet%20filter%20get.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet filter sort", "kind": "command", "path": "cards/cmd/command--sheet%20filter%20sort.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet filter update", "kind": "command", "path": "cards/cmd/command--sheet%20filter%20update.md", "product": "sheet"}
+{"completeness": "partial", "key": "sheet filter-view", "kind": "command", "path": "cards/cmd/command--sheet%20filter-view.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet filter-view create", "kind": "command", "path": "cards/cmd/command--sheet%20filter-view%20create.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet filter-view delete", "kind": "command", "path": "cards/cmd/command--sheet%20filter-view%20delete.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet filter-view delete-criteria", "kind": "command", "path": "cards/cmd/command--sheet%20filter-view%20delete-criteria.md", "product": "sheet"}
@@ -776,11 +990,12 @@
 {"completeness": "full", "key": "sheet filter-view update", "kind": "command", "path": "cards/cmd/command--sheet%20filter-view%20update.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet filter-view update-criteria", "kind": "command", "path": "cards/cmd/command--sheet%20filter-view%20update-criteria.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet find", "kind": "command", "path": "cards/cmd/command--sheet%20find.md", "product": "sheet"}
-{"completeness": "full", "key": "sheet formula-verify", "kind": "command", "path": "cards/cmd/command--sheet%20formula-verify.md", "product": "sheet"}
+{"completeness": "partial", "key": "sheet formula-verify", "kind": "command", "path": "cards/cmd/command--sheet%20formula-verify.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet get-dropdown", "kind": "command", "path": "cards/cmd/command--sheet%20get-dropdown.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet get-float-image", "kind": "command", "path": "cards/cmd/command--sheet%20get-float-image.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet group-dimension", "kind": "command", "path": "cards/cmd/command--sheet%20group-dimension.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet hide-gridline", "kind": "command", "path": "cards/cmd/command--sheet%20hide-gridline.md", "product": "sheet"}
+{"completeness": "full", "key": "sheet import", "kind": "command", "path": "cards/cmd/command--sheet%20import.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet import create", "kind": "command", "path": "cards/cmd/command--sheet%20import%20create.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet import get", "kind": "command", "path": "cards/cmd/command--sheet%20import%20get.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet info", "kind": "command", "path": "cards/cmd/command--sheet%20info.md", "product": "sheet"}
@@ -791,27 +1006,29 @@
 {"completeness": "full", "key": "sheet merge-cells", "kind": "command", "path": "cards/cmd/command--sheet%20merge-cells.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet move-dimension", "kind": "command", "path": "cards/cmd/command--sheet%20move-dimension.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet new", "kind": "command", "path": "cards/cmd/command--sheet%20new.md", "product": "sheet"}
+{"completeness": "partial", "key": "sheet pivot-table", "kind": "command", "path": "cards/cmd/command--sheet%20pivot-table.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet pivot-table create", "kind": "command", "path": "cards/cmd/command--sheet%20pivot-table%20create.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet pivot-table delete", "kind": "command", "path": "cards/cmd/command--sheet%20pivot-table%20delete.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet pivot-table list", "kind": "command", "path": "cards/cmd/command--sheet%20pivot-table%20list.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet pivot-table update", "kind": "command", "path": "cards/cmd/command--sheet%20pivot-table%20update.md", "product": "sheet"}
+{"completeness": "partial", "key": "sheet range", "kind": "command", "path": "cards/cmd/command--sheet%20range.md", "product": "sheet"}
 {"completeness": "partial", "key": "sheet range batch-clear", "kind": "command", "path": "cards/cmd/command--sheet%20range%20batch-clear.md", "product": "sheet"}
-{"completeness": "full", "key": "sheet range batch-set-style", "kind": "command", "path": "cards/cmd/command--sheet%20range%20batch-set-style.md", "product": "sheet"}
+{"completeness": "partial", "key": "sheet range batch-set-style", "kind": "command", "path": "cards/cmd/command--sheet%20range%20batch-set-style.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet range clear", "kind": "command", "path": "cards/cmd/command--sheet%20range%20clear.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet range copy-to", "kind": "command", "path": "cards/cmd/command--sheet%20range%20copy-to.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet range fill", "kind": "command", "path": "cards/cmd/command--sheet%20range%20fill.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet range move-to", "kind": "command", "path": "cards/cmd/command--sheet%20range%20move-to.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet range read", "kind": "command", "path": "cards/cmd/command--sheet%20range%20read.md", "product": "sheet"}
-{"completeness": "full", "key": "sheet range set-style", "kind": "command", "path": "cards/cmd/command--sheet%20range%20set-style.md", "product": "sheet"}
+{"completeness": "partial", "key": "sheet range set-style", "kind": "command", "path": "cards/cmd/command--sheet%20range%20set-style.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet range sort", "kind": "command", "path": "cards/cmd/command--sheet%20range%20sort.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet range update", "kind": "command", "path": "cards/cmd/command--sheet%20range%20update.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet replace", "kind": "command", "path": "cards/cmd/command--sheet%20replace.md", "product": "sheet"}
 {"completeness": "partial", "key": "sheet revision-get", "kind": "command", "path": "cards/cmd/command--sheet%20revision-get.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet set-dropdown", "kind": "command", "path": "cards/cmd/command--sheet%20set-dropdown.md", "product": "sheet"}
-{"completeness": "full", "key": "sheet set-style", "kind": "command", "path": "cards/cmd/command--sheet%20set-style.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet show-gridline", "kind": "command", "path": "cards/cmd/command--sheet%20show-gridline.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet table-get", "kind": "command", "path": "cards/cmd/command--sheet%20table-get.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet table-put", "kind": "command", "path": "cards/cmd/command--sheet%20table-put.md", "product": "sheet"}
+{"completeness": "partial", "key": "sheet template", "kind": "command", "path": "cards/cmd/command--sheet%20template.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet template apply", "kind": "command", "path": "cards/cmd/command--sheet%20template%20apply.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet template list", "kind": "command", "path": "cards/cmd/command--sheet%20template%20list.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet template search", "kind": "command", "path": "cards/cmd/command--sheet%20template%20search.md", "product": "sheet"}
@@ -826,22 +1043,25 @@
 {"completeness": "full", "key": "sheet version save", "kind": "command", "path": "cards/cmd/command--sheet%20version%20save.md", "product": "sheet"}
 {"completeness": "full", "key": "sheet write-image", "kind": "command", "path": "cards/cmd/command--sheet%20write-image.md", "product": "sheet"}
 {"completeness": "full", "key": "skill", "kind": "command", "path": "cards/cmd/command--skill.md", "product": "skill"}
-{"completeness": "full", "key": "skill add", "kind": "command", "path": "cards/cmd/command--skill%20add.md", "product": "skill"}
-{"completeness": "full", "key": "skill find", "kind": "command", "path": "cards/cmd/command--skill%20find.md", "product": "skill"}
+{"completeness": "partial", "key": "skill add", "kind": "command", "path": "cards/cmd/command--skill%20add.md", "product": "skill"}
+{"completeness": "partial", "key": "skill find", "kind": "command", "path": "cards/cmd/command--skill%20find.md", "product": "skill"}
 {"completeness": "full", "key": "skill get", "kind": "command", "path": "cards/cmd/command--skill%20get.md", "product": "skill"}
 {"completeness": "full", "key": "skill install", "kind": "command", "path": "cards/cmd/command--skill%20install.md", "product": "skill"}
 {"completeness": "full", "key": "skill search", "kind": "command", "path": "cards/cmd/command--skill%20search.md", "product": "skill"}
 {"completeness": "full", "key": "skill setup", "kind": "command", "path": "cards/cmd/command--skill%20setup.md", "product": "skill"}
 {"completeness": "full", "key": "todo", "kind": "command", "path": "cards/cmd/command--todo.md", "product": "todo"}
+{"completeness": "partial", "key": "todo comment", "kind": "command", "path": "cards/cmd/command--todo%20comment.md", "product": "todo"}
 {"completeness": "full", "key": "todo comment add", "kind": "command", "path": "cards/cmd/command--todo%20comment%20add.md", "product": "todo"}
 {"completeness": "full", "key": "todo comment delete", "kind": "command", "path": "cards/cmd/command--todo%20comment%20delete.md", "product": "todo"}
 {"completeness": "full", "key": "todo comment list", "kind": "command", "path": "cards/cmd/command--todo%20comment%20list.md", "product": "todo"}
+{"completeness": "partial", "key": "todo tag", "kind": "command", "path": "cards/cmd/command--todo%20tag.md", "product": "todo"}
 {"completeness": "full", "key": "todo tag add", "kind": "command", "path": "cards/cmd/command--todo%20tag%20add.md", "product": "todo"}
 {"completeness": "full", "key": "todo tag create", "kind": "command", "path": "cards/cmd/command--todo%20tag%20create.md", "product": "todo"}
 {"completeness": "full", "key": "todo tag delete", "kind": "command", "path": "cards/cmd/command--todo%20tag%20delete.md", "product": "todo"}
 {"completeness": "full", "key": "todo tag list", "kind": "command", "path": "cards/cmd/command--todo%20tag%20list.md", "product": "todo"}
 {"completeness": "full", "key": "todo tag update", "kind": "command", "path": "cards/cmd/command--todo%20tag%20update.md", "product": "todo"}
-{"completeness": "full", "key": "todo task add-attachment", "kind": "command", "path": "cards/cmd/command--todo%20task%20add-attachment.md", "product": "todo"}
+{"completeness": "partial", "key": "todo task", "kind": "command", "path": "cards/cmd/command--todo%20task.md", "product": "todo"}
+{"completeness": "partial", "key": "todo task add-attachment", "kind": "command", "path": "cards/cmd/command--todo%20task%20add-attachment.md", "product": "todo"}
 {"completeness": "full", "key": "todo task add-executor", "kind": "command", "path": "cards/cmd/command--todo%20task%20add-executor.md", "product": "todo"}
 {"completeness": "full", "key": "todo task add-participant", "kind": "command", "path": "cards/cmd/command--todo%20task%20add-participant.md", "product": "todo"}
 {"completeness": "full", "key": "todo task add-reminder", "kind": "command", "path": "cards/cmd/command--todo%20task%20add-reminder.md", "product": "todo"}
@@ -858,22 +1078,27 @@
 {"completeness": "full", "key": "todo task remove-participant", "kind": "command", "path": "cards/cmd/command--todo%20task%20remove-participant.md", "product": "todo"}
 {"completeness": "full", "key": "todo task reset-reminder", "kind": "command", "path": "cards/cmd/command--todo%20task%20reset-reminder.md", "product": "todo"}
 {"completeness": "full", "key": "todo task update", "kind": "command", "path": "cards/cmd/command--todo%20task%20update.md", "product": "todo"}
-{"completeness": "full", "key": "url", "kind": "command", "path": "cards/cmd/command--url.md", "product": "url"}
-{"completeness": "full", "key": "url get", "kind": "command", "path": "cards/cmd/command--url%20get.md", "product": "url"}
+{"completeness": "full", "key": "upgrade", "kind": "command", "path": "cards/cmd/command--upgrade.md", "product": "upgrade"}
+{"completeness": "partial", "key": "version", "kind": "command", "path": "cards/cmd/command--version.md", "product": "version"}
+{"completeness": "partial", "key": "whiteboard", "kind": "command", "path": "cards/cmd/command--whiteboard.md", "product": "whiteboard"}
 {"completeness": "full", "key": "whiteboard query", "kind": "command", "path": "cards/cmd/command--whiteboard%20query.md", "product": "whiteboard"}
 {"completeness": "full", "key": "whiteboard update", "kind": "command", "path": "cards/cmd/command--whiteboard%20update.md", "product": "whiteboard"}
 {"completeness": "full", "key": "wiki", "kind": "command", "path": "cards/cmd/command--wiki.md", "product": "wiki"}
+{"completeness": "partial", "key": "wiki feed", "kind": "command", "path": "cards/cmd/command--wiki%20feed.md", "product": "wiki"}
 {"completeness": "full", "key": "wiki feed list", "kind": "command", "path": "cards/cmd/command--wiki%20feed%20list.md", "product": "wiki"}
+{"completeness": "partial", "key": "wiki member", "kind": "command", "path": "cards/cmd/command--wiki%20member.md", "product": "wiki"}
 {"completeness": "full", "key": "wiki member add", "kind": "command", "path": "cards/cmd/command--wiki%20member%20add.md", "product": "wiki"}
 {"completeness": "full", "key": "wiki member list", "kind": "command", "path": "cards/cmd/command--wiki%20member%20list.md", "product": "wiki"}
 {"completeness": "full", "key": "wiki member remove", "kind": "command", "path": "cards/cmd/command--wiki%20member%20remove.md", "product": "wiki"}
 {"completeness": "full", "key": "wiki member update", "kind": "command", "path": "cards/cmd/command--wiki%20member%20update.md", "product": "wiki"}
+{"completeness": "partial", "key": "wiki node", "kind": "command", "path": "cards/cmd/command--wiki%20node.md", "product": "wiki"}
 {"completeness": "full", "key": "wiki node copy", "kind": "command", "path": "cards/cmd/command--wiki%20node%20copy.md", "product": "wiki"}
 {"completeness": "full", "key": "wiki node create", "kind": "command", "path": "cards/cmd/command--wiki%20node%20create.md", "product": "wiki"}
 {"completeness": "full", "key": "wiki node delete", "kind": "command", "path": "cards/cmd/command--wiki%20node%20delete.md", "product": "wiki"}
 {"completeness": "full", "key": "wiki node list", "kind": "command", "path": "cards/cmd/command--wiki%20node%20list.md", "product": "wiki"}
 {"completeness": "full", "key": "wiki node move", "kind": "command", "path": "cards/cmd/command--wiki%20node%20move.md", "product": "wiki"}
 {"completeness": "full", "key": "wiki node search", "kind": "command", "path": "cards/cmd/command--wiki%20node%20search.md", "product": "wiki"}
+{"completeness": "partial", "key": "wiki space", "kind": "command", "path": "cards/cmd/command--wiki%20space.md", "product": "wiki"}
 {"completeness": "full", "key": "wiki space create", "kind": "command", "path": "cards/cmd/command--wiki%20space%20create.md", "product": "wiki"}
 {"completeness": "full", "key": "wiki space delete", "kind": "command", "path": "cards/cmd/command--wiki%20space%20delete.md", "product": "wiki"}
 {"completeness": "full", "key": "wiki space get", "kind": "command", "path": "cards/cmd/command--wiki%20space%20get.md", "product": "wiki"}

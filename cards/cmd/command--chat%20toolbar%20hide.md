@@ -1,10 +1,13 @@
 # dws chat toolbar hide
 
 kind: command
-completeness: full
+completeness: partial
+usage: dws chat toolbar hide
 description: 将入口从快捷栏可见区隐藏
+example: dws chat toolbar hide --conversation-id <cid> --shortcut-ids 101,102
 source: internal/helpers/chat/toolbar_hide.go:25
 visible_flags: 2
+partial_reason: unverified_flags
 
 ## Flags
 - --conversation-id <String> required: 会话 openConversationId

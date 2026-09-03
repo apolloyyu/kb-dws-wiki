@@ -2,15 +2,14 @@
 
 kind: command
 completeness: full
-description: 移除协作者权限
-source: internal/helpers/drive.go:2945
-visible_flags: 4
+usage: dws drive star remove
+description: 取消收藏文档
+example: dws drive star remove --node <nodeId_or_URL>
+source: internal/helpers/drive.go:3843
+visible_flags: 1
 
 ## Flags
-- --node <String>: 目标节点 ID 或 URL (必填)
-- --users <String>: 用户 userId 列表，逗号分隔 (旧格式)
-- --members <String>: 成员列表 JSON 数组（新格式），只需 type 和 id（USER/DEPT/TAG 还需 corpId），与 --users 互斥
-- --workspace <String>: 知识库 ID (选填)
+- --node <String>: 文档 ID 或 URL (必填)
 
 ## Related
 - dws drive star add

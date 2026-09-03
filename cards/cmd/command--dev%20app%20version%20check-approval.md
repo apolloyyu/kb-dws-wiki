@@ -2,10 +2,11 @@
 
 kind: command
 completeness: partial
+usage: dws dev app version check-approval
 description: —
-source: —
+source: internal/cli/param_aliases_generated.go:5509
 visible_flags: 0
-partial_reason: missing_description,missing_source
+partial_reason: unverified_usage,unverified_flags,missing_description
 
 ## Flags
 - none

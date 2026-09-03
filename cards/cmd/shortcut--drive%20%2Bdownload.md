@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws drive +download
 description: 安全下载钉盘文件到工作目录
 source: internal/shortcut/drive/drive.go:178
 visible_flags: 2

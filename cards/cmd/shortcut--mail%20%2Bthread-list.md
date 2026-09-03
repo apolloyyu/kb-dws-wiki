@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws mail +thread-list
 description: 列出指定邮箱文件夹下的邮件会话（thread）
 source: internal/shortcut/mail/mail.go:52
 visible_flags: 7

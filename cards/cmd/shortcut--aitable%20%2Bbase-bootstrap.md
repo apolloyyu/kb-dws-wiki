@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws aitable +base-bootstrap
 description: 一次创建 Base、数据表和字段，逐层读回验证并在中断时报告已知副作用
 source: internal/shortcut/aitable/base_composite.go:42
 visible_flags: 4

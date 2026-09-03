@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws devapp +version-publish
 description: 发布指定版本（含高敏权限需 --confirmed-sensitive）
 source: internal/shortcut/devapp/devapp.go:2472
 visible_flags: 4

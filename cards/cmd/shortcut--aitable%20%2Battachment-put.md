@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws aitable +attachment-put
 description: 准备凭证、实际 PUT 本地文件、写入 attachment 单元格并读回验证
 source: internal/shortcut/aitable/attachment_composite.go:35
 visible_flags: 7

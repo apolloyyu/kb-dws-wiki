@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws hrbrain profile performance
 description: 查询员工绩效记录
+example: dws hrbrain profile performance --work-no WORK_NO
 source: internal/helpers/hrbrain.go:621
 visible_flags: 1
 

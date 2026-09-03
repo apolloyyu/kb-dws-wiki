@@ -1,10 +1,13 @@
 # dws chat category list-by-conv
 
 kind: command
-completeness: full
+completeness: partial
+usage: dws chat category list-by-conv
 description: 拉取指定会话所属的用户自定义会话分组
+example: dws chat category list-by-conv --conversation-id <openConversationId>
 source: internal/helpers/chat.go:6055
 visible_flags: 1
+partial_reason: unverified_flags
 
 ## Flags
 - --conversation-id <String> required: 会话 openConversationId (必填)

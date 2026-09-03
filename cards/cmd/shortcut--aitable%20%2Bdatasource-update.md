@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws aitable +datasource-update
 description: 更新指定 AI 表格中已有数据源表的同步配置，支持更新源配置、自动同步开关和同步字段选择。更新后触发一次同步。仅适用于数据源表。
 source: internal/shortcut/aitable/datasource.go:125
 visible_flags: 6

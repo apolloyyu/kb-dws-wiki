@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws doc +comment-create-inline
 description: 兼容入口：按 block/start/end 创建划词评论
 source: internal/shortcut/doc/doc.go:594
 visible_flags: 7

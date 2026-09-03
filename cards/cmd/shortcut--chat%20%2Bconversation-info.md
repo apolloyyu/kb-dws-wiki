@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws chat +conversation-info
 description: 获取会话信息（群聊传 --group，单聊传 --open-dingtalk-id）
 source: internal/shortcut/chat/chat_conversation.go:34
 visible_flags: 2

@@ -1,11 +1,14 @@
 # dws chat message list-focused
 
 kind: command
-completeness: full
+completeness: partial
+usage: dws chat message list-focused
 description: Fetch messages from users the current user has marked as "special focus" (starred contacts).
+example: dws chat message list-focused --limit 50
 use_when: When the agent builds a priority-inbox view highlighting messages from important people.
 source: internal/helpers/chat.go:4455
 visible_flags: 2
+partial_reason: unverified_flags
 
 ## Flags
 - --limit <Int>: 每页返回数量（默认 50）

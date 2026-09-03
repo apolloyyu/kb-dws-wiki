@@ -2,7 +2,9 @@
 """dwsdoc — kb-dws-wiki 实体检索 CLI(对齐 kb-dingtalk-open-platform 的 dkdoc)。
 
 用法:
-  dwsdoc ctx <词>     ★一次打包检索:cmd/short/flag 三表命中+相关篇目正文+notes 节+审计(默认入口)
+  dwsdoc ctx <词>     ★一次打包检索:答案卡+cmd/short/flag+按需正文/notes(默认入口)
+  dwsdoc ctx --full <词>  强制旧版全文路径(跳过答案卡,用于回退/深查)
+  dwsdoc card <命令>  打印确定性答案卡(full 可直答;partial 还须读正文)
   dwsdoc cmd <词>     按命令名/描述搜主命令树(graph/commands.jsonl),显示 flags+源码行号
   dwsdoc short <词>   搜 +xxx 短命令(graph/shortcuts.jsonl)
   dwsdoc flag <名>    跨全部命令搜某个 flag 名(答"哪个命令有 --xxx")
@@ -15,6 +17,7 @@ import math
 import os
 import re
 import sys
+from urllib.parse import quote
 
 _CTX_BODY_CAP = 8000
 _CTX_TOTAL_CAP = 20000
@@ -176,14 +179,59 @@ def _tokenize(terms, hays):
 
 def _intent(q):
     """问法预判:一次到位决定额外带料,避免模型查完再查。"""
+    support = (any(k in q for k in ("支持", "有没有", "有吗", "能不能", "可以吗", "是否", "会不会", "会被", "能否"))
+               or bool(re.search(r"(?:能|可以).{0,3}(?:获取|查询|查看|拿到|取到|做到|实现|解析|发送|创建|删除|使用|读取)", q)))
     return {
-        "why":     any(k in q for k in ("为什么", "原理", "机制", "不一致", "冲突", "原因", "怎么回事")),
+        "why":     any(k in q for k in ("为什么", "原理", "机制", "不一致", "冲突", "原因", "怎么回事",
+                                             "怎么判断", "什么逻辑", "逻辑", "核对代码", "源码")),
         "howmany": any(k in q for k in ("多少", "上限", "有效期", "配额", "几个", "多久", "时长", "过期")),
-        "support": any(k in q for k in ("支持", "有没有", "能不能", "可以吗", "是否")),
+        "support": support,
+        "trouble": (any(k in q for k in ("报错", "错误", "失败", "异常", "打不开", "无权限", "暂无权限", "提示", "问题"))
+                    or bool(re.search(r"\b(error|failed|failure|exception|denied|required unless)\b", q))),
+        "enumerate": any(k in q for k in ("全部", "所有", "有哪些", "哪些", "盘点", "枚举", "什么类型", "哪种类型")),
+        "version": (any(k in q for k in ("版本", "兼容", "升级", "上线", "发布版", "还能用", "正常使用"))
+                    or bool(re.search(r"\bv?\d+\.\d+(?:\.\d+)?\b", q))),
+        "semantic": (any(k in q for k in ("只是", "还是", "云端", "本地", "其他人", "影响", "区别", "范围", "限制",
+                                                    "如果", "情况下", "先", "再", "然后", "之后", "前提"))
+                     or (support and (len(q) > 40 or any(k in q for k in ("以及", "及", "和", "、", "分别"))))),
     }
 
 
-def ctx_impl(q, raw_terms):
+def _card_path(kind, key):
+    fn = f"{kind}--{quote(key.strip(), safe='-_.')}.md"
+    return os.path.join(ROOT, "cards", "cmd", fn)
+
+
+def _read_card(kind, key):
+    p = _card_path(kind, key)
+    if not os.path.exists(p):
+        return None
+    body = open(p, encoding="utf-8", errors="replace").read()
+    return {"kind": kind, "key": key.strip(), "path": os.path.relpath(p, ROOT),
+            "full": "\ncompleteness: full\n" in "\n" + body,
+            "body": body.rstrip()}
+
+
+def _card_confident(rows, card=None):
+    """首名明显胜出，或同分第二名是首卡确定性 Related 兄弟时才走快路径。"""
+    if not rows:
+        return False
+    top = rows[0].get("_ctx_score", 0)
+    name_score = rows[0].get("_ctx_name_score", 0)
+    if top >= 100:                         # 命令名整句精确/前缀命中
+        return name_score > 0
+    second = rows[1].get("_ctx_score", 0) if len(rows) > 1 else 0
+    clear = not second or top >= second * 1.15
+    sibling_tie = False
+    if card and len(rows) > 1 and second and abs(top - second) < 1e-6:
+        r = rows[1]
+        key = (r["cmd"].strip() if card["kind"] == "command"
+               else f"{r.get('product', '')} {r['cmd']}".strip())
+        sibling_tie = f"- dws {key}\n" in card["body"] + "\n"
+    return name_score > 0 and top >= 6 and (clear or sibling_tie)
+
+
+def ctx_impl(q, raw_terms, force_full=False):
     """打包检索。异常由 main 捕获转 CTX_ERROR。"""
     out = []
     intent = _intent(q)
@@ -200,6 +248,10 @@ def ctx_impl(q, raw_terms):
                 c = (r.get("cmd") or "").strip().lower()
                 return 0 if c == q else 1 if c.startswith(q) else 2
             ex.sort(key=_rank)
+            for r in ex:
+                rank = _rank(r)
+                r["_ctx_score"] = 1000.0 if rank == 0 else 500.0 if rank == 1 else 100.0
+                r["_ctx_name_score"] = r["_ctx_score"] if rank <= 1 else 0.0
             return ex
         if not kws:
             return ex
@@ -223,7 +275,14 @@ def ctx_impl(q, raw_terms):
         sc = []
         for h, r in zip(hays, rows):
             s = sum(wt[w] for w in kws if _hit(w, h))
+            # 命令路径本身的命中比描述提及更强:问"怎么登录"时 auth login
+            # 应明显胜过描述含"登录态迁移"的 auth migrate-keychain。
+            name_h = (f"{r.get('product', '')} {r.get('cmd', '')}").strip().lower()
+            name_s = sum(wt[w] for w in kws if _hit(w, name_h))
+            s += 0.75 * name_s
             if s > 0:
+                r["_ctx_score"] = s
+                r["_ctx_name_score"] = name_s
                 sc.append((-s, h[:60], r))
         sc.sort()
         return [r for _, _, r in sc[:12]]
@@ -265,20 +324,62 @@ def ctx_impl(q, raw_terms):
         sd.sort()
         docs_hits = [r for _, _, r in sd]
 
+    # 答案卡分支可由 --full 或 KB_NO_CARDS=1 一键关闭；卡片不存在也自动退化旧全文。
+    cards_enabled = (not force_full and os.environ.get("KB_NO_CARDS") != "1"
+                     and os.path.isdir(os.path.join(ROOT, "cards", "cmd")))
+    # 主命令与 shortcut 统一竞选,全局只展开首名一张卡；多卡曾让输出 7.2KB，
+    # 比旧全文 6.1KB 还大，违背性能目标。其余候选只留一行摘要。
+    choices = []
     if cmds:
-        out.append("== 命令命中(cmd) ==")
-        for r in cmds[:8]:
-            out.append(f"● dws {r['cmd']}  —  {r['desc']}")
-            for d in r.get("defs", [])[:1]:
-                out.append(f"  源码: {d['file']}:{d['line']}")
-            if len(cmds) <= 3:
-                for f in r.get("flags", []):
-                    marks = "(必填)" if f.get("required") else ""
-                    out.append(f"    --{f['name']}  {f['type']}{marks}  {f.get('help','')[:70]}")
+        choices.append((cmds[0].get("_ctx_score", 0), "command", cmds[0], cmds))
     if shorts:
-        out.append("== 短命令命中(short) ==")
+        choices.append((shorts[0].get("_ctx_score", 0), "shortcut", shorts[0], shorts))
+    choices.sort(key=lambda x: (-x[0], x[1]))
+    top_score, top_kind, top_row, top_family = choices[0] if choices else (0, "", None, [])
+    top_key = ((top_row["cmd"].strip()) if top_kind == "command" else
+               (f"{top_row.get('product', '')} {top_row['cmd']}".strip()) if top_row else "")
+    top_card = _read_card(top_kind, top_key) if cards_enabled and top_row else None
+    # 简单“能否做 X”可由 full 卡的命令存在性直接回答；支持性本身不阻断。
+    # 但机制/数值/报错/枚举/版本/语义后果类必须保留正文。
+    card_blocked = any(intent[k] for k in
+                       ("why", "howmany", "trouble", "enumerate", "version", "semantic"))
+    card_fast = bool(top_card and top_card["full"] and _card_confident(top_family, top_card)
+                     and not card_blocked)
+    card_items = [top_card] if top_card else []
+
+    if card_items:
+        out.append("== 答案卡(card:full 可直接作答;partial 必须继续看正文) ==")
+        for c in card_items:
+            out.append(c["body"])
+        seen_cards = {(c["kind"], c["key"]) for c in card_items}
+        other_cmds = []
+        for r in cmds[:8]:
+            if ("command", r["cmd"].strip()) not in seen_cards:
+                other_cmds.append(f"● dws {r['cmd']}  —  {r['desc']}")
+        other_shorts = []
         for r in shorts[:6]:
-            out.append(f"● dws {r['product']} {r['cmd']}  —  {r['desc']}\n  源码: {r['file']}:{r['line']}")
+            key = f"{r.get('product', '')} {r['cmd']}".strip()
+            if ("shortcut", key) not in seen_cards:
+                other_shorts.append(f"● dws {key}  —  {r['desc']}")
+        if other_cmds or other_shorts:
+            out.append("== 其他候选(仅摘要;固定保留 shortcut 配额) ==")
+            out.extend(other_cmds[:5] + other_shorts[:3])
+    else:
+        # 回退路径保持 R10.1 行为不变。
+        if cmds:
+            out.append("== 命令命中(cmd) ==")
+            for r in cmds[:8]:
+                out.append(f"● dws {r['cmd']}  —  {r['desc']}")
+                for d in r.get("defs", [])[:1]:
+                    out.append(f"  源码: {d['file']}:{d['line']}")
+                if len(cmds) <= 3:
+                    for f in r.get("flags", []):
+                        marks = "(必填)" if f.get("required") else ""
+                        out.append(f"    --{f['name']}  {f['type']}{marks}  {f.get('help','')[:70]}")
+        if shorts:
+            out.append("== 短命令命中(short) ==")
+            for r in shorts[:6]:
+                out.append(f"● dws {r['product']} {r['cmd']}  —  {r['desc']}\n  源码: {r['file']}:{r['line']}")
     if flag_hits:
         out.append("== flag 命中 ==")
         out.extend(flag_hits[:8])
@@ -292,7 +393,10 @@ def ctx_impl(q, raw_terms):
     # 机制类问法把正文减到 1 篇(不再减到 0)——减到 0 会连带屏蔽有用信息,
     # 且命令表有命中时一律不减(命令类问法最需要它)。真正的降噪由 notes 排序保证。
     _mech = intent["why"] or intent["support"]
-    _n_body = 1 if (_mech and not (cmds or shorts)) else (1 if ent_total >= 1 else 2)
+    # full 卡 + 首名明显胜出 + 非机制/数值/支持/排障/枚举题时，正文归零；
+    # 任一条件不满足就保持 R10.1 的 1~2 篇正文，准确率优先。
+    _n_body = 0 if card_fast else (1 if (_mech and not (cmds or shorts))
+                                   else (1 if ent_total >= 1 else 2))
     body_docs = sorted(docs_hits, key=lambda r: (0 if r["layer"] == "mirror" else 1, r["path"]))[:_n_body]
     for i, r in enumerate(body_docs):
         p = os.path.join(ROOT, r["path"])
@@ -336,7 +440,7 @@ def ctx_impl(q, raw_terms):
 
     notes_hit = 0
     # support 也查 notes:"有没有 ACK/重试/去重机制"实质是机制题,只查命令表必空
-    if intent["why"] or intent["howmany"] or intent["support"]:
+    if not card_fast and (intent["why"] or intent["howmany"] or intent["support"]):
         nd = os.path.join(ROOT, "notes")
         # 整句常匹配不上,按词拆(去掉问法词本身),命中任一实词即取该节
         words = kw
@@ -364,11 +468,14 @@ def ctx_impl(q, raw_terms):
                 out.append("\n== 行为语义(notes,机制/数值类问法自动并入) ==")
                 out.extend(picked)
     out.append("\n== 检索审计 ==")
-    out.append(f"已检索: cmd/short/flag/find/notes · 关键词: {' '.join(raw_terms)}"
-               f" · 命中: cmd={len(cmds)} short={len(shorts)} flag={len(flag_hits)}"
+    out.append(f"已检索: card/cmd/short/flag/find/notes · 关键词: {' '.join(raw_terms)}"
+               f" · 命中: card={len(card_items)}(fast={int(card_fast)})"
+               f" cmd={len(cmds)} short={len(shorts)} flag={len(flag_hits)}"
                f" find={len(docs_hits)} notes={notes_hit}")
     out.append("== 继续 ==")
     hint = ["盘点用 dwsdoc cmd <产品>+short <产品> 枚举全量", "版本判定 cat docs/CHANGELOG.md"]
+    if card_fast:
+        hint.insert(0, "答案卡为 full 且首名明显胜出:字段齐全可直接作答,无需再 cat")
     if intent["howmany"]:
         hint.insert(0, "⚠️数值/时限类:上文若无确切数字,必须二级拉源码后 grep 常量(如 DefaultRefreshTokenLifetime),禁止用「无固定时长」回避")
     if intent["why"]:
@@ -418,22 +525,62 @@ def show_short(r):
         print(f"    --{f['name']}  {f['type']}  {f.get('desc','')}")
 
 
+def card_impl(q):
+    q = q.removeprefix("dws ").strip().lower()
+    candidates = []
+    for r in load("commands.jsonl"):
+        key = r["cmd"].strip()
+        hay = (key + " " + (r.get("desc") or "")).lower()
+        if q == key.lower() or q in hay:
+            rank = 0 if q == key.lower() else 1 if key.lower().startswith(q) else 2
+            candidates.append((rank, key, "command"))
+    for r in load("shortcuts.jsonl"):
+        key = f"{r.get('product', '')} {r['cmd']}".strip()
+        hay = (key + " " + (r.get("desc") or "")).lower()
+        if q == key.lower() or q in hay:
+            rank = 0 if q == key.lower() else 1 if key.lower().startswith(q) else 2
+            candidates.append((rank, key, "shortcut"))
+    shown = 0
+    for _, key, kind in sorted(candidates)[:6]:
+        card = _read_card(kind, key)
+        if not card:
+            continue
+        if shown:
+            print("\n---\n")
+        print(card["body"])
+        shown += 1
+        if shown >= 3:
+            break
+    if not shown:
+        print(f"未找到答案卡: {q};用 dwsdoc cmd/short 查实体,或 ctx --full 走正文")
+        return 1
+    return 0
+
+
 def main():
     if len(sys.argv) < 3:
         print(__doc__)
         return 2
-    op, q = sys.argv[1], " ".join(sys.argv[2:]).lower()
+    op = sys.argv[1]
     if op == "ctx":
         try:
-            # 调用方可能传多参数(ctx a b c)也可能传引号整串(ctx "a b c"),
-            # 后者若不再拆分,逐词检索会退化成整句子串匹配而全部落空。
-            terms = sys.argv[2:]
+            # --full 是独立回退开关;其余调用方可能传多参数(ctx a b c)或引号整串。
+            args = [x for x in sys.argv[2:] if x != "--full"]
+            force_full = len(args) != len(sys.argv[2:])
+            if not args:
+                print(__doc__)
+                return 2
+            q = " ".join(args).lower()
+            terms = args
             if len(terms) == 1:
                 terms = [w for w in re.split(r"[\s,，、]+", terms[0]) if w]
-            return ctx_impl(q, terms)
+            return ctx_impl(q, terms, force_full=force_full)
         except Exception as e:
             print(f"CTX_ERROR: {type(e).__name__}: {e};请改用分步命令(cmd/short/flag→find→cat)")
             return 1
+    q = " ".join(sys.argv[2:]).lower()
+    if op == "card":
+        return card_impl(q)
     if op == "cmd":
         hits = [r for r in load("commands.jsonl")
                 if q in r["cmd"].lower() or q in r["desc"].lower()]
@@ -442,7 +589,8 @@ def main():
         print(f"-- {len(hits)} 条命中(主命令树)。另可试 dwsdoc short {q}")
     elif op == "short":
         hits = [r for r in load("shortcuts.jsonl")
-                if q in r["cmd"].lower() or q in r["desc"].lower()]
+                if q in r.get("product", "").lower()
+                or q in r["cmd"].lower() or q in r["desc"].lower()]
         for r in hits[:12]:
             show_short(r)
         print(f"-- {len(hits)} 条命中(shortcut)")

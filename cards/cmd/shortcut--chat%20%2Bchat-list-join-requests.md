@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws chat +chat-list-join-requests
 description: 分页拉取入群验证记录
 source: internal/shortcut/chat/chat_group.go:1179
 visible_flags: 2

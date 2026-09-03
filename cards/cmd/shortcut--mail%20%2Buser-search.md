@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws mail +user-search
 description: 按关键词或工号搜索邮箱用户（仅企业邮箱）
 source: internal/shortcut/mail/mail.go:286
 visible_flags: 5

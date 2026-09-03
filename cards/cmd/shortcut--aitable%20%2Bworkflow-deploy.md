@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws aitable +workflow-deploy
 description: 创建或更新完整 workflow-dsl/v1，强制检查 valid/flowId，并可启用后验证 RUNNING 状态
 source: internal/shortcut/aitable/workflow_deploy.go:17
 visible_flags: 5

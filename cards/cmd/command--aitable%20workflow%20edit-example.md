@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws aitable workflow edit-example
 description: 获取工作流编辑文档与示例
+example: dws aitable workflow edit-example
 source: internal/helpers/aitable.go:5765
 visible_flags: 0
 

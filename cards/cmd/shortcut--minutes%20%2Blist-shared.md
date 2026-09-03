@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws minutes +list-shared
 description: 查询他人共享给我的听记列表
 source: internal/shortcut/minutes/minutes.go:88
 visible_flags: 5

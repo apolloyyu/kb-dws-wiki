@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws chat message list-unread-conversations
 description: Fetch the list of conversations that currently have unread messages for the user.
+example: dws chat message list-unread-conversations
 use_when: When the agent builds a "catch me up" triage view of what still needs reading.
 source: internal/helpers/chat.go:4547
 visible_flags: 2

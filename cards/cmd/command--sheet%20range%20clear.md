@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet range clear
 description: 清除工作表指定区域
+example: dws sheet range clear --node NODE_ID --sheet-id SHEET_ID --range "A1:B3" --yes
 source: internal/helpers/sheet_range_ops.go:295
 visible_flags: 4
 

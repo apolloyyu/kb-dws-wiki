@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws minutes +download
 description: 批量取得听记音视频地址并安全下载到本地
 source: internal/shortcut/minutes/alignment.go:67
 visible_flags: 5

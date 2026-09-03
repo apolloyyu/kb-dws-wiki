@@ -2,11 +2,13 @@
 
 kind: command
 completeness: partial
+usage: dws drive export
 description: Export an online doc from DingTalk Drive to a local file in docx/xlsx/markdown/pdf/pptx; submits the export task, polls it, and downloads the result in one step.
+example: dws drive export --node "https://alidocs.dingtalk.com/i/nodes/xxx" --output ./exported.docx
 use_when: When the agent needs the general export entry: exporting to xlsx/pptx or exporting a doc whose type is uncertain.
 source: internal/helpers/drive_export.go:388
 visible_flags: 4
-partial_reason: empty_flag_name
+partial_reason: unverified_flags,empty_flag_name
 
 ## Flags
 - --node <String>: 要导出的文档标识，支持 URL 或 dentryUuid (必填)

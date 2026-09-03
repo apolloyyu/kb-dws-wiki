@@ -2,16 +2,18 @@
 
 kind: command
 completeness: full
-description: 上传文件到钉钉文档或钉钉知识库
-source: internal/helpers/doc.go:1994
+usage: dws doc media upload
+description: 上传可复用的文档媒体资源
+example: dws doc media upload --node DOC_ID --file ./icon.svg --mime-type image/svg+xml --format json
+source: internal/helpers/doc.go:2943
 visible_flags: 5
 
 ## Flags
+- --node <String>: 绑定媒体资源的文档标识，支持传入 URL 或 ID (必填)
 - --file <String>: 本地文件路径 (必填)
-- --name <String>: 文件显示名称 (默认使用文件名)
-- --folder <String>: 目标文档文件夹 nodeId 或 alidocs 文件夹 URL；不要传 drive dentryId/parent-id
-- --workspace <String>: 目标知识库 ID
-- --convert <Bool>: 是否转换为钉钉在线文档
+- --name <String>: 资源文件名 (默认使用本地文件名)
+- --mime-type <String>: 文件 MIME 类型 (默认根据扩展名推断)
+- --yes <Bool>: 确认上传可复用文档媒体资源
 
 ## Related
 - dws doc media download

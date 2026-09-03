@@ -1,15 +1,19 @@
 # dws recruit
 
 kind: command
-completeness: full
-description: 钉钉招聘
-source: internal/helpers/recruit.go:70
+completeness: partial
+usage: dws recruit
+description: —
+use_when: (derived parent:由规范子命令路径证明)
+source: —
 visible_flags: 0
+partial_reason: unverified_flags,missing_description,missing_source
 
 ## Flags
 - none
 
 ## Related
+- dws recruit job
 - dws recruit job create
 - dws recruit job get
 - dws recruit job list

@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet filter delete
 description: 删除全局筛选
+example: dws sheet filter delete --node NODE_ID --sheet-id SHEET_ID --yes
 source: internal/helpers/sheet_filter_view.go:291
 visible_flags: 2
 

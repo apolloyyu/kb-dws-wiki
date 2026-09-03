@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws devapp +credentials-get
 description: 读取开放平台应用凭证
 source: internal/shortcut/devapp/devapp.go:925
 visible_flags: 1

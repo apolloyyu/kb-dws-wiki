@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws chat +chat-get-by-id
 description: 根据群号获取群聊信息
 source: internal/shortcut/chat/chat_group.go:1261
 visible_flags: 1

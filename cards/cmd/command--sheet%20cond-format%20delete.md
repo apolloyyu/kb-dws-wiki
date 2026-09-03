@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet cond-format delete
 description: 删除条件格式规则
+example: dws sheet cond-format delete --node NODE_ID --sheet-id SHEET_ID --rule-id RULE_ID --yes
 source: internal/helpers/sheet_cond_format.go:351
 visible_flags: 4
 

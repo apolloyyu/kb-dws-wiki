@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws contact +list-roster-fields
 description: 查询花名册有权限的字段列表
 source: internal/shortcut/contact/contact.go:747
 visible_flags: 0

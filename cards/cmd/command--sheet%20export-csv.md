@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet export-csv
 description: 导出单个工作表为纯 CSV（同步）
+example: dws sheet export-csv --node NODE_ID
 source: internal/helpers/sheet_export_csv.go:29
 visible_flags: 6
 
@@ -17,7 +19,7 @@ visible_flags: 6
 ## Related
 - dws sheet add-dimension
 - dws sheet append
-- dws sheet batch-set-style
 - dws sheet batch-update
 - dws sheet changeset-get
+- dws sheet chart
 - dws sheet comment

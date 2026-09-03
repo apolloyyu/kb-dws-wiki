@@ -2,14 +2,17 @@
 
 kind: command
 completeness: full
-description: 列出空间（知识库 / 钉盘空间）
-source: internal/helpers/wiki.go:291
-visible_flags: 3
+usage: dws wiki node list
+description: 列出知识库节点
+example: dws wiki node list --workspace <workspaceId>
+source: internal/helpers/wiki.go:971
+visible_flags: 4
 
 ## Flags
-- --type <String>: 空间类型: orgWikiSpace(默认) / myWikiSpace / orgSpace(钉盘企业空间) / mySpace(钉盘我的文件)
-- --limit <String>: 每页数量 1-50 (默认 20)
-- --cursor <String>: 分页游标 (首页留空)
+- --workspace <String>: 知识库 ID (必填)
+- --folder <String>: 父节点 nodeId (选填，不传则列出根目录)
+- --limit <Int>: 每页数量 (默认 50，最大 50)
+- --cursor <String>: 分页游标
 
 ## Related
 - dws wiki node copy

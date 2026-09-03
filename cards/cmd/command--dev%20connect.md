@@ -2,10 +2,12 @@
 
 kind: command
 completeness: partial
+usage: dws dev connect
 description: 建联：把现成机器人接到当前本地 agent（起 Stream，不建号）
+example: dws dev connect --channel workbuddy --robot-client-id <id> --robot-client-secret <secret>
 source: internal/helpers/devapp_connect.go:443
 visible_flags: 29
-partial_reason: too_many_flags:29
+partial_reason: unverified_flags,too_many_flags:29
 
 ## Flags
 - --守护进程模式：把连接器放到后台运行（脱离终端），父进程打印 pid/日志路径后退出（Windows 暂不支持） <Bool>: —
@@ -19,4 +21,6 @@ partial_reason: too_many_flags:29
 - … 21 more; use dwsdoc cmd/short for full flags
 
 ## Related
-- none
+- dws dev app
+- dws dev doc
+- dws dev mcp

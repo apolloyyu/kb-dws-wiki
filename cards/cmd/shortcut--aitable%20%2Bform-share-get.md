@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws aitable +form-share-get
 description: 读取视图当前的分享表单配置
 source: internal/shortcut/aitable/aitable.go:1910
 visible_flags: 3

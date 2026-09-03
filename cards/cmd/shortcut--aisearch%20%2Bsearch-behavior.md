@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws aisearch +search-behavior
 description: 搜索发送、创建、分享、编辑或接收等企业行为记录
 source: internal/shortcut/aisearch/aisearch.go:151
 visible_flags: 6

@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +unread-chats
 description: 列出我有未读消息的会话（投影会话名/未读数/会话ID）
 source: internal/shortcut/smart/unread_chats.go:48
 visible_flags: 2

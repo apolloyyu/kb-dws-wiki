@@ -2,16 +2,20 @@
 
 kind: command
 completeness: full
-description: 获取 AI 表格列表
-source: internal/helpers/aitable.go:1722
+usage: dws aitable form list
+description: 列出表单视图
+example: dws aitable form list --base-id BASE_ID --table-id TABLE_ID
+source: internal/helpers/aitable.go:5150
 visible_flags: 2
 
 ## Flags
-- --limit <Int>: 每页数量，默认 10，最大 10
-- --cursor <String>: 首次不传；传入上次返回的游标继续获取下一页
+- --base-id <String>: 所属 Base ID (必填)
+- --table-id <String>: 所属 Table ID (必填)
 
 ## Related
 - dws aitable form create
 - dws aitable form delete
+- dws aitable form field
 - dws aitable form get
-- dws aitable form update
+- dws aitable form questions
+- dws aitable form share

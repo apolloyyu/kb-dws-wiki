@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws calendar event suggest
 description: Suggest candidate meeting time slots based on participants' busy/free data and constraints.
+example: dws calendar event suggest --users userId1,userId2 --duration 60
 use_when: When the agent is coordinating a meeting and wants ranked time suggestions rather than raw busy data.
 source: internal/helpers/calendar.go:503
 visible_flags: 5

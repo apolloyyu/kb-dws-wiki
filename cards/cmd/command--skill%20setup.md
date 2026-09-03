@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws skill setup
 description: 安装 dws 自身 skill 到 Agent 目录
+example: dws skill setup --mode multi --target claude --dry-run
 source: internal/app/skill_setup.go:192
 visible_flags: 6
 

@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws doc +checkpoint-update
 description: 先保存可回滚版本，再更新并读回验证
 source: internal/shortcut/doc/content_shortcuts.go:471
 visible_flags: 3

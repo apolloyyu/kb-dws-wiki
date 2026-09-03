@@ -1,10 +1,13 @@
 # dws chat message search-advanced
 
 kind: command
-completeness: full
+completeness: partial
+usage: dws chat message search-advanced
 description: 多维度搜索消息
+example: dws chat message search-advanced --query "周报" --start "2026-04-01T00:00:00+08:00" --end "2026-04-15T00:00:00+08:00"
 source: internal/helpers/chat.go:4651
 visible_flags: 14
+partial_reason: unverified_flags
 
 ## Flags
 - --query <String>: 搜索关键词（可选）
@@ -15,12 +18,7 @@ visible_flags: 14
 - --at-ids <String>: @指定人的 openDingTalkId 列表，逗号分隔（可选）
 - --conversation-ids <String>: 会话 openConversationId 列表，逗号分隔（可选，群聊或单聊均可，不传则搜索所有会话）
 - --message-type <String>: 下层消息类型过滤值（可选，以当前 IM Schema 支持值为准）
-- --only-robot <Bool>: 只搜索机器人消息（可选；显式传 false 时也会传给下层）
-- --conversation-type <String>: 下层会话类型过滤值（可选，以当前 IM Schema 支持值为准）
-- --start <String>: 开始时间，ISO-8601 格式（可选）
-- --end <String>: 结束时间，ISO-8601 格式（可选）
-- --cursor <String>: 分页游标（默认 \"0\"）
-- --limit <Int>: 每页返回数量（默认 100）
+- … 6 more; use dwsdoc cmd/short for full flags
 
 ## Related
 - dws chat message add-emoji

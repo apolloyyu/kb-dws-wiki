@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws skill search
 description: 从钉钉技能市场搜索技能
+example: dws skill search --query 关键词
 source: internal/app/skill_command.go:322
 visible_flags: 3
 

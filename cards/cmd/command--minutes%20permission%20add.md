@@ -1,13 +1,15 @@
 # dws minutes permission add
 
 kind: command
-completeness: full
-description: 添加个人热词
-source: internal/helpers/minutes.go:1254
-visible_flags: 1
+completeness: partial
+usage: dws minutes permission add
+description: —
+source: internal/cli/param_aliases_generated.go:9224
+visible_flags: 0
+partial_reason: unverified_usage,unverified_flags,missing_description
 
 ## Flags
-- --words <String>: 要添加的热词，多个用逗号分隔 (必填)
+- none
 
 ## Related
 - dws minutes permission apply

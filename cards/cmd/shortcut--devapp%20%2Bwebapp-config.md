@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws devapp +webapp-config
 description: 配置网页应用能力
 source: internal/shortcut/devapp/devapp.go:1028
 visible_flags: 5

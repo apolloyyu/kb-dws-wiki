@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +reschedule
 description: 改一个已有日程的时间（只动开始/结束时间，其他字段不变）
 source: internal/shortcut/smart/reschedule.go:39
 visible_flags: 3

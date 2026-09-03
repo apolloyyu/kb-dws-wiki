@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws doc +export
 description: 提交、轮询并安全下载在线文档导出文件
 source: internal/shortcut/doc/content_shortcuts.go:552
 visible_flags: 4

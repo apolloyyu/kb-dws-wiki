@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws mail mailbox shared-with-me
 description: 查询共享给我的邮箱
+example: dws mail mailbox shared-with-me
 source: internal/helpers/mail.go:205
 visible_flags: 2
 
@@ -12,3 +14,4 @@ visible_flags: 2
 
 ## Related
 - dws mail mailbox list
+- dws mail mailbox profile

@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws contact user get-self
 description: Retrieve the profile of the currently authenticated user.
+example: dws contact user get-self
 use_when: When the agent needs to identify who it is acting on behalf of (user ID, name, org).
 source: internal/helpers/contact.go:961
 visible_flags: 0
@@ -11,9 +13,9 @@ visible_flags: 0
 - none
 
 ## Related
+- dws contact user dismission
 - dws contact user get
 - dws contact user invite
+- dws contact user profile
 - dws contact user search
 - dws contact user search-mobile
-- dws contact user update
-- dws contact user update-ownness

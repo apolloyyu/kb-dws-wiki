@@ -2,13 +2,15 @@
 
 kind: command
 completeness: full
-description: 查询个人考勤详情
-source: internal/helpers/attendance.go:589
+usage: dws attendance globalsetting get
+description: 查询全局规则设置（仅管理员）
+example: dws attendance globalsetting get --scope 企业 --setting-scene checkRemind
+source: internal/helpers/attendance.go:3292
 visible_flags: 2
 
 ## Flags
-- --user <String>: 钉钉用户 ID (必填)
-- --date <String>: 查询日期，格式 YYYY-MM-DD (必填)
+- --setting-scene <String>: 查询设置项：checkRemind/fastCheck/checkResultNotify/lackRemind/personalAttendStatNotify/bossAttendStatNotify（必填）
+- --scope <String>: 全局范围确认，必须明确输入：企业/全公司/所有人（必填）
 
 ## Related
 - dws attendance globalsetting save

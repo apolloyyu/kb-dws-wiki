@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws chat +chat-remove-bot
 description: 从群内移除机器人
 source: internal/shortcut/chat/chat_group.go:1399
 visible_flags: 2

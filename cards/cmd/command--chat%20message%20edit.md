@@ -1,14 +1,17 @@
 # dws chat message edit
 
 kind: command
-completeness: full
+completeness: partial
+usage: dws chat message edit
 description: 编辑消息
+example: dws chat message edit --conversation-id <openConversationId> --message-id <openMessageId> --text "更新后的内容"
 source: internal/helpers/chat.go:4833
 visible_flags: 7
+partial_reason: unverified_flags
 
 ## Flags
-- --conversation-id <String>: 会话 openConversationId (必填)
 - --message-id <String> required: 消息 openMessageId (必填)
+- --conversation-id <String>: 会话 openConversationId (必填)
 - --text <String>: 编辑后的 Markdown 正文；与 --content 二选一
 - --title <String>: 消息标题；配合 --text 使用，未传时从正文自动生成
 - --content <String>: 完整 Markdown content JSON；与 --text 二选一

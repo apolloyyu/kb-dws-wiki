@@ -2,13 +2,15 @@
 
 kind: command
 completeness: full
-description: 删除日程
-source: internal/helpers/calendar.go:453
-visible_flags: 2
+usage: dws calendar acl delete
+description: 删除日历访问权限
+example: dws calendar acl delete --acl-id ACL_ID
+source: internal/helpers/calendar.go:1430
+visible_flags: 1
 
 ## Flags
-- --id <String>: 日程 ID (必填)
-- --calendar-id <String>: 日历 ID (可选，默认 primary 主日历；指定其他日历本时填写，可通过 book list 获取)
+- --acl-id <String>: 已授予权限的 ID (必填，可通过 acl list 查询)
 
 ## Related
+- dws calendar acl add
 - dws calendar acl list

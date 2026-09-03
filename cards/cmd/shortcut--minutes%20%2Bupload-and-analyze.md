@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws minutes +upload-and-analyze
 description: 本地音视频直传听记并等待分析产物，可选思维导图和发言人洞察
 source: internal/shortcut/minutes/workflows.go:63
 visible_flags: 13

@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws attendance vacation balance
 description: 查询指定员工假期余额
+example: dws attendance vacation balance --users userId1,userId2 --leave-code a1b2c3d4-e5f6-7890-abcd-ef1234567890
 source: internal/helpers/attendance.go:3735
 visible_flags: 2
 

@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws drive permission apply-info
 description: 查询节点可申请的角色与审批人
+example: dws drive permission apply-info --node DOC_ID
 source: internal/helpers/drive.go:3160
 visible_flags: 1
 

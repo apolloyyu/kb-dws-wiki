@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws doc +create-from-template
 description: 使用已选定的 templateId 创建文档
 source: internal/shortcut/doc/history_template_shortcuts.go:428
 visible_flags: 6

@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws doc +media-insert
 description: 上传本地图片或文件并插入文档正文
 source: internal/shortcut/doc/media_style_shortcuts.go:39
 visible_flags: 7

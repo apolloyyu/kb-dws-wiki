@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws oa approval list-by-admin
 description: 以管理员身份查询审批模板的实例列表
+example: dws oa approval list-by-admin --process-code <code> --start "2026-03-10T00:00:00+08:00" --cursor 0 --limit 20
 source: internal/helpers/oa.go:1950
 visible_flags: 8
 
@@ -17,9 +19,9 @@ visible_flags: 8
 - --request <String>: 完整请求 JSON（高级模式；与简单模式参数互斥）
 
 ## Related
+- dws oa approval append-task
 - dws oa approval approve
+- dws oa approval attachment
 - dws oa approval create-instance
 - dws oa approval detail
-- dws oa approval forecast-process
-- dws oa approval form-schema
-- dws oa approval list-cc
+- dws oa approval ding-info

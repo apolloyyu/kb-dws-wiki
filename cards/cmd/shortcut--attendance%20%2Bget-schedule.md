@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws attendance +get-schedule
 description: 获取指定用户一段时间内的排班记录
 source: internal/shortcut/attendance/attendance.go:559
 visible_flags: 3

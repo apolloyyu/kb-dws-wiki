@@ -2,12 +2,15 @@
 
 kind: command
 completeness: full
-description: 获取 AI 表格信息
-source: internal/helpers/aitable.go:1812
-visible_flags: 1
+usage: dws aitable workflow get
+description: 获取单个工作流详情
+example: dws aitable workflow get --base-id BASE_ID --workflow-id WORKFLOW_ID
+source: internal/helpers/aitable.go:5948
+visible_flags: 2
 
 ## Flags
-- --base-id <String>: Base 唯一标识。优先使用 base search / base list 返回值 (必填)
+- --base-id <String>: 目标 Base ID (必填)
+- --workflow-id <String>: 目标工作流 ID (必填)
 
 ## Related
 - dws aitable workflow create

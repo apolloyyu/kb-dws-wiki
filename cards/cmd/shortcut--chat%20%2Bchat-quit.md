@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws chat +chat-quit
 description: 退出群聊
 source: internal/shortcut/chat/chat_group.go:519
 visible_flags: 1

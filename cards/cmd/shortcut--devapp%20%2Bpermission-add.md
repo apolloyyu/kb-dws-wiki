@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws devapp +permission-add
 description: 申请开放平台应用权限点
 source: internal/shortcut/devapp/devapp.go:1248
 visible_flags: 2

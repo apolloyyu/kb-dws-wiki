@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws aitable base copy
 description: 复制 AI 表格
+example: dws aitable base copy --base-id BASE_ID --target-folder-id FOLDER_NODE_ID
 source: internal/helpers/aitable.go:1985
 visible_flags: 3
 

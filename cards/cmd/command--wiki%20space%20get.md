@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws wiki space get
 description: 查看知识库详情
+example: dws wiki space get --workspace <workspaceId>
 source: internal/helpers/wiki.go:240
 visible_flags: 1
 

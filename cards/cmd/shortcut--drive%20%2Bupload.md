@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws drive +upload
 description: 从工作目录上传普通文件到钉盘或文档空间并读回验证
 source: internal/shortcut/drive/catalog_operations.go:430
 visible_flags: 7

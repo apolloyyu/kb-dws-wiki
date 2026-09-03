@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws chat group list-join-validations
 description: 分页拉取入群验证记录
+example: dws chat group list-join-validations
 source: internal/helpers/chat.go:9443
 visible_flags: 2
 

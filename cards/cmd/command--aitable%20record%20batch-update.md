@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws aitable record batch-update
 description: 批量更新记录（同一 cells 应用到多条 recordId）
+example: dws aitable record batch-update --base-id BASE_ID --table-id TABLE_ID
 source: internal/helpers/aitable.go:3219
 visible_flags: 4
 

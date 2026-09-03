@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws sheet ungroup-dimension
 description: 取消指定连续行/列分组
+example: dws sheet ungroup-dimension --node NODE_ID --sheet-id SHEET_ID --range "3:7"
 source: internal/helpers/sheet_dimension.go:736
 visible_flags: 3
 
@@ -14,7 +16,7 @@ visible_flags: 3
 ## Related
 - dws sheet add-dimension
 - dws sheet append
-- dws sheet batch-set-style
 - dws sheet batch-update
 - dws sheet changeset-get
+- dws sheet chart
 - dws sheet comment

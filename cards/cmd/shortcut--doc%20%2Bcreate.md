@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws doc +create
 description: 从 Markdown 或 JSONML 创建在线文字文档
 source: internal/shortcut/doc/content_shortcuts.go:63
 visible_flags: 5

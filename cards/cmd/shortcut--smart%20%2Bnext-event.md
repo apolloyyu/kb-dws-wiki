@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws smart +next-event
 description: 查看接下来最近的一个日程（默认扫描未来 7 天）
 source: internal/shortcut/smart/next_event.go:39
 visible_flags: 0

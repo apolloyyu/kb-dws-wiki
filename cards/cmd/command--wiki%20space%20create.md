@@ -2,7 +2,9 @@
 
 kind: command
 completeness: full
+usage: dws wiki space create
 description: 创建知识库
+example: dws wiki space create --name "产品文档库"
 source: internal/helpers/wiki.go:179
 visible_flags: 3
 

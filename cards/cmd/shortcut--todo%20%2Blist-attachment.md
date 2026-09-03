@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws todo +list-attachment
 description: 查询待办任务的附件列表
 source: internal/shortcut/todo/todo.go:426
 visible_flags: 1

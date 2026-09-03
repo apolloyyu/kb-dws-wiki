@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws drive +search-docs
 description: 搜索文档空间文档
 source: internal/shortcut/drive/drive.go:361
 visible_flags: 2

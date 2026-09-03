@@ -2,6 +2,7 @@
 
 kind: shortcut
 completeness: full
+usage: dws todo +comment
 description: 添加待办评论并读回验证
 source: internal/shortcut/todo/lifecycle.go:332
 visible_flags: 2

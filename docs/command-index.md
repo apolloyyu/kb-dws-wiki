@@ -1,6 +1,6 @@
 ---
 source_path: "docs/command-index.md"
-source_commit: "e6661a8"
+source_commit: "e6661a8f"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 

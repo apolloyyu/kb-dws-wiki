@@ -4,7 +4,7 @@ kind: command
 completeness: partial
 usage: dws minutes
 description: —
-source: internal/shortcut/smart/minutes_contract.go:127
+source: internal/shortcut/minutes/contracts.go:54
 visible_flags: 0
 partial_reason: unverified_usage,unverified_flags,missing_description
 

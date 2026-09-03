@@ -902,7 +902,7 @@
 {"completeness": "full", "key": "oa approval search-forms", "kind": "command", "path": "cards/cmd/command--oa%20approval%20search-forms.md", "product": "oa"}
 {"completeness": "full", "key": "oa approval tasks", "kind": "command", "path": "cards/cmd/command--oa%20approval%20tasks.md", "product": "oa"}
 {"completeness": "full", "key": "pat", "kind": "command", "path": "cards/cmd/command--pat.md", "product": "pat"}
-{"completeness": "partial", "key": "pat browser-policy", "kind": "command", "path": "cards/cmd/command--pat%20browser-policy.md", "product": "pat"}
+{"completeness": "full", "key": "pat browser-policy", "kind": "command", "path": "cards/cmd/command--pat%20browser-policy.md", "product": "pat"}
 {"completeness": "full", "key": "pat chmod", "kind": "command", "path": "cards/cmd/command--pat%20chmod.md", "product": "pat"}
 {"completeness": "partial", "key": "plugin", "kind": "command", "path": "cards/cmd/command--plugin.md", "product": "plugin"}
 {"completeness": "partial", "key": "plugin build", "kind": "command", "path": "cards/cmd/command--plugin%20build.md", "product": "plugin"}

@@ -32,8 +32,25 @@ def ctx_impl(q, raw_terms):
     """打包检索。异常由 main 捕获转 CTX_ERROR。"""
     out = []
     intent = _intent(q)
-    cmds = [r for r in load("commands.jsonl") if q in r["cmd"].lower() or q in r["desc"].lower()]
-    shorts = [r for r in load("shortcuts.jsonl") if q in r["cmd"].lower() or q in r["desc"].lower()]
+    # 三表匹配:整句优先(精确);整句无果时逐词 OR 按命中词数排序。
+    # 自然问句("oa 审批 实例 发起 附件 是否")整句永远匹配不到命令名,不降级则 cmd 恒为 0,
+    # 模型会据此误判"命令不存在"(实录 Q238:把正确答案自我更正成错的)。
+    def _pick3(rows, keyf, kws):
+        ex = [r for r in rows if q in keyf(r)]
+        if ex or len(kws) < 2:
+            return ex
+        sc = []
+        for r in rows:
+            h = keyf(r)
+            n = sum(1 for w in kws if w in h)
+            if n:
+                sc.append((-n, h[:60], r))
+        sc.sort()
+        return [r for _, _, r in sc[:12]]
+
+    _kws = [w.lower() for w in raw_terms if len(w) > 1]
+    cmds = _pick3(load("commands.jsonl"), lambda r: (r["cmd"] + " " + r["desc"]).lower(), _kws)
+    shorts = _pick3(load("shortcuts.jsonl"), lambda r: (r["cmd"] + " " + r["desc"]).lower(), _kws)
     qq = q.lstrip("-")
     flag_hits = []
     for r in load("commands.jsonl"):
@@ -90,8 +107,10 @@ def ctx_impl(q, raw_terms):
     # 机制/支持性问法:答案在 notes 而非产品文档,此时篇目正文常是噪音
     # (实录:问 ACK 机制,aitable-advperm 因标题含"服务端"抢占正文位,把正解挤到第408行)。
     # 故此类问法下篇目只列标题,正文版面留给 notes。
+    # 机制类问法把正文减到 1 篇(不再减到 0)——减到 0 会连带屏蔽有用信息,
+    # 且命令表有命中时一律不减(命令类问法最需要它)。真正的降噪由 notes 排序保证。
     _mech = intent["why"] or intent["support"]
-    _n_body = 0 if (_mech and not (cmds or shorts)) else (1 if ent_total >= 1 else 2)
+    _n_body = 1 if (_mech and not (cmds or shorts)) else (1 if ent_total >= 1 else 2)
     body_docs = sorted(docs_hits, key=lambda r: (0 if r["layer"] == "mirror" else 1, r["path"]))[:_n_body]
     for i, r in enumerate(body_docs):
         p = os.path.join(ROOT, r["path"])

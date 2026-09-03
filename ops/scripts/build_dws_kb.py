@@ -203,6 +203,92 @@ def extract_clipaths(src):
     return out
 
 
+# ---------- cobra 命令树:补 command-index 与 CLIPath 都没有的整族命令 ----------
+# 上游 docs/command-index.md 只收产品命令,CLI 自身的 auth/profile/config/connect/
+# skill/mcp 等整族一条不收(实录:`grep -c "dws auth" command-index.md` = 0)。
+# 后果是 KB 里查不到 `auth login`/`auth status`,而这是最高频的登录态问题 ——
+# 助理查不到就可能答"不支持"(同类实录 Q238)。故从 cobra 源码把命令树整棵推出来补漏。
+_FUNC_RE = re.compile(r'^func\s+(\w+)\s*\([^)]*\)\s*\*cobra\.Command\s*\{', re.M)
+_CALL_RE = re.compile(r'\b(\w+)\s*\(')
+_FIELD_RE = {k: re.compile(r'(?:^|\n)\s*%s:\s*"((?:[^"\\]|\\.)*)"' % k)
+             for k in ("Use", "Short")}
+
+
+def _scan_block(text, i, op="{", cl="}"):
+    """从 text[i]==op 起配平到闭合,跳过 "…"、`…`、// 注释;返回块内文本。
+    必须字符串感知:朴素正则会被 `Aliases: []string{"im"}` 里的 } 截断,回溯到
+    下一个命令字面量,把 chat 的 Short 抓成 chat chmod 的(v1 实录)。"""
+    depth, j, n = 0, i, len(text)
+    while j < n:
+        c = text[j]
+        if c == '"':
+            j += 1
+            while j < n and text[j] != '"':
+                j += 2 if text[j] == "\\" else 1
+        elif c == "`":
+            j += 1
+            while j < n and text[j] != "`":
+                j += 1
+        elif c == "/" and j + 1 < n and text[j + 1] == "/":
+            while j < n and text[j] != "\n":
+                j += 1
+        elif c == op:
+            depth += 1
+        elif c == cl:
+            depth -= 1
+            if depth == 0:
+                return text[i + 1:j]
+        j += 1
+    return text[i + 1:]
+
+
+def extract_cobra_tree(src):
+    """返回 {命令全路径: (Short, 文件, 行号)};函数体内第一个字面量 = 该函数返回的命令。"""
+    nodes = {}
+    for dirpath, _, files in os.walk(os.path.join(src, "internal")):
+        if os.sep + "shortcut" in dirpath:
+            continue
+        for fn in files:
+            if not fn.endswith(".go") or fn.endswith("_test.go"):
+                continue
+            path = os.path.join(dirpath, fn)
+            text = open(path, encoding="utf-8", errors="replace").read()
+            for m in _FUNC_RE.finditer(text):
+                body = _scan_block(text, text.index("{", m.end() - 1))
+                lit = None
+                for lm in re.finditer(r'&cobra\.Command\{', body):
+                    blk = _scan_block(body, lm.end() - 1)
+                    um = _FIELD_RE["Use"].search(blk)
+                    if um:
+                        sm = _FIELD_RE["Short"].search(blk)
+                        lit = (um.group(1).split()[0], sm.group(1) if sm else "")
+                        break
+                if not lit:
+                    continue
+                kids = []
+                for am in re.finditer(r'AddCommand\s*\(', body):
+                    kids += _CALL_RE.findall(_scan_block(body, am.end() - 1, "(", ")"))
+                nodes[m.group(1)] = {"use": lit[0], "short": lit[1], "kids": kids,
+                                     "file": rel(path, src),
+                                     "line": text[:m.start()].count("\n") + 1}
+    referenced = {k for n in nodes.values() for k in n["kids"]}
+    paths = {}
+
+    def walk(fn, prefix, seen):
+        n = nodes.get(fn)
+        if not n or fn in seen:
+            return
+        path = (prefix + [n["use"]]) if n["use"] != "dws" else []
+        if path:
+            paths[" ".join(path)] = n
+        for k in n["kids"]:
+            walk(k, path, seen | {fn})
+
+    for r in (f for f, n in nodes.items() if f not in referenced and n["kids"]):
+        walk(r, [], set())
+    return paths
+
+
 def attach(cmds, defs):
     """把 flag 定义挂到 command-index 的完整路径上:叶名匹配+父级/产品词消歧。"""
     by_leaf = {}
@@ -315,9 +401,17 @@ def main():
             continue
         if cp not in cmds:
             cmds[cp] = {"desc": "", "when": "(source-only: command-index 未收录,以源码为准)"}
+    n_clipath = len(cmds) - n_index
+    # cobra 树补漏:只填 index/CLIPath 都没有的路径,已有条目的 desc 一律不覆盖
+    # (index 是上游文档,业务描述比源码 Short 权威)
+    for cp, node in extract_cobra_tree(src).items():
+        if cp not in cmds:
+            cmds[cp] = {"desc": node["short"],
+                        "when": "(source-only: 由 cobra 命令树推出,以源码为准)"}
     defs = extract_flags(src)
     rows, unresolved = attach(cmds, defs)
-    print(f"命令: index {n_index} + 源码补充 {len(cmds)-n_index}")
+    print(f"命令: index {n_index} + CLIPath {n_clipath} + cobra 树 "
+          f"{len(cmds)-n_index-n_clipath}")
     shortcuts = extract_shortcuts(src)
 
     # lint

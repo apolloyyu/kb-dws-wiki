@@ -1,14 +1,15 @@
 # 构建对账
 
-- 源码 commit:e6661a8f
+- 源码 commit:e6661a8
 - 镜像文件:118
-- 主命令:807(带 flags:691,归属未定:15)
+- 主命令:883(带 flags:723,归属未定:16)
 - shortcuts:468
 - 文档索引:127 篇
 
 ## 归属未定(退回源码 grep,不影响存在性判断)
 - aitable workflow history
 - aitable workflow run
+- auth reset
 - chat thread create-group
 - chat thread promote
 - chat thread recall-message

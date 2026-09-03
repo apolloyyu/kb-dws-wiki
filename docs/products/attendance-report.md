@@ -1,6 +1,6 @@
 ---
 source_path: "skills/mono/references/products/attendance-report.md"
-source_commit: "e6661a8f"
+source_commit: "e6661a8"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 

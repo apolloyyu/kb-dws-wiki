@@ -73,6 +73,40 @@ def _hit(word, hay):
     return any(v in hay for v in _VARIANTS.get(word, (word,)))
 
 
+# 检索停用词:疑问/虚词无区分度;"dws" 是本库自身名字,正如"钉钉"之于钉钉文档库——
+# 它极少出现在 desc 里,IDF 反而给它最高权重,会把仅仅描述里提了一句 dws 的
+# 无关命令顶到首位(实录:"dws 怎么登录"返回 aitable info / drive list-spaces)。
+_STOPWORDS = {
+    "dws", "怎么", "如何", "怎样", "什么", "哪些", "哪个", "是否", "能否", "可以",
+    "能不能", "有没有", "支持", "需要", "为什么", "原理", "机制", "原因", "怎么回事",
+    "多少", "上限", "有效期", "配额", "几个", "多久", "时长", "过期", "客户端",
+    "一下", "请问", "帮我", "我们", "这个", "那个", "的", "了", "吗", "呢", "做",
+}
+
+
+def _tokenize(terms, hays):
+    """把自然语言查询切成能在语料里命中的词。
+
+    中文没有空格分词,按空白切出的"怎么登录"/"工具发布"在语料里都不存在,
+    整条查询于是只剩英文词参与匹配(实录:"dws 怎么登录"只有 dws 有效,
+    auth login 反而召回不到)。故:英文数字原样;中文长串展开 2-gram,
+    只保留语料中真实出现过的 gram("么登"这类切坏的自然被丢弃),无需词典。
+    """
+    out = []
+    for w in terms:
+        w = w.lower()
+        if w in _STOPWORDS:
+            continue
+        if re.fullmatch(r"[a-z0-9_+.\-]+", w) or len(w) <= 2:
+            out.append(w)
+            continue
+        grams = [w[i:i + 2] for i in range(len(w) - 1)]
+        keep = [g for g in dict.fromkeys(grams)
+                if g not in _STOPWORDS and any(g in h for h in hays)]
+        out.extend(keep or [w])
+    return list(dict.fromkeys(out))
+
+
 def _intent(q):
     """问法预判:一次到位决定额外带料,避免模型查完再查。"""
     return {
@@ -91,13 +125,25 @@ def ctx_impl(q, raw_terms):
     # 模型会据此误判"命令不存在"(实录 Q238:把正确答案自我更正成错的)。
     def _pick3(rows, keyf, kws):
         ex = [r for r in rows if q in keyf(r)]
-        if ex or not kws:
+        if ex:
+            # 命令名匹配优先于"描述里提到了这串":查 `chat message send` 时
+            # `chat media upload` 的 desc 含"请通过 chat message send 发送本地文件",
+            # 不排序就会把下线的兼容入口顶到正解前面。
+            def _rank(r):
+                c = (r.get("cmd") or "").strip().lower()
+                return 0 if c == q else 1 if c.startswith(q) else 2
+            ex.sort(key=_rank)
+            return ex
+        if not kws:
             return ex
         # 按 IDF 加权而非命中词数:"创建/查询"这类泛用动词命中数百行,按词数计会把
         # agoal/aitable 之类无关命令顶到前面,把真正切题的挤出 top12(实录:问"创建空会话
         # 转发"返回 agoal obj-template)。用逆文档频率,词越常见权重越低,无需维护停用词表。
         hays = [keyf(r) for r in rows]
         n_rows = len(rows) or 1
+        kws = _tokenize(kws, hays)
+        if not kws:
+            return []
         wt = {}
         for w in kws:
             df = sum(1 for h in hays if _hit(w, h))

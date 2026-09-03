@@ -38,11 +38,12 @@ _TERM_GROUPS = [
     ("取消", "撤回", "cancel", "recall", "withdraw"),
     ("同意", "通过", "审批通过", "approve"), ("拒绝", "驳回", "reject", "refuse"),
     ("添加", "加入", "add", "join"), ("转发", "forward"), ("绑定", "bind"),
-    ("授权", "authorize", "grant"), ("解析", "提取", "parse", "extract"),
+    ("授权", "authorize", "grant"),
+    ("解析", "提取", "读取", "投影", "parse", "extract", "read", "pull", "project"),
     # 实体
     ("审批", "approval", "approve"), ("实例", "instance"), ("模板", "template"),
     ("附件", "attachment"), ("文件", "file"), ("媒体", "media"),
-    ("消息", "message", "msg"), ("卡片", "card"),
+    ("消息", "message", "msg"), ("卡片", "card"), ("文本", "文字", "text"),
     ("群", "群聊", "group", "chat"), ("会话", "对话", "conversation", "session"),
     ("用户", "成员", "user", "member", "staff"),
     ("部门", "组织", "department", "dept", "org"),
@@ -177,17 +178,48 @@ def _tokenize(terms, hays):
     return list(dict.fromkeys(out))
 
 
+def _looks_truncated(q):
+    """只识别可机械确认的未闭合代码/结构,不把普通省略句误判为残缺。"""
+    if q.count("```") % 2:
+        return True
+    structured = any(c in q for c in "{}[]") or "```" in q
+    if not structured:
+        return False
+    for left, right in (("{", "}"), ("[", "]"), ("(", ")")):
+        if q.count(left) != q.count(right):
+            return True
+    if q.count('"') % 2 or q.count("'") % 2:
+        return True
+    return bool(re.search(r"(?:[:,=]|=>)\s*$", q))
+
+
 def _intent(q):
     """问法预判:一次到位决定额外带料,避免模型查完再查。"""
     support = (any(k in q for k in ("支持", "有没有", "有吗", "能不能", "可以吗", "是否", "会不会", "会被", "能否"))
                or bool(re.search(r"(?:能|可以).{0,3}(?:获取|查询|查看|拿到|取到|做到|实现|解析|发送|创建|删除|使用|读取)", q)))
+    capability = any(k in q for k in
+                     ("能力", "解析", "提取", "可读文本", "原始结构", "结构化", "渲染", "解密"))
+    card_capability = (any(k in q for k in ("卡片", "card"))
+                       and any(k in q for k in
+                               ("能力", "支持", "解析", "提取", "读取", "文本", "结构", "字段", "渲染", "解密")))
+    validation = (any(k in q for k in
+                      ("是否合法", "是否有效", "无效", "格式", "uuid", "正则", "pattern", "长度", "前缀",
+                       "字符集", "参数不对", "参数错误", "校验规则"))
+                  or bool(re.search(r"\b(?:valid|invalid|uuid|pattern|format)\b", q)))
+    mechanism = any(k in q for k in ("生命周期", "并发", "加锁", "锁机制", "路由", "重试", "ack", "回调",
+                                         "投递", "状态机", "自动刷新", "自动注入", "缓存机制"))
     return {
-        "why":     any(k in q for k in ("为什么", "原理", "机制", "不一致", "冲突", "原因", "怎么回事",
-                                             "怎么判断", "什么逻辑", "逻辑", "核对代码", "源码")),
+        "why":     any(k in q for k in ("为什么", "原理", "机制", "不一致", "冲突", "原因", "根因", "归因",
+                                             "导致", "怎么回事", "怎么判断", "什么逻辑", "逻辑", "核对代码", "源码")),
         "howmany": any(k in q for k in ("多少", "上限", "有效期", "配额", "几个", "多久", "时长", "过期")),
         "support": support,
+        "capability": capability,
+        "card_capability": card_capability,
+        "validation": validation,
+        "mechanism": mechanism,
+        "truncated": _looks_truncated(q),
         "trouble": (any(k in q for k in ("报错", "错误", "失败", "异常", "打不开", "无权限", "暂无权限", "提示", "问题"))
-                    or bool(re.search(r"\b(error|failed|failure|exception|denied|required unless)\b", q))),
+                    or bool(re.search(r"\b(error|failed|failure|exception|denied|required unless|param_error)\b", q))),
         "enumerate": any(k in q for k in ("全部", "所有", "有哪些", "哪些", "盘点", "枚举", "什么类型", "哪种类型")),
         "version": (any(k in q for k in ("版本", "兼容", "升级", "上线", "发布版", "还能用", "正常使用"))
                     or bool(re.search(r"\bv?\d+\.\d+(?:\.\d+)?\b", q))),
@@ -210,6 +242,28 @@ def _read_card(kind, key):
     return {"kind": kind, "key": key.strip(), "path": os.path.relpath(p, ROOT),
             "full": "\ncompleteness: full\n" in "\n" + body,
             "body": body.rstrip()}
+
+
+def _evidence_contract(intent=None, has_card=True):
+    """给模型可机械执行的证据边界；不把检索命中误当成运行时或后端事实。"""
+    intent = intent or {}
+    lines = ["== 证据契约(回答边界) =="]
+    if has_card:
+        lines.append("- 命令卡只证明卡内标出的 CLI 路径/Usage/参数/描述/源码锚点；partial 或未验证字段须继续查正文/源码。")
+    else:
+        lines.append("- 检索命中只证明所引原文明确写出的事实；相邻命令、字段或示例不能补成未写明的能力与因果。")
+    lines.append("- 命令存在不证明后端接受某个具体值，也不证明真实运行结果、当前登录态或服务端行为；缺少显式校验源码时不得判 ID/参数非法。")
+    if intent.get("truncated"):
+        lines.append("- input_complete=no：输入含未闭合代码/结构，只可核对可见片段并要求补全，不得补猜缺失内容或根因。")
+    if intent.get("validation"):
+        lines.append("- value_validation：String 类型、示例外观、长度或前缀都不是格式约束；只有枚举/pattern/校验分支可证明合法性。")
+    if intent.get("support") or intent.get("capability"):
+        lines.append("- capability：某条命令存在只证明该入口存在；所问对象、消息类型和输出层级仍须由正文/源码直接覆盖。")
+    if intent.get("card_capability"):
+        lines.append("- card_axes：原始卡片结构、可读文本提取、结构化字段解析、渲染、解密是五项独立能力，须逐项核验，不得互相推出。")
+    if intent.get("why") or intent.get("mechanism") or intent.get("trouble"):
+        lines.append("- causality：报错根因/生命周期/机制须有对应代码路径；只有相关事实时只能标为推测并给用户自验步骤。")
+    return lines
 
 
 def _card_confident(rows, card=None):
@@ -288,10 +342,47 @@ def ctx_impl(q, raw_terms, force_full=False):
         return [r for _, _, r in sc[:12]]
 
     _kws = [w.lower() for w in raw_terms if len(w) > 1]
+    # 问“卡片能否解析/读取”是在找读取投影，不是发送/更新入口；补充 list/pull
+    # 检索词，避免稀有 token `card` 把 send-card 永远顶到 message list 前面。
+    if intent["card_capability"]:
+        _kws.extend(["list", "pull"])
     # keyf 并入 when(英文条目的适用场景常是唯一含义来源,desc 可能为空)
     _kf = lambda r: (r["cmd"] + " " + (r.get("desc") or "") + " " + (r.get("when") or "")).lower()
-    cmds = _pick3(load("commands.jsonl"), _kf, _kws)
-    shorts = _pick3(load("shortcuts.jsonl"), _kf, _kws)
+    command_rows = load("commands.jsonl")
+    shortcut_rows = load("shortcuts.jsonl")
+    cmds = _pick3(command_rows, _kf, _kws)
+    shorts = _pick3(shortcut_rows, _kf, _kws)
+
+    def _prefer_explicit(rows, hits, keyf):
+        # 用户问题里贴了完整 `dws ...` 时，该字面命令锚点高于自然语言词频；
+        # 最长路径优先，防 `oa approval` 父路径盖过 `oa approval detail`。
+        anchored = []
+        for r in rows:
+            key = keyf(r).strip().lower()
+            pat = r"(?<![a-z0-9])dws\s+" + re.escape(key).replace(r"\ ", r"\s+") + r"(?=\s|$)"
+            if re.search(pat, q):
+                r["_ctx_score"] = 2000.0 + len(key)
+                r["_ctx_name_score"] = r["_ctx_score"]
+                anchored.append(r)
+        anchored.sort(key=lambda r: (-len(keyf(r)), keyf(r)))
+        leaves = [r for r in anchored
+                  if not any(keyf(other).startswith(keyf(r) + " ") for other in anchored if other is not r)]
+        return leaves + [r for r in hits if r not in anchored]
+
+    cmds = _prefer_explicit(command_rows, cmds, lambda r: r["cmd"])
+    shorts = _prefer_explicit(shortcut_rows, shorts,
+                              lambda r: f"{r.get('product', '')} {r['cmd']}".strip())
+    if intent["card_capability"]:
+        # 能力题优先读取/搜索消息的入口，不能让 send/update/read-status 仅因含 card/read
+        # 抢走首卡；仍只在检索已命中的候选内重排，不凭空注入命令。
+        def _card_read_rank(r):
+            name = (f"{r.get('product', '')} {r.get('cmd', '')}").strip().lower()
+            explicit = r.get("_ctx_score", 0) >= 2000
+            reads_content = ("message" in name and any(x in name.split() for x in ("list", "search", "get", "pull"))
+                             and "status" not in name)
+            return (0 if explicit else 1 if reads_content else 2, -r.get("_ctx_score", 0), name)
+        cmds.sort(key=_card_read_rank)
+        shorts.sort(key=_card_read_rank)
     qq = q.lstrip("-")
     flag_hits = []
     for r in load("commands.jsonl"):
@@ -303,10 +394,19 @@ def ctx_impl(q, raw_terms, force_full=False):
     _STOP = {"有没有", "支持", "能不能", "可以吗", "是否", "多少", "上限", "有效期", "配额",
              "几个", "多久", "时长", "过期", "为什么", "原理", "机制", "原因", "怎么回事",
              "需要", "客户端", "吗", "呢", "的", "做"}
-    kw = [w.lower() for w in raw_terms if w.lower() not in _STOP and len(w) > 1] or [q]
     docs_hits = []
     mp = os.path.join(ROOT, "meta", "documents.jsonl")
+    doc_rows = []
     if os.path.exists(mp):
+        doc_rows = [json.loads(l) for l in open(mp, encoding="utf-8") if l.strip()]
+    doc_hays = [(r["path"] + " " + " ".join(r.get("headings", []))).lower() for r in doc_rows]
+    # 完整自然问句不能只按空格拆:"卡片消息能不能解析"须拆出 卡片/消息/解析，
+    # 否则 notes 明明有实据仍会 0 命中。复用实体检索的脚本分段+领域最长匹配。
+    kw = _tokenize(raw_terms, doc_hays)
+    kw = [w for w in kw if w not in _STOP and len(w) > 1]
+    if not kw:
+        kw = [w.lower() for w in raw_terms if w.lower() not in _STOP and len(w) > 1] or [q]
+    if doc_rows:
         # 词权重:泛用中文词(去重/服务端/消息…)在几十篇里都出现,靠"命中词数"排序会让
         # 无关篇挤掉关键篇(实录:aitable-record-stats 因标题含"去重+服务端"压过 event-system)。
         # 英文技术词/长词更具区分度,给高权重。
@@ -315,9 +415,7 @@ def ctx_impl(q, raw_terms, force_full=False):
                 return 5          # ack / consume / webhook 这类
             return 2 if len(word) >= 4 else 1
         sd = []
-        for l in open(mp, encoding="utf-8"):
-            r = json.loads(l)
-            hay = (r["path"] + " " + " ".join(r.get("headings", []))).lower()
+        for r, hay in zip(doc_rows, doc_hays):
             sc = sum(_w(w) for w in kw if _hit(w, hay))
             if sc:
                 sd.append((-sc, r["path"], r))
@@ -339,16 +437,17 @@ def ctx_impl(q, raw_terms, force_full=False):
     top_key = ((top_row["cmd"].strip()) if top_kind == "command" else
                (f"{top_row.get('product', '')} {top_row['cmd']}".strip()) if top_row else "")
     top_card = _read_card(top_kind, top_key) if cards_enabled and top_row else None
-    # 简单“能否做 X”可由 full 卡的命令存在性直接回答；支持性本身不阻断。
-    # 但机制/数值/报错/枚举/版本/语义后果类必须保留正文。
+    # 卡片只回答命令契约；支持性、因果、校验、机制、数值、报错、枚举、版本、
+    # 语义后果与未闭合输入必须保留正文/notes，不能由“命令存在”直接推出结论。
     card_blocked = any(intent[k] for k in
-                       ("why", "howmany", "trouble", "enumerate", "version", "semantic"))
+                       ("why", "howmany", "support", "capability", "validation", "mechanism",
+                        "truncated", "trouble", "enumerate", "version", "semantic"))
     card_fast = bool(top_card and top_card["full"] and _card_confident(top_family, top_card)
                      and not card_blocked)
     card_items = [top_card] if top_card else []
 
     if card_items:
-        out.append("== 答案卡(card:full 可直接作答;partial 必须继续看正文) ==")
+        out.append("== 答案卡(card:full 仅可直接回答卡内 CLI 契约;partial 必须继续看正文) ==")
         for c in card_items:
             out.append(c["body"])
         seen_cards = {(c["kind"], c["key"]) for c in card_items}
@@ -384,20 +483,35 @@ def ctx_impl(q, raw_terms, force_full=False):
         out.append("== flag 命中 ==")
         out.extend(flag_hits[:8])
 
+    out.extend(_evidence_contract(intent, has_card=bool(card_items)))
+
     # 相关篇目:products/command-index 优先于 notes;各取 top,正文入包
     ent_total = len(cmds) + len(shorts) + len(flag_hits)
     body_cap = 5000 if ent_total >= 1 else _CTX_BODY_CAP
-    # 机制/支持性问法:答案在 notes 而非产品文档,此时篇目正文常是噪音
-    # (实录:问 ACK 机制,aitable-advperm 因标题含"服务端"抢占正文位,把正解挤到第408行)。
-    # 故此类问法下篇目只列标题,正文版面留给 notes。
-    # 机制类问法把正文减到 1 篇(不再减到 0)——减到 0 会连带屏蔽有用信息,
-    # 且命令表有命中时一律不减(命令类问法最需要它)。真正的降噪由 notes 排序保证。
-    _mech = intent["why"] or intent["support"]
+    # 复杂问法的答案常在 notes 而非产品文档；能力边界、值校验、机制和排障
+    # 不能因答案卡退出 fast 后只塞一篇泛产品文档。普通支持性判断由命令卡+产品
+    # 正文回答，只有同时属于上述复杂意图时才补 notes，避免无关语义篇干扰。
+    _needs_notes = any(intent[k] for k in
+                       ("why", "howmany", "capability", "card_capability", "validation", "mechanism", "trouble"))
+    _mech = _needs_notes
     # full 卡 + 首名明显胜出 + 非机制/数值/支持/排障/枚举题时，正文归零；
     # 任一条件不满足就保持 R10.1 的 1~2 篇正文，准确率优先。
     _n_body = 0 if card_fast else (1 if (_mech and not (cmds or shorts))
                                    else (1 if ent_total >= 1 else 2))
-    body_docs = sorted(docs_hits, key=lambda r: (0 if r["layer"] == "mirror" else 1, r["path"]))[:_n_body]
+    # docs_hits 已按相关度排序；旧代码再按路径字母序排序会把 aisearch 等无关篇目
+    # 固定顶到 chat/oa 前面。优先镜像 docs 但保持相关度，只有 docs 全空才用 notes。
+    primary_docs = [r for r in docs_hits if r["layer"] in ("docs", "mirror")]
+    if top_row and top_row.get("product"):
+        product_prefix = f"docs/products/{top_row['product']}"
+        # 产品根文档可能因标题未出现自然语言关键词而不在 docs_hits；命令实体已确定
+        # product 时可机械补入对应镜像，不属于猜测。
+        product_docs = [r for r in doc_rows
+                        if r["layer"] in ("docs", "mirror")
+                        and (r["path"] == product_prefix + ".md"
+                             or r["path"].startswith(product_prefix + "/"))]
+        product_docs.sort(key=lambda r: (r["path"] != product_prefix + ".md", r["path"]))
+        primary_docs = product_docs + [r for r in primary_docs if r not in product_docs]
+    body_docs = (primary_docs or docs_hits)[:_n_body]
     for i, r in enumerate(body_docs):
         p = os.path.join(ROOT, r["path"])
         if not os.path.exists(p):
@@ -439,33 +553,39 @@ def ctx_impl(q, raw_terms, force_full=False):
             pass
 
     notes_hit = 0
-    # support 也查 notes:"有没有 ACK/重试/去重机制"实质是机制题,只查命令表必空
-    if not card_fast and (intent["why"] or intent["howmany"] or intent["support"]):
+    if not card_fast and _needs_notes:
         nd = os.path.join(ROOT, "notes")
-        # 整句常匹配不上,按词拆(去掉问法词本身),命中任一实词即取该节
+        # 整句常匹配不上,按词拆(去掉问法词本身),命中任一实词即取该节。
         words = kw
         if os.path.isdir(nd) and words:
             picked = []
-            # 按命中密度挑文件与小节:泛词几乎每篇都有,字母序会让无关篇先占满名额
+            # 卡片能力/值校验题通常只有一个直接相关 note；只取首篇可减少约 3KB 噪音。
+            # 广义因果、数值或普通排障题可能横跨两篇，仍保留两篇配额。
+            focused = intent["card_capability"] or intent["validation"]
+            note_limit = 1 if focused else 2
+            # 按命中密度挑文件与小节:泛词几乎每篇都有,字母序会让无关篇先占满名额。
             ranked = []
             for fn in os.listdir(nd):
                 if not fn.endswith(".md"):
                     continue
                 body = open(os.path.join(nd, fn), encoding="utf-8", errors="replace").read()
                 low = body.lower()
-                distinct = sum(_w(w) for w in words if w in low)
+                distinct = sum(_w(w) for w in words if _hit(w, low))
                 total = sum(low.count(w) for w in words)
-                if total:
+                if distinct:
                     ranked.append((-(distinct * 100 + total), fn, body))
             ranked.sort()
-            for _, fn, body in ranked[:2]:
-                secs = re.split(r"\n(?=#{2,3} )", body)
-                sc = sorted(((sum(1 for w in words if w in s.lower()), s) for s in secs), key=lambda x: -x[0])
-                hit = [s for n_, s in sc[:2] if n_ > 0]
+            for _, fn, body in ranked[:note_limit]:
+                # frontmatter/导语不是小节，命中泛词时不应与真正相关的小节争 top2。
+                secs = [s for s in re.split(r"\n(?=#{2,3} )", body)
+                        if s.lstrip().startswith(("## ", "### "))]
+                sc = sorted(((sum(_w(w) for w in words if _hit(w, s.lower())), i, s)
+                             for i, s in enumerate(secs)), key=lambda x: (-x[0], x[1]))
+                hit = [s for n_, _, s in sc[:2] if n_ > 0]
                 picked.append(f"--- notes/{fn} ---\n" + ("\n".join(hit) if hit else body[:2000])[:3000])
             if picked:
                 notes_hit = len(picked)
-                out.append("\n== 行为语义(notes,机制/数值类问法自动并入) ==")
+                out.append("\n== 行为语义(notes,复杂问法自动并入) ==")
                 out.extend(picked)
     out.append("\n== 检索审计 ==")
     out.append(f"已检索: card/cmd/short/flag/find/notes · 关键词: {' '.join(raw_terms)}"
@@ -475,7 +595,7 @@ def ctx_impl(q, raw_terms, force_full=False):
     out.append("== 继续 ==")
     hint = ["盘点用 dwsdoc cmd <产品>+short <产品> 枚举全量", "版本判定 cat docs/CHANGELOG.md"]
     if card_fast:
-        hint.insert(0, "答案卡为 full 且首名明显胜出:字段齐全可直接作答,无需再 cat")
+        hint.insert(0, "答案卡为 full 且首名明显胜出:仅按卡内 CLI 契约直接作答,无需再 cat")
     if intent["howmany"]:
         hint.insert(0, "⚠️数值/时限类:上文若无确切数字,必须二级拉源码后 grep 常量(如 DefaultRefreshTokenLifetime),禁止用「无固定时长」回避")
     if intent["why"]:
@@ -483,6 +603,7 @@ def ctx_impl(q, raw_terms, force_full=False):
     out.append(";".join(hint))
 
     if not (cmds or shorts or flag_hits or docs_hits or notes_hit):
+        print("\n".join(_evidence_contract(intent, has_card=False)))
         print("== 检索审计 ==")
         print(f"已检索: cmd/short/flag/find · 关键词: {' '.join(raw_terms)} · 命中: 0")
         print("== 继续 ==")
@@ -554,6 +675,8 @@ def card_impl(q):
     if not shown:
         print(f"未找到答案卡: {q};用 dwsdoc cmd/short 查实体,或 ctx --full 走正文")
         return 1
+    print()
+    print("\n".join(_evidence_contract(_intent(q), has_card=True)))
     return 0
 
 

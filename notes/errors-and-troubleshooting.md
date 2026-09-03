@@ -1,6 +1,6 @@
 ---
 title: 常见报错与排查
-source_refs: internal/errors/errors.go, internal/errors/exitcodes.go, internal/errors/pat.go, internal/helpers/errors.go, internal/helpers/helpers.go, internal/app/flags.go, internal/app/root.go
+source_refs: internal/errors/errors.go, internal/errors/exitcodes.go, internal/errors/pat.go, internal/helpers/errors.go, internal/helpers/helpers.go, internal/helpers/oa.go, internal/app/flags.go, internal/app/root.go
 ---
 
 # 常见报错与排查
@@ -45,6 +45,12 @@ source_refs: internal/errors/errors.go, internal/errors/exitcodes.go, internal/e
 ## debug / verbose
 
 全局持久 flag `--debug`、`--verbose`（`-v`）注册于 `internal/app/flags.go` 的 `GlobalFlags`；`internal/app/root.go` 的 `resolveVerbosity()` 将其映射到错误输出详级。多处错误提示会建议 "Use --verbose for detailed logs"。日志文件 `~/.dws/logs/dws.log` 恒为 Debug 级，排查时先看日志。
+
+## 参数校验与后端报错归因边界
+
+Cobra/Schema 中的 `String` 只证明参数类型，不等于 UUID、长度、前缀或字符集约束；示例值的外观也不是格式规范。只有显式枚举、pattern、正则或校验分支才能证明这些限制。
+
+例如 `oa approval detail --instance-id`：`internal/helpers/oa.go:974-984` 只检查必填值是否存在，然后原样映射到 `processInstanceId`；`:2171` 也只把它注册为普通 String flag，没有 UUID/pattern 校验。因此，后端返回 `PARAM_ERROR` 时不能仅凭 ID 外观确认根因，应区分「CLI 本地校验」与「服务端拒绝」，将未被源码证明的原因标为推测并让用户核对 ID 来源。
 
 ## 排查建议流程
 

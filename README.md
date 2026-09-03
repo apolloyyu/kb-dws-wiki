@@ -5,6 +5,7 @@ DingTalk Workspace CLI(dws)的答疑知识库:基于源码由模型实读生成,
 - Agent 使用入口:[AGENTS.md](AGENTS.md)(检索协议)
 - 篇目索引:[index.md](index.md) · 机器索引:`meta/documents.jsonl`
 - 答案卡:`cards/cmd/`(主命令+shortcut 一命令一卡) · 机器索引:`cards/index.jsonl`
+- 一次打包检索:`python3 bin/dwsdoc ctx '<完整问题>'`;仅 `card=1(fast=1)` 可按卡内 CLI 契约直答,复杂问法自动并入正文/notes 与证据边界
 - 上游源码:https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli
 
 ## 更新机制与协作规则

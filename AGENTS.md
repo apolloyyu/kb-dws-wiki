@@ -8,7 +8,7 @@ kb-dingtalk-open-platform 范式:**事实走确定性层(零 LLM),行为语义�
 
 | 层 | 内容 | 生成方式 | 可信度/用途 |
 |---|---|---|---|
-| `cards/` | 每条主命令/shortcut 的紧凑卡(cmd、描述、flags、源码、相关命令) | 从 graph 确定性生成,数量/完整率地板 | `completeness: full` 且 ctx 标 `fast=1` 时可直接作答；partial 必须继续查正文 |
+| `cards/` | 每条主命令/shortcut 的紧凑卡(cmd、描述、flags、源码、相关命令) | 从 graph 确定性生成,数量/完整率地板 | `completeness: full` 且 ctx 标 `fast=1` 时仅可直接回答卡内 CLI 契约；partial 必须继续查正文 |
 | `graph/` | commands.jsonl(规范路径+完整 Usage+flags 完整度+源码行号)、shortcuts.jsonl(+xxx 短命令) | 源码静态提取,lint 对账 | **命中即事实**,可直接回引 文件:行号 |
 | `docs/` | command-index.md、CHANGELOG.md、products/**(上游人写的产品线文档) | 逐字镜像 | 与上游仓库原文一致 |
 | `notes/` | 行为语义篇(投递模型/锁/ACK 等"为什么") | LLM 实读源码生成+人工审阅 | 加速层,行号结论仍以源码为准 |
@@ -16,11 +16,11 @@ kb-dingtalk-open-platform 范式:**事实走确定性层(零 LLM),行为语义�
 ## 检索顺序(强烈建议)
 
 0. **首选一次打包** → `python3 bin/dwsdoc ctx '<完整用户问题>'`
-   - 输出含 `card=1(fast=1)` 且卡为 `completeness: full`：卡片字段齐全，直接据卡作答，不再 cat；
-   - `fast=0` / `partial` / 机制、数值、复杂支持性、排障、枚举题：ctx 自动保留正文/notes，按输出继续核验；
-   - 强制深查或卡片疑似异常：`python3 bin/dwsdoc ctx --full '<问题>'`；全局回退可设 `KB_NO_CARDS=1`，行为字节级回到 v2；
+   - 输出含 `card=1(fast=1)` 且卡为 `completeness: full`：仅按卡内 CLI 路径、Usage、参数、描述与源码锚点作答，不再 cat；
+   - `fast=0` / `partial` / 支持性、因果、ID/参数合法性、机制、数值、排障、枚举、版本或未闭合输入：ctx 自动保留正文/notes，按输出继续核验；
+   - 强制深查或卡片疑似异常：`python3 bin/dwsdoc ctx --full '<问题>'`；全局回退可设 `KB_NO_CARDS=1`；
    - 精查单条卡：`python3 bin/dwsdoc card '<完整命令路径>'`。
-   ctx 始终带 cmd/short/flag/find/notes 命中数审计，仍是「三查」的机械凭证。
+   ctx/card 都附「证据契约」：命令存在不证明后端值校验、运行结果或服务端行为；卡片问题须把原始结构、可读文本、结构化解析、渲染、解密分开核验。ctx 始终带 cmd/short/flag/find/notes 命中数审计，仍是「三查」的机械凭证；`ops/scripts/test_dwsdoc_ctx.py` 已接入每日确定性构建，回归失败禁止推送。
 1. **命令/flag 存在性与拼写** → `python3 bin/dwsdoc cmd|short|flag <词>`
    命中即得 flags 全表+源码行号;查不到≠不存在,回退源码 grep(见 4)。
 2. **产品用法/使用场景** → `python3 bin/dwsdoc find <词>` 定位 `docs/products/<产品>.md` 后 cat 原文。

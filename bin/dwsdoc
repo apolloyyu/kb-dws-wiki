@@ -57,8 +57,12 @@ _TERM_GROUPS = [
     ("评论", "comment"), ("抄送", "cc"), ("标签", "tag", "label"),
     ("配置", "设置项", "config", "setting", "option"),
     ("凭证", "令牌", "token", "credential"),
+    ("登录", "登陆", "login", "signin", "authenticate"),
     ("企业", "组织", "corp", "enterprise", "org"),
     ("宜搭", "yida"), ("行为", "操作", "behavior", "action", "operation"),
+    # 复合意图必须独立成组:"操作记录"是 behavior search,不能拆成"操作"+"记录"后
+    # 与本地 CLI audit 日志混为一谈(Q290 实录:漏掉 aisearch behavior)。
+    ("行为记录", "操作记录", "behavior"),
     ("统计", "stat", "statistics", "count"), ("表单", "form"),
     ("回调", "事件", "callback", "event", "webhook"), ("流程", "process", "flow"),
 ]
@@ -69,8 +73,19 @@ for _g in _TERM_GROUPS:
 
 
 def _hit(word, hay):
-    """词命中:自身或其中/英同义变体任一出现即算命中(每个原词最多记 1 次)。"""
-    return any(v in hay for v in _VARIANTS.get(word, (word,)))
+    """词命中:中文按子串,ASCII 按完整 token,防短词误撞长词。
+
+    不能统一用 `v in hay`:日志的同义词 log 会误命中 login,app 会误命中
+    approval/application(Q290 实录:auth login 因 login⊃log 被当成"日志"而排首位)。
+    连字符/空格视为 token 边界,所以 event-system 仍可命中 event。
+    """
+    for v in _VARIANTS.get(word, (word,)):
+        if re.fullmatch(r"[a-z0-9_+.\-]+", v):
+            if re.search(r"(?<![a-z0-9])" + re.escape(v) + r"(?![a-z0-9])", hay):
+                return True
+        elif v in hay:
+            return True
+    return False
 
 
 # 检索停用词:疑问/虚词无区分度;"dws" 是本库自身名字,正如"钉钉"之于钉钉文档库——
@@ -85,25 +100,77 @@ _STOPWORDS = {
 
 
 def _tokenize(terms, hays):
-    """把自然语言查询切成能在语料里命中的词。
+    """把自然语言查询切成能在语料里命中的词,不产生跨边界伪词。
 
-    中文没有空格分词,按空白切出的"怎么登录"/"工具发布"在语料里都不存在,
-    整条查询于是只剩英文词参与匹配(实录:"dws 怎么登录"只有 dws 有效,
-    auth login 反而召回不到)。故:英文数字原样;中文长串展开 2-gram,
-    只保留语料中真实出现过的 gram("么登"这类切坏的自然被丢弃),无需词典。
+    旧 2-gram 对中英混写 `DWS能获取用户…` 会切出 dw/ws/户在；这些伪词因
+    罕见拿到最高 IDF,把无关命令顶到首位。现改为:
+    1) 先按 ASCII/CJK 脚本分段,避免 dws 与中文黏连;
+    2) CJK 优先按领域术语最长匹配(如 操作记录、登录);
+    3) 未覆盖片段再从语料做最长匹配,不跨已识别词边界。
     """
     out = []
-    for w in terms:
-        w = w.lower()
-        if w in _STOPWORDS:
-            continue
-        if re.fullmatch(r"[a-z0-9_+.\-]+", w) or len(w) <= 2:
-            out.append(w)
-            continue
-        grams = [w[i:i + 2] for i in range(len(w) - 1)]
-        keep = [g for g in dict.fromkeys(grams)
-                if g not in _STOPWORDS and any(g in h for h in hays)]
-        out.extend(keep or [w])
+    lexicon = sorted(
+        {v for g in _TERM_GROUPS for v in g
+         if len(v) >= 2 and re.fullmatch(r"[一-鿿]+", v)
+         and v not in _STOPWORDS},
+        key=lambda x: (-len(x), x))
+
+    def add_cjk(s):
+        covered = [False] * len(s)
+        # 领域词最长优先,同一字符区间只归一个词,避免"操作记录"再被拆成操作+记录。
+        for word in lexicon:
+            start = 0
+            while True:
+                i = s.find(word, start)
+                if i < 0:
+                    break
+                j = i + len(word)
+                if not any(covered[i:j]):
+                    out.append(word)
+                    covered[i:j] = [True] * len(word)
+                start = i + 1
+        # 标记疑问/虚词,防止"怎么登录"的"怎么"进入语料回退。
+        for word in sorted((x for x in _STOPWORDS if len(x) >= 2), key=len, reverse=True):
+            start = 0
+            while True:
+                i = s.find(word, start)
+                if i < 0:
+                    break
+                covered[i:i + len(word)] = [True] * len(word)
+                start = i + 1
+        # 对仍未覆盖的连续片段,贪心取语料中真实存在的最长子串(2~6字)。
+        i = 0
+        while i < len(s):
+            if covered[i]:
+                i += 1
+                continue
+            end = i
+            while end < len(s) and not covered[end]:
+                end += 1
+            seg, p = s[i:end], 0
+            while p < len(seg):
+                best = ""
+                for n in range(min(6, len(seg) - p), 1, -1):
+                    cand = seg[p:p + n]
+                    if any(cand in h for h in hays):
+                        best = cand
+                        break
+                if best:
+                    out.append(best)
+                    p += len(best)
+                else:
+                    p += 1
+            i = end
+
+    for raw in terms:
+        # `DWS能获取…` → [dws, 能获取…],而不是 [dw, ws, s能, 能获…]
+        for w in re.findall(r"[a-z0-9_+.\-]+|[一-鿿]+", raw.lower()):
+            if w in _STOPWORDS:
+                continue
+            if re.fullmatch(r"[a-z0-9_+.\-]+", w):
+                out.append(w)
+            else:
+                add_cjk(w)
     return list(dict.fromkeys(out))
 
 
@@ -147,7 +214,12 @@ def ctx_impl(q, raw_terms):
         wt = {}
         for w in kws:
             df = sum(1 for h in hays if _hit(w, h))
-            wt[w] = math.log(n_rows / (1 + df)) if df else 0.0
+            idf = math.log(n_rows / (1 + df)) if df else 0.0
+            # 中文复合意图比拆散名词更具体:操作记录(4字)应胜过
+            # 用户+获取+日志三个泛词之和。长度因子只用于纯中文,上限 2 倍。
+            specific = min(2.0, 1.0 + 0.25 * (len(w) - 2)) \
+                if re.fullmatch(r"[一-鿿]+", w) and len(w) >= 3 else 1.0
+            wt[w] = idf * specific
         sc = []
         for h, r in zip(hays, rows):
             s = sum(wt[w] for w in kws if _hit(w, h))

@@ -627,7 +627,9 @@ def ctx_impl(q, raw_terms, force_full=False):
             for line in open(cl, encoding="utf-8", errors="replace"):
                 low = line.lower()
                 if any(re.search(r"(?<![a-z0-9])" + re.escape(t) + r"(?![a-z0-9])", low) for t in ascii_terms):
-                    lines.append(line.strip()[:220])
+                    # 单行放宽到 420:CHANGELOG 条目常把结论放在句尾(实录 Q200 "change the displayed
+                    # label" 在第 230 字符后被截掉,模型据前半句答成"不可改")。
+                    lines.append(line.strip()[:420])
                     if len(lines) >= 6:
                         break
             if lines:

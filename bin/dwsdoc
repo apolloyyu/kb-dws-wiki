@@ -69,6 +69,10 @@ _TERM_GROUPS = [
     ("行为记录", "操作记录", "behavior"),
     ("统计", "stat", "statistics", "count"), ("表单", "form"),
     ("回调", "事件", "callback", "event", "webhook"), ("流程", "process", "flow"),
+    # 概念↔实现名映射:用户说的是现象/产品文案,命令与 notes 用的是实现词(实录 Q186/Q283/Q200)
+    ("跨组织", "非本组织", "外部组织", "其他组织", "跨企业", "外部企业", "cross-org"),
+    ("扇出", "独占", "排他", "只有一个", "其余", "广播", "每个消费者", "fan-out", "fanout", "exclusive"),
+    ("通过ai发送", "ai发送", "ai标签", "显示标签", "ai", "ai-tag", "clawtype", "agent-product", "dws_agent_product"),
 ]
 _VARIANTS = {}
 for _g in _TERM_GROUPS:
@@ -121,18 +125,17 @@ def _tokenize(terms, hays):
 
     def add_cjk(s):
         covered = [False] * len(s)
-        # 领域词最长优先,同一字符区间只归一个词,避免"操作记录"再被拆成操作+记录。
-        for word in lexicon:
-            start = 0
-            while True:
-                i = s.find(word, start)
-                if i < 0:
-                    break
-                j = i + len(word)
-                if not any(covered[i:j]):
-                    out.append(word)
-                    covered[i:j] = [True] * len(word)
-                start = i + 1
+        # 领域词从左到右取最长匹配:旧法按词表顺序全局扫描,"获取消息"会先被"取消"跨边界占位
+        # (实录 Q186 分出 取消/组织,正解 cross-org 零命中)。左起最长保证词不跨真实边界。
+        i = 0
+        while i < len(s):
+            best = next((w for w in lexicon if s.startswith(w, i)), "")
+            if best:
+                out.append(best)
+                covered[i:i + len(best)] = [True] * len(best)
+                i += len(best)
+            else:
+                i += 1
         # 标记疑问/虚词,防止"怎么登录"的"怎么"进入语料回退。
         for word in sorted((x for x in _STOPWORDS if len(x) >= 2), key=len, reverse=True):
             start = 0
@@ -195,7 +198,9 @@ def _looks_truncated(q):
 
 def _intent(q):
     """问法预判:一次到位决定额外带料,避免模型查完再查。"""
-    support = (any(k in q for k in ("支持", "有没有", "有吗", "能不能", "可以吗", "是否", "会不会", "会被", "能否"))
+    support = (any(k in q for k in ("支持", "有没有", "有吗", "能不能", "可以吗", "是否", "会不会", "会被", "能否",
+                                    "是不是", "对吗", "对不对", "拉不到", "拿不到", "收不到", "查不到"))
+               or bool(re.search(r"不是.{0,15}(?:吗|吧)|一样(?:吗|吧)", q))
                or bool(re.search(r"(?:能|可以).{0,3}(?:获取|查询|查看|拿到|取到|做到|实现|解析|发送|创建|删除|使用|读取)", q)))
     capability = any(k in q for k in
                      ("能力", "解析", "提取", "可读文本", "原始结构", "结构化", "渲染", "解密"))
@@ -206,8 +211,12 @@ def _intent(q):
                       ("是否合法", "是否有效", "无效", "格式", "uuid", "正则", "pattern", "长度", "前缀",
                        "字符集", "参数不对", "参数错误", "校验规则"))
                   or bool(re.search(r"\b(?:valid|invalid|uuid|pattern|format)\b", q)))
+    # "多个客户端都能收到吗"这类多方共享/扇出问法，答案永远在 notes 机制层而非命令卡
+    #（实录 Q283-285：notes 有"扇出还是独占"一节却未进上下文，模型按队列直觉答成排他消费）。
     mechanism = any(k in q for k in ("生命周期", "并发", "加锁", "锁机制", "路由", "重试", "ack", "回调",
-                                         "投递", "状态机", "自动刷新", "自动注入", "缓存机制"))
+                                         "投递", "状态机", "自动刷新", "自动注入", "缓存机制",
+                                         "多个", "都能", "都会", "同时", "每个", "各自", "都收到", "扇出", "独占", "排他",
+                                         "只有一个", "其余", "没反应", "没有反应", "收不到"))
     return {
         "why":     any(k in q for k in ("为什么", "原理", "机制", "不一致", "冲突", "原因", "根因", "归因",
                                              "导致", "怎么回事", "怎么判断", "什么逻辑", "逻辑", "核对代码", "源码")),
@@ -446,6 +455,18 @@ def ctx_impl(q, raw_terms, force_full=False):
                      and not card_blocked)
     card_items = [top_card] if top_card else []
 
+    # 支持性/枚举题：否定前先看到"知识库里存在什么"。清单来自已算好的 IDF 命中，不加检索；
+    # 放在答案卡之前是因为模型读到首卡就定调（实录 Q186 把 data-auth cross-org 埋在候选第 4 行，
+    # 答"没有跨组织命令"；Q170 无视 notes 答"没有 24 小时说法"）。
+    if (intent["support"] or intent["enumerate"]) and (cmds or shorts):
+        out.append("== 否定前必读：本轮命中的相关命令（说「没有/不支持」前须逐条说明为何不满足所问）==")
+        for r in cmds[:6]:
+            out.append(f"- dws {r['cmd']}  —  {(r.get('desc') or '')[:60]}")
+        for r in shorts[:4]:
+            out.append(f"- dws {r.get('product', '')} {r['cmd']}  —  {(r.get('desc') or '')[:60]}")
+        for r in docs_hits[:4]:
+            out.append(f"- 篇目 {r['path']}: {' / '.join((r.get('headings') or [])[:5])[:80]}")
+        out.append("(以上为实体表精确命中，存在即事实；未列出≠不存在，仍须 cmd|short|flag 换词三查后才可否定)")
     if card_items:
         out.append("== 答案卡(card:full 仅可直接回答卡内 CLI 契约;partial 必须继续看正文) ==")
         for c in card_items:
@@ -579,19 +600,45 @@ def ctx_impl(q, raw_terms, force_full=False):
                 # frontmatter/导语不是小节，命中泛词时不应与真正相关的小节争 top2。
                 secs = [s for s in re.split(r"\n(?=#{2,3} )", body)
                         if s.lstrip().startswith(("## ", "### "))]
-                sc = sorted(((sum(_w(w) for w in words if _hit(w, s.lower())), i, s)
-                             for i, s in enumerate(secs)), key=lambda x: (-x[0], x[1]))
-                hit = [s for n_, _, s in sc[:2] if n_ > 0]
+                def _sec_score(sec):
+                    low = sec.lower()
+                    head = low.splitlines()[0]
+                    return (sum(_w(w) for w in words if _hit(w, low))
+                            + 3 * sum(1 for w in words if _hit(w, head)))
+                sc = sorted(((_sec_score(s), i, s) for i, s in enumerate(secs)), key=lambda x: (-x[0], x[1]))
+                # 排障/机制题的正解小节常排第 3(实录 Q283 "扇出还是独占"被锁/消费端两节压住)
+                n_secs = 3 if (intent["trouble"] or intent["why"] or intent["mechanism"]) else 2
+                hit = [s for n_, _, s in sc[:n_secs] if n_ > 0]
                 picked.append(f"--- notes/{fn} ---\n" + ("\n".join(hit) if hit else body[:2000])[:3000])
             if picked:
                 notes_hit = len(picked)
                 out.append("\n== 行为语义(notes,复杂问法自动并入) ==")
                 out.extend(picked)
+    # 支持性/版本题:产品行为变更常只记录在 CHANGELOG(实录 Q200 "通过AI发送文案能否改"答案在
+    # DWS_AGENT_PRODUCT 条目)。只用 ASCII 实现词(含术语表映射)逐行 grep,最多 6 行。
+    changelog_hits = 0
+    if intent["support"] or intent["version"]:
+        cl = os.path.join(ROOT, "docs", "CHANGELOG.md")
+        action_ascii = {v for g in _TERM_GROUPS[:12] for v in g if re.fullmatch(r"[a-z\-]+", v)}
+        ascii_terms = {v for w in kw for v in _VARIANTS.get(w, (w,))
+                       if re.fullmatch(r"[a-z][a-z0-9_\-]{3,}", v) and v not in action_ascii}
+        if os.path.exists(cl) and ascii_terms:
+            lines = []
+            for line in open(cl, encoding="utf-8", errors="replace"):
+                low = line.lower()
+                if any(re.search(r"(?<![a-z0-9])" + re.escape(t) + r"(?![a-z0-9])", low) for t in ascii_terms):
+                    lines.append(line.strip()[:220])
+                    if len(lines) >= 6:
+                        break
+            if lines:
+                changelog_hits = len(lines)
+                out.append("\n== CHANGELOG 命中行(版本/行为变更以此为准) ==")
+                out.extend("  " + l for l in lines)
     out.append("\n== 检索审计 ==")
-    out.append(f"已检索: card/cmd/short/flag/find/notes · 关键词: {' '.join(raw_terms)}"
+    out.append(f"已检索: card/cmd/short/flag/find/notes/changelog · 关键词: {' '.join(raw_terms)}"
                f" · 命中: card={len(card_items)}(fast={int(card_fast)})"
                f" cmd={len(cmds)} short={len(shorts)} flag={len(flag_hits)}"
-               f" find={len(docs_hits)} notes={notes_hit}")
+               f" find={len(docs_hits)} notes={notes_hit} changelog={changelog_hits}")
     out.append("== 继续 ==")
     hint = ["盘点用 dwsdoc cmd <产品>+short <产品> 枚举全量", "版本判定 cat docs/CHANGELOG.md"]
     if card_fast:

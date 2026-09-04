@@ -102,6 +102,27 @@ class DwsdocCtxContractTest(unittest.TestCase):
         self.assertRegex(out, r"notes=[1-9]")
         self.assertIn("行为语义(notes,复杂问法自动并入)", out)
 
+    def test_cross_boundary_tokenization_and_cross_org_listing(self):
+        out = run_dwsdoc("ctx", "获取消息好像拉不到非本组织的群信息？")
+        self.assertIn("否定前必读", out)
+        head = out.split("== 答案卡", 1)[0]
+        self.assertIn("data-auth cross-org", head)
+        self.assertIn("card=1(fast=0)", out)
+
+    def test_fanout_wording_reaches_event_notes(self):
+        out = run_dwsdoc("ctx", "我在同一台机器多次启用dws event consume，只有一个能正常收到消息，其余的都是连接成功，没反应")
+        self.assertIn("扇出", out)
+        self.assertRegex(out, r"notes=[1-9]")
+
+    def test_support_question_brings_changelog_lines(self):
+        out = run_dwsdoc("ctx", "“通过AI发送”文案支持修改吗")
+        self.assertIn("CHANGELOG 命中行", out)
+        self.assertIn("DWS_AGENT_PRODUCT", out)
+
+    def test_confirmation_phrasing_blocks_fast_path(self):
+        out = run_dwsdoc("ctx", "client-id 参数不是钉钉应用的ID吗，这个对组织是一样的吧")
+        self.assertIn("fast=0", out)
+
     def test_explicit_full_disables_cards(self):
         out = run_dwsdoc("ctx", "--full", "dws 怎么登录")
         self.assertIn("card=0(fast=0)", out)

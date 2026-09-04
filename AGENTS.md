@@ -20,7 +20,7 @@ kb-dingtalk-open-platform 范式:**事实走确定性层(零 LLM),行为语义�
    - `fast=0` / `partial` / 支持性、因果、ID/参数合法性、机制、数值、排障、枚举、版本或未闭合输入：ctx 自动保留正文/notes，按输出继续核验；
    - 强制深查或卡片疑似异常：`python3 bin/dwsdoc ctx --full '<问题>'`；全局回退可设 `KB_NO_CARDS=1`；
    - 精查单条卡：`python3 bin/dwsdoc card '<完整命令路径>'`。
-   ctx/card 都附「证据契约」：命令存在不证明后端值校验、运行结果或服务端行为；卡片问题须把原始结构、可读文本、结构化解析、渲染、解密分开核验。ctx 始终带 cmd/short/flag/find/notes 命中数审计，仍是「三查」的机械凭证；`ops/scripts/test_dwsdoc_ctx.py` 已接入每日确定性构建，回归失败禁止推送。
+   支持性/确认/枚举问法（能不能/有没有/是不是/拉不到…）ctx 会在最前面输出「否定前必读」清单（本轮命中的命令、shortcut 与篇目），说「没有/不支持」前须逐条说明为何不满足所问；支持性/版本题另附「CHANGELOG 命中行」（按实现名 grep，产品行为变更以此为准）。ctx/card 都附「证据契约」：命令存在不证明后端值校验、运行结果或服务端行为；卡片问题须把原始结构、可读文本、结构化解析、渲染、解密分开核验。ctx 始终带 cmd/short/flag/find/notes 命中数审计，仍是「三查」的机械凭证；`ops/scripts/test_dwsdoc_ctx.py` 已接入每日确定性构建，回归失败禁止推送。
 1. **命令/flag 存在性与拼写** → `python3 bin/dwsdoc cmd|short|flag <词>`
    命中即得 flags 全表+源码行号;查不到≠不存在,回退源码 grep(见 4)。
 2. **产品用法/使用场景** → `python3 bin/dwsdoc find <词>` 定位 `docs/products/<产品>.md` 后 cat 原文。

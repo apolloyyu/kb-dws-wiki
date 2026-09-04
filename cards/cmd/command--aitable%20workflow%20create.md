@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable workflow create
 description: 创建并发布自动化工作流
 example: dws aitable workflow create --base-id BASE_ID --dsl @workflow.json --locale zh-CN
-source: internal/helpers/aitable.go:5701
+source: internal/helpers/aitable.go:5713
 visible_flags: 3
 
 ## Flags

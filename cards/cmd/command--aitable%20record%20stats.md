@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable record stats
 description: 整表或过滤后的字段聚合统计
 example: dws aitable record stats --base-id BASE_ID --table-id TABLE_ID --stats '[{"fieldId":"fldAmount","statsType":"SUM"}]'
-source: internal/helpers/aitable.go:2804
+source: internal/helpers/aitable.go:2816
 visible_flags: 9
 
 ## Flags

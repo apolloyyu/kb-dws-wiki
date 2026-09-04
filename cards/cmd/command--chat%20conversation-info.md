@@ -6,7 +6,7 @@ usage: dws chat conversation-info
 description: Retrieve basic metadata for a conversation (single chat or group chat) by conversation ID.
 example: dws chat conversation-info --conversation-id <openConversationId> --format json
 use_when: When the agent needs context about a conversation (name, type, member count) before operating on it.
-source: internal/helpers/chat.go:5479
+source: internal/helpers/chat.go:5681
 visible_flags: 3
 
 ## Flags

@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable view update frozen-cols
 description: 更新视图冻结列数
 example: dws aitable view update frozen-cols --base-id BASE_ID --table-id TABLE_ID --view-id VIEW_ID --count 1
-source: internal/helpers/aitable.go:4806
+source: internal/helpers/aitable.go:4818
 visible_flags: 1
 
 ## Flags

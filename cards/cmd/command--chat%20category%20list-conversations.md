@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat category list-conversations
 description: 拉取指定自定义会话分组下的会话
 example: dws chat category list-conversations --category-id <分组ID>
-source: internal/helpers/chat.go:5733
+source: internal/helpers/chat.go:5935
 visible_flags: 2
 
 ## Flags

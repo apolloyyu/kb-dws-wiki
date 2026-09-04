@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable advperm role-create
 description: 创建自定义角色
 example: dws aitable advperm role-create --base-id BASE_ID --name "市场可读" --sub-roles '[{"targetId":"<sheetId>","targetType":"sheet","authLevel":"read"}]'
-source: internal/helpers/aitable.go:7171
+source: internal/helpers/aitable.go:7183
 visible_flags: 5
 
 ## Flags

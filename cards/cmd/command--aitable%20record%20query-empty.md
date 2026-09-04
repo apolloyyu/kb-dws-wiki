@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable record query-empty
 description: 查询完全没填用户字段的空行
 example: dws aitable record query-empty --base-id BASE_ID --table-id TABLE_ID
-source: internal/helpers/aitable.go:3299
+source: internal/helpers/aitable.go:3311
 visible_flags: 4
 
 ## Flags

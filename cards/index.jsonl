@@ -35,6 +35,7 @@
 {"completeness": "full", "key": "aitable advperm role-get", "kind": "command", "path": "cards/cmd/command--aitable%20advperm%20role-get.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable advperm role-list", "kind": "command", "path": "cards/cmd/command--aitable%20advperm%20role-list.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable advperm role-update", "kind": "command", "path": "cards/cmd/command--aitable%20advperm%20role-update.md", "product": "aitable"}
+{"completeness": "full", "key": "aitable app", "kind": "command", "path": "cards/cmd/command--aitable%20app.md", "product": "aitable"}
 {"completeness": "partial", "key": "aitable attachment", "kind": "command", "path": "cards/cmd/command--aitable%20attachment.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable attachment upload", "kind": "command", "path": "cards/cmd/command--aitable%20attachment%20upload.md", "product": "aitable"}
 {"completeness": "partial", "key": "aitable base", "kind": "command", "path": "cards/cmd/command--aitable%20base.md", "product": "aitable"}
@@ -310,6 +311,8 @@
 {"completeness": "partial", "key": "chat conversation-file", "kind": "command", "path": "cards/cmd/command--chat%20conversation-file.md", "product": "chat"}
 {"completeness": "full", "key": "chat conversation-file upload", "kind": "command", "path": "cards/cmd/command--chat%20conversation-file%20upload.md", "product": "chat"}
 {"completeness": "full", "key": "chat conversation-info", "kind": "command", "path": "cards/cmd/command--chat%20conversation-info.md", "product": "chat"}
+{"completeness": "full", "key": "chat crypto", "kind": "command", "path": "cards/cmd/command--chat%20crypto.md", "product": "chat"}
+{"completeness": "full", "key": "chat crypto decrypt", "kind": "command", "path": "cards/cmd/command--chat%20crypto%20decrypt.md", "product": "chat"}
 {"completeness": "partial", "key": "chat data-auth", "kind": "command", "path": "cards/cmd/command--chat%20data-auth.md", "product": "chat"}
 {"completeness": "full", "key": "chat data-auth cross-org", "kind": "command", "path": "cards/cmd/command--chat%20data-auth%20cross-org.md", "product": "chat"}
 {"completeness": "full", "key": "chat emotion", "kind": "command", "path": "cards/cmd/command--chat%20emotion.md", "product": "chat"}
@@ -494,6 +497,57 @@
 {"completeness": "partial", "key": "contact user update", "kind": "command", "path": "cards/cmd/command--contact%20user%20update.md", "product": "contact"}
 {"completeness": "partial", "key": "contact user update-ownness", "kind": "command", "path": "cards/cmd/command--contact%20user%20update-ownness.md", "product": "contact"}
 {"completeness": "full", "key": "contact user update-self", "kind": "command", "path": "cards/cmd/command--contact%20user%20update-self.md", "product": "contact"}
+{"completeness": "partial", "key": "contract", "kind": "command", "path": "cards/cmd/command--contract.md", "product": "contract"}
+{"completeness": "partial", "key": "contract account", "kind": "command", "path": "cards/cmd/command--contract%20account.md", "product": "contract"}
+{"completeness": "full", "key": "contract account create", "kind": "command", "path": "cards/cmd/command--contract%20account%20create.md", "product": "contract"}
+{"completeness": "full", "key": "contract account delete", "kind": "command", "path": "cards/cmd/command--contract%20account%20delete.md", "product": "contract"}
+{"completeness": "full", "key": "contract account get", "kind": "command", "path": "cards/cmd/command--contract%20account%20get.md", "product": "contract"}
+{"completeness": "full", "key": "contract account list", "kind": "command", "path": "cards/cmd/command--contract%20account%20list.md", "product": "contract"}
+{"completeness": "full", "key": "contract account update", "kind": "command", "path": "cards/cmd/command--contract%20account%20update.md", "product": "contract"}
+{"completeness": "full", "key": "contract archive", "kind": "command", "path": "cards/cmd/command--contract%20archive.md", "product": "contract"}
+{"completeness": "full", "key": "contract draft", "kind": "command", "path": "cards/cmd/command--contract%20draft.md", "product": "contract"}
+{"completeness": "full", "key": "contract file-directories", "kind": "command", "path": "cards/cmd/command--contract%20file-directories.md", "product": "contract"}
+{"completeness": "partial", "key": "contract import", "kind": "command", "path": "cards/cmd/command--contract%20import.md", "product": "contract"}
+{"completeness": "full", "key": "contract import batch", "kind": "command", "path": "cards/cmd/command--contract%20import%20batch.md", "product": "contract"}
+{"completeness": "full", "key": "contract import batch-result", "kind": "command", "path": "cards/cmd/command--contract%20import%20batch-result.md", "product": "contract"}
+{"completeness": "full", "key": "contract process-templates", "kind": "command", "path": "cards/cmd/command--contract%20process-templates.md", "product": "contract"}
+{"completeness": "partial", "key": "contract project", "kind": "command", "path": "cards/cmd/command--contract%20project.md", "product": "contract"}
+{"completeness": "full", "key": "contract project add", "kind": "command", "path": "cards/cmd/command--contract%20project%20add.md", "product": "contract"}
+{"completeness": "full", "key": "contract project delete", "kind": "command", "path": "cards/cmd/command--contract%20project%20delete.md", "product": "contract"}
+{"completeness": "full", "key": "contract project detail", "kind": "command", "path": "cards/cmd/command--contract%20project%20detail.md", "product": "contract"}
+{"completeness": "full", "key": "contract project digests", "kind": "command", "path": "cards/cmd/command--contract%20project%20digests.md", "product": "contract"}
+{"completeness": "full", "key": "contract project export", "kind": "command", "path": "cards/cmd/command--contract%20project%20export.md", "product": "contract"}
+{"completeness": "full", "key": "contract project import", "kind": "command", "path": "cards/cmd/command--contract%20project%20import.md", "product": "contract"}
+{"completeness": "full", "key": "contract project import-result", "kind": "command", "path": "cards/cmd/command--contract%20project%20import-result.md", "product": "contract"}
+{"completeness": "full", "key": "contract project import-template", "kind": "command", "path": "cards/cmd/command--contract%20project%20import-template.md", "product": "contract"}
+{"completeness": "full", "key": "contract project list", "kind": "command", "path": "cards/cmd/command--contract%20project%20list.md", "product": "contract"}
+{"completeness": "full", "key": "contract project set-status", "kind": "command", "path": "cards/cmd/command--contract%20project%20set-status.md", "product": "contract"}
+{"completeness": "full", "key": "contract project update", "kind": "command", "path": "cards/cmd/command--contract%20project%20update.md", "product": "contract"}
+{"completeness": "partial", "key": "contract record", "kind": "command", "path": "cards/cmd/command--contract%20record.md", "product": "contract"}
+{"completeness": "full", "key": "contract record create", "kind": "command", "path": "cards/cmd/command--contract%20record%20create.md", "product": "contract"}
+{"completeness": "full", "key": "contract record get", "kind": "command", "path": "cards/cmd/command--contract%20record%20get.md", "product": "contract"}
+{"completeness": "full", "key": "contract record list", "kind": "command", "path": "cards/cmd/command--contract%20record%20list.md", "product": "contract"}
+{"completeness": "full", "key": "contract record quantity-by-type", "kind": "command", "path": "cards/cmd/command--contract%20record%20quantity-by-type.md", "product": "contract"}
+{"completeness": "partial", "key": "contract review", "kind": "command", "path": "cards/cmd/command--contract%20review.md", "product": "contract"}
+{"completeness": "full", "key": "contract review analysis", "kind": "command", "path": "cards/cmd/command--contract%20review%20analysis.md", "product": "contract"}
+{"completeness": "full", "key": "contract review benefit", "kind": "command", "path": "cards/cmd/command--contract%20review%20benefit.md", "product": "contract"}
+{"completeness": "full", "key": "contract review create", "kind": "command", "path": "cards/cmd/command--contract%20review%20create.md", "product": "contract"}
+{"completeness": "full", "key": "contract review result", "kind": "command", "path": "cards/cmd/command--contract%20review%20result.md", "product": "contract"}
+{"completeness": "partial", "key": "contract subject", "kind": "command", "path": "cards/cmd/command--contract%20subject.md", "product": "contract"}
+{"completeness": "full", "key": "contract subject add", "kind": "command", "path": "cards/cmd/command--contract%20subject%20add.md", "product": "contract"}
+{"completeness": "full", "key": "contract subject auto-fill", "kind": "command", "path": "cards/cmd/command--contract%20subject%20auto-fill.md", "product": "contract"}
+{"completeness": "full", "key": "contract subject base-info", "kind": "command", "path": "cards/cmd/command--contract%20subject%20base-info.md", "product": "contract"}
+{"completeness": "full", "key": "contract subject batch-delete", "kind": "command", "path": "cards/cmd/command--contract%20subject%20batch-delete.md", "product": "contract"}
+{"completeness": "full", "key": "contract subject delete", "kind": "command", "path": "cards/cmd/command--contract%20subject%20delete.md", "product": "contract"}
+{"completeness": "full", "key": "contract subject detail", "kind": "command", "path": "cards/cmd/command--contract%20subject%20detail.md", "product": "contract"}
+{"completeness": "full", "key": "contract subject detect-risk", "kind": "command", "path": "cards/cmd/command--contract%20subject%20detect-risk.md", "product": "contract"}
+{"completeness": "full", "key": "contract subject export", "kind": "command", "path": "cards/cmd/command--contract%20subject%20export.md", "product": "contract"}
+{"completeness": "full", "key": "contract subject import", "kind": "command", "path": "cards/cmd/command--contract%20subject%20import.md", "product": "contract"}
+{"completeness": "full", "key": "contract subject import-result", "kind": "command", "path": "cards/cmd/command--contract%20subject%20import-result.md", "product": "contract"}
+{"completeness": "full", "key": "contract subject import-template", "kind": "command", "path": "cards/cmd/command--contract%20subject%20import-template.md", "product": "contract"}
+{"completeness": "full", "key": "contract subject list", "kind": "command", "path": "cards/cmd/command--contract%20subject%20list.md", "product": "contract"}
+{"completeness": "full", "key": "contract subject sort", "kind": "command", "path": "cards/cmd/command--contract%20subject%20sort.md", "product": "contract"}
+{"completeness": "full", "key": "contract subject update", "kind": "command", "path": "cards/cmd/command--contract%20subject%20update.md", "product": "contract"}
 {"completeness": "partial", "key": "dev", "kind": "command", "path": "cards/cmd/command--dev.md", "product": "dev"}
 {"completeness": "partial", "key": "dev app", "kind": "command", "path": "cards/cmd/command--dev%20app.md", "product": "dev"}
 {"completeness": "partial", "key": "dev app create", "kind": "command", "path": "cards/cmd/command--dev%20app%20create.md", "product": "dev"}
@@ -725,6 +779,11 @@
 {"completeness": "full", "key": "hrbrain talent-pool list", "kind": "command", "path": "cards/cmd/command--hrbrain%20talent-pool%20list.md", "product": "hrbrain"}
 {"completeness": "full", "key": "hrbrain talent-pool move-members", "kind": "command", "path": "cards/cmd/command--hrbrain%20talent-pool%20move-members.md", "product": "hrbrain"}
 {"completeness": "full", "key": "hrbrain talent-pool save", "kind": "command", "path": "cards/cmd/command--hrbrain%20talent-pool%20save.md", "product": "hrbrain"}
+{"completeness": "full", "key": "html", "kind": "command", "path": "cards/cmd/command--html.md", "product": "html"}
+{"completeness": "full", "key": "html create", "kind": "command", "path": "cards/cmd/command--html%20create.md", "product": "html"}
+{"completeness": "partial", "key": "html fetch", "kind": "command", "path": "cards/cmd/command--html%20fetch.md", "product": "html"}
+{"completeness": "partial", "key": "html overwrite", "kind": "command", "path": "cards/cmd/command--html%20overwrite.md", "product": "html"}
+{"completeness": "partial", "key": "html patch", "kind": "command", "path": "cards/cmd/command--html%20patch.md", "product": "html"}
 {"completeness": "partial", "key": "live", "kind": "command", "path": "cards/cmd/command--live.md", "product": "live"}
 {"completeness": "partial", "key": "live stream", "kind": "command", "path": "cards/cmd/command--live%20stream.md", "product": "live"}
 {"completeness": "full", "key": "live stream list", "kind": "command", "path": "cards/cmd/command--live%20stream%20list.md", "product": "live"}

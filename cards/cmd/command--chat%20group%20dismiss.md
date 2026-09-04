@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat group dismiss
 description: 解散群聊
 example: dws chat group dismiss --conversation-id <openConversationId>
-source: internal/helpers/chat.go:8771
+source: internal/helpers/chat.go:8973
 visible_flags: 1
 
 ## Flags

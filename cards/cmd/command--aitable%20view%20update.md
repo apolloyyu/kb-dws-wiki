@@ -6,7 +6,7 @@ usage: dws aitable view update
 description: Update a view's name, filter, sort, grouping, or visible fields.
 example: dws aitable view update --base-id BASE_ID --table-id TABLE_ID --view-id VIEW_ID --name "新视图名"
 use_when: When the agent refines an existing view's configuration after inspection.
-source: internal/helpers/aitable.go:4159
+source: internal/helpers/aitable.go:4171
 visible_flags: 6
 
 ## Flags

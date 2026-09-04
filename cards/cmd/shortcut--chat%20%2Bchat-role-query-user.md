@@ -4,11 +4,11 @@ kind: shortcut
 completeness: full
 usage: dws chat +chat-role-query-user
 description: 查询群成员的群身份
-source: internal/shortcut/chat/chat_group.go:1965
+source: internal/shortcut/chat/chat_group.go:2016
 visible_flags: 2
 
 ## Flags
-- --group <String>: 群 openConversationId
+- --group <String>: 群名或 openConversationId；群名必须唯一匹配
 - --user <String>: 用户 userId 或 openDingTalkId
 
 ## Related

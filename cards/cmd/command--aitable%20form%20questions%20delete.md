@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable form questions delete
 description: 从表单删除题目（等价于 field delete，不可逆）
 example: dws aitable form questions delete --base-id BASE_ID --table-id TABLE_ID --field-id fldXXX --yes
-source: internal/helpers/aitable.go:5434
+source: internal/helpers/aitable.go:5446
 visible_flags: 3
 
 ## Flags

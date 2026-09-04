@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws chat +messages-mget
 description: 根据消息 ID 批量查询消息（最多 50 条）
-source: internal/shortcut/chat/chat_message.go:832
+source: internal/shortcut/chat/chat_message.go:1095
 visible_flags: 5
 
 ## Flags

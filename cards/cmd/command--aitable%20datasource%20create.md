@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable datasource create
 description: 创建数据源表并触发首次同步
 example: dws aitable datasource create --base-id BASE_ID --datasource-type OA --source-config '{"processCode":"PROC-XXXX","name":"采购申请","dataType":"recent_time","recentDays":"30d","iconUrl":"https://example.com/icon.png","url":"https://example.com/oa"}'
-source: internal/helpers/aitable.go:8656
+source: internal/helpers/aitable.go:8668
 visible_flags: 6
 
 ## Flags

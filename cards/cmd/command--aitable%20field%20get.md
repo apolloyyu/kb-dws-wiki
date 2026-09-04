@@ -6,7 +6,7 @@ usage: dws aitable field get
 description: Retrieve field definitions for a datasheet, including type, options, and order.
 example: dws aitable field get --base-id BASE_ID --table-id TABLE_ID
 use_when: When the agent needs the field schema before constructing record payloads or queries.
-source: internal/helpers/aitable.go:2311
+source: internal/helpers/aitable.go:2323
 visible_flags: 3
 partial_reason: unverified_flags
 

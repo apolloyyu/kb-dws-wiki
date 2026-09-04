@@ -6,7 +6,7 @@ usage: dws aitable dashboard create
 description: Create a new dashboard inside a Base with a layout of chart widgets.
 example: dws aitable dashboard create --base-id BASE_ID --name "销售看板"
 use_when: When the agent wants to group multiple charts into a single dashboard view for a report or overview page.
-source: internal/helpers/aitable.go:6229
+source: internal/helpers/aitable.go:6241
 visible_flags: 3
 
 ## Flags

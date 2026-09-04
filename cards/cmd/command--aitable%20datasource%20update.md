@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable datasource update
 description: 更新数据源表同步配置并触发同步
 example: dws aitable datasource update --base-id BASE_ID --table-id TABLE_ID --auto
-source: internal/helpers/aitable.go:8725
+source: internal/helpers/aitable.go:8737
 visible_flags: 6
 
 ## Flags

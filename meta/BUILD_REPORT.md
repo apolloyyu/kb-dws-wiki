@@ -1,11 +1,11 @@
 # 构建对账
 
-- 源码 commit:e6661a8f
-- 镜像文件:118
-- 主命令:1106(带 flags:772,归属未定:173)
+- 源码 commit:51926f0b
+- 镜像文件:120
+- 主命令:1165(带 flags:817,归属未定:180)
 - shortcuts:468
-- 答案卡:1574(full:1219,77.4%;partial:355)
-- 文档索引:127 篇
+- 答案卡:1633(full:1268,77.6%;partial:365)
+- 文档索引:129 篇
 
 ## 归属未定(退回源码 grep,不影响存在性判断)
 - agoal contract
@@ -80,6 +80,13 @@
 - contact user
 - contact user dismission
 - contact user profile
+- contract
+- contract account
+- contract import
+- contract project
+- contract record
+- contract review
+- contract subject
 - dev
 - dev app
 - dev app credentials

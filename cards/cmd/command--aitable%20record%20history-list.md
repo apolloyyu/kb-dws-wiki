@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable record history-list
 description: 查询行记录变更历史
 example: dws aitable record history-list --base-id BASE_ID --table-id TABLE_ID --record-id REC_ID
-source: internal/helpers/aitable.go:3359
+source: internal/helpers/aitable.go:3371
 visible_flags: 5
 
 ## Flags

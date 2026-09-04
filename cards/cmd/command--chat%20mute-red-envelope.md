@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat mute-red-envelope
 description: 关闭/开启红包消息提醒
 example: dws chat mute-red-envelope --conversation-id <openConversationId>
-source: internal/helpers/chat.go:10310
+source: internal/helpers/chat.go:10512
 visible_flags: 2
 
 ## Flags

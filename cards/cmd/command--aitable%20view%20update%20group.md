@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable view update group
 description: 更新视图 group 配置
 example: dws aitable view update group --base-id BASE_ID --table-id TABLE_ID --view-id VIEW_ID --json '[{"fieldId":"fldX","direction":"asc"}]'
-source: internal/helpers/aitable.go:4589
+source: internal/helpers/aitable.go:4601
 visible_flags: 1
 
 ## Flags

@@ -6,7 +6,7 @@ usage: dws chat message send-by-webhook
 description: Send a group message via a custom-robot incoming webhook URL.
 example: dws chat message send-by-webhook --token <webhook-token> --title "告警" --content "CPU 超 90%" --at-all
 use_when: When the agent needs to post to a group using a webhook without requiring full bot-permission setup.
-source: internal/helpers/chat.go:4166
+source: internal/helpers/chat.go:4353
 visible_flags: 5
 partial_reason: unverified_flags
 

@@ -12,7 +12,7 @@ visible_flags: 11
 - --command <String>: 更新动作；不能为空
 - --content <String>: —
 - --doc-format <String>: —
-- --block-id <String>: 目标或源 block ID；相关动作要求时不能为空
+- --block-id <String>: 目标或源 block ID；相关动作要求时不能为空；block_delete 支持逗号分隔批量 ID，单次最多 50 个
 - --after-block-id <String>: 插入位置参考 block ID；相关动作要求时不能为空
 - --before-block-id <String>: 向前插入时的位置参考 block ID；block_insert_before 要求不能为空
 - --heading-level <Int>: 将插入内容写为指定级别标题（1-6）；仅支持 Markdown block_insert_before/block_insert_after

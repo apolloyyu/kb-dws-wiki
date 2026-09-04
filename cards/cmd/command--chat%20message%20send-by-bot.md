@@ -6,7 +6,7 @@ usage: dws chat message send-by-bot
 description: Send a group message as a specific robot (bot) the user owns.
 example: dws chat message send-by-bot --robot-code <robot-code> --conversation-id <openconversation_id> --title "日报" --text "
 use_when: When the agent posts automated notifications under a bot identity rather than as the user.
-source: internal/helpers/chat.go:3860
+source: internal/helpers/chat.go:4047
 visible_flags: 14
 
 ## Flags

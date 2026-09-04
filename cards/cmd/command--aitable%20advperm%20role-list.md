@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable advperm role-list
 description: 列出 Base 下所有角色
 example: dws aitable advperm role-list --base-id BASE_ID
-source: internal/helpers/aitable.go:7089
+source: internal/helpers/aitable.go:7101
 visible_flags: 1
 
 ## Flags

@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable workflow enable
 description: 启用指定工作流
 example: dws aitable workflow enable --base-id BASE_ID --workflow-id WORKFLOW_ID
-source: internal/helpers/aitable.go:5857
+source: internal/helpers/aitable.go:5869
 visible_flags: 2
 
 ## Flags

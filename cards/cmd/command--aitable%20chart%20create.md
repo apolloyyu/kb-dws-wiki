@@ -6,7 +6,7 @@ usage: dws aitable chart create
 description: Create a new chart inside a Base, bound to a datasheet and view with a given configuration.
 example: dws aitable chart create --base-id BASE_ID --dashboard-id DASHBOARD_ID
 use_when: When the agent is building analytics on top of a datasheet and needs to materialize a chart visualization.
-source: internal/helpers/aitable.go:6628
+source: internal/helpers/aitable.go:6640
 visible_flags: 4
 
 ## Flags

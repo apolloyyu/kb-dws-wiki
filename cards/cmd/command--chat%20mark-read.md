@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat mark-read
 description: 标记消息已读
 example: dws chat mark-read --conversation-id <openConversationId> --message-id <openMessageId>
-source: internal/helpers/chat.go:9886
+source: internal/helpers/chat.go:10088
 visible_flags: 2
 
 ## Flags

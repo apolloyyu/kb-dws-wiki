@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable form update
 description: 更新表单配置
 example: dws aitable form update --base-id BASE_ID --table-id TABLE_ID --view-id VIEW_ID --title "员工信息收集"
-source: internal/helpers/aitable.go:5341
+source: internal/helpers/aitable.go:5353
 visible_flags: 6
 
 ## Flags

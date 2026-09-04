@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat message list-emotion-replies
 description: 批量拉取消息的表情回复和文字回复
 example: dws chat message list-emotion-replies --msg-ids msgId1,msgId2,msgId3
-source: internal/helpers/chat.go:10890
+source: internal/helpers/chat.go:11092
 visible_flags: 1
 
 ## Flags

@@ -6,7 +6,7 @@ usage: dws aitable base update
 description: Update mutable properties of an AI table (Base), such as its name or icon.
 example: dws aitable base update --base-id BASE_ID --name "新名称"
 use_when: When the agent needs to rename or rebrand an existing Base without touching its data.
-source: internal/helpers/aitable.go:1897
+source: internal/helpers/aitable.go:1909
 visible_flags: 3
 
 ## Flags

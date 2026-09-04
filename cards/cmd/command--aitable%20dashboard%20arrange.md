@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable dashboard arrange
 description: 自动重排仪表盘图表布局
 example: dws aitable dashboard arrange --base-id BASE_ID --dashboard-id DASHBOARD_ID
-source: internal/helpers/aitable.go:6402
+source: internal/helpers/aitable.go:6414
 visible_flags: 2
 
 ## Flags

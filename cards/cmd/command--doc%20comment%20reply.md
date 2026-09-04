@@ -6,7 +6,7 @@ usage: dws doc comment reply
 description: Reply to an existing comment on a DingTalk Doc.
 example: dws doc comment reply --node DOC_ID --comment-key COMMENT_KEY --content "同意"
 use_when: When the agent responds to a reviewer's comment inline rather than starting a new thread.
-source: internal/helpers/doc.go:3245
+source: internal/helpers/doc.go:3262
 visible_flags: 6
 
 ## Flags

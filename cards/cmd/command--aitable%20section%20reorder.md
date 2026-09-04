@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable section reorder
 description: 调整文件夹顺序
 example: dws aitable section reorder --base-id BASE_ID --section-id SECTION_ID --target-index 0
-source: internal/helpers/aitable.go:7626
+source: internal/helpers/aitable.go:7638
 visible_flags: 3
 
 ## Flags

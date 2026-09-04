@@ -5,7 +5,7 @@ completeness: full
 usage: dws drive push
 description: 把本地文件夹单向镜像到钉盘（本地 → Drive）
 example: dws drive push --local-folder /abs/path/repo --remote-folder <dentryUuid>
-source: internal/helpers/drive.go:4115
+source: internal/helpers/drive.go:4122
 visible_flags: 4
 
 ## Flags

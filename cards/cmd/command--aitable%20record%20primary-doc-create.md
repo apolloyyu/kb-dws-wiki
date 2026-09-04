@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable record primary-doc-create
 description: 为记录创建主键文档
 example: dws aitable record primary-doc-create --base-id BASE_ID --table-id TABLE_ID --field-id FIELD_ID --record-id RECORD_ID
-source: internal/helpers/aitable.go:3604
+source: internal/helpers/aitable.go:3616
 visible_flags: 4
 
 ## Flags

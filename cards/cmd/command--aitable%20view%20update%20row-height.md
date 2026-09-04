@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable view update row-height
 description: 更新视图行高（单元格高度）
 example: dws aitable view update row-height --base-id BASE_ID --table-id TABLE_ID --view-id VIEW_ID --cell-height 32
-source: internal/helpers/aitable.go:4890
+source: internal/helpers/aitable.go:4902
 visible_flags: 1
 
 ## Flags

@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable advperm disable
 description: 关闭高级权限总开关（高危）
 example: dws aitable advperm disable --base-id BASE_ID --yes
-source: internal/helpers/aitable.go:7044
+source: internal/helpers/aitable.go:7056
 visible_flags: 1
 
 ## Flags

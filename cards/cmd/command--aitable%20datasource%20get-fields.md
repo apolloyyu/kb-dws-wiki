@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable datasource get-fields
 description: 获取数据源可同步字段列表
 example: dws aitable datasource get-fields --base-id BASE_ID --datasource-type OA --source-config '{"processCode":"PROC-XXXX","name":"采购申请","dataType":"recent_time","recentDays":"30d","iconUrl":"https://example.com/icon.png","url":"https://example.com/oa"}'
-source: internal/helpers/aitable.go:8610
+source: internal/helpers/aitable.go:8622
 visible_flags: 3
 
 ## Flags

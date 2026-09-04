@@ -6,7 +6,7 @@ usage: dws aitable chart update
 description: Update an existing chart's configuration (type, dimensions, metrics, style).
 example: dws aitable chart update --base-id BASE_ID --dashboard-id DASHBOARD_ID --chart-id CHART_ID
 use_when: When the agent iterates on a chart's visualization after reviewing the initial result.
-source: internal/helpers/aitable.go:6680
+source: internal/helpers/aitable.go:6692
 visible_flags: 5
 
 ## Flags

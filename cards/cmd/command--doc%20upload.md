@@ -6,7 +6,7 @@ usage: dws doc upload
 description: Obtain upload credentials and URL for uploading a local file as an attachment into DingTalk Docs or a knowledge base.
 example: dws doc upload --file ./report.pdf
 use_when: When the agent needs to stage a local file for attachment into the DingTalk Docs system.
-source: internal/helpers/doc.go:1994
+source: internal/helpers/doc.go:1996
 visible_flags: 5
 
 ## Flags

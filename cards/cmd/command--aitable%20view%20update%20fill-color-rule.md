@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable view update fill-color-rule
 description: 更新视图数据高亮规则
 example: dws aitable view update fill-color-rule --base-id BASE_ID --table-id TABLE_ID --view-id VIEW_ID --json '[]'
-source: internal/helpers/aitable.go:4973
+source: internal/helpers/aitable.go:4985
 visible_flags: 1
 
 ## Flags

@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable view update card
 description: 更新视图 card 配置（Kanban / Gallery）
 example: dws aitable view update card --base-id BASE_ID --table-id TABLE_ID --view-id VIEW_ID --cover-field-id fldXXX --cover-resize-mode contain
-source: internal/helpers/aitable.go:4206
+source: internal/helpers/aitable.go:4218
 visible_flags: 7
 
 ## Flags

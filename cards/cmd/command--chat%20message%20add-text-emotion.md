@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat message add-text-emotion
 description: 对消息添加文字表情回应
 example: dws chat message add-text-emotion --conversation-id <openConversationId> --message-id <openMsgId> --emotion-id <emotionId> --emotion-name "赞" --text "nice" --background-id im_bg_5
-source: internal/helpers/chat.go:6386
+source: internal/helpers/chat.go:6588
 visible_flags: 10
 
 ## Flags

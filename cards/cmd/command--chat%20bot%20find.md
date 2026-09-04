@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat bot find
 description: 搜索【全部可用】机器人（含他人/官方，额外返回 openDingTalkId 可发单聊）
 example: dws chat bot find --query "日报"
-source: internal/helpers/chat.go:8698
+source: internal/helpers/chat.go:8900
 visible_flags: 3
 
 ## Flags

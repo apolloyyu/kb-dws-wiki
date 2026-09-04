@@ -6,7 +6,7 @@ usage: dws doc update
 description: Update the content of a DingTalk Doc (bulk content rewrite rather than block-level edit).
 example: dws doc update --node DOC_ID --content "
 use_when: When the agent has freshly generated content and needs to overwrite a doc's body.
-source: internal/helpers/doc.go:1719
+source: internal/helpers/doc.go:1721
 visible_flags: 9
 partial_reason: unverified_flags
 

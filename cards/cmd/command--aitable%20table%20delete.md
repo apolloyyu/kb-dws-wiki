@@ -6,7 +6,7 @@ usage: dws aitable table delete
 description: Delete a datasheet from a Base by table ID, removing all its records, views, and fields.
 example: dws aitable table delete --base-id BASE_ID --table-id TABLE_ID --yes
 use_when: When the agent is disposing of a datasheet that is no longer needed.
-source: internal/helpers/aitable.go:2257
+source: internal/helpers/aitable.go:2269
 visible_flags: 3
 
 ## Flags

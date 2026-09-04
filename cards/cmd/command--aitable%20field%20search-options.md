@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable field search-options
 description: 搜索单选/多选字段的选项
 example: dws aitable field search-options --base-id BASE_ID --table-id TABLE_ID --field-id FIELD_ID
-source: internal/helpers/aitable.go:2560
+source: internal/helpers/aitable.go:2572
 visible_flags: 5
 
 ## Flags

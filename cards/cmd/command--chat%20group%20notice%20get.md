@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat group notice get
 description: 查看群公告详情
 example: dws chat group notice get --conversation-id <openConversationId> --notice-id <dataId>
-source: internal/helpers/chat.go:10569
+source: internal/helpers/chat.go:10771
 visible_flags: 2
 
 ## Flags

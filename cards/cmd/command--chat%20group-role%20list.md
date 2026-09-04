@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat group-role list
 description: 拉取会话的群身份列表
 example: dws chat group-role list --conversation-id <openConversationId>
-source: internal/helpers/chat.go:8177
+source: internal/helpers/chat.go:8379
 visible_flags: 1
 
 ## Flags

@@ -6,7 +6,7 @@ usage: dws aitable base create
 description: Create a new AI table (Base) under the current user's workspace. Returns the newly-created Base ID.
 example: dws aitable base create --name "项目跟踪"
 use_when: When an agent needs to provision a fresh Base before populating datasheets, fields, and records.
-source: internal/helpers/aitable.go:1849
+source: internal/helpers/aitable.go:1861
 visible_flags: 3
 
 ## Flags

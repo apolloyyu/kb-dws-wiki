@@ -6,7 +6,7 @@ usage: dws chat message search
 description: Search messages by keyword across the user's conversations.
 example: dws chat message search --query "changefree" --start "2026-04-01T00:00:00+08:00" --end "2026-04-15T00:00:00+08:00" --limit 50 --cursor 0
 use_when: When the agent needs to locate a specific statement or link the user remembers from chat history.
-source: internal/helpers/chat.go:4592
+source: internal/helpers/chat.go:4779
 visible_flags: 6
 partial_reason: unverified_flags
 

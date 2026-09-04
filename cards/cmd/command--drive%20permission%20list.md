@@ -5,7 +5,7 @@ completeness: full
 usage: dws drive permission list
 description: 查询协作者列表
 example: dws drive permission list --node DOC_ID
-source: internal/helpers/drive.go:2741
+source: internal/helpers/drive.go:2748
 visible_flags: 5
 
 ## Flags

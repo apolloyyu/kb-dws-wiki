@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat message download-media
 description: 下载消息中的资源（图片/视频/语音等）到本地
 example: dws chat message download-media --type mediaId --resource-id <mediaId> --message-id <openMessageId> --open-conversation-id <openConversationId> --output ./download.bin
-source: internal/helpers/chat.go:7020
+source: internal/helpers/chat.go:7222
 visible_flags: 5
 
 ## Flags

@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable advperm role-update
 description: 增量更新自定义角色配置（patch 语义）
 example: dws aitable advperm role-update --base-id BASE_ID --role-id ROLE_ID --name "新名字"
-source: internal/helpers/aitable.go:7235
+source: internal/helpers/aitable.go:7247
 visible_flags: 6
 
 ## Flags

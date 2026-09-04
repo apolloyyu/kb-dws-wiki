@@ -6,7 +6,7 @@ usage: dws aitable import data
 description: Import previously-uploaded data (e.g. Excel) into a datasheet as records, optionally creating fields.
 example: dws aitable import data --import-id IMPORT_ID
 use_when: When the agent is bulk-loading external data into a Base after a successful import upload.
-source: internal/helpers/aitable.go:7407
+source: internal/helpers/aitable.go:7419
 visible_flags: 6
 
 ## Flags

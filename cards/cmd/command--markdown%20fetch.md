@@ -5,7 +5,7 @@ completeness: partial
 usage: dws markdown fetch
 description: 获取 Markdown 文件内容
 example: dws markdown fetch --node <dentryUuid>
-source: internal/helpers/markdown.go:74
+source: internal/helpers/markdown.go:72
 visible_flags: 4
 partial_reason: unverified_flags
 

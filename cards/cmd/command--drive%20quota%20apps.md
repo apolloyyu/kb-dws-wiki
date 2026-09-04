@@ -6,7 +6,7 @@ usage: dws drive quota apps
 description: List app-level storage usage across the enterprise with paging and sorting.
 example: dws drive quota apps
 use_when: When the agent inventories which apps consume Drive storage or walks the full app list page by page.
-source: internal/helpers/drive.go:2220
+source: internal/helpers/drive.go:2227
 visible_flags: 4
 
 ## Flags

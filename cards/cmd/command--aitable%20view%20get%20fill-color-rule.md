@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable view get fill-color-rule
 description: 获取视图 fill-color-rule 配置
 example: dws aitable view get fill-color-rule --base-id BASE_ID --table-id TABLE_ID --view-id VIEW_ID
-source: internal/helpers/aitable.go:4938
+source: internal/helpers/aitable.go:4950
 visible_flags: 0
 
 ## Flags

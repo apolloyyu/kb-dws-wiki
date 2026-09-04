@@ -6,7 +6,7 @@ usage: dws aitable view delete
 description: Delete a view from a datasheet by view ID.
 example: dws aitable view delete --base-id BASE_ID --table-id TABLE_ID --view-id VIEW_ID --yes
 use_when: When the agent is cleaning up unused views.
-source: internal/helpers/aitable.go:5100
+source: internal/helpers/aitable.go:5112
 visible_flags: 3
 
 ## Flags

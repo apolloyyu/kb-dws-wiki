@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat message remove-favorite
 description: 取消收藏指定消息
 example: dws chat message remove-favorite --open-message-id <openMessageId> --open-conversation-id <openConversationId>
-source: internal/helpers/chat.go:9219
+source: internal/helpers/chat.go:9421
 visible_flags: 2
 
 ## Flags

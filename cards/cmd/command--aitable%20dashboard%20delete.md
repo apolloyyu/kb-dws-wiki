@@ -6,7 +6,7 @@ usage: dws aitable dashboard delete
 description: Delete a dashboard from a Base by dashboard ID.
 example: dws aitable dashboard delete --base-id BASE_ID --dashboard-id DASHBOARD_ID --yes
 use_when: When the agent is removing an outdated dashboard.
-source: internal/helpers/aitable.go:6355
+source: internal/helpers/aitable.go:6367
 visible_flags: 3
 
 ## Flags

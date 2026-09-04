@@ -5,7 +5,7 @@ completeness: full
 usage: dws doc media insert
 description: 上传附件并插入文档
 example: dws doc media insert --node DOC_ID --file ./report.pdf
-source: internal/helpers/doc.go:2991
+source: internal/helpers/doc.go:3008
 visible_flags: 7
 
 ## Flags

@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat message read-status
 description: 查询消息的已读/未读状态
 example: dws chat message read-status --conversation-id <openConversationId> --message-id <openMessageId>
-source: internal/helpers/chat.go:4935
+source: internal/helpers/chat.go:5137
 visible_flags: 5
 
 ## Flags

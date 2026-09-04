@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat message send-card
 description: 创建并推送流式卡片
 example: dws chat message send-card --conversation-id <openConversationId>
-source: internal/helpers/chat.go:6673
+source: internal/helpers/chat.go:6875
 visible_flags: 4
 
 ## Flags

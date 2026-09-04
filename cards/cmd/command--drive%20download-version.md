@@ -5,7 +5,7 @@ completeness: partial
 usage: dws drive download-version
 description: 下载文件历史版本到本地
 example: dws drive download-version --node <dentryUuid> --version 3 --output ./report_v3.pdf
-source: internal/helpers/drive.go:998
+source: internal/helpers/drive.go:1005
 visible_flags: 8
 partial_reason: unverified_flags,empty_flag_name
 

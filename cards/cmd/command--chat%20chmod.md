@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat chmod <scope>
 description: 授予 chat 高风险操作权限
 example: dws chat chmod chat.message:send --agentCode agt-wukong-xxxx --grant-type timed --ttl 24h --permParam openCid=cidXXXXXXXXXX
-source: internal/helpers/chat.go:2738
+source: internal/helpers/chat.go:2929
 visible_flags: 9
 
 ## Flags

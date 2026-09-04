@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable form share update
 description: 开启/关闭分享表单
 example: dws aitable form share update --base-id BASE_ID --table-id TABLE_ID --view-id VIEW_ID --enabled true
-source: internal/helpers/aitable.go:5649
+source: internal/helpers/aitable.go:5661
 visible_flags: 4
 
 ## Flags

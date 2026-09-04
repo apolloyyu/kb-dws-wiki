@@ -6,7 +6,7 @@ usage: dws aitable dashboard get
 description: Retrieve a dashboard's layout, widget list, and metadata.
 example: dws aitable dashboard get --base-id BASE_ID --dashboard-id DASHBOARD_ID
 use_when: When the agent needs to inspect a dashboard before updating it or cloning it.
-source: internal/helpers/aitable.go:6187
+source: internal/helpers/aitable.go:6199
 visible_flags: 2
 
 ## Flags

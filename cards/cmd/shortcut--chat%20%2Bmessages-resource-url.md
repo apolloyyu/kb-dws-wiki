@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws chat +messages-resource-url
 description: 获取消息资源（图片/视频/语音）下载链接
-source: internal/shortcut/chat/chat_message.go:1858
+source: internal/shortcut/chat/chat_message.go:2123
 visible_flags: 6
 
 ## Flags

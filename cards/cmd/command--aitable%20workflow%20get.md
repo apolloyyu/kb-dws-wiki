@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable workflow get
 description: 获取单个工作流详情
 example: dws aitable workflow get --base-id BASE_ID --workflow-id WORKFLOW_ID
-source: internal/helpers/aitable.go:5948
+source: internal/helpers/aitable.go:5960
 visible_flags: 2
 
 ## Flags

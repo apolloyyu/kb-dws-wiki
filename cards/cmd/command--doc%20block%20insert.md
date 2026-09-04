@@ -6,7 +6,7 @@ usage: dws doc block insert
 description: Insert a new block (paragraph, table, image, etc.) into a DingTalk Doc at a given position.
 example: dws doc block insert --node DOC_ID --content "这是一段文字"
 use_when: When the agent is programmatically assembling or editing a document's content.
-source: internal/helpers/doc.go:2175
+source: internal/helpers/doc.go:2177
 visible_flags: 9
 partial_reason: unverified_flags
 

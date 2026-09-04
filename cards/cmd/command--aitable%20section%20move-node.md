@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable section move-node
 description: 移动节点
 example: dws aitable section move-node --base-id BASE_ID --node-id NODE_ID --new-parent-section-id SECTION_ID
-source: internal/helpers/aitable.go:7756
+source: internal/helpers/aitable.go:7768
 visible_flags: 4
 
 ## Flags

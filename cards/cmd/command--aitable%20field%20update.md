@@ -6,7 +6,7 @@ usage: dws aitable field update
 description: Update a field's name, type, or options in a datasheet.
 example: dws aitable field update --base-id BASE_ID --table-id TABLE_ID --field-id FIELD_ID --name "新字段名"
 use_when: When the agent needs to rename a column or change its type/options without recreating it.
-source: internal/helpers/aitable.go:2487
+source: internal/helpers/aitable.go:2499
 visible_flags: 6
 
 ## Flags

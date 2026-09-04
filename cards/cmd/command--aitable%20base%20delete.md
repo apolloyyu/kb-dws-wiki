@@ -6,7 +6,7 @@ usage: dws aitable base delete
 description: Permanently delete an existing AI table (Base) by ID, removing all its datasheets, views, and records.
 example: dws aitable base delete --base-id BASE_ID --yes
 use_when: When the agent is cleaning up a Base that is no longer needed or was created for a one-off task.
-source: internal/helpers/aitable.go:1945
+source: internal/helpers/aitable.go:1957
 visible_flags: 2
 
 ## Flags

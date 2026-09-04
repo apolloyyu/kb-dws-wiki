@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat group user-settings query
 description: 批量查询当前用户的群会话设置
 example: dws chat group user-settings query --groups cid1,cid2
-source: internal/helpers/chat.go:11017
+source: internal/helpers/chat.go:11219
 visible_flags: 1
 
 ## Flags

@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable base get-primary-doc-id
 description: 获取主键文档ID
 example: dws aitable base get-primary-doc-id --base-id BASE_ID --table-id TABLE_ID --record-id RECORD_ID
-source: internal/helpers/aitable.go:1679
+source: internal/helpers/aitable.go:1691
 visible_flags: 3
 
 ## Flags

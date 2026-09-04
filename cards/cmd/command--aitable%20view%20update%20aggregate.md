@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable view update aggregate
 description: 更新视图字段聚合统计（仅 Grid）
 example: dws aitable view update aggregate --base-id BASE_ID --table-id TABLE_ID --view-id VIEW_ID --field-id fldX --action SUM
-source: internal/helpers/aitable.go:4341
+source: internal/helpers/aitable.go:4353
 visible_flags: 4
 
 ## Flags

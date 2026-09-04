@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable form list
 description: 列出表单视图
 example: dws aitable form list --base-id BASE_ID --table-id TABLE_ID
-source: internal/helpers/aitable.go:5150
+source: internal/helpers/aitable.go:5162
 visible_flags: 2
 
 ## Flags

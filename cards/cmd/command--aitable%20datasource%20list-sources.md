@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable datasource list-sources
 description: 列出可用数据源来源
 example: dws aitable datasource list-sources --base-id BASE_ID --datasource-type OA
-source: internal/helpers/aitable.go:8555
+source: internal/helpers/aitable.go:8567
 visible_flags: 2
 
 ## Flags

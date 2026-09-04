@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat message list-by-ids
 description: 根据消息 ID 批量查询消息
 example: dws chat message list-by-ids --msg-ids msgId1,msgId2,msgId3
-source: internal/helpers/chat.go:6197
+source: internal/helpers/chat.go:6399
 visible_flags: 1
 
 ## Flags

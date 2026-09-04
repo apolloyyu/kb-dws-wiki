@@ -5,7 +5,7 @@ completeness: partial
 usage: dws chat category list-by-conv
 description: 拉取指定会话所属的用户自定义会话分组
 example: dws chat category list-by-conv --conversation-id <openConversationId>
-source: internal/helpers/chat.go:6055
+source: internal/helpers/chat.go:6257
 visible_flags: 1
 partial_reason: unverified_flags
 

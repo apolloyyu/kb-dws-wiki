@@ -6,7 +6,7 @@ usage: dws chat message list
 description: Pull the recent message history of a specific conversation, including quoted-message context for merged forwards and images.
 example: dws chat message list --conversation-id <openconversation_id> --time "2025-03-01 00:00:00"
 use_when: When the agent needs to read what has recently been said in a conversation and retain the context of replies.
-source: internal/helpers/chat.go:3301
+source: internal/helpers/chat.go:3488
 visible_flags: 6
 partial_reason: unverified_flags
 

@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat group upgrade-to-external
 description: [危险] 将普通群升级为外部群
 example: dws chat group upgrade-to-external --conversation-id <openConversationId> --dry-run
-source: internal/helpers/chat.go:10747
+source: internal/helpers/chat.go:10949
 visible_flags: 2
 
 ## Flags

@@ -6,7 +6,7 @@ usage: dws aitable attachment upload
 description: Request an upload ticket for attaching a file to an AI table attachment-type field. Returns an upload URL and token the caller uses to stream the file.
 example: dws aitable attachment upload --base-id BASE_ID --file-name report.xlsx --size 204800
 use_when: When the agent needs to attach binary assets (images, PDFs, etc.) to records before creating or updating an attachment field value.
-source: internal/helpers/aitable.go:3701
+source: internal/helpers/aitable.go:3713
 visible_flags: 4
 
 ## Flags

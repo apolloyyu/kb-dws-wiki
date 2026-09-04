@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat mark-unread
 description: 标记会话为未读
 example: dws chat mark-unread --conversation-id <openConversationId>
-source: internal/helpers/chat.go:9594
+source: internal/helpers/chat.go:9796
 visible_flags: 1
 
 ## Flags

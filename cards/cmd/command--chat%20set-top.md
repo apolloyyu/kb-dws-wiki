@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat set-top
 description: 会话置顶 / 取消置顶（支持单聊/群聊）
 example: dws chat set-top --conversation-id <openConversationId>
-source: internal/helpers/chat.go:7774
+source: internal/helpers/chat.go:7976
 visible_flags: 2
 
 ## Flags

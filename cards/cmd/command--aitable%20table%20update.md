@@ -6,7 +6,7 @@ usage: dws aitable table update
 description: Update a datasheet's name or other metadata.
 example: dws aitable table update --base-id BASE_ID --table-id TABLE_ID --name "新表名"
 use_when: When the agent needs to rename a datasheet without altering its contents.
-source: internal/helpers/aitable.go:2187
+source: internal/helpers/aitable.go:2199
 visible_flags: 5
 
 ## Flags

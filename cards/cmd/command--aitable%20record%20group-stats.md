@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable record group-stats
 description: 分组、去重及高级聚合统计
 example: dws aitable record group-stats --base-id BASE_ID --table-id TABLE_ID --group '[{"fieldId":"fldCategory","direction":"ASC","fieldConfig":null,"arraySplitMode":true}]' --stats '[{"fieldId":"fldAmount","statsType":"sum"}]'
-source: internal/helpers/aitable.go:2903
+source: internal/helpers/aitable.go:2915
 visible_flags: 8
 
 ## Flags

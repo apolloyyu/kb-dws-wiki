@@ -8,7 +8,7 @@ source: internal/shortcut/chat/chat_group.go:1693
 visible_flags: 1
 
 ## Flags
-- --group <String>: 群 openConversationId
+- --group <String>: 群名或 openConversationId；群名必须唯一匹配
 
 ## Related
 - dws chat +bot-find

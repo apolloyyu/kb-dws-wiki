@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable view update timebar
 description: 更新视图 timebar 配置（仅 Gantt）
 example: dws aitable view update timebar --base-id BASE_ID --table-id TABLE_ID --view-id VIEW_ID --start-field fldStart --end-field fldEnd --timeline-scale month
-source: internal/helpers/aitable.go:4274
+source: internal/helpers/aitable.go:4286
 visible_flags: 7
 
 ## Flags

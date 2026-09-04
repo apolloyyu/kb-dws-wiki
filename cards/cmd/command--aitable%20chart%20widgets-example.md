@@ -6,7 +6,7 @@ usage: dws aitable chart widgets-example
 description: Return a reference JSON example of chart widget configuration accepted by chart create/update.
 example: dws aitable chart widgets-example
 use_when: When the agent needs a schema template before composing chart configuration payloads.
-source: internal/helpers/aitable.go:6553
+source: internal/helpers/aitable.go:6565
 visible_flags: 0
 
 ## Flags

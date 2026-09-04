@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat group members list-by-ids
 description: 根据成员 ID 批量查询群成员详情
 example: dws chat group members list-by-ids --id <openConversationId> --users openDingTalkId1,openDingTalkId2
-source: internal/helpers/chat.go:10371
+source: internal/helpers/chat.go:10573
 visible_flags: 2
 
 ## Flags

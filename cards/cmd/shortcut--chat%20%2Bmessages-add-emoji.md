@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws chat +messages-add-emoji
 description: 对消息添加 emoji 表情回应
-source: internal/shortcut/chat/chat_message.go:1332
+source: internal/shortcut/chat/chat_message.go:1597
 visible_flags: 3
 
 ## Flags

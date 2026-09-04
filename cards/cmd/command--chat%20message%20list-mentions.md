@@ -6,7 +6,7 @@ usage: dws chat message list-mentions
 description: Fetch messages where the current user was @-mentioned.
 example: dws chat message list-mentions --start "2026-03-10T00:00:00+08:00" --end "2026-03-11T00:00:00+08:00" --limit 50 --cursor 0
 use_when: When the agent wants to surface items that explicitly require the user's attention.
-source: internal/helpers/chat.go:4404
+source: internal/helpers/chat.go:4591
 visible_flags: 5
 partial_reason: unverified_flags
 

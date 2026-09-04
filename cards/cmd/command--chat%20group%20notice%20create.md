@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat group notice create
 description: 发布群公告
 example: dws chat group notice create --conversation-id <openConversationId> --content "今晚 22 点系统维护，请提前保存工作内容"
-source: internal/helpers/chat.go:10428
+source: internal/helpers/chat.go:10630
 visible_flags: 5
 
 ## Flags

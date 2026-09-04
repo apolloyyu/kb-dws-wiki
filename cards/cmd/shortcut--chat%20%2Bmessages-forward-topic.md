@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws chat +messages-forward-topic
 description: 转发话题消息到目标会话
-source: internal/shortcut/chat/chat_message.go:1948
+source: internal/shortcut/chat/chat_message.go:2213
 visible_flags: 4
 
 ## Flags

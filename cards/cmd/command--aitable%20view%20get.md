@@ -6,7 +6,7 @@ usage: dws aitable view get
 description: Retrieve view definitions for a datasheet, including filter, sort, and visible-field configuration.
 example: dws aitable view get --base-id BASE_ID --table-id TABLE_ID
 use_when: When the agent needs to understand or reuse a view's configuration before querying records through it.
-source: internal/helpers/aitable.go:3778
+source: internal/helpers/aitable.go:3790
 visible_flags: 3
 partial_reason: unverified_flags
 

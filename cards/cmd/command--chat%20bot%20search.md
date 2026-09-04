@@ -6,7 +6,7 @@ usage: dws chat bot search
 description: Search robots (bots) created by the current user by keyword.
 example: dws chat bot search --page 1
 use_when: When the agent needs to resolve one of its own bots by name to a robot code before sending bot messages.
-source: internal/helpers/chat.go:5049
+source: internal/helpers/chat.go:5251
 visible_flags: 3
 
 ## Flags

@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat group list-my-groups
 description: 拉取我创建/管理的群
 example: dws chat group list-my-groups
-source: internal/helpers/chat.go:9325
+source: internal/helpers/chat.go:9527
 visible_flags: 3
 
 ## Flags

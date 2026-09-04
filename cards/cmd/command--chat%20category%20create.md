@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat category create
 description: 创建用户自定义会话分组
 example: dws chat category create --title "工作群"
-source: internal/helpers/chat.go:5777
+source: internal/helpers/chat.go:5979
 visible_flags: 1
 
 ## Flags

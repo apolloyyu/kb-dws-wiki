@@ -5,7 +5,7 @@ completeness: partial
 usage: dws chat message search-advanced
 description: 多维度搜索消息
 example: dws chat message search-advanced --query "周报" --start "2026-04-01T00:00:00+08:00" --end "2026-04-15T00:00:00+08:00"
-source: internal/helpers/chat.go:4651
+source: internal/helpers/chat.go:4838
 visible_flags: 14
 partial_reason: unverified_flags
 

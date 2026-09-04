@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat conversation-file upload
 description: Upload a local file to a conversation file space without sending a message, returning reusable file identifiers.
 use_when: When the agent explicitly needs conversation-file identifiers without posting a chat message.
-source: internal/helpers/chat.go:5592
+source: internal/helpers/chat.go:5794
 visible_flags: 8
 
 ## Flags

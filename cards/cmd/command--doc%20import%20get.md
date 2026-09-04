@@ -5,7 +5,7 @@ completeness: full
 usage: dws doc import get
 description: 查询导入任务结果（手动兜底）
 example: dws doc import get --task-id <TASK_ID> --workspace <WORKSPACE_ID>
-source: internal/helpers/doc.go:4346
+source: internal/helpers/doc.go:4363
 visible_flags: 3
 
 ## Flags

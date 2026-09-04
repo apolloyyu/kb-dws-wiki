@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable section delete
 description: 删除文件夹
 example: dws aitable section delete --base-id BASE_ID --section-id SECTION_ID
-source: internal/helpers/aitable.go:7582
+source: internal/helpers/aitable.go:7594
 visible_flags: 2
 
 ## Flags

@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat clear-messages
 description: 清空当前用户指定会话的聊天记录
 example: dws chat clear-messages --conversation-id <openConversationId>
-source: internal/helpers/chat.go:9818
+source: internal/helpers/chat.go:10020
 visible_flags: 1
 
 ## Flags

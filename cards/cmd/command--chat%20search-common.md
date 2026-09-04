@@ -6,7 +6,7 @@ usage: dws chat search-common
 description: Find group chats the current user and a specified other user both belong to.
 example: dws chat search-common --nicks "风雷,山乔" --limit 20 --cursor 0
 use_when: When the agent needs an existing shared channel to contact another user without creating a new group.
-source: internal/helpers/chat.go:5001
+source: internal/helpers/chat.go:5203
 visible_flags: 5
 
 ## Flags

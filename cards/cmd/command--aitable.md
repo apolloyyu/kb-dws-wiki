@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable
 description: AI 表格操作
 example: dws aitable base [list|search|get|get-primary-doc-id|create|update|delete|copy] Base 管理
-source: internal/helpers/aitable.go:1649
+source: internal/helpers/aitable.go:1660
 visible_flags: 0
 
 ## Flags

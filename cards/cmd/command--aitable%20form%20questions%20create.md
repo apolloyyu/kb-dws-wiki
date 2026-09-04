@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable form questions create
 description: 向表单添加题目（等价于 field create）
 example: dws aitable form questions create --base-id BASE_ID --table-id TABLE_ID
-source: internal/helpers/aitable.go:5402
+source: internal/helpers/aitable.go:5414
 visible_flags: 7
 
 ## Flags

@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat message add-favorite
 description: 收藏指定消息
 example: dws chat message add-favorite --open-message-id <openMessageId> --open-conversation-id <openConversationId>
-source: internal/helpers/chat.go:9170
+source: internal/helpers/chat.go:9372
 visible_flags: 2
 
 ## Flags

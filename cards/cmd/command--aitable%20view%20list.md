@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable view list
 description: 获取视图信息（dws aitable view get 的别名）
 example: dws aitable view list --base-id BASE_ID --table-id TABLE_ID
-source: internal/helpers/aitable.go:8255
+source: internal/helpers/aitable.go:8267
 visible_flags: 0
 
 ## Flags

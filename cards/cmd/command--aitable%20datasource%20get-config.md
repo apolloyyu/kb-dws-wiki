@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable datasource get-config
 description: 获取数据源表同步配置
 example: dws aitable datasource get-config --base-id BASE_ID --table-id TABLE_ID
-source: internal/helpers/aitable.go:8514
+source: internal/helpers/aitable.go:8526
 visible_flags: 2
 
 ## Flags

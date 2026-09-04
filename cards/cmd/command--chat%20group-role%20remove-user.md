@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat group-role remove-user
 description: 移除用户的指定群身份
 example: dws chat group-role remove-user --conversation-id <openConversationId> --user <userId> --role-ids roleId1,roleId2
-source: internal/helpers/chat.go:8453
+source: internal/helpers/chat.go:8655
 visible_flags: 3
 
 ## Flags

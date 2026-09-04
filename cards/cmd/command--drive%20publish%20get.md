@@ -5,7 +5,7 @@ completeness: full
 usage: dws drive publish get
 description: 查询文件公开发布状态
 example: dws drive publish get --node <fileId>
-source: internal/helpers/drive.go:3625
+source: internal/helpers/drive.go:3632
 visible_flags: 1
 
 ## Flags

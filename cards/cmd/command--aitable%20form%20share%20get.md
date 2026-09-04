@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable form share get
 description: 获取表单分享配置
 example: dws aitable form share get --base-id BASE_ID --table-id TABLE_ID --view-id VIEW_ID
-source: internal/helpers/aitable.go:5606
+source: internal/helpers/aitable.go:5618
 visible_flags: 3
 
 ## Flags

@@ -6,7 +6,7 @@ usage: dws doc file create
 description: Create a new file node of a given type (doc, sheet, mind map, whiteboard, AI table, etc.) in a target folder.
 example: dws doc file create --name "项目周报" --type adoc
 use_when: When the agent provisions any non-plain-document file type inside DingTalk Docs.
-source: internal/helpers/doc.go:1858
+source: internal/helpers/doc.go:1860
 visible_flags: 4
 
 ## Flags

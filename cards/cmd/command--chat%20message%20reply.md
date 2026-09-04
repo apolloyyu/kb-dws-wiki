@@ -5,7 +5,7 @@ completeness: partial
 usage: dws chat message reply
 description: 引用回复消息（支持单聊/群聊）
 example: dws chat message reply --group <openConversationId> --ref-msg-id <openMessageId> --ref-sender <openDingTalkId> --content "收到，马上处理"
-source: internal/helpers/chat.go:7576
+source: internal/helpers/chat.go:7778
 visible_flags: 6
 partial_reason: unverified_flags
 

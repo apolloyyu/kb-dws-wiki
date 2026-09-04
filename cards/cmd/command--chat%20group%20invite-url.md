@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat group invite-url
 description: 获取群邀请链接
 example: dws chat group invite-url --conversation-id <openConversationId>
-source: internal/helpers/chat.go:7274
+source: internal/helpers/chat.go:7476
 visible_flags: 2
 
 ## Flags

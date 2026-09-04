@@ -6,7 +6,7 @@ usage: dws doc rename
 description: Rename a DingTalk Doc or file.
 example: dws doc rename --node DOC_ID --name "新名称"
 use_when: When the agent needs to change a document's title without altering its contents or location.
-source: internal/helpers/doc.go:2561
+source: internal/helpers/doc.go:2578
 visible_flags: 2
 
 ## Flags

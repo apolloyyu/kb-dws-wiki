@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable workflow update
 description: 更新并发布已有自动化工作流
 example: dws aitable workflow update --base-id BASE_ID --workflow-id WORKFLOW_ID --dsl @workflow.json --locale zh-CN
-source: internal/helpers/aitable.go:5796
+source: internal/helpers/aitable.go:5808
 visible_flags: 4
 
 ## Flags

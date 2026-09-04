@@ -6,7 +6,7 @@ usage: dws aitable dashboard update
 description: Update an existing dashboard's layout, widgets, or metadata.
 example: dws aitable dashboard update --base-id BASE_ID --dashboard-id DASHBOARD_ID --name "新名称"
 use_when: When the agent adds, removes, or rearranges charts on an existing dashboard.
-source: internal/helpers/aitable.go:6290
+source: internal/helpers/aitable.go:6302
 visible_flags: 4
 
 ## Flags

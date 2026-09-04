@@ -6,7 +6,7 @@ usage: dws drive mkdir
 description: Create a new folder in DingTalk Drive.
 example: dws drive mkdir --name "项目资料"
 use_when: When the agent organizes Drive output into a fresh folder before uploading files.
-source: internal/helpers/drive.go:1204
+source: internal/helpers/drive.go:1211
 visible_flags: 3
 
 ## Flags

@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable datasource sync
 description: 触发数据源表手动同步
 example: dws aitable datasource sync --base-id BASE_ID --table-ids TBL1,TBL2
-source: internal/helpers/aitable.go:8812
+source: internal/helpers/aitable.go:8824
 visible_flags: 2
 
 ## Flags

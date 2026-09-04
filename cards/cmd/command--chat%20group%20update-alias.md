@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat group update-alias
 description: 设置群备注
 example: dws chat group update-alias --conversation-id <openConversationId> --alias-title "项目A群"
-source: internal/helpers/chat.go:10137
+source: internal/helpers/chat.go:10339
 visible_flags: 2
 
 ## Flags

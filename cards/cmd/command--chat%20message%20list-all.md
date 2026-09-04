@@ -6,7 +6,7 @@ usage: dws chat message list-all
 description: Search all messages across the current user's conversations within a time range, surfacing any search-entitlement guidance.
 example: dws chat message list-all --start "2025-03-01 00:00:00" --end "2025-03-31 23:59:59" --limit 50
 use_when: When the agent needs to audit or summarize everything the user saw across chats in a window.
-source: internal/helpers/chat.go:4305
+source: internal/helpers/chat.go:4492
 visible_flags: 4
 partial_reason: unverified_flags
 

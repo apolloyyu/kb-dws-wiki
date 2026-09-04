@@ -6,7 +6,7 @@ usage: dws aitable record delete
 description: Delete one or more records from a datasheet by record ID.
 example: dws aitable record delete --base-id BASE_ID --table-id TABLE_ID --record-ids rec1,rec2 --yes
 use_when: When the agent removes rows that are obsolete or were created in error.
-source: internal/helpers/aitable.go:3173
+source: internal/helpers/aitable.go:3185
 visible_flags: 3
 
 ## Flags

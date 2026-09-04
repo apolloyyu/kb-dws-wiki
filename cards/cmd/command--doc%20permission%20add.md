@@ -5,7 +5,7 @@ completeness: full
 usage: dws doc permission add
 description: 添加文档协作者
 example: dws doc permission add --node DOC_ID --users uid1 --role READER
-source: internal/helpers/doc.go:3587
+source: internal/helpers/doc.go:3604
 visible_flags: 6
 
 ## Flags

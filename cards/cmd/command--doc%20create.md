@@ -6,7 +6,7 @@ usage: dws doc create
 description: Create a new DingTalk Doc (document type) in a target folder or knowledge base.
 example: dws doc create --name "项目周报"
 use_when: When the agent needs a fresh DingTalk Doc to write into.
-source: internal/helpers/doc.go:1591
+source: internal/helpers/doc.go:1593
 visible_flags: 6
 partial_reason: unverified_flags
 

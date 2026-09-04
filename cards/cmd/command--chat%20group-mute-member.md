@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat group-mute-member
 description: 指定群成员禁言 / 取消禁言
 example: dws chat group-mute-member --conversation-id <openConversationId> --users userId1,userId2 --mute-time 3600000
-source: internal/helpers/chat.go:7944
+source: internal/helpers/chat.go:8146
 visible_flags: 5
 
 ## Flags

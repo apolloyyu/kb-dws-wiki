@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable view get visible-fields
 description: 获取视图 visible-fields 配置
 example: dws aitable view get visible-fields --base-id BASE_ID --table-id TABLE_ID --view-id VIEW_ID
-source: internal/helpers/aitable.go:4015
+source: internal/helpers/aitable.go:4027
 visible_flags: 0
 
 ## Flags

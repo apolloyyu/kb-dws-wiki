@@ -13,9 +13,9 @@ partial_reason: unverified_flags,missing_description,missing_source
 - none
 
 ## Related
+- dws aitable app
 - dws aitable attachment
 - dws aitable base
 - dws aitable chart
 - dws aitable create
 - dws aitable dashboard
-- dws aitable datasource

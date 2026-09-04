@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable table list
 description: 获取数据表信息（dws aitable table get 的别名）
 example: dws aitable table list --base-id BASE_ID
-source: internal/helpers/aitable.go:7864
+source: internal/helpers/aitable.go:7876
 visible_flags: 0
 
 ## Flags

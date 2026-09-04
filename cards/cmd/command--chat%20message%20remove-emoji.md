@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat message remove-emoji
 description: 移除消息的 emoji 表情回应
 example: dws chat message remove-emoji --conversation-id <openConversationId> --message-id <openMsgId> --emoji "赞"
-source: internal/helpers/chat.go:6317
+source: internal/helpers/chat.go:6519
 visible_flags: 7
 
 ## Flags

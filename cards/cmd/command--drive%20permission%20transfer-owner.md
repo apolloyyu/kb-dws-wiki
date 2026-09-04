@@ -5,7 +5,7 @@ completeness: full
 usage: dws drive permission transfer-owner
 description: [危险] 转交所有者
 example: dws drive permission transfer-owner --node DOC_ID --new-owner uid123 --reserve-role EDITOR --recursive=false --yes
-source: internal/helpers/drive.go:3051
+source: internal/helpers/drive.go:3058
 visible_flags: 5
 
 ## Flags

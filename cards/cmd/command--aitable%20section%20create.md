@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable section create
 description: 创建文件夹
 example: dws aitable section create --base-id BASE_ID --name 我的文件夹
-source: internal/helpers/aitable.go:7482
+source: internal/helpers/aitable.go:7494
 visible_flags: 4
 
 ## Flags

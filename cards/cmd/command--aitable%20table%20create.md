@@ -6,7 +6,7 @@ usage: dws aitable table create
 description: Create a new datasheet (table) inside a Base.
 example: dws aitable table create --base-id BASE_ID --name "任务表"
 use_when: When the agent needs another table alongside existing ones in the same Base.
-source: internal/helpers/aitable.go:2085
+source: internal/helpers/aitable.go:2097
 visible_flags: 3
 
 ## Flags

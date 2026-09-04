@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws chat +messages-create-text-emotion
 description: 创建文字表情（获取 emotionId）
-source: internal/shortcut/chat/chat_message.go:1436
+source: internal/shortcut/chat/chat_message.go:1701
 visible_flags: 3
 
 ## Flags

@@ -6,7 +6,7 @@ usage: dws chat list-top-conversations
 description: Fetch the list of conversations the current user has pinned to the top of their chat list.
 example: dws chat list-top-conversations --limit 1000
 use_when: When the agent needs to prioritize the user's most important conversations in a summary or dashboard.
-source: internal/helpers/chat.go:4499
+source: internal/helpers/chat.go:4686
 visible_flags: 3
 
 ## Flags

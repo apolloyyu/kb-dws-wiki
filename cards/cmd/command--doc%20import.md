@@ -5,7 +5,7 @@ completeness: full
 usage: dws doc import
 description: 导入本地文件为在线文档 (支持 docx / xlsx / md 等)
 example: dws doc import get --task-id <taskId> --workspace <原目标WORKSPACE_ID>
-source: internal/helpers/doc.go:4297
+source: internal/helpers/doc.go:4314
 visible_flags: 4
 
 ## Flags

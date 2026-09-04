@@ -6,7 +6,7 @@ usage: dws aitable dashboard share update
 description: Enable, disable, or update the public-sharing configuration of a dashboard.
 example: dws aitable dashboard share update --base-id BASE_ID --dashboard-id DASHBOARD_ID --enabled true --share-type PUBLIC
 use_when: When the agent needs to generate or revoke an external share link for a dashboard.
-source: internal/helpers/aitable.go:6492
+source: internal/helpers/aitable.go:6504
 visible_flags: 5
 
 ## Flags

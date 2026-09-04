@@ -5,7 +5,7 @@ completeness: partial
 usage: dws markdown overwrite
 description: 覆盖已有 Markdown 文件
 example: dws markdown overwrite --node <id> --content "
-source: internal/helpers/markdown.go:420
+source: internal/helpers/markdown.go:241
 visible_flags: 7
 partial_reason: unverified_flags
 

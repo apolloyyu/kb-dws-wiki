@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable view update visible-fields
 description: 更新视图可见字段列表
 example: dws aitable view update visible-fields --base-id BASE_ID --table-id TABLE_ID --view-id VIEW_ID --field-ids fld1,fld2,fld3
-source: internal/helpers/aitable.go:4452
+source: internal/helpers/aitable.go:4464
 visible_flags: 2
 
 ## Flags

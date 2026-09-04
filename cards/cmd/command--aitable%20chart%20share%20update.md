@@ -6,7 +6,7 @@ usage: dws aitable chart share update
 description: Enable, disable, or update the public-sharing configuration of a chart.
 example: dws aitable chart share update --base-id BASE_ID --dashboard-id DASHBOARD_ID --chart-id CHART_ID --enabled true --share-type ORG
 use_when: When the agent needs to generate or revoke an external share link for a chart.
-source: internal/helpers/aitable.go:6834
+source: internal/helpers/aitable.go:6846
 visible_flags: 6
 
 ## Flags

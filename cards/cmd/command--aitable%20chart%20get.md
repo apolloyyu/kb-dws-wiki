@@ -6,7 +6,7 @@ usage: dws aitable chart get
 description: Retrieve a chart's full configuration and metadata.
 example: dws aitable chart get --base-id BASE_ID --dashboard-id DASHBOARD_ID --chart-id CHART_ID
 use_when: When the agent needs to inspect an existing chart to clone it or adjust its configuration.
-source: internal/helpers/aitable.go:6584
+source: internal/helpers/aitable.go:6596
 visible_flags: 3
 
 ## Flags

@@ -5,7 +5,7 @@ completeness: full
 usage: dws doc delete
 description: 删除文档/文件到回收站
 example: dws doc delete --node DOC_ID --yes
-source: internal/helpers/doc.go:2623
+source: internal/helpers/doc.go:2640
 visible_flags: 1
 
 ## Flags

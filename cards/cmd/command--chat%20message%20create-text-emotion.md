@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat message create-text-emotion
 description: 创建文字表情（获取 emotionId）
 example: dws chat message create-text-emotion --emotion-name "赞" --text "nice"
-source: internal/helpers/chat.go:6618
+source: internal/helpers/chat.go:6820
 visible_flags: 3
 
 ## Flags

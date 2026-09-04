@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat category rename
 description: 更新用户自定义会话分组的名称
 example: dws chat category rename --category-id <分组ID> --title "新名称"
-source: internal/helpers/chat.go:5882
+source: internal/helpers/chat.go:6084
 visible_flags: 2
 
 ## Flags

@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws chat +messages-send-card
 description: 创建流式卡片，可在同一次调用中写入内容并结束；群聊创建时可 @成员或 @所有人
-source: internal/shortcut/chat/chat_message.go:1463
+source: internal/shortcut/chat/chat_message.go:1728
 visible_flags: 7
 
 ## Flags

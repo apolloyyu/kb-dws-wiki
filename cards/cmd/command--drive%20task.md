@@ -5,7 +5,7 @@ completeness: full
 usage: dws drive task
 description: 异步任务状态查询（统一入口）
 example: dws drive task get — 统一查询入口，支持 export/import/copy/move 多类型，返回归一化 TaskResult
-source: internal/helpers/drive.go:2313
+source: internal/helpers/drive.go:2320
 visible_flags: 0
 
 ## Flags

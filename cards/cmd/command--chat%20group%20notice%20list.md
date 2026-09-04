@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat group notice list
 description: 查看群公告列表
 example: dws chat group notice list --conversation-id <openConversationId>
-source: internal/helpers/chat.go:10621
+source: internal/helpers/chat.go:10823
 visible_flags: 4
 
 ## Flags

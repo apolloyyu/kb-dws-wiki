@@ -1,6 +1,6 @@
 ---
 source_path: "skills/mono/references/products/aitable/aitable-error-recovery.md"
-source_commit: "e6661a8f"
+source_commit: "51926f0b"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 

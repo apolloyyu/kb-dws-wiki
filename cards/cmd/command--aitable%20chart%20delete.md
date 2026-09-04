@@ -6,7 +6,7 @@ usage: dws aitable chart delete
 description: Delete a chart from a Base by chart ID.
 example: dws aitable chart delete --base-id BASE_ID --dashboard-id DASHBOARD_ID --chart-id CHART_ID --yes
 use_when: When the agent needs to remove an obsolete or mistakenly-created chart.
-source: internal/helpers/aitable.go:6741
+source: internal/helpers/aitable.go:6753
 visible_flags: 4
 
 ## Flags

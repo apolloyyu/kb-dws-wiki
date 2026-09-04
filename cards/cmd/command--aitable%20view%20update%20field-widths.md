@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable view update field-widths
 description: 更新视图字段列宽（仅 Grid）
 example: dws aitable view update field-widths --base-id BASE_ID --table-id TABLE_ID --view-id VIEW_ID --field-id fldX --width 200
-source: internal/helpers/aitable.go:4400
+source: internal/helpers/aitable.go:4412
 visible_flags: 3
 
 ## Flags

@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable view update name
 description: 重命名视图（= view update --name 的便捷子命令）
 example: dws aitable view update name --base-id BASE_ID --table-id TABLE_ID --view-id VIEW_ID --name "新视图名"
-source: internal/helpers/aitable.go:4624
+source: internal/helpers/aitable.go:4636
 visible_flags: 1
 
 ## Flags

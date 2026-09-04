@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat group-role add
 description: 添加群身份
 example: dws chat group-role add --conversation-id <openConversationId> --name "管理员"
-source: internal/helpers/chat.go:8225
+source: internal/helpers/chat.go:8427
 visible_flags: 2
 
 ## Flags

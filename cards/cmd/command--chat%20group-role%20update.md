@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat group-role update
 description: 更新群身份名称
 example: dws chat group-role update --conversation-id <openConversationId> --role-id <openRoleId> --name "新名称"
-source: internal/helpers/chat.go:8274
+source: internal/helpers/chat.go:8476
 visible_flags: 3
 
 ## Flags

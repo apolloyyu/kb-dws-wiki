@@ -5,7 +5,7 @@ completeness: full
 usage: dws drive move
 description: 移动文件/文档到指定位置
 example: dws drive move --node DOC_ID --folder TARGET_FOLDER_ID
-source: internal/helpers/drive.go:1952
+source: internal/helpers/drive.go:1959
 visible_flags: 3
 
 ## Flags

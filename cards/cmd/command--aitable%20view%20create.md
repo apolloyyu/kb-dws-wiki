@@ -6,7 +6,7 @@ usage: dws aitable view create
 description: Create a new view (grid, gallery, kanban, etc.) on a datasheet.
 example: dws aitable view create --base-id BASE_ID --table-id TABLE_ID --view-type Grid
 use_when: When the agent needs an alternate filtered/sorted presentation of the same datasheet data.
-source: internal/helpers/aitable.go:4094
+source: internal/helpers/aitable.go:4106
 visible_flags: 7
 
 ## Flags

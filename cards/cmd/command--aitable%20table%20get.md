@@ -6,7 +6,7 @@ usage: dws aitable table get
 description: List datasheets within a Base, returning table IDs and names.
 example: dws aitable table get --base-id BASE_ID
 use_when: When the agent needs to resolve a table name to an ID inside a known Base.
-source: internal/helpers/aitable.go:2040
+source: internal/helpers/aitable.go:2052
 visible_flags: 2
 partial_reason: unverified_flags
 

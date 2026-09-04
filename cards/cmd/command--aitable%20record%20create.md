@@ -6,7 +6,7 @@ usage: dws aitable record create
 description: Insert one or more records into a datasheet with given field values.
 example: dws aitable record create --base-id BASE_ID --table-id TABLE_ID --records '[{"cells":{"fldTextId":"文本内容","fldNumId":123}}]'
 use_when: When the agent needs to add new rows to a datasheet, individually or in batches.
-source: internal/helpers/aitable.go:2997
+source: internal/helpers/aitable.go:3009
 visible_flags: 4
 
 ## Flags

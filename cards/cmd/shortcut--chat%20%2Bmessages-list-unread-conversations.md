@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws chat +messages-list-unread-conversations
 description: 获取有未读消息的会话列表
-source: internal/shortcut/chat/chat_message.go:713
+source: internal/shortcut/chat/chat_message.go:976
 visible_flags: 2
 
 ## Flags

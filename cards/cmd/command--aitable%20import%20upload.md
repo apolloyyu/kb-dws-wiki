@@ -6,7 +6,7 @@ usage: dws aitable import upload
 description: Request an upload ticket for an import file (Excel/CSV) to be staged before calling import data.
 example: dws aitable import upload --base-id BASE_ID --file-name data.xlsx --file-size 204800
 use_when: When the agent needs to push a local dataset into a Base and must first stage the file.
-source: internal/helpers/aitable.go:7350
+source: internal/helpers/aitable.go:7362
 visible_flags: 3
 
 ## Flags

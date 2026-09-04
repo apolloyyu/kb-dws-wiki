@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws chat +messages-read-status
 description: 查询消息的已读/未读状态
-source: internal/shortcut/chat/chat_message.go:1270
+source: internal/shortcut/chat/chat_message.go:1535
 visible_flags: 5
 
 ## Flags

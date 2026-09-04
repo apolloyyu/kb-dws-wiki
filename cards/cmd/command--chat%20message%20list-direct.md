@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat message list-direct
 description: 拉取单聊会话消息
 example: dws chat message list-direct --user <对方userId> --time "2026-04-01 00:00:00" --forward true --limit 50
-source: internal/helpers/chat.go:3433
+source: internal/helpers/chat.go:3620
 visible_flags: 5
 
 ## Flags

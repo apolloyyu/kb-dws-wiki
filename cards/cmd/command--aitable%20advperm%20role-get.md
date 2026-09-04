@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable advperm role-get
 description: 获取单个角色完整配置
 example: dws aitable advperm role-get --base-id BASE_ID --role-id ROLE_ID
-source: internal/helpers/aitable.go:7130
+source: internal/helpers/aitable.go:7142
 visible_flags: 2
 
 ## Flags

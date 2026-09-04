@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat message set-pin-msg
 description: 钉住消息（Pin）
 example: dws chat message set-pin-msg --open-conversation-id <openConversationId> --message-id <openMessageId>
-source: internal/helpers/chat.go:8992
+source: internal/helpers/chat.go:9194
 visible_flags: 2
 
 ## Flags

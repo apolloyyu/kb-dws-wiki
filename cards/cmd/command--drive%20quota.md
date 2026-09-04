@@ -6,7 +6,7 @@ usage: dws drive quota
 description: Query enterprise storage quota at the enterprise (default), app (`--app`), or space (`--space`) level.
 example: dws drive quota
 use_when: When the agent checks DingTalk Drive storage usage or remaining space.
-source: internal/helpers/drive.go:2149
+source: internal/helpers/drive.go:2156
 visible_flags: 2
 
 ## Flags

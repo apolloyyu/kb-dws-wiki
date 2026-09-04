@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat message unset-top-msg
 description: 取消置顶消息
 example: dws chat message unset-top-msg --open-conversation-id <openConversationId> --message-id <openMessageId>
-source: internal/helpers/chat.go:10016
+source: internal/helpers/chat.go:10218
 visible_flags: 2
 
 ## Flags

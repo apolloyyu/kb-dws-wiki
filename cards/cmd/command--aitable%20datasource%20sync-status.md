@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable datasource sync-status
 description: 按任务 ID 查询数据源同步任务状态
 example: dws aitable datasource sync-status --base-id BASE_ID --table-id TABLE_ID --task-ids TASK1,TASK2
-source: internal/helpers/aitable.go:8861
+source: internal/helpers/aitable.go:8873
 visible_flags: 3
 
 ## Flags

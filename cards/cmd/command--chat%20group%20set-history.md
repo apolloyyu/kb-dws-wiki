@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat group set-history
 description: 设置新成员入群可查看历史消息选项
 example: dws chat group set-history --conversation-id <openConversationId> --option RECENT_100
-source: internal/helpers/chat.go:8826
+source: internal/helpers/chat.go:9028
 visible_flags: 2
 
 ## Flags

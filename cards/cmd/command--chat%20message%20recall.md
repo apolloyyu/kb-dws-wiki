@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat message recall
 description: 撤回用户发送的消息
 example: dws chat message recall --conversation-id <openConversationId> --message-id <openMessageId>
-source: internal/helpers/chat.go:4775
+source: internal/helpers/chat.go:4977
 visible_flags: 2
 
 ## Flags

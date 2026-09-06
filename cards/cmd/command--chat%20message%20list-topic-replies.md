@@ -5,7 +5,7 @@ completeness: partial
 usage: dws chat message list-topic-replies
 description: —
 example: dws chat message list-topic-replies --conversation-id <openconversation_id> --topic-id <topicId>
-source: internal/helpers/chat.go:4460
+source: internal/helpers/chat.go:4461
 visible_flags: 5
 partial_reason: missing_description
 

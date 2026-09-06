@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws doc +fetch
 description: 读取完整或局部文档内容，并按 detail 控制保真度
-source: internal/shortcut/doc/content_shortcuts.go:202
+source: internal/shortcut/doc/content_shortcuts.go:204
 visible_flags: 14
 
 ## Flags

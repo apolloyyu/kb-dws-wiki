@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws chat +messages-remove-text-emotion
 description: 移除消息的文字表情回应
-source: internal/shortcut/chat/chat_message.go:1672
+source: internal/shortcut/chat/chat_message.go:1673
 visible_flags: 6
 
 ## Flags

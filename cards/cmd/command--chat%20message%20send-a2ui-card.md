@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat message send-a2ui-card
 description: 创建并推送 A2UI 卡片
 example: dws chat message send-a2ui-card --conversation-id <openConversationId> --content '["{\"version\":\"v1.0\"}"]'
-source: internal/helpers/chat.go:6971
+source: internal/helpers/chat.go:6972
 visible_flags: 3
 
 ## Flags

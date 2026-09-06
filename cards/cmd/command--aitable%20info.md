@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable info
 description: 获取 AI 表格信息（dws aitable base get 的别名）
 example: dws aitable info --base-id BASE_ID
-source: internal/helpers/aitable.go:9071
+source: internal/helpers/aitable.go:9146
 visible_flags: 1
 
 ## Flags

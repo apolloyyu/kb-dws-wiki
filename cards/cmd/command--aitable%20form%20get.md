@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable form get
 description: 获取单个表单视图详情
 example: dws aitable form get --base-id BASE_ID --table-id TABLE_ID --view-id VIEW_ID
-source: internal/helpers/aitable.go:5247
+source: internal/helpers/aitable.go:5322
 visible_flags: 3
 
 ## Flags

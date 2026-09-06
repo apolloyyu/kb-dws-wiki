@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable create
 description: 创建 AI 表格（dws aitable base create 的别名）
 example: dws aitable create --name "项目跟踪"
-source: internal/helpers/aitable.go:9032
+source: internal/helpers/aitable.go:9107
 visible_flags: 3
 
 ## Flags

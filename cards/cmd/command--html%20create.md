@@ -5,7 +5,7 @@ completeness: full
 usage: dws html create
 description: 创建原生 .html 文件
 example: dws html create --name index.html --content "<h1>Hello</h1>"
-source: internal/helpers/markdown.go:606
+source: internal/helpers/markdown.go:623
 visible_flags: 6
 
 ## Flags

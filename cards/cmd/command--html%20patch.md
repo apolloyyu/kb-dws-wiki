@@ -5,7 +5,7 @@ completeness: partial
 usage: dws html patch
 description: 局部替换 HTML 文本
 example: dws html patch --node <id> --pattern old --content new --dry-run
-source: internal/helpers/markdown.go:816
+source: internal/helpers/markdown.go:833
 visible_flags: 7
 partial_reason: unverified_flags
 

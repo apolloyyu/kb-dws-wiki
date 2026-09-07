@@ -5,7 +5,7 @@ completeness: partial
 usage: dws html fetch
 description: 获取 HTML 文件内容
 example: dws html fetch --node <dentryUuid>
-source: internal/helpers/markdown.go:677
+source: internal/helpers/markdown.go:694
 visible_flags: 4
 partial_reason: unverified_flags
 

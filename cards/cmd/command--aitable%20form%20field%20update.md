@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable form field update
 description: 更新表单字段
 example: dws aitable form field update --base-id BASE_ID --table-id TABLE_ID --view-id VIEW_ID --field-id FIELD_ID --required true
-source: internal/helpers/aitable.go:5593
+source: internal/helpers/aitable.go:5604
 visible_flags: 6
 
 ## Flags

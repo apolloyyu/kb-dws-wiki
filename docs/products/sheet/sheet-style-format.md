@@ -1,6 +1,6 @@
 ---
 source_path: "skills/mono/references/products/sheet/sheet-style-format.md"
-source_commit: "8e10cc6a"
+source_commit: "fb79103a"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 

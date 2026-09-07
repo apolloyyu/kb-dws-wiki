@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable form field hide
 description: 切换表单字段隐藏
 example: dws aitable form field hide --base-id BASE_ID --table-id TABLE_ID --view-id VIEW_ID --field-id FIELD_ID --hidden true
-source: internal/helpers/aitable.go:5644
+source: internal/helpers/aitable.go:5655
 visible_flags: 5
 
 ## Flags

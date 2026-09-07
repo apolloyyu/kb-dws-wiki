@@ -105,6 +105,7 @@
 {"completeness": "full", "key": "aitable import upload", "kind": "command", "path": "cards/cmd/command--aitable%20import%20upload.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable info", "kind": "command", "path": "cards/cmd/command--aitable%20info.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable list", "kind": "command", "path": "cards/cmd/command--aitable%20list.md", "product": "aitable"}
+{"completeness": "full", "key": "aitable psql", "kind": "command", "path": "cards/cmd/command--aitable%20psql.md", "product": "aitable"}
 {"completeness": "partial", "key": "aitable record", "kind": "command", "path": "cards/cmd/command--aitable%20record.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable record batch-update", "kind": "command", "path": "cards/cmd/command--aitable%20record%20batch-update.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable record create", "kind": "command", "path": "cards/cmd/command--aitable%20record%20create.md", "product": "aitable"}

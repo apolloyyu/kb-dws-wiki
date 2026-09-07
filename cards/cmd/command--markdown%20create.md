@@ -6,7 +6,7 @@ usage: dws markdown create
 description: 创建原生 .md 文件
 example: dws markdown create --name README.md --content "
 source: internal/helpers/markdown.go:147
-visible_flags: 6
+visible_flags: 7
 
 ## Flags
 - --name <String>: 文件名，必须以 .md 结尾（--content 模式必填）
@@ -15,6 +15,7 @@ visible_flags: 6
 - --folder <String>: 父文件夹 ID（未指定空间参数时自动识别所在域）
 - --workspace <String>: 文档空间/知识库 ID (可选，与 --space-id 互斥)
 - --space-id <String>: 钉盘空间 ID (可选，与 --workspace 互斥)
+- --theme <String>: —
 
 ## Related
 - dws markdown comment

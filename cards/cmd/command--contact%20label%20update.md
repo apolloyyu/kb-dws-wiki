@@ -5,7 +5,7 @@ completeness: partial
 usage: dws contact label update
 description: 修改角色名称
 example: dws contact label update --id 12345 --name "新名称"
-source: internal/helpers/contact.go:309
+source: internal/helpers/contact.go:311
 visible_flags: 2
 partial_reason: unverified_flags
 

@@ -5,7 +5,7 @@ completeness: full
 usage: dws contact label list-members
 description: 查询角色下的成员
 example: dws contact label list-members --id 12345
-source: internal/helpers/contact.go:1266
+source: internal/helpers/contact.go:1805
 visible_flags: 1
 
 ## Flags

@@ -5,7 +5,7 @@ completeness: partial
 usage: dws auth logout
 description: 清除认证信息（默认退出所有组织）
 example: dws auth logout
-source: internal/app/auth_command.go:504
+source: internal/app/auth_command.go:506
 visible_flags: 1
 partial_reason: unverified_flags
 

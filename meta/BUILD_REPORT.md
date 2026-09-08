@@ -1,10 +1,10 @@
 # 构建对账
 
-- 源码 commit:fb79103a
+- 源码 commit:2c7b3e20
 - 镜像文件:121
-- 主命令:1166(带 flags:818,归属未定:180)
-- shortcuts:468
-- 答案卡:1634(full:1269,77.7%;partial:365)
+- 主命令:1180(带 flags:823,归属未定:180)
+- shortcuts:469
+- 答案卡:1649(full:1272,77.1%;partial:377)
 - 文档索引:130 篇
 
 ## 归属未定(退回源码 grep,不影响存在性判断)
@@ -73,6 +73,7 @@
 - conference member
 - contact account
 - contact dept
+- contact exclusive-account
 - contact ext-field
 - contact label
 - contact org
@@ -183,7 +184,6 @@
 - todo comment
 - todo tag
 - todo task
-- whiteboard
 - wiki feed
 - wiki member
 - wiki node

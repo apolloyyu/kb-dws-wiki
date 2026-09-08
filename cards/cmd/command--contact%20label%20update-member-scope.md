@@ -5,7 +5,7 @@ completeness: partial
 usage: dws contact label update-member-scope
 description: 修改角色管理范围
 example: dws contact label update-member-scope --user user1 --id 12345 --depts 1,2
-source: internal/helpers/contact.go:466
+source: internal/helpers/contact.go:468
 visible_flags: 3
 partial_reason: unverified_flags
 

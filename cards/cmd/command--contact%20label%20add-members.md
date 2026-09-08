@@ -5,7 +5,7 @@ completeness: partial
 usage: dws contact label add-members
 description: 给成员添加角色
 example: dws contact label add-members --id 12345 --users user1,user2
-source: internal/helpers/contact.go:377
+source: internal/helpers/contact.go:379
 visible_flags: 2
 partial_reason: unverified_flags
 

@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat hide
 description: 会话列表中隐藏会话
 example: dws chat hide --conversation-id <openConversationId>
-source: internal/helpers/chat.go:10394
+source: internal/helpers/chat.go:10408
 visible_flags: 1
 
 ## Flags

@@ -5,7 +5,7 @@ completeness: partial
 usage: dws contact label delete
 description: 删除角色或角色组
 example: dws contact label delete --id 12345
-source: internal/helpers/contact.go:349
+source: internal/helpers/contact.go:351
 visible_flags: 1
 partial_reason: unverified_flags
 

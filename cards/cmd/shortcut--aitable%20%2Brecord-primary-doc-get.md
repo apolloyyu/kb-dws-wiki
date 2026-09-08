@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +record-primary-doc-get
 description: 查询记录关联的主键文档 nodeId
-source: internal/shortcut/aitable/aitable.go:986
+source: internal/shortcut/aitable/aitable.go:994
 visible_flags: 3
 
 ## Flags

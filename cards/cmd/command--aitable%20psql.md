@@ -4,7 +4,7 @@ kind: command
 completeness: full
 usage: dws aitable psql
 description: 以 PostgreSQL 逻辑表方式查询 AI 表格
-source: internal/helpers/aitable_psql.go:16
+source: internal/helpers/aitable_psql.go:24
 visible_flags: 8
 
 ## Flags

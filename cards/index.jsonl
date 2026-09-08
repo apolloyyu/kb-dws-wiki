@@ -421,7 +421,7 @@
 {"completeness": "full", "key": "chat mute-at-all", "kind": "command", "path": "cards/cmd/command--chat%20mute-at-all.md", "product": "chat"}
 {"completeness": "full", "key": "chat mute-red-envelope", "kind": "command", "path": "cards/cmd/command--chat%20mute-red-envelope.md", "product": "chat"}
 {"completeness": "full", "key": "chat search", "kind": "command", "path": "cards/cmd/command--chat%20search.md", "product": "chat"}
-{"completeness": "full", "key": "chat search-common", "kind": "command", "path": "cards/cmd/command--chat%20search-common.md", "product": "chat"}
+{"completeness": "partial", "key": "chat search-common", "kind": "command", "path": "cards/cmd/command--chat%20search-common.md", "product": "chat"}
 {"completeness": "full", "key": "chat set-top", "kind": "command", "path": "cards/cmd/command--chat%20set-top.md", "product": "chat"}
 {"completeness": "partial", "key": "chat text", "kind": "command", "path": "cards/cmd/command--chat%20text.md", "product": "chat"}
 {"completeness": "full", "key": "chat text translate", "kind": "command", "path": "cards/cmd/command--chat%20text%20translate.md", "product": "chat"}
@@ -461,10 +461,14 @@
 {"completeness": "partial", "key": "contact dept", "kind": "command", "path": "cards/cmd/command--contact%20dept.md", "product": "contact"}
 {"completeness": "partial", "key": "contact dept create", "kind": "command", "path": "cards/cmd/command--contact%20dept%20create.md", "product": "contact"}
 {"completeness": "full", "key": "contact dept get-info", "kind": "command", "path": "cards/cmd/command--contact%20dept%20get-info.md", "product": "contact"}
+{"completeness": "partial", "key": "contact dept invite-audit", "kind": "command", "path": "cards/cmd/command--contact%20dept%20invite-audit.md", "product": "contact"}
 {"completeness": "full", "key": "contact dept list-children", "kind": "command", "path": "cards/cmd/command--contact%20dept%20list-children.md", "product": "contact"}
 {"completeness": "full", "key": "contact dept list-members", "kind": "command", "path": "cards/cmd/command--contact%20dept%20list-members.md", "product": "contact"}
 {"completeness": "full", "key": "contact dept search", "kind": "command", "path": "cards/cmd/command--contact%20dept%20search.md", "product": "contact"}
 {"completeness": "partial", "key": "contact dept update", "kind": "command", "path": "cards/cmd/command--contact%20dept%20update.md", "product": "contact"}
+{"completeness": "partial", "key": "contact exclusive-account", "kind": "command", "path": "cards/cmd/command--contact%20exclusive-account.md", "product": "contact"}
+{"completeness": "partial", "key": "contact exclusive-account disable", "kind": "command", "path": "cards/cmd/command--contact%20exclusive-account%20disable.md", "product": "contact"}
+{"completeness": "partial", "key": "contact exclusive-account enable", "kind": "command", "path": "cards/cmd/command--contact%20exclusive-account%20enable.md", "product": "contact"}
 {"completeness": "partial", "key": "contact ext-field", "kind": "command", "path": "cards/cmd/command--contact%20ext-field.md", "product": "contact"}
 {"completeness": "partial", "key": "contact ext-field create", "kind": "command", "path": "cards/cmd/command--contact%20ext-field%20create.md", "product": "contact"}
 {"completeness": "partial", "key": "contact ext-field delete", "kind": "command", "path": "cards/cmd/command--contact%20ext-field%20delete.md", "product": "contact"}
@@ -481,7 +485,16 @@
 {"completeness": "partial", "key": "contact label update", "kind": "command", "path": "cards/cmd/command--contact%20label%20update.md", "product": "contact"}
 {"completeness": "partial", "key": "contact label update-member-scope", "kind": "command", "path": "cards/cmd/command--contact%20label%20update-member-scope.md", "product": "contact"}
 {"completeness": "partial", "key": "contact org", "kind": "command", "path": "cards/cmd/command--contact%20org.md", "product": "contact"}
+{"completeness": "partial", "key": "contact org apply-approve", "kind": "command", "path": "cards/cmd/command--contact%20org%20apply-approve.md", "product": "contact"}
+{"completeness": "partial", "key": "contact org apply-block", "kind": "command", "path": "cards/cmd/command--contact%20org%20apply-block.md", "product": "contact"}
+{"completeness": "partial", "key": "contact org apply-list", "kind": "command", "path": "cards/cmd/command--contact%20org%20apply-list.md", "product": "contact"}
+{"completeness": "partial", "key": "contact org apply-reject", "kind": "command", "path": "cards/cmd/command--contact%20org%20apply-reject.md", "product": "contact"}
+{"completeness": "partial", "key": "contact org apply-remove", "kind": "command", "path": "cards/cmd/command--contact%20org%20apply-remove.md", "product": "contact"}
 {"completeness": "full", "key": "contact org create", "kind": "command", "path": "cards/cmd/command--contact%20org%20create.md", "product": "contact"}
+{"completeness": "partial", "key": "contact org invite-audit", "kind": "command", "path": "cards/cmd/command--contact%20org%20invite-audit.md", "product": "contact"}
+{"completeness": "full", "key": "contact org invite-info", "kind": "command", "path": "cards/cmd/command--contact%20org%20invite-info.md", "product": "contact"}
+{"completeness": "full", "key": "contact org invite-list", "kind": "command", "path": "cards/cmd/command--contact%20org%20invite-list.md", "product": "contact"}
+{"completeness": "partial", "key": "contact org invite-switch", "kind": "command", "path": "cards/cmd/command--contact%20org%20invite-switch.md", "product": "contact"}
 {"completeness": "partial", "key": "contact relation", "kind": "command", "path": "cards/cmd/command--contact%20relation.md", "product": "contact"}
 {"completeness": "full", "key": "contact relation list-my-followings", "kind": "command", "path": "cards/cmd/command--contact%20relation%20list-my-followings.md", "product": "contact"}
 {"completeness": "partial", "key": "contact user", "kind": "command", "path": "cards/cmd/command--contact%20user.md", "product": "contact"}
@@ -1140,7 +1153,8 @@
 {"completeness": "full", "key": "todo task update", "kind": "command", "path": "cards/cmd/command--todo%20task%20update.md", "product": "todo"}
 {"completeness": "full", "key": "upgrade", "kind": "command", "path": "cards/cmd/command--upgrade.md", "product": "upgrade"}
 {"completeness": "partial", "key": "version", "kind": "command", "path": "cards/cmd/command--version.md", "product": "version"}
-{"completeness": "partial", "key": "whiteboard", "kind": "command", "path": "cards/cmd/command--whiteboard.md", "product": "whiteboard"}
+{"completeness": "full", "key": "whiteboard", "kind": "command", "path": "cards/cmd/command--whiteboard.md", "product": "whiteboard"}
+{"completeness": "partial", "key": "whiteboard create-with-content", "kind": "command", "path": "cards/cmd/command--whiteboard%20create-with-content.md", "product": "whiteboard"}
 {"completeness": "full", "key": "whiteboard query", "kind": "command", "path": "cards/cmd/command--whiteboard%20query.md", "product": "whiteboard"}
 {"completeness": "full", "key": "whiteboard update", "kind": "command", "path": "cards/cmd/command--whiteboard%20update.md", "product": "whiteboard"}
 {"completeness": "full", "key": "wiki", "kind": "command", "path": "cards/cmd/command--wiki.md", "product": "wiki"}
@@ -1397,6 +1411,7 @@
 {"completeness": "full", "key": "chat +messages-unset-pin", "kind": "shortcut", "path": "cards/cmd/shortcut--chat%20%2Bmessages-unset-pin.md", "product": "chat"}
 {"completeness": "full", "key": "chat +messages-unset-top", "kind": "shortcut", "path": "cards/cmd/shortcut--chat%20%2Bmessages-unset-top.md", "product": "chat"}
 {"completeness": "full", "key": "chat +messages-update-card", "kind": "shortcut", "path": "cards/cmd/shortcut--chat%20%2Bmessages-update-card.md", "product": "chat"}
+{"completeness": "full", "key": "chat +recent-conversations", "kind": "shortcut", "path": "cards/cmd/shortcut--chat%20%2Brecent-conversations.md", "product": "chat"}
 {"completeness": "full", "key": "contact +get-roster", "kind": "shortcut", "path": "cards/cmd/shortcut--contact%20%2Bget-roster.md", "product": "contact"}
 {"completeness": "full", "key": "contact +list-dept-members", "kind": "shortcut", "path": "cards/cmd/shortcut--contact%20%2Blist-dept-members.md", "product": "contact"}
 {"completeness": "full", "key": "contact +list-followings", "kind": "shortcut", "path": "cards/cmd/shortcut--contact%20%2Blist-followings.md", "product": "contact"}

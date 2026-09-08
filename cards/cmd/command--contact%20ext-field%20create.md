@@ -5,7 +5,7 @@ completeness: partial
 usage: dws contact ext-field create
 description: 创建自定义字段
 example: dws contact ext-field create --name "职级"
-source: internal/helpers/contact.go:536
+source: internal/helpers/contact.go:538
 visible_flags: 1
 partial_reason: unverified_flags
 

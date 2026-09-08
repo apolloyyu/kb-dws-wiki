@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat category create-smart
 description: 创建智能会话分组
 example: dws chat category create-smart --name "工作群"
-source: internal/helpers/chat.go:11024
+source: internal/helpers/chat.go:11038
 visible_flags: 3
 
 ## Flags

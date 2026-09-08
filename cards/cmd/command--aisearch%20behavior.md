@@ -5,7 +5,7 @@ completeness: full
 usage: dws aisearch behavior
 description: 搜索明确的发送/创建/接收等行为记录
 example: dws aisearch behavior --types mail --behavior-type send --direction "我->汐峰"
-source: internal/helpers/aisearch.go:385
+source: internal/helpers/aisearch.go:386
 visible_flags: 6
 
 ## Flags

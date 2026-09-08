@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat group notice edit
 description: 修改群公告
 example: dws chat group notice edit --conversation-id <openConversationId> --notice-id <dataId> --content "更新后的公告内容"
-source: internal/helpers/chat.go:10704
+source: internal/helpers/chat.go:10718
 visible_flags: 5
 
 ## Flags

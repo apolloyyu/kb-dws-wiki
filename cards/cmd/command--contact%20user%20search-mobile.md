@@ -6,7 +6,7 @@ usage: dws contact user search-mobile
 description: Look up a user by mobile phone number.
 example: dws contact user search-mobile --mobile 13800138000
 use_when: When the agent has only a phone number and needs to find the corresponding DingTalk user.
-source: internal/helpers/contact.go:1093
+source: internal/helpers/contact.go:1632
 visible_flags: 1
 
 ## Flags

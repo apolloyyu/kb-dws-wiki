@@ -5,7 +5,7 @@ completeness: partial
 usage: dws contact user update-ownness
 description: 更新用户个人状态
 example: dws contact user update-ownness --user-id user001 --ownness-text "居家办公中"
-source: internal/helpers/contact.go:806
+source: internal/helpers/contact.go:808
 visible_flags: 2
 partial_reason: unverified_flags
 

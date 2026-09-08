@@ -5,7 +5,7 @@ completeness: partial
 usage: dws contact dept update
 description: 更新部门信息
 example: dws contact dept update --dept 12345 --name "新部门名"
-source: internal/helpers/contact.go:677
+source: internal/helpers/contact.go:679
 visible_flags: 3
 partial_reason: unverified_flags
 
@@ -17,6 +17,7 @@ partial_reason: unverified_flags
 ## Related
 - dws contact dept create
 - dws contact dept get-info
+- dws contact dept invite-audit
 - dws contact dept list-children
 - dws contact dept list-members
 - dws contact dept search

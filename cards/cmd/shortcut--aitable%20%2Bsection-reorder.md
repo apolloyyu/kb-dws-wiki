@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +section-reorder
 description: 在当前父文件夹下调整文件夹的展示顺序
-source: internal/shortcut/aitable/aitable.go:2991
+source: internal/shortcut/aitable/aitable.go:2999
 visible_flags: 3
 
 ## Flags

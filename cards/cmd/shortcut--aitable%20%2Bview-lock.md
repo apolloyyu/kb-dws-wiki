@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +view-lock
 description: 锁定视图（默认）或解锁（--off）
-source: internal/shortcut/aitable/aitable.go:1432
+source: internal/shortcut/aitable/aitable.go:1440
 visible_flags: 4
 
 ## Flags

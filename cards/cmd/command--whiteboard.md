@@ -1,17 +1,16 @@
 # dws whiteboard
 
 kind: command
-completeness: partial
+completeness: full
 usage: dws whiteboard
-description: —
-use_when: (derived parent:由规范子命令路径证明)
-source: —
+description: 钉钉白板管理
+source: internal/helpers/whiteboard.go:60
 visible_flags: 0
-partial_reason: unverified_flags,missing_description,missing_source
 
 ## Flags
 - none
 
 ## Related
+- dws whiteboard create-with-content
 - dws whiteboard query
 - dws whiteboard update

@@ -6,7 +6,7 @@ usage: dws contact account create
 description: Create a dedicated login account in the current enterprise.
 example: dws contact account create --org-user-name "张三" --login-id "zhangsan001" --org-user-mobile "13800138000" --email "zhangsan@example.com" --dept-ids "1,2,3" --send-pwd-via-sms
 use_when: When the user explicitly asks for an enterprise account or login account, rather than a new enterprise organization.
-source: internal/helpers/contact.go:2389
+source: internal/helpers/contact.go:3383
 visible_flags: 6
 
 ## Flags

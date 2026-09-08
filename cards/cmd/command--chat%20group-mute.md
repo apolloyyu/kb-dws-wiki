@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat group-mute
 description: 全员禁言 / 取消全员禁言
 example: dws chat group-mute --conversation-id <openConversationId>
-source: internal/helpers/chat.go:8086
+source: internal/helpers/chat.go:8100
 visible_flags: 2
 
 ## Flags

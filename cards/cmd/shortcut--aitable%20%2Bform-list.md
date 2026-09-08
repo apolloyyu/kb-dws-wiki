@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +form-list
 description: 列出指定数据表下的所有表单视图
-source: internal/shortcut/aitable/aitable.go:1641
+source: internal/shortcut/aitable/aitable.go:1649
 visible_flags: 2
 
 ## Flags

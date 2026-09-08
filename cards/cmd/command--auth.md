@@ -4,7 +4,7 @@ kind: command
 completeness: full
 usage: dws auth
 description: 认证管理
-source: internal/app/auth_command.go:88
+source: internal/app/auth_command.go:90
 visible_flags: 0
 
 ## Flags

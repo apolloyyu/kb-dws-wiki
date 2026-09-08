@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +form-share-update
 description: 开启或关闭指定视图的分享表单
-source: internal/shortcut/aitable/aitable.go:1958
+source: internal/shortcut/aitable/aitable.go:1966
 visible_flags: 4
 
 ## Flags

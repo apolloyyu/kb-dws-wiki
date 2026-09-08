@@ -6,7 +6,7 @@ usage: dws contact org create
 description: Create a new DingTalk enterprise organization.
 example: dws contact org create --org-name "我的企业" --creator-username "张三"
 use_when: When the user explicitly asks to create or initialize an enterprise and provides its name and creator display name.
-source: internal/helpers/contact.go:2323
+source: internal/helpers/contact.go:2924
 visible_flags: 2
 
 ## Flags
@@ -14,4 +14,9 @@ visible_flags: 2
 - --creator-username <String>: 创建者在企业内的名称，对应 creatorUsername (必填)
 
 ## Related
-- none
+- dws contact org apply-approve
+- dws contact org apply-block
+- dws contact org apply-list
+- dws contact org apply-reject
+- dws contact org apply-remove
+- dws contact org invite-audit

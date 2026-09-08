@@ -1,6 +1,6 @@
 ---
 source_path: "skills/mono/references/products/aitable/aitable-export-import.md"
-source_commit: "fb79103a"
+source_commit: "2c7b3e20"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 

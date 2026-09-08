@@ -5,7 +5,7 @@ completeness: partial
 usage: dws contact label create
 description: 创建角色或角色组
 example: dws contact label create --name "管理员" --type role --parent-id 12345
-source: internal/helpers/contact.go:228
+source: internal/helpers/contact.go:230
 visible_flags: 3
 partial_reason: unverified_flags
 

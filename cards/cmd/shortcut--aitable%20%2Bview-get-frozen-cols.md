@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +view-get-frozen-cols
 description: 获取视图当前冻结的左侧列数
-source: internal/shortcut/aitable/aitable.go:1461
+source: internal/shortcut/aitable/aitable.go:1469
 visible_flags: 3
 
 ## Flags

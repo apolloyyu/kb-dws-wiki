@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws chat +messages-recall
 description: 撤回当前用户发送的消息
-source: internal/shortcut/chat/chat_message.go:185
+source: internal/shortcut/chat/chat_message.go:189
 visible_flags: 7
 
 ## Flags

@@ -5,7 +5,7 @@ completeness: full
 usage: dws doc export
 description: 导出在线文档 (支持 docx / markdown / pdf)
 example: dws doc export get --job-id <jobId>
-source: internal/helpers/doc.go:4024
+source: internal/helpers/doc.go:4041
 visible_flags: 3
 
 ## Flags

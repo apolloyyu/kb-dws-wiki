@@ -5,7 +5,7 @@ completeness: full
 usage: dws drive permission get-setting
 description: 查询节点权限设置
 example: dws drive permission get-setting --node DOC_ID
-source: internal/helpers/drive.go:2824
+source: internal/helpers/drive.go:2831
 visible_flags: 1
 
 ## Flags

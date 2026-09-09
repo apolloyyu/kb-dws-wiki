@@ -6,7 +6,7 @@ usage: dws contact user invite
 description: Invite one employee by mobile number into the current enterprise.
 example: dws contact user invite --org-user-name "张三" --org-user-mobile "13800138000" --depts '[{"deptId":1}]'
 use_when: When the user explicitly asks to add an employee and has supplied the employee name and mobile number.
-source: internal/helpers/contact.go:1999
+source: internal/helpers/contact.go:2552
 visible_flags: 3
 
 ## Flags

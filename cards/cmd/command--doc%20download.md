@@ -6,7 +6,7 @@ usage: dws doc download
 description: Download a DingTalk Doc or file to a local path.
 example: dws doc download --node NODE_ID --output ./download.bin
 use_when: When the agent needs the raw file locally for processing or attachment.
-source: internal/helpers/doc.go:2045
+source: internal/helpers/doc.go:2047
 visible_flags: 2
 
 ## Flags

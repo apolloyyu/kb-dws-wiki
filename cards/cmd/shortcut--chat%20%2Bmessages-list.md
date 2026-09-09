@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws chat +messages-list
 description: 拉取群聊会话消息
-source: internal/shortcut/chat/chat_message.go:289
+source: internal/shortcut/chat/chat_message.go:293
 visible_flags: 8
 
 ## Flags

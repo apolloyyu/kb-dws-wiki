@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +record-primary-doc-create
 description: 为记录创建主键文档（幂等），fieldId 须为 primaryDoc 类型
-source: internal/shortcut/aitable/aitable.go:1005
+source: internal/shortcut/aitable/aitable.go:1013
 visible_flags: 4
 
 ## Flags

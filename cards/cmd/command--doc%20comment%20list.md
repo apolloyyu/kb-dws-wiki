@@ -6,7 +6,7 @@ usage: dws doc comment list
 description: List comments on a DingTalk Doc, including replies.
 example: dws doc comment list --node DOC_ID
 use_when: When the agent is reviewing outstanding feedback or summarizing comment threads.
-source: internal/helpers/doc.go:3077
+source: internal/helpers/doc.go:3094
 visible_flags: 5
 
 ## Flags

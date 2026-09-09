@@ -6,7 +6,7 @@ usage: dws doc block list
 description: List the blocks of a DingTalk Doc with their IDs, types, and content.
 example: dws doc block list --node DOC_ID
 use_when: When the agent needs the structured block tree of a doc before modifying specific blocks.
-source: internal/helpers/doc.go:2100
+source: internal/helpers/doc.go:2102
 visible_flags: 6
 
 ## Flags

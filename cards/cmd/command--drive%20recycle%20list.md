@@ -5,7 +5,7 @@ completeness: full
 usage: dws drive recycle list
 description: 查看回收站文件列表
 example: dws drive recycle list
-source: internal/helpers/drive.go:3301
+source: internal/helpers/drive.go:3308
 visible_flags: 3
 
 ## Flags

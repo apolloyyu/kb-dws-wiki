@@ -1,11 +1,11 @@
 # 构建对账
 
-- 源码 commit:e6661a8f
-- 镜像文件:118
-- 主命令:1106(带 flags:772,归属未定:173)
-- shortcuts:468
-- 答案卡:1574(full:1219,77.4%;partial:355)
-- 文档索引:127 篇
+- 源码 commit:2c7b3e20
+- 镜像文件:121
+- 主命令:1180(带 flags:823,归属未定:180)
+- shortcuts:469
+- 答案卡:1649(full:1272,77.1%;partial:377)
+- 文档索引:130 篇
 
 ## 归属未定(退回源码 grep,不影响存在性判断)
 - agoal contract
@@ -73,6 +73,7 @@
 - conference member
 - contact account
 - contact dept
+- contact exclusive-account
 - contact ext-field
 - contact label
 - contact org
@@ -80,6 +81,13 @@
 - contact user
 - contact user dismission
 - contact user profile
+- contract
+- contract account
+- contract import
+- contract project
+- contract record
+- contract review
+- contract subject
 - dev
 - dev app
 - dev app credentials
@@ -176,7 +184,6 @@
 - todo comment
 - todo tag
 - todo task
-- whiteboard
 - wiki feed
 - wiki member
 - wiki node

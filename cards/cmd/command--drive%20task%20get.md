@@ -6,7 +6,7 @@ usage: dws drive task get
 description: Query an async task by ID and type (`export\
 example: dws drive task get --type export --id <taskId>
 use_when: import\|copy\|move`) and return a normalized TaskResult. | When the agent needs the terminal state of an export/import/copy/move task after a timeout or interruption.
-source: internal/helpers/drive.go:2333
+source: internal/helpers/drive.go:2340
 visible_flags: 2
 
 ## Flags

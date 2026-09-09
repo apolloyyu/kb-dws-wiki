@@ -5,7 +5,7 @@ completeness: full
 usage: dws doc export get
 description: 查询导出任务结果（手动兜底）
 example: dws doc export get --job-id <JOB_ID>
-source: internal/helpers/doc.go:4188
+source: internal/helpers/doc.go:4205
 visible_flags: 1
 
 ## Flags

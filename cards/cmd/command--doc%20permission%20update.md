@@ -5,7 +5,7 @@ completeness: full
 usage: dws doc permission update
 description: 更新文档协作者权限
 example: dws doc permission update --node DOC_ID --users uid1 --role EDITOR
-source: internal/helpers/doc.go:3706
+source: internal/helpers/doc.go:3723
 visible_flags: 6
 
 ## Flags

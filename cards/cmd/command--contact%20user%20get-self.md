@@ -6,7 +6,7 @@ usage: dws contact user get-self
 description: Retrieve the profile of the currently authenticated user.
 example: dws contact user get-self
 use_when: When the agent needs to identify who it is acting on behalf of (user ID, name, org).
-source: internal/helpers/contact.go:961
+source: internal/helpers/contact.go:1500
 visible_flags: 0
 
 ## Flags

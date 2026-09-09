@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws doc +inspect
 description: 聚合文档元信息，并按需附带样式、权限、历史、媒体和评论
-source: internal/shortcut/doc/content_shortcuts.go:302
+source: internal/shortcut/doc/content_shortcuts.go:304
 visible_flags: 6
 
 ## Flags

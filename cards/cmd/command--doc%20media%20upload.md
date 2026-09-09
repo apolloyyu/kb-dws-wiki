@@ -5,7 +5,7 @@ completeness: full
 usage: dws doc media upload
 description: 上传可复用的文档媒体资源
 example: dws doc media upload --node DOC_ID --file ./icon.svg --mime-type image/svg+xml --format json
-source: internal/helpers/doc.go:2943
+source: internal/helpers/doc.go:2960
 visible_flags: 5
 
 ## Flags

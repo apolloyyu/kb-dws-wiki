@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable workflow list
 description: 列出 Base 下的工作流
 example: dws aitable workflow list --base-id BASE_ID
-source: internal/helpers/aitable.go:5990
+source: internal/helpers/aitable.go:6088
 visible_flags: 3
 
 ## Flags

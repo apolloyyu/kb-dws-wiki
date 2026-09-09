@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +view-get-row-height
 description: 获取视图单元格行高（像素）
-source: internal/shortcut/aitable/aitable.go:1534
+source: internal/shortcut/aitable/aitable.go:1542
 visible_flags: 3
 
 ## Flags

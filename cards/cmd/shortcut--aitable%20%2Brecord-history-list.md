@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +record-history-list
 description: 按 recordId 查询单条记录的变更历史
-source: internal/shortcut/aitable/aitable.go:859
+source: internal/shortcut/aitable/aitable.go:867
 visible_flags: 5
 
 ## Flags

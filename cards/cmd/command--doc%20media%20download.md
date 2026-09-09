@@ -5,7 +5,7 @@ completeness: full
 usage: dws doc media download
 description: 下载文档附件
 example: dws doc media download --node DOC_ID --resource-id RESOURCE_ID
-source: internal/helpers/doc.go:2881
+source: internal/helpers/doc.go:2898
 visible_flags: 2
 
 ## Flags

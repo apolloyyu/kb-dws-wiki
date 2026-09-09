@@ -5,7 +5,7 @@ completeness: full
 usage: dws contact relation list-my-followings
 description: 获取当前用户的特别关注列表
 example: dws contact relation list-my-followings
-source: internal/helpers/contact.go:1006
+source: internal/helpers/contact.go:1545
 visible_flags: 0
 
 ## Flags

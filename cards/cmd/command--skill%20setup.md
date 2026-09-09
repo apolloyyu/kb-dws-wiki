@@ -11,7 +11,7 @@ visible_flags: 6
 ## Flags
 - --mode <String>: skill 模式：mono | multi（不指定则交互询问）
 - --target <String>: 目标 Agent：all |
-- --source <String>: skill 源目录（默认使用二进制内嵌的 skill 源，与当前版本一致）
+- --source <String>: skill 源、dws-skills.zip 解压或源码仓库目录（默认使用当前二进制内嵌版本）
 - --yes <Bool>: 跳过确认提示（仅供脚本使用；删除操作仍会先备份到 ~/.dws/skill-backups/）
 - --skill (-s) <StringSlice>: multi 模式：仅安装指定子 skill（可重复，接受短名 aitable 或全名 dingtalk-aitable）
 - --exclude (-x) <StringSlice>: multi 模式：从全装中剔除指定子 skill（可重复，与 --skill 互斥）

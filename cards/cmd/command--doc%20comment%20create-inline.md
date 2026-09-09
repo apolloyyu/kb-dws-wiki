@@ -6,7 +6,7 @@ usage: dws doc comment create-inline
 description: Create an inline (anchored) comment on a specific text range within a DingTalk Doc.
 example: dws doc comment create-inline --node DOC_ID --block-id BLOCK_ID --start 0 --end 10 --content "这里需要修改"
 use_when: When the agent needs to attach feedback to a particular passage rather than the whole doc.
-source: internal/helpers/doc.go:3472
+source: internal/helpers/doc.go:3489
 visible_flags: 7
 
 ## Flags

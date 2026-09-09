@@ -6,7 +6,7 @@ usage: dws doc comment create
 description: Create a document-level comment on a DingTalk Doc.
 example: dws doc comment create --node DOC_ID --content "这里需要修改"
 use_when: When the agent leaves feedback or follow-up notes that apply to the entire document.
-source: internal/helpers/doc.go:3167
+source: internal/helpers/doc.go:3184
 visible_flags: 4
 
 ## Flags

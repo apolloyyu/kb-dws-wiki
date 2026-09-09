@@ -5,7 +5,7 @@ completeness: full
 usage: dws drive search
 description: 搜索文件（聚合钉盘+文档空间）
 example: dws drive search --query "季度汇报"
-source: internal/helpers/drive.go:1622
+source: internal/helpers/drive.go:1629
 visible_flags: 11
 
 ## Flags

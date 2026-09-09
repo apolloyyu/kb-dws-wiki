@@ -4,7 +4,7 @@ kind: command
 completeness: partial
 usage: dws auth exchange
 description: Exchange an authorization code for credentials
-source: internal/app/auth_command.go:957
+source: internal/app/auth_command.go:959
 visible_flags: 8
 partial_reason: unverified_flags
 

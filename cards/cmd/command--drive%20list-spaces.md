@@ -5,7 +5,7 @@ completeness: full
 usage: dws drive list-spaces
 description: 获取钉盘空间列表 (deprecated → dws wiki space list --type orgSpace/mySpace)
 example: dws drive list-spaces
-source: internal/helpers/drive.go:1544
+source: internal/helpers/drive.go:1551
 visible_flags: 3
 
 ## Flags

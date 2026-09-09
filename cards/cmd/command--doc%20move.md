@@ -6,7 +6,7 @@ usage: dws doc move
 description: Move a DingTalk Doc or file to a different folder location.
 example: dws doc move --node DOC_ID --folder TARGET_DOC_FOLDER_NODE_ID
 use_when: When the agent reorganizes document structure.
-source: internal/helpers/doc.go:2508
+source: internal/helpers/doc.go:2525
 visible_flags: 3
 
 ## Flags

@@ -5,7 +5,7 @@ completeness: partial
 usage: dws contact user update
 description: 修改员工信息
 example: dws contact user update --user-id user001 --org-user-name "张三三"
-source: internal/helpers/contact.go:721
+source: internal/helpers/contact.go:723
 visible_flags: 4
 partial_reason: unverified_flags
 

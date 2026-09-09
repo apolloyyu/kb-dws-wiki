@@ -3,8 +3,9 @@
 kind: command
 completeness: full
 usage: dws doc whiteboard
-description: 白板卡片管理
-source: internal/helpers/doc_whiteboard.go:210
+description: 钉钉白板管理
+example: dws doc whiteboard insert。
+source: internal/helpers/whiteboard.go:60
 visible_flags: 0
 
 ## Flags

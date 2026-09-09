@@ -5,7 +5,7 @@ completeness: full
 usage: dws doc template list
 description: 获取文档模板列表
 example: dws doc template list
-source: internal/helpers/doc.go:4593
+source: internal/helpers/doc.go:4610
 visible_flags: 3
 
 ## Flags

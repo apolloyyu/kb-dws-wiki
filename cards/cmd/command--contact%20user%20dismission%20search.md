@@ -5,7 +5,7 @@ completeness: full
 usage: dws contact user dismission search
 description: 分页获取离职员工列表
 example: dws contact user dismission search
-source: internal/helpers/contact.go:1874
+source: internal/helpers/contact.go:2427
 visible_flags: 8
 
 ## Flags

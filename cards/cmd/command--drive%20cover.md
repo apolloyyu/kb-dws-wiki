@@ -5,7 +5,7 @@ completeness: partial
 usage: dws drive cover
 description: 获取节点封面地址
 example: dws drive cover --node <dentryUuid>
-source: internal/helpers/drive.go:3951
+source: internal/helpers/drive.go:3958
 visible_flags: 1
 partial_reason: unverified_flags,empty_flag_name
 

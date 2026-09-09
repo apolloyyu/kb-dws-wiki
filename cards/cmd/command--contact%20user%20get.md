@@ -6,7 +6,7 @@ usage: dws contact user get
 description: Batch-fetch detailed profile information for one or more users by user ID.
 example: dws contact user get --ids userId1,userId2
 use_when: When the agent needs names, titles, emails, or departments for a known set of user IDs.
-source: internal/helpers/contact.go:1134
+source: internal/helpers/contact.go:1673
 visible_flags: 1
 
 ## Flags

@@ -5,7 +5,7 @@ completeness: partial
 usage: dws contact label remove-members
 description: 移除成员角色
 example: dws contact label remove-members --id 12345 --users user1,user2
-source: internal/helpers/contact.go:421
+source: internal/helpers/contact.go:423
 visible_flags: 2
 partial_reason: unverified_flags
 

@@ -5,7 +5,7 @@ completeness: full
 usage: dws doc comment update
 description: 更新文档评论
 example: dws doc comment update --node DOC_ID --comment-key COMMENT_KEY --content "已按最新数据修正"
-source: internal/helpers/doc.go:3343
+source: internal/helpers/doc.go:3360
 visible_flags: 5
 
 ## Flags

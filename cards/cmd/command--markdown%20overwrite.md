@@ -5,8 +5,8 @@ completeness: partial
 usage: dws markdown overwrite
 description: 覆盖已有 Markdown 文件
 example: dws markdown overwrite --node <id> --content "
-source: internal/helpers/markdown.go:420
-visible_flags: 7
+source: internal/helpers/markdown.go:248
+visible_flags: 8
 partial_reason: unverified_flags
 
 ## Flags
@@ -16,6 +16,7 @@ partial_reason: unverified_flags
 - --name <String>: 文件名；省略时保留远程展示名
 - --space-id <String>: 钉盘空间 ID (可选，与 --workspace 互斥)
 - --workspace <String>: 文档空间/知识库 ID (可选，与 --space-id 互斥)
+- --theme <String>: —
 - --dry-run <Bool>: 下载当前内容并预览覆盖差异，不写入
 
 ## Related

@@ -5,7 +5,7 @@ completeness: partial
 usage: dws contact ext-field update
 description: 更新自定义字段设置
 example: dws contact ext-field update --code "rank" --client-display true --is-search false
-source: internal/helpers/contact.go:566
+source: internal/helpers/contact.go:568
 visible_flags: 4
 partial_reason: unverified_flags
 

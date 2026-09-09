@@ -5,7 +5,7 @@ completeness: full
 usage: dws drive upload
 description: 上传本地文件到钉盘或文档空间
 example: dws drive upload --file ./report.pdf
-source: internal/helpers/drive.go:1467
+source: internal/helpers/drive.go:1474
 visible_flags: 8
 
 ## Flags

@@ -1,6 +1,6 @@
 ---
 source_path: "skills/mono/references/products/doc/doc-whiteboard.md"
-source_commit: "e6661a8f"
+source_commit: "2c7b3e20"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 
@@ -71,6 +71,10 @@ Flags:
 
 - 编辑白板内容：`dws whiteboard query/update --node <DOC_ID> --part-id <whiteboardId>`
 - 删除白板卡片：`dws doc block delete --node <DOC_ID> --block-id <blockId>`
+
+`--part-id` 是内嵌白板分流的显式凭据。必须传非空 `whiteboardId`；完全省略
+`--part-id` 会按独立白板处理，显式空值会在本地报错。内嵌接口失败后不会自动改走
+独立白板接口。
 
 ---
 

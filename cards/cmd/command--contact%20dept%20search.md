@@ -6,7 +6,7 @@ usage: dws contact dept search
 description: Search departments in the organization's contact directory by keyword.
 example: dws contact dept search --query "技术部"
 use_when: When the agent needs to resolve a department name to a department ID.
-source: internal/helpers/contact.go:1541
+source: internal/helpers/contact.go:2094
 visible_flags: 1
 
 ## Flags
@@ -15,6 +15,7 @@ visible_flags: 1
 ## Related
 - dws contact dept create
 - dws contact dept get-info
+- dws contact dept invite-audit
 - dws contact dept list-children
 - dws contact dept list-members
 - dws contact dept update

@@ -5,7 +5,7 @@ completeness: partial
 usage: dws contact ext-field delete
 description: 删除自定义字段
 example: dws contact ext-field delete --code "rank"
-source: internal/helpers/contact.go:629
+source: internal/helpers/contact.go:631
 visible_flags: 2
 partial_reason: unverified_flags
 

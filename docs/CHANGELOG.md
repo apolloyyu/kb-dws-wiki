@@ -1,6 +1,6 @@
 ---
 source_path: "CHANGELOG.md"
-source_commit: "e6661a8f"
+source_commit: "2c7b3e20"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 
@@ -11,6 +11,121 @@ All notable changes to this project will be documented in this file.
 The format is inspired by [Keep a Changelog](https://keepachangelog.com/) and this project follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
+
+## [1.0.62-beta.6] - 2026-09-08
+
+### Added
+
+- **AI 表格 PostgreSQL 只读查询** — 新增 `dws aitable psql`，支持发现逻辑表和列类型，并执行只读 `SELECT`，包括同一 Base 内的多表 JOIN。
+
+- **Native Markdown themes** — adds `--theme` to `markdown create` and
+  `markdown overwrite`, preserving existing Front Matter while safely writing
+  the selected we-markdown theme into a private upload copy.
+
+### Fixed
+
+- **AI 表格应用模式输入校验错误分类** (#1314) — 将 icon、background、config、layout 等字段的校验失败从 `internal` 错误和退出码 `5` 修正为 `validation` 错误和退出码 `3`；校验仍在 MCP 调用前完成。
+
+
+## [1.0.62-beta.5] - 2026-09-07
+
+### Added
+
+- **AI 表格应用模式命令** (#1264) — 新增 `dws aitable app` 及 `page`/`widget` 子命令，支持 App 获取与更新、页面和 Widget 的创建、查询、更新、删除与排序。
+
+- **文档块批量删除** — `doc block delete` 的 `--block-id` 支持逗号分隔一次删除多个块
+  （单次最多 50 个）。采用尽力而为语义：单个 blockId 未找到不阻塞其余块的删除，
+  未找到的在 `notFoundBlockIds` 中列出；仅当全部未找到时整体失败。
+
+### Fixed
+
+- **markdown @人 写后回读误报** — 写入含 `[@姓名](alidocs-mcp://doc/mention?openDingTalkId=…)` 的 markdown 时，`doc +create` 与 `doc +update --command append|overwrite` 会以 `doc_write_verification_failed` 报错，而内容其实已正确写入。原因是写后回读把写入原文与服务端改写后的正文比对，而服务端会把该私有协议改写成钉钉个人资料链接。现在写后回读改为**按位置配对**：只有预期正文中写了 mention 私有协议的那个位置，才允许回读侧是个人资料链接；其余链接——包括作者自己写的普通个人资料链接——仍保留完整目标并严格比对。显示文本与节点顺序照旧参与比对，漏写、改标签或顺序错乱依旧判定失败。原子命令 `doc update` 无写后回读，行为不变。
+- **@人 目标身份不再被隐含声明为已验证** — 回读能证明 mention 链接落在作者写的位置、显示文本未变，但证明不了它解析到了哪个人：`openDingTalkId` 与改写后的 `staffId` 是不同值且无本地映射。含 mention 的写入结果因此在与 `verified` 同级处声明作用域：`verificationScope="partial"`、`unverified=["mention_targets"]`，verify 步骤状态由 `success` 降为 `partial` 并带 `scope="partial"`（只按 `steps[].status` 推进、不认识 scope 字段的既有消费者因此也不会再把它读成完整核验成功），另有 `verification.mentionTargetsVerified=false` 与一条说明性 warning，并把 `verified` 置为 `false`（操作本身仍 `status=success`）：回读无法确定 @ 到了谁，就不宣称已验证。另有 `unverifiableLocally=["mention_targets"]` 表明该缺口不是"还没查"而是"回读查不出来"，重读文档不会得到新信息。warning 只透两条事实：@人链接指向的具体人员需用户自行核对，正文其余部分（含该链接的位置与显示文本）均已通过回读校验。不含 mention 的写入输出完全不变。
+
+- **Chat message decrypt fallback** — skips crypto policy lookups and decrypt failure ledger fields on chat read paths when the DWS binary does not include the SafeChat backend, while preserving policy-driven decryption after `chat message list --page-all` aggregates its pages.
+
+- **AI Table view OR filters** — allows `aitable view update filter` to persist
+  a single top-level `or` group while preserving flat-array AND behavior,
+  rejecting nested logical groups, and verifying equivalent service readback
+  shapes.
+
+- **OA 空页分页兼容** — 待审批、已处理和已发起审批列表兼容成功响应中 `values:[]` 省略 `hasMore` 的终页编码，避免空列表误报 `missing_pagination`；保留显式分页值及业务状态、数组结构和其他接口的严格校验。
+
+- **自动合并**：修复 Reviewer Router 将可合并但显示 `blocked` 的 PR 持续跳过的问题；恢复 App 的同步合并尝试，并继续由 GitHub 强制执行审批和必需 CI 检查。
+
+- **Schema compatibility checks** — accept a new `require_one_of` group when a historical unconditional required parameter without a default already guarantees a supplied member. Other incompatible parameter changes remain rejected; CLI runtime behavior is unchanged.
+
+
+## [1.0.62-beta.4] - 2026-09-04
+
+### Fixed
+
+- **Release dependency checksums** (#1288) — removes stale module checksum records so release validation remains reproducible after `go mod tidy`.
+
+
+## [1.0.62-beta.3] - 2026-09-04
+
+### Added
+
+- **SafeChat message encryption/decryption** (#1051) — `dws safechat` commands enable AnHeng SafeDing (安恒密盾) message encryption and decryption. Available only in builds with `-tags safechat` (requires CGO and platform-specific static libraries). Commands include `safechat selftest` for end-to-end self-check (real authCode fetch and key retrieval) and `safechat decrypt` to decrypt ciphertext messages. The PR also adds `internal/msgcrypto` package with cipher operations, vendorAuthCode portal integration, and key server client supporting both in-memory and file-based keystores with 0600 permissions on Unix and warning logs on Windows.
+
+- **Chat third-party message decrypt** (#1150) — adds policy-driven Ding + SafeChat message decryption for core chat read paths, explicit `dws chat crypto decrypt` diagnostics, and IM MCP wiring for policy lookup plus Ding batch decrypt. Outbound send encryption and `dws chat crypto encrypt` are intentionally not enabled in this PR.
+
+- **html fetch / create / overwrite / patch** — full native `.html` / `.htm` file support in DingPan or the doc space, mirroring the markdown domain. `create` accepts a literal string, `@file`, stdin (`-`), or an existing local HTML file via `--file`. `fetch` downloads and prints the remote content (optional sanitized `--output`). `overwrite` replaces the whole file with before/after preview on command-level `--dry-run`; `patch` applies literal or RE2 replacements with zero-match never writing and an empty result aborting. Routing matches the markdown leaves: explicit `--space-id` / `--workspace`, auto domain probe, `--folder` read-only probe on create. Drive uploads submit the `text/html` MIME type. Implemented on a shared textfile engine extracted from the markdown leaves (pure refactor, behavior unchanged).
+
+### Changed
+
+- **Bounded CI app race fan-out** (#1278) — keeps all nine reviewed
+  `internal/app` race-test partitions process-isolated while balancing them
+  across three physical jobs, reducing focused and full-suite runner demand by
+  six jobs without weakening partition coverage or increasing the 20-minute
+  job limit.
+
+- **Chat Shortcut-first discovery** — prioritizes Featured Shortcuts in
+  `dws chat --help`, keeps the complete canonical Shortcut catalog discoverable,
+  and points overlapping atomic command help to the reviewed Shortcut owner.
+
+### Fixed
+
+- **`aitable record query --all`** (#1016) — an empty final page that omits the `records` key now ends pagination normally instead of failing with `query_records response is missing records`.
+
+- **Post-merge CI admission reuse** — reuses exact successful full-suite
+  PR evidence for tree-identical protected-main merges and promotes the
+  verified coverage artifact to the merge SHA cache, reducing duplicate runner
+  work without adding jobs or weakening required contexts.
+
+- **Chat role and category routing** — resolves natural group names before group-role operations, aligns role assignment guidance with required non-empty role IDs, and publishes a compact shortcut-first category workflow to reduce Help and Catalog discovery without dropping result, safety, or identity constraints.
+
+- **Contract command safety and Skill routing** — Contract destructive operations (`archive`, `subject delete`, `subject batch-delete`, `project delete`, and `account delete`) now require explicit user confirmation (`--yes`) before executing, with Schema Safety `confirmation=user_required`. Batch project/subject deletion rejects empty parsed ID lists, subject deletion enforces the 1000-ID service limit, and required project/subject pagination rejects non-positive values before calling MCP. Account-list execution-time filters are documented consistently as ISO-8601 CLI inputs converted to MCP milliseconds. Legal smart-contract guidance is delivered through `dingtalk-misc` instead of a standalone first-level Skill, and the retired `edu-contact` endpoint is no longer registered as a supplement server.
+
+- **Coverage baseline reliability** — balances the existing app test
+  partitions across the current coverage runners and reuses the same bounded
+  path for trusted cold-cache recovery, avoiding the long-lived app test
+  process without adding CI matrix jobs.
+
+- **Dlink target routing** — teaches Doc, Drive, Sheet, AITable, shared URL
+  routing, and the `doc info` Schema to resolve shortcut targets through
+  `linkSourceInfo` for content operations while preserving the top-level node
+  for explicit shortcut-entry management.
+
+- **Main integration reliability** — keeps main and release multi-profile E2E
+  validation focused on the isolated profile chain while existing CI shards own
+  the complete Go regressions, avoiding the long-lived runner shutdown window
+  without adding CI jobs.
+
+- **Minutes permission sharing** — adds `--member-staff-ids` to
+  `minutes permission add` and `minutes +share`, preserving leading-zero staff
+  IDs while keeping `--member-uids` for DingTalk UIDs.
+
+- **Reviewer Router reconciliation** — keeps blocked, conflicting, draft, and
+  otherwise unproven merge candidates retriable without letting one expected
+  not-ready PR fail the repository-wide reconciliation batch.
+
+### Security
+
+- **Published MCP invocation** (#1261) - validates fresh bounded input schemas,
+  restricts endpoint trust and redirects, and prevents automatic call replay.
+
 
 ## [1.0.62-beta.2] - 2026-09-02
 

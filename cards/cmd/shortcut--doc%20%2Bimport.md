@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws doc +import
 description: 上传本地文件并等待转换成在线文档对象；白名单外格式自动改走文件上传原样入库
-source: internal/shortcut/doc/content_shortcuts.go:575
+source: internal/shortcut/doc/content_shortcuts.go:579
 visible_flags: 4
 
 ## Flags

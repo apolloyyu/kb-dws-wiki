@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws chat +messages-set-top
 description: 置顶消息
-source: internal/shortcut/chat/chat_message.go:2149
+source: internal/shortcut/chat/chat_message.go:2415
 visible_flags: 2
 
 ## Flags

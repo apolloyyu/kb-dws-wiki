@@ -4,7 +4,7 @@ kind: command
 completeness: partial
 usage: dws recruit job list
 description: —
-source: internal/cli/param_aliases_generated.go:9551
+source: internal/cli/param_aliases_generated.go:9549
 visible_flags: 0
 partial_reason: unverified_usage,unverified_flags,missing_description
 

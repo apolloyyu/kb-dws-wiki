@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws chat +chat-update-settings
 description: 更新群设置（settingKey + status）
-source: internal/shortcut/chat/chat_group.go:557
+source: internal/shortcut/chat/chat_group.go:597
 visible_flags: 3
 
 ## Flags

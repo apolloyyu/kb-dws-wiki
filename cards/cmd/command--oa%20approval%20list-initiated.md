@@ -6,7 +6,7 @@ usage: dws oa approval list-initiated
 description: List approval instances the current user has initiated under a specified approval template (processCode).
 example: dws oa approval list-initiated --process-code <code> --start "2026-03-10T00:00:00+08:00" --end "2026-03-10T23:59:59+08:00" --cursor 0 --limit 20
 use_when: When the agent reviews the status of approvals the user submitted.
-source: internal/helpers/oa.go:1240
+source: internal/helpers/oa.go:1265
 visible_flags: 7
 
 ## Flags

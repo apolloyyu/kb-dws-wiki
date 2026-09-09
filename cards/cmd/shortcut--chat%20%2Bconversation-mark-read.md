@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws chat +conversation-mark-read
 description: 标记消息已读（该消息及之前的消息都标记为已读）
-source: internal/shortcut/chat/chat_conversation.go:796
+source: internal/shortcut/chat/chat_conversation.go:985
 visible_flags: 2
 
 ## Flags

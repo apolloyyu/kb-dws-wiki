@@ -1,6 +1,6 @@
 ---
 source_path: "skills/mono/references/products/sheet/sheet-revision-changeset.md"
-source_commit: "2c7b3e20"
+source_commit: "bea76da8"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 

@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws chat +conversation-mute-at-all
 description: 关闭/开启 @所有人消息提醒
-source: internal/shortcut/chat/chat_conversation.go:169
+source: internal/shortcut/chat/chat_conversation.go:175
 visible_flags: 2
 
 ## Flags

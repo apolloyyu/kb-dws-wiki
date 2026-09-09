@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat message update-text-emotion
 description: 更新消息的文字表情回应
 example: dws chat message update-text-emotion --conversation-id <openConversationId> --message-id <openMsgId> --old-emotion-id <oldEmotionId> --emotion-id <emotionId> --emotion-name "赞" --text "nice" --background-id im_bg_5
-source: internal/helpers/chat.go:6749
+source: internal/helpers/chat.go:7084
 visible_flags: 8
 
 ## Flags

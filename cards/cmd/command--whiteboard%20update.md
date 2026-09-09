@@ -19,4 +19,6 @@ visible_flags: 7
 
 ## Related
 - dws whiteboard create-with-content
+- dws whiteboard export
+- dws whiteboard export-get
 - dws whiteboard query

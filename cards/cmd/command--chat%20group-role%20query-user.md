@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat group-role query-user
 description: 查询群成员的群身份
 example: dws chat group-role query-user --conversation-id <openConversationId> --user <userId>
-source: internal/helpers/chat.go:8735
+source: internal/helpers/chat.go:9074
 visible_flags: 2
 
 ## Flags

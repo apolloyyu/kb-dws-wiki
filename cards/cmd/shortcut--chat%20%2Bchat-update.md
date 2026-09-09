@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws chat +chat-update
 description: 更新群名称（仅名称，不支持 description）
-source: internal/shortcut/chat/lark_alignment.go:169
+source: internal/shortcut/chat/lark_alignment.go:186
 visible_flags: 2
 
 ## Flags

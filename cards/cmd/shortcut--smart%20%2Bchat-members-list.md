@@ -4,8 +4,8 @@ kind: shortcut
 completeness: full
 usage: dws smart +chat-members-list
 description: 列出群成员并把用户与机器人分桶（支持群名语义解析）
-source: internal/shortcut/smart/group_members.go:109
-visible_flags: 7
+source: internal/shortcut/smart/group_members.go:113
+visible_flags: 10
 
 ## Flags
 - --group <String>: 群名称或 openConversationId
@@ -14,6 +14,9 @@ visible_flags: 7
 - --chat <String>: --conversation-id 的兼容别名
 - --open-conversation-id <String>: --conversation-id 的兼容别名
 - --member-types <StringSlice>: 成员类型；--member-types 仅接受 user/bot；不传则同时返回
+- --cursor <String>: —
+- --single-page <Bool>: 只读取一页用户成员，保留实际续页信息
+- --page-delay <Int>: —
 - --page-limit <Int>: —
 
 ## Related

@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws chat +messages-unset-pin
 description: 取消钉住消息（Unpin）
-source: internal/shortcut/chat/chat_message.go:2261
+source: internal/shortcut/chat/chat_message.go:2329
 visible_flags: 2
 
 ## Flags

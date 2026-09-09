@@ -4,12 +4,13 @@ kind: shortcut
 completeness: full
 usage: dws chat +conversation-list-top
 description: 拉取置顶会话列表，可只看群聊或单聊
-source: internal/shortcut/chat/chat_conversation.go:579
-visible_flags: 4
+source: internal/shortcut/chat/chat_conversation.go:757
+visible_flags: 5
 
 ## Flags
 - --limit <Int>: 每页数量
-- --cursor <Int>: 分页游标（首次不传或 0）
+- --no-detail <Bool>: 跳过会话详情补查（默认补查并精确核对ID）
+- --cursor <Int>: —
 - --exclude-muted <Bool>: 排除已免打扰会话
 - --type <String>: —
 

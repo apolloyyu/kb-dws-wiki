@@ -5,7 +5,7 @@ completeness: partial
 usage: dws chat message forward-topic
 description: —
 example: dws chat message forward-topic --src-msg-id <srcOpenMessageId> --src-conversation-id <srcOpenConversationId> --src-thread-id <srcOpenConvThreadId> --dest-conversation-id <destOpenConversationId>
-source: internal/helpers/chat.go:9172
+source: internal/helpers/chat.go:9510
 visible_flags: 4
 partial_reason: missing_description
 

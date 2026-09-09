@@ -6,7 +6,7 @@ usage: dws oa approval list-forms
 description: List approval process templates (forms) the current user is allowed to initiate.
 example: dws oa approval list-forms --cursor 0 --limit 100
 use_when: When the agent needs to pick the right approval form before submitting a new request.
-source: internal/helpers/oa.go:1360
+source: internal/helpers/oa.go:1385
 visible_flags: 3
 
 ## Flags

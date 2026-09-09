@@ -5,7 +5,7 @@ completeness: full
 usage: dws oa approval revert-activities
 description: 获取审批任务可回退的节点信息（退回前必须调用，获取可回退节点列表）
 example: dws oa approval revert-activities --task-id <taskId>
-source: internal/helpers/oa.go:1790
+source: internal/helpers/oa.go:1815
 visible_flags: 1
 
 ## Flags

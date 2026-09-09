@@ -5,14 +5,17 @@ completeness: full
 usage: dws chat +messages-resource-download
 description: 安全下载消息资源（图片/视频/语音/文件）到本地
 source: internal/shortcut/chat/resource_download.go:55
-visible_flags: 6
+visible_flags: 9
 
 ## Flags
 - --type <String>: —
-- --resource-id <String>: 消息中的 mediaId 或 fileId
-- --message-id <String>: mediaId 所属消息的 openMessageId；--type mediaId 时必须同时提供 --message-id 和 --open-conversation-id；fileId 不需要消息上下文
-- --open-conversation-id <String>: mediaId 所属会话的 openConversationId；--type mediaId 时必须同时提供 --message-id 和 --open-conversation-id；fileId 不需要消息上下文
+- --resource-id <String>: —
+- --message-id <String>: mediaId 所属消息的 openMessageId；媒体需message-id，可自动补会话；image/file从消息资源元数据解析ID类型；fileId可独立下载
+- --open-conversation-id <String>: mediaId 所属会话的 openConversationId；媒体需message-id，可自动补会话；image/file从消息资源元数据解析ID类型；fileId可独立下载
 - --output <String>: —
+- --part-size <Int>: —
+- --retries <Int>: —
+- --retry-delay <Int>: —
 - --overwrite <Bool>: 允许覆盖工作目录内已存在的目标文件（默认拒绝）
 
 ## Related

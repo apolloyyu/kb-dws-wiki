@@ -5,7 +5,7 @@ completeness: full
 usage: dws oa approval oa-comments
 description: 对审批实例添加评论
 example: dws oa approval oa-comments --instance-id <processInstanceId> --content "同意，请尽快处理"
-source: internal/helpers/oa.go:1638
+source: internal/helpers/oa.go:1663
 visible_flags: 3
 
 ## Flags

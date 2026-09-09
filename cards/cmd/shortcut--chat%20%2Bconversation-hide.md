@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws chat +conversation-hide
 description: 会话列表中隐藏会话（收到新消息会重新出现）
-source: internal/shortcut/chat/chat_conversation.go:817
+source: internal/shortcut/chat/chat_conversation.go:1006
 visible_flags: 1
 
 ## Flags

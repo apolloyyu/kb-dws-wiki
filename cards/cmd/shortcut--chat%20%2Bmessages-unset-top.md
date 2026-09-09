@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws chat +messages-unset-top
 description: 取消置顶消息
-source: internal/shortcut/chat/chat_message.go:2436
+source: internal/shortcut/chat/chat_message.go:2504
 visible_flags: 2
 
 ## Flags

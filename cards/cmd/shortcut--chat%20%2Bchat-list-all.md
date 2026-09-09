@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws chat +chat-list-all
 description: 分页拉取我加入的所有群列表
-source: internal/shortcut/chat/chat_group.go:854
+source: internal/shortcut/chat/chat_group.go:894
 visible_flags: 4
 
 ## Flags

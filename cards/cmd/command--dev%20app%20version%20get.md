@@ -4,7 +4,7 @@ kind: command
 completeness: partial
 usage: dws dev app version get
 description: —
-source: internal/cli/param_aliases_generated.go:5531
+source: internal/cli/param_aliases_generated.go:5529
 visible_flags: 0
 partial_reason: unverified_usage,unverified_flags,missing_description
 

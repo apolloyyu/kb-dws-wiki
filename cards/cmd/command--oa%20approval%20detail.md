@@ -6,7 +6,7 @@ usage: dws oa approval detail
 description: Retrieve full details of an approval process instance, including form fields, attachments, and state.
 example: dws oa approval detail --instance-id <processInstanceId>
 use_when: When the agent needs to read the content of an approval ticket before deciding on it or summarizing it.
-source: internal/helpers/oa.go:974
+source: internal/helpers/oa.go:999
 visible_flags: 1
 
 ## Flags

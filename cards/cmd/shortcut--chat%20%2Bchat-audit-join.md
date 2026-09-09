@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws chat +chat-audit-join
 description: 审批入群验证（通过/拒绝/删除/忽略/拉黑）
-source: internal/shortcut/chat/chat_group.go:1229
+source: internal/shortcut/chat/chat_group.go:1269
 visible_flags: 6
 
 ## Flags

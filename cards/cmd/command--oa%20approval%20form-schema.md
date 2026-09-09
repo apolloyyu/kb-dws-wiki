@@ -6,7 +6,7 @@ usage: dws oa approval form-schema
 description: Retrieve the form Schema for an approval template by processCode.
 example: dws oa approval form-schema --process-code <processCode>
 use_when: Before collecting or validating values for a new approval instance.
-source: internal/helpers/oa.go:1849
+source: internal/helpers/oa.go:1961
 visible_flags: 1
 
 ## Flags

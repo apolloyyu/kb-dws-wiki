@@ -5,7 +5,7 @@ completeness: partial
 usage: dws chat thread update-text-emotion
 description: Atomically replace a text emotion on a Thread message.
 use_when: When the agent needs to change a Thread message status.
-source: internal/helpers/chat_thread.go:908
+source: internal/helpers/chat_thread.go:905
 visible_flags: 0
 partial_reason: unverified_usage,unverified_flags
 

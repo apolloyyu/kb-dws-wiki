@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws chat +category-create
 description: 创建用户自定义会话分组
-source: internal/shortcut/chat/chat_conversation.go:1268
+source: internal/shortcut/chat/chat_conversation.go:1463
 visible_flags: 1
 
 ## Flags

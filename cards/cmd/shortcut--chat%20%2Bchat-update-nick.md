@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws chat +chat-update-nick
 description: 设置当前用户在群内的群昵称
-source: internal/shortcut/chat/chat_group.go:668
+source: internal/shortcut/chat/chat_group.go:708
 visible_flags: 2
 
 ## Flags

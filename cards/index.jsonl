@@ -974,6 +974,9 @@
 {"completeness": "full", "key": "oa approval revoke", "kind": "command", "path": "cards/cmd/command--oa%20approval%20revoke.md", "product": "oa"}
 {"completeness": "full", "key": "oa approval search-forms", "kind": "command", "path": "cards/cmd/command--oa%20approval%20search-forms.md", "product": "oa"}
 {"completeness": "full", "key": "oa approval tasks", "kind": "command", "path": "cards/cmd/command--oa%20approval%20tasks.md", "product": "oa"}
+{"completeness": "partial", "key": "oa approval template", "kind": "command", "path": "cards/cmd/command--oa%20approval%20template.md", "product": "oa"}
+{"completeness": "full", "key": "oa approval template detail", "kind": "command", "path": "cards/cmd/command--oa%20approval%20template%20detail.md", "product": "oa"}
+{"completeness": "partial", "key": "oa approval template list", "kind": "command", "path": "cards/cmd/command--oa%20approval%20template%20list.md", "product": "oa"}
 {"completeness": "full", "key": "pat", "kind": "command", "path": "cards/cmd/command--pat.md", "product": "pat"}
 {"completeness": "full", "key": "pat browser-policy", "kind": "command", "path": "cards/cmd/command--pat%20browser-policy.md", "product": "pat"}
 {"completeness": "full", "key": "pat chmod", "kind": "command", "path": "cards/cmd/command--pat%20chmod.md", "product": "pat"}
@@ -1155,6 +1158,8 @@
 {"completeness": "partial", "key": "version", "kind": "command", "path": "cards/cmd/command--version.md", "product": "version"}
 {"completeness": "full", "key": "whiteboard", "kind": "command", "path": "cards/cmd/command--whiteboard.md", "product": "whiteboard"}
 {"completeness": "partial", "key": "whiteboard create-with-content", "kind": "command", "path": "cards/cmd/command--whiteboard%20create-with-content.md", "product": "whiteboard"}
+{"completeness": "full", "key": "whiteboard export", "kind": "command", "path": "cards/cmd/command--whiteboard%20export.md", "product": "whiteboard"}
+{"completeness": "full", "key": "whiteboard export-get", "kind": "command", "path": "cards/cmd/command--whiteboard%20export-get.md", "product": "whiteboard"}
 {"completeness": "full", "key": "whiteboard query", "kind": "command", "path": "cards/cmd/command--whiteboard%20query.md", "product": "whiteboard"}
 {"completeness": "full", "key": "whiteboard update", "kind": "command", "path": "cards/cmd/command--whiteboard%20update.md", "product": "whiteboard"}
 {"completeness": "full", "key": "wiki", "kind": "command", "path": "cards/cmd/command--wiki.md", "product": "wiki"}
@@ -1354,7 +1359,7 @@
 {"completeness": "full", "key": "chat +chat-role-remove-user", "kind": "shortcut", "path": "cards/cmd/shortcut--chat%20%2Bchat-role-remove-user.md", "product": "chat"}
 {"completeness": "full", "key": "chat +chat-role-set-user", "kind": "shortcut", "path": "cards/cmd/shortcut--chat%20%2Bchat-role-set-user.md", "product": "chat"}
 {"completeness": "full", "key": "chat +chat-role-update", "kind": "shortcut", "path": "cards/cmd/shortcut--chat%20%2Bchat-role-update.md", "product": "chat"}
-{"completeness": "full", "key": "chat +chat-search", "kind": "shortcut", "path": "cards/cmd/shortcut--chat%20%2Bchat-search.md", "product": "chat"}
+{"completeness": "partial", "key": "chat +chat-search", "kind": "shortcut", "path": "cards/cmd/shortcut--chat%20%2Bchat-search.md", "product": "chat"}
 {"completeness": "full", "key": "chat +chat-set-admin", "kind": "shortcut", "path": "cards/cmd/shortcut--chat%20%2Bchat-set-admin.md", "product": "chat"}
 {"completeness": "full", "key": "chat +chat-set-history", "kind": "shortcut", "path": "cards/cmd/shortcut--chat%20%2Bchat-set-history.md", "product": "chat"}
 {"completeness": "full", "key": "chat +chat-transfer-owner", "kind": "shortcut", "path": "cards/cmd/shortcut--chat%20%2Bchat-transfer-owner.md", "product": "chat"}
@@ -1386,6 +1391,7 @@
 {"completeness": "full", "key": "chat +messages-batch-send-by-bot", "kind": "shortcut", "path": "cards/cmd/shortcut--chat%20%2Bmessages-batch-send-by-bot.md", "product": "chat"}
 {"completeness": "full", "key": "chat +messages-combine-forward", "kind": "shortcut", "path": "cards/cmd/shortcut--chat%20%2Bmessages-combine-forward.md", "product": "chat"}
 {"completeness": "full", "key": "chat +messages-create-text-emotion", "kind": "shortcut", "path": "cards/cmd/shortcut--chat%20%2Bmessages-create-text-emotion.md", "product": "chat"}
+{"completeness": "full", "key": "chat +messages-edit", "kind": "shortcut", "path": "cards/cmd/shortcut--chat%20%2Bmessages-edit.md", "product": "chat"}
 {"completeness": "full", "key": "chat +messages-forward", "kind": "shortcut", "path": "cards/cmd/shortcut--chat%20%2Bmessages-forward.md", "product": "chat"}
 {"completeness": "full", "key": "chat +messages-forward-topic", "kind": "shortcut", "path": "cards/cmd/shortcut--chat%20%2Bmessages-forward-topic.md", "product": "chat"}
 {"completeness": "full", "key": "chat +messages-list", "kind": "shortcut", "path": "cards/cmd/shortcut--chat%20%2Bmessages-list.md", "product": "chat"}
@@ -1399,7 +1405,7 @@
 {"completeness": "full", "key": "chat +messages-recall-by-bot", "kind": "shortcut", "path": "cards/cmd/shortcut--chat%20%2Bmessages-recall-by-bot.md", "product": "chat"}
 {"completeness": "full", "key": "chat +messages-remove-emoji", "kind": "shortcut", "path": "cards/cmd/shortcut--chat%20%2Bmessages-remove-emoji.md", "product": "chat"}
 {"completeness": "full", "key": "chat +messages-remove-text-emotion", "kind": "shortcut", "path": "cards/cmd/shortcut--chat%20%2Bmessages-remove-text-emotion.md", "product": "chat"}
-{"completeness": "full", "key": "chat +messages-reply", "kind": "shortcut", "path": "cards/cmd/shortcut--chat%20%2Bmessages-reply.md", "product": "chat"}
+{"completeness": "partial", "key": "chat +messages-reply", "kind": "shortcut", "path": "cards/cmd/shortcut--chat%20%2Bmessages-reply.md", "product": "chat"}
 {"completeness": "full", "key": "chat +messages-resource-download", "kind": "shortcut", "path": "cards/cmd/shortcut--chat%20%2Bmessages-resource-download.md", "product": "chat"}
 {"completeness": "full", "key": "chat +messages-resource-url", "kind": "shortcut", "path": "cards/cmd/shortcut--chat%20%2Bmessages-resource-url.md", "product": "chat"}
 {"completeness": "partial", "key": "chat +messages-send", "kind": "shortcut", "path": "cards/cmd/shortcut--chat%20%2Bmessages-send.md", "product": "chat"}

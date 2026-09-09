@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws chat +chat-set-admin
 description: 设置 / 取消群管理员
-source: internal/shortcut/chat/chat_group.go:1420
+source: internal/shortcut/chat/chat_group.go:1460
 visible_flags: 3
 
 ## Flags

@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws chat +chat-role-add
 description: 添加群身份
-source: internal/shortcut/chat/chat_group.go:1771
+source: internal/shortcut/chat/chat_group.go:1811
 visible_flags: 2
 
 ## Flags

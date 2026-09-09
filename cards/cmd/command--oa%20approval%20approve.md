@@ -6,7 +6,7 @@ usage: dws oa approval approve
 description: Approve a pending approval process instance (task) as the current user.
 example: dws oa approval approve --instance-id <id> --task-id <taskId>
 use_when: When the agent acts on a pending approval the user has delegated it to handle.
-source: internal/helpers/oa.go:1024
+source: internal/helpers/oa.go:1049
 visible_flags: 3
 
 ## Flags

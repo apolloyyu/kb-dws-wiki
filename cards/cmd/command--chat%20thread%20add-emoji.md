@@ -5,7 +5,7 @@ completeness: partial
 usage: dws chat thread add-emoji
 description: Add an emoji reaction to a Thread message.
 use_when: When the agent needs to react to a Thread root or reply.
-source: internal/helpers/chat_thread.go:706
+source: internal/helpers/chat_thread.go:703
 visible_flags: 0
 partial_reason: unverified_usage,unverified_flags
 

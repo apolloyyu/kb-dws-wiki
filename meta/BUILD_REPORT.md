@@ -1,10 +1,10 @@
 # 构建对账
 
-- 源码 commit:2c7b3e20
+- 源码 commit:bea76da8
 - 镜像文件:121
-- 主命令:1180(带 flags:823,归属未定:180)
-- shortcuts:469
-- 答案卡:1649(full:1272,77.1%;partial:377)
+- 主命令:1185(带 flags:826,归属未定:181)
+- shortcuts:470
+- 答案卡:1655(full:1274,77.0%;partial:381)
 - 文档索引:130 篇
 
 ## 归属未定(退回源码 grep,不影响存在性判断)
@@ -166,6 +166,7 @@
 - minutes upload
 - oa approval
 - oa approval attachment
+- oa approval template
 - plugin
 - plugin config
 - recruit

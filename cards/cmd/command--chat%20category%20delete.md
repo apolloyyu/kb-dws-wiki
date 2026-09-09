@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat category delete
 description: 删除用户自定义会话分组
 example: dws chat category delete --category-id <分组ID>
-source: internal/helpers/chat.go:6043
+source: internal/helpers/chat.go:6378
 visible_flags: 1
 
 ## Flags

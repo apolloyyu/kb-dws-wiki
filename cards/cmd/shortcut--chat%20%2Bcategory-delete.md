@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws chat +category-delete
 description: 删除用户自定义会话分组
-source: internal/shortcut/chat/chat_conversation.go:1320
+source: internal/shortcut/chat/chat_conversation.go:1515
 visible_flags: 1
 
 ## Flags

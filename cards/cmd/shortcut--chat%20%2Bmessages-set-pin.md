@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws chat +messages-set-pin
 description: 钉住消息（Pin）
-source: internal/shortcut/chat/chat_message.go:2239
+source: internal/shortcut/chat/chat_message.go:2307
 visible_flags: 2
 
 ## Flags

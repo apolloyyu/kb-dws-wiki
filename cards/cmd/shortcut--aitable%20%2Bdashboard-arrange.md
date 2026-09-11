@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +dashboard-arrange
 description: 对指定仪表盘做服务端智能布局重排
-source: internal/shortcut/aitable/aitable.go:2298
+source: internal/shortcut/aitable/aitable.go:2381
 visible_flags: 2
 
 ## Flags

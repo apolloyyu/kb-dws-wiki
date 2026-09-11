@@ -6,7 +6,7 @@ usage: dws calendar room search
 description: Search meeting rooms by keyword within a group, optionally filtering to rooms free during a given window via `--available`.
 example: dws calendar room search --room-name 永澄亭
 use_when: When the agent needs to find a suitable room, typically free at a specific time, prior to booking.
-source: internal/helpers/calendar.go:838
+source: internal/helpers/calendar.go:870
 visible_flags: 6
 
 ## Flags

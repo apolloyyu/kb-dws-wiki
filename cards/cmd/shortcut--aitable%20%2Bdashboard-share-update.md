@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +dashboard-share-update
 description: 开启/关闭 dashboard 分享并可设置分享类型
-source: internal/shortcut/aitable/aitable.go:2340
+source: internal/shortcut/aitable/aitable.go:2423
 visible_flags: 5
 
 ## Flags

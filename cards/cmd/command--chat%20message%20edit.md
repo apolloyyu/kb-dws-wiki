@@ -5,7 +5,7 @@ completeness: partial
 usage: dws chat message edit
 description: 编辑消息
 example: dws chat message edit --conversation-id <openConversationId> --message-id <openMessageId> --text "更新后的内容"
-source: internal/helpers/chat.go:5372
+source: internal/helpers/chat.go:5385
 visible_flags: 7
 partial_reason: unverified_flags
 

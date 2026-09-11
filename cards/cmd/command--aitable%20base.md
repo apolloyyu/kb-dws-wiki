@@ -17,5 +17,5 @@ partial_reason: unverified_flags,missing_description,missing_source
 - dws aitable app
 - dws aitable attachment
 - dws aitable chart
+- dws aitable comment
 - dws aitable create
-- dws aitable dashboard

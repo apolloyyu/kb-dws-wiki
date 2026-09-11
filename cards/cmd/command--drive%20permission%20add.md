@@ -5,7 +5,7 @@ completeness: full
 usage: dws drive permission add
 description: 添加协作者
 example: dws drive permission add --node DOC_ID --users uid1 --role READER
-source: internal/helpers/drive.go:2534
+source: internal/helpers/drive.go:2541
 visible_flags: 6
 
 ## Flags

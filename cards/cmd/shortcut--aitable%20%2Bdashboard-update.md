@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +dashboard-update
 description: 更新指定 dashboard 的配置
-source: internal/shortcut/aitable/aitable.go:2234
+source: internal/shortcut/aitable/aitable.go:2316
 visible_flags: 4
 
 ## Flags

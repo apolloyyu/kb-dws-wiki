@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +role-update
 description: 按 PATCH 语义增量更新自定义角色
-source: internal/shortcut/aitable/aitable.go:2858
+source: internal/shortcut/aitable/aitable.go:2981
 visible_flags: 6
 
 ## Flags

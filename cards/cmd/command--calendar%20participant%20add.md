@@ -5,7 +5,7 @@ completeness: full
 usage: dws calendar participant add
 description: Add one or more participants to an existing calendar event.
 use_when: When the agent invites additional attendees after the event has been created.
-source: internal/helpers/calendar.go:703
+source: internal/helpers/calendar.go:735
 visible_flags: 2
 
 ## Flags

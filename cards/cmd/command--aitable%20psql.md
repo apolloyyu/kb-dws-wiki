@@ -23,4 +23,4 @@ visible_flags: 8
 - dws aitable attachment
 - dws aitable base
 - dws aitable chart
-- dws aitable create
+- dws aitable comment

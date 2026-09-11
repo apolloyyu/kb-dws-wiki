@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +workflow-get
 description: 获取单个自动化工作流的详细信息
-source: internal/shortcut/aitable/aitable.go:2038
+source: internal/shortcut/aitable/aitable.go:2116
 visible_flags: 2
 
 ## Flags

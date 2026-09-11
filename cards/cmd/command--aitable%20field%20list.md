@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable field list
 description: 获取字段信息（dws aitable field get 的别名）
 example: dws aitable field list --base-id BASE_ID --table-id TABLE_ID
-source: internal/helpers/aitable.go:8032
+source: internal/helpers/aitable.go:9116
 visible_flags: 0
 
 ## Flags
@@ -15,5 +15,6 @@ visible_flags: 0
 - dws aitable field create
 - dws aitable field delete
 - dws aitable field get
+- dws aitable field run-ai
 - dws aitable field search-options
 - dws aitable field update

@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat group transfer-owner
 description: 转让群主
 example: dws chat group transfer-owner --conversation-id <openConversationId> --new-owner <openDingTalkId>
-source: internal/helpers/chat.go:7752
+source: internal/helpers/chat.go:7795
 visible_flags: 3
 
 ## Flags

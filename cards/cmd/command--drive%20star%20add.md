@@ -5,7 +5,7 @@ completeness: full
 usage: dws drive star add
 description: 收藏文档
 example: dws drive star add --node <nodeId_or_URL>
-source: internal/helpers/drive.go:3810
+source: internal/helpers/drive.go:3817
 visible_flags: 1
 
 ## Flags

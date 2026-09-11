@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +field-update
 description: 更新字段名称 / 配置 / AI 配置（类型不可改）
-source: internal/shortcut/aitable/aitable.go:608
+source: internal/shortcut/aitable/aitable.go:616
 visible_flags: 6
 
 ## Flags

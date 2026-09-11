@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +base-get
 description: 获取指定 Base 的目录信息（tables / dashboards summary）
-source: internal/shortcut/aitable/aitable.go:303
+source: internal/shortcut/aitable/aitable.go:307
 visible_flags: 1
 
 ## Flags

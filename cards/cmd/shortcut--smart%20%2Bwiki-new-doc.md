@@ -3,7 +3,7 @@
 kind: shortcut
 completeness: full
 usage: dws smart +wiki-new-doc
-description: 在指定名称的知识库下新建一个文档节点（自动按空间名解析 workspaceId）
+description: 在指定名称的知识库下新建一个文档节点（按单次名称搜索解析 workspaceId）
 source: internal/shortcut/smart/wiki_new_doc.go:42
 visible_flags: 2
 

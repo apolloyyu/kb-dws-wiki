@@ -5,7 +5,7 @@ completeness: full
 usage: dws calendar attachment add
 description: 添加日程附件
 example: dws calendar attachment add --event EVENT_ID --files fileId1:report.pdf,fileId2:slides.pptx
-source: internal/helpers/calendar.go:1274
+source: internal/helpers/calendar.go:1306
 visible_flags: 3
 
 ## Flags

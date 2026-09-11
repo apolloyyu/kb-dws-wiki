@@ -6,7 +6,7 @@ usage: dws calendar busy search
 description: Query the busy/free time windows of one or more users over a given range.
 example: dws calendar busy search --users userId1,userId2 --start "2026-03-10T14:00:00+08:00" --end "2026-03-10T18:00:00+08:00"
 use_when: When the agent is scheduling a meeting and needs to find a slot where all attendees are free.
-source: internal/helpers/calendar.go:1182
+source: internal/helpers/calendar.go:1214
 visible_flags: 4
 
 ## Flags

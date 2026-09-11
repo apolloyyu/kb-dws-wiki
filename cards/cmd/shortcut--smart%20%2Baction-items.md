@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws smart +action-items
 description: 读取指定或我最新一条听记中已抽取的行动项
-source: internal/shortcut/smart/action_items.go:37
+source: internal/shortcut/smart/action_items.go:39
 visible_flags: 1
 
 ## Flags

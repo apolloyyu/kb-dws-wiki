@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +section-create
 description: 在指定 Base 下创建文件夹（组织 table / dashboard）
-source: internal/shortcut/aitable/aitable.go:2925
+source: internal/shortcut/aitable/aitable.go:3048
 visible_flags: 4
 
 ## Flags

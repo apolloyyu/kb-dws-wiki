@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +form-update
 description: 更新表单标题 / 描述
-source: internal/shortcut/aitable/aitable.go:1777
+source: internal/shortcut/aitable/aitable.go:1805
 visible_flags: 5
 
 ## Flags

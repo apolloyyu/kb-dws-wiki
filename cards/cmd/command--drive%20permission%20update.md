@@ -5,7 +5,7 @@ completeness: full
 usage: dws drive permission update
 description: 更新协作者权限
 example: dws drive permission update --node DOC_ID --users uid1 --role EDITOR
-source: internal/helpers/drive.go:2644
+source: internal/helpers/drive.go:2651
 visible_flags: 6
 
 ## Flags

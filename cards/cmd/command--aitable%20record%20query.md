@@ -6,7 +6,7 @@ usage: dws aitable record query
 description: Query records from a datasheet with optional filters, sort, view scoping, and pagination.
 example: dws aitable record query --base-id BASE_ID --table-id TABLE_ID
 use_when: When the agent needs to read row data to reason about it, render it, or feed it into downstream logic.
-source: internal/helpers/aitable.go:2755
+source: internal/helpers/aitable.go:3228
 visible_flags: 11
 partial_reason: unverified_flags
 
@@ -24,7 +24,7 @@ partial_reason: unverified_flags
 ## Related
 - dws aitable record batch-update
 - dws aitable record create
+- dws aitable record create-sub
 - dws aitable record delete
 - dws aitable record get
 - dws aitable record group-stats
-- dws aitable record history-list

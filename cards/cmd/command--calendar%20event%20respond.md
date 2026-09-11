@@ -5,7 +5,7 @@ completeness: full
 usage: dws calendar event respond
 description: 响应日程（接受/拒绝/暂定）
 example: dws calendar event respond --id EVENT_ID --status accepted
-source: internal/helpers/calendar.go:569
+source: internal/helpers/calendar.go:601
 visible_flags: 3
 
 ## Flags

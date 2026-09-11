@@ -19,7 +19,7 @@ visible_flags: 11
 - --modified-from <Int64>: 修改时间起始 (毫秒时间戳，含)
 - --modified-to <Int64>: 修改时间截止 (毫秒时间戳，含)
 - --limit <Int>: 每页返回数量（默认 10，最大 30）
-- --cursor <String>: 分页游标，从上次返回的 nextCursor 获取 (可选)
+- --cursor <String>: 分页游标，仅适用于 --target file/space；使用对应搜索返回的游标 (可选)
 
 ## Related
 - dws drive comment

@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +record-update
 description: 批量更新记录，自动按 100 条分片并逐批读回验证
-source: internal/shortcut/aitable/aitable.go:778
+source: internal/shortcut/aitable/aitable.go:790
 visible_flags: 3
 
 ## Flags

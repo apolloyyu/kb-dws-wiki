@@ -1,6 +1,6 @@
 ---
 source_path: "skills/mono/references/products/aitable/aitable-record-update.md"
-source_commit: "bea76da8"
+source_commit: "8cacb019"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 
@@ -64,6 +64,10 @@ dws aitable record query --base-id <BASE_ID> --table-id <TABLE_ID> \
 ```
 
 更新响应不返回“受影响字段”；以 `data.recordIds[]` 确定成功记录，再用查询回读验证。
+
+## 附件更新边界
+
+同一批 `update_records` 不能同时包含附件清空（值为 `[]` 或 `null`）与附件新增/替换。有这两类变更时必须拆成两次 `record update` 调用，每次分别回读；DWS 不会根据 cell 形状猜测字段类型并自动拆批。
 
 ## 引号转义提示
 

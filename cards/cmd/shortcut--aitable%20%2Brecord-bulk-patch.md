@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +record-bulk-patch
 description: 完整查询目标记录后批量合并同一组 cells，自动分片并逐条读回验证
-source: internal/shortcut/aitable/record_bulk_patch.go:17
+source: internal/shortcut/aitable/record_bulk_patch.go:18
 visible_flags: 9
 
 ## Flags

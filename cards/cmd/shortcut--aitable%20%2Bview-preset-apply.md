@@ -3,9 +3,9 @@
 kind: shortcut
 completeness: full
 usage: dws aitable +view-preset-apply
-description: 按视图精确名称幂等创建或更新预设，并读回校验类型和 config
+description: 按视图精确名称幂等创建或更新预设；Gantt 可用独立 timebar 完成专用两步写入
 source: internal/shortcut/aitable/view_preset.go:23
-visible_flags: 5
+visible_flags: 6
 
 ## Flags
 - --base-id <String>: Base ID
@@ -13,6 +13,7 @@ visible_flags: 5
 - --name <String>: 预设视图精确名称
 - --view-type <String>: 视图类型
 - --config <String>: 目标 config JSON 对象
+- --timebar <String>: Gantt 专用 ganttTimebar JSON 对象；与通用 config 分两步写入
 
 ## Related
 - dws aitable +advperm-disable

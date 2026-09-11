@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +section-delete
 description: 删除指定文件夹（不可逆）
-source: internal/shortcut/aitable/aitable.go:2978
+source: internal/shortcut/aitable/aitable.go:3101
 visible_flags: 2
 
 ## Flags

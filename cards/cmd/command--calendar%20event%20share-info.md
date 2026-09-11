@@ -5,7 +5,7 @@ completeness: full
 usage: dws calendar event share-info
 description: 获取日程的分享信息
 example: dws calendar event share-info --id EVENT_ID
-source: internal/helpers/calendar.go:2087
+source: internal/helpers/calendar.go:2124
 visible_flags: 3
 
 ## Flags

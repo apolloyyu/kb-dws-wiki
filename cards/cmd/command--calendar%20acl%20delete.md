@@ -5,7 +5,7 @@ completeness: full
 usage: dws calendar acl delete
 description: 删除日历访问权限
 example: dws calendar acl delete --acl-id ACL_ID
-source: internal/helpers/calendar.go:1430
+source: internal/helpers/calendar.go:1462
 visible_flags: 1
 
 ## Flags

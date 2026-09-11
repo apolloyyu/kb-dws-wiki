@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable view get card
 description: 获取视图 card 配置
 example: dws aitable view get card --base-id BASE_ID --table-id TABLE_ID --view-id VIEW_ID
-source: internal/helpers/aitable.go:3907
+source: internal/helpers/aitable.go:4606
 visible_flags: 0
 
 ## Flags

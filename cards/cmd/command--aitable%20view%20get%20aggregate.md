@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable view get aggregate
 description: 获取视图 aggregate 配置
 example: dws aitable view get aggregate --base-id BASE_ID --table-id TABLE_ID --view-id VIEW_ID
-source: internal/helpers/aitable.go:3975
+source: internal/helpers/aitable.go:4674
 visible_flags: 0
 
 ## Flags

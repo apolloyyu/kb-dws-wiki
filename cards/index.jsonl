@@ -37,6 +37,7 @@
 {"completeness": "full", "key": "aitable advperm role-update", "kind": "command", "path": "cards/cmd/command--aitable%20advperm%20role-update.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable app", "kind": "command", "path": "cards/cmd/command--aitable%20app.md", "product": "aitable"}
 {"completeness": "partial", "key": "aitable attachment", "kind": "command", "path": "cards/cmd/command--aitable%20attachment.md", "product": "aitable"}
+{"completeness": "full", "key": "aitable attachment remove", "kind": "command", "path": "cards/cmd/command--aitable%20attachment%20remove.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable attachment upload", "kind": "command", "path": "cards/cmd/command--aitable%20attachment%20upload.md", "product": "aitable"}
 {"completeness": "partial", "key": "aitable base", "kind": "command", "path": "cards/cmd/command--aitable%20base.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable base copy", "kind": "command", "path": "cards/cmd/command--aitable%20base%20copy.md", "product": "aitable"}
@@ -56,6 +57,12 @@
 {"completeness": "full", "key": "aitable chart share update", "kind": "command", "path": "cards/cmd/command--aitable%20chart%20share%20update.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable chart update", "kind": "command", "path": "cards/cmd/command--aitable%20chart%20update.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable chart widgets-example", "kind": "command", "path": "cards/cmd/command--aitable%20chart%20widgets-example.md", "product": "aitable"}
+{"completeness": "full", "key": "aitable comment", "kind": "command", "path": "cards/cmd/command--aitable%20comment.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable comment create", "kind": "command", "path": "cards/cmd/command--aitable%20comment%20create.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable comment delete", "kind": "command", "path": "cards/cmd/command--aitable%20comment%20delete.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable comment list", "kind": "command", "path": "cards/cmd/command--aitable%20comment%20list.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable comment reply", "kind": "command", "path": "cards/cmd/command--aitable%20comment%20reply.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable comment update", "kind": "command", "path": "cards/cmd/command--aitable%20comment%20update.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable create", "kind": "command", "path": "cards/cmd/command--aitable%20create.md", "product": "aitable"}
 {"completeness": "partial", "key": "aitable dashboard", "kind": "command", "path": "cards/cmd/command--aitable%20dashboard.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable dashboard arrange", "kind": "command", "path": "cards/cmd/command--aitable%20dashboard%20arrange.md", "product": "aitable"}
@@ -75,6 +82,8 @@
 {"completeness": "full", "key": "aitable datasource sync", "kind": "command", "path": "cards/cmd/command--aitable%20datasource%20sync.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable datasource sync-status", "kind": "command", "path": "cards/cmd/command--aitable%20datasource%20sync-status.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable datasource update", "kind": "command", "path": "cards/cmd/command--aitable%20datasource%20update.md", "product": "aitable"}
+{"completeness": "full", "key": "aitable entity", "kind": "command", "path": "cards/cmd/command--aitable%20entity.md", "product": "aitable"}
+{"completeness": "full", "key": "aitable entity search", "kind": "command", "path": "cards/cmd/command--aitable%20entity%20search.md", "product": "aitable"}
 {"completeness": "partial", "key": "aitable export", "kind": "command", "path": "cards/cmd/command--aitable%20export.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable export data", "kind": "command", "path": "cards/cmd/command--aitable%20export%20data.md", "product": "aitable"}
 {"completeness": "partial", "key": "aitable field", "kind": "command", "path": "cards/cmd/command--aitable%20field.md", "product": "aitable"}
@@ -82,6 +91,7 @@
 {"completeness": "full", "key": "aitable field delete", "kind": "command", "path": "cards/cmd/command--aitable%20field%20delete.md", "product": "aitable"}
 {"completeness": "partial", "key": "aitable field get", "kind": "command", "path": "cards/cmd/command--aitable%20field%20get.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable field list", "kind": "command", "path": "cards/cmd/command--aitable%20field%20list.md", "product": "aitable"}
+{"completeness": "full", "key": "aitable field run-ai", "kind": "command", "path": "cards/cmd/command--aitable%20field%20run-ai.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable field search-options", "kind": "command", "path": "cards/cmd/command--aitable%20field%20search-options.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable field update", "kind": "command", "path": "cards/cmd/command--aitable%20field%20update.md", "product": "aitable"}
 {"completeness": "partial", "key": "aitable form", "kind": "command", "path": "cards/cmd/command--aitable%20form.md", "product": "aitable"}
@@ -98,7 +108,9 @@
 {"completeness": "full", "key": "aitable form questions delete", "kind": "command", "path": "cards/cmd/command--aitable%20form%20questions%20delete.md", "product": "aitable"}
 {"completeness": "partial", "key": "aitable form share", "kind": "command", "path": "cards/cmd/command--aitable%20form%20share.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable form share get", "kind": "command", "path": "cards/cmd/command--aitable%20form%20share%20get.md", "product": "aitable"}
-{"completeness": "full", "key": "aitable form share update", "kind": "command", "path": "cards/cmd/command--aitable%20form%20share%20update.md", "product": "aitable"}
+{"completeness": "full", "key": "aitable form share notify", "kind": "command", "path": "cards/cmd/command--aitable%20form%20share%20notify.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable form share update", "kind": "command", "path": "cards/cmd/command--aitable%20form%20share%20update.md", "product": "aitable"}
+{"completeness": "full", "key": "aitable form submit", "kind": "command", "path": "cards/cmd/command--aitable%20form%20submit.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable form update", "kind": "command", "path": "cards/cmd/command--aitable%20form%20update.md", "product": "aitable"}
 {"completeness": "partial", "key": "aitable import", "kind": "command", "path": "cards/cmd/command--aitable%20import.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable import data", "kind": "command", "path": "cards/cmd/command--aitable%20import%20data.md", "product": "aitable"}
@@ -109,10 +121,12 @@
 {"completeness": "partial", "key": "aitable record", "kind": "command", "path": "cards/cmd/command--aitable%20record.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable record batch-update", "kind": "command", "path": "cards/cmd/command--aitable%20record%20batch-update.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable record create", "kind": "command", "path": "cards/cmd/command--aitable%20record%20create.md", "product": "aitable"}
+{"completeness": "full", "key": "aitable record create-sub", "kind": "command", "path": "cards/cmd/command--aitable%20record%20create-sub.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable record delete", "kind": "command", "path": "cards/cmd/command--aitable%20record%20delete.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable record get", "kind": "command", "path": "cards/cmd/command--aitable%20record%20get.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable record group-stats", "kind": "command", "path": "cards/cmd/command--aitable%20record%20group-stats.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable record history-list", "kind": "command", "path": "cards/cmd/command--aitable%20record%20history-list.md", "product": "aitable"}
+{"completeness": "full", "key": "aitable record ids", "kind": "command", "path": "cards/cmd/command--aitable%20record%20ids.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable record list", "kind": "command", "path": "cards/cmd/command--aitable%20record%20list.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable record primary-doc-create", "kind": "command", "path": "cards/cmd/command--aitable%20record%20primary-doc-create.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable record primary-doc-get", "kind": "command", "path": "cards/cmd/command--aitable%20record%20primary-doc-get.md", "product": "aitable"}
@@ -151,6 +165,7 @@
 {"completeness": "full", "key": "aitable view get filter", "kind": "command", "path": "cards/cmd/command--aitable%20view%20get%20filter.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable view get frozen-cols", "kind": "command", "path": "cards/cmd/command--aitable%20view%20get%20frozen-cols.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable view get group", "kind": "command", "path": "cards/cmd/command--aitable%20view%20get%20group.md", "product": "aitable"}
+{"completeness": "full", "key": "aitable view get hidden-fields", "kind": "command", "path": "cards/cmd/command--aitable%20view%20get%20hidden-fields.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable view get lock", "kind": "command", "path": "cards/cmd/command--aitable%20view%20get%20lock.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable view get row-height", "kind": "command", "path": "cards/cmd/command--aitable%20view%20get%20row-height.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable view get sort", "kind": "command", "path": "cards/cmd/command--aitable%20view%20get%20sort.md", "product": "aitable"}
@@ -1235,9 +1250,10 @@
 {"completeness": "full", "key": "aitable +form-field-update", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bform-field-update.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +form-list", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bform-list.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +form-share-get", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bform-share-get.md", "product": "aitable"}
-{"completeness": "full", "key": "aitable +form-share-update", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bform-share-update.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable +form-share-update", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bform-share-update.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +form-update", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bform-update.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +import-data", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bimport-data.md", "product": "aitable"}
+{"completeness": "full", "key": "aitable +import-file", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bimport-file.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +import-upload", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bimport-upload.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +record-bulk-patch", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Brecord-bulk-patch.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +record-delete", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Brecord-delete.md", "product": "aitable"}

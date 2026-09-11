@@ -6,7 +6,7 @@ usage: dws aitable template search
 description: Search the AI table template gallery by keyword.
 example: dws aitable template search --query "项目管理"
 use_when: When the agent needs to suggest or bootstrap from an existing Base template rather than building from scratch.
-source: internal/helpers/aitable.go:3748
+source: internal/helpers/aitable.go:4391
 visible_flags: 3
 
 ## Flags

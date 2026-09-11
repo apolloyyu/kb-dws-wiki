@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +table-get
 description: 批量获取指定数据表的表级信息、字段目录与视图目录
-source: internal/shortcut/aitable/aitable.go:441
+source: internal/shortcut/aitable/aitable.go:448
 visible_flags: 2
 
 ## Flags

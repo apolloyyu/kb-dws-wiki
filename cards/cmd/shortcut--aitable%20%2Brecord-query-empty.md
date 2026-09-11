@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +record-query-empty
 description: 扫描并过滤出完全没填用户字段的空行
-source: internal/shortcut/aitable/aitable.go:812
+source: internal/shortcut/aitable/aitable.go:824
 visible_flags: 4
 
 ## Flags

@@ -5,7 +5,7 @@ completeness: full
 usage: dws calendar book update
 description: 更新指定日历本
 example: dws calendar book update --id CALENDAR_ID --summary "新日历名"
-source: internal/helpers/calendar.go:1593
+source: internal/helpers/calendar.go:1625
 visible_flags: 3
 
 ## Flags

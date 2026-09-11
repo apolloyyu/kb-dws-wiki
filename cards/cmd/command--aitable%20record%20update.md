@@ -6,7 +6,7 @@ usage: dws aitable record update
 description: Update field values on one or more existing records by record ID.
 example: dws aitable record update --base-id BASE_ID --table-id TABLE_ID --records '[{"recordId":"recXXX","cells":{"fldStatusId":"已完成"}}]'
 use_when: When the agent modifies specific row values after reading or computing new data.
-source: internal/helpers/aitable.go:3191
+source: internal/helpers/aitable.go:3818
 visible_flags: 4
 
 ## Flags
@@ -18,7 +18,7 @@ visible_flags: 4
 ## Related
 - dws aitable record batch-update
 - dws aitable record create
+- dws aitable record create-sub
 - dws aitable record delete
 - dws aitable record get
 - dws aitable record group-stats
-- dws aitable record history-list

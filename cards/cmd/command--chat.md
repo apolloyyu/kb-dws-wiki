@@ -4,7 +4,7 @@ kind: command
 completeness: full
 usage: dws chat
 description: 群聊 / 消息 / 机器人
-source: internal/helpers/chat.go:3242
+source: internal/helpers/chat.go:3255
 visible_flags: 0
 
 ## Flags

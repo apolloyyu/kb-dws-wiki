@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable record upsert
 description: 批量创建或更新记录（Upsert）
 example: dws aitable record upsert --base-id BASE_ID --table-id TABLE_ID --records '[
-source: internal/helpers/aitable.go:3582
+source: internal/helpers/aitable.go:4210
 visible_flags: 4
 
 ## Flags
@@ -17,7 +17,7 @@ visible_flags: 4
 ## Related
 - dws aitable record batch-update
 - dws aitable record create
+- dws aitable record create-sub
 - dws aitable record delete
 - dws aitable record get
 - dws aitable record group-stats
-- dws aitable record history-list

@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +role-list
 description: 列出指定 Base 下的全部角色
-source: internal/shortcut/aitable/aitable.go:2757
+source: internal/shortcut/aitable/aitable.go:2880
 visible_flags: 1
 
 ## Flags

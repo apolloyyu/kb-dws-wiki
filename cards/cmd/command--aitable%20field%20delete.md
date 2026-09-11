@@ -6,7 +6,7 @@ usage: dws aitable field delete
 description: Delete a field from a datasheet by field ID; all values in that column are removed.
 example: dws aitable field delete --base-id BASE_ID --table-id TABLE_ID --field-id FIELD_ID --yes
 use_when: When the agent is cleaning up unused or deprecated columns in a datasheet.
-source: internal/helpers/aitable.go:2702
+source: internal/helpers/aitable.go:3120
 visible_flags: 3
 
 ## Flags
@@ -18,5 +18,6 @@ visible_flags: 3
 - dws aitable field create
 - dws aitable field get
 - dws aitable field list
+- dws aitable field run-ai
 - dws aitable field search-options
 - dws aitable field update

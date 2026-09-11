@@ -3,7 +3,7 @@
 kind: shortcut
 completeness: full
 usage: dws smart +resolve-space
-description: 按名称搜索知识空间并解析出唯一 spaceId（只读）
+description: 按名称搜索知识空间并解析单次结果中的唯一 spaceId（只读）
 source: internal/shortcut/smart/resolve_space.go:46
 visible_flags: 1
 

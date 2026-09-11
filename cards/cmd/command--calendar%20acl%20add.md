@@ -5,7 +5,7 @@ completeness: full
 usage: dws calendar acl add
 description: 把我的日历共享给某人
 example: dws calendar acl add --user USER_ID --privilege reader
-source: internal/helpers/calendar.go:1396
+source: internal/helpers/calendar.go:1428
 visible_flags: 3
 
 ## Flags

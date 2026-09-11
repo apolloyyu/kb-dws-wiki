@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat mute-at-all
 description: 关闭/开启 @所有人消息提醒
 example: dws chat mute-at-all --conversation-id <openConversationId>
-source: internal/helpers/chat.go:10804
+source: internal/helpers/chat.go:10847
 visible_flags: 2
 
 ## Flags

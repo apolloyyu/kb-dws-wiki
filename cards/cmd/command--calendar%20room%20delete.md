@@ -6,7 +6,7 @@ usage: dws calendar room delete
 description: Release a previously booked meeting room from a calendar event.
 example: dws calendar room delete --event EVENT_ID --rooms roomId1
 use_when: When the agent cancels or changes the room on an existing event.
-source: internal/helpers/calendar.go:1064
+source: internal/helpers/calendar.go:1096
 visible_flags: 3
 
 ## Flags

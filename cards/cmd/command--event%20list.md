@@ -4,7 +4,8 @@ kind: command
 completeness: partial
 usage: dws event list
 description: 列出个人事件目录
-source: internal/app/event_command.go:794
+example: dws event list --category card --format json
+source: internal/app/event_command.go:802
 visible_flags: 8
 partial_reason: unverified_flags
 
@@ -14,7 +15,7 @@ partial_reason: unverified_flags
 - --client-id <String>: 指定具体 ClientID（覆盖凭证解析）
 - --format (-f) <String>: 输出格式: table|json
 - --as <String>: 事件身份: user
-- --category <String>: 个人事件目录分类
+- --category <String>: 个人事件目录分类：im|oa|voip|todo|card
 - --enabled-only <Bool>: 个人事件目录只显示 enabled
 - --include-pending <Bool>: 个人事件目录包含 pending 项
 

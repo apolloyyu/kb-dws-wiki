@@ -5,7 +5,7 @@ completeness: full
 usage: dws calendar participant delete
 description: Remove one or more participants from an existing calendar event.
 use_when: When the agent drops attendees who no longer need to join the event.
-source: internal/helpers/calendar.go:453
+source: internal/helpers/calendar.go:485
 visible_flags: 2
 
 ## Flags

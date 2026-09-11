@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat clear-red-point
 description: 清除会话红点
 example: dws chat clear-red-point --conversation-id <openConversationId>
-source: internal/helpers/chat.go:10209
+source: internal/helpers/chat.go:10252
 visible_flags: 1
 
 ## Flags

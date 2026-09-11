@@ -1,6 +1,6 @@
 ---
 source_path: "skills/mono/references/products/aitable/aitable-data-analysis-sop.md"
-source_commit: "bea76da8"
+source_commit: "8cacb019"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 
@@ -26,10 +26,10 @@ layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 │   → record stats --stats '[{"fieldId":"...","statsType":"COUNT|SUM|AVG|..."}]'
 │
 ├─ 分组统计（如"每个状态各有多少条"）
-│   → record group-stats --group '[...]' --stats '[{"fieldId":"...","statsType":"count"}]'
+│   → record group-stats --group '[...]' --stats '[{"fieldId":"...","statsType":"COUNT"}]'
 │
 ├─ 条件唯一实体数（如"有索赔单的门店共有多少家"）
-│   → record group-stats --filters '{...}' --stats '[{"fieldId":"<实体字段>","statsType":"distinct"}]'
+│   → record group-stats --filters '{...}' --stats '[{"fieldId":"<实体字段>","statsType":"DISTINCT"}]'
 │
 └─ 判断全局结论（如"是否所有记录都满足条件"）
     → record stats 对反向过滤结果 COUNT；只有需要行级证据时再 record query

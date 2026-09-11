@@ -3,8 +3,8 @@
 kind: shortcut
 completeness: full
 usage: dws aitable +view-update
-description: 更新视图名称 / 描述 / 配置（visibleFieldIds、filter、sort、group 等）
-source: internal/shortcut/aitable/aitable.go:1297
+description: 更新视图名称 / 描述 / 配置（visibleFieldIds、sort、group 等；筛选除外）
+source: internal/shortcut/aitable/aitable.go:1321
 visible_flags: 6
 
 ## Flags

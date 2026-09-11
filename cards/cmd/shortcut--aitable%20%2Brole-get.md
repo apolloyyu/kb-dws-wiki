@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +role-get
 description: 获取单个角色的完整配置
-source: internal/shortcut/aitable/aitable.go:2799
+source: internal/shortcut/aitable/aitable.go:2922
 visible_flags: 2
 
 ## Flags

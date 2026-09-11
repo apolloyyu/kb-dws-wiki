@@ -4,7 +4,7 @@ kind: command
 completeness: full
 usage: dws event
 description: 事件订阅 (DingTalk Stream 长连接)
-source: internal/app/event_command.go:99
+source: internal/app/event_command.go:100
 visible_flags: 0
 
 ## Flags

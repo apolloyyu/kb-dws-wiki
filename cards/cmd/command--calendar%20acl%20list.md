@@ -5,7 +5,7 @@ completeness: full
 usage: dws calendar acl list
 description: 查询我的日历共享给了谁
 example: dws calendar acl list
-source: internal/helpers/calendar.go:1359
+source: internal/helpers/calendar.go:1391
 visible_flags: 0
 
 ## Flags

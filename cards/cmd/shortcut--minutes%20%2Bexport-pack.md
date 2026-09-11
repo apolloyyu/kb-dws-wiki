@@ -3,8 +3,8 @@
 kind: shortcut
 completeness: full
 usage: dws minutes +export-pack
-description: 把完整听记产物写入受控目录并生成不含签名 URL 的 manifest
-source: internal/shortcut/minutes/workflows.go:189
+description: 把听记文本产物清理签名凭据后写入受控目录并生成清理台账
+source: internal/shortcut/minutes/workflows.go:192
 visible_flags: 5
 
 ## Flags

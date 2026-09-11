@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable record share-url
 description: 批量获取记录分享链接
 example: dws aitable record share-url --base-id BASE_ID --table-id TABLE_ID --record-ids rec1,rec2,rec3
-source: internal/helpers/aitable.go:3524
+source: internal/helpers/aitable.go:4152
 visible_flags: 4
 
 ## Flags
@@ -17,7 +17,7 @@ visible_flags: 4
 ## Related
 - dws aitable record batch-update
 - dws aitable record create
+- dws aitable record create-sub
 - dws aitable record delete
 - dws aitable record get
 - dws aitable record group-stats
-- dws aitable record history-list

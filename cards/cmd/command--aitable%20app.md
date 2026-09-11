@@ -15,5 +15,5 @@ visible_flags: 0
 - dws aitable attachment
 - dws aitable base
 - dws aitable chart
+- dws aitable comment
 - dws aitable create
-- dws aitable dashboard

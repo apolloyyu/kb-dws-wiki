@@ -5,7 +5,7 @@ completeness: partial
 usage: dws chat thread reply
 description: Append a direct reply to an `openConvThreadId`.
 use_when: When the agent needs to reply inside an existing Thread without quoting a message.
-source: internal/helpers/chat.go:8129
+source: internal/helpers/chat.go:8172
 visible_flags: 6
 partial_reason: unverified_flags
 

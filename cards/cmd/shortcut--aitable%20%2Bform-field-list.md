@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +form-field-list
 description: 列出表单视图当前可见的字段及其配置
-source: internal/shortcut/aitable/aitable.go:1809
+source: internal/shortcut/aitable/aitable.go:1837
 visible_flags: 3
 
 ## Flags

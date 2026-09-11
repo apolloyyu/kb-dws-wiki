@@ -5,7 +5,7 @@ completeness: full
 usage: dws calendar book get
 description: 查询指定日历本
 example: dws calendar book get --id primary
-source: internal/helpers/calendar.go:1491
+source: internal/helpers/calendar.go:1523
 visible_flags: 1
 
 ## Flags

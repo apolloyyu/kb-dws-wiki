@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable record list
 description: 获取行记录（dws aitable record query 的别名）
 example: dws aitable record list --base-id BASE_ID --table-id TABLE_ID
-source: internal/helpers/aitable.go:8175
+source: internal/helpers/aitable.go:9275
 visible_flags: 0
 
 ## Flags
@@ -14,7 +14,7 @@ visible_flags: 0
 ## Related
 - dws aitable record batch-update
 - dws aitable record create
+- dws aitable record create-sub
 - dws aitable record delete
 - dws aitable record get
 - dws aitable record group-stats
-- dws aitable record history-list

@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws drive +publish-get
 description: 查询文件互联网公开状态
-source: internal/shortcut/drive/catalog_operations.go:342
+source: internal/shortcut/drive/catalog_operations.go:353
 visible_flags: 3
 
 ## Flags

@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +table-delete
 description: 删除指定数据表（不可逆）
-source: internal/shortcut/aitable/aitable.go:526
+source: internal/shortcut/aitable/aitable.go:533
 visible_flags: 3
 
 ## Flags

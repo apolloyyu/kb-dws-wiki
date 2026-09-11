@@ -6,7 +6,7 @@ usage: dws calendar room add
 description: Book a specific meeting room onto an existing calendar event.
 example: dws calendar room add --event EVENT_ID --rooms roomId1,roomId2
 use_when: When the agent needs to attach a physical meeting room to an already-scheduled event.
-source: internal/helpers/calendar.go:1000
+source: internal/helpers/calendar.go:1032
 visible_flags: 3
 
 ## Flags

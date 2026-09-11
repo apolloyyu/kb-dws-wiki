@@ -4,8 +4,8 @@ kind: command
 completeness: full
 usage: dws aitable workflow disable
 description: 禁用指定工作流（高危）
-example: dws aitable workflow disable --base-id BASE_ID --workflow-id WORKFLOW_ID --yes
-source: internal/helpers/aitable.go:5998
+example: dws aitable workflow disable --base-id BASE_ID --workflow-id WORKFLOW_ID
+source: internal/helpers/aitable.go:7028
 visible_flags: 2
 
 ## Flags

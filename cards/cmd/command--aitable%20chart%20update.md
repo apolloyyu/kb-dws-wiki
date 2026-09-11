@@ -6,8 +6,8 @@ usage: dws aitable chart update
 description: Update an existing chart's configuration (type, dimensions, metrics, style).
 example: dws aitable chart update --base-id BASE_ID --dashboard-id DASHBOARD_ID --chart-id CHART_ID
 use_when: When the agent iterates on a chart's visualization after reviewing the initial result.
-source: internal/helpers/aitable.go:6778
-visible_flags: 5
+source: internal/helpers/aitable.go:7839
+visible_flags: 6
 
 ## Flags
 - --base-id <String>: 所属 Base ID (必填)
@@ -15,6 +15,7 @@ visible_flags: 5
 - --chart-id <String>: 目标 Chart ID (必填)
 - --config <String>: 图表配置 JSON (必填)
 - --layout <String>: 图表布局更新 JSON
+- --is-app-mode <Bool>: 只读应用模式上下文：仅已确认应用模式且更新 layout 时传 --is-app-mode=true，强制按 48 列校验；不会写入 MCP payload
 
 ## Related
 - dws aitable chart create

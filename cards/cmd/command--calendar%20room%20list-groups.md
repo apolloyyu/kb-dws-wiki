@@ -6,7 +6,7 @@ usage: dws calendar room list-groups
 description: List meeting room groups (usually by building or floor) available to the user.
 example: dws calendar room list-groups
 use_when: When the agent is narrowing down rooms by location before running an availability search.
-source: internal/helpers/calendar.go:1124
+source: internal/helpers/calendar.go:1156
 visible_flags: 2
 
 ## Flags

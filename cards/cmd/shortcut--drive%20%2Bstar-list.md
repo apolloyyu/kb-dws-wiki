@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws drive +star-list
 description: 严格分页列出当前用户收藏
-source: internal/shortcut/drive/catalog_operations.go:267
+source: internal/shortcut/drive/catalog_operations.go:278
 visible_flags: 4
 
 ## Flags

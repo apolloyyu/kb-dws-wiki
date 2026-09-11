@@ -5,7 +5,7 @@ completeness: full
 usage: dws calendar attendee list
 description: 查看参会人
 example: dws calendar attendee list --event EVENT_ID
-source: internal/helpers/calendar.go:652
+source: internal/helpers/calendar.go:684
 visible_flags: 0
 
 ## Flags

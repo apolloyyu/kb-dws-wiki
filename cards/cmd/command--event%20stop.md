@@ -4,7 +4,7 @@ kind: command
 completeness: partial
 usage: dws event stop [subscribe_id]
 description: 取消个人事件订阅并停止本地消费
-source: internal/app/event_command.go:1205
+source: internal/app/event_command.go:1217
 visible_flags: 4
 partial_reason: unverified_flags
 

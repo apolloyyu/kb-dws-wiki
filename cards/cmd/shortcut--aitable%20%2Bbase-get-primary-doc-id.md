@@ -3,8 +3,8 @@
 kind: shortcut
 completeness: full
 usage: dws aitable +base-get-primary-doc-id
-description: 根据 baseId/tableId/recordId 获取主键文档的 dentryUuid
-source: internal/shortcut/aitable/aitable.go:345
+description: 根据 baseId/tableId/recordId 查询主键文档是否存在及其 dentryUuid
+source: internal/shortcut/aitable/aitable.go:349
 visible_flags: 3
 
 ## Flags

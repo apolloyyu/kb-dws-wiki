@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +template-search
 description: 按名称关键词搜索 AI 表格模板
-source: internal/shortcut/aitable/aitable.go:1042
+source: internal/shortcut/aitable/aitable.go:1063
 visible_flags: 3
 
 ## Flags

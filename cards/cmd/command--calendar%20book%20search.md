@@ -5,7 +5,7 @@ completeness: full
 usage: dws calendar book search
 description: 搜索日历本
 example: dws calendar book search --query "项目"
-source: internal/helpers/calendar.go:1542
+source: internal/helpers/calendar.go:1574
 visible_flags: 1
 
 ## Flags

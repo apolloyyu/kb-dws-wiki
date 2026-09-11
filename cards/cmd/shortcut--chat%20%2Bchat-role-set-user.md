@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws chat +chat-role-set-user
 description: 设置用户的群身份（覆盖该用户的全部群身份）
-source: internal/shortcut/chat/chat_group.go:1918
+source: internal/shortcut/chat/chat_group.go:2169
 visible_flags: 3
 
 ## Flags

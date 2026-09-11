@@ -4,13 +4,13 @@ kind: shortcut
 completeness: full
 usage: dws chat +flag-create
 description: 收藏一条或多条消息（最多 10 条）
-source: internal/shortcut/chat/lark_alignment.go:431
+source: internal/shortcut/chat/lark_alignment.go:470
 visible_flags: 3
 
 ## Flags
 - --message-id <String>: 单条消息 openMessageId；消息 ID 去重后必须为 1-10 条
 - --message-ids <StringSlice>: 多条消息 openMessageId；消息 ID 去重后必须为 1-10 条
-- --conversation-id <String>: 消息所在会话 openConversationId
+- --conversation-id <String>: 消息所在会话 openConversationId；省略从消息精确解析
 
 ## Related
 - dws chat +bot-find

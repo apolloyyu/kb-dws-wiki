@@ -6,7 +6,7 @@ usage: dws oa approval reject
 description: Reject a pending approval process instance as the current user.
 example: dws oa approval reject --instance-id <id> --task-id <taskId> --remark "不同意"
 use_when: When the agent declines an approval on behalf of the user, optionally with a reason.
-source: internal/helpers/oa.go:1081
+source: internal/helpers/oa.go:1106
 visible_flags: 3
 
 ## Flags

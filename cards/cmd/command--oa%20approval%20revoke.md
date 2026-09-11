@@ -6,7 +6,7 @@ usage: dws oa approval revoke
 description: Revoke an approval process instance previously initiated by the current user.
 example: dws oa approval revoke --instance-id <id> --yes
 use_when: When the agent withdraws an approval request the user no longer wants to pursue.
-source: internal/helpers/oa.go:1137
+source: internal/helpers/oa.go:1162
 visible_flags: 2
 
 ## Flags

@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws chat +conversation-mark-unread
 description: 标记会话为未读
-source: internal/shortcut/chat/chat_conversation.go:211
+source: internal/shortcut/chat/chat_conversation.go:217
 visible_flags: 1
 
 ## Flags

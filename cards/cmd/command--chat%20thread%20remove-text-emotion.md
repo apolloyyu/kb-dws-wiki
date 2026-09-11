@@ -5,7 +5,7 @@ completeness: partial
 usage: dws chat thread remove-text-emotion
 description: Remove a text emotion from a Thread message.
 use_when: When the agent needs to clear a text status.
-source: internal/helpers/chat_thread.go:862
+source: internal/helpers/chat_thread.go:859
 visible_flags: 0
 partial_reason: unverified_usage,unverified_flags
 

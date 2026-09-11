@@ -5,7 +5,7 @@ completeness: full
 usage: dws oa approval search-forms
 description: 按关键字模糊搜索当前用户可见的审批表单
 example: dws oa approval search-forms --query AI
-source: internal/helpers/oa.go:1408
+source: internal/helpers/oa.go:1433
 visible_flags: 1
 
 ## Flags

@@ -5,7 +5,7 @@ completeness: full
 usage: dws oa approval append-task
 description: 对审批任务进行加签
 example: dws oa approval append-task --instance-id <processInstanceId> --task-id <taskId> --type before --appender-user-ids "userId1,userId2" --activate-type ALL --agree-all true
-source: internal/helpers/oa.go:1755
+source: internal/helpers/oa.go:1780
 visible_flags: 6
 
 ## Flags

@@ -16,4 +16,6 @@ visible_flags: 4
 
 ## Related
 - dws whiteboard create-with-content
+- dws whiteboard export
+- dws whiteboard export-get
 - dws whiteboard update

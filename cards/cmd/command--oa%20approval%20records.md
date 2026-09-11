@@ -6,7 +6,7 @@ usage: dws oa approval records
 description: Retrieve the operation history (who approved/commented/transferred, when) of an approval instance.
 example: dws oa approval records --instance-id <processInstanceId>
 use_when: When the agent explains an approval's progression or audits who handled it.
-source: internal/helpers/oa.go:1190
+source: internal/helpers/oa.go:1215
 visible_flags: 1
 
 ## Flags

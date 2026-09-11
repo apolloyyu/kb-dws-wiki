@@ -5,7 +5,7 @@ completeness: full
 usage: dws oa approval list-by-admin
 description: 以管理员身份查询审批模板的实例列表
 example: dws oa approval list-by-admin --process-code <code> --start "2026-03-10T00:00:00+08:00" --cursor 0 --limit 20
-source: internal/helpers/oa.go:1950
+source: internal/helpers/oa.go:2062
 visible_flags: 8
 
 ## Flags

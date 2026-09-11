@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws chat +chat-set-history
 description: 设置新成员入群可查看历史消息范围
-source: internal/shortcut/chat/chat_group.go:622
+source: internal/shortcut/chat/chat_group.go:662
 visible_flags: 2
 
 ## Flags

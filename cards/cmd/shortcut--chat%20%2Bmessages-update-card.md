@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws chat +messages-update-card
 description: 流式更新卡片内容（最后一次 --flow-status 应为 3）
-source: internal/shortcut/chat/chat_message.go:1996
+source: internal/shortcut/chat/chat_message.go:2035
 visible_flags: 3
 
 ## Flags

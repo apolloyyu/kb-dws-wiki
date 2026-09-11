@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws chat +chat-list-mine
 description: 拉取我创建/管理的群
-source: internal/shortcut/chat/chat_group.go:760
+source: internal/shortcut/chat/chat_group.go:800
 visible_flags: 3
 
 ## Flags

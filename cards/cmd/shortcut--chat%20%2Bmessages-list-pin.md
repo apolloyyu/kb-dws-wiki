@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws chat +messages-list-pin
 description: 拉取会话中钉住的消息列表
-source: internal/shortcut/chat/chat_message.go:2283
+source: internal/shortcut/chat/chat_message.go:2351
 visible_flags: 3
 
 ## Flags

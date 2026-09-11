@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat group bots
 description: 查看群内所有机器人
 example: dws chat group bots --group <openConversationId>
-source: internal/helpers/chat.go:8807
+source: internal/helpers/chat.go:9146
 visible_flags: 1
 
 ## Flags

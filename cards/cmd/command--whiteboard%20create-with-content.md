@@ -12,5 +12,7 @@ partial_reason: unverified_usage,unverified_flags,missing_description
 - none
 
 ## Related
+- dws whiteboard export
+- dws whiteboard export-get
 - dws whiteboard query
 - dws whiteboard update

@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws chat +messages-batch-send-by-bot
 description: 机器人批量向用户发送单聊 Markdown 消息
-source: internal/shortcut/chat/chat_message.go:89
+source: internal/shortcut/chat/chat_message.go:90
 visible_flags: 6
 
 ## Flags

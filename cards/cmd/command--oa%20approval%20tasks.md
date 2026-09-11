@@ -6,7 +6,7 @@ usage: dws oa approval tasks
 description: List pending approval task IDs assigned to the current user, used to drive approve/reject actions.
 example: dws oa approval tasks --instance-id <processInstanceId>
 use_when: When the agent needs task IDs (not just instance IDs) before calling approve/reject.
-source: internal/helpers/oa.go:1310
+source: internal/helpers/oa.go:1335
 visible_flags: 1
 
 ## Flags

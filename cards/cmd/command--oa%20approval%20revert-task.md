@@ -5,7 +5,7 @@ completeness: full
 usage: dws oa approval revert-task
 description: 退回审批任务到指定节点（审批人或发起人）
 example: dws oa approval revert-task --instance-id <processInstanceId> --task-id <taskId> --target-activity-id sid-startevent --action REVERT_FOR_RESUBMIT --remark "补充说明后重提"
-source: internal/helpers/oa.go:1810
+source: internal/helpers/oa.go:1835
 visible_flags: 5
 
 ## Flags

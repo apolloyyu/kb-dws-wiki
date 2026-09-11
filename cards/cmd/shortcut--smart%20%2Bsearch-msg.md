@@ -4,9 +4,9 @@ kind: shortcut
 completeness: partial
 usage: dws smart +search-msg
 description: 按稳定 ID、内容、时间等条件搜索消息，可校验会话范围、全量翻页并批量富化
-source: internal/shortcut/smart/search_msg.go:47
-visible_flags: 36
-partial_reason: too_many_flags:36
+source: internal/shortcut/smart/search_msg.go:55
+visible_flags: 33
+partial_reason: too_many_flags:33
 
 ## Flags
 - --query <String>: 搜索关键词
@@ -17,7 +17,7 @@ partial_reason: too_many_flags:36
 - --conversation-id <String>: --group 的别名
 - --id <String>: --group 的别名
 - --groups <StringSlice>: 多个群名或 openConversationId；可混合输入并逐项唯一解析
-- … 28 more; use dwsdoc cmd/short for full flags
+- … 25 more; use dwsdoc cmd/short for full flags
 
 ## Related
 - dws smart +access-change

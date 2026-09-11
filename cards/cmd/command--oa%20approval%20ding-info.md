@@ -5,7 +5,7 @@ completeness: full
 usage: dws oa approval ding-info
 description: 获取审批任务的被催办人 userId（需与 ding message send 串联使用）
 example: dws oa approval ding-info --task-id <taskId>
-source: internal/helpers/oa.go:1425
+source: internal/helpers/oa.go:1450
 visible_flags: 1
 
 ## Flags

@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws chat +chat-bots
 description: 查看群内所有机器人
-source: internal/shortcut/chat/chat_group.go:1299
+source: internal/shortcut/chat/chat_group.go:1339
 visible_flags: 3
 
 ## Flags

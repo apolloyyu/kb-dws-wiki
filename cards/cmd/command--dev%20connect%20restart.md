@@ -4,7 +4,7 @@ kind: command
 completeness: partial
 usage: dws dev connect restart
 description: —
-source: internal/cli/param_aliases_generated.go:5602
+source: internal/cli/param_aliases_generated.go:5600
 visible_flags: 0
 partial_reason: unverified_usage,unverified_flags,missing_description
 

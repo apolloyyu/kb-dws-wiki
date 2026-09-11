@@ -4,12 +4,13 @@ kind: shortcut
 completeness: full
 usage: dws chat +feed-group-query-item
 description: 在会话分组结果中按会话 ID 精确查询多项
-source: internal/shortcut/chat/lark_alignment.go:848
-visible_flags: 3
+source: internal/shortcut/chat/lark_alignment.go:914
+visible_flags: 4
 
 ## Flags
-- --category-id <Int>: 钉钉会话分组 ID
-- --conversation-ids <StringSlice>: 要精确查询的 openConversationId 列表
+- --category-id <Int>: —
+- --conversation-ids <StringSlice>: —
+- --no-detail <Bool>: 跳过精确命中会话的详情补查
 - --exclude-muted <Bool>: 读取分组时排除已免打扰会话
 
 ## Related

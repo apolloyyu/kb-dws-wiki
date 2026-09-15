@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws doc +move
 description: 移动文档/文件到指定文件夹或知识库
-source: internal/shortcut/doc/doc.go:372
+source: internal/shortcut/doc/doc.go:389
 visible_flags: 3
 
 ## Flags

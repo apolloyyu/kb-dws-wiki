@@ -5,14 +5,15 @@ completeness: full
 usage: dws aitable +attachment-put
 description: 准备凭证、实际 PUT 本地文件、写入 attachment 单元格并读回验证
 source: internal/shortcut/aitable/attachment_composite.go:35
-visible_flags: 7
+visible_flags: 8
 
 ## Flags
 - --base-id <String>: Base ID
 - --table-id <String>: Table ID
 - --record-id <String>: Record ID
 - --field-id <String>: attachment Field ID
-- --file <String>: 本地文件路径
+- --file <String>: 第一个本地文件路径
+- --additional-files <StringSlice>: 同次上传的其他文件，最多合计 10 个；名称须不同，全部上传后一次写入单元格
 - --mode <String>: —
 - --mime-type <String>: 覆盖自动推断的 MIME type（可选）
 

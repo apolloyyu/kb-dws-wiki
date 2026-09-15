@@ -5,7 +5,7 @@ completeness: full
 usage: dws doc style cover set
 description: 设置文档封面
 example: dws doc style cover set --node DOC_ID --image https://img.example.com/cover.png
-source: internal/helpers/doc_style.go:44
+source: internal/helpers/doc_style.go:46
 visible_flags: 4
 
 ## Flags

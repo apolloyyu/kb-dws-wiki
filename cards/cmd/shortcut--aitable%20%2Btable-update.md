@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +table-update
 description: 更新数据表名称 / 备注 / 行命名规则
-source: internal/shortcut/aitable/aitable.go:499
+source: internal/shortcut/aitable/aitable.go:490
 visible_flags: 5
 
 ## Flags

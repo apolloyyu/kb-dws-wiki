@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable section list-empty
 description: 列出空文件夹
 example: dws aitable section list-empty --base-id BASE_ID
-source: internal/helpers/aitable.go:8853
+source: internal/helpers/aitable.go:9034
 visible_flags: 1
 
 ## Flags

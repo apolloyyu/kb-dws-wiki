@@ -5,7 +5,7 @@ completeness: full
 usage: dws doc template search
 description: 搜索文档模板
 example: dws doc template search --query "周报"
-source: internal/helpers/doc.go:4666
+source: internal/helpers/doc.go:4741
 visible_flags: 4
 
 ## Flags

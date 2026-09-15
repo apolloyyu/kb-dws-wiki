@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +dashboard-config-example
 description: 获取 dashboard config 的结构示例
-source: internal/shortcut/aitable/aitable.go:2226
+source: internal/shortcut/aitable/aitable.go:2216
 visible_flags: 0
 
 ## Flags

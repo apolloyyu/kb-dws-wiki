@@ -4,7 +4,7 @@ kind: command
 completeness: partial
 usage: dws dev app permission remove
 description: —
-source: internal/cli/param_aliases_generated.go:5399
+source: internal/cli/param_aliases_generated.go:5384
 visible_flags: 0
 partial_reason: unverified_usage,unverified_flags,missing_description
 

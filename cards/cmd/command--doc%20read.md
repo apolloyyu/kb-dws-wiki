@@ -6,7 +6,7 @@ usage: dws doc read
 description: Read the content of a DingTalk Doc as Markdown.
 example: dws doc read --node DOC_ID
 use_when: When the agent needs the document body as text for summarization, Q&A, or further editing.
-source: internal/helpers/doc.go:1458
+source: internal/helpers/doc.go:1533
 visible_flags: 10
 
 ## Flags

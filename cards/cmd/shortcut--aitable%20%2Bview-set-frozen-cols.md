@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +view-set-frozen-cols
 description: 设置视图冻结列数（0 表示取消冻结）
-source: internal/shortcut/aitable/aitable.go:1545
+source: internal/shortcut/aitable/aitable.go:1549
 visible_flags: 4
 
 ## Flags

@@ -5,7 +5,7 @@ completeness: full
 usage: dws doc style
 description: 文档样式配置 (封面/背景)
 example: dws doc style cover set 设置文档封面
-source: internal/helpers/doc_style.go:23
+source: internal/helpers/doc_style.go:25
 visible_flags: 0
 
 ## Flags

@@ -10,7 +10,7 @@ visible_flags: 3
 ## Flags
 - --base-id <String>: 目标 Base ID
 - --name <String>: 新数据表名称
-- --fields <String>: 字段结构 JSON 数组；字段对象使用 fieldName/type/config，可选 description
+- --fields <String>: 字段结构 JSON 数组；字段对象使用 fieldName/type/config，可选 description/aiConfig
 
 ## Related
 - dws aitable +advperm-disable

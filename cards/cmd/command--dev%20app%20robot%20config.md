@@ -4,7 +4,7 @@ kind: command
 completeness: partial
 usage: dws dev app robot config
 description: —
-source: internal/cli/param_aliases_generated.go:5408
+source: internal/cli/param_aliases_generated.go:5393
 visible_flags: 0
 partial_reason: unverified_usage,unverified_flags,missing_description
 

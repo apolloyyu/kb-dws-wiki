@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable form submit
 description: 提交已分享表单
 example: dws aitable form submit --base-id BASE_ID --table-id TABLE_ID --view-id VIEW_ID --value '{"fldName":"张三"}'
-source: internal/helpers/aitable.go:6775
+source: internal/helpers/aitable.go:6956
 visible_flags: 4
 
 ## Flags

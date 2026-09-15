@@ -5,7 +5,7 @@ completeness: full
 usage: dws doc version list
 description: 查看文档历史版本列表
 example: dws doc version list --node DOC_ID
-source: internal/helpers/doc.go:4467
+source: internal/helpers/doc.go:4542
 visible_flags: 3
 
 ## Flags

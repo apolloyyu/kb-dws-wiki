@@ -4,7 +4,7 @@ kind: command
 completeness: partial
 usage: dws aitable comment update
 description: —
-source: internal/helpers/aitable_comment.go:172
+source: internal/helpers/aitable_comment.go:180
 visible_flags: 0
 partial_reason: unverified_usage,unverified_flags,missing_description
 

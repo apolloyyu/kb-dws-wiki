@@ -6,8 +6,8 @@ usage: dws aitable record query
 description: Query records from a datasheet with optional filters, sort, view scoping, and pagination.
 example: dws aitable record query --base-id BASE_ID --table-id TABLE_ID
 use_when: When the agent needs to read row data to reason about it, render it, or feed it into downstream logic.
-source: internal/helpers/aitable.go:3228
-visible_flags: 11
+source: internal/helpers/aitable.go:3389
+visible_flags: 12
 partial_reason: unverified_flags
 
 ## Flags
@@ -19,7 +19,7 @@ partial_reason: unverified_flags
 - --sort <String>: 排序条件 JSON 数组，按数组顺序依次生效
 - --query <String>: 全文关键词。将对整表内容做文本匹配搜索，并返回符合条件的记录
 - --limit <Int>: 单次返回的最大记录数，默认 100，最大 100
-- … 3 more; use dwsdoc cmd/short for full flags
+- … 4 more; use dwsdoc cmd/short for full flags
 
 ## Related
 - dws aitable record batch-update

@@ -4,7 +4,7 @@ kind: command
 completeness: full
 usage: dws aitable entity
 description: 搜索 AI 表格人员、部门和群组实体
-source: internal/helpers/aitable_entity_filter.go:49
+source: internal/helpers/aitable_entity_filter.go:51
 visible_flags: 0
 
 ## Flags

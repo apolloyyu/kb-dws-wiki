@@ -1,27 +1,23 @@
 # dws doc +fetch
 
 kind: shortcut
-completeness: full
+completeness: partial
 usage: dws doc +fetch
 description: 读取完整或局部文档内容，并按 detail 控制保真度
-source: internal/shortcut/doc/content_shortcuts.go:204
-visible_flags: 14
+source: internal/shortcut/doc/content_shortcuts.go:220
+visible_flags: 17
+partial_reason: too_many_flags:17
 
 ## Flags
+- --include-comments <Bool>: 同时读取全文评论，自动翻页；评论范围始终是整篇文档，最多1000条，超限报不完整
+- --context-unit <String>: —
+- --regex <Bool>: keyword+blocks模式使用RE2正则；非法正则在请求前拒绝
 - --node <String>: 文档 ID 或 URL；
 - --query <String>: 文档标题或关键词；跨页唯一解析后读取；
 - --detail <String>: —
 - --scope <String>: —
 - --start-block-id <String>: range/section 起始块 ID
-- --end-block-id <String>: range 结束块 ID
-- --keyword <String>: keyword 范围搜索词，不能为空，支持 foo|bar
-- --tags <StringSlice>: tags 范围的 JSONML tag
-- --context-before <Int>: 关键词命中前的上下文字符数
-- --context-after <Int>: 关键词命中后的上下文字符数
-- --max-depth <Int>: outline/section 最大深度
-- --password <String>: 互联网公开文档开启密码保护时的访问密码；普通文档无需传入
-- --revision <Int>: 不支持；revision 是文档编辑版本号（JSONML 读取响应返回、供 +update --expected-revision 条件写使用），不是历史版本号
-- --version <Int>: 读取指定历史版本(版本号从 doc +version-list 获取, 0 表示初始版本, 需要文档编辑权限)；缺省读最新版
+- … 9 more; use dwsdoc cmd/short for full flags
 
 ## Related
 - dws doc +background-delete

@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws doc +list
 description: 列出文件夹或知识库下的直接子节点
-source: internal/shortcut/doc/doc.go:218
+source: internal/shortcut/doc/doc.go:235
 visible_flags: 7
 
 ## Flags

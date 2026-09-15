@@ -5,7 +5,7 @@ completeness: partial
 usage: dws event list
 description: 列出个人事件目录
 example: dws event list --category card --format json
-source: internal/app/event_command.go:802
+source: internal/app/event_command.go:799
 visible_flags: 8
 partial_reason: unverified_flags
 

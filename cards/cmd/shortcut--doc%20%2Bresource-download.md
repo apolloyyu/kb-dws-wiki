@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws doc +resource-download
 description: 读取并安全下载当前文档封面
-source: internal/shortcut/doc/media_style_shortcuts.go:160
+source: internal/shortcut/doc/media_style_shortcuts.go:175
 visible_flags: 2
 
 ## Flags

@@ -5,7 +5,7 @@ completeness: full
 usage: dws doc
 description: 钉钉文档管理
 example: dws doc info 获取文档元信息
-source: internal/helpers/doc.go:1195
+source: internal/helpers/doc.go:1270
 visible_flags: 0
 
 ## Flags

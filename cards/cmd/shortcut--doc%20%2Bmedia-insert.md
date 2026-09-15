@@ -5,9 +5,11 @@ completeness: full
 usage: dws doc +media-insert
 description: 上传本地图片或文件并插入文档正文
 source: internal/shortcut/doc/media_style_shortcuts.go:39
-visible_flags: 7
+visible_flags: 9
 
 ## Flags
+- --file-view <String>: —
+- --from-clipboard <Bool>: 读取系统剪贴板PNG，与本地file及image互斥
 - --node <String>: 文档 ID 或 URL
 - --file <String>: 工作目录内已存在的相对文件路径
 - --name <String>: 显示名称

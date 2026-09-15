@@ -5,7 +5,7 @@ completeness: full
 usage: dws doc style background clear
 description: 清除文档背景
 example: dws doc style background clear --node DOC_ID
-source: internal/helpers/doc_style.go:152
+source: internal/helpers/doc_style.go:154
 visible_flags: 1
 
 ## Flags

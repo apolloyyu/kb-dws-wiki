@@ -1230,9 +1230,11 @@
 {"completeness": "full", "key": "aitable +dashboard-config-example", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bdashboard-config-example.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +dashboard-delete", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bdashboard-delete.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +dashboard-get", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bdashboard-get.md", "product": "aitable"}
+{"completeness": "full", "key": "aitable +dashboard-list", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bdashboard-list.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +dashboard-share-get", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bdashboard-share-get.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +dashboard-share-update", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bdashboard-share-update.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +dashboard-update", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bdashboard-update.md", "product": "aitable"}
+{"completeness": "full", "key": "aitable +data-query", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bdata-query.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +datasource-create", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bdatasource-create.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +datasource-get-config", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bdatasource-get-config.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +datasource-get-fields", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bdatasource-get-fields.md", "product": "aitable"}
@@ -1241,8 +1243,10 @@
 {"completeness": "full", "key": "aitable +datasource-sync-status", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bdatasource-sync-status.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +datasource-update", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bdatasource-update.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +export-data", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bexport-data.md", "product": "aitable"}
+{"completeness": "full", "key": "aitable +field-create", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bfield-create.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +field-delete", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bfield-delete.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +field-get", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bfield-get.md", "product": "aitable"}
+{"completeness": "full", "key": "aitable +field-run-ai", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bfield-run-ai.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +field-update", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bfield-update.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +form-delete", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bform-delete.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +form-field-hide", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bform-field-hide.md", "product": "aitable"}
@@ -1255,8 +1259,10 @@
 {"completeness": "full", "key": "aitable +import-data", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bimport-data.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +import-file", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bimport-file.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +import-upload", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bimport-upload.md", "product": "aitable"}
+{"completeness": "full", "key": "aitable +record-batch-create", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Brecord-batch-create.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +record-bulk-patch", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Brecord-bulk-patch.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +record-delete", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Brecord-delete.md", "product": "aitable"}
+{"completeness": "full", "key": "aitable +record-download-attachment", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Brecord-download-attachment.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +record-history-list", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Brecord-history-list.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +record-primary-doc-create", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Brecord-primary-doc-create.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +record-primary-doc-get", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Brecord-primary-doc-get.md", "product": "aitable"}
@@ -1491,7 +1497,7 @@
 {"completeness": "full", "key": "doc +export", "kind": "shortcut", "path": "cards/cmd/shortcut--doc%20%2Bexport.md", "product": "doc"}
 {"completeness": "full", "key": "doc +export-get", "kind": "shortcut", "path": "cards/cmd/shortcut--doc%20%2Bexport-get.md", "product": "doc"}
 {"completeness": "full", "key": "doc +export-submit", "kind": "shortcut", "path": "cards/cmd/shortcut--doc%20%2Bexport-submit.md", "product": "doc"}
-{"completeness": "full", "key": "doc +fetch", "kind": "shortcut", "path": "cards/cmd/shortcut--doc%20%2Bfetch.md", "product": "doc"}
+{"completeness": "partial", "key": "doc +fetch", "kind": "shortcut", "path": "cards/cmd/shortcut--doc%20%2Bfetch.md", "product": "doc"}
 {"completeness": "full", "key": "doc +import", "kind": "shortcut", "path": "cards/cmd/shortcut--doc%20%2Bimport.md", "product": "doc"}
 {"completeness": "full", "key": "doc +inspect", "kind": "shortcut", "path": "cards/cmd/shortcut--doc%20%2Binspect.md", "product": "doc"}
 {"completeness": "full", "key": "doc +list", "kind": "shortcut", "path": "cards/cmd/shortcut--doc%20%2Blist.md", "product": "doc"}
@@ -1499,11 +1505,13 @@
 {"completeness": "full", "key": "doc +media-insert", "kind": "shortcut", "path": "cards/cmd/shortcut--doc%20%2Bmedia-insert.md", "product": "doc"}
 {"completeness": "full", "key": "doc +media-list", "kind": "shortcut", "path": "cards/cmd/shortcut--doc%20%2Bmedia-list.md", "product": "doc"}
 {"completeness": "full", "key": "doc +media-preview", "kind": "shortcut", "path": "cards/cmd/shortcut--doc%20%2Bmedia-preview.md", "product": "doc"}
+{"completeness": "full", "key": "doc +media-upload", "kind": "shortcut", "path": "cards/cmd/shortcut--doc%20%2Bmedia-upload.md", "product": "doc"}
 {"completeness": "full", "key": "doc +move", "kind": "shortcut", "path": "cards/cmd/shortcut--doc%20%2Bmove.md", "product": "doc"}
 {"completeness": "full", "key": "doc +resource-delete", "kind": "shortcut", "path": "cards/cmd/shortcut--doc%20%2Bresource-delete.md", "product": "doc"}
 {"completeness": "full", "key": "doc +resource-download", "kind": "shortcut", "path": "cards/cmd/shortcut--doc%20%2Bresource-download.md", "product": "doc"}
 {"completeness": "full", "key": "doc +resource-update", "kind": "shortcut", "path": "cards/cmd/shortcut--doc%20%2Bresource-update.md", "product": "doc"}
 {"completeness": "full", "key": "doc +review", "kind": "shortcut", "path": "cards/cmd/shortcut--doc%20%2Breview.md", "product": "doc"}
+{"completeness": "full", "key": "doc +script", "kind": "shortcut", "path": "cards/cmd/shortcut--doc%20%2Bscript.md", "product": "doc"}
 {"completeness": "partial", "key": "doc +search", "kind": "shortcut", "path": "cards/cmd/shortcut--doc%20%2Bsearch.md", "product": "doc"}
 {"completeness": "full", "key": "doc +template-apply", "kind": "shortcut", "path": "cards/cmd/shortcut--doc%20%2Btemplate-apply.md", "product": "doc"}
 {"completeness": "full", "key": "doc +template-list", "kind": "shortcut", "path": "cards/cmd/shortcut--doc%20%2Btemplate-list.md", "product": "doc"}

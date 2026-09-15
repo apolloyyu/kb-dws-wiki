@@ -5,7 +5,7 @@ completeness: full
 usage: dws doc style get
 description: 读取文档封面/背景 (只读)
 example: dws doc style get --node DOC_ID
-source: internal/helpers/doc_style.go:185
+source: internal/helpers/doc_style.go:187
 visible_flags: 1
 
 ## Flags

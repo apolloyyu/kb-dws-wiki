@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable view get timebar
 description: 获取视图 timebar 配置
 example: dws aitable view get timebar --base-id BASE_ID --table-id TABLE_ID --view-id VIEW_ID
-source: internal/helpers/aitable.go:4640
+source: internal/helpers/aitable.go:4817
 visible_flags: 0
 
 ## Flags

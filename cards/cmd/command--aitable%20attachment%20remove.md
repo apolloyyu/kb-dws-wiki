@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable attachment remove
 description: 删除记录附件
 example: dws aitable attachment remove --base-id BASE_ID --table-id TABLE_ID --record-id RECORD_ID --field-id FIELD_ID --yes
-source: internal/helpers/aitable.go:4513
+source: internal/helpers/aitable.go:4690
 visible_flags: 5
 
 ## Flags

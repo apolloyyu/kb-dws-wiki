@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws doc +resource-delete
 description: 幂等清除文档封面
-source: internal/shortcut/doc/media_style_shortcuts.go:179
+source: internal/shortcut/doc/media_style_shortcuts.go:194
 visible_flags: 1
 
 ## Flags

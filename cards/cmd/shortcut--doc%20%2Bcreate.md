@@ -8,7 +8,7 @@ source: internal/shortcut/doc/content_shortcuts.go:63
 visible_flags: 5
 
 ## Flags
-- --name <String>: 新文档名称
+- --name <String>: 新文档名称；省略时从Markdown首个一级标题提取，否则使用未命名文档
 - --content <String>: —
 - --doc-format <String>: —
 - --folder <String>: 目标文档文件夹 ID

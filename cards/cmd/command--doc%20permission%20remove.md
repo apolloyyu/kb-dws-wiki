@@ -5,7 +5,7 @@ completeness: full
 usage: dws doc permission remove
 description: 移除文档协作者权限
 example: dws doc permission remove --node DOC_ID --users uid1
-source: internal/helpers/doc.go:3923
+source: internal/helpers/doc.go:3998
 visible_flags: 4
 
 ## Flags

@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws doc +export-get
 description: 根据 jobId 查询文档导出任务结果
-source: internal/shortcut/doc/doc.go:670
+source: internal/shortcut/doc/doc.go:687
 visible_flags: 1
 
 ## Flags

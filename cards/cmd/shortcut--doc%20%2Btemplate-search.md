@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws doc +template-search
 description: 根据关键词搜索文档模板
-source: internal/shortcut/doc/doc.go:925
+source: internal/shortcut/doc/doc.go:942
 visible_flags: 4
 
 ## Flags

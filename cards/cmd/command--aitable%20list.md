@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable list
 description: 获取 AI 表格列表（dws aitable base list 的别名）
 example: dws aitable list
-source: internal/helpers/aitable.go:10230
+source: internal/helpers/aitable.go:10411
 visible_flags: 0
 
 ## Flags

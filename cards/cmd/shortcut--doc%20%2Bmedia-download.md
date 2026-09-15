@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws doc +media-download
 description: 安全下载文档正文附件到工作目录
-source: internal/shortcut/doc/media_style_shortcuts.go:63
+source: internal/shortcut/doc/media_style_shortcuts.go:67
 visible_flags: 3
 
 ## Flags

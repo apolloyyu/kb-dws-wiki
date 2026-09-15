@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable entity search
 description: 搜索实体候选，不自动选择重名或模糊结果
 example: dws aitable entity search --entity-type DEPARTMENT --keyword "客户成功部"
-source: internal/helpers/aitable_entity_filter.go:54
+source: internal/helpers/aitable_entity_filter.go:56
 visible_flags: 2
 
 ## Flags

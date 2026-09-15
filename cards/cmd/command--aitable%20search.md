@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable search
 description: AI 表格搜索（dws aitable base search 的别名）
 example: dws aitable search --query "项目管理"
-source: internal/helpers/aitable.go:10195
+source: internal/helpers/aitable.go:10376
 visible_flags: 0
 
 ## Flags

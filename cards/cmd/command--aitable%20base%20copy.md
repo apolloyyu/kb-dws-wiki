@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable base copy
 description: 复制 AI 表格
 example: dws aitable base copy --base-id BASE_ID
-source: internal/helpers/aitable.go:2462
+source: internal/helpers/aitable.go:2619
 visible_flags: 3
 
 ## Flags

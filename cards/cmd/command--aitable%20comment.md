@@ -4,7 +4,7 @@ kind: command
 completeness: full
 usage: dws aitable comment
 description: 记录评论管理
-source: internal/helpers/aitable_comment.go:56
+source: internal/helpers/aitable_comment.go:58
 visible_flags: 0
 
 ## Flags

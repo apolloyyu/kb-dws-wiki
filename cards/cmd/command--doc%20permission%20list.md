@@ -5,7 +5,7 @@ completeness: full
 usage: dws doc permission list
 description: 查询文档协作者列表
 example: dws doc permission list --node DOC_ID
-source: internal/helpers/doc.go:3838
+source: internal/helpers/doc.go:3913
 visible_flags: 5
 
 ## Flags

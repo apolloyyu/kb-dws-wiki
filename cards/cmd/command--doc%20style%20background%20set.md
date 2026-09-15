@@ -5,7 +5,7 @@ completeness: full
 usage: dws doc style background set
 description: 设置文档背景纯色
 example: dws doc style background set --node DOC_ID --color "
-source: internal/helpers/doc_style.go:118
+source: internal/helpers/doc_style.go:120
 visible_flags: 2
 
 ## Flags

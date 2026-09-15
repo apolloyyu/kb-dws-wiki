@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable record create-sub
 description: 在父记录下创建子记录
 example: dws aitable record create-sub --base-id BASE_ID --table-id TABLE_ID --parent-record-id recParent --records '[{"cells":{"fldTitle":"子任务"}}]'
-source: internal/helpers/aitable.go:3745
+source: internal/helpers/aitable.go:3922
 visible_flags: 7
 
 ## Flags

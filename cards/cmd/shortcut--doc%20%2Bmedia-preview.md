@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws doc +media-preview
 description: 下载正文媒体到受控临时目录并返回预览路径
-source: internal/shortcut/doc/media_style_shortcuts.go:91
+source: internal/shortcut/doc/media_style_shortcuts.go:95
 visible_flags: 2
 
 ## Flags

@@ -6,7 +6,7 @@ usage: dws doc search
 description: Search DingTalk Docs the user can access by keyword.
 example: dws doc search --query "会议纪要"
 use_when: When the agent needs to locate a document by title or content before reading or editing it.
-source: internal/helpers/doc.go:1222
+source: internal/helpers/doc.go:1297
 visible_flags: 12
 
 ## Flags

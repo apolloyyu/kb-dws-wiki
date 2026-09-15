@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +base-get-primary-doc-id
 description: 根据 baseId/tableId/recordId 查询主键文档是否存在及其 dentryUuid
-source: internal/shortcut/aitable/aitable.go:349
+source: internal/shortcut/aitable/aitable.go:340
 visible_flags: 3
 
 ## Flags

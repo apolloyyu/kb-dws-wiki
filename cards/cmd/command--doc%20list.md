@@ -6,7 +6,7 @@ usage: dws doc list
 description: List the child nodes (files and subfolders) of a folder or knowledge base.
 example: dws doc list
 use_when: When the agent traverses the document hierarchy to find or enumerate items.
-source: internal/helpers/doc.go:1331
+source: internal/helpers/doc.go:1406
 visible_flags: 4
 
 ## Flags

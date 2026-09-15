@@ -5,7 +5,7 @@ completeness: full
 usage: dws doc style cover clear
 description: 移除文档封面
 example: dws doc style cover clear --node DOC_ID
-source: internal/helpers/doc_style.go:79
+source: internal/helpers/doc_style.go:81
 visible_flags: 1
 
 ## Flags

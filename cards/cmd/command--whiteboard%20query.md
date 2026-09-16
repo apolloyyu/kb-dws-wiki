@@ -5,7 +5,7 @@ completeness: full
 usage: dws whiteboard query
 description: 读取白板内容
 example: dws whiteboard query --node DOC_ID_OR_URL --part-id WHITEBOARD_PART_ID --format json
-source: internal/helpers/whiteboard.go:71
+source: internal/helpers/whiteboard.go:72
 visible_flags: 4
 
 ## Flags
@@ -18,4 +18,6 @@ visible_flags: 4
 - dws whiteboard create-with-content
 - dws whiteboard export
 - dws whiteboard export-get
+- dws whiteboard render
+- dws whiteboard template
 - dws whiteboard update

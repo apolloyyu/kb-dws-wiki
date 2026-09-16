@@ -16,4 +16,6 @@ visible_flags: 3
 - dws whiteboard create-with-content
 - dws whiteboard export
 - dws whiteboard query
+- dws whiteboard render
+- dws whiteboard template
 - dws whiteboard update

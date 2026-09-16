@@ -1,10 +1,10 @@
-# dws whiteboard
+# dws whiteboard template
 
 kind: command
 completeness: full
-usage: dws whiteboard
-description: 钉钉白板管理
-source: internal/helpers/whiteboard.go:61
+usage: dws whiteboard template
+description: 独立白板模板管理
+source: internal/helpers/whiteboard_template.go:21
 visible_flags: 0
 
 ## Flags
@@ -16,4 +16,4 @@ visible_flags: 0
 - dws whiteboard export-get
 - dws whiteboard query
 - dws whiteboard render
-- dws whiteboard template
+- dws whiteboard update

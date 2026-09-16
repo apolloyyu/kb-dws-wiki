@@ -5,7 +5,7 @@ completeness: full
 usage: dws doc whiteboard
 description: 钉钉白板管理
 example: dws doc whiteboard insert。
-source: internal/helpers/whiteboard.go:60
+source: internal/helpers/whiteboard.go:61
 visible_flags: 0
 
 ## Flags

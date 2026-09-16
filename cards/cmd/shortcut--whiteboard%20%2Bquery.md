@@ -14,4 +14,5 @@ visible_flags: 4
 - --page-id <String>: 独立白板页面 ID；view=page 时必填。显式非空 --part-id 选择内嵌白板并禁止 view/page-id；未提供时默认独立白板，view=page 必须提供 page-id
 
 ## Related
+- dws whiteboard +diff
 - dws whiteboard +update

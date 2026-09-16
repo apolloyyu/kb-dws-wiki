@@ -1176,6 +1176,8 @@
 {"completeness": "full", "key": "whiteboard export", "kind": "command", "path": "cards/cmd/command--whiteboard%20export.md", "product": "whiteboard"}
 {"completeness": "full", "key": "whiteboard export-get", "kind": "command", "path": "cards/cmd/command--whiteboard%20export-get.md", "product": "whiteboard"}
 {"completeness": "full", "key": "whiteboard query", "kind": "command", "path": "cards/cmd/command--whiteboard%20query.md", "product": "whiteboard"}
+{"completeness": "partial", "key": "whiteboard render", "kind": "command", "path": "cards/cmd/command--whiteboard%20render.md", "product": "whiteboard"}
+{"completeness": "full", "key": "whiteboard template", "kind": "command", "path": "cards/cmd/command--whiteboard%20template.md", "product": "whiteboard"}
 {"completeness": "full", "key": "whiteboard update", "kind": "command", "path": "cards/cmd/command--whiteboard%20update.md", "product": "whiteboard"}
 {"completeness": "full", "key": "wiki", "kind": "command", "path": "cards/cmd/command--wiki.md", "product": "wiki"}
 {"completeness": "partial", "key": "wiki feed", "kind": "command", "path": "cards/cmd/command--wiki%20feed.md", "product": "wiki"}
@@ -1675,5 +1677,6 @@
 {"completeness": "full", "key": "todo +search", "kind": "shortcut", "path": "cards/cmd/shortcut--todo%20%2Bsearch.md", "product": "todo"}
 {"completeness": "full", "key": "todo +update", "kind": "shortcut", "path": "cards/cmd/shortcut--todo%20%2Bupdate.md", "product": "todo"}
 {"completeness": "full", "key": "todo +upload-attachment", "kind": "shortcut", "path": "cards/cmd/shortcut--todo%20%2Bupload-attachment.md", "product": "todo"}
+{"completeness": "full", "key": "whiteboard +diff", "kind": "shortcut", "path": "cards/cmd/shortcut--whiteboard%20%2Bdiff.md", "product": "whiteboard"}
 {"completeness": "full", "key": "whiteboard +query", "kind": "shortcut", "path": "cards/cmd/shortcut--whiteboard%20%2Bquery.md", "product": "whiteboard"}
 {"completeness": "full", "key": "whiteboard +update", "kind": "shortcut", "path": "cards/cmd/shortcut--whiteboard%20%2Bupdate.md", "product": "whiteboard"}

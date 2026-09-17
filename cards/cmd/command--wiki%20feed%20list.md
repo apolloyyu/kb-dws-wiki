@@ -5,7 +5,7 @@ completeness: full
 usage: dws wiki feed list
 description: 查询知识库动态列表
 example: dws wiki feed list --workspace <workspaceId>
-source: internal/helpers/wiki.go:1432
+source: internal/helpers/wiki.go:1435
 visible_flags: 4
 
 ## Flags

@@ -5,7 +5,7 @@ completeness: full
 usage: dws contract project detail
 description: 查询项目详情
 example: dws contract project detail --project-id 1001 --format json
-source: internal/helpers/contract.go:1005
+source: internal/helpers/contract.go:890
 visible_flags: 1
 
 ## Flags

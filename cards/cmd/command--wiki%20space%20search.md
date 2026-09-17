@@ -5,7 +5,7 @@ completeness: full
 usage: dws wiki space search
 description: 搜索知识库
 example: dws wiki space search --query "产品文档"
-source: internal/helpers/wiki.go:376
+source: internal/helpers/wiki.go:379
 visible_flags: 3
 
 ## Flags

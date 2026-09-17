@@ -1,6 +1,6 @@
 ---
 source_path: "skills/mono/references/products/agoal.md"
-source_commit: "6a466b41"
+source_commit: "0f580d24"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 

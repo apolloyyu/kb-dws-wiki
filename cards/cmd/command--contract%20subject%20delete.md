@@ -5,7 +5,7 @@ completeness: full
 usage: dws contract subject delete
 description: 删除相对方（单个）
 example: dws contract subject delete --subject-id 2001 --format json
-source: internal/helpers/contract.go:1300
+source: internal/helpers/contract.go:1185
 visible_flags: 1
 
 ## Flags

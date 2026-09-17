@@ -5,7 +5,7 @@ completeness: full
 usage: dws contract subject detect-risk
 description: 检测相对方风险
 example: dws contract subject detect-risk --subject-name "北京示例科技有限公司" --format json
-source: internal/helpers/contract.go:1368
+source: internal/helpers/contract.go:1253
 visible_flags: 2
 
 ## Flags

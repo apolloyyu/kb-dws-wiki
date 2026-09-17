@@ -5,7 +5,7 @@ completeness: full
 usage: dws contract subject add
 description: 添加相对方
 example: dws contract subject add --file ./subject.json --format json
-source: internal/helpers/contract.go:1188
+source: internal/helpers/contract.go:1073
 visible_flags: 1
 
 ## Flags

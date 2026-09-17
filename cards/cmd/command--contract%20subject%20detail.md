@@ -5,7 +5,7 @@ completeness: full
 usage: dws contract subject detail
 description: 查询相对方详情
 example: dws contract subject detail --subject-id 2001 --format json
-source: internal/helpers/contract.go:1256
+source: internal/helpers/contract.go:1141
 visible_flags: 1
 
 ## Flags

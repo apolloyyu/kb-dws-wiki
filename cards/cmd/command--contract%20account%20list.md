@@ -5,7 +5,7 @@ completeness: full
 usage: dws contract account list
 description: 列举账款信息
 example: dws contract account list --scope self --format json
-source: internal/helpers/contract.go:604
+source: internal/helpers/contract.go:489
 visible_flags: 12
 
 ## Flags

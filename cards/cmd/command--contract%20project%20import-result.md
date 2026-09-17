@@ -5,7 +5,7 @@ completeness: full
 usage: dws contract project import-result
 description: 获取项目批量导入结果
 example: dws contract project import-result --task-id "task_xxx" --format json
-source: internal/helpers/contract.go:1091
+source: internal/helpers/contract.go:976
 visible_flags: 1
 
 ## Flags

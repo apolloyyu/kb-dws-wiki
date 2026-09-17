@@ -5,7 +5,7 @@ completeness: full
 usage: dws contract project add
 description: 新增项目
 example: dws contract project add --name "2024采购项目" --format json
-source: internal/helpers/contract.go:759
+source: internal/helpers/contract.go:644
 visible_flags: 8
 
 ## Flags

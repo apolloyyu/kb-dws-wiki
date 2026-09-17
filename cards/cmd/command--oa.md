@@ -4,7 +4,7 @@ kind: command
 completeness: full
 usage: dws oa
 description: OA 审批 / 同意 / 拒绝 / 撤销
-source: internal/helpers/oa.go:943
+source: internal/helpers/oa.go:948
 visible_flags: 0
 
 ## Flags

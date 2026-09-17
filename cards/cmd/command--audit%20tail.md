@@ -4,7 +4,7 @@ kind: command
 completeness: full
 usage: dws audit tail
 description: 查看最近的审计记录
-source: internal/app/audit_command.go:67
+source: internal/app/audit_command.go:68
 visible_flags: 1
 
 ## Flags

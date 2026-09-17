@@ -5,7 +5,7 @@ completeness: full
 usage: dws contract account create
 description: 创建账款信息
 example: dws contract account create --file ./account.json --format json
-source: internal/helpers/contract.go:520
+source: internal/helpers/contract.go:405
 visible_flags: 1
 
 ## Flags

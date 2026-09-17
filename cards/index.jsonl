@@ -1274,6 +1274,7 @@
 {"completeness": "full", "key": "aitable +record-update", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Brecord-update.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +record-upsert", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Brecord-upsert.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +record-upsert-by-key", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Brecord-upsert-by-key.md", "product": "aitable"}
+{"completeness": "full", "key": "aitable +record-write-result", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Brecord-write-result.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +role-create", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Brole-create.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +role-delete", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Brole-delete.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +role-get", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Brole-get.md", "product": "aitable"}

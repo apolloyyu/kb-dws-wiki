@@ -5,7 +5,7 @@ completeness: full
 usage: dws contract subject list
 description: 查询相对方列表
 example: dws contract subject list --current-page 1 --page-size 20 --format json
-source: internal/helpers/contract.go:1218
+source: internal/helpers/contract.go:1103
 visible_flags: 6
 
 ## Flags

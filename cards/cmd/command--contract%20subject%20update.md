@@ -5,7 +5,7 @@ completeness: full
 usage: dws contract subject update
 description: 修改相对方
 example: dws contract subject update --file ./subject_update.json --format json
-source: internal/helpers/contract.go:1275
+source: internal/helpers/contract.go:1160
 visible_flags: 1
 
 ## Flags

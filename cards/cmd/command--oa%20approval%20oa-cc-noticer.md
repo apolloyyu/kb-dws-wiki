@@ -5,7 +5,7 @@ completeness: full
 usage: dws oa approval oa-cc-noticer
 description: 对审批实例进行抄送
 example: dws oa approval oa-cc-noticer --instance-id <processInstanceId> --users "68674200835816"
-source: internal/helpers/oa.go:1720
+source: internal/helpers/oa.go:1725
 visible_flags: 4
 
 ## Flags

@@ -5,7 +5,7 @@ completeness: full
 usage: dws contract subject sort
 description: 己方主体排序
 example: dws contract subject sort --subject-ids "2001,2003,2002" --format json
-source: internal/helpers/contract.go:1345
+source: internal/helpers/contract.go:1230
 visible_flags: 1
 
 ## Flags

@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable field run-ai
 description: 触发 AI 字段运行
 example: dws aitable field run-ai --base-id BASE_ID --table-id TABLE_ID --field-ids fldAI1,fldAI2
-source: internal/helpers/aitable.go:3331
+source: internal/helpers/aitable.go:3472
 visible_flags: 4
 
 ## Flags

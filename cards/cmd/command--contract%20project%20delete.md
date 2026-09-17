@@ -5,7 +5,7 @@ completeness: full
 usage: dws contract project delete
 description: 删除项目（支持批量）
 example: dws contract project delete --project-ids "1001,1002" --format json
-source: internal/helpers/contract.go:804
+source: internal/helpers/contract.go:689
 visible_flags: 1
 
 ## Flags

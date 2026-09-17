@@ -5,7 +5,7 @@ completeness: full
 usage: dws contract project list
 description: 分页查询项目列表
 example: dws contract project list --current-page 1 --page-size 20 --scope all --format json
-source: internal/helpers/contract.go:896
+source: internal/helpers/contract.go:781
 visible_flags: 11
 
 ## Flags

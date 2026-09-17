@@ -5,7 +5,7 @@ completeness: full
 usage: dws contract archive
 description: 合同文档归档
 example: dws contract archive --file ./archive_request.json --format json
-source: internal/helpers/contract.go:703
+source: internal/helpers/contract.go:588
 visible_flags: 1
 
 ## Flags

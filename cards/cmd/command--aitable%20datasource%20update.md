@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable datasource update
 description: 更新数据源表同步配置并触发同步
 example: dws aitable datasource update --base-id BASE_ID --table-id TABLE_ID --source-config '{"processCode":"PROC-XXXX","name":"采购申请","dataType":"recent_time","recentDays":"30d","iconUrl":"https://example.com/icon.png","url":"https://example.com/oa"}' --auto
-source: internal/helpers/aitable.go:10146
+source: internal/helpers/aitable.go:10333
 visible_flags: 6
 
 ## Flags

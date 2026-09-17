@@ -5,7 +5,7 @@ completeness: full
 usage: dws contract subject import-template
 description: 获取相对方批量导入模板
 example: dws contract subject import-template --format json
-source: internal/helpers/contract.go:1456
+source: internal/helpers/contract.go:1341
 visible_flags: 1
 
 ## Flags

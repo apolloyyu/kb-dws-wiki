@@ -3,9 +3,9 @@
 kind: command
 completeness: full
 usage: dws contract review analysis
-description: 解析合同文件
+description: 解析合同文件（已下线）
 example: dws contract review analysis --file ./analysis_request.json --format json
-source: internal/helpers/contract.go:395
+source: internal/helpers/contract.go:339
 visible_flags: 1
 
 ## Flags

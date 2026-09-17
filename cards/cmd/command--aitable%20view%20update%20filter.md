@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable view update filter
 description: 更新视图 filter 配置
 example: dws aitable view update filter --base-id BASE_ID --table-id TABLE_ID --view-id VIEW_ID --json '[{"operator":"and","operands":[{"operator":"date_eq","operands":["fldDate",{"type":"relative","period":"month","offset":0}]}]}]'
-source: internal/helpers/aitable.go:5555
+source: internal/helpers/aitable.go:5707
 visible_flags: 1
 
 ## Flags

@@ -5,7 +5,7 @@ completeness: full
 usage: dws wiki node create
 description: 在知识库中创建节点
 example: dws wiki node create --workspace <workspaceId> --name "新文档"
-source: internal/helpers/wiki.go:1049
+source: internal/helpers/wiki.go:1052
 visible_flags: 4
 
 ## Flags

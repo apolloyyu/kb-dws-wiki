@@ -5,7 +5,7 @@ completeness: full
 usage: dws contract draft
 description: 根据听记和模版起草合同
 example: dws contract draft --task-uuids uuid1,uuid2 --template-url "https://..." --format json
-source: internal/helpers/contract.go:268
+source: internal/helpers/contract.go:267
 visible_flags: 3
 
 ## Flags

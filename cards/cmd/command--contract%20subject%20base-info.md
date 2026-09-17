@@ -5,7 +5,7 @@ completeness: full
 usage: dws contract subject base-info
 description: 查询相对方工商基本信息
 example: dws contract subject base-info --subject-name "北京示例科技有限公司" --format json
-source: internal/helpers/contract.go:1389
+source: internal/helpers/contract.go:1274
 visible_flags: 2
 
 ## Flags

@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +dashboard-delete
 description: 删除指定 dashboard（级联删除其 chart，不可逆）
-source: internal/shortcut/aitable/aitable.go:2344
+source: internal/shortcut/aitable/aitable.go:2405
 visible_flags: 3
 
 ## Flags

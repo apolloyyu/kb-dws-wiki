@@ -4,7 +4,7 @@ kind: command
 completeness: full
 usage: dws audit export
 description: 导出审计日志
-source: internal/app/audit_command.go:128
+source: internal/app/audit_command.go:132
 visible_flags: 3
 
 ## Flags

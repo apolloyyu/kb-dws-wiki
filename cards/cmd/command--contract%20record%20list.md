@@ -5,7 +5,7 @@ completeness: full
 usage: dws contract record list
 description: 查询合同列表
 example: dws contract record list --format json
-source: internal/helpers/contract.go:79
+source: internal/helpers/contract.go:78
 visible_flags: 4
 
 ## Flags

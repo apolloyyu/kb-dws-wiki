@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +record-query
 description: Base ID
-source: internal/shortcut/aitable/aitable.go:696
+source: internal/shortcut/aitable/aitable.go:697
 visible_flags: 13
 
 ## Flags

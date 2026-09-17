@@ -5,7 +5,7 @@ completeness: full
 usage: dws contract subject batch-delete
 description: 批量删除相对方
 example: dws contract subject batch-delete --subject-ids "2001,2002,2003" --format json
-source: internal/helpers/contract.go:1319
+source: internal/helpers/contract.go:1204
 visible_flags: 1
 
 ## Flags

@@ -5,7 +5,7 @@ completeness: full
 usage: dws contract account get
 description: 获取账款信息
 example: dws contract account get --account-id 12345 --format json
-source: internal/helpers/contract.go:585
+source: internal/helpers/contract.go:470
 visible_flags: 1
 
 ## Flags

@@ -5,7 +5,7 @@ completeness: full
 usage: dws wiki node move
 description: 移动知识库节点
 example: dws wiki node move --workspace <workspaceId> --node <nodeId> --folder <targetFolderId>
-source: internal/helpers/wiki.go:1204
+source: internal/helpers/wiki.go:1207
 visible_flags: 3
 
 ## Flags

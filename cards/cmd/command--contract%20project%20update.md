@@ -5,7 +5,7 @@ completeness: full
 usage: dws contract project update
 description: 更新项目信息
 example: dws contract project update --project-id 1001 --name "更新后的名称" --format json
-source: internal/helpers/contract.go:827
+source: internal/helpers/contract.go:712
 visible_flags: 8
 
 ## Flags

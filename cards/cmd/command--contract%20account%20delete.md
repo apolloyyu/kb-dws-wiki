@@ -5,7 +5,7 @@ completeness: full
 usage: dws contract account delete
 description: 删除账款信息
 example: dws contract account delete --account-id 12345 --format json
-source: internal/helpers/contract.go:680
+source: internal/helpers/contract.go:565
 visible_flags: 1
 
 ## Flags

@@ -5,7 +5,7 @@ completeness: full
 usage: dws contract record create
 description: 创建合同台账
 example: dws contract record create --file ./contract.json --format json
-source: internal/helpers/contract.go:165
+source: internal/helpers/contract.go:164
 visible_flags: 1
 
 ## Flags

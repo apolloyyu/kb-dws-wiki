@@ -5,7 +5,7 @@ completeness: full
 usage: dws contract project import-template
 description: 获取批量导入项目模板
 example: dws contract project import-template --format json
-source: internal/helpers/contract.go:1049
+source: internal/helpers/contract.go:934
 visible_flags: 0
 
 ## Flags

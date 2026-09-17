@@ -5,7 +5,7 @@ completeness: full
 usage: dws contract subject import-result
 description: 查询相对方批量导入结果
 example: dws contract subject import-result --task-id "task_xxx" --format json
-source: internal/helpers/contract.go:1504
+source: internal/helpers/contract.go:1389
 visible_flags: 1
 
 ## Flags

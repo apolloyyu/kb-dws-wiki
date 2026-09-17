@@ -5,7 +5,7 @@ completeness: full
 usage: dws oa approval redirect-task
 description: 转交审批任务给其他人
 example: dws oa approval redirect-task --task-id <taskId> --to-actioner-id <userId>
-source: internal/helpers/oa.go:1609
+source: internal/helpers/oa.go:1614
 visible_flags: 3
 
 ## Flags

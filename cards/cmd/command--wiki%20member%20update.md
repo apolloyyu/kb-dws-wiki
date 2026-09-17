@@ -5,7 +5,7 @@ completeness: full
 usage: dws wiki member update
 description: 更新知识库成员权限
 example: dws wiki member update --workspace <workspaceId> --users uid1 --role EDITOR
-source: internal/helpers/wiki.go:663
+source: internal/helpers/wiki.go:666
 visible_flags: 5
 
 ## Flags

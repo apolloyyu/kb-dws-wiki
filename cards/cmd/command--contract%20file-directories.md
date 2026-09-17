@@ -5,7 +5,7 @@ completeness: full
 usage: dws contract file-directories
 description: 查询所有合同台账分类
 example: dws contract file-directories --format json
-source: internal/helpers/contract.go:253
+source: internal/helpers/contract.go:252
 visible_flags: 0
 
 ## Flags

@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +chart-delete
 description: 删除指定 chart 及其布局项（不可逆）
-source: internal/shortcut/aitable/aitable.go:2614
+source: internal/shortcut/aitable/aitable.go:2675
 visible_flags: 4
 
 ## Flags

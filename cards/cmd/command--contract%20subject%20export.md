@@ -5,7 +5,7 @@ completeness: full
 usage: dws contract subject export
 description: 导出相对方到 Excel
 example: dws contract subject export --subject-ids "2001,2002" --format json
-source: internal/helpers/contract.go:1431
+source: internal/helpers/contract.go:1316
 visible_flags: 2
 
 ## Flags

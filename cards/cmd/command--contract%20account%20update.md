@@ -5,7 +5,7 @@ completeness: full
 usage: dws contract account update
 description: 更新账款信息
 example: dws contract account update --file ./account_update.json --format json
-source: internal/helpers/contract.go:552
+source: internal/helpers/contract.go:437
 visible_flags: 1
 
 ## Flags

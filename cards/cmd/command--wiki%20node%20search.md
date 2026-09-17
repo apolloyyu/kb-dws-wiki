@@ -5,7 +5,7 @@ completeness: full
 usage: dws wiki node search
 description: 在知识库中搜索节点
 example: dws wiki node search --workspace <workspaceId> --query "产品方案"
-source: internal/helpers/wiki.go:1333
+source: internal/helpers/wiki.go:1336
 visible_flags: 5
 
 ## Flags

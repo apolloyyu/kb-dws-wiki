@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable form share notify
 description: 通知表单填写人
 example: dws aitable form share notify --base-id BASE_ID --table-id TABLE_ID --view-id VIEW_ID --recipients USER_ID_1,USER_ID_2 --send-chat true
-source: internal/helpers/aitable.go:6866
+source: internal/helpers/aitable.go:7034
 visible_flags: 8
 
 ## Flags

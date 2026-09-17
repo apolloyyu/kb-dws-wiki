@@ -3,9 +3,9 @@
 kind: command
 completeness: full
 usage: dws contract review result
-description: 查询合同审查结果
+description: 查询合同审查结果（已下线）
 example: dws contract review result --task-id "MjIzODAwMkFJX1JFVklFVw==" --review-type AI_REVIEW --format json
-source: internal/helpers/contract.go:452
+source: internal/helpers/contract.go:351
 visible_flags: 2
 
 ## Flags

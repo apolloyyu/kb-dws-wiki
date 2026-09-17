@@ -5,7 +5,7 @@ completeness: partial
 usage: dws aitable form share update
 description: 更新分享表单配置
 example: dws aitable form share update --base-id BASE_ID --table-id TABLE_ID --view-id VIEW_ID --enabled true --form-name "活动报名"
-source: internal/helpers/aitable.go:6745
+source: internal/helpers/aitable.go:6903
 visible_flags: 16
 partial_reason: too_many_flags:16
 

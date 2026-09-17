@@ -5,7 +5,7 @@ completeness: full
 usage: dws contract process-templates
 description: 查询当前用户可见审批模板
 example: dws contract process-templates --format json
-source: internal/helpers/contract.go:242
+source: internal/helpers/contract.go:241
 visible_flags: 0
 
 ## Flags

@@ -5,7 +5,7 @@ completeness: full
 usage: dws contract project export
 description: 项目导出到 Excel
 example: dws contract project export --project-ids "1001,1002" --format json
-source: internal/helpers/contract.go:1024
+source: internal/helpers/contract.go:909
 visible_flags: 2
 
 ## Flags

@@ -5,7 +5,7 @@ completeness: full
 usage: dws contract subject import
 description: 批量导入相对方
 example: dws contract subject import --file-id "abc123" --space-id 7890 --format json
-source: internal/helpers/contract.go:1474
+source: internal/helpers/contract.go:1359
 visible_flags: 5
 
 ## Flags

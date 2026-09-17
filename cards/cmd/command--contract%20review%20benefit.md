@@ -3,9 +3,9 @@
 kind: command
 completeness: full
 usage: dws contract review benefit
-description: 查询合同审查权益
+description: 查询合同审查权益（已下线）
 example: dws contract review benefit --format json
-source: internal/helpers/contract.go:317
+source: internal/helpers/contract.go:316
 visible_flags: 0
 
 ## Flags

@@ -4,7 +4,7 @@ kind: command
 completeness: full
 usage: dws audit verify
 description: 校验审计日志哈希链完整性
-source: internal/app/audit_command.go:196
+source: internal/app/audit_command.go:200
 visible_flags: 1
 
 ## Flags

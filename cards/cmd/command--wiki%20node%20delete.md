@@ -5,7 +5,7 @@ completeness: full
 usage: dws wiki node delete
 description: 删除知识库节点
 example: dws wiki node delete --workspace <workspaceId> --node <nodeId>
-source: internal/helpers/wiki.go:1273
+source: internal/helpers/wiki.go:1276
 visible_flags: 2
 
 ## Flags

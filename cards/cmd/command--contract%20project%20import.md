@@ -5,7 +5,7 @@ completeness: full
 usage: dws contract project import
 description: 批量导入项目
 example: dws contract project import --file-id "abc123" --space-id 7890 --format json
-source: internal/helpers/contract.go:1061
+source: internal/helpers/contract.go:946
 visible_flags: 5
 
 ## Flags

@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +dashboard-get
 description: 获取指定 dashboard 的详细信息（含只读 schemaVersion 类型证据与 charts summary）
-source: internal/shortcut/aitable/aitable.go:2258
+source: internal/shortcut/aitable/aitable.go:2319
 visible_flags: 2
 
 ## Flags

@@ -5,7 +5,7 @@ completeness: full
 usage: dws wiki node list
 description: 列出知识库节点
 example: dws wiki node list --workspace <workspaceId>
-source: internal/helpers/wiki.go:971
+source: internal/helpers/wiki.go:974
 visible_flags: 4
 
 ## Flags

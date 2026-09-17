@@ -4,7 +4,7 @@ kind: command
 completeness: full
 usage: dws wiki
 description: 知识库 / 空间管理 / 节点管理 / 成员管理 / 动态查询
-source: internal/helpers/wiki.go:169
+source: internal/helpers/wiki.go:172
 visible_flags: 0
 
 ## Flags

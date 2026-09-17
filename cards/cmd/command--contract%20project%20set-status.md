@@ -5,7 +5,7 @@ completeness: full
 usage: dws contract project set-status
 description: 更新项目状态
 example: dws contract project set-status --project-id 1001 --status "active" --format json
-source: internal/helpers/contract.go:872
+source: internal/helpers/contract.go:757
 visible_flags: 2
 
 ## Flags

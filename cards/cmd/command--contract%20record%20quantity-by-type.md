@@ -5,7 +5,7 @@ completeness: full
 usage: dws contract record quantity-by-type
 description: 按查询维度统计各状态合同数量
 example: dws contract record quantity-by-type --format json
-source: internal/helpers/contract.go:144
+source: internal/helpers/contract.go:143
 visible_flags: 1
 
 ## Flags

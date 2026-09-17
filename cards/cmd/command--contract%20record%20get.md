@@ -5,7 +5,7 @@ completeness: full
 usage: dws contract record get
 description: 查询合同详情
 example: dws contract record get --contract-id "c_xxx" --format json
-source: internal/helpers/contract.go:125
+source: internal/helpers/contract.go:124
 visible_flags: 1
 
 ## Flags

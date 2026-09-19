@@ -1,13 +1,11 @@
 # dws mail
 
 kind: command
-completeness: partial
+completeness: full
 usage: dws mail
-description: —
-use_when: (derived parent:由规范子命令路径证明)
-source: —
+description: 邮箱 / 邮件收发
+source: internal/helpers/mail.go:122
 visible_flags: 0
-partial_reason: unverified_flags,missing_description,missing_source
 
 ## Flags
 - none

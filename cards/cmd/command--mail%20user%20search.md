@@ -16,4 +16,5 @@ visible_flags: 5
 - --limit <String>: 每页返回数量
 
 ## Related
-- none
+- dws mail user batch-get
+- dws mail user get

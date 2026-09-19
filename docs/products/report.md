@@ -1,6 +1,6 @@
 ---
 source_path: "skills/mono/references/products/report.md"
-source_commit: "0f580d24"
+source_commit: "21ff422f"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 

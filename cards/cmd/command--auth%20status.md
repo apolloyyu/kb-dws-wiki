@@ -5,7 +5,7 @@ completeness: partial
 usage: dws auth status
 description: 查看认证状态
 example: dws auth status
-source: internal/app/auth_command.go:549
+source: internal/app/auth_command.go:552
 visible_flags: 1
 partial_reason: unverified_flags
 

@@ -816,7 +816,7 @@
 {"completeness": "partial", "key": "live", "kind": "command", "path": "cards/cmd/command--live.md", "product": "live"}
 {"completeness": "partial", "key": "live stream", "kind": "command", "path": "cards/cmd/command--live%20stream.md", "product": "live"}
 {"completeness": "full", "key": "live stream list", "kind": "command", "path": "cards/cmd/command--live%20stream%20list.md", "product": "live"}
-{"completeness": "partial", "key": "mail", "kind": "command", "path": "cards/cmd/command--mail.md", "product": "mail"}
+{"completeness": "full", "key": "mail", "kind": "command", "path": "cards/cmd/command--mail.md", "product": "mail"}
 {"completeness": "partial", "key": "mail allow-list", "kind": "command", "path": "cards/cmd/command--mail%20allow-list.md", "product": "mail"}
 {"completeness": "full", "key": "mail allow-list add", "kind": "command", "path": "cards/cmd/command--mail%20allow-list%20add.md", "product": "mail"}
 {"completeness": "full", "key": "mail allow-list list", "kind": "command", "path": "cards/cmd/command--mail%20allow-list%20list.md", "product": "mail"}
@@ -896,6 +896,8 @@
 {"completeness": "full", "key": "mail thread trash", "kind": "command", "path": "cards/cmd/command--mail%20thread%20trash.md", "product": "mail"}
 {"completeness": "full", "key": "mail thread update", "kind": "command", "path": "cards/cmd/command--mail%20thread%20update.md", "product": "mail"}
 {"completeness": "partial", "key": "mail user", "kind": "command", "path": "cards/cmd/command--mail%20user.md", "product": "mail"}
+{"completeness": "partial", "key": "mail user batch-get", "kind": "command", "path": "cards/cmd/command--mail%20user%20batch-get.md", "product": "mail"}
+{"completeness": "partial", "key": "mail user get", "kind": "command", "path": "cards/cmd/command--mail%20user%20get.md", "product": "mail"}
 {"completeness": "full", "key": "mail user search", "kind": "command", "path": "cards/cmd/command--mail%20user%20search.md", "product": "mail"}
 {"completeness": "full", "key": "markdown", "kind": "command", "path": "cards/cmd/command--markdown.md", "product": "markdown"}
 {"completeness": "full", "key": "markdown comment", "kind": "command", "path": "cards/cmd/command--markdown%20comment.md", "product": "markdown"}

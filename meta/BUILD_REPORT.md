@@ -1,10 +1,10 @@
 # 构建对账
 
-- 源码 commit:0f580d24
+- 源码 commit:21ff422f
 - 镜像文件:125
-- 主命令:1202(带 flags:833,归属未定:181)
+- 主命令:1204(带 flags:833,归属未定:180)
 - shortcuts:481
-- 答案卡:1683(full:1293,76.8%;partial:390)
+- 答案卡:1685(full:1294,76.8%;partial:391)
 - 文档索引:134 篇
 
 ## 归属未定(退回源码 grep,不影响存在性判断)
@@ -131,7 +131,6 @@
 - hrbrain talent-pool
 - live
 - live stream
-- mail
 - mail allow-list
 - mail attachment
 - mail auto-reply

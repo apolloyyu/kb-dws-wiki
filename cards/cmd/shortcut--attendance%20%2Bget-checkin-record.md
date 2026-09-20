@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws attendance +get-checkin-record
 description: 查询指定员工一段时间内的签到记录
-source: internal/shortcut/attendance/attendance.go:2185
+source: internal/shortcut/attendance/attendance.go:2691
 visible_flags: 5
 
 ## Flags
@@ -16,8 +16,8 @@ visible_flags: 5
 
 ## Related
 - dws attendance +boss-check
+- dws attendance +calculate-approve-duration
+- dws attendance +check-companion-schedules
 - dws attendance +check-record
 - dws attendance +check-result
 - dws attendance +create-class
-- dws attendance +create-group
-- dws attendance +get-adjustment-rule

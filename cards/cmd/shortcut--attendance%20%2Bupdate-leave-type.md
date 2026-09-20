@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws attendance +update-leave-type
 description: 更新已有假期规则（仅传要修改的字段）
-source: internal/shortcut/attendance/attendance.go:2065
+source: internal/shortcut/attendance/attendance.go:2571
 visible_flags: 7
 
 ## Flags
@@ -18,8 +18,8 @@ visible_flags: 7
 
 ## Related
 - dws attendance +boss-check
+- dws attendance +calculate-approve-duration
+- dws attendance +check-companion-schedules
 - dws attendance +check-record
 - dws attendance +check-result
 - dws attendance +create-class
-- dws attendance +create-group
-- dws attendance +get-adjustment-rule

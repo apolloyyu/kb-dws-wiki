@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws attendance +get-summary
 description: 查询某个人的考勤统计摘要（周/月）
-source: internal/shortcut/attendance/attendance.go:1597
+source: internal/shortcut/attendance/attendance.go:2103
 visible_flags: 3
 
 ## Flags
@@ -14,8 +14,8 @@ visible_flags: 3
 
 ## Related
 - dws attendance +boss-check
+- dws attendance +calculate-approve-duration
+- dws attendance +check-companion-schedules
 - dws attendance +check-record
 - dws attendance +check-result
 - dws attendance +create-class
-- dws attendance +create-group
-- dws attendance +get-adjustment-rule

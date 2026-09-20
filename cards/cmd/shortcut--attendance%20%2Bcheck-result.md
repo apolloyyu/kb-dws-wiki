@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws attendance +check-result
 description: 查询用户打卡结果（迟到/早退/缺卡等）
-source: internal/shortcut/attendance/attendance.go:171
+source: internal/shortcut/attendance/attendance.go:216
 visible_flags: 5
 
 ## Flags
@@ -16,8 +16,8 @@ visible_flags: 5
 
 ## Related
 - dws attendance +boss-check
+- dws attendance +calculate-approve-duration
+- dws attendance +check-companion-schedules
 - dws attendance +check-record
 - dws attendance +create-class
 - dws attendance +create-group
-- dws attendance +get-adjustment-rule
-- dws attendance +get-approve-template

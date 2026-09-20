@@ -5,7 +5,7 @@ completeness: partial
 usage: dws aisearch person
 description: 搜索企业人员
 example: dws aisearch person --query "张三" --dimension department
-source: internal/helpers/aisearch.go:229
+source: internal/helpers/aisearch.go:233
 visible_flags: 1
 partial_reason: unverified_flags,empty_flag_name
 

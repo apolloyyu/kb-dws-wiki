@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws attendance +create-group
 description: 创建考勤组（复杂子对象用 --group-vo JSON 传入）
-source: internal/shortcut/attendance/attendance.go:1490
+source: internal/shortcut/attendance/attendance.go:1996
 visible_flags: 4
 
 ## Flags
@@ -15,8 +15,8 @@ visible_flags: 4
 
 ## Related
 - dws attendance +boss-check
+- dws attendance +calculate-approve-duration
+- dws attendance +check-companion-schedules
 - dws attendance +check-record
 - dws attendance +check-result
 - dws attendance +create-class
-- dws attendance +get-adjustment-rule
-- dws attendance +get-approve-template

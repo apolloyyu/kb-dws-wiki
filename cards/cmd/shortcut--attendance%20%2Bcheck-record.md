@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws attendance +check-record
 description: 查询用户打卡流水（打卡时间/地点/定位方式）
-source: internal/shortcut/attendance/attendance.go:287
+source: internal/shortcut/attendance/attendance.go:332
 visible_flags: 3
 
 ## Flags
@@ -14,8 +14,8 @@ visible_flags: 3
 
 ## Related
 - dws attendance +boss-check
+- dws attendance +calculate-approve-duration
+- dws attendance +check-companion-schedules
 - dws attendance +check-result
 - dws attendance +create-class
 - dws attendance +create-group
-- dws attendance +get-adjustment-rule
-- dws attendance +get-approve-template

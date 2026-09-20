@@ -5,7 +5,7 @@ completeness: full
 usage: dws aisearch enterprise
 description: 搜索企业内部知识内容和相关消息
 example: dws aisearch enterprise --queries "智能化方案" --types document
-source: internal/helpers/aisearch.go:311
+source: internal/helpers/aisearch.go:315
 visible_flags: 3
 
 ## Flags

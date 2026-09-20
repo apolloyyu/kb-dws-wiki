@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws attendance +update-group
 description: 更新考勤组配置（仅修改需要变更的字段）
-source: internal/shortcut/attendance/attendance.go:1536
+source: internal/shortcut/attendance/attendance.go:2042
 visible_flags: 7
 
 ## Flags
@@ -18,8 +18,8 @@ visible_flags: 7
 
 ## Related
 - dws attendance +boss-check
+- dws attendance +calculate-approve-duration
+- dws attendance +check-companion-schedules
 - dws attendance +check-record
 - dws attendance +check-result
 - dws attendance +create-class
-- dws attendance +create-group
-- dws attendance +get-adjustment-rule

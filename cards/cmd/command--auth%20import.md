@@ -5,7 +5,7 @@ completeness: partial
 usage: dws auth import
 description: 导入可迁移认证包
 example: dws auth import -i dws-auth.tar.gz
-source: internal/app/auth_command.go:895
+source: internal/app/auth_command.go:916
 visible_flags: 3
 partial_reason: unverified_flags
 

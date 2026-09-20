@@ -1314,6 +1314,8 @@
 {"completeness": "full", "key": "aitable +workflow-get", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bworkflow-get.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +workflow-list", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bworkflow-list.md", "product": "aitable"}
 {"completeness": "full", "key": "attendance +boss-check", "kind": "shortcut", "path": "cards/cmd/shortcut--attendance%20%2Bboss-check.md", "product": "attendance"}
+{"completeness": "partial", "key": "attendance +calculate-approve-duration", "kind": "shortcut", "path": "cards/cmd/shortcut--attendance%20%2Bcalculate-approve-duration.md", "product": "attendance"}
+{"completeness": "full", "key": "attendance +check-companion-schedules", "kind": "shortcut", "path": "cards/cmd/shortcut--attendance%20%2Bcheck-companion-schedules.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance +check-record", "kind": "shortcut", "path": "cards/cmd/shortcut--attendance%20%2Bcheck-record.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance +check-result", "kind": "shortcut", "path": "cards/cmd/shortcut--attendance%20%2Bcheck-result.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance +create-class", "kind": "shortcut", "path": "cards/cmd/shortcut--attendance%20%2Bcreate-class.md", "product": "attendance"}
@@ -1322,6 +1324,7 @@
 {"completeness": "full", "key": "attendance +get-approve-template", "kind": "shortcut", "path": "cards/cmd/shortcut--attendance%20%2Bget-approve-template.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance +get-checkin-record", "kind": "shortcut", "path": "cards/cmd/shortcut--attendance%20%2Bget-checkin-record.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance +get-class", "kind": "shortcut", "path": "cards/cmd/shortcut--attendance%20%2Bget-class.md", "product": "attendance"}
+{"completeness": "full", "key": "attendance +get-complex-overtime-setting", "kind": "shortcut", "path": "cards/cmd/shortcut--attendance%20%2Bget-complex-overtime-setting.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance +get-global-setting", "kind": "shortcut", "path": "cards/cmd/shortcut--attendance%20%2Bget-global-setting.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance +get-group", "kind": "shortcut", "path": "cards/cmd/shortcut--attendance%20%2Bget-group.md", "product": "attendance"}
 {"completeness": "full", "key": "attendance +get-group-filtered", "kind": "shortcut", "path": "cards/cmd/shortcut--attendance%20%2Bget-group-filtered.md", "product": "attendance"}

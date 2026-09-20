@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws attendance +get-approve-template
 description: 查询补卡/请假/加班/外出/出差审批提交链接
-source: internal/shortcut/attendance/attendance.go:495
+source: internal/shortcut/attendance/attendance.go:540
 visible_flags: 1
 
 ## Flags
@@ -12,8 +12,8 @@ visible_flags: 1
 
 ## Related
 - dws attendance +boss-check
+- dws attendance +calculate-approve-duration
+- dws attendance +check-companion-schedules
 - dws attendance +check-record
 - dws attendance +check-result
 - dws attendance +create-class
-- dws attendance +create-group
-- dws attendance +get-adjustment-rule

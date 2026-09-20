@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws attendance +search-adjustment-rule
 description: 查询当前用户可管理的补卡规则列表
-source: internal/shortcut/attendance/attendance.go:1018
+source: internal/shortcut/attendance/attendance.go:1524
 visible_flags: 3
 
 ## Flags
@@ -14,8 +14,8 @@ visible_flags: 3
 
 ## Related
 - dws attendance +boss-check
+- dws attendance +calculate-approve-duration
+- dws attendance +check-companion-schedules
 - dws attendance +check-record
 - dws attendance +check-result
 - dws attendance +create-class
-- dws attendance +create-group
-- dws attendance +get-adjustment-rule

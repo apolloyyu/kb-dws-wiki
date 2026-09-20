@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws attendance +query-report-leave
 description: 查询用户假期数据（仅管理员）
-source: internal/shortcut/attendance/attendance.go:1875
+source: internal/shortcut/attendance/attendance.go:2381
 visible_flags: 4
 
 ## Flags
@@ -15,8 +15,8 @@ visible_flags: 4
 
 ## Related
 - dws attendance +boss-check
+- dws attendance +calculate-approve-duration
+- dws attendance +check-companion-schedules
 - dws attendance +check-record
 - dws attendance +check-result
 - dws attendance +create-class
-- dws attendance +create-group
-- dws attendance +get-adjustment-rule

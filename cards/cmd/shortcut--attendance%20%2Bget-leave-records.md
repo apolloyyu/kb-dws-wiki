@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws attendance +get-leave-records
 description: 查询指定员工的假期余额变更记录
-source: internal/shortcut/attendance/attendance.go:1981
+source: internal/shortcut/attendance/attendance.go:2487
 visible_flags: 4
 
 ## Flags
@@ -15,8 +15,8 @@ visible_flags: 4
 
 ## Related
 - dws attendance +boss-check
+- dws attendance +calculate-approve-duration
+- dws attendance +check-companion-schedules
 - dws attendance +check-record
 - dws attendance +check-result
 - dws attendance +create-class
-- dws attendance +create-group
-- dws attendance +get-adjustment-rule

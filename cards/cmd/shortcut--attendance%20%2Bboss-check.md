@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws attendance +boss-check
 description: BOSS 改签打卡记录（管理员修改打卡时间/结果）
-source: internal/shortcut/attendance/attendance.go:2281
+source: internal/shortcut/attendance/attendance.go:2787
 visible_flags: 6
 
 ## Flags
@@ -16,9 +16,9 @@ visible_flags: 6
 - --remark <String>: 备注，最长 500 字符
 
 ## Related
+- dws attendance +calculate-approve-duration
+- dws attendance +check-companion-schedules
 - dws attendance +check-record
 - dws attendance +check-result
 - dws attendance +create-class
 - dws attendance +create-group
-- dws attendance +get-adjustment-rule
-- dws attendance +get-approve-template

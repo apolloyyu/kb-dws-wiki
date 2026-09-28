@@ -5,7 +5,7 @@ completeness: full
 usage: dws contact user update-self
 description: 更新当前用户自己的 profile 信息
 example: dws contact user update-self --nick "新昵称"
-source: internal/helpers/contact.go:778
+source: internal/helpers/contact.go:779
 visible_flags: 2
 
 ## Flags
@@ -15,7 +15,7 @@ visible_flags: 2
 ## Related
 - dws contact user dismission
 - dws contact user get
+- dws contact user get-by-dingtalk-id
 - dws contact user get-self
 - dws contact user invite
 - dws contact user profile
-- dws contact user search

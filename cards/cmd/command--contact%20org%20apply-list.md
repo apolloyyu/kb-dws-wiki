@@ -6,7 +6,7 @@ usage: dws contact org apply-list
 description: List user-submitted applications to join the enterprise, filterable by status.
 example: dws contact org apply-list
 use_when: When the user asks to review pending or processed join requests, or needs application IDs for approval commands.
-source: internal/helpers/contact.go:1335
+source: internal/helpers/contact.go:1336
 visible_flags: 7
 partial_reason: unverified_flags,empty_flag_name
 

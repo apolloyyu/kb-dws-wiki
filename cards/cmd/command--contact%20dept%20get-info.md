@@ -5,7 +5,7 @@ completeness: full
 usage: dws contact dept get-info
 description: 获取部门详情（部门ID、名称、人数）
 example: dws contact dept get-info --dept 12345
-source: internal/helpers/contact.go:2181
+source: internal/helpers/contact.go:2241
 visible_flags: 1
 
 ## Flags

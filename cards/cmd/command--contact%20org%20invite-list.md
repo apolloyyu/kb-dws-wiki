@@ -6,7 +6,7 @@ usage: dws contact org invite-list
 description: List join-enterprise invitations the administrators have sent, filterable by status.
 example: dws contact org invite-list
 use_when: When the user asks which invited members have not yet accepted.
-source: internal/helpers/contact.go:1291
+source: internal/helpers/contact.go:1292
 visible_flags: 3
 
 ## Flags

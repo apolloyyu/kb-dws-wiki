@@ -5,7 +5,7 @@ completeness: partial
 usage: dws contact dept create
 description: 创建部门
 example: dws contact dept create --name "新产品部" --create-dept-group=true
-source: internal/helpers/contact.go:182
+source: internal/helpers/contact.go:183
 visible_flags: 3
 partial_reason: unverified_flags
 

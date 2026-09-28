@@ -6,7 +6,7 @@ usage: dws contact org invite-audit
 description: Set whether joining the enterprise requires admin review (enterprise-level auto-approval).
 example: dws contact org invite-audit --no-audit
 use_when: When the user explicitly asks to enable or disable join-request auditing for the whole enterprise.
-source: internal/helpers/contact.go:1105
+source: internal/helpers/contact.go:1106
 visible_flags: 1
 partial_reason: unverified_flags
 

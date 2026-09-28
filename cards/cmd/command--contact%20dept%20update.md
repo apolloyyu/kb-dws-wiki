@@ -5,7 +5,7 @@ completeness: partial
 usage: dws contact dept update
 description: 更新部门信息
 example: dws contact dept update --dept 12345 --name "新部门名"
-source: internal/helpers/contact.go:679
+source: internal/helpers/contact.go:680
 visible_flags: 3
 partial_reason: unverified_flags
 

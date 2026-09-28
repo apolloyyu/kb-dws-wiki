@@ -516,6 +516,7 @@
 {"completeness": "partial", "key": "contact user dismission", "kind": "command", "path": "cards/cmd/command--contact%20user%20dismission.md", "product": "contact"}
 {"completeness": "full", "key": "contact user dismission search", "kind": "command", "path": "cards/cmd/command--contact%20user%20dismission%20search.md", "product": "contact"}
 {"completeness": "full", "key": "contact user get", "kind": "command", "path": "cards/cmd/command--contact%20user%20get.md", "product": "contact"}
+{"completeness": "full", "key": "contact user get-by-dingtalk-id", "kind": "command", "path": "cards/cmd/command--contact%20user%20get-by-dingtalk-id.md", "product": "contact"}
 {"completeness": "full", "key": "contact user get-self", "kind": "command", "path": "cards/cmd/command--contact%20user%20get-self.md", "product": "contact"}
 {"completeness": "full", "key": "contact user invite", "kind": "command", "path": "cards/cmd/command--contact%20user%20invite.md", "product": "contact"}
 {"completeness": "partial", "key": "contact user profile", "kind": "command", "path": "cards/cmd/command--contact%20user%20profile.md", "product": "contact"}
@@ -671,6 +672,39 @@
 {"completeness": "full", "key": "ding message send", "kind": "command", "path": "cards/cmd/command--ding%20message%20send.md", "product": "ding"}
 {"completeness": "full", "key": "ding message send-by-message", "kind": "command", "path": "cards/cmd/command--ding%20message%20send-by-message.md", "product": "ding"}
 {"completeness": "full", "key": "ding message send-personal", "kind": "command", "path": "cards/cmd/command--ding%20message%20send-personal.md", "product": "ding"}
+{"completeness": "partial", "key": "dingtalk-tag", "kind": "command", "path": "cards/cmd/command--dingtalk-tag.md", "product": "dingtalk-tag"}
+{"completeness": "partial", "key": "dingtalk-tag capability", "kind": "command", "path": "cards/cmd/command--dingtalk-tag%20capability.md", "product": "dingtalk-tag"}
+{"completeness": "partial", "key": "dingtalk-tag capability mcp", "kind": "command", "path": "cards/cmd/command--dingtalk-tag%20capability%20mcp.md", "product": "dingtalk-tag"}
+{"completeness": "partial", "key": "dingtalk-tag capability mcp create", "kind": "command", "path": "cards/cmd/command--dingtalk-tag%20capability%20mcp%20create.md", "product": "dingtalk-tag"}
+{"completeness": "partial", "key": "dingtalk-tag capability mcp delete", "kind": "command", "path": "cards/cmd/command--dingtalk-tag%20capability%20mcp%20delete.md", "product": "dingtalk-tag"}
+{"completeness": "partial", "key": "dingtalk-tag capability mcp list", "kind": "command", "path": "cards/cmd/command--dingtalk-tag%20capability%20mcp%20list.md", "product": "dingtalk-tag"}
+{"completeness": "partial", "key": "dingtalk-tag capability mcp query", "kind": "command", "path": "cards/cmd/command--dingtalk-tag%20capability%20mcp%20query.md", "product": "dingtalk-tag"}
+{"completeness": "partial", "key": "dingtalk-tag capability mcp update", "kind": "command", "path": "cards/cmd/command--dingtalk-tag%20capability%20mcp%20update.md", "product": "dingtalk-tag"}
+{"completeness": "partial", "key": "dingtalk-tag capability skill", "kind": "command", "path": "cards/cmd/command--dingtalk-tag%20capability%20skill.md", "product": "dingtalk-tag"}
+{"completeness": "partial", "key": "dingtalk-tag capability skill create", "kind": "command", "path": "cards/cmd/command--dingtalk-tag%20capability%20skill%20create.md", "product": "dingtalk-tag"}
+{"completeness": "partial", "key": "dingtalk-tag capability skill delete", "kind": "command", "path": "cards/cmd/command--dingtalk-tag%20capability%20skill%20delete.md", "product": "dingtalk-tag"}
+{"completeness": "partial", "key": "dingtalk-tag capability skill list", "kind": "command", "path": "cards/cmd/command--dingtalk-tag%20capability%20skill%20list.md", "product": "dingtalk-tag"}
+{"completeness": "partial", "key": "dingtalk-tag capability skill query", "kind": "command", "path": "cards/cmd/command--dingtalk-tag%20capability%20skill%20query.md", "product": "dingtalk-tag"}
+{"completeness": "partial", "key": "dingtalk-tag capability skill update", "kind": "command", "path": "cards/cmd/command--dingtalk-tag%20capability%20skill%20update.md", "product": "dingtalk-tag"}
+{"completeness": "full", "key": "dingtalk-tag channel", "kind": "command", "path": "cards/cmd/command--dingtalk-tag%20channel.md", "product": "dingtalk-tag"}
+{"completeness": "partial", "key": "dingtalk-tag connect", "kind": "command", "path": "cards/cmd/command--dingtalk-tag%20connect.md", "product": "dingtalk-tag"}
+{"completeness": "partial", "key": "dingtalk-tag connect list", "kind": "command", "path": "cards/cmd/command--dingtalk-tag%20connect%20list.md", "product": "dingtalk-tag"}
+{"completeness": "partial", "key": "dingtalk-tag connect restart", "kind": "command", "path": "cards/cmd/command--dingtalk-tag%20connect%20restart.md", "product": "dingtalk-tag"}
+{"completeness": "partial", "key": "dingtalk-tag connect status", "kind": "command", "path": "cards/cmd/command--dingtalk-tag%20connect%20status.md", "product": "dingtalk-tag"}
+{"completeness": "partial", "key": "dingtalk-tag connect stop", "kind": "command", "path": "cards/cmd/command--dingtalk-tag%20connect%20stop.md", "product": "dingtalk-tag"}
+{"completeness": "partial", "key": "dingtalk-tag connect unbind", "kind": "command", "path": "cards/cmd/command--dingtalk-tag%20connect%20unbind.md", "product": "dingtalk-tag"}
+{"completeness": "partial", "key": "dingtalk-tag manage", "kind": "command", "path": "cards/cmd/command--dingtalk-tag%20manage.md", "product": "dingtalk-tag"}
+{"completeness": "partial", "key": "dingtalk-tag manage create", "kind": "command", "path": "cards/cmd/command--dingtalk-tag%20manage%20create.md", "product": "dingtalk-tag"}
+{"completeness": "partial", "key": "dingtalk-tag manage delete", "kind": "command", "path": "cards/cmd/command--dingtalk-tag%20manage%20delete.md", "product": "dingtalk-tag"}
+{"completeness": "partial", "key": "dingtalk-tag manage detail", "kind": "command", "path": "cards/cmd/command--dingtalk-tag%20manage%20detail.md", "product": "dingtalk-tag"}
+{"completeness": "partial", "key": "dingtalk-tag manage list", "kind": "command", "path": "cards/cmd/command--dingtalk-tag%20manage%20list.md", "product": "dingtalk-tag"}
+{"completeness": "partial", "key": "dingtalk-tag manage login", "kind": "command", "path": "cards/cmd/command--dingtalk-tag%20manage%20login.md", "product": "dingtalk-tag"}
+{"completeness": "partial", "key": "dingtalk-tag manage publish", "kind": "command", "path": "cards/cmd/command--dingtalk-tag%20manage%20publish.md", "product": "dingtalk-tag"}
+{"completeness": "partial", "key": "dingtalk-tag manage save-draft", "kind": "command", "path": "cards/cmd/command--dingtalk-tag%20manage%20save-draft.md", "product": "dingtalk-tag"}
+{"completeness": "partial", "key": "dingtalk-tag manage set-visibility", "kind": "command", "path": "cards/cmd/command--dingtalk-tag%20manage%20set-visibility.md", "product": "dingtalk-tag"}
+{"completeness": "partial", "key": "dingtalk-tag run", "kind": "command", "path": "cards/cmd/command--dingtalk-tag%20run.md", "product": "dingtalk-tag"}
+{"completeness": "partial", "key": "dingtalk-tag run run-status", "kind": "command", "path": "cards/cmd/command--dingtalk-tag%20run%20run-status.md", "product": "dingtalk-tag"}
+{"completeness": "partial", "key": "dingtalk-tag run trace", "kind": "command", "path": "cards/cmd/command--dingtalk-tag%20run%20trace.md", "product": "dingtalk-tag"}
 {"completeness": "full", "key": "doc", "kind": "command", "path": "cards/cmd/command--doc.md", "product": "doc"}
 {"completeness": "partial", "key": "doc block", "kind": "command", "path": "cards/cmd/command--doc%20block.md", "product": "doc"}
 {"completeness": "full", "key": "doc block delete", "kind": "command", "path": "cards/cmd/command--doc%20block%20delete.md", "product": "doc"}

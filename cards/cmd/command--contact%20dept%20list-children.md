@@ -5,7 +5,7 @@ completeness: full
 usage: dws contact dept list-children
 description: 查看子部门
 example: dws contact dept list-children --dept 12345
-source: internal/helpers/contact.go:2135
+source: internal/helpers/contact.go:2195
 visible_flags: 1
 
 ## Flags

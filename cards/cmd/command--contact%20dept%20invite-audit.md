@@ -6,7 +6,7 @@ usage: dws contact dept invite-audit
 description: Set whether joining a specific department requires admin review (department-level auto-approval).
 example: dws contact dept invite-audit --dept 12345 --no-audit
 use_when: When the user explicitly asks to enable or disable per-department join-request auditing.
-source: internal/helpers/contact.go:1132
+source: internal/helpers/contact.go:1133
 visible_flags: 3
 partial_reason: unverified_flags
 

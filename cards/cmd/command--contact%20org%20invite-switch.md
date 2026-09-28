@@ -6,7 +6,7 @@ usage: dws contact org invite-switch
 description: Toggle who can apply to join the enterprise (master switch plus search/code/link channels).
 example: dws contact org invite-switch --open true
 use_when: When the user explicitly asks to open or close join-application channels.
-source: internal/helpers/contact.go:1059
+source: internal/helpers/contact.go:1060
 visible_flags: 4
 partial_reason: unverified_flags
 

@@ -1,6 +1,6 @@
 ---
 source_path: "skills/mono/references/products/calendar.md"
-source_commit: "0cc3170b"
+source_commit: "7de51a87"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 

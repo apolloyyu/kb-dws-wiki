@@ -19,9 +19,15 @@ def run_dwsdoc(*args):
 
 
 class DwsdocCtxContractTest(unittest.TestCase):
-    def test_simple_exact_command_keeps_fast_card(self):
-        out = run_dwsdoc("ctx", "dws 怎么登录")
+    def test_exact_command_keeps_fast_card(self):
+        out = run_dwsdoc("ctx", "dws auth login")
         self.assertIn("card=1(fast=1)", out)
+        self.assertIn("== 证据契约(回答边界) ==", out)
+        self.assertIn("命令卡只证明", out)
+
+    def test_natural_login_question_keeps_full_context(self):
+        out = run_dwsdoc("ctx", "dws 怎么登录")
+        self.assertIn("card=1(fast=0)", out)
         self.assertIn("== 证据契约(回答边界) ==", out)
         self.assertIn("命令卡只证明", out)
 

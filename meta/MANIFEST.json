@@ -1,8 +1,8 @@
 {
   "name": "DWS Agent Wiki(模型生成)",
-  "build_time": "2026-09-25T08:14:27+08:00",
-  "source_commit": "0cc3170b",
-  "pages": 10,
+  "build_time": "2026-09-28T15:31:53+08:00",
+  "source_commit": "7de51a87",
+  "pages": 143,
   "spec_version": "1.0",
   "id": "dws-wiki",
   "visibility": "public",
@@ -30,9 +30,9 @@
     "cards": "deterministic",
     "notes": "generated+reviewed"
   },
-  "commands": 1204,
+  "commands": 1238,
   "shortcuts": 484,
-  "cards": 1688,
-  "cards_full": 1296,
+  "cards": 1722,
+  "cards_full": 1297,
   "notes_commit": "7de51a87"
 }

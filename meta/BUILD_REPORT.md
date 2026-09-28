@@ -1,11 +1,11 @@
 # 构建对账
 
-- 源码 commit:0cc3170b
-- 镜像文件:129
-- 主命令:1204(带 flags:833,归属未定:180)
+- 源码 commit:7de51a87
+- 镜像文件:134
+- 主命令:1238(带 flags:833,归属未定:186)
 - shortcuts:484
-- 答案卡:1688(full:1296,76.8%;partial:392)
-- 文档索引:138 篇
+- 答案卡:1722(full:1297,75.3%;partial:425)
+- 文档索引:143 篇
 
 ## 归属未定(退回源码 grep,不影响存在性判断)
 - agoal contract
@@ -112,6 +112,12 @@
 - devdoc error diagnose
 - ding
 - ding message
+- dingtalk-tag
+- dingtalk-tag capability
+- dingtalk-tag capability mcp
+- dingtalk-tag capability skill
+- dingtalk-tag manage
+- dingtalk-tag run
 - doc block
 - doc comment
 - doc file

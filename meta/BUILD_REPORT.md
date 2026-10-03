@@ -1,11 +1,11 @@
 # 构建对账
 
-- 源码 commit:7de51a87
-- 镜像文件:134
-- 主命令:1238(带 flags:834,归属未定:186)
+- 源码 commit:3f0fc941
+- 镜像文件:189
+- 主命令:1251(带 flags:837,归属未定:187)
 - shortcuts:484
-- 答案卡:1722(full:1298,75.4%;partial:424)
-- 文档索引:143 篇
+- 答案卡:1735(full:1303,75.1%;partial:432)
+- 文档索引:196 篇
 
 ## 归属未定(退回源码 grep,不影响存在性判断)
 - agoal contract
@@ -193,4 +193,5 @@
 - wiki feed
 - wiki member
 - wiki node
+- wiki permission
 - wiki space

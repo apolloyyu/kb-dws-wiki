@@ -6,7 +6,7 @@ usage: dws drive info
 description: Retrieve metadata for a file or folder in DingTalk Drive.
 example: dws drive info --node <dentryUuid>
 use_when: When the agent inspects a Drive node before downloading, moving, or listing around it.
-source: internal/helpers/drive.go:730
+source: internal/helpers/drive.go:843
 visible_flags: 2
 
 ## Flags

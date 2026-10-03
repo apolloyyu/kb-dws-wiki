@@ -1,6 +1,6 @@
 ---
 source_path: "skills/mono/references/products/chat-emoji-list.md"
-source_commit: "7de51a87"
+source_commit: "3f0fc941"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 

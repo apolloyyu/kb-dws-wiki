@@ -5,7 +5,7 @@ completeness: full
 usage: dws drive permission remove
 description: 移除协作者权限
 example: dws drive permission remove --node DOC_ID --users uid1
-source: internal/helpers/drive.go:2959
+source: internal/helpers/drive.go:3203
 visible_flags: 4
 
 ## Flags
@@ -20,4 +20,4 @@ visible_flags: 4
 - dws drive permission apply-info
 - dws drive permission get-setting
 - dws drive permission list
-- dws drive permission transfer-owner
+- dws drive permission set-share-scope

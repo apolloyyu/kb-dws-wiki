@@ -14,8 +14,8 @@ partial_reason: unverified_flags,missing_description,missing_source
 
 ## Related
 - dws aitable advperm
+- dws aitable api-key
 - dws aitable app
 - dws aitable base
 - dws aitable chart
 - dws aitable comment
-- dws aitable create

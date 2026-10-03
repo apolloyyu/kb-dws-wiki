@@ -4,11 +4,13 @@ kind: command
 completeness: full
 usage: dws oa approval template detail
 description: 获取审批实例详情
-source: internal/helpers/oa.go:1004
+source: internal/helpers/oa.go:1396
 visible_flags: 1
 
 ## Flags
 - --instance-id <String>: 审批实例 ID (必填)
 
 ## Related
+- dws oa approval template create
 - dws oa approval template list
+- dws oa approval template update

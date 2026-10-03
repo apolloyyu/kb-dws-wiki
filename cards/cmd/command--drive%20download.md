@@ -6,7 +6,7 @@ usage: dws drive download
 description: Fetch a temporary download URL for a file stored in DingTalk Drive.
 example: dws drive download --node <dentryUuid>
 use_when: When the agent needs to retrieve a Drive-hosted file for local use or for handing to another service.
-source: internal/helpers/drive.go:795
+source: internal/helpers/drive.go:908
 visible_flags: 9
 
 ## Flags

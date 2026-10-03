@@ -16,3 +16,4 @@ partial_reason: unverified_flags,missing_description,missing_source
 - dws wiki feed
 - dws wiki member
 - dws wiki node
+- dws wiki permission

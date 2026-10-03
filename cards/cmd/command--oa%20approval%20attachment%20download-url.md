@@ -4,7 +4,7 @@ kind: command
 completeness: partial
 usage: dws oa approval attachment download-url
 description: —
-source: internal/helpers/oa.go:401
+source: internal/helpers/oa.go:402
 visible_flags: 0
 partial_reason: unverified_usage,unverified_flags,missing_description
 

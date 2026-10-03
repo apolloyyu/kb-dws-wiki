@@ -5,7 +5,7 @@ completeness: full
 usage: dws drive stats
 description: 获取节点统计信息
 example: dws drive stats --node <dentryUuid>
-source: internal/helpers/drive.go:2111
+source: internal/helpers/drive.go:2224
 visible_flags: 1
 
 ## Flags

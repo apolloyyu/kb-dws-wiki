@@ -6,7 +6,7 @@ usage: dws aitable field create
 description: Create one or more fields in a datasheet with specified types and options.
 example: dws aitable field create --base-id BASE_ID --table-id TABLE_ID
 use_when: When the agent is extending a datasheet's schema to capture new attributes.
-source: internal/helpers/aitable.go:3146
+source: internal/helpers/aitable.go:3147
 visible_flags: 7
 
 ## Flags

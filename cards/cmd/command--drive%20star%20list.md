@@ -5,7 +5,7 @@ completeness: full
 usage: dws drive star list
 description: 获取收藏列表
 example: dws drive star list
-source: internal/helpers/drive.go:3898
+source: internal/helpers/drive.go:4144
 visible_flags: 6
 
 ## Flags

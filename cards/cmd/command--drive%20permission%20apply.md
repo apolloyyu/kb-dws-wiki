@@ -5,7 +5,7 @@ completeness: full
 usage: dws drive permission apply
 description: 发起权限申请
 example: dws drive permission apply --node DOC_ID --role READER --users uid1
-source: internal/helpers/drive.go:3215
+source: internal/helpers/drive.go:3459
 visible_flags: 5
 
 ## Flags
@@ -21,4 +21,4 @@ visible_flags: 5
 - dws drive permission get-setting
 - dws drive permission list
 - dws drive permission remove
-- dws drive permission transfer-owner
+- dws drive permission set-share-scope

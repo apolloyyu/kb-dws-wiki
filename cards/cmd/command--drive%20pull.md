@@ -5,7 +5,7 @@ completeness: full
 usage: dws drive pull
 description: 把钉盘文件夹单向镜像到本地（Drive → 本地）
 example: dws drive pull --local-folder /abs/path/repo --remote-folder <dentryUuid>
-source: internal/helpers/drive.go:4103
+source: internal/helpers/drive.go:4349
 visible_flags: 4
 
 ## Flags

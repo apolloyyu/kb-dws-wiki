@@ -12,8 +12,8 @@ visible_flags: 0
 
 ## Related
 - dws aitable advperm
+- dws aitable api-key
 - dws aitable app
 - dws aitable attachment
 - dws aitable base
 - dws aitable chart
-- dws aitable create

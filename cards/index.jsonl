@@ -22,6 +22,10 @@
 {"completeness": "partial", "key": "agoal user", "kind": "command", "path": "cards/cmd/command--agoal%20user.md", "product": "agoal"}
 {"completeness": "full", "key": "agoal user objectives", "kind": "command", "path": "cards/cmd/command--agoal%20user%20objectives.md", "product": "agoal"}
 {"completeness": "full", "key": "agoal user rules", "kind": "command", "path": "cards/cmd/command--agoal%20user%20rules.md", "product": "agoal"}
+{"completeness": "full", "key": "aicard", "kind": "command", "path": "cards/cmd/command--aicard.md", "product": "aicard"}
+{"completeness": "full", "key": "aicard explain", "kind": "command", "path": "cards/cmd/command--aicard%20explain.md", "product": "aicard"}
+{"completeness": "full", "key": "aicard lint", "kind": "command", "path": "cards/cmd/command--aicard%20lint.md", "product": "aicard"}
+{"completeness": "partial", "key": "aicard preview", "kind": "command", "path": "cards/cmd/command--aicard%20preview.md", "product": "aicard"}
 {"completeness": "partial", "key": "aisearch", "kind": "command", "path": "cards/cmd/command--aisearch.md", "product": "aisearch"}
 {"completeness": "full", "key": "aisearch behavior", "kind": "command", "path": "cards/cmd/command--aisearch%20behavior.md", "product": "aisearch"}
 {"completeness": "full", "key": "aisearch enterprise", "kind": "command", "path": "cards/cmd/command--aisearch%20enterprise.md", "product": "aisearch"}
@@ -35,6 +39,10 @@
 {"completeness": "full", "key": "aitable advperm role-get", "kind": "command", "path": "cards/cmd/command--aitable%20advperm%20role-get.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable advperm role-list", "kind": "command", "path": "cards/cmd/command--aitable%20advperm%20role-list.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable advperm role-update", "kind": "command", "path": "cards/cmd/command--aitable%20advperm%20role-update.md", "product": "aitable"}
+{"completeness": "full", "key": "aitable api-key", "kind": "command", "path": "cards/cmd/command--aitable%20api-key.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable api-key create", "kind": "command", "path": "cards/cmd/command--aitable%20api-key%20create.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable api-key list", "kind": "command", "path": "cards/cmd/command--aitable%20api-key%20list.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable api-key revoke", "kind": "command", "path": "cards/cmd/command--aitable%20api-key%20revoke.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable app", "kind": "command", "path": "cards/cmd/command--aitable%20app.md", "product": "aitable"}
 {"completeness": "partial", "key": "aitable attachment", "kind": "command", "path": "cards/cmd/command--aitable%20attachment.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable attachment remove", "kind": "command", "path": "cards/cmd/command--aitable%20attachment%20remove.md", "product": "aitable"}
@@ -789,6 +797,7 @@
 {"completeness": "full", "key": "drive permission get-setting", "kind": "command", "path": "cards/cmd/command--drive%20permission%20get-setting.md", "product": "drive"}
 {"completeness": "full", "key": "drive permission list", "kind": "command", "path": "cards/cmd/command--drive%20permission%20list.md", "product": "drive"}
 {"completeness": "full", "key": "drive permission remove", "kind": "command", "path": "cards/cmd/command--drive%20permission%20remove.md", "product": "drive"}
+{"completeness": "partial", "key": "drive permission set-share-scope", "kind": "command", "path": "cards/cmd/command--drive%20permission%20set-share-scope.md", "product": "drive"}
 {"completeness": "full", "key": "drive permission transfer-owner", "kind": "command", "path": "cards/cmd/command--drive%20permission%20transfer-owner.md", "product": "drive"}
 {"completeness": "full", "key": "drive permission update", "kind": "command", "path": "cards/cmd/command--drive%20permission%20update.md", "product": "drive"}
 {"completeness": "partial", "key": "drive publish", "kind": "command", "path": "cards/cmd/command--drive%20publish.md", "product": "drive"}
@@ -1013,7 +1022,7 @@
 {"completeness": "partial", "key": "oa approval list-executed", "kind": "command", "path": "cards/cmd/command--oa%20approval%20list-executed.md", "product": "oa"}
 {"completeness": "full", "key": "oa approval list-forms", "kind": "command", "path": "cards/cmd/command--oa%20approval%20list-forms.md", "product": "oa"}
 {"completeness": "full", "key": "oa approval list-initiated", "kind": "command", "path": "cards/cmd/command--oa%20approval%20list-initiated.md", "product": "oa"}
-{"completeness": "partial", "key": "oa approval list-pending", "kind": "command", "path": "cards/cmd/command--oa%20approval%20list-pending.md", "product": "oa"}
+{"completeness": "full", "key": "oa approval list-pending", "kind": "command", "path": "cards/cmd/command--oa%20approval%20list-pending.md", "product": "oa"}
 {"completeness": "partial", "key": "oa approval list-submitted", "kind": "command", "path": "cards/cmd/command--oa%20approval%20list-submitted.md", "product": "oa"}
 {"completeness": "full", "key": "oa approval oa-cc-noticer", "kind": "command", "path": "cards/cmd/command--oa%20approval%20oa-cc-noticer.md", "product": "oa"}
 {"completeness": "full", "key": "oa approval oa-comments", "kind": "command", "path": "cards/cmd/command--oa%20approval%20oa-comments.md", "product": "oa"}
@@ -1026,8 +1035,10 @@
 {"completeness": "full", "key": "oa approval search-forms", "kind": "command", "path": "cards/cmd/command--oa%20approval%20search-forms.md", "product": "oa"}
 {"completeness": "full", "key": "oa approval tasks", "kind": "command", "path": "cards/cmd/command--oa%20approval%20tasks.md", "product": "oa"}
 {"completeness": "partial", "key": "oa approval template", "kind": "command", "path": "cards/cmd/command--oa%20approval%20template.md", "product": "oa"}
+{"completeness": "partial", "key": "oa approval template create", "kind": "command", "path": "cards/cmd/command--oa%20approval%20template%20create.md", "product": "oa"}
 {"completeness": "full", "key": "oa approval template detail", "kind": "command", "path": "cards/cmd/command--oa%20approval%20template%20detail.md", "product": "oa"}
 {"completeness": "partial", "key": "oa approval template list", "kind": "command", "path": "cards/cmd/command--oa%20approval%20template%20list.md", "product": "oa"}
+{"completeness": "partial", "key": "oa approval template update", "kind": "command", "path": "cards/cmd/command--oa%20approval%20template%20update.md", "product": "oa"}
 {"completeness": "full", "key": "pat", "kind": "command", "path": "cards/cmd/command--pat.md", "product": "pat"}
 {"completeness": "full", "key": "pat browser-policy", "kind": "command", "path": "cards/cmd/command--pat%20browser-policy.md", "product": "pat"}
 {"completeness": "full", "key": "pat chmod", "kind": "command", "path": "cards/cmd/command--pat%20chmod.md", "product": "pat"}
@@ -1230,6 +1241,8 @@
 {"completeness": "full", "key": "wiki node list", "kind": "command", "path": "cards/cmd/command--wiki%20node%20list.md", "product": "wiki"}
 {"completeness": "full", "key": "wiki node move", "kind": "command", "path": "cards/cmd/command--wiki%20node%20move.md", "product": "wiki"}
 {"completeness": "full", "key": "wiki node search", "kind": "command", "path": "cards/cmd/command--wiki%20node%20search.md", "product": "wiki"}
+{"completeness": "partial", "key": "wiki permission", "kind": "command", "path": "cards/cmd/command--wiki%20permission.md", "product": "wiki"}
+{"completeness": "partial", "key": "wiki permission set-share-scope", "kind": "command", "path": "cards/cmd/command--wiki%20permission%20set-share-scope.md", "product": "wiki"}
 {"completeness": "partial", "key": "wiki space", "kind": "command", "path": "cards/cmd/command--wiki%20space.md", "product": "wiki"}
 {"completeness": "full", "key": "wiki space create", "kind": "command", "path": "cards/cmd/command--wiki%20space%20create.md", "product": "wiki"}
 {"completeness": "full", "key": "wiki space delete", "kind": "command", "path": "cards/cmd/command--wiki%20space%20delete.md", "product": "wiki"}

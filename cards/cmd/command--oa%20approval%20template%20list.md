@@ -4,7 +4,7 @@ kind: command
 completeness: partial
 usage: dws oa approval template list
 description: —
-source: internal/helpers/oa.go:1897
+source: internal/helpers/oa.go:2289
 visible_flags: 0
 partial_reason: unverified_usage,unverified_flags,missing_description
 
@@ -12,4 +12,6 @@ partial_reason: unverified_usage,unverified_flags,missing_description
 - none
 
 ## Related
+- dws oa approval template create
 - dws oa approval template detail
+- dws oa approval template update

@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable record ids
 description: 分页获取记录 ID
 example: dws aitable record ids --base-id BASE_ID --table-id TABLE_ID
-source: internal/helpers/aitable.go:3692
+source: internal/helpers/aitable.go:3693
 visible_flags: 4
 
 ## Flags

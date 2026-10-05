@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +form-share-get
 description: 读取表单分享配置及服务端真实 UUID、状态和封面
-source: internal/shortcut/aitable/aitable.go:1952
+source: internal/shortcut/aitable/aitable.go:1962
 visible_flags: 3
 
 ## Flags

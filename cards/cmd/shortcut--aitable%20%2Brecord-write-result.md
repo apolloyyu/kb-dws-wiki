@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +record-write-result
 description: 按原 clientToken 只读核对已落库记录；未知结果不能作为重新创建依据
-source: internal/shortcut/aitable/record_write_reconcile.go:122
+source: internal/shortcut/aitable/record_write_reconcile.go:139
 visible_flags: 3
 
 ## Flags

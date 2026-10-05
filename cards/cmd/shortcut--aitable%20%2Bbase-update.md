@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +base-update
 description: 更新 Base 名称（可选备注）
-source: internal/shortcut/aitable/aitable.go:365
+source: internal/shortcut/aitable/aitable.go:367
 visible_flags: 3
 
 ## Flags

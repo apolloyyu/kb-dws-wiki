@@ -1,6 +1,6 @@
 ---
 source_path: "skills/mono/references/products/drive/drive-export.md"
-source_commit: "3f0fc941"
+source_commit: "ba535c24"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 

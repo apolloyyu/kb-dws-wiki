@@ -11,7 +11,7 @@ visible_flags: 9
 - --base-id <String>: Base ID
 - --table-id <String>: Table ID
 - --patch <String>: 要合并到每条记录的非空 cells JSON 对象
-- --filters <String>: query_records filters JSON（选择条件之一）
+- --filters <String>: —
 - --query <String>: 全文关键词（选择条件之一）
 - --record-ids <StringSlice>: 明确的 recordId 列表（选择条件之一）
 - --view-id <String>: 可选视图上下文

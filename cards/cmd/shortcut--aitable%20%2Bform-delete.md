@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +form-delete
 description: 删除指定表单视图（不可逆）
-source: internal/shortcut/aitable/aitable.go:1787
+source: internal/shortcut/aitable/aitable.go:1797
 visible_flags: 3
 
 ## Flags

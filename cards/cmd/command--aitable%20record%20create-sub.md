@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable record create-sub
 description: 在父记录下创建子记录
 example: dws aitable record create-sub --base-id BASE_ID --table-id TABLE_ID --parent-record-id recParent --records '[{"cells":{"fldTitle":"子任务"}}]'
-source: internal/helpers/aitable.go:4065
+source: internal/helpers/aitable.go:4067
 visible_flags: 7
 
 ## Flags
@@ -15,7 +15,7 @@ visible_flags: 7
 - --records <String>: 待创建的子记录 JSON 数组，单次 1～100 条 (必填，可改用 --records-file)
 - --records-file <String>: 从文件读取 records JSON（替代 --records）
 - --view-id <String>: 可选视图 ID；指定时从该视图读取 hierarchyConfig
-- --client-token <String>: 可选 UUID v4 幂等键；超时重试时必须复用同一值
+- --client-token <String>: 可选 UUID v4 幂等键；调用前持久化，超时后只读核实父子关系，禁止自动重放
 
 ## Related
 - dws aitable record batch-update

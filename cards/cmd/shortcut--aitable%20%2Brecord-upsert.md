@@ -4,13 +4,14 @@ kind: shortcut
 completeness: full
 usage: dws aitable +record-upsert
 description: 按 recordId 自动拆分 create/update，按 100 条分片并读回验证
-source: internal/shortcut/aitable/aitable.go:994
-visible_flags: 3
+source: internal/shortcut/aitable/aitable.go:996
+visible_flags: 4
 
 ## Flags
 - --base-id <String>: Base ID
 - --table-id <String>: Table ID
 - --records <String>: 记录 JSON 数组，单次最多 100 条
+- --client-token <String>: 可选 UUID v4；写入结果不明时必须复用原值对账
 
 ## Related
 - dws aitable +advperm-disable

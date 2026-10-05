@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +view-delete
 description: 删除指定视图（不可逆）
-source: internal/shortcut/aitable/aitable.go:1401
+source: internal/shortcut/aitable/aitable.go:1411
 visible_flags: 3
 
 ## Flags

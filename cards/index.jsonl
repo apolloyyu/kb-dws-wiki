@@ -95,7 +95,7 @@
 {"completeness": "partial", "key": "aitable export", "kind": "command", "path": "cards/cmd/command--aitable%20export.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable export data", "kind": "command", "path": "cards/cmd/command--aitable%20export%20data.md", "product": "aitable"}
 {"completeness": "partial", "key": "aitable field", "kind": "command", "path": "cards/cmd/command--aitable%20field.md", "product": "aitable"}
-{"completeness": "full", "key": "aitable field create", "kind": "command", "path": "cards/cmd/command--aitable%20field%20create.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable field create", "kind": "command", "path": "cards/cmd/command--aitable%20field%20create.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable field delete", "kind": "command", "path": "cards/cmd/command--aitable%20field%20delete.md", "product": "aitable"}
 {"completeness": "partial", "key": "aitable field get", "kind": "command", "path": "cards/cmd/command--aitable%20field%20get.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable field list", "kind": "command", "path": "cards/cmd/command--aitable%20field%20list.md", "product": "aitable"}
@@ -154,7 +154,7 @@
 {"completeness": "full", "key": "aitable section rename", "kind": "command", "path": "cards/cmd/command--aitable%20section%20rename.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable section reorder", "kind": "command", "path": "cards/cmd/command--aitable%20section%20reorder.md", "product": "aitable"}
 {"completeness": "partial", "key": "aitable table", "kind": "command", "path": "cards/cmd/command--aitable%20table.md", "product": "aitable"}
-{"completeness": "full", "key": "aitable table create", "kind": "command", "path": "cards/cmd/command--aitable%20table%20create.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable table create", "kind": "command", "path": "cards/cmd/command--aitable%20table%20create.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable table delete", "kind": "command", "path": "cards/cmd/command--aitable%20table%20delete.md", "product": "aitable"}
 {"completeness": "partial", "key": "aitable table get", "kind": "command", "path": "cards/cmd/command--aitable%20table%20get.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable table list", "kind": "command", "path": "cards/cmd/command--aitable%20table%20list.md", "product": "aitable"}

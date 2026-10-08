@@ -4,7 +4,7 @@ kind: command
 completeness: partial
 usage: dws whiteboard render
 description: —
-source: internal/helpers/whiteboard_render.go:58
+source: internal/helpers/whiteboard_render.go:57
 visible_flags: 0
 partial_reason: unverified_usage,unverified_flags,missing_description
 

@@ -1,6 +1,6 @@
 ---
 source_path: "skills/mono/references/products/whiteboard/compose.md"
-source_commit: "ba535c24"
+source_commit: "251ae0d7"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 
@@ -205,4 +205,6 @@ Frame 页面直属，子节点坐标相对其左上角；connector 不放入 Fra
 ]
 ```
 
-`presentationOrder` 须唯一且非负；未知字段、跨请求引用或不支持值会拒绝整批。
+`presentationOrder` 仅允许用于 `frame`，且须唯一、非负；`shape`、`text`、
+`stickyNote` 等其他节点不得携带该字段。普通节点的层叠顺序使用 `zIndex`。
+未知字段、跨请求引用或不支持值会拒绝整批。

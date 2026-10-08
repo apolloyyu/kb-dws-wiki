@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws whiteboard +update
 description: 确认后更新文档内嵌或独立白板并精确读回
-source: internal/shortcut/whiteboard/whiteboard.go:273
+source: internal/shortcut/whiteboard/whiteboard.go:274
 visible_flags: 7
 
 ## Flags

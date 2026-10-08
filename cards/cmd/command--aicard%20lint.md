@@ -5,7 +5,7 @@ completeness: full
 usage: dws aicard lint
 description: Validate A2UI syntax and protocol structure
 example: dws aicard lint --file card.a2ui.json --emit
-source: internal/helpers/aicard.go:39
+source: internal/helpers/aicard.go:40
 visible_flags: 5
 
 ## Flags

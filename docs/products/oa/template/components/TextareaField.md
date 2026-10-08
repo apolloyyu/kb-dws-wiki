@@ -1,6 +1,6 @@
 ---
 source_path: "skills/mono/references/products/oa/template/components/TextareaField.md"
-source_commit: "ba535c24"
+source_commit: "251ae0d7"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 

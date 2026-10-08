@@ -1,6 +1,6 @@
 ---
 source_path: "skills/mono/references/products/whiteboard/replace.md"
-source_commit: "ba535c24"
+source_commit: "251ae0d7"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 
@@ -10,6 +10,8 @@ layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 局部节点更新。
 
 ## 执行顺序
+
+更新只设一个用户确认点：先完成所需的 render 和必需的 +diff，再把视觉预览（如有）、差异与覆盖影响一起展示并一次确认；不要在 render 后先索要确认、获准后才补做 diff 再次询问。同一目标、revision、source 和模式已获确认后，直接提交；只有这些内容变化或出现未披露的实质风险才重新确认。
 
 1. 对同一稳定目标执行一次 `+query`：内嵌白板使用 `nodeId/partId`，独立白板使用
    `nodeId/pageId` 并保留当前 revision。保留完整当前快照并汇总将被删除的节点。

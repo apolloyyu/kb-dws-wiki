@@ -5,7 +5,7 @@ completeness: full
 usage: dws aicard explain <name> [name...]
 description: Inspect components, functions, Tokens, or common types
 example: dws aicard explain Tabs
-source: internal/helpers/aicard.go:79
+source: internal/helpers/aicard.go:80
 visible_flags: 1
 
 ## Flags

@@ -5,7 +5,7 @@ completeness: full
 usage: dws auth login
 description: 登录钉钉（自动刷新 token，必要时扫码）
 example: dws auth login
-source: internal/app/auth_command.go:118
+source: internal/app/auth_command.go:119
 visible_flags: 9
 
 ## Flags

@@ -6,7 +6,7 @@ usage: dws contact user search
 description: Search users in the contact directory by keyword (name, title, etc.).
 example: dws contact user search --query "张三"
 use_when: When the agent needs to resolve a person's display name to a user ID.
-source: internal/helpers/contact.go:1584
+source: internal/helpers/contact.go:1585
 visible_flags: 1
 
 ## Flags
@@ -16,6 +16,6 @@ visible_flags: 1
 - dws contact user dismission
 - dws contact user get
 - dws contact user get-by-dingtalk-id
+- dws contact user get-by-open-dingtalk-id
 - dws contact user get-self
 - dws contact user invite
-- dws contact user profile

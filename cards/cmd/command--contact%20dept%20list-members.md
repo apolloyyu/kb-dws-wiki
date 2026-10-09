@@ -6,7 +6,7 @@ usage: dws contact dept list-members
 description: List members of a specific department by department ID.
 example: dws contact dept list-members --depts 12345,67890
 use_when: When the agent needs the roster of a department to target communication or build a team overview.
-source: internal/helpers/contact.go:2287
+source: internal/helpers/contact.go:2356
 visible_flags: 1
 
 ## Flags

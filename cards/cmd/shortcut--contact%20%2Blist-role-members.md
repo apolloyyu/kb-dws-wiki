@@ -11,9 +11,9 @@ visible_flags: 1
 - --id <String>: 角色 ID；--id 必须为正整数
 
 ## Related
-- dws contact +get-roster
-- dws contact +list-dept-members
-- dws contact +list-followings
-- dws contact +list-roles
-- dws contact +list-roster-fields
-- dws contact +list-sub-depts
+- dws contact +friend-list
+- dws contact +friend-remove
+- dws contact +friend-request-accept
+- dws contact +friend-request-list
+- dws contact +friend-request-reject
+- dws contact +friend-request-send

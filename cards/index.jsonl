@@ -525,6 +525,7 @@
 {"completeness": "full", "key": "contact user dismission search", "kind": "command", "path": "cards/cmd/command--contact%20user%20dismission%20search.md", "product": "contact"}
 {"completeness": "full", "key": "contact user get", "kind": "command", "path": "cards/cmd/command--contact%20user%20get.md", "product": "contact"}
 {"completeness": "full", "key": "contact user get-by-dingtalk-id", "kind": "command", "path": "cards/cmd/command--contact%20user%20get-by-dingtalk-id.md", "product": "contact"}
+{"completeness": "full", "key": "contact user get-by-open-dingtalk-id", "kind": "command", "path": "cards/cmd/command--contact%20user%20get-by-open-dingtalk-id.md", "product": "contact"}
 {"completeness": "full", "key": "contact user get-self", "kind": "command", "path": "cards/cmd/command--contact%20user%20get-self.md", "product": "contact"}
 {"completeness": "full", "key": "contact user invite", "kind": "command", "path": "cards/cmd/command--contact%20user%20invite.md", "product": "contact"}
 {"completeness": "partial", "key": "contact user profile", "kind": "command", "path": "cards/cmd/command--contact%20user%20profile.md", "product": "contact"}
@@ -1495,6 +1496,12 @@
 {"completeness": "full", "key": "chat +messages-unset-top", "kind": "shortcut", "path": "cards/cmd/shortcut--chat%20%2Bmessages-unset-top.md", "product": "chat"}
 {"completeness": "full", "key": "chat +messages-update-card", "kind": "shortcut", "path": "cards/cmd/shortcut--chat%20%2Bmessages-update-card.md", "product": "chat"}
 {"completeness": "full", "key": "chat +recent-conversations", "kind": "shortcut", "path": "cards/cmd/shortcut--chat%20%2Brecent-conversations.md", "product": "chat"}
+{"completeness": "full", "key": "contact +friend-list", "kind": "shortcut", "path": "cards/cmd/shortcut--contact%20%2Bfriend-list.md", "product": "contact"}
+{"completeness": "full", "key": "contact +friend-remove", "kind": "shortcut", "path": "cards/cmd/shortcut--contact%20%2Bfriend-remove.md", "product": "contact"}
+{"completeness": "full", "key": "contact +friend-request-accept", "kind": "shortcut", "path": "cards/cmd/shortcut--contact%20%2Bfriend-request-accept.md", "product": "contact"}
+{"completeness": "full", "key": "contact +friend-request-list", "kind": "shortcut", "path": "cards/cmd/shortcut--contact%20%2Bfriend-request-list.md", "product": "contact"}
+{"completeness": "full", "key": "contact +friend-request-reject", "kind": "shortcut", "path": "cards/cmd/shortcut--contact%20%2Bfriend-request-reject.md", "product": "contact"}
+{"completeness": "full", "key": "contact +friend-request-send", "kind": "shortcut", "path": "cards/cmd/shortcut--contact%20%2Bfriend-request-send.md", "product": "contact"}
 {"completeness": "full", "key": "contact +get-roster", "kind": "shortcut", "path": "cards/cmd/shortcut--contact%20%2Bget-roster.md", "product": "contact"}
 {"completeness": "full", "key": "contact +list-dept-members", "kind": "shortcut", "path": "cards/cmd/shortcut--contact%20%2Blist-dept-members.md", "product": "contact"}
 {"completeness": "full", "key": "contact +list-followings", "kind": "shortcut", "path": "cards/cmd/shortcut--contact%20%2Blist-followings.md", "product": "contact"}

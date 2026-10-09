@@ -11,9 +11,9 @@ visible_flags: 1
 - --dept <Int>: 部门 ID（钉钉根部门为 1）；--dept 必须大于 0
 
 ## Related
-- dws contact +get-roster
-- dws contact +list-dept-members
-- dws contact +list-followings
-- dws contact +list-role-members
-- dws contact +list-roles
-- dws contact +list-roster-fields
+- dws contact +friend-list
+- dws contact +friend-remove
+- dws contact +friend-request-accept
+- dws contact +friend-request-list
+- dws contact +friend-request-reject
+- dws contact +friend-request-send

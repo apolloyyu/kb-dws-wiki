@@ -11,9 +11,9 @@ visible_flags: 1
 - --query <String>: 搜索关键词；--query 不能为空白
 
 ## Related
-- dws contact +get-roster
-- dws contact +list-dept-members
-- dws contact +list-followings
-- dws contact +list-role-members
-- dws contact +list-roles
-- dws contact +list-roster-fields
+- dws contact +friend-list
+- dws contact +friend-remove
+- dws contact +friend-request-accept
+- dws contact +friend-request-list
+- dws contact +friend-request-reject
+- dws contact +friend-request-send

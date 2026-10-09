@@ -12,9 +12,9 @@ visible_flags: 2
 - --fields <StringSlice>: 指定字段集合，逗号分隔，可通过 +list-roster-fields 获取（可选）
 
 ## Related
-- dws contact +list-dept-members
-- dws contact +list-followings
-- dws contact +list-role-members
-- dws contact +list-roles
-- dws contact +list-roster-fields
-- dws contact +list-sub-depts
+- dws contact +friend-list
+- dws contact +friend-remove
+- dws contact +friend-request-accept
+- dws contact +friend-request-list
+- dws contact +friend-request-reject
+- dws contact +friend-request-send

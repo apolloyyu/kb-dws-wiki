@@ -5,7 +5,7 @@ completeness: full
 usage: dws contact label get
 description: 根据角色名称查询角色
 example: dws contact label get --names "管理员"
-source: internal/helpers/contact.go:1853
+source: internal/helpers/contact.go:1922
 visible_flags: 1
 
 ## Flags

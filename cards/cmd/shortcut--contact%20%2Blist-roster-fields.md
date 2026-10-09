@@ -11,9 +11,9 @@ visible_flags: 0
 - none
 
 ## Related
-- dws contact +get-roster
-- dws contact +list-dept-members
-- dws contact +list-followings
-- dws contact +list-role-members
-- dws contact +list-roles
-- dws contact +list-sub-depts
+- dws contact +friend-list
+- dws contact +friend-remove
+- dws contact +friend-request-accept
+- dws contact +friend-request-list
+- dws contact +friend-request-reject
+- dws contact +friend-request-send

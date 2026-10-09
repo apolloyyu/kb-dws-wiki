@@ -5,7 +5,7 @@ completeness: full
 usage: dws contact user profile get
 description: 查询员工花名册字段信息（个人档案）
 example: dws contact user profile get --staff-id STAFF_ID
-source: internal/helpers/contact.go:2403
+source: internal/helpers/contact.go:2472
 visible_flags: 2
 
 ## Flags

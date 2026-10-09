@@ -5,7 +5,7 @@ completeness: full
 usage: dws upgrade
 description: 升级 DWS CLI 到最新版本
 example: dws upgrade
-source: internal/app/upgrade.go:98
+source: internal/app/upgrade.go:99
 visible_flags: 8
 
 ## Flags

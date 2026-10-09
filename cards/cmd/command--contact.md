@@ -4,7 +4,7 @@ kind: command
 completeness: partial
 usage: dws contact
 description: —
-source: internal/shortcut/contact/common.go:89
+source: internal/shortcut/contact/common.go:93
 visible_flags: 0
 partial_reason: unverified_usage,unverified_flags,missing_description
 

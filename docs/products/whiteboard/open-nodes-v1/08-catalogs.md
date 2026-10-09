@@ -1,6 +1,6 @@
 ---
 source_path: "skills/mono/references/products/whiteboard/open-nodes-v1/08-catalogs.md"
-source_commit: "251ae0d7"
+source_commit: "0a813a96"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 

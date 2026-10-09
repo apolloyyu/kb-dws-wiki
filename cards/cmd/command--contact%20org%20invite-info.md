@@ -6,7 +6,7 @@ usage: dws contact org invite-info
 description: Fetch the enterprise invite link, invite code, join switches, and audit type.
 example: dws contact org invite-info
 use_when: When the user asks for the invite link/QR code or wants to inspect current join settings.
-source: internal/helpers/contact.go:3129
+source: internal/helpers/contact.go:3203
 visible_flags: 0
 
 ## Flags

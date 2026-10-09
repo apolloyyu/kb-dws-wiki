@@ -11,9 +11,9 @@ visible_flags: 1
 - --open-id <String>: 可选；仅保留 openDingTalkId 精确匹配的特别关注，用于确定性存在性检查；显式传入时不能为空白
 
 ## Related
-- dws contact +get-roster
-- dws contact +list-dept-members
-- dws contact +list-role-members
-- dws contact +list-roles
-- dws contact +list-roster-fields
-- dws contact +list-sub-depts
+- dws contact +friend-list
+- dws contact +friend-remove
+- dws contact +friend-request-accept
+- dws contact +friend-request-list
+- dws contact +friend-request-reject
+- dws contact +friend-request-send

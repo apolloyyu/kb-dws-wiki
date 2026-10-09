@@ -5,7 +5,7 @@ completeness: partial
 usage: dws contact org apply-remove
 description: Delete a join-enterprise application record permanently.
 use_when: When the user explicitly asks to remove an application record and accepts it cannot be recovered.
-source: internal/helpers/contact.go:3402
+source: internal/helpers/contact.go:3476
 visible_flags: 0
 partial_reason: unverified_usage,unverified_flags
 

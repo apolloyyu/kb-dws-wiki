@@ -5,18 +5,17 @@ completeness: full
 usage: dws chat conversation-file upload
 description: Upload a local file to a conversation file space without sending a message, returning reusable file identifiers.
 use_when: When the agent explicitly needs conversation-file identifiers without posting a chat message.
-source: internal/helpers/chat.go:6157
-visible_flags: 8
+source: internal/helpers/chat.go:6192
+visible_flags: 7
 
 ## Flags
-- --conversation-id <String>: 群聊 openConversationId（群聊时使用）
-- --user <String>: 单聊对方 userId（单聊时使用）
-- --open-dingtalk-id <String>: 单聊对方 openDingTalkId（单聊时使用）
-- --file <String>: 本地文件路径（与 --url 二选一）
-- --url <String>: 远程文件 URL（与 --file 二选一，服务端代传）
-- --file-name <String>: 文件名（可选，本地文件默认取文件名，URL 默认从 URL 推断）
-- --md5 <String>: 文件 MD5（可选，本地文件不传时自动计算）
-- --uuid <String>: 幂等 UUID（可选）
+- --conversation-id <String>: 群聊 openConversationId
+- --user <String>: 单聊对方 userId
+- --open-dingtalk-id <String>: 单聊对方 openDingTalkId
+- --file <String> required: 工作目录内的本地文件路径（必填）
+- --file-name <String>: 上传后的文件名；省略时使用本地文件名
+- --md5 <String>: 文件 MD5；省略时由 CLI 计算
+- --idempotency-key <String>: 幂等键
 
 ## Related
 - none

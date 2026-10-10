@@ -4,12 +4,12 @@ kind: command
 completeness: partial
 usage: dws recruit job create
 description: —
-source: internal/cli/param_aliases_generated.go:9499
-visible_flags: 0
-partial_reason: unverified_usage,unverified_flags,missing_description
+source: internal/helpers/recruit.go:385
+visible_flags: 1
+partial_reason: missing_description
 
 ## Flags
-- none
+- --from <String> required: 职位 JSON 文件路径（必填）
 
 ## Related
 - dws recruit job get

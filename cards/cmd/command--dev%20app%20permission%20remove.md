@@ -4,12 +4,13 @@ kind: command
 completeness: partial
 usage: dws dev app permission remove
 description: —
-source: internal/cli/param_aliases_generated.go:5384
-visible_flags: 0
-partial_reason: unverified_usage,unverified_flags,missing_description
+source: internal/helpers/devapp.go:977
+visible_flags: 2
+partial_reason: missing_description
 
 ## Flags
-- none
+- --unified-app-id <String> required: 开放平台统一应用 ID（必填）
+- --scope-values <String> required: 待取消权限点 scopeValue，多个用逗号或分号分隔
 
 ## Related
 - dws dev app permission add

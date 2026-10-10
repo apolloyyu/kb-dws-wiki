@@ -4,12 +4,13 @@ kind: command
 completeness: partial
 usage: dws aitable comment update
 description: —
-source: internal/helpers/aitable_comment.go:180
-visible_flags: 0
-partial_reason: unverified_usage,unverified_flags,missing_description
+source: internal/helpers/aitable_comment.go:167
+visible_flags: 2
+partial_reason: unverified_flags,missing_description
 
 ## Flags
-- none
+- --content <String>: 纯文本评论正文；与 --rich-content 二选一
+- --rich-content <String>: text/mention/image 有序节点 JSON 数组；与 --content 二选一
 
 ## Related
 - dws aitable comment create

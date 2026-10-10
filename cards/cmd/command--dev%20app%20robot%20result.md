@@ -4,12 +4,12 @@ kind: command
 completeness: partial
 usage: dws dev app robot result
 description: —
-source: internal/cli/param_aliases_generated.go:5445
-visible_flags: 0
-partial_reason: unverified_usage,unverified_flags,missing_description
+source: internal/helpers/devapp.go:1246
+visible_flags: 1
+partial_reason: missing_description
 
 ## Flags
-- none
+- --task-id <String> required: 提交创建任务时返回的 taskId (必填)
 
 ## Related
 - dws dev app robot config

@@ -4,12 +4,13 @@ kind: command
 completeness: partial
 usage: dws dingtalk-tag manage login
 description: —
-source: internal/helpers/deap_agent.go:192
-visible_flags: 0
-partial_reason: unverified_usage,unverified_flags,missing_description
+source: internal/helpers/deap_agent.go:160
+visible_flags: 2
+partial_reason: missing_description
 
 ## Flags
-- none
+- --agent-uuid <String> required: 数字员工 ID
+- --client-id <String>: 用于授权的应用 ID；不传时由服务端选择默认应用
 
 ## Related
 - dws dingtalk-tag manage create

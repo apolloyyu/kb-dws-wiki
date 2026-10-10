@@ -4,12 +4,12 @@ kind: command
 completeness: partial
 usage: dws dingtalk-tag manage publish
 description: —
-source: internal/helpers/deap_agent.go:523
-visible_flags: 0
-partial_reason: unverified_usage,unverified_flags,missing_description
+source: internal/helpers/deap_agent.go:503
+visible_flags: 1
+partial_reason: missing_description
 
 ## Flags
-- none
+- --agent-uuid <String> required: 数字员工 ID
 
 ## Related
 - dws dingtalk-tag manage create

@@ -1,16 +1,15 @@
 # dws chat thread list-emotion-replies
 
 kind: command
-completeness: partial
+completeness: full
 usage: dws chat thread list-emotion-replies
 description: List emoji and text-emotion replies for Thread messages.
 use_when: When the agent needs reaction users or statistics for Thread messages.
-source: internal/helpers/chat_thread.go:777
-visible_flags: 0
-partial_reason: unverified_usage,unverified_flags
+source: internal/helpers/chat_thread.go:767
+visible_flags: 1
 
 ## Flags
-- none
+- --msg-ids <String> required: 消息 ID 列表，逗号分隔 (必填)
 
 ## Related
 - dws chat thread add-emoji

@@ -4,12 +4,12 @@ kind: command
 completeness: partial
 usage: dws mail user get
 description: —
-source: internal/helpers/mail_user.go:39
-visible_flags: 0
-partial_reason: unverified_usage,unverified_flags,missing_description
+source: internal/helpers/mail_user.go:16
+visible_flags: 1
+partial_reason: missing_description
 
 ## Flags
-- none
+- --org-email <String> required: 待查询员工的完整企业邮箱 (必填)，不自动补全域名或转换别名
 
 ## Related
 - dws mail user batch-get

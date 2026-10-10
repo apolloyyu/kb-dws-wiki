@@ -4,12 +4,20 @@ kind: command
 completeness: partial
 usage: dws dev app list
 description: —
-source: internal/cli/param_aliases_generated.go:5298
-visible_flags: 0
-partial_reason: unverified_usage,unverified_flags,missing_description
+source: internal/helpers/devapp.go:416
+visible_flags: 9
+partial_reason: missing_description
 
 ## Flags
-- none
+- --name <String>: 应用名称关键词
+- --app-key <String>: 按 appKey/clientId 过滤
+- --app-group-id <Int>: 应用分组 ID
+- --creator <String>: 创建人名称关键词
+- --robot-name <String>: 机器人名称关键词
+- --develop-type <Int>: 开发类型枚举；不确定时不要传
+- --filter-cool-app <Int>: 酷应用过滤枚举；不确定时不要传
+- --sort-type <String>: 排序字段，如 gmt_modified
+- … 1 more; use dwsdoc cmd/short for full flags
 
 ## Related
 - dws dev app create

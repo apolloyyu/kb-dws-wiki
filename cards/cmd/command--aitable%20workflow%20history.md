@@ -4,12 +4,18 @@ kind: command
 completeness: partial
 usage: dws aitable workflow history
 description: —
-source: internal/cli/param_aliases_generated.go:2156
-visible_flags: 0
-partial_reason: unverified_usage,unverified_flags,missing_description
+source: internal/helpers/aitable.go:7584
+visible_flags: 7
+partial_reason: missing_description
 
 ## Flags
-- none
+- --base-id <String> required: 目标 Base ID (必填)
+- --workflow-id <String> required: 目标工作流 ID (必填)
+- --status <String>: 执行状态筛选；不传表示全部(可选: success|failed|running|break|untrigger)
+- --after-time <Int>: 开始时间（Unix 毫秒）
+- --before-time <Int>: 结束时间（Unix 毫秒）
+- --page <Int>: 页码，从 0 开始
+- --size <Int>: 每页条数 [1, 100]
 
 ## Related
 - dws aitable workflow create

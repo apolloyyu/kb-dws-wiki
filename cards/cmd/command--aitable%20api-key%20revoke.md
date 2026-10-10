@@ -4,12 +4,13 @@ kind: command
 completeness: partial
 usage: dws aitable api-key revoke
 description: —
-source: internal/helpers/aitable_api_key.go:169
-visible_flags: 0
-partial_reason: unverified_usage,unverified_flags,missing_description
+source: internal/helpers/aitable_api_key.go:156
+visible_flags: 2
+partial_reason: missing_description
 
 ## Flags
-- none
+- --base-id <String> required: AI 表格 Base ID
+- --key-id <String> required: 要撤销的 Key 标识，小写规范 UUID
 
 ## Related
 - dws aitable api-key create

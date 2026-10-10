@@ -449,20 +449,20 @@
 {"completeness": "partial", "key": "chat text", "kind": "command", "path": "cards/cmd/command--chat%20text.md", "product": "chat"}
 {"completeness": "full", "key": "chat text translate", "kind": "command", "path": "cards/cmd/command--chat%20text%20translate.md", "product": "chat"}
 {"completeness": "full", "key": "chat thread", "kind": "command", "path": "cards/cmd/command--chat%20thread.md", "product": "chat"}
-{"completeness": "partial", "key": "chat thread add-emoji", "kind": "command", "path": "cards/cmd/command--chat%20thread%20add-emoji.md", "product": "chat"}
-{"completeness": "partial", "key": "chat thread add-text-emotion", "kind": "command", "path": "cards/cmd/command--chat%20thread%20add-text-emotion.md", "product": "chat"}
-{"completeness": "partial", "key": "chat thread create-group", "kind": "command", "path": "cards/cmd/command--chat%20thread%20create-group.md", "product": "chat"}
+{"completeness": "full", "key": "chat thread add-emoji", "kind": "command", "path": "cards/cmd/command--chat%20thread%20add-emoji.md", "product": "chat"}
+{"completeness": "full", "key": "chat thread add-text-emotion", "kind": "command", "path": "cards/cmd/command--chat%20thread%20add-text-emotion.md", "product": "chat"}
+{"completeness": "full", "key": "chat thread create-group", "kind": "command", "path": "cards/cmd/command--chat%20thread%20create-group.md", "product": "chat"}
 {"completeness": "partial", "key": "chat thread forward", "kind": "command", "path": "cards/cmd/command--chat%20thread%20forward.md", "product": "chat"}
 {"completeness": "partial", "key": "chat thread list", "kind": "command", "path": "cards/cmd/command--chat%20thread%20list.md", "product": "chat"}
-{"completeness": "partial", "key": "chat thread list-emotion-replies", "kind": "command", "path": "cards/cmd/command--chat%20thread%20list-emotion-replies.md", "product": "chat"}
+{"completeness": "full", "key": "chat thread list-emotion-replies", "kind": "command", "path": "cards/cmd/command--chat%20thread%20list-emotion-replies.md", "product": "chat"}
 {"completeness": "partial", "key": "chat thread list-replies", "kind": "command", "path": "cards/cmd/command--chat%20thread%20list-replies.md", "product": "chat"}
 {"completeness": "partial", "key": "chat thread promote", "kind": "command", "path": "cards/cmd/command--chat%20thread%20promote.md", "product": "chat"}
-{"completeness": "partial", "key": "chat thread recall-message", "kind": "command", "path": "cards/cmd/command--chat%20thread%20recall-message.md", "product": "chat"}
-{"completeness": "partial", "key": "chat thread remove-emoji", "kind": "command", "path": "cards/cmd/command--chat%20thread%20remove-emoji.md", "product": "chat"}
-{"completeness": "partial", "key": "chat thread remove-text-emotion", "kind": "command", "path": "cards/cmd/command--chat%20thread%20remove-text-emotion.md", "product": "chat"}
+{"completeness": "full", "key": "chat thread recall-message", "kind": "command", "path": "cards/cmd/command--chat%20thread%20recall-message.md", "product": "chat"}
+{"completeness": "full", "key": "chat thread remove-emoji", "kind": "command", "path": "cards/cmd/command--chat%20thread%20remove-emoji.md", "product": "chat"}
+{"completeness": "full", "key": "chat thread remove-text-emotion", "kind": "command", "path": "cards/cmd/command--chat%20thread%20remove-text-emotion.md", "product": "chat"}
 {"completeness": "partial", "key": "chat thread reply", "kind": "command", "path": "cards/cmd/command--chat%20thread%20reply.md", "product": "chat"}
 {"completeness": "partial", "key": "chat thread send", "kind": "command", "path": "cards/cmd/command--chat%20thread%20send.md", "product": "chat"}
-{"completeness": "partial", "key": "chat thread update-text-emotion", "kind": "command", "path": "cards/cmd/command--chat%20thread%20update-text-emotion.md", "product": "chat"}
+{"completeness": "full", "key": "chat thread update-text-emotion", "kind": "command", "path": "cards/cmd/command--chat%20thread%20update-text-emotion.md", "product": "chat"}
 {"completeness": "full", "key": "chat toolbar", "kind": "command", "path": "cards/cmd/command--chat%20toolbar.md", "product": "chat"}
 {"completeness": "partial", "key": "chat toolbar add", "kind": "command", "path": "cards/cmd/command--chat%20toolbar%20add.md", "product": "chat"}
 {"completeness": "partial", "key": "chat toolbar create-custom", "kind": "command", "path": "cards/cmd/command--chat%20toolbar%20create-custom.md", "product": "chat"}
@@ -1037,7 +1037,7 @@
 {"completeness": "full", "key": "oa approval tasks", "kind": "command", "path": "cards/cmd/command--oa%20approval%20tasks.md", "product": "oa"}
 {"completeness": "partial", "key": "oa approval template", "kind": "command", "path": "cards/cmd/command--oa%20approval%20template.md", "product": "oa"}
 {"completeness": "partial", "key": "oa approval template create", "kind": "command", "path": "cards/cmd/command--oa%20approval%20template%20create.md", "product": "oa"}
-{"completeness": "full", "key": "oa approval template detail", "kind": "command", "path": "cards/cmd/command--oa%20approval%20template%20detail.md", "product": "oa"}
+{"completeness": "partial", "key": "oa approval template detail", "kind": "command", "path": "cards/cmd/command--oa%20approval%20template%20detail.md", "product": "oa"}
 {"completeness": "partial", "key": "oa approval template list", "kind": "command", "path": "cards/cmd/command--oa%20approval%20template%20list.md", "product": "oa"}
 {"completeness": "partial", "key": "oa approval template update", "kind": "command", "path": "cards/cmd/command--oa%20approval%20template%20update.md", "product": "oa"}
 {"completeness": "full", "key": "pat", "kind": "command", "path": "cards/cmd/command--pat.md", "product": "pat"}

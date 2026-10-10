@@ -4,9 +4,9 @@ kind: command
 completeness: partial
 usage: dws oa approval template list
 description: —
-source: internal/helpers/oa.go:2289
+source: internal/helpers/oa.go:2271
 visible_flags: 0
-partial_reason: unverified_usage,unverified_flags,missing_description
+partial_reason: missing_description
 
 ## Flags
 - none

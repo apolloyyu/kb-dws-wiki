@@ -4,12 +4,14 @@ kind: command
 completeness: partial
 usage: dws oa approval attachment authorize-preview
 description: —
-source: internal/helpers/oa.go:521
-visible_flags: 0
-partial_reason: unverified_usage,unverified_flags,missing_description
+source: internal/helpers/oa.go:493
+visible_flags: 3
+partial_reason: missing_description
 
 ## Flags
-- none
+- --instance-id <String> required: 审批实例 ID (必填)
+- --file-ids <StringSlice> required: 附件 ID 列表，多个用逗号分隔 (必填)
+- --with-comment-attachment <Bool>: 是否包含评论中的附件
 
 ## Related
 - dws oa approval attachment authorize-download

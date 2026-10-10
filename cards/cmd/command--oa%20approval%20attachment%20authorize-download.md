@@ -4,12 +4,12 @@ kind: command
 completeness: partial
 usage: dws oa approval attachment authorize-download
 description: —
-source: internal/helpers/oa.go:465
-visible_flags: 0
-partial_reason: unverified_usage,unverified_flags,missing_description
+source: internal/helpers/oa.go:433
+visible_flags: 1
+partial_reason: missing_description
 
 ## Flags
-- none
+- --file-infos <String> required: 审批钉盘文件信息 JSON 数组 (必填)
 
 ## Related
 - dws oa approval attachment authorize-preview

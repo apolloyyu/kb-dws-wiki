@@ -4,12 +4,12 @@ kind: command
 completeness: partial
 usage: dws dev app credentials get
 description: —
-source: internal/cli/param_aliases_generated.go:5213
-visible_flags: 0
-partial_reason: unverified_usage,unverified_flags,missing_description
+source: internal/helpers/devapp.go:596
+visible_flags: 1
+partial_reason: missing_description
 
 ## Flags
-- none
+- --unified-app-id <String> required: 开放平台统一应用 ID（必填）
 
 ## Related
 - none

@@ -4,12 +4,12 @@ kind: command
 completeness: partial
 usage: dws dingtalk-tag connect stop
 description: —
-source: internal/helpers/deap_agent_adapter.go:361
-visible_flags: 0
-partial_reason: unverified_usage,unverified_flags,missing_description
+source: internal/helpers/deap_agent_adapter.go:354
+visible_flags: 1
+partial_reason: missing_description
 
 ## Flags
-- none
+- --agent-uuid <String> required: 本地已绑定的数字员工 ID
 
 ## Related
 - dws dingtalk-tag connect list

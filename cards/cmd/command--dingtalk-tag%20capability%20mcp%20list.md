@@ -4,12 +4,15 @@ kind: command
 completeness: partial
 usage: dws dingtalk-tag capability mcp list
 description: —
-source: internal/helpers/deap_agent_skill_mcp.go:741
-visible_flags: 0
-partial_reason: unverified_usage,unverified_flags,missing_description
+source: internal/helpers/deap_agent_skill_mcp.go:729
+visible_flags: 4
+partial_reason: missing_description
 
 ## Flags
-- none
+- --agent-uuid <String> required: 目标数字员工 UUID（MCP 资源 tenant）
+- --keywords <String>: 名称或描述关键词
+- --page <Int>: 页码
+- --page-size <Int>: 每页数量
 
 ## Related
 - dws dingtalk-tag capability mcp create

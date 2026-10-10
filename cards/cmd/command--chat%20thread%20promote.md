@@ -4,12 +4,13 @@ kind: command
 completeness: partial
 usage: dws chat thread promote
 description: —
-source: internal/helpers/chat_thread.go:108
-visible_flags: 0
-partial_reason: unverified_usage,unverified_flags,missing_description
+source: internal/helpers/chat_thread.go:94
+visible_flags: 2
+partial_reason: missing_description
 
 ## Flags
-- none
+- --conversation-id <String> required: 消息所属普通群的 openConversationId (必填)
+- --message-id <String> required: 待升级消息的 openMessageId (必填)
 
 ## Related
 - dws chat thread add-emoji

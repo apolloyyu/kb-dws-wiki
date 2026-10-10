@@ -4,12 +4,13 @@ kind: command
 completeness: partial
 usage: dws dev app delete
 description: —
-source: internal/cli/param_aliases_generated.go:5221
-visible_flags: 0
-partial_reason: unverified_usage,unverified_flags,missing_description
+source: internal/helpers/devapp.go:712
+visible_flags: 2
+partial_reason: missing_description
 
 ## Flags
-- none
+- --unified-app-id <String> required: 开放平台统一应用 ID（必填）
+- --confirm-name <String>: 二次确认：必须与被删应用的名称一致（不可逆操作的防误删）
 
 ## Related
 - dws dev app create

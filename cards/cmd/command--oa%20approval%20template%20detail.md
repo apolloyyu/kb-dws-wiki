@@ -1,14 +1,15 @@
 # dws oa approval template detail
 
 kind: command
-completeness: full
+completeness: partial
 usage: dws oa approval template detail
-description: 获取审批实例详情
-source: internal/helpers/oa.go:1396
+description: —
+source: internal/helpers/oa.go:2310
 visible_flags: 1
+partial_reason: missing_description
 
 ## Flags
-- --instance-id <String>: 审批实例 ID (必填)
+- --process-code <String> required: 单个审批模板 code（必填）
 
 ## Related
 - dws oa approval template create

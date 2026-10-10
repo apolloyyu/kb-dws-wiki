@@ -4,9 +4,9 @@ kind: command
 completeness: partial
 usage: dws dingtalk-tag connect list
 description: —
-source: internal/helpers/deap_agent_adapter.go:343
+source: internal/helpers/deap_agent_adapter.go:336
 visible_flags: 0
-partial_reason: unverified_usage,unverified_flags,missing_description
+partial_reason: missing_description
 
 ## Flags
 - none

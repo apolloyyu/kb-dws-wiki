@@ -4,12 +4,14 @@ kind: command
 completeness: partial
 usage: dws dev app create
 description: —
-source: internal/cli/param_aliases_generated.go:5204
-visible_flags: 0
-partial_reason: unverified_usage,unverified_flags,missing_description
+source: internal/helpers/devapp.go:512
+visible_flags: 3
+partial_reason: missing_description
 
 ## Flags
-- none
+- --name <String> required: 应用名称 (必填)
+- --desc <String>: 应用描述
+- --icon-media-id <String>: 应用图标 mediaId
 
 ## Related
 - dws dev app credentials

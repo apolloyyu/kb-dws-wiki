@@ -4,12 +4,15 @@ kind: command
 completeness: partial
 usage: dws dev app update
 description: —
-source: internal/cli/param_aliases_generated.go:5481
-visible_flags: 0
-partial_reason: unverified_usage,unverified_flags,missing_description
+source: internal/helpers/devapp.go:549
+visible_flags: 4
+partial_reason: missing_description
 
 ## Flags
-- none
+- --unified-app-id <String> required: 开放平台统一应用 ID（必填）
+- --name <String>: 新的应用名称
+- --desc <String>: 新的应用描述
+- --icon-media-id <String>: 新的应用图标 mediaId
 
 ## Related
 - dws dev app create

@@ -1,16 +1,17 @@
 # dws chat thread remove-emoji
 
 kind: command
-completeness: partial
+completeness: full
 usage: dws chat thread remove-emoji
 description: Remove the current user's emoji reaction from a Thread message.
 use_when: When the agent needs to undo a Thread reaction.
-source: internal/helpers/chat_thread.go:741
-visible_flags: 0
-partial_reason: unverified_usage,unverified_flags
+source: internal/helpers/chat_thread.go:729
+visible_flags: 3
 
 ## Flags
-- none
+- --conversation-id <String> required: 父群 openConversationId；处理回复时也可传 Thread openConvThreadId (必填)
+- --message-id <String> required: 消息 openMessageId (必填)
+- --emoji <String> required: emoji 表情名称 (必填)
 
 ## Related
 - dws chat thread add-emoji

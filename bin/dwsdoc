@@ -73,6 +73,8 @@ _TERM_GROUPS = [
     ("跨组织", "非本组织", "外部组织", "其他组织", "跨企业", "外部企业", "cross-org"),
     ("扇出", "独占", "排他", "只有一个", "其余", "广播", "每个消费者", "fan-out", "fanout", "exclusive"),
     ("通过ai发送", "ai发送", "ai标签", "显示标签", "ai", "ai-tag", "clawtype", "agent-product", "dws_agent_product"),
+    ("白名单", "allowed-users", "allowed-groups"),
+    ("可见范围", "visibility", "set-visibility"),
 ]
 _VARIANTS = {}
 for _g in _TERM_GROUPS:
@@ -230,6 +232,12 @@ def _intent(q):
         "trouble": (any(k in q for k in ("报错", "错误", "失败", "异常", "打不开", "无权限", "暂无权限", "提示", "问题"))
                     or bool(re.search(r"\b(error|failed|failure|exception|denied|required unless|param_error)\b", q))),
         "enumerate": any(k in q for k in ("全部", "所有", "有哪些", "哪些", "盘点", "枚举", "什么类型", "哪种类型")),
+        # 「群里谁能和数字员工对话/怎么拉进群」:答案是 dingtalk-tag 的可见范围与 connect 白名单,
+        # 不是 chat 的 add-bot/@所有人(实录 2026-10-10:检索给出 add-bot,模型据此编出 robotCode 入群并在群内复读)。
+        "access": (bool(re.search(r"数字员工|dingtalk-tag|agent-uuid", q))
+                   and any(k in q for k in ("群", "别人", "他人", "其他人", "所有人", "全员", "成员", "同事", "大家",
+                                            "谁能", "白名单", "可见", "对话", "聊天", "拉进", "加入", "可用范围", "使用范围",
+                                            "robotcode", "robot-code"))),
         "version": (any(k in q for k in ("版本", "兼容", "升级", "上线", "发布版", "还能用", "正常使用"))
                     or bool(re.search(r"\bv?\d+\.\d+(?:\.\d+)?\b", q))),
         "semantic": (any(k in q for k in ("只是", "还是", "云端", "本地", "其他人", "影响", "区别", "范围", "限制",
@@ -270,6 +278,9 @@ def _evidence_contract(intent=None, has_card=True):
         lines.append("- capability：某条命令存在只证明该入口存在；所问对象、消息类型和输出层级仍须由正文/源码直接覆盖。")
     if intent.get("card_capability"):
         lines.append("- card_axes：原始卡片结构、可读文本提取、结构化字段解析、渲染、解密是五项独立能力，须逐项核验，不得互相推出。")
+    if intent.get("access"):
+        lines.append("- access：可见范围(set-visibility)与对话白名单(connect --allowed-users/--allowed-groups)是两层；"
+                     "原文没写的入群方式答「文档未说明」，应用机器人命令(add-bot/robotCode)不得套用到数字员工。")
     if intent.get("why") or intent.get("mechanism") or intent.get("trouble"):
         lines.append("- causality：报错根因/生命周期/机制须有对应代码路径；只有相关事实时只能标为推测并给用户自验步骤。")
     return lines
@@ -392,6 +403,22 @@ def ctx_impl(q, raw_terms, force_full=False):
             return (0 if explicit else 1 if reads_content else 2, -r.get("_ctx_score", 0), name)
         cmds.sort(key=_card_read_rank)
         shorts.sort(key=_card_read_rank)
+    if intent["access"]:
+        # 只按 graph 的 flag schema 选带访问控制 flag 的 dingtalk-tag 命令,不写死命令名;
+        # 不锁定时「所有人」命中 @所有人、「群」命中 add-bot,首卡定调就错了。
+        def _acl(r):
+            return any(f.get("name", "").startswith("allowed-") or f.get("name") == "visibility"
+                       for f in r.get("flags", []))
+        pinned = [r for r in command_rows if r.get("product") == "dingtalk-tag" and _acl(r)]
+        # 旧 graph 未抽到 LeafSpec flag 时退回本轮已命中的 dingtalk-tag 命令
+        pinned = pinned or [r for r in cmds if r.get("product") == "dingtalk-tag"][:3]
+        pinned.sort(key=lambda r: -r.get("_ctx_score", 0))   # 点名 set-visibility 时仍以它为首卡
+        base = max([r.get("_ctx_score", 0) for r in cmds + shorts] or [0])
+        for i, r in enumerate(pinned):
+            r["_ctx_score"] = base + 10 - i
+        cmds = pinned + [r for r in cmds if r not in pinned]
+        shorts = ([r for r in shorts if r.get("product") == "dingtalk-tag"]
+                  + [r for r in shorts if r.get("product") != "dingtalk-tag"])
     qq = q.lstrip("-")
     flag_hits = []
     for r in load("commands.jsonl"):
@@ -450,7 +477,7 @@ def ctx_impl(q, raw_terms, force_full=False):
     # 语义后果与未闭合输入必须保留正文/notes，不能由“命令存在”直接推出结论。
     card_blocked = any(intent[k] for k in
                        ("why", "howmany", "support", "capability", "validation", "mechanism",
-                        "truncated", "trouble", "enumerate", "version", "semantic"))
+                        "truncated", "trouble", "enumerate", "version", "semantic", "access"))
     card_fast = bool(top_card and top_card["full"] and _card_confident(top_family, top_card)
                      and not card_blocked)
     card_items = [top_card] if top_card else []
@@ -513,7 +540,8 @@ def ctx_impl(q, raw_terms, force_full=False):
     # 不能因答案卡退出 fast 后只塞一篇泛产品文档。普通支持性判断由命令卡+产品
     # 正文回答，只有同时属于上述复杂意图时才补 notes，避免无关语义篇干扰。
     _needs_notes = any(intent[k] for k in
-                       ("why", "howmany", "capability", "card_capability", "validation", "mechanism", "trouble"))
+                       ("why", "howmany", "capability", "card_capability", "validation", "mechanism", "trouble",
+                        "access"))
     _mech = _needs_notes
     # full 卡 + 首名明显胜出 + 非机制/数值/支持/排障/枚举题时，正文归零；
     # 任一条件不满足就保持 R10.1 的 1~2 篇正文，准确率优先。
@@ -530,7 +558,20 @@ def ctx_impl(q, raw_terms, force_full=False):
                         if r["layer"] in ("docs", "mirror")
                         and (r["path"] == product_prefix + ".md"
                              or r["path"].startswith(product_prefix + "/"))]
-        product_docs.sort(key=lambda r: (r["path"] != product_prefix + ".md", r["path"]))
+        # 无根文档的产品(如 dingtalk-tag/)旧法按字母序取首篇,数字员工题永远只展开 capability.md;
+        # 改为:根文档 → 本轮命中的相关度 → *-index.md → 字母序。
+        hit_rank = {r["path"]: i for i, r in enumerate(docs_hits)}
+        # 记载首卡命令最多的子篇目优先:正文要能解释首卡,而不是同产品里字母序靠前的篇
+        top_path = f"dws {top_row['cmd'].strip()}" if top_kind == "command" else ""
+        def _documents_top(r):
+            if not top_path:
+                return 0
+            fp = os.path.join(ROOT, r["path"])
+            return open(fp, encoding="utf-8", errors="replace").read().count(top_path) if os.path.exists(fp) else 0
+        product_docs.sort(key=lambda r: (r["path"] != product_prefix + ".md",
+                                         -_documents_top(r),
+                                         hit_rank.get(r["path"], len(hit_rank)),
+                                         not r["path"].endswith("-index.md"), r["path"]))
         primary_docs = product_docs + [r for r in primary_docs if r not in product_docs]
     body_docs = (primary_docs or docs_hits)[:_n_body]
     for i, r in enumerate(body_docs):
@@ -593,10 +634,19 @@ def ctx_impl(q, raw_terms, force_full=False):
                 low = body.lower()
                 distinct = sum(_w(w) for w in words if _hit(w, low))
                 total = sum(low.count(w) for w in words)
-                if distinct:
+                # note 在 frontmatter 声明 intents 时,命中该意图必定首选并整篇并入
+                declared = re.search(r"(?m)^intents:(.*)$", body[:800])
+                owned = bool(declared and any(intent.get(x.strip()) for x in declared.group(1).split(",")))
+                if owned:
+                    ranked.append((-10**9, fn, body))
+                elif declared:
+                    continue   # 声明了专属意图的 note 只随该意图并入,不参与泛关键词竞争
+                elif distinct:
                     ranked.append((-(distinct * 100 + total), fn, body))
             ranked.sort()
-            for _, fn, body in ranked[:note_limit]:
+            if ranked and ranked[0][0] == -10**9:
+                note_limit = 1   # 意图专属 note 已整篇并入,不再带第二篇泛相关 note 分散注意
+            for score, fn, body in ranked[:note_limit]:
                 # frontmatter/导语不是小节，命中泛词时不应与真正相关的小节争 top2。
                 secs = [s for s in re.split(r"\n(?=#{2,3} )", body)
                         if s.lstrip().startswith(("## ", "### "))]
@@ -609,6 +659,8 @@ def ctx_impl(q, raw_terms, force_full=False):
                 # 排障/机制题的正解小节常排第 3(实录 Q283 "扇出还是独占"被锁/消费端两节压住)
                 n_secs = 3 if (intent["trouble"] or intent["why"] or intent["mechanism"]) else 2
                 hit = [s for n_, _, s in sc[:n_secs] if n_ > 0]
+                if score == -10**9:
+                    hit = [body.split("\n---", 1)[-1].strip()]
                 picked.append(f"--- notes/{fn} ---\n" + ("\n".join(hit) if hit else body[:2000])[:3000])
             if picked:
                 notes_hit = len(picked)
@@ -685,7 +737,7 @@ def show_cmd(r, full=True):
             print(f"    --{f['name']}"
                   + (f"/-{f['short']}" if f.get("short") else "")
                   + f"  {f['type']}{marks}  {f.get('help','')}"
-                  + f"  [:{f['line']}]")
+                  + f"  [{f.get('file', '')}:{f['line']}]")
 
 
 def show_short(r):

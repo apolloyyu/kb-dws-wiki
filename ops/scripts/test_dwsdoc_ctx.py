@@ -85,7 +85,10 @@ class DwsdocCtxContractTest(unittest.TestCase):
 
     def test_generic_support_uses_product_context_without_unrelated_notes(self):
         out = run_dwsdoc("ctx", "oa审批实例发起，在有附件的情况下，是否需要先拿到文件的 media id 或钉盘文件 id")
-        self.assertIn("# dws oa approval attachment upload", out)
+        # LeafSpec flag/描述补齐后 authorize-download 也成为合格首卡候选；本题契约是
+        # upload 入口与其正文必须进上下文，而非固定由它占首卡。
+        self.assertIn("dws oa approval attachment upload", out)
+        self.assertIn("上传本地文件为审批附件", out)
         self.assertIn("card=1(fast=0)", out)
         self.assertIn("notes=0", out)
         self.assertIn("docs/products/oa.md", out)
@@ -140,6 +143,24 @@ class DwsdocCtxContractTest(unittest.TestCase):
         self.assertIn("== 证据契约(回答边界) ==", out)
         self.assertIn("运行结果、当前登录态或服务端行为", out)
 
+
+    def test_digital_employee_group_access_uses_whitelist_note(self):
+        # 实录 2026-10-10:检索给出 add-bot/@所有人,模型编出「数字员工靠关联机器人 robotCode 入群」并在群内复读
+        for q in ("如何让群所有人可以与数字员工对话", "数字员工怎么拉进群",
+                  "怎么让别人也能和我的数字员工对话", "数字员工的 robotCode 在哪看"):
+            out = run_dwsdoc("ctx", q)
+            self.assertIn("notes/digital-employee-access.md", out, q)
+            self.assertIn("allowed-groups", out, q)
+            self.assertIn("没有通配", out, q)
+            self.assertIn("- access：", out, q)
+            self.assertIn("card=1(fast=0)", out, q)
+            self.assertRegex(out, r"(?m)^# dws dingtalk-tag ", q)
+            self.assertNotIn("add-bot --robot-code", out, q)
+
+    def test_robot_join_group_without_digital_employee_keeps_chat_context(self):
+        out = run_dwsdoc("ctx", "怎么把机器人拉进群")
+        self.assertNotIn("notes/digital-employee-access.md", out)
+        self.assertIn("add-bot", out)
 
 if __name__ == "__main__":
     unittest.main()

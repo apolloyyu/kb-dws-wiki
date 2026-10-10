@@ -21,7 +21,7 @@ lint(不过即退出非零):
 
 
 【bin 工具数据契约】bin/dwsdoc(含 ctx)依赖本构建器产物的以下字段,改动前先同步 bin 并跑冒烟:
-  graph/commands.jsonl: cmd/usage/usage_verified/example/flags_verified/desc/when/defs[{file,line}]/flags[{name,short,type,required,hidden,help,line}]
+  graph/commands.jsonl: cmd/usage/usage_verified/example/flags_verified/desc/when/defs[{file,line}]/flags[{name,short,type,required,hidden,help,line,file?}](file 仅跨文件 helper 的 flag 才有)
   graph/shortcuts.jsonl: product/cmd/desc/file/line/flags[{name,type,desc}]
   meta/documents.jsonl: path/layer/headings
 冒烟由 ECS det_build 在 push 前执行(dwsdoc cmd chat + dwsdoc ctx chat)。"""
@@ -287,6 +287,151 @@ def extract_flags(src):
     return defs
 
 
+# ---------- 声明式 LeafSpec 命令:NewLeafCommand(LeafSpec{Use, Short, Flags: []LeafFlag{...}}) ----------
+# 这类命令没有 &cobra.Command 字面量与 cmd.Flags() 调用,extract_flags 抽不到,实体表 flags 为空。
+# 实录(2026-10-10):dingtalk-tag connect 的 --allowed-users/--allowed-groups 不在实体表,
+# 「群里谁能和数字员工对话」检索不到白名单证据,模型改用 add-bot 拼出错误答案并在群内复读。
+LEAF_KIND = {"LeafString": "String", "LeafBool": "Bool", "LeafInt": "Int",
+             "LeafStringSlice": "StringSlice", "KindString": "String", "KindBool": "Bool",
+             "KindInt": "Int", "KindStringSlice": "StringSlice"}
+LEAF_CALL_SKIP = {"append", "make", "len", "string", "int", "bool"}
+
+
+def _top_fields(block):
+    """返回结构体字面量块内第 0 层的 {字段名: (值起点, 值终点)};字符串/注释感知。"""
+    fields, depth, j, n = {}, 0, 0, len(block)
+    key, start = None, None
+    while j < n:
+        c = block[j]
+        if c == '"':
+            j += 1
+            while j < n and block[j] != '"':
+                j += 2 if block[j] == "\\" else 1
+        elif c == "`":
+            j += 1
+            while j < n and block[j] != "`":
+                j += 1
+        elif c == "/" and j + 1 < n and block[j + 1] == "/":
+            while j < n and block[j] != "\n":
+                j += 1
+            continue
+        elif c in "({[":
+            depth += 1
+        elif c in ")}]":
+            depth -= 1
+        elif depth == 0:
+            if c == ",":
+                if key:
+                    fields[key] = (start, j)
+                key = None
+            elif key is None:
+                km = re.match(r'\s*(\w+)\s*:(?!=)', block[j:])
+                if km:
+                    key, start = km.group(1), j + km.end()
+                    j += km.end()
+                    continue
+        j += 1
+    if key:
+        fields[key] = (start, n)
+    return fields
+
+
+def _leaf_entry(name, body, line):
+    def s(k):
+        m = re.search(r'\b' + k + r':\s*"((?:[^"\\]|\\.)*)"', body)
+        return m.group(1) if m else ""
+    km = re.search(r'\bKind:\s*(?:\w+\.)?(\w+)', body)
+    help_ = s("Usage")
+    em = re.search(r'\bEnum:\s*\[\]string\{([^}]*)\}', body)
+    if em and STR.findall(em.group(1)):
+        help_ += f"(可选: {'|'.join(STR.findall(em.group(1)))})"
+    if s("EnvVar"):
+        help_ += f"; env: {s('EnvVar')}"
+    return {"name": name, "short": s("Shorthand"),
+            "type": LEAF_KIND.get(km.group(1), km.group(1)) if km else "String",
+            "help": help_[:160], "line": line,
+            "required": bool(re.search(r'\b(?:Required|MarkRequired):\s*true\b', body)),
+            "hidden": bool(re.search(r'\bHidden:\s*true\b', body))}
+
+
+def extract_leaf_defs(src):
+    """LeafSpec 命令 → 与 extract_flags 同构的 def(额外带 clipath 供 attach 精确挂载)。
+    Flags 表达式里的同包函数(返回 []LeafFlag)递归展开;出现动态 Name 或展开不了的调用
+    就标 flags_verified=False,让卡片回落正文——不把"没抽到"写成"没有"。"""
+    defs = []
+    root = os.path.join(src, "internal")
+    for dirpath, _, files in os.walk(root):
+        texts = {}
+        for fn in files:
+            if fn.endswith(".go") and not fn.endswith("_test.go"):
+                texts[fn] = open(os.path.join(dirpath, fn), encoding="utf-8", errors="replace").read()
+        if not any("NewLeafCommand(" in t for t in texts.values()):
+            continue
+        funcs = {}   # 同包返回 []LeafFlag 的函数 → (文件, 全文, 函数体起点, 函数体)
+        for fn, text in texts.items():
+            for m in re.finditer(r'(?m)^func\s+(\w+)\s*\([^)]*\)\s*\[\]LeafFlag\s*\{', text):
+                funcs[m.group(1)] = (fn, text, m.end(), _scan_block(text, m.end() - 1))
+
+        def parse_expr(expr, base, text, fname, stack):
+            flags, ok, spans = [], True, []
+            for m in re.finditer(r'\{\s*Name:\s*', expr):
+                body = _scan_block(expr, m.start())
+                spans.append((m.start(), m.start() + len(body) + 2))
+                nm = re.match(r'"([\w-]+)"', expr[m.end():])
+                if not nm:
+                    ok = False   # Name 是变量:动态拼出的 flag 抽不全
+                    continue
+                f = _leaf_entry(nm.group(1), body, text[:base + m.start()].count("\n") + 1)
+                f["file"] = rel(os.path.join(dirpath, fname), src)
+                flags.append(f)
+            for m in re.finditer(r'\b([A-Za-z_]\w*)\s*\(', expr):
+                if any(a <= m.start() < z for a, z in spans) or m.group(1) in LEAF_CALL_SKIP:
+                    continue
+                name = m.group(1)
+                if name in stack or name not in funcs:
+                    ok = False
+                    continue
+                ffile, ftext, fstart, fbody = funcs[name]
+                sub, sub_ok = parse_expr(fbody, fstart, ftext, ffile, stack + (name,))
+                flags.extend(sub)
+                ok = ok and sub_ok
+            return flags, ok
+
+        for fn, text in texts.items():
+            for m in re.finditer(r'NewLeafCommand\(\s*LeafSpec\{', text):
+                bstart = m.end() - 1
+                block = _scan_block(text, bstart)
+                fields = _top_fields(block)
+
+                def lit(k):
+                    if k not in fields:
+                        return None
+                    return re.match(r'\s*"((?:[^"\\]|\\.)*)"', block[fields[k][0]:fields[k][1]])
+                use_m, sm = lit("Use"), lit("Short")
+                if not use_m:
+                    continue
+                cp = re.search(r'CLIPath:\s*"([^"]+)"', block)
+                flags, ok = [], True
+                if "Flags" in fields:
+                    a, z = fields["Flags"]
+                    flags, ok = parse_expr(block[a:z], bstart + 1 + a, text, fn, ())
+                merged = {}
+                here = rel(os.path.join(dirpath, fn), src)
+                for f in flags:
+                    if f["file"] == here:
+                        del f["file"]   # 跨文件 helper 的 flag 才带 file,行号按其所在文件
+                    merged.setdefault(f["name"], f)
+                defs.append({"file": rel(os.path.join(dirpath, fn), src),
+                             "line": text[:m.start()].count("\n") + 1, "pos": m.start(), "var": "",
+                             "use": use_m.group(1).split()[0], "use_raw": use_m.group(1).strip(),
+                             # Short 暂不并入 desc:desc 进 ctx 的 IDF 检索,补齐 ~80 条描述会改动约 1/6
+                             # 真实问句的首卡(2026-10-10 477 题回归),须单独评测后再开;flags 不参与排序,先上。
+                             "short_desc": "", "leaf_short": sm.group(1) if sm else "",
+                             "flags": list(merged.values()), "flags_verified": ok,
+                             "clipath": cp.group(1).strip() if cp else ""})
+    return defs
+
+
 def extract_clipaths(src):
     """源码里的 CLIPath 标注 = 命令全路径权威来源,用于补 command-index 滞后缺漏。"""
     CP = re.compile(r'CLIPath:\s*"([^"]+)"')
@@ -474,7 +619,10 @@ def attach(cmds, defs):
         hint_file, hint_line = meta.get("source_file", ""), meta.get("source_line", 0)
         scored = []
         for d in cand:
-            score = 0
+            # LeafSpec 自带 CLIPath:只挂到同一全路径,不按叶名猜到别的命令上
+            if d.get("clipath") and d["clipath"] != path:
+                continue
+            score = 5000 if d.get("clipath") == path else 0
             same_file = bool(hint_file and d["file"] == hint_file)
             if hint_file:
                 score += 1000 if same_file else -1000
@@ -668,7 +816,7 @@ def main():
             cmds[cp] = data
         verified_tree.add(cp)
     n_cobra = len(cmds) - before_cobra
-    defs = extract_flags(src)
+    defs = extract_flags(src) + extract_leaf_defs(src)
     rows, unresolved = attach(cmds, defs)
     print(f"命令: index {n_index} + CLIPath {n_clipath} + Usage {n_usage} + "
           f"父分组 {n_parents} + cobra 叶 {n_cobra}")

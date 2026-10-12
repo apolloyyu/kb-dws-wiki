@@ -1,10 +1,10 @@
 # 构建对账
 
-- 源码 commit:0a813a96
-- 镜像文件:189
-- 主命令:1252(带 flags:932,归属未定:187)
+- 源码 commit:83406653
+- 镜像文件:188
+- 主命令:1247(带 flags:929,归属未定:185)
 - shortcuts:490
-- 答案卡:1742(full:1315,75.5%;partial:427)
+- 答案卡:1737(full:1315,75.7%;partial:422)
 - 文档索引:197 篇
 
 ## 归属未定(退回源码 grep,不影响存在性判断)
@@ -174,8 +174,6 @@
 - oa approval template
 - plugin
 - plugin config
-- recruit
-- recruit job
 - report
 - report entry
 - report outbox

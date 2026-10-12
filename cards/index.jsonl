@@ -1054,11 +1054,6 @@
 {"completeness": "partial", "key": "profile list", "kind": "command", "path": "cards/cmd/command--profile%20list.md", "product": "profile"}
 {"completeness": "full", "key": "profile switch", "kind": "command", "path": "cards/cmd/command--profile%20switch.md", "product": "profile"}
 {"completeness": "full", "key": "profile use", "kind": "command", "path": "cards/cmd/command--profile%20use.md", "product": "profile"}
-{"completeness": "partial", "key": "recruit", "kind": "command", "path": "cards/cmd/command--recruit.md", "product": "recruit"}
-{"completeness": "partial", "key": "recruit job", "kind": "command", "path": "cards/cmd/command--recruit%20job.md", "product": "recruit"}
-{"completeness": "partial", "key": "recruit job create", "kind": "command", "path": "cards/cmd/command--recruit%20job%20create.md", "product": "recruit"}
-{"completeness": "partial", "key": "recruit job get", "kind": "command", "path": "cards/cmd/command--recruit%20job%20get.md", "product": "recruit"}
-{"completeness": "partial", "key": "recruit job list", "kind": "command", "path": "cards/cmd/command--recruit%20job%20list.md", "product": "recruit"}
 {"completeness": "partial", "key": "report", "kind": "command", "path": "cards/cmd/command--report.md", "product": "report"}
 {"completeness": "full", "key": "report create", "kind": "command", "path": "cards/cmd/command--report%20create.md", "product": "report"}
 {"completeness": "full", "key": "report created", "kind": "command", "path": "cards/cmd/command--report%20created.md", "product": "report"}

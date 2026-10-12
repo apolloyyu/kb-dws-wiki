@@ -287,9 +287,9 @@ def _evidence_contract(intent=None, has_card=True):
         lines.append("- access：可见范围(set-visibility)与对话白名单(connect --allowed-users/--allowed-groups)是两层；"
                      "原文没写的入群方式答「文档未说明」，应用机器人命令(add-bot/robotCode)不得套用到数字员工。")
     if intent.get("origin"):
-        lines.append("- origin：dws 只写明 manage create 创建、后端固定调用 deap-dev；DEAP 智能体/AI 助理、企业自建 Agent 接口"
-                     "与 dws 数字员工是否同一实体未写明，不得列为创建方式，给用户 manage detail/list 比对 agentUuid 自查；"
-                     "开通走灰度申请表(以开放平台 dws 更新日志原文为准)。")
+        lines.append("- origin：数字员工是 DEAP 上的对象(仓库文档称「DEAP 数字员工」，后端 deap-dev)，dws 用 manage create 创建；"
+                     "DEAP 后台界面怎么建、「智能体」是否即数字员工、企业自建 Agent 接口是否对应均未写明，不得列为创建方式，"
+                     "给用户 manage detail/list 比对 agentUuid 自查；开通走灰度申请表(以开放平台 dws 更新日志原文为准)。")
     if intent.get("why") or intent.get("mechanism") or intent.get("trouble"):
         lines.append("- causality：报错根因/生命周期/机制须有对应代码路径；只有相关事实时只能标为推测并给用户自验步骤。")
     return lines

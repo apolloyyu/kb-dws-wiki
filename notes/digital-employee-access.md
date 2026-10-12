@@ -1,6 +1,6 @@
 ---
 title: 数字员工的可见范围与对话白名单
-source_refs: internal/helpers/deap_agent_runtime.go, internal/helpers/deap_agent_adapter.go, internal/helpers/deap_agent.go, internal/helpers/deap_agent_channel.go, internal/helpers/chat.go
+source_refs: internal/helpers/deap_agent_runtime.go, internal/helpers/deap_agent_adapter.go, internal/helpers/deap_agent.go, internal/helpers/deap_agent_channel.go, internal/helpers/chat.go, 仓库 docs/digital-employee-adapters.md, 仓库 skills/multi/dingtalk-tag/SKILL.md
 intents: access
 ---
 
@@ -22,6 +22,7 @@ intents: access
   - 单聊:发送人在白名单即处理;
   - 群聊(含群内 @):发送人在白名单,**且**该群 openConversationId 在 `--allowed-groups` 中。
 - 匹配是逐个精确比较(`employeeContains`,约 L202),**没有通配或「所有人」选项**。不在名单内的人 @ 它,消息被直接丢弃,不会有任何回复。
+- 上游设计文档原文(仓库 `docs/digital-employee-adapters.md`):「默认仅主管能触发;其他用户通过精确 userId 白名单开放,并在员工上下文解析开放 ID。群消息同时检查群和发送人。」
 
 ### 让一个群里的多人使用
 
@@ -34,7 +35,7 @@ dws dingtalk-tag connect --agent-uuid <agentUuid> --channel <agent> \
 
 ## 常见误解
 
-- **「数字员工通过关联机器人的 robotCode,用 `chat group members add-bot` 入群」:无依据。** `add-bot` 是把自定义机器人加到当前用户有管理权限的群,必须传应用机器人的 `--robot-code`(`chat.go` 约 L3606);dingtalk-tag 命令面只用 `agentUuid`,文档明确不对用户暴露 uid/robotUid,dingtalk-tag 相关源码(`deap_agent*.go`)里没有 robotCode 字段,dws 不提供获取数字员工 robotCode 的途径。
+- **「数字员工通过关联机器人的 robotCode,用 `chat group members add-bot` 入群」:无依据。** `add-bot` 是把自定义机器人加到当前用户有管理权限的群,必须传应用机器人的 `--robot-code`(`chat.go` 约 L3606);dingtalk-tag 命令面只用 `agentUuid`,文档明确不对用户暴露 uid/robotUid,dingtalk-tag 相关源码(`deap_agent*.go`)里没有 robotCode 字段,dws 不提供获取数字员工 robotCode 的途径。dws 的数字员工 skill 原文(仓库 `skills/multi/dingtalk-tag/SKILL.md`)也写明「不要回退到机器人创建流程」。
 - **把数字员工加入某个群的操作方式**:dws 源码与文档都没有提供。回答写「dws 文档未说明」,不要编造客户端菜单路径或开放平台接口。
 - **`set-visibility --visibility ALL` ≠ 群里所有人都能对话**:可见范围与对话白名单是两层,互不替代。
-- **未覆盖**:`--channel dsh` 由 DSH 宿主运行(另一条代码路径),`open_code` 由平台托管,这两种情况下群里谁能对话,dws 未说明。DEAP 智能体 / AI 助理与 dingtalk-tag 是什么关系,dws 也未说明(只知 dingtalk-tag 固定调用 MCP server `deap-dev`)。
+- **未覆盖**:`--channel dsh` 由 DSH 宿主运行(另一条代码路径),`open_code` 由平台托管,这两种情况下群里谁能对话,dws 未说明。数字员工是 DEAP 上的对象(仓库文档称「DEAP 数字员工」),但在 DEAP 后台界面里怎么把它加进群,dws 未说明。

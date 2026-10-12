@@ -177,6 +177,17 @@ class DwsdocCtxContractTest(unittest.TestCase):
         self.assertIn("notes/digital-employee-access.md", out)
         self.assertIn("notes/digital-employee-origin.md", out)
 
+    def test_cmd_prefix_lists_all_hits(self):
+        # 实录 R10.5.10:只显示前 12 条,模型答「oa approval 仅有 12 个子命令、不支持退回」
+        out = run_dwsdoc("cmd", "oa approval")
+        self.assertIn("dws oa approval revert-task", out)
+        self.assertIn("已全部列出", out)
+
+    def test_digital_employee_vs_robot_uses_access_note(self):
+        out = run_dwsdoc("ctx", "数字员工和机器人有什么区别")
+        self.assertIn("notes/digital-employee-access.md", out)
+        self.assertIn("- access：", out)
+
     def test_robot_join_group_without_digital_employee_keeps_chat_context(self):
         out = run_dwsdoc("ctx", "怎么把机器人拉进群")
         self.assertNotIn("notes/digital-employee-access.md", out)

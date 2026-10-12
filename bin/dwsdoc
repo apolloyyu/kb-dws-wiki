@@ -237,7 +237,7 @@ def _intent(q):
         "access": (bool(re.search(r"数字员工|dingtalk-tag|agent-uuid", q))
                    and any(k in q for k in ("群", "别人", "他人", "其他人", "所有人", "全员", "成员", "同事", "大家",
                                             "谁能", "白名单", "可见", "对话", "聊天", "拉进", "加入", "可用范围", "使用范围",
-                                            "robotcode", "robot-code"))),
+                                            "robotcode", "robot-code", "机器人"))),
         # 「数字员工在哪创建/是不是 DEAP 智能体/怎么开通」:dws 文档只写了 manage create 与 deap-dev,
         # 只给一句「关系未说明」时模型会在推测与撤回间摇摆(实录 2026-10-12 正式群)。
         "origin": (bool(re.search(r"数字员工|dingtalk-tag|agent-uuid|digital_employee", q))
@@ -805,6 +805,16 @@ def card_impl(q):
     return 0
 
 
+def _list_rest(lines, cap=200):
+    if not lines:
+        return
+    print(f"-- 其余 {len(lines)} 条(未展开,名称+描述;否定前须逐条看过):")
+    for line in lines[:cap]:
+        print("  " + line)
+    if len(lines) > cap:
+        print(f"  …另有 {len(lines) - cap} 条,请换更具体的前缀再查")
+
+
 def main():
     if len(sys.argv) < 3:
         print(__doc__)
@@ -834,14 +844,19 @@ def main():
                 if q in r["cmd"].lower() or q in r["desc"].lower()]
         for r in hits[:12]:
             show_cmd(r, full=len(hits) <= 4)
-        print(f"-- {len(hits)} 条命中(主命令树)。另可试 dwsdoc short {q}")
+        # 超出部分只列名称+描述:枚举题靠这里看全量,只给前 12 条时模型会把它当成全部
+        # (实录 R10.5.10:`cmd oa approval` 35 条只显示 12 条,答「仅有 12 个子命令、不支持退回」)。
+        _list_rest([f"dws {r['cmd']}  —  {r['desc'][:40]}" for r in hits[12:]])
+        print(f"-- 共 {len(hits)} 条命中(主命令树),已全部列出(前 12 条展开)。另可试 dwsdoc short {q}")
     elif op == "short":
         hits = [r for r in load("shortcuts.jsonl")
                 if q in r.get("product", "").lower()
                 or q in r["cmd"].lower() or q in r["desc"].lower()]
         for r in hits[:12]:
             show_short(r)
-        print(f"-- {len(hits)} 条命中(shortcut)")
+        _list_rest([" ".join(x for x in ("dws", r.get("product", ""), r["cmd"]) if x) + f"  —  {r['desc'][:40]}"
+                    for r in hits[12:]])
+        print(f"-- 共 {len(hits)} 条命中(shortcut),已全部列出(前 12 条展开)")
     elif op == "flag":
         qq = q.lstrip("-")
         n = 0

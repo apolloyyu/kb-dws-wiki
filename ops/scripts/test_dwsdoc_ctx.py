@@ -156,6 +156,8 @@ class DwsdocCtxContractTest(unittest.TestCase):
             self.assertIn("card=1(fast=0)", out, q)
             self.assertRegex(out, r"(?m)^# dws dingtalk-tag ", q)
             self.assertNotIn("add-bot --robot-code", out, q)
+            self.assertIn("同时给出 --allowed-groups 与 --allowed-users", out, q)
+            self.assertIn("- notes：行为说明只作依据", out, q)
 
     def test_digital_employee_origin_uses_origin_note(self):
         # 实录 2026-10-12:把 DEAP 智能体/企业自建 Agent 接口列为创建方式,随后又称「关系未说明」并撤回
@@ -167,6 +169,7 @@ class DwsdocCtxContractTest(unittest.TestCase):
             self.assertIn("card=1(fast=0)", out, q)
             self.assertRegex(out, r"(?m)^# dws dingtalk-tag manage create", q)
             self.assertIn("manage detail --agent-uuid", out, q)
+            self.assertIn("申请表只用于申请开通", out, q)
 
     def test_digital_employee_create_and_group_merges_both_notes(self):
         out = run_dwsdoc("ctx", "创建好的数字员工怎么拉进群")

@@ -285,11 +285,16 @@ def _evidence_contract(intent=None, has_card=True):
         lines.append("- card_axes：原始卡片结构、可读文本提取、结构化字段解析、渲染、解密是五项独立能力，须逐项核验，不得互相推出。")
     if intent.get("access"):
         lines.append("- access：可见范围(set-visibility)与对话白名单(connect --allowed-users/--allowed-groups)是两层；"
-                     "原文没写的入群方式答「文档未说明」，应用机器人命令(add-bot/robotCode)不得套用到数字员工。")
+                     "群里多人使用须同时给出 --allowed-groups 与 --allowed-users；"
+                     "原文没写的入群方式只答「文档未说明」，不建议去灰度申请表、对接人或其他渠道咨询；"
+                     "应用机器人命令(add-bot/robotCode)不得套用到数字员工。")
     if intent.get("origin"):
         lines.append("- origin：数字员工是 DEAP 上的对象(仓库文档称「DEAP 数字员工」，后端 deap-dev)，dws 用 manage create 创建；"
                      "DEAP 后台界面怎么建、「智能体」是否即数字员工、企业自建 Agent 接口是否对应均未写明，不得列为创建方式，"
-                     "给用户 manage detail/list 比对 agentUuid 自查；开通走灰度申请表(以开放平台 dws 更新日志原文为准)。")
+                     "给用户 manage detail/list 比对 agentUuid 自查；开通走灰度申请表(以开放平台 dws 更新日志原文为准)，"
+                     "申请表只用于申请开通，不当作咨询渠道。")
+    if intent.get("access") or intent.get("origin"):
+        lines.append("- notes：行为说明只作依据，其文件名、标题不出现在回复和参考区；参考区只放上游仓库深链。")
     if intent.get("why") or intent.get("mechanism") or intent.get("trouble"):
         lines.append("- causality：报错根因/生命周期/机制须有对应代码路径；只有相关事实时只能标为推测并给用户自验步骤。")
     return lines

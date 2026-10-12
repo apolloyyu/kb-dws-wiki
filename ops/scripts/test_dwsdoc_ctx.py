@@ -157,6 +157,23 @@ class DwsdocCtxContractTest(unittest.TestCase):
             self.assertRegex(out, r"(?m)^# dws dingtalk-tag ", q)
             self.assertNotIn("add-bot --robot-code", out, q)
 
+    def test_digital_employee_origin_uses_origin_note(self):
+        # 实录 2026-10-12:把 DEAP 智能体/企业自建 Agent 接口列为创建方式,随后又称「关系未说明」并撤回
+        for q in ("DEAP创建的智能体就是你所谓的数字员工吗", "那你说的数字员工到底在哪儿创建的？不是DEAP这？",
+                  "AI 助理改名为数字员工了吗", "数字员工怎么创建"):
+            out = run_dwsdoc("ctx", q)
+            self.assertIn("notes/digital-employee-origin.md", out, q)
+            self.assertIn("- origin：", out, q)
+            self.assertIn("card=1(fast=0)", out, q)
+            self.assertRegex(out, r"(?m)^# dws dingtalk-tag manage create", q)
+            self.assertIn("manage detail --agent-uuid", out, q)
+
+    def test_digital_employee_create_and_group_merges_both_notes(self):
+        out = run_dwsdoc("ctx", "创建好的数字员工怎么拉进群")
+        self.assertRegex(out, r"(?m)^# dws dingtalk-tag connect")
+        self.assertIn("notes/digital-employee-access.md", out)
+        self.assertIn("notes/digital-employee-origin.md", out)
+
     def test_robot_join_group_without_digital_employee_keeps_chat_context(self):
         out = run_dwsdoc("ctx", "怎么把机器人拉进群")
         self.assertNotIn("notes/digital-employee-access.md", out)

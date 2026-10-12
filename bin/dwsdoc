@@ -238,6 +238,11 @@ def _intent(q):
                    and any(k in q for k in ("群", "别人", "他人", "其他人", "所有人", "全员", "成员", "同事", "大家",
                                             "谁能", "白名单", "可见", "对话", "聊天", "拉进", "加入", "可用范围", "使用范围",
                                             "robotcode", "robot-code"))),
+        # 「数字员工在哪创建/是不是 DEAP 智能体/怎么开通」:dws 文档只写了 manage create 与 deap-dev,
+        # 只给一句「关系未说明」时模型会在推测与撤回间摇摆(实录 2026-10-12 正式群)。
+        "origin": (bool(re.search(r"数字员工|dingtalk-tag|agent-uuid|digital_employee", q))
+                   and any(k in q for k in ("deap", "智能体", "ai助理", "ai 助理", "创建", "新建", "在哪", "哪里", "哪儿", "入口",
+                                            "开通", "灰度", "申请", "not_enabled", "一回事", "同一个", "什么关系", "改名"))),
         "version": (any(k in q for k in ("版本", "兼容", "升级", "上线", "发布版", "还能用", "正常使用"))
                     or bool(re.search(r"\bv?\d+\.\d+(?:\.\d+)?\b", q))),
         "semantic": (any(k in q for k in ("只是", "还是", "云端", "本地", "其他人", "影响", "区别", "范围", "限制",
@@ -281,6 +286,10 @@ def _evidence_contract(intent=None, has_card=True):
     if intent.get("access"):
         lines.append("- access：可见范围(set-visibility)与对话白名单(connect --allowed-users/--allowed-groups)是两层；"
                      "原文没写的入群方式答「文档未说明」，应用机器人命令(add-bot/robotCode)不得套用到数字员工。")
+    if intent.get("origin"):
+        lines.append("- origin：dws 只写明 manage create 创建、后端固定调用 deap-dev；DEAP 智能体/AI 助理、企业自建 Agent 接口"
+                     "与 dws 数字员工是否同一实体未写明，不得列为创建方式，给用户 manage detail/list 比对 agentUuid 自查；"
+                     "开通走灰度申请表(以开放平台 dws 更新日志原文为准)。")
     if intent.get("why") or intent.get("mechanism") or intent.get("trouble"):
         lines.append("- causality：报错根因/生命周期/机制须有对应代码路径；只有相关事实时只能标为推测并给用户自验步骤。")
     return lines
@@ -419,6 +428,14 @@ def ctx_impl(q, raw_terms, force_full=False):
         cmds = pinned + [r for r in cmds if r not in pinned]
         shorts = ([r for r in shorts if r.get("product") == "dingtalk-tag"]
                   + [r for r in shorts if r.get("product") != "dingtalk-tag"])
+    elif intent["origin"]:
+        # 不锁定时「智能体」命中 chat create-smart、「数字员工」命中描述最长的 channel,首卡不是创建入口
+        order = ("dingtalk-tag manage create", "dingtalk-tag manage detail", "dingtalk-tag manage list")
+        pinned = sorted((r for r in command_rows if r.get("cmd") in order), key=lambda r: order.index(r["cmd"]))
+        base = max([r.get("_ctx_score", 0) for r in cmds + shorts] or [0])
+        for i, r in enumerate(pinned):
+            r["_ctx_score"] = base + 10 - i
+        cmds = pinned + [r for r in cmds if r not in pinned]
     qq = q.lstrip("-")
     flag_hits = []
     for r in load("commands.jsonl"):
@@ -477,7 +494,7 @@ def ctx_impl(q, raw_terms, force_full=False):
     # 语义后果与未闭合输入必须保留正文/notes，不能由“命令存在”直接推出结论。
     card_blocked = any(intent[k] for k in
                        ("why", "howmany", "support", "capability", "validation", "mechanism",
-                        "truncated", "trouble", "enumerate", "version", "semantic", "access"))
+                        "truncated", "trouble", "enumerate", "version", "semantic", "access", "origin"))
     card_fast = bool(top_card and top_card["full"] and _card_confident(top_family, top_card)
                      and not card_blocked)
     card_items = [top_card] if top_card else []
@@ -541,7 +558,7 @@ def ctx_impl(q, raw_terms, force_full=False):
     # 正文回答，只有同时属于上述复杂意图时才补 notes，避免无关语义篇干扰。
     _needs_notes = any(intent[k] for k in
                        ("why", "howmany", "capability", "card_capability", "validation", "mechanism", "trouble",
-                        "access"))
+                        "access", "origin"))
     _mech = _needs_notes
     # full 卡 + 首名明显胜出 + 非机制/数值/支持/排障/枚举题时，正文归零；
     # 任一条件不满足就保持 R10.1 的 1~2 篇正文，准确率优先。
@@ -644,8 +661,10 @@ def ctx_impl(q, raw_terms, force_full=False):
                 elif distinct:
                     ranked.append((-(distinct * 100 + total), fn, body))
             ranked.sort()
-            if ranked and ranked[0][0] == -10**9:
-                note_limit = 1   # 意图专属 note 已整篇并入,不再带第二篇泛相关 note 分散注意
+            owned_n = sum(1 for r in ranked if r[0] == -10**9)
+            if owned_n:
+                # 意图专属 note 已整篇并入,不再带泛相关 note 分散注意;两个专属意图同时命中时两篇都带
+                note_limit = min(owned_n, 2)
             for score, fn, body in ranked[:note_limit]:
                 # frontmatter/导语不是小节，命中泛词时不应与真正相关的小节争 top2。
                 secs = [s for s in re.split(r"\n(?=#{2,3} )", body)

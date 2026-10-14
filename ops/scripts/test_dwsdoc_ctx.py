@@ -193,5 +193,22 @@ class DwsdocCtxContractTest(unittest.TestCase):
         self.assertNotIn("notes/digital-employee-access.md", out)
         self.assertIn("add-bot", out)
 
+    def test_rate_limit_uses_mcp_gateway_note(self):
+        # 实录 2026-10-14:14 条回复把 OpenAPI 的 QPS/月配额/90018 套到 dws 产品命令上
+        for q in ("dws发送消息限流规则是什么", "dws的限流怎么升级", "RATE_LIMIT_ERROR 是什么意思",
+                  "使用dws总是返回限流的原因是什么", "dws使用的 也是 钉钉 OpenAPI 吗",
+                  "你之前说过dws的部分接口并不跟openapi共享的我记得"):
+            out = run_dwsdoc("ctx", q)
+            self.assertIn("notes/rate-limit-and-backend.md", out, q)
+            self.assertIn("- ratelimit：", out, q)
+            self.assertIn("mcp-gw.dingtalk.com", out, q)
+            self.assertIn("只有 `dws api` 直连 OpenAPI", out, q)
+            self.assertNotIn("ctx 总量截断", out, q)
+
+    def test_rate_limit_note_not_pulled_by_unrelated_or_local_limit(self):
+        for q in ("dws chat message list 怎么用", "dev connect --user-rate-limit 是什么"):
+            out = run_dwsdoc("ctx", q)
+            self.assertNotIn("notes/rate-limit-and-backend.md", out, q)
+
 if __name__ == "__main__":
     unittest.main()

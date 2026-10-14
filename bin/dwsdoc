@@ -243,6 +243,18 @@ def _intent(q):
         "origin": (bool(re.search(r"数字员工|dingtalk-tag|agent-uuid|digital_employee", q))
                    and any(k in q for k in ("deap", "智能体", "ai助理", "ai 助理", "创建", "新建", "在哪", "哪里", "哪儿", "入口",
                                             "开通", "灰度", "申请", "not_enabled", "一回事", "同一个", "什么关系", "改名"))),
+        # 「dws 被限流/阈值多少/怎么提升/RATE_LIMIT_ERROR」:产品命令走 MCP 网关,开放平台 OpenAPI 的
+        # QPS/月配额/90018 不适用(实录 2026-10-14 dws 群 14 条回复整套套用 OpenAPI 规则)。
+        # 明确问 OpenAPI/开放平台接口本身(且没提 dws)时,开放平台限流规则就是正解,不并入。
+        "ratelimit": (any(k in q for k in ("限流", "频控", "限频", "频率限制", "调用频率", "rate_limit", "rate limit",
+                                           "ratelimit", "qps", "调用量", "并发量", "配额", "被限", "限速"))
+                      and not re.search(r"user-rate-limit|单用户每分钟", q)
+                      and ("dws" in q or not any(k in q for k in ("openapi", "开放平台", "开发者平台", "服务端 api",
+                                                                    "服务端api", "接口", "机器人", "webhook"))))
+                     # 「dws 是不是走 OpenAPI / 和 OpenAPI 共享限额」:同一事实的另一种问法(实录 10-14 14:41、14:48);
+                     # 须是关于两者关系的问句,「不是 dws,而是问 openapi」这类声明不算。
+                     or bool("dws" in q and re.search(r"(?:openapi|open api)\s*(?:吗|么|嘛|呢|\?|？)"
+                                                      r"|(?:openapi|open api).{0,8}(?:共享|一样|一套|同一|区别|关系)", q)),
         "version": (any(k in q for k in ("版本", "兼容", "升级", "上线", "发布版", "还能用", "正常使用"))
                     or bool(re.search(r"\bv?\d+\.\d+(?:\.\d+)?\b", q))),
         "semantic": (any(k in q for k in ("只是", "还是", "云端", "本地", "其他人", "影响", "区别", "范围", "限制",
@@ -293,7 +305,12 @@ def _evidence_contract(intent=None, has_card=True):
                      "DEAP 后台界面怎么建、「智能体」是否即数字员工、企业自建 Agent 接口是否对应均未写明，不得列为创建方式，"
                      "给用户 manage detail/list 比对 agentUuid 自查；开通走灰度申请表(以开放平台 dws 更新日志原文为准)，"
                      "申请表只用于申请开通，不当作咨询渠道。")
-    if intent.get("access") or intent.get("origin"):
+    if intent.get("ratelimit"):
+        lines.append("- ratelimit：dws 产品命令走钉钉 MCP 网关(mcp-gw.dingtalk.com)，不走开放平台 OpenAPI；"
+                     "开放平台「调用频次与限流」的 QPS、月调用量、IP 维度、90018/90002/90020、升级专业版扩容只适用于 dws api 直调 OpenAPI，"
+                     "不得套用到产品命令；RATE_LIMIT_ERROR 由服务端返回，阈值/计数维度/恢复时间/能否提升 dws 未说明，不得给具体数字；"
+                     "--page-delay 只能推荐给命令卡里有该参数的命令。")
+    if intent.get("access") or intent.get("origin") or intent.get("ratelimit"):
         lines.append("- notes：行为说明只作依据，其文件名、标题不出现在回复和参考区；参考区只放上游仓库深链。")
     if intent.get("why") or intent.get("mechanism") or intent.get("trouble"):
         lines.append("- causality：报错根因/生命周期/机制须有对应代码路径；只有相关事实时只能标为推测并给用户自验步骤。")
@@ -499,7 +516,8 @@ def ctx_impl(q, raw_terms, force_full=False):
     # 语义后果与未闭合输入必须保留正文/notes，不能由“命令存在”直接推出结论。
     card_blocked = any(intent[k] for k in
                        ("why", "howmany", "support", "capability", "validation", "mechanism",
-                        "truncated", "trouble", "enumerate", "version", "semantic", "access", "origin"))
+                        "truncated", "trouble", "enumerate", "version", "semantic", "access", "origin",
+                        "ratelimit"))
     card_fast = bool(top_card and top_card["full"] and _card_confident(top_family, top_card)
                      and not card_blocked)
     card_items = [top_card] if top_card else []
@@ -563,7 +581,7 @@ def ctx_impl(q, raw_terms, force_full=False):
     # 正文回答，只有同时属于上述复杂意图时才补 notes，避免无关语义篇干扰。
     _needs_notes = any(intent[k] for k in
                        ("why", "howmany", "capability", "card_capability", "validation", "mechanism", "trouble",
-                        "access", "origin"))
+                        "access", "origin", "ratelimit"))
     _mech = _needs_notes
     # full 卡 + 首名明显胜出 + 非机制/数值/支持/排障/枚举题时，正文归零；
     # 任一条件不满足就保持 R10.1 的 1~2 篇正文，准确率优先。

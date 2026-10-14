@@ -1,6 +1,6 @@
 ---
 source_path: "skills/mono/references/products/oa-template-write.md"
-source_commit: "1deba259"
+source_commit: "59d1da576"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 

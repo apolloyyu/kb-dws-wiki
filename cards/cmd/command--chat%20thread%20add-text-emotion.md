@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat thread add-text-emotion
 description: Add a text emotion to a Thread message.
 use_when: When the agent needs to attach a known text status such as processing or resolved.
-source: internal/helpers/chat_thread.go:794
+source: internal/helpers/chat_thread.go:799
 visible_flags: 6
 
 ## Flags

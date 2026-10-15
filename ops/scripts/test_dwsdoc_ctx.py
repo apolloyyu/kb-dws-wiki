@@ -175,7 +175,8 @@ class DwsdocCtxContractTest(unittest.TestCase):
         # 实录 2026-10-15:只写「以更新日志为准」不给链接,模型编出 alidocs/i/nodes/… 的 404 链接
         form = ("[钉钉数字员工创建灰度申请（DWS 内&&界面功能）]"
                 "(https://alidocs.dingtalk.com/notable/share/form/v013BMqYy5D4dLEmqwZ_MPojg9m_23zNs0R?source=link)")
-        note = open(os.path.join(REPO, "notes", "digital-employee-origin.md"), encoding="utf-8").read()
+        with open(os.path.join(REPO, "notes", "digital-employee-origin.md"), encoding="utf-8") as fh:
+            note = fh.read()
         self.assertIn(form, note)
         for q in ("数字员工灰度怎么申请", "DIGITAL_EMPLOYEE_NOT_ENABLED 怎么开通", "数字员工怎么开通"):
             out = run_dwsdoc("ctx", q)
@@ -195,13 +196,24 @@ class DwsdocCtxContractTest(unittest.TestCase):
                 for fn in fs:
                     if not fn.endswith(".md"):
                         continue
-                    body = open(os.path.join(dp, fn), encoding="utf-8", errors="replace").read()
+                    with open(os.path.join(dp, fn), encoding="utf-8", errors="replace") as fh:
+                        body = fh.read()
                     for cap in (2000, 3000, 6000):
                         if len(body) > cap:
                             k = len(cut(body, cap))
                             if any(m.start() < k < m.end() for m in span.finditer(body, max(0, k - 2500))):
                                 bad.append(f"{fn}@{cap}")
         self.assertEqual(bad, [])
+
+    def test_deap_platform_ui_is_deap1_not_digital_employee(self):
+        # 实录 2026-10-15 正式群:答「方式一:登录 DEAP 平台→创建智能体→发布→加到群」。产品方确认那是 DEAP 1.0 的 AI 助理
+        for q in ("在三方应用群内添加数字员工（类似本群的钉仔）怎么做", "数字员工怎么创建",
+                  "DEAP 平台创建的智能体是数字员工吗", "怎么给群里加一个数字员工", "数字员工可以在界面上创建吗"):
+            out = run_dwsdoc("ctx", q)
+            self.assertIn("- deap1：", out, q)
+            self.assertIn("DEAP 1.0 的 AI 助理", out, q)
+            self.assertIn("notes/digital-employee-origin.md", out, q)
+            self.assertNotIn("拿 DEAP 后台显示的智能体 ID", out, q)
 
     def test_digital_employee_create_and_group_merges_both_notes(self):
         out = run_dwsdoc("ctx", "创建好的数字员工怎么拉进群")

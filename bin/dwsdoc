@@ -241,7 +241,7 @@ def _intent(q):
         # 「数字员工在哪创建/是不是 DEAP 智能体/怎么开通」:dws 文档只写了 manage create 与 deap-dev,
         # 只给一句「关系未说明」时模型会在推测与撤回间摇摆(实录 2026-10-12 正式群)。
         "origin": (bool(re.search(r"数字员工|dingtalk-tag|agent-uuid|digital_employee", q))
-                   and any(k in q for k in ("deap", "智能体", "ai助理", "ai 助理", "创建", "新建", "在哪", "哪里", "哪儿", "入口",
+                   and any(k in q for k in ("deap", "智能体", "助理", "ai助理", "ai 助理", "创建", "新建", "添加", "界面", "平台", "在哪", "哪里", "哪儿", "入口",
                                             "开通", "灰度", "申请", "not_enabled", "一回事", "同一个", "什么关系", "改名"))),
         # 「dws 被限流/阈值多少/怎么提升/RATE_LIMIT_ERROR」:产品命令走 MCP 网关,开放平台 OpenAPI 的
         # QPS/月配额/90018 不适用(实录 2026-10-14 dws 群 14 条回复整套套用 OpenAPI 规则)。
@@ -318,10 +318,16 @@ def _evidence_contract(intent=None, has_card=True):
                      "群里多人使用须同时给出 --allowed-groups 与 --allowed-users；"
                      "原文没写的入群方式只答「文档未说明」，不建议去灰度申请表、对接人或其他渠道咨询；"
                      "应用机器人命令(add-bot/robotCode)不得套用到数字员工。")
+    if intent.get("access") or intent.get("origin"):
+        # 实录 2026-10-15 正式群:答「方式一:登录 DEAP 平台创建智能体→发布→加到群」。产品方确认那是 DEAP 1.0 的 AI 助理。
+        lines.append("- deap1：现在的数字员工 = dws dingtalk-tag 这一套(标识 agentUuid)；后端 MCP server 叫 deap-dev 只是服务名。"
+                     "在 DEAP 平台界面「创建智能体/助理→配置人设→发布→加到群」是 DEAP 1.0 的 AI 助理，不是数字员工，"
+                     "不得作为数字员工的创建、配置或入群方式列出(含「方式一：DEAP 平台可视化创建」)。")
     if intent.get("origin"):
-        lines.append("- origin：数字员工是 DEAP 上的对象(仓库文档称「DEAP 数字员工」，后端 deap-dev)，dws 用 manage create 创建；"
-                     "DEAP 后台界面怎么建、「智能体」是否即数字员工、企业自建 Agent 接口是否对应均未写明，不得列为创建方式，"
-                     "给用户 manage detail/list 比对 agentUuid 自查；开通走灰度申请表，申请表只用于申请开通，不当作咨询渠道。")
+        lines.append("- origin：dws 文档给出的创建方式是 manage create(只建草稿)→set-visibility→publish；"
+                     "是否另有客户端界面入口文档未写明，答「文档未说明」，不得拿 DEAP 平台界面顶替；"
+                     "企业自建 Agent 接口、开发者后台「数字员工」发布类型是否对应未写明，不得列为创建方式；"
+                     "开通走灰度申请表，申请表只用于申请开通，不当作咨询渠道。")
         # 实录 2026-10-15:只写「以更新日志为准」不给链接,模型编出 alidocs/i/nodes/… 的 404 链接并改称「DEAP 灰度申请表」。
         # 链接与开放平台库 dws-cli-log 原文逐字一致,由开放平台库 test_dkdoc_ctx 跨库校验。
         lines.append("- origin_form：灰度申请表(逐字摘自开放平台「dws 更新日志」https://open.dingtalk.com/document/development/dws-cli-log，"

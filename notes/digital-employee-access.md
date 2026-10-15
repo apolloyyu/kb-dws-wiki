@@ -38,4 +38,4 @@ dws dingtalk-tag connect --agent-uuid <agentUuid> --channel <agent> \
 - **「数字员工通过关联机器人的 robotCode,用 `chat group members add-bot` 入群」:无依据。** `add-bot` 是把自定义机器人加到当前用户有管理权限的群,必须传应用机器人的 `--robot-code`(`chat.go` 约 L3606);dingtalk-tag 命令面只用 `agentUuid`,文档明确不对用户暴露 uid/robotUid,dingtalk-tag 相关源码(`deap_agent*.go`)里没有 robotCode 字段,dws 不提供获取数字员工 robotCode 的途径。dws 的数字员工 skill 原文(仓库 `skills/multi/dingtalk-tag/SKILL.md`)也写明「不要回退到机器人创建流程」。
 - **把数字员工加入某个群的操作方式**:dws 源码与文档都没有提供。回答写「dws 文档未说明」,不要编造客户端菜单路径或开放平台接口,也不要建议去灰度申请表、对接人或客服咨询(申请表只用于申请开通)。
 - **`set-visibility --visibility ALL` ≠ 群里所有人都能对话**:可见范围与对话白名单是两层,互不替代。
-- **未覆盖**:`--channel dsh` 由 DSH 宿主运行(另一条代码路径),`open_code` 由平台托管,这两种情况下群里谁能对话,dws 未说明。数字员工是 DEAP 上的对象(仓库文档称「DEAP 数字员工」),但在 DEAP 后台界面里怎么把它加进群,dws 未说明。
+- **未覆盖**:`--channel dsh` 由 DSH 宿主运行(另一条代码路径),`open_code` 由平台托管,这两种情况下群里谁能对话,dws 未说明。DEAP 平台界面里「创建智能体后加到群」是 DEAP 1.0 的 AI 助理,不是数字员工(产品方确认,2026-10-15),不得作为数字员工的入群方式给出。

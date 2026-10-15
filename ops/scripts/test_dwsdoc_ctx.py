@@ -171,6 +171,38 @@ class DwsdocCtxContractTest(unittest.TestCase):
             self.assertIn("manage detail --agent-uuid", out, q)
             self.assertIn("申请表只用于申请开通", out, q)
 
+    def test_digital_employee_enable_gives_verbatim_form_link(self):
+        # 实录 2026-10-15:只写「以更新日志为准」不给链接,模型编出 alidocs/i/nodes/… 的 404 链接
+        form = ("[钉钉数字员工创建灰度申请（DWS 内&&界面功能）]"
+                "(https://alidocs.dingtalk.com/notable/share/form/v013BMqYy5D4dLEmqwZ_MPojg9m_23zNs0R?source=link)")
+        note = open(os.path.join(REPO, "notes", "digital-employee-origin.md"), encoding="utf-8").read()
+        self.assertIn(form, note)
+        for q in ("数字员工灰度怎么申请", "DIGITAL_EMPLOYEE_NOT_ENABLED 怎么开通", "数字员工怎么开通"):
+            out = run_dwsdoc("ctx", q)
+            self.assertIn("- origin_form：", out, q)
+            self.assertIn(form, out, q)
+            self.assertIn("不得按格式自行构造", out, q)
+
+    def test_truncation_never_splits_links(self):
+        import runpy
+        mod = runpy.run_path(DWSDOC, run_name="dwsdoc_test_module")
+        cut, span = mod["_cut"], mod["_LINK_SPAN_RE"]
+        self.assertEqual(cut("ab [x](http://e.test/aaaa) cd", 12), "ab [x](http://e.test/aaaa)")
+        self.assertEqual(cut("ab [x](http://e.test/" + "a" * 500 + ")", 12), "ab ")
+        bad = []
+        for layer in ("docs", "notes"):
+            for dp, _, fs in os.walk(os.path.join(REPO, layer)):
+                for fn in fs:
+                    if not fn.endswith(".md"):
+                        continue
+                    body = open(os.path.join(dp, fn), encoding="utf-8", errors="replace").read()
+                    for cap in (2000, 3000, 6000):
+                        if len(body) > cap:
+                            k = len(cut(body, cap))
+                            if any(m.start() < k < m.end() for m in span.finditer(body, max(0, k - 2500))):
+                                bad.append(f"{fn}@{cap}")
+        self.assertEqual(bad, [])
+
     def test_digital_employee_create_and_group_merges_both_notes(self):
         out = run_dwsdoc("ctx", "创建好的数字员工怎么拉进群")
         self.assertRegex(out, r"(?m)^# dws dingtalk-tag connect")

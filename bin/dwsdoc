@@ -278,6 +278,24 @@ def _read_card(kind, key):
             "body": body.rstrip()}
 
 
+_GRAY_FORM = ("[钉钉数字员工创建灰度申请（DWS 内&&界面功能）]"
+              "(https://alidocs.dingtalk.com/notable/share/form/v013BMqYy5D4dLEmqwZ_MPojg9m_23zNs0R?source=link)")
+# 截断不得落在链接中间(实录 2026-10-15:半截 alidocs 链接被模型补全成 404 链接)。
+_LINK_SPAN_RE = re.compile(r"!?\[[^\]\n]*\]\([^)\s]*\)|(?:https?|dingtalk)://[^\s)\]>\"'`]+")
+
+
+def _cut(text, cap, extend=300):
+    """按 cap 截断；切点落在 markdown 链接/裸 URL 内部时，短链延到链接结尾，长链退到链接之前。"""
+    if len(text) <= cap:
+        return text
+    for m in _LINK_SPAN_RE.finditer(text, max(0, cap - 2000)):
+        if m.start() >= cap:
+            break
+        if m.end() > cap:
+            return text[:m.end()] if m.end() - cap <= extend else text[:m.start()]
+    return text[:cap]
+
+
 def _evidence_contract(intent=None, has_card=True):
     """给模型可机械执行的证据边界；不把检索命中误当成运行时或后端事实。"""
     intent = intent or {}
@@ -303,8 +321,11 @@ def _evidence_contract(intent=None, has_card=True):
     if intent.get("origin"):
         lines.append("- origin：数字员工是 DEAP 上的对象(仓库文档称「DEAP 数字员工」，后端 deap-dev)，dws 用 manage create 创建；"
                      "DEAP 后台界面怎么建、「智能体」是否即数字员工、企业自建 Agent 接口是否对应均未写明，不得列为创建方式，"
-                     "给用户 manage detail/list 比对 agentUuid 自查；开通走灰度申请表(以开放平台 dws 更新日志原文为准)，"
-                     "申请表只用于申请开通，不当作咨询渠道。")
+                     "给用户 manage detail/list 比对 agentUuid 自查；开通走灰度申请表，申请表只用于申请开通，不当作咨询渠道。")
+        # 实录 2026-10-15:只写「以更新日志为准」不给链接,模型编出 alidocs/i/nodes/… 的 404 链接并改称「DEAP 灰度申请表」。
+        # 链接与开放平台库 dws-cli-log 原文逐字一致,由开放平台库 test_dkdoc_ctx 跨库校验。
+        lines.append("- origin_form：灰度申请表(逐字摘自开放平台「dws 更新日志」https://open.dingtalk.com/document/development/dws-cli-log，"
+                     "表名与链接整条照抄)：" + _GRAY_FORM)
     if intent.get("ratelimit"):
         lines.append("- ratelimit：dws 产品命令走钉钉 MCP 网关(mcp-gw.dingtalk.com)，不走开放平台 OpenAPI；"
                      "开放平台「调用频次与限流」的 QPS、月调用量、IP 维度、90018/90002/90020、升级专业版扩容只适用于 dws api 直调 OpenAPI，"
@@ -312,6 +333,8 @@ def _evidence_contract(intent=None, has_card=True):
                      "--page-delay 只能推荐给命令卡里有该参数的命令。")
     if intent.get("access") or intent.get("origin") or intent.get("ratelimit"):
         lines.append("- notes：行为说明只作依据，其文件名、标题不出现在回复和参考区；参考区只放上游仓库深链。")
+    lines.append("- links：链接只能逐字照抄上文原文出现过的整条；被截断或不完整的不得补全、拼接，须 cat 原文取整条，"
+                 "取不到就不给该链接；不得按格式自行构造 alidocs.dingtalk.com / open.dingtalk.com 等任何链接。")
     if intent.get("why") or intent.get("mechanism") or intent.get("trouble"):
         lines.append("- causality：报错根因/生命周期/机制须有对应代码路径；只有相关事实时只能标为推测并给用户自验步骤。")
     return lines
@@ -620,7 +643,7 @@ def ctx_impl(q, raw_terms, force_full=False):
             continue
         body = open(p, encoding="utf-8", errors="replace").read()
         if len(body) > body_cap:
-            body = body[:body_cap] + f"\n…[已截断,完整: dwsdoc cat {r['path']}]"
+            body = _cut(body, body_cap) + f"\n…[已截断,完整: dwsdoc cat {r['path']}]"
         out.append(f"\n== 篇目[{i+1}/{len(body_docs)}] {r['path']} [{r['layer']}] ==")
         out.append(body)
     others = [r["path"] for r in docs_hits if r not in body_docs][:8]
@@ -703,7 +726,7 @@ def ctx_impl(q, raw_terms, force_full=False):
                 hit = [s for n_, _, s in sc[:n_secs] if n_ > 0]
                 if score == -10**9:
                     hit = [body.split("\n---", 1)[-1].strip()]
-                picked.append(f"--- notes/{fn} ---\n" + ("\n".join(hit) if hit else body[:2000])[:3000])
+                picked.append(f"--- notes/{fn} ---\n" + _cut("\n".join(hit) if hit else _cut(body, 2000), 3000))
             if picked:
                 notes_hit = len(picked)
                 out.append("\n== 行为语义(notes,复杂问法自动并入) ==")
@@ -754,7 +777,7 @@ def ctx_impl(q, raw_terms, force_full=False):
         return 1
     text = "\n".join(out)
     if len(text) > _CTX_TOTAL_CAP:
-        text = text[:_CTX_TOTAL_CAP] + "\n…[ctx 总量截断,用 dwsdoc cat 读完整篇目]"
+        text = _cut(text, _CTX_TOTAL_CAP) + "\n…[ctx 总量截断,用 dwsdoc cat 读完整篇目]"
     print(text)
     return 0
 

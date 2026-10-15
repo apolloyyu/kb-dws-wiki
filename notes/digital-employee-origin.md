@@ -12,7 +12,7 @@ intents: origin
 
 - **数字员工是 DEAP 上的对象,dws 是它的命令行入口**:dws 仓库文档直接称其为「DEAP 数字员工」(仓库 `docs/deap-digital-employee-detail.md` 标题「DEAP 数字员工详情参数」;`skills/mono/SKILL.md` 路由表「DEAP 数字员工 → dingtalk-tag」);dingtalk-tag 命令固定调用 MCP server `deap-dev`(`dingtalk-tag-index.md`「全局约束」)。
 - **在 dws 里创建**:`dws dingtalk-tag manage create --name <名称> --description <职责> --type open_code|local_agent`,只建草稿(`deap_agent.go` 约 L232);上线还要 `manage set-visibility` 设可见范围、`manage publish` 发布(`docs/products/dingtalk-tag/manage.md`)。
-- **开通**:数字员工功能在灰度中,开通以开放平台文档「dws 更新日志」里的灰度申请表为准(原文链接须从开放平台文档取;表名含「DWS 内&&界面功能」)。不要说成组织内部审批流程,也不要改成让用户找商务或客服。
+- **开通**:数字员工功能在灰度中,开通填开放平台文档「dws 更新日志」(https://open.dingtalk.com/document/development/dws-cli-log ,2026-10-03 一期「数字员工(灰度中)」)里的灰度申请表:[钉钉数字员工创建灰度申请（DWS 内&&界面功能）](https://alidocs.dingtalk.com/notable/share/form/v013BMqYy5D4dLEmqwZ_MPojg9m_23zNs0R?source=link)。表名与链接整条照抄,不得改称「DEAP 灰度申请表」等其他名称,不得改写或另造链接。不要说成组织内部审批流程,也不要改成让用户找商务或客服。
 
 ## 文档没写明的
 

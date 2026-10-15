@@ -6,7 +6,7 @@ usage: dws chat thread list
 description: List topic root messages and their `openConvThreadId` values.
 example: dws chat thread list --conversation-id <openConversationId> --limit 50
 use_when: When the agent needs to browse topic discussions in a conversation.
-source: internal/helpers/chat_thread.go:300
+source: internal/helpers/chat_thread.go:305
 visible_flags: 4
 partial_reason: unverified_flags
 

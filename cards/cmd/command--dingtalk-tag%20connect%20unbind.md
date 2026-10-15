@@ -4,7 +4,7 @@ kind: command
 completeness: partial
 usage: dws dingtalk-tag connect unbind
 description: —
-source: internal/helpers/deap_agent_lifecycle.go:284
+source: internal/helpers/deap_agent_lifecycle.go:316
 visible_flags: 2
 partial_reason: missing_description
 

@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws chat +flag-list
 description: 分页查询当前用户收藏的消息，支持有界自动翻页
-source: internal/shortcut/chat/lark_alignment.go:561
+source: internal/shortcut/chat/lark_alignment.go:574
 visible_flags: 9
 
 ## Flags

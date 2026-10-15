@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat thread recall-message
 description: Recall one message from a Thread.
 use_when: When the agent needs to retract one Thread reply or root message.
-source: internal/helpers/chat_thread.go:652
+source: internal/helpers/chat_thread.go:647
 visible_flags: 2
 
 ## Flags

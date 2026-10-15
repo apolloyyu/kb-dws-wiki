@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat group update-icon
 description: 更新群头像
 example: dws chat group update-icon --conversation-id <openConversationId> --icon-media-id <mediaId>
-source: internal/helpers/chat.go:8036
+source: internal/helpers/chat.go:8080
 visible_flags: 2
 
 ## Flags

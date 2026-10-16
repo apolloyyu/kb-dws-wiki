@@ -1,6 +1,6 @@
 ---
 source_path: "skills/mono/references/products/aitable/aitable-dashboard-chart.md"
-source_commit: "4d20041e0"
+source_commit: "92cb3f513"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 

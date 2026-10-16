@@ -1,6 +1,6 @@
 ---
 source_path: "skills/multi/dingtalk-event/SKILL.md"
-source_commit: "4d20041e"
+source_commit: "92cb3f513"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 

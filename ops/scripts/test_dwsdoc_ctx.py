@@ -303,5 +303,15 @@ class DwsdocCtxContractTest(unittest.TestCase):
         self.assertNotIn("--ai-tag", out)
         self.assertNotIn("--client-token", out)
 
+    def test_challenge_turns_off_fast_card(self):
+        # R10.5 回退 Q175:用户质疑后仍走快卡,模型复读卡片
+        out = run_dwsdoc("ctx", "所以你的意思dws auth login 判断状态其实不准的对吧？")
+        self.assertIn("card=1(fast=0)", out)
+        self.assertIn("card=1(fast=1)", run_dwsdoc("ctx", "dws auth login 文档在哪"))
+
+    def test_prev_question_joins_follow_up_terms(self):
+        out = run_dwsdoc("ctx", "--prev", "dws 发送消息怎么不显示AI标识", "那默认是true还是false")
+        self.assertIn("--ai-tag(Bool)", out)
+
 if __name__ == "__main__":
     unittest.main()

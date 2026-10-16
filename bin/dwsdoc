@@ -394,10 +394,11 @@ def _card_confident(rows, card=None):
     return name_score > 0 and top >= 6 and (clear or sibling_tie)
 
 
-def _flag_recall(terms, rows, cap=6):
+def _flag_recall(terms, rows, cap=2):
     """自然问句按 flag 名+help 召回。整句子串对"为何通过 dws 发送的都显示 ai 发送"必落空,
-    而答案就是 `--ai-tag`("消息是否带 AI 发送角标")。按 (名,help) 去重后逐词 IDF 加权:
-    须命中 ≥2 个词且其中 1 个不泛(df≤20);只靠 发送/消息/通过 这类泛词不入选,单词命中也不入选(防「不带 recordId」之类偶撞)。"""
+    而答案就是 `--ai-tag`("消息是否带 AI 发送角标")。按 (名,help) 去重后逐词 IDF 加权,
+    须命中 ≥2 词、其中 ≥1 个稀有(df≤15)、且覆盖问句总权重 ≥35%,只给前 2 组。
+    门槛按 300 题全量调:只要求「≥2 词+1 个不泛词」时 150 道 dws 题有 104 道带出无关 flag。"""
     uniq = {}
     for r in rows:
         for f in r.get("flags", []):
@@ -405,29 +406,34 @@ def _flag_recall(terms, rows, cap=6):
     keys = list(uniq)
     hays = [(n + " " + h).lower() for n, h in keys]
     kws = _tokenize([t.lower() for t in terms], hays)
-    kws = [w for w in kws if len(w) > 1]
-    if not kws:
-        return []
+    kws = [w for w in kws if len(w) > 1 and w not in _FLAG_EN_STOP]
     n = len(hays)
     wt = {}
     for w in kws:
         df = sum(1 for h in hays if _hit(w, h))
         if df:
             wt[w] = (math.log(n / (1 + df)), df)
+    total = sum(v[0] for v in wt.values())
+    if not total:
+        return []
     scored = []
     for k, h in zip(keys, hays):
         hit = [w for w in wt if _hit(w, h)]
-        if not hit:
+        if len(hit) < 2 or min(wt[w][1] for w in hit) > 15:
             continue
-        if len(hit) < 2 or min(wt[w][1] for w in hit) > 20:
-            continue
-        scored.append((-sum(wt[w][0] for w in hit), k))
+        sc = sum(wt[w][0] for w in hit)
+        if sc / total >= 0.35:
+            scored.append((-sc, k))
     scored.sort()
     out = []
     for _, k in scored[:cap]:
         for r, f in uniq[k]:
             out.append(f"dws {r['cmd']}  --{f['name']}({f['type']})  {f.get('help','')[:60]}")
     return out
+
+
+_FLAG_EN_STOP = {"the", "and", "for", "not", "use", "with", "from", "this", "that", "is", "to", "of", "in", "on",
+                 "dws", "dev", "id", "api", "json", "data", "success", "code", "https", "http", "cli", "command"}
 
 
 def ctx_impl(q, raw_terms, force_full=False, prev_q=""):

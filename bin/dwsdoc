@@ -389,6 +389,42 @@ def _card_confident(rows, card=None):
     return name_score > 0 and top >= 6 and (clear or sibling_tie)
 
 
+def _flag_recall(terms, rows, cap=6):
+    """自然问句按 flag 名+help 召回。整句子串对"为何通过 dws 发送的都显示 ai 发送"必落空,
+    而答案就是 `--ai-tag`("消息是否带 AI 发送角标")。按 (名,help) 去重后逐词 IDF 加权:
+    须命中 ≥2 个词且其中 1 个不泛(df≤20);只靠 发送/消息/通过 这类泛词不入选,单词命中也不入选(防「不带 recordId」之类偶撞)。"""
+    uniq = {}
+    for r in rows:
+        for f in r.get("flags", []):
+            uniq.setdefault((f["name"], f.get("help", "")), []).append((r, f))
+    keys = list(uniq)
+    hays = [(n + " " + h).lower() for n, h in keys]
+    kws = _tokenize([t.lower() for t in terms], hays)
+    kws = [w for w in kws if len(w) > 1]
+    if not kws:
+        return []
+    n = len(hays)
+    wt = {}
+    for w in kws:
+        df = sum(1 for h in hays if _hit(w, h))
+        if df:
+            wt[w] = (math.log(n / (1 + df)), df)
+    scored = []
+    for k, h in zip(keys, hays):
+        hit = [w for w in wt if _hit(w, h)]
+        if not hit:
+            continue
+        if len(hit) < 2 or min(wt[w][1] for w in hit) > 20:
+            continue
+        scored.append((-sum(wt[w][0] for w in hit), k))
+    scored.sort()
+    out = []
+    for _, k in scored[:cap]:
+        for r, f in uniq[k]:
+            out.append(f"dws {r['cmd']}  --{f['name']}({f['type']})  {f.get('help','')[:60]}")
+    return out
+
+
 def ctx_impl(q, raw_terms, force_full=False):
     """打包检索。异常由 main 捕获转 CTX_ERROR。"""
     out = []
@@ -517,6 +553,8 @@ def ctx_impl(q, raw_terms, force_full=False):
         for f in r.get("flags", []):
             if qq == f["name"] or qq in f["name"]:
                 flag_hits.append(f"dws {r['cmd']}  --{f['name']}({f['type']})  {f.get('help','')[:60]}")
+    if not flag_hits:
+        flag_hits = _flag_recall(raw_terms, command_rows)
     # 篇目检索:整句子串对自然问句必落空("去重 ack 服务端"整串查不到,逐词各能命中),
     # 改为逐词 OR + 命中数排序;问法虚词不参与检索。
     _STOP = {"有没有", "支持", "能不能", "可以吗", "是否", "多少", "上限", "有效期", "配额",

@@ -291,5 +291,17 @@ class DwsdocCtxContractTest(unittest.TestCase):
             out = run_dwsdoc("ctx", q)
             self.assertNotIn("notes/rate-limit-and-backend.md", out, q)
 
+    def test_natural_question_recalls_flag_by_help_text(self):
+        # R10.5 回退 Q250/Q251:flag 只按名子串匹配,自然问句召不回 --ai-tag(答案在 help「AI 发送角标」)
+        for q in ("现在为何通过dws发送的都会显示ai发送？", "如何让消息不带ai标识"):
+            out = run_dwsdoc("ctx", q)
+            self.assertIn("--ai-tag(Bool)", out, q)
+
+    def test_help_text_flag_recall_does_not_add_noise(self):
+        # 单个泛词(发送/消息)或偶撞词不得把无关 flag 拉进来
+        out = run_dwsdoc("ctx", "创建空会话转发")
+        self.assertNotIn("--ai-tag", out)
+        self.assertNotIn("--client-token", out)
+
 if __name__ == "__main__":
     unittest.main()

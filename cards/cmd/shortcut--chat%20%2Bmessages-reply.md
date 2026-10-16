@@ -4,7 +4,7 @@ kind: shortcut
 completeness: partial
 usage: dws chat +messages-reply
 description: 统一回复已有消息：个人群/单聊引用、个人 Thread 追加、Bot 群引用
-source: internal/shortcut/chat/lark_alignment.go:217
+source: internal/shortcut/chat/lark_alignment.go:218
 visible_flags: 15
 partial_reason: too_many_flags:15
 

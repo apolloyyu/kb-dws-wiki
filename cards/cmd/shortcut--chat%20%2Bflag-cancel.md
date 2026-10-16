@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws chat +flag-cancel
 description: 取消收藏一条或多条消息（最多 10 条）
-source: internal/shortcut/chat/lark_alignment.go:497
+source: internal/shortcut/chat/lark_alignment.go:510
 visible_flags: 3
 
 ## Flags

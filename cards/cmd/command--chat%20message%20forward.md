@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat message forward
 description: 转发单条消息（源/目标会话均支持单聊/群聊）
 example: dws chat message forward --src-conversation-id <srcOpenConversationId> --message-id <srcOpenMessageId> --dest-conversation-id <destOpenConversationId>
-source: internal/helpers/chat.go:8300
+source: internal/helpers/chat.go:8344
 visible_flags: 4
 
 ## Flags

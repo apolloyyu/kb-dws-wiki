@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat thread remove-emoji
 description: Remove the current user's emoji reaction from a Thread message.
 use_when: When the agent needs to undo a Thread reaction.
-source: internal/helpers/chat_thread.go:729
+source: internal/helpers/chat_thread.go:724
 visible_flags: 3
 
 ## Flags

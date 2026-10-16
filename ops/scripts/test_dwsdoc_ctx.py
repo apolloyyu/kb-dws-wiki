@@ -109,7 +109,7 @@ class DwsdocCtxContractTest(unittest.TestCase):
         out = run_dwsdoc("ctx", "event bus 生命周期")
         self.assertIn("fast=0", out)
         self.assertRegex(out, r"notes=[1-9]")
-        self.assertIn("行为语义(notes,复杂问法自动并入)", out)
+        self.assertIn("行为语义(notes,复杂问法自动并入", out)
 
     def test_cross_boundary_tokenization_and_cross_org_listing(self):
         out = run_dwsdoc("ctx", "获取消息好像拉不到非本组织的群信息？")
@@ -312,6 +312,11 @@ class DwsdocCtxContractTest(unittest.TestCase):
     def test_prev_question_joins_follow_up_terms(self):
         out = run_dwsdoc("ctx", "--prev", "dws 发送消息怎么不显示AI标识", "那默认是true还是false")
         self.assertIn("--ai-tag(Bool)", out)
+
+    def test_merged_notes_header_forbids_citing_note_files(self):
+        # R10.6.0 盲测 Q227/Q232/Q242:泛 notes 并入时契约无禁引,回复参考区列出 notes/event-system.md
+        out = run_dwsdoc("ctx", "二号 如果在同一台机器上启用多个事件监听，这个应该是可行的吧")
+        self.assertIn("文件名/标题不得出现在回复和参考区", out)
 
 if __name__ == "__main__":
     unittest.main()

@@ -825,7 +825,10 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
                 picked.append(f"--- notes/{fn} ---\n" + (text if score == -10**9 else _cut(text, 3000)))
             if picked:
                 notes_hit = len(picked)
-                out.append("\n== 行为语义(notes,复杂问法自动并入) ==")
+                # 契约里的 notes 禁引只在专属 note 命中时出现;泛 notes 并入时模型会把
+                # notes/event-system.md 当参考链接(R10.6.0 盲测 Q227/Q232/Q242)。随段头强制。
+                out.append("\n== 行为语义(notes,复杂问法自动并入;仅作依据,文件名/标题不得出现在回复和参考区,"
+                           "参考区改给其「> 原文(…)」行或源码行对应的上游深链) ==")
                 out.extend(picked)
     # 支持性/版本题:产品行为变更常只记录在 CHANGELOG(实录 Q200 "通过AI发送文案能否改"答案在
     # DWS_AGENT_PRODUCT 条目)。只用 ASCII 实现词(含术语表映射)逐行 grep,最多 6 行。

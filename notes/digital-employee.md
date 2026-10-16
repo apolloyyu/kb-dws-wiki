@@ -5,7 +5,7 @@ intents: origin, access
 triggers: 数字员工, dingtalk-tag, agent-uuid, agentuuid, digital_employee
 contract:
   - deap1：现在的数字员工 = dws dingtalk-tag(标识 agentUuid)；DEAP 平台界面「创建智能体/助理→发布→加到群」是 DEAP 1.0 的 AI 助理，不得列为数字员工的创建、配置或入群方式(含「方式一：DEAP 平台可视化创建」)。
-  - access：可见范围(set-visibility)与对话白名单(connect --allowed-users/--allowed-groups)是两层；群里多人使用须同时给出 --allowed-groups 与 --allowed-users；原文没写的入群方式只答「文档未说明」；应用机器人命令(add-bot/robotCode)不得套用到数字员工。
+  - access：正式 connect 绑定(platform 策略)时谁能对话由平台按可见范围(set-visibility+publish)控制，群内已入群后原生 @ 即回复，不叠加本地白名单；只有无服务端绑定的旧本地通道才用 connect --allowed-users/--allowed-groups 白名单；入群操作方式文档未说明，只答「文档未说明」；应用机器人命令(add-bot/robotCode)不得套用到数字员工。
   - origin：创建走 manage create(只建草稿)→set-visibility→publish；开通填 notes 里逐字给出的灰度申请表，申请表只用于申请开通，不当作咨询渠道。
 ---
 
@@ -37,17 +37,18 @@ contract:
 
 ## 群里谁能和它对话
 
-- **可见范围 ≠ 对话白名单,两层互不替代。** `set-visibility --visibility ALL` 不等于群里所有人都能对话。
-- **默认只有主管能用**;要开放给别人,接入普通本地 Agent 时用 `connect --allowed-users`(精确 userId)和 `--allowed-groups`(群会话 ID)。群消息要求群**和**发送人都在白名单,逐个精确匹配,没有通配或「所有人」选项。不在名单内的人 @ 它,消息被直接丢弃,没有任何回复。
-  {{quote: docs/upstream/digital-employee-adapters.md | 默认仅主管能触发}}
+谁能对话取决于员工的接入方式。源码按绑定里有没有服务端回执(`runtimeBindingId`)分成两种访问策略:
+  {{code: internal/helpers/deap_agent_access_policy.go | validMachineString(b.RuntimeBindingID)}}
+
+- **正式 `connect` 绑定的 local_agent(访问策略 `platform`,当前默认)**:由钉钉平台控制,本地不再查白名单。私聊:在可见范围内就能聊,移出可见范围后不再投递。群聊:已在群里时,原生 @ 它的消息会回复,群里不 @ 的消息不处理。可见范围用 `manage set-visibility` 设置,`manage publish` 后由平台生效。
+  {{quote: docs/upstream/digital-employee-adapters.md | 钉钉平台保证私聊可见即可以聊天}}
+  {{quote: docs/upstream/digital-employee-adapters.md | 投递权限由平台生效}}
+  {{code: internal/helpers/deap_agent_runtime.go | employeeBindingAccessPolicy(r.cfg.Binding) == "platform"}}
+- **没有服务端绑定回执的其他本地通道(访问策略 `local_allowlist`)**:沿用本地白名单,默认只有主管能用;开放给别人用 `connect --allowed-users`(精确 userId),群消息还要求群在 `--allowed-groups` 里,逐个精确匹配,没有通配。
+  {{quote: docs/upstream/digital-employee-adapters.md | 其他本地通道和机器人保留本地用户/群白名单}}
   {{quote: docs/products/dingtalk-tag/manage-and-connect.md | 默认仅主管可用}}
-- 让一个群里的多人使用,须同时给出 `--allowed-groups` 与 `--allowed-users`:
-
-```bash
-dws dingtalk-tag connect --agent-uuid <agentUuid> --channel <agent> \
-  --allowed-groups <openConversationId> --allowed-users <userId1>,<userId2> --dry-run --format json
-```
-
+- 上游产品说明(manage-and-connect.md)仍写「默认仅主管可用」,和设计文档、源码的新行为不一致;回答以源码和设计文档为准,并说明这一点适用于没有服务端绑定的旧通道。
+- **怎么把数字员工加进群**:文档只说「已入群后」@ 可回复,入群的操作方式未说明。
 - `--channel dsh`(DSH 宿主运行)和 `open_code`(平台托管)两种情况下群里谁能对话:文档未说明。
 
 ## 常见误解

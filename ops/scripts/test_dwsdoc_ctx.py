@@ -151,13 +151,14 @@ class DwsdocCtxContractTest(unittest.TestCase):
             out = run_dwsdoc("ctx", q)
             self.assertIn("notes/digital-employee.md", out, q)
             self.assertIn("allowed-groups", out, q)
-            self.assertIn("没有通配", out, q)
-            self.assertIn("> 原文(docs/digital-employee-adapters.md): 默认仅主管能触发", out, q)
+            # 上游 10-13(a3c7d486) 起正式 connect 绑定走平台访问策略,不再是「默认仅主管+白名单」
+            self.assertIn("> 原文(docs/digital-employee-adapters.md): `manage create` 创建并通过正式", out, q)
+            self.assertIn("platform", out, q)
             self.assertIn("- access：", out, q)
             self.assertIn("card=1(fast=0)", out, q)
             self.assertRegex(out, r"(?m)^# dws dingtalk-tag ", q)
             self.assertNotIn("add-bot --robot-code", out, q)
-            self.assertIn("同时给出 --allowed-groups 与 --allowed-users", out, q)
+            self.assertIn("不叠加本地白名单", out, q)
             self.assertIn("- notes：行为说明只作依据", out, q)
 
     def test_digital_employee_origin_uses_origin_note(self):

@@ -1,0 +1,29 @@
+{"note": "digital-employee.md", "kind": "quote", "arg": "docs/products/dingtalk-tag/dingtalk-tag-index.md | 数字员工标识只使用", "ok": true, "detail": "", "line": 41}
+{"note": "digital-employee.md", "kind": "quote", "arg": "docs/products/dingtalk-tag/dingtalk-tag-index.md | deap-dev", "ok": true, "detail": "", "line": 42}
+{"note": "digital-employee.md", "kind": "confirmed", "arg": "产品方 2026-10-15", "ok": true, "detail": "", "line": 0}
+{"note": "digital-employee.md", "kind": "quote", "arg": "docs/products/dingtalk-tag/dingtalk-tag-index.md | 创建 / 新建数字员工", "ok": true, "detail": "", "line": 22}
+{"note": "digital-employee.md", "kind": "quote", "arg": "docs/external/open-platform/dws-cli-log.md | 数字员工创建灰度申请", "ok": true, "detail": "", "line": 105}
+{"note": "digital-employee.md", "kind": "code", "arg": "internal/helpers/deap_agent_access_policy.go | validMachineString(b.RuntimeBindingID)", "ok": true, "detail": "", "line": 23}
+{"note": "digital-employee.md", "kind": "quote", "arg": "docs/upstream/digital-employee-adapters.md | 钉钉平台保证私聊可见即可以聊天", "ok": true, "detail": "", "line": 72}
+{"note": "digital-employee.md", "kind": "quote", "arg": "docs/upstream/digital-employee-adapters.md | 投递权限由平台生效", "ok": true, "detail": "", "line": 74}
+{"note": "digital-employee.md", "kind": "code", "arg": "internal/helpers/deap_agent_runtime.go | employeeBindingAccessPolicy(r.cfg.Binding) == \"platform\"", "ok": true, "detail": "", "line": 236}
+{"note": "digital-employee.md", "kind": "quote", "arg": "docs/upstream/digital-employee-adapters.md | 其他本地通道和机器人保留本地用户/群白名单", "ok": true, "detail": "", "line": 74}
+{"note": "digital-employee.md", "kind": "quote", "arg": "docs/products/dingtalk-tag/manage-and-connect.md | 默认仅主管可用", "ok": true, "detail": "", "line": 35}
+{"note": "digital-employee.md", "kind": "quote", "arg": "docs/skills/dingtalk-tag.md | robotUid", "ok": true, "detail": "", "line": 50}
+{"note": "digital-employee.md", "kind": "quote", "arg": "docs/skills/dingtalk-tag.md | 不要回退到机器人创建流程", "ok": true, "detail": "", "line": 51}
+{"note": "digital-employee.md", "kind": "absent", "arg": "robotcode @ internal/helpers/deap_agent*.go", "ok": true, "detail": "", "line": 0}
+{"note": "rate-limit-and-backend.md", "kind": "quote", "arg": "docs/upstream/architecture.md | execute MCP JSON-RPC calls", "ok": true, "detail": "", "line": 16}
+{"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/app/direct_runtime.go | mcp-gw.dingtalk.com", "ok": true, "detail": "", "line": 116}
+{"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/app/server_failure_classifier.go | WithOperation(\"tools/call\")", "ok": true, "detail": "", "line": 140}
+{"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/app/api_command.go | 直接调用钉钉 OpenAPI", "ok": true, "detail": "", "line": 64}
+{"note": "rate-limit-and-backend.md", "kind": "code", "arg": "README_zh.md | 仅通过 MCP 默认凭证登录不支持 Raw API 调用", "ok": true, "detail": "", "line": 647}
+{"note": "rate-limit-and-backend.md", "kind": "absent", "arg": "RATE_LIMIT_ERROR @ internal/**/*.go", "ok": true, "detail": "", "line": 0}
+{"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/transport/diagnostics.go | server_error_code", "ok": true, "detail": "", "line": 155}
+{"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/transport/diagnostics.go | \"retryable\", \"server_retryable\"", "ok": true, "detail": "", "line": 51}
+{"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/transport/client.go | defaultMaxRetries    = 1", "ok": true, "detail": "", "line": 68}
+{"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/transport/client.go | statusCode == http.StatusTooManyRequests || statusCode >= http.StatusInternalServerError", "ok": true, "detail": "", "line": 1009}
+{"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/app/runner.go | \"business_error\",", "ok": true, "detail": "", "line": 952}
+{"note": "rate-limit-and-backend.md", "kind": "quote", "arg": "docs/products/chat.md | `--page-delay` 默认 200ms", "ok": true, "detail": "", "line": 32}
+{"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/helpers/devapp_connect.go | \"user-rate-limit\", 20", "ok": true, "detail": "", "line": 624}
+{"note": "rate-limit-and-backend.md", "kind": "absent", "arg": "x-ratelimit @ internal/transport/*.go !_test.go", "ok": true, "detail": "", "line": 0}
+{"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/shortcut/chat/active_conversations_result.go | details[\"retryAfter\"]", "ok": true, "detail": "", "line": 164}

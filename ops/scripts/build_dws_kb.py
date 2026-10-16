@@ -5,7 +5,9 @@
 
 产出(全部机器生成,内容通路无 LLM):
   docs/                镜像层(逐字):command-index.md、CHANGELOG.md、products/**(来自
-                       skills/mono/references/products/,上游人写的产品线使用文档)
+                       skills/mono/references/products/,上游人写的产品线使用文档)、
+                       skills/<产品>.md(skills/multi/*/SKILL.md)、upstream/*.md(仓库 docs/ 白名单设计文档)、
+                       external/<库>/<slug>.md(其他知识库原文,如开放平台 dws 更新日志)
   graph/commands.jsonl 主命令树:命令+描述+适用场景(来自 command-index)+flags(源码静态提取,带 文件:行号)
   graph/shortcuts.jsonl +xxx 短命令:声明式 Flag 结构直接解析(带 文件:行号)
   cards/cmd/*.md       主命令与 shortcut 的确定性答案卡(full/partial 自判)
@@ -62,8 +64,61 @@ def frontmatter(source_path, commit):
             "---\n\n")
 
 
+# 上游人写文档里 notes 会引用的两类原文(notes 的 {{quote:}} 依据必须落在镜像层,
+# 否则沙箱只能看到 note 转述,上游改了也无从发现——实录 2026-10-15)。
+# 设计文档按白名单镜像:仓库 docs/ 里多数是 RFC/CI/发布/评测报告,和答疑无关,全量镜像会污染 find 排序。
+UPSTREAM_DOCS = (
+    "architecture.md", "agent-code.md", "auth-exchange.md", "reference.md", "runtime-context.md",
+    "connect-daemon-service.md", "event-subprocess-contract.md", "robot-quickstart.md",
+    "devapp-agent-install-guide.md", "international-region-guide.zh-CN.md", "upgrading.md",
+    "deap-agent-skill-mcp.md", "deap-digital-employee-detail.md", "digital-employee-adapters.md",
+    "digital-employee-server-binding.md", "dingtalk-tag-mcp-mapping.md",
+)
+# 外部来源:其他知识库里的原文(按 slug 定位,不依赖对方路径)。读不到时保留上一版镜像并报警,
+# 不删文件——外部库缺失不能让 dws 库丢掉 notes 的依据。
+OPEN_PLATFORM_KB = os.environ.get("OPEN_PLATFORM_KB") or os.path.expanduser("~/knowledge-git/kb-dingtalk-open-platform")
+EXTERNAL = (("open-platform", "dws-cli-log"),)
+
+
+def mirror_external(docs, prev):
+    """docs: 新镜像目录;prev: 上一版 external/ 的备份(读不到外部源时回填)。"""
+    out, warns = [], []
+    rows = []
+    mp = os.path.join(OPEN_PLATFORM_KB, "meta", "documents.jsonl")
+    if os.path.exists(mp):
+        rows = load_jsonl(mp)
+    for kb, slug in EXTERNAL:
+        dp_rel = os.path.join("external", kb, slug + ".md")
+        dp = os.path.join(docs, dp_rel)
+        os.makedirs(os.path.dirname(dp), exist_ok=True)
+        d = next((r for r in rows if r.get("slug") == slug), None)
+        sp = os.path.join(OPEN_PLATFORM_KB, d["local_path"]) if d else ""
+        if d and os.path.exists(sp):
+            body = open(sp, encoding="utf-8", errors="replace").read()
+            open(dp, "w", encoding="utf-8").write(
+                "---\n"
+                f"source_kb: \"kb-dingtalk-open-platform\"\n"
+                f"source_path: \"{d['local_path']}\"\n"
+                f"source_url: \"{d.get('source_url', '')}\"\n"
+                f"updated_at: \"{d.get('updated_at', '')}\"\n"
+                "layer: mirror   # 外部来源逐字镜像,勿手工修改\n"
+                "---\n\n" + body)
+            out.append(dp_rel)
+        elif os.path.exists(os.path.join(prev, kb, slug + ".md")):
+            shutil.copy(os.path.join(prev, kb, slug + ".md"), dp)
+            out.append(dp_rel)
+            warns.append(f"外部来源 {kb}/{slug} 读不到,沿用上一版镜像")
+        else:
+            warns.append(f"外部来源 {kb}/{slug} 读不到且无上一版")
+    return out, warns
+
+
 def mirror(src, commit):
     docs = os.path.join(REPO, "docs")
+    prev = os.path.join(REPO, ".external-prev")
+    shutil.rmtree(prev, ignore_errors=True)
+    if os.path.isdir(os.path.join(docs, "external")):
+        shutil.copytree(os.path.join(docs, "external"), prev)
     shutil.rmtree(docs, ignore_errors=True)
     os.makedirs(docs)
     copied = []
@@ -74,6 +129,11 @@ def mirror(src, commit):
         for fn in sorted(files):
             sp = os.path.join(root, fn)
             plan.append((rel(sp, src), os.path.join("products", rel(sp, prod_src))))
+    multi = os.path.join(src, "skills", "multi")
+    for name in sorted(os.listdir(multi)) if os.path.isdir(multi) else []:
+        if os.path.exists(os.path.join(multi, name, "SKILL.md")):
+            plan.append((f"skills/multi/{name}/SKILL.md", f"skills/{name}.md"))
+    plan += [(f"docs/{fn}", f"upstream/{fn}") for fn in UPSTREAM_DOCS]
     for sp_rel, dp_rel in plan:
         sp = os.path.join(src, sp_rel)
         if not os.path.exists(sp):
@@ -86,7 +146,11 @@ def mirror(src, commit):
         else:
             shutil.copy(sp, dp)
         copied.append(dp_rel)
-    return copied
+    ext, warns = mirror_external(docs, prev)
+    shutil.rmtree(prev, ignore_errors=True)
+    for w in warns:
+        print("WARN " + w)
+    return copied + ext
 
 
 # ---------- 主命令树:command-index 表格 ----------
@@ -701,8 +765,10 @@ def extract_shortcuts(src):
 
 def headings(path):
     try:
-        return [l.lstrip("# ").strip() for l in open(path, encoding="utf-8")
-                if l.startswith("#")][:12]
+        lines = open(path, encoding="utf-8").read().splitlines()
+        if lines and lines[0] == "---" and "---" in lines[1:]:   # frontmatter 的 contract/triggers 不是标题
+            lines = lines[lines.index("---", 1) + 1:]
+        return [l.lstrip("# ").strip() for l in lines if l.startswith("#")][:12]
     except OSError:
         return []
 
@@ -859,6 +925,19 @@ def main():
 
     os.makedirs(os.path.join(REPO, "meta"), exist_ok=True)
     ndocs = build_documents_jsonl()
+
+    # notes 依据核对:quote 查镜像原文、code/absent 查源码。失效只记录+告警,不让构建失败——
+    # 一处上游改动不能卡住整库的每日更新;ctx 读这份结果在对应条目输出 ⚠ 警告。
+    sys.path.insert(0, os.path.join(REPO, "bin"))
+    import notes_refs
+    checks = notes_refs.check_all(REPO, src)
+    with open(os.path.join(REPO, "meta", "notes-check.jsonl"), "w", encoding="utf-8") as f:
+        for r in checks:
+            f.write(json.dumps(r, ensure_ascii=False) + "\n")
+    stale = [r for r in checks if not r["ok"]]
+    for r in stale:
+        print(f"NOTES_STALE {r['note']} {r['kind']}: {r['detail']}")
+    print(f"notes 依据核对: {len(checks)} 处,失效 {len(stale)} 处")
 
     # graph/cards/meta 全部落盘后跑 ctx 契约回归；候选排序、复杂问法回退或证据边界
     # 任一漂移都必须让每日确定性构建失败，不能只靠单独手工执行测试发现。

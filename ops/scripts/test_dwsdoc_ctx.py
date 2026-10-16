@@ -149,9 +149,10 @@ class DwsdocCtxContractTest(unittest.TestCase):
         for q in ("如何让群所有人可以与数字员工对话", "数字员工怎么拉进群",
                   "怎么让别人也能和我的数字员工对话", "数字员工的 robotCode 在哪看"):
             out = run_dwsdoc("ctx", q)
-            self.assertIn("notes/digital-employee-access.md", out, q)
+            self.assertIn("notes/digital-employee.md", out, q)
             self.assertIn("allowed-groups", out, q)
             self.assertIn("没有通配", out, q)
+            self.assertIn("> 原文(docs/digital-employee-adapters.md): 默认仅主管能触发", out, q)
             self.assertIn("- access：", out, q)
             self.assertIn("card=1(fast=0)", out, q)
             self.assertRegex(out, r"(?m)^# dws dingtalk-tag ", q)
@@ -164,7 +165,7 @@ class DwsdocCtxContractTest(unittest.TestCase):
         for q in ("DEAP创建的智能体就是你所谓的数字员工吗", "那你说的数字员工到底在哪儿创建的？不是DEAP这？",
                   "AI 助理改名为数字员工了吗", "数字员工怎么创建"):
             out = run_dwsdoc("ctx", q)
-            self.assertIn("notes/digital-employee-origin.md", out, q)
+            self.assertIn("notes/digital-employee.md", out, q)
             self.assertIn("- origin：", out, q)
             self.assertIn("card=1(fast=0)", out, q)
             self.assertRegex(out, r"(?m)^# dws dingtalk-tag manage create", q)
@@ -172,17 +173,51 @@ class DwsdocCtxContractTest(unittest.TestCase):
             self.assertIn("申请表只用于申请开通", out, q)
 
     def test_digital_employee_enable_gives_verbatim_form_link(self):
-        # 实录 2026-10-15:只写「以更新日志为准」不给链接,模型编出 alidocs/i/nodes/… 的 404 链接
-        form = ("[钉钉数字员工创建灰度申请（DWS 内&&界面功能）]"
-                "(https://alidocs.dingtalk.com/notable/share/form/v013BMqYy5D4dLEmqwZ_MPojg9m_23zNs0R?source=link)")
-        with open(os.path.join(REPO, "notes", "digital-employee-origin.md"), encoding="utf-8") as fh:
-            note = fh.read()
-        self.assertIn(form, note)
+        # 实录 2026-10-15:只写「以更新日志为准」不给链接,模型编出 alidocs/i/nodes/… 的 404 链接。
+        # 链接不再写死:note 用 {{quote:}} 引用开放平台更新日志的外部镜像,ctx 输出时现场取原文。
+        with open(os.path.join(REPO, "docs", "external", "open-platform", "dws-cli-log.md"), encoding="utf-8") as fh:
+            src = fh.read()
+        form = next(l.strip() for l in src.splitlines() if "数字员工创建灰度申请" in l)
+        self.assertIn("alidocs.dingtalk.com/notable/share/form/", form)
+        with open(os.path.join(REPO, "notes", "digital-employee.md"), encoding="utf-8") as fh:
+            self.assertNotIn("alidocs.dingtalk.com", fh.read(), "note 里不得写死链接")
         for q in ("数字员工灰度怎么申请", "DIGITAL_EMPLOYEE_NOT_ENABLED 怎么开通", "数字员工怎么开通"):
             out = run_dwsdoc("ctx", q)
-            self.assertIn("- origin_form：", out, q)
+            self.assertIn("> 原文(https://open.dingtalk.com/document/development/dws-cli-log", out, q)
             self.assertIn(form, out, q)
             self.assertIn("不得按格式自行构造", out, q)
+            self.assertNotIn("⚠依据已变更(", out, q)
+            self.assertNotIn("{{", out, q)
+
+    def test_note_refs_all_valid_and_stale_is_flagged(self):
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("notes_refs", os.path.join(REPO, "bin", "notes_refs.py"))
+        nr = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(nr)
+        # 镜像层(quote)依据全部有效;code/absent 由构建核对写入 meta/notes-check.jsonl
+        nd = os.path.join(REPO, "notes")
+        for fn in os.listdir(nd):
+            with open(os.path.join(nd, fn), encoding="utf-8") as fh:
+                for kind, arg, _ in nr.parse(fh.read()):
+                    if kind == "quote":
+                        self.assertIsNotNone(nr.quote_line(REPO, arg), f"{fn}: {arg}")
+        for r in nr.load_check(REPO).values():
+            self.assertTrue(r["ok"], f"{r['note']} {r['kind']}: {r['detail']}")
+        body = "- 结论\n  {{quote: docs/products/chat.md | 这段原文不存在XYZ}}\n  {{code: a.go | x}}"
+        out = nr.expand(REPO, "t.md", body, {("t.md", "code", "a.go | x"): {"ok": False, "detail": "a.go 已不含「x」"}})
+        self.assertEqual(out.count("⚠依据已变更"), 2)
+        self.assertEqual(nr.parse("x {{quote:}} y"), [])
+
+    def test_contract_facts_live_in_notes_not_code(self):
+        with open(DWSDOC, encoding="utf-8") as fh:
+            code = fh.read()
+        for fact in ("DEAP 1.0", "mcp-gw.dingtalk.com", "notable/share/form", "默认仅主管"):
+            self.assertNotIn(fact, code, f"dwsdoc 里不得写死事实: {fact}")
+        out = run_dwsdoc("ctx", "dws发送消息限流规则是什么")
+        self.assertIn("- ratelimit：", out)
+        out = run_dwsdoc("ctx", "dws chat message list 怎么用")
+        self.assertNotIn("- ratelimit：", out)
+        self.assertNotIn("- deap1：", out)
 
     def test_truncation_never_splits_links(self):
         import runpy
@@ -212,14 +247,15 @@ class DwsdocCtxContractTest(unittest.TestCase):
             out = run_dwsdoc("ctx", q)
             self.assertIn("- deap1：", out, q)
             self.assertIn("DEAP 1.0 的 AI 助理", out, q)
-            self.assertIn("notes/digital-employee-origin.md", out, q)
+            self.assertIn("notes/digital-employee.md", out, q)
             self.assertNotIn("拿 DEAP 后台显示的智能体 ID", out, q)
+            self.assertIn("(人工确认: 产品方 2026-10-15", out, q)
 
     def test_digital_employee_create_and_group_merges_both_notes(self):
         out = run_dwsdoc("ctx", "创建好的数字员工怎么拉进群")
         self.assertRegex(out, r"(?m)^# dws dingtalk-tag connect")
-        self.assertIn("notes/digital-employee-access.md", out)
-        self.assertIn("notes/digital-employee-origin.md", out)
+        self.assertIn("notes/digital-employee.md", out)
+        self.assertIn("notes/digital-employee.md", out)
 
     def test_cmd_prefix_lists_all_hits(self):
         # 实录 R10.5.10:只显示前 12 条,模型答「oa approval 仅有 12 个子命令、不支持退回」
@@ -229,12 +265,12 @@ class DwsdocCtxContractTest(unittest.TestCase):
 
     def test_digital_employee_vs_robot_uses_access_note(self):
         out = run_dwsdoc("ctx", "数字员工和机器人有什么区别")
-        self.assertIn("notes/digital-employee-access.md", out)
+        self.assertIn("notes/digital-employee.md", out)
         self.assertIn("- access：", out)
 
     def test_robot_join_group_without_digital_employee_keeps_chat_context(self):
         out = run_dwsdoc("ctx", "怎么把机器人拉进群")
-        self.assertNotIn("notes/digital-employee-access.md", out)
+        self.assertNotIn("notes/digital-employee.md", out)
         self.assertIn("add-bot", out)
 
     def test_rate_limit_uses_mcp_gateway_note(self):

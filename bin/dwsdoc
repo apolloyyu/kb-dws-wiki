@@ -17,6 +17,10 @@ import math
 import os
 import re
 import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import notes_refs  # noqa: E402  notes 依据标记的展开与核对
+import sys
 from urllib.parse import quote
 
 _CTX_BODY_CAP = 8000
@@ -220,6 +224,7 @@ def _intent(q):
                                          "多个", "都能", "都会", "同时", "每个", "各自", "都收到", "扇出", "独占", "排他",
                                          "只有一个", "其余", "没反应", "没有反应", "收不到"))
     return {
+        "_q": q,
         "why":     any(k in q for k in ("为什么", "原理", "机制", "不一致", "冲突", "原因", "根因", "归因",
                                              "导致", "怎么回事", "怎么判断", "什么逻辑", "逻辑", "核对代码", "源码")),
         "howmany": any(k in q for k in ("多少", "上限", "有效期", "配额", "几个", "多久", "时长", "过期")),
@@ -234,13 +239,13 @@ def _intent(q):
         "enumerate": any(k in q for k in ("全部", "所有", "有哪些", "哪些", "盘点", "枚举", "什么类型", "哪种类型")),
         # 「群里谁能和数字员工对话/怎么拉进群」:答案是 dingtalk-tag 的可见范围与 connect 白名单,
         # 不是 chat 的 add-bot/@所有人(实录 2026-10-10:检索给出 add-bot,模型据此编出 robotCode 入群并在群内复读)。
-        "access": (bool(re.search(r"数字员工|dingtalk-tag|agent-uuid", q))
+        "access": (_subject("access", q, r"数字员工|dingtalk-tag|agent-uuid")
                    and any(k in q for k in ("群", "别人", "他人", "其他人", "所有人", "全员", "成员", "同事", "大家",
                                             "谁能", "白名单", "可见", "对话", "聊天", "拉进", "加入", "可用范围", "使用范围",
                                             "robotcode", "robot-code", "机器人"))),
         # 「数字员工在哪创建/是不是 DEAP 智能体/怎么开通」:dws 文档只写了 manage create 与 deap-dev,
         # 只给一句「关系未说明」时模型会在推测与撤回间摇摆(实录 2026-10-12 正式群)。
-        "origin": (bool(re.search(r"数字员工|dingtalk-tag|agent-uuid|digital_employee", q))
+        "origin": (_subject("origin", q, r"数字员工|dingtalk-tag|agent-uuid|digital_employee")
                    and any(k in q for k in ("deap", "智能体", "助理", "ai助理", "ai 助理", "创建", "新建", "添加", "界面", "平台", "在哪", "哪里", "哪儿", "入口",
                                             "开通", "灰度", "申请", "not_enabled", "一回事", "同一个", "什么关系", "改名"))),
         # 「dws 被限流/阈值多少/怎么提升/RATE_LIMIT_ERROR」:产品命令走 MCP 网关,开放平台 OpenAPI 的
@@ -278,8 +283,6 @@ def _read_card(kind, key):
             "body": body.rstrip()}
 
 
-_GRAY_FORM = ("[钉钉数字员工创建灰度申请（DWS 内&&界面功能）]"
-              "(https://alidocs.dingtalk.com/notable/share/form/v013BMqYy5D4dLEmqwZ_MPojg9m_23zNs0R?source=link)")
 # 截断不得落在链接中间(实录 2026-10-15:半截 alidocs 链接被模型补全成 404 链接)。
 _LINK_SPAN_RE = re.compile(r"!?\[[^\]\n]*\]\([^)\s]*\)|(?:https?|dingtalk)://[^\s)\]>\"'`]+")
 
@@ -294,6 +297,43 @@ def _cut(text, cap, extend=300):
         if m.end() > cap:
             return text[:m.end()] if m.end() - cap <= extend else text[:m.start()]
     return text[:cap]
+
+
+_NOTES_CACHE = None
+
+
+def _notes():
+    """[(文件名, 正文)];只读一次。"""
+    global _NOTES_CACHE
+    if _NOTES_CACHE is None:
+        nd = os.path.join(ROOT, "notes")
+        _NOTES_CACHE = [(fn, open(os.path.join(nd, fn), encoding="utf-8", errors="replace").read())
+                        for fn in sorted(os.listdir(nd)) if fn.endswith(".md")] if os.path.isdir(nd) else []
+    return _NOTES_CACHE
+
+
+def _note_owned(body, intent, q=""):
+    """note 在 frontmatter 声明的 intents 任一命中时整篇并入。"""
+    return any(intent.get(i) for i in notes_refs.declared_intents(body))
+
+
+def _subject(intent_name, q, fallback):
+    """意图的主题词来自声明该意图的 note 的 triggers:(加 note 不用改代码);无声明时用 fallback。"""
+    terms = [t for fn, body in _notes() if intent_name in notes_refs.declared_intents(body)
+             for t in notes_refs.triggers(body)]
+    return any(t in q for t in terms) if terms else bool(re.search(fallback, q))
+
+
+def _owned_intents():
+    return {i for _, body in _notes() for i in notes_refs.declared_intents(body)}
+
+
+def _owned_contract(intent, q=""):
+    out = []
+    for _, body in _notes():
+        if _note_owned(body, intent, q):
+            out.extend(notes_refs.contract_lines(body))
+    return list(dict.fromkeys(out))
 
 
 def _evidence_contract(intent=None, has_card=True):
@@ -313,32 +353,16 @@ def _evidence_contract(intent=None, has_card=True):
         lines.append("- capability：某条命令存在只证明该入口存在；所问对象、消息类型和输出层级仍须由正文/源码直接覆盖。")
     if intent.get("card_capability"):
         lines.append("- card_axes：原始卡片结构、可读文本提取、结构化字段解析、渲染、解密是五项独立能力，须逐项核验，不得互相推出。")
-    if intent.get("access"):
-        lines.append("- access：可见范围(set-visibility)与对话白名单(connect --allowed-users/--allowed-groups)是两层；"
-                     "群里多人使用须同时给出 --allowed-groups 与 --allowed-users；"
-                     "原文没写的入群方式只答「文档未说明」，不建议去灰度申请表、对接人或其他渠道咨询；"
-                     "应用机器人命令(add-bot/robotCode)不得套用到数字员工。")
-    if intent.get("access") or intent.get("origin"):
-        # 实录 2026-10-15 正式群:答「方式一:登录 DEAP 平台创建智能体→发布→加到群」。产品方确认那是 DEAP 1.0 的 AI 助理。
-        lines.append("- deap1：现在的数字员工 = dws dingtalk-tag 这一套(标识 agentUuid)；后端 MCP server 叫 deap-dev 只是服务名。"
-                     "在 DEAP 平台界面「创建智能体/助理→配置人设→发布→加到群」是 DEAP 1.0 的 AI 助理，不是数字员工，"
-                     "不得作为数字员工的创建、配置或入群方式列出(含「方式一：DEAP 平台可视化创建」)。")
-    if intent.get("origin"):
-        lines.append("- origin：dws 文档给出的创建方式是 manage create(只建草稿)→set-visibility→publish；"
-                     "是否另有客户端界面入口文档未写明，答「文档未说明」，不得拿 DEAP 平台界面顶替；"
-                     "企业自建 Agent 接口、开发者后台「数字员工」发布类型是否对应未写明，不得列为创建方式；"
-                     "开通走灰度申请表，申请表只用于申请开通，不当作咨询渠道。")
-        # 实录 2026-10-15:只写「以更新日志为准」不给链接,模型编出 alidocs/i/nodes/… 的 404 链接并改称「DEAP 灰度申请表」。
-        # 链接与开放平台库 dws-cli-log 原文逐字一致,由开放平台库 test_dkdoc_ctx 跨库校验。
-        lines.append("- origin_form：灰度申请表(逐字摘自开放平台「dws 更新日志」https://open.dingtalk.com/document/development/dws-cli-log，"
-                     "表名与链接整条照抄)：" + _GRAY_FORM)
-    if intent.get("ratelimit"):
-        lines.append("- ratelimit：dws 产品命令走钉钉 MCP 网关(mcp-gw.dingtalk.com)，不走开放平台 OpenAPI；"
-                     "开放平台「调用频次与限流」的 QPS、月调用量、IP 维度、90018/90002/90020、升级专业版扩容只适用于 dws api 直调 OpenAPI，"
-                     "不得套用到产品命令；RATE_LIMIT_ERROR 由服务端返回，阈值/计数维度/恢复时间/能否提升 dws 未说明，不得给具体数字；"
-                     "--page-delay 只能推荐给命令卡里有该参数的命令。")
-    if intent.get("access") or intent.get("origin") or intent.get("ratelimit"):
+    # 事实只存在 notes 里(frontmatter contract: 要点 + 正文依据标记),契约只放通用纪律;
+    # 曾把数字员工/限流事实写死在这里,上游一改四处过期且无人发现(2026-10-15 重构)。
+    for line in _owned_contract(intent, intent.get("_q", "")):
+        lines.append("- " + line)
+    owned = any(_note_owned(b, intent, intent.get("_q", "")) for _, b in _notes())
+    if owned:
         lines.append("- notes：行为说明只作依据，其文件名、标题不出现在回复和参考区；参考区只放上游仓库深链。")
+    if owned:
+        lines.append("- quote：notes 里「> 原文(…)」行逐字摘自镜像原文，链接、表名、数值整条照抄；"
+                     "标「⚠依据已变更」的条目不得作为确定结论，只可说明「文档近期有变更，以原文为准」并给出处。")
     lines.append("- links：链接只能逐字照抄上文原文出现过的整条；被截断或不完整的不得补全、拼接，须 cat 原文取整条，"
                  "取不到就不给该链接；不得按格式自行构造 alidocs.dingtalk.com / open.dingtalk.com 等任何链接。")
     if intent.get("why") or intent.get("mechanism") or intent.get("trouble"):
@@ -503,6 +527,12 @@ def ctx_impl(q, raw_terms, force_full=False):
     doc_rows = []
     if os.path.exists(mp):
         doc_rows = [json.loads(l) for l in open(mp, encoding="utf-8") if l.strip()]
+    # 专属 note(声明 intents)只随意图整篇并入,不当泛检索正文:否则标题「怎么开通」会让
+    # 「dws 怎么开通」把数字员工 note 当首篇。外部来源镜像(如开放平台更新日志)只在版本/
+    # 更新类问法参与排序,其余时候只作为 note 依据被引用。两者同时退出分词词表与排序。
+    owned_notes = {f"notes/{fn}" for fn, b in _notes() if notes_refs.declared_intents(b)}
+    doc_rows = [r for r in doc_rows if r["path"] not in owned_notes
+                and (intent["version"] or not r["path"].startswith("docs/external/"))]
     doc_hays = [(r["path"] + " " + " ".join(r.get("headings", []))).lower() for r in doc_rows]
     # 完整自然问句不能只按空格拆:"卡片消息能不能解析"须拆出 卡片/消息/解析，
     # 否则 notes 明明有实据仍会 0 命中。复用实体检索的脚本分段+领域最长匹配。
@@ -648,6 +678,9 @@ def ctx_impl(q, raw_terms, force_full=False):
         if not os.path.exists(p):
             continue
         body = open(p, encoding="utf-8", errors="replace").read()
+        if r["layer"] == "notes":   # notes 当正文展开时同样去 frontmatter 并展开依据标记,不给模型看原始 {{…}}
+            body = notes_refs.expand(ROOT, os.path.basename(r["path"]),
+                                     re.sub(r"^---\n.*?\n---\n", "", body, count=1, flags=re.S))
         if len(body) > body_cap:
             body = _cut(body, body_cap) + f"\n…[已截断,完整: dwsdoc cat {r['path']}]"
         out.append(f"\n== 篇目[{i+1}/{len(body_docs)}] {r['path']} [{r['layer']}] ==")
@@ -696,6 +729,7 @@ def ctx_impl(q, raw_terms, force_full=False):
             note_limit = 1 if focused else 2
             # 按命中密度挑文件与小节:泛词几乎每篇都有,字母序会让无关篇先占满名额。
             ranked = []
+            checks = notes_refs.load_check(ROOT)
             for fn in os.listdir(nd):
                 if not fn.endswith(".md"):
                     continue
@@ -704,8 +738,8 @@ def ctx_impl(q, raw_terms, force_full=False):
                 distinct = sum(_w(w) for w in words if _hit(w, low))
                 total = sum(low.count(w) for w in words)
                 # note 在 frontmatter 声明 intents 时,命中该意图必定首选并整篇并入
-                declared = re.search(r"(?m)^intents:(.*)$", body[:800])
-                owned = bool(declared and any(intent.get(x.strip()) for x in declared.group(1).split(",")))
+                declared = re.search(r"(?m)^(?:intents|triggers):", body[:800])
+                owned = _note_owned(body, intent, q)
                 if owned:
                     ranked.append((-10**9, fn, body))
                 elif declared:
@@ -731,8 +765,11 @@ def ctx_impl(q, raw_terms, force_full=False):
                 n_secs = 3 if (intent["trouble"] or intent["why"] or intent["mechanism"]) else 2
                 hit = [s for n_, _, s in sc[:n_secs] if n_ > 0]
                 if score == -10**9:
-                    hit = [body.split("\n---", 1)[-1].strip()]
-                picked.append(f"--- notes/{fn} ---\n" + _cut("\n".join(hit) if hit else _cut(body, 2000), 3000))
+                    hit = [re.sub(r"^---\n.*?\n---\n", "", body, count=1, flags=re.S).strip()]
+                text = "\n".join(hit) if hit else _cut(body, 2000)
+                # 专属 note 整篇并入不截断:截断会切掉开通/入群等后半节(依据标记展开后更长)
+                text = notes_refs.expand(ROOT, fn, text, checks)
+                picked.append(f"--- notes/{fn} ---\n" + (text if score == -10**9 else _cut(text, 3000)))
             if picked:
                 notes_hit = len(picked)
                 out.append("\n== 行为语义(notes,复杂问法自动并入) ==")
@@ -930,7 +967,10 @@ def main():
         if not os.path.abspath(p).startswith(ROOT) or not os.path.exists(p):
             print("不存在:", sys.argv[2])
             return 1
-        sys.stdout.write(open(p, encoding="utf-8", errors="replace").read())
+        body = open(p, encoding="utf-8", errors="replace").read()
+        if os.path.relpath(p, ROOT).startswith("notes" + os.sep):
+            body = notes_refs.expand(ROOT, os.path.basename(p), body)
+        sys.stdout.write(body)
     else:
         print(__doc__)
         return 2

@@ -265,6 +265,10 @@ def _intent(q):
         "semantic": (any(k in q for k in ("只是", "还是", "云端", "本地", "其他人", "影响", "区别", "范围", "限制",
                                                     "如果", "情况下", "先", "再", "然后", "之后", "前提"))
                      or (support and (len(q) > 40 or any(k in q for k in ("以及", "及", "和", "、", "分别"))))),
+        # 「你说的不对/文档不是这么写」:模型已基于卡片给出答案,用户质疑时说明快卡信息不全或理解有误,
+        # 须关闭 fast 补全文+notes(实录 R10.5 多轮:首答给快卡,用户质疑后模型继续复读卡片)。
+        "challenge": any(k in q for k in ("不对", "不准", "不是这样", "不是这么", "有误", "错误", "不一致", "矛盾",
+                                          "你理解", "你说", "文档", "实际", "我看", "版本", "和你说的")),
     }
 
 
@@ -425,9 +429,13 @@ def _flag_recall(terms, rows, cap=6):
     return out
 
 
-def ctx_impl(q, raw_terms, force_full=False):
-    """打包检索。异常由 main 捕获转 CTX_ERROR。"""
+def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
+    """打包检索。prev_q 为上一问全文,用于追问场景补充语境(如「那标准版呢」)。异常由 main 捕获转 CTX_ERROR。"""
     out = []
+    if prev_q:
+        # 追问时把上一问主要实体/动作拼进来,避免「那标准版呢」只用「标准版」检索导致篇目不相关
+        prev_t = [w for w in re.split(r"[\s,，、]+", prev_q.lower()) if w and len(w) > 1]
+        raw_terms = list(dict.fromkeys(prev_t[-6:] + raw_terms))  # 只取上一问末 6 词避免过长
     intent = _intent(q)
     # 三表匹配:整句优先(精确);整句无果时逐词 OR 按命中词数排序。
     # 自然问句("oa 审批 实例 发起 附件 是否")整句永远匹配不到命令名,不降级则 cmd 恒为 0,
@@ -612,7 +620,7 @@ def ctx_impl(q, raw_terms, force_full=False):
     # 卡片只回答命令契约；支持性、因果、校验、机制、数值、报错、枚举、版本、
     # 语义后果与未闭合输入必须保留正文/notes，不能由“命令存在”直接推出结论。
     card_blocked = any(intent[k] for k in
-                       ("why", "howmany", "support", "capability", "validation", "mechanism",
+                       ("challenge", "why", "howmany", "support", "capability", "validation", "mechanism",
                         "truncated", "trouble", "enumerate", "version", "semantic", "access", "origin",
                         "ratelimit"))
     card_fast = bool(top_card and top_card["full"] and _card_confident(top_family, top_card)
@@ -944,9 +952,19 @@ def main():
     op = sys.argv[1]
     if op == "ctx":
         try:
-            # --full 是独立回退开关;其余调用方可能传多参数(ctx a b c)或引号整串。
-            args = [x for x in sys.argv[2:] if x != "--full"]
-            force_full = len(args) != len(sys.argv[2:])
+            # --full / --prev 是独立开关;其余调用方可能传多参数(ctx a b c)或引号整串。
+            args, prev_q = [], ""
+            i = 2
+            while i < len(sys.argv):
+                if sys.argv[i] == "--full":
+                    force_full = True
+                elif sys.argv[i] == "--prev" and i + 1 < len(sys.argv):
+                    prev_q = sys.argv[i + 1]
+                    i += 1
+                else:
+                    args.append(sys.argv[i])
+                i += 1
+            force_full = "--full" in sys.argv[2:]
             if not args:
                 print(__doc__)
                 return 2
@@ -954,7 +972,7 @@ def main():
             terms = args
             if len(terms) == 1:
                 terms = [w for w in re.split(r"[\s,，、]+", terms[0]) if w]
-            return ctx_impl(q, terms, force_full=force_full)
+            return ctx_impl(q, terms, force_full=force_full, prev_q=prev_q)
         except Exception as e:
             print(f"CTX_ERROR: {type(e).__name__}: {e};请改用分步命令(cmd/short/flag→find→cat)")
             return 1

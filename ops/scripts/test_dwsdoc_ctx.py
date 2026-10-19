@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """dwsdoc ctx/card 的快路径与证据边界回归测试。"""
 import os
+import re
 import subprocess
 import unittest
 
@@ -186,7 +187,7 @@ class DwsdocCtxContractTest(unittest.TestCase):
             out = run_dwsdoc("ctx", q)
             self.assertIn("> 原文(https://open.dingtalk.com/document/development/dws-cli-log", out, q)
             self.assertIn(form, out, q)
-            self.assertIn("不得按格式自行构造", out, q)
+            self.assertIn("其他域名一律不造", out, q)
             self.assertNotIn("⚠依据已变更(", out, q)
             self.assertNotIn("{{", out, q)
 
@@ -313,10 +314,68 @@ class DwsdocCtxContractTest(unittest.TestCase):
         out = run_dwsdoc("ctx", "--prev", "dws 发送消息怎么不显示AI标识", "那默认是true还是false")
         self.assertIn("--ai-tag(Bool)", out)
 
-    def test_merged_notes_header_forbids_citing_note_files(self):
-        # R10.6.0 盲测 Q227/Q232/Q242:泛 notes 并入时契约无禁引,回复参考区列出 notes/event-system.md
+    def test_any_merged_notes_forbid_citing_note_files(self):
+        # R10.6.0 盲测 Q227/Q232/Q242:禁引只在专属 note 命中时出现,泛 notes 并入时回复参考区列出 notes/event-system.md
         out = run_dwsdoc("ctx", "二号 如果在同一台机器上启用多个事件监听，这个应该是可行的吧")
-        self.assertIn("文件名/标题不得出现在回复和参考区", out)
+        self.assertIn("== 行为语义(notes", out)
+        self.assertIn("- notes：行为说明只作依据，不是出处", out)
+
+    def test_every_cited_source_has_a_link(self):
+        # 只给本地路径时模型把 auth-and-credentials.md、event.md 当出处(10-15 全量 14/300 题);每个出处都附可照抄的引用行
+        out = run_dwsdoc("ctx", "你知道dws的登录态，如果我不使用它，多长时间会过期吗")
+        for m in re.finditer(r"(?m)^== 篇目\[\d+/\d+\] (\S+) \[(\w+)\] ==\n(.*)$", out):
+            self.assertTrue(m.group(3).startswith("引用: "), m.group(1))
+            with open(os.path.join(REPO, m.group(1)), encoding="utf-8") as fh:
+                has_src = re.search(r"(?m)^source_(?:path|url):", fh.read(800))
+            if has_src:   # 镜像篇都有 source_path;只断言有来源的篇,上游新增无 frontmatter 的篇不应卡住每日构建
+                self.assertIn("https://", m.group(3), m.group(1))
+        self.assertNotRegex(out, r"(?m)^\s*源码: ", "源码位置须以引用深链给出")
+
+    def test_lifetime_question_gets_lifetime_note(self):
+        # R10.6.0 Q168-171:30 天只在源码常量里,docs/notes 都没写,四次答「源码中未找到」。
+        # 改为人工 note + {{code:}} 依据(每日核对),不做全局常量模糊检索:第 2 轮审查发现
+        # 启发式匹配会给出带深链但含义不对的数(分页「页数」当「每页条数」、--groups-file 1MiB 当附件上限)。
+        for q in ("你知道dws的登录态，如果我不使用它，多长时间会过期吗",
+                  "只要我在30天 内执行过一次 dws contact user get-self ，授权就不会丢对吗",
+                  "我用 dws auth login --token 导入的 token，第二天就不能用了，正常吗",
+                  "How long does the dws refresh token last?"):
+            out = run_dwsdoc("ctx", q)
+            self.assertIn("--- notes/token-lifetime.md", out, q)
+            self.assertIn("- lifetime：", out, q)
+            self.assertIn("(源码依据: https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli/blob/main/", out, q)
+        for q in ("扫码登录要在几分钟内完成", "隔几天不用 dws 就要重新登录吗", "dws 每次都要重新扫码，很烦",
+                  "dws 掉线了", "dws 授权过期了怎么办"):
+            self.assertIn("--- notes/token-lifetime.md", run_dwsdoc("ctx", q), q)
+        # 第 3 轮审查的误触发:开放平台应用 access_token、业务字段里的「过期」、PAT 行为授权都不是 dws 登录态
+        for q in ("dws chat message list 怎么用", "dws auth login", "dws 分页每页多少条", "dws 上传附件最大多大",
+                  "开放平台 access_token 有效期多久", "企业内部应用 access_token 过期了怎么刷新",
+                  "aitable 记录过期时间字段", "dws todo 截止时间过期提醒", "PAT 授权多久", "dws pat chmod 授权多久有效",
+                  "token 怎么获取", "dws auth login 报错 invalid_client"):
+            self.assertNotIn("notes/token-lifetime.md", run_dwsdoc("ctx", q), q)
+        # 依据须有构建核对记录(带行号深链),新 note 不能等 ECS 重建才有
+        out = run_dwsdoc("ctx", "dws 登录态多久过期")
+        self.assertRegex(out, r"源码依据: https://\S+#L\d+")
+        self.assertNotIn("依据已变更(", out)
+
+    def test_named_version_is_a_changelog_key(self):
+        # R10.6.0 Q259:按 release/beta 词 grep 只命中最新几条,答成「不存在 1.0.7」;答案是 requires v1.0.7+
+        out = run_dwsdoc("ctx", "二号 github里提示要安装1.0.7及以上的版本，但github里只有1.0.58 beta版本，1.0.7在哪里下载呢")
+        cl = out.split("== CHANGELOG 命中行", 1)[1]
+        self.assertIn("requires v1.0.7+", cl)
+
+    def test_changelog_lines_carry_their_version(self):
+        # 审查 R10.6.1:命中行不带所属版本,1.0.62-beta.8 的条目被算到问句的 1.0.64;不存在的版本无任何提示
+        cl = run_dwsdoc("ctx", "upgrade 到 1.0.64 有什么变化").split("== CHANGELOG 命中行", 1)[1].split("\n== ", 1)[0]
+        for l in [x.strip() for x in cl.splitlines()[1:] if x.strip()]:
+            self.assertRegex(l, r"^(## \[|\[|CHANGELOG 没有|CHANGELOG 记录的)", l)
+        self.assertIn("CHANGELOG 没有 1.0.99 的条目", run_dwsdoc("ctx", "1.0.99 什么时候发布"))
+        # 「要不要升级」「最新版是多少」须带最新版本行,否则只能拿点名版本自己比
+        for q in ("我是 1.0.58，要升级吗", "dws 最新版本是多少"):
+            self.assertRegex(run_dwsdoc("ctx", q), r"CHANGELOG 记录的最新正式版 \d+\.\d+\.\d+\(\d{4}-", q)
+        for q in ("机器人上线后群里收不到消息", "dws 能正常使用审批吗", "aitable 字段类型兼容 excel 吗", "dws 3.5.1 文档链接"):
+            out = run_dwsdoc("ctx", q)
+            self.assertNotIn("最新正式版", out, q)
+            self.assertNotIn("CHANGELOG 没有", out, q)
 
 if __name__ == "__main__":
     unittest.main()

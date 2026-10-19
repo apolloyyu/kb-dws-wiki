@@ -16,6 +16,7 @@ import re
 
 MARKER = re.compile(r"\{\{(quote|code|absent|confirmed):\s*([^{}\s][^{}]*?)\s*\}\}")
 WARN = "⚠依据已变更({})，此条待复核，不得作为确定结论"
+GH = "https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli/blob/main/"
 
 
 def parse(body):
@@ -138,9 +139,10 @@ def expand(root, fn, body, checks=None):
         if r and not r["ok"]:
             return WARN.format(r["detail"])
         if kind == "code":
+            # 给可点的上游深链而不是裸「路径:行号」:后者会被模型原样当出处写进回复
             path, needle = _split(arg)
-            at = f":L{r['line']}" if r and r.get("line") else ""
-            return f"(源码依据: {path}{at})"
+            at = f"#L{r['line']}" if r and r.get("line") else ""
+            return f"(源码依据: {GH}{path}{at})"
         term, _, spec = arg.partition("@")
         return f"(源码核对: {spec.split()[0] if spec.split() else spec} 中无「{term.strip()}」)"
 

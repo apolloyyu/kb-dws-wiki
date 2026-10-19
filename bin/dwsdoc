@@ -248,6 +248,17 @@ def _intent(q):
         "origin": (_subject("origin", q, r"数字员工|dingtalk-tag|agent-uuid|digital_employee")
                    and any(k in q for k in ("deap", "智能体", "助理", "ai助理", "ai 助理", "创建", "新建", "添加", "界面", "平台", "在哪", "哪里", "哪儿", "入口",
                                             "开通", "灰度", "申请", "not_enabled", "一回事", "同一个", "什么关系", "改名"))),
+        # 「登录态/token 多久过期、扫码要多久内确认」:答案只在源码常量里(docs/notes 都没写),
+        # R10.6.0 Q168-171 答成「源码中未找到」。主题词取自声明 lifetime 的 note 的 triggers。
+        # 「dws … 授权就不会丢」也是在问登录态;PAT 授权(行为授权)是另一回事,不算
+        "lifetime": ((_subject("lifetime", q, r"refresh_token|登录态")
+                      or ("dws" in q and re.search(r"授权|登录", q) and "pat" not in q))
+                     and any(k in q for k in ("多久", "多长时间", "有效期", "过期", "失效", "掉线", "不能用了",
+                                              "第二天", "隔天", "几天", "几分钟", "超时", "时长", "一个月",
+                                              "30天", "30 天", "重新登录", "重新扫码", "每次都要",
+                                              "how long", "expire", "lifetime"))
+                     # 开放平台应用的 access_token(appKey 换票)不是 dws 登录态,不并入
+                     and ("dws" in q or not re.search(r"开放平台|企业内部应用|appkey|app_key|gettoken|应用凭证", q))),
         # 「dws 被限流/阈值多少/怎么提升/RATE_LIMIT_ERROR」:产品命令走 MCP 网关,开放平台 OpenAPI 的
         # QPS/月配额/90018 不适用(实录 2026-10-14 dws 群 14 条回复整套套用 OpenAPI 规则)。
         # 明确问 OpenAPI/开放平台接口本身(且没提 dws)时,开放平台限流规则就是正解,不并入。
@@ -341,7 +352,28 @@ def _owned_contract(intent, q=""):
     return list(dict.fromkeys(out))
 
 
-def _evidence_contract(intent=None, has_card=True):
+_GH = notes_refs.GH
+
+
+def _src_link(file, line=None):
+    """源码 文件:行号 → 可点的上游深链。模型只需照抄,不再按 skill 里的模板自己拼。"""
+    return _GH + file + (f"#L{line}" if line else "")
+
+
+def _doc_link(path):
+    """镜像文档 → 引用地址:外部来源用 source_url,上游镜像用 source_path 深链;notes 等内部篇无地址。"""
+    fp = os.path.join(ROOT, path)
+    if not os.path.exists(fp):
+        return ""
+    head = open(fp, encoding="utf-8", errors="replace").read(800)
+    m = re.search(r'(?m)^source_url:\s*"?([^"\n]+)"?', head)
+    if m:
+        return m.group(1).strip()
+    m = re.search(r'(?m)^source_path:\s*"?([^"\n]+)"?', head)
+    return _GH + m.group(1).strip() if m else ""
+
+
+def _evidence_contract(intent=None, has_card=True, with_notes=False):
     """给模型可机械执行的证据边界；不把检索命中误当成运行时或后端事实。"""
     intent = intent or {}
     lines = ["== 证据契约(回答边界) =="]
@@ -362,14 +394,14 @@ def _evidence_contract(intent=None, has_card=True):
     # 曾把数字员工/限流事实写死在这里,上游一改四处过期且无人发现(2026-10-15 重构)。
     for line in _owned_contract(intent, intent.get("_q", "")):
         lines.append("- " + line)
-    owned = any(_note_owned(b, intent, intent.get("_q", "")) for _, b in _notes())
-    if owned:
-        lines.append("- notes：行为说明只作依据，其文件名、标题不出现在回复和参考区；参考区只放上游仓库深链。")
-    if owned:
-        lines.append("- quote：notes 里「> 原文(…)」行逐字摘自镜像原文，链接、表名、数值整条照抄；"
-                     "标「⚠依据已变更」的条目不得作为确定结论，只可说明「文档近期有变更，以原文为准」并给出处。")
-    lines.append("- links：链接只能逐字照抄上文原文出现过的整条；被截断或不完整的不得补全、拼接，须 cat 原文取整条，"
-                 "取不到就不给该链接；不得按格式自行构造 alidocs.dingtalk.com / open.dingtalk.com 等任何链接。")
+    if with_notes:
+        lines.append("- notes：行为说明只作依据，不是出处；其文件名、标题不出现在回复和参考区。"
+                     "「> 原文(…)」行逐字摘自镜像原文，链接、表名、数值整条照抄；标「⚠依据已变更」的条目"
+                     "不得作为确定结论，只可说明「文档近期有变更，以原文为准」并给出处。")
+    lines.append("- links：出处只用本输出「引用:」行给出的地址或原文里出现过的整条链接，逐字照抄；没有就不列。"
+                 "文件名、本地路径、裸「文件:行号」都不是出处，不得出现在回复里；"
+                 "自造链接只有一种情况可以：本输出没有、你另外 grep 源码定位到的位置，"
+                 "按上面「引用:」同样的 github.com/DingTalk-Real-AI/dingtalk-workspace-cli/blob/main/<路径>#L<行> 格式写；其他域名一律不造。")
     if intent.get("why") or intent.get("mechanism") or intent.get("trouble"):
         lines.append("- causality：报错根因/生命周期/机制须有对应代码路径；只有相关事实时只能标为推测并给用户自验步骤。")
     return lines
@@ -629,7 +661,7 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
     card_blocked = any(intent[k] for k in
                        ("challenge", "why", "howmany", "support", "capability", "validation", "mechanism",
                         "truncated", "trouble", "enumerate", "version", "semantic", "access", "origin",
-                        "ratelimit"))
+                        "ratelimit", "lifetime"))
     card_fast = bool(top_card and top_card["full"] and _card_confident(top_family, top_card)
                      and not card_blocked)
     card_items = [top_card] if top_card else []
@@ -650,6 +682,9 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
         out.append("== 答案卡(card:full 仅可直接回答卡内 CLI 契约;partial 必须继续看正文) ==")
         for c in card_items:
             out.append(c["body"])
+            m = re.search(r"(?m)^source: ([^\s:]+):(\d+)", c["body"])
+            if m:
+                out.append(f"引用: {_src_link(m.group(1), m.group(2))}")
         seen_cards = {(c["kind"], c["key"]) for c in card_items}
         other_cmds = []
         for r in cmds[:8]:
@@ -670,7 +705,7 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
             for r in cmds[:8]:
                 out.append(f"● dws {r['cmd']}  —  {r['desc']}")
                 for d in r.get("defs", [])[:1]:
-                    out.append(f"  源码: {d['file']}:{d['line']}")
+                    out.append(f"  引用: {_src_link(d['file'], d['line'])}")
                 if len(cmds) <= 3:
                     for f in r.get("flags", []):
                         marks = "(必填)" if f.get("required") else ""
@@ -678,12 +713,11 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
         if shorts:
             out.append("== 短命令命中(short) ==")
             for r in shorts[:6]:
-                out.append(f"● dws {r['product']} {r['cmd']}  —  {r['desc']}\n  源码: {r['file']}:{r['line']}")
+                out.append(f"● dws {r['product']} {r['cmd']}  —  {r['desc']}\n  引用: {_src_link(r['file'], r['line'])}")
     if flag_hits:
         out.append("== flag 命中 ==")
         out.extend(flag_hits[:8])
-
-    out.extend(_evidence_contract(intent, has_card=bool(card_items)))
+    contract_at = len(out)   # 证据契约依赖本轮是否带出 notes,检索完成后回填到此处
 
     # 相关篇目:products/command-index 优先于 notes;各取 top,正文入包
     ent_total = len(cmds) + len(shorts) + len(flag_hits)
@@ -693,7 +727,7 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
     # 正文回答，只有同时属于上述复杂意图时才补 notes，避免无关语义篇干扰。
     _needs_notes = any(intent[k] for k in
                        ("why", "howmany", "capability", "card_capability", "validation", "mechanism", "trouble",
-                        "access", "origin", "ratelimit"))
+                        "access", "origin", "ratelimit", "lifetime"))
     _mech = _needs_notes
     # full 卡 + 首名明显胜出 + 非机制/数值/支持/排障/枚举题时，正文归零；
     # 任一条件不满足就保持 R10.1 的 1~2 篇正文，准确率优先。
@@ -737,6 +771,8 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
         if len(body) > body_cap:
             body = _cut(body, body_cap) + f"\n…[已截断,完整: dwsdoc cat {r['path']}]"
         out.append(f"\n== 篇目[{i+1}/{len(body_docs)}] {r['path']} [{r['layer']}] ==")
+        link = _doc_link(r["path"])
+        out.append(f"引用: {link}" if link else "引用: 无(内部篇,只作依据)")
         out.append(body)
     others = [r["path"] for r in docs_hits if r not in body_docs][:8]
     if others:
@@ -802,8 +838,12 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
             ranked.sort()
             owned_n = sum(1 for r in ranked if r[0] == -10**9)
             if owned_n:
-                # 意图专属 note 已整篇并入,不再带泛相关 note 分散注意;两个专属意图同时命中时两篇都带
-                note_limit = min(owned_n, 2)
+                # 意图专属 note 已整篇并入,不再带泛相关 note 分散注意;两个专属意图同时命中时两篇都带。
+                # 例外 lifetime:有效期 note 只回答「多久」,刷新失败/状态判断的机制在泛 auth note 里,
+                # 排障类追问(Q173「判断状态不准」、Q267「refreshToken 没过期却报错」)两者都要。
+                lifetime_only = all("lifetime" in notes_refs.declared_intents(b) for sc_, _, b in ranked if sc_ == -10**9)
+                note_limit = owned_n + (2 if lifetime_only else 0)
+                note_limit = min(note_limit, 3)
             for score, fn, body in ranked[:note_limit]:
                 # frontmatter/导语不是小节，命中泛词时不应与真正相关的小节争 top2。
                 secs = [s for s in re.split(r"\n(?=#{2,3} )", body)
@@ -822,13 +862,11 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
                 text = "\n".join(hit) if hit else _cut(body, 2000)
                 # 专属 note 整篇并入不截断:截断会切掉开通/入群等后半节(依据标记展开后更长)
                 text = notes_refs.expand(ROOT, fn, text, checks)
-                picked.append(f"--- notes/{fn} ---\n" + (text if score == -10**9 else _cut(text, 3000)))
+                picked.append(f"--- notes/{fn} · 引用: 无(内部篇,只作依据) ---\n"
+                              + (text if score == -10**9 else _cut(text, 3000)))
             if picked:
                 notes_hit = len(picked)
-                # 契约里的 notes 禁引只在专属 note 命中时出现;泛 notes 并入时模型会把
-                # notes/event-system.md 当参考链接(R10.6.0 盲测 Q227/Q232/Q242)。随段头强制。
-                out.append("\n== 行为语义(notes,复杂问法自动并入;仅作依据,文件名/标题不得出现在回复和参考区,"
-                           "参考区改给其「> 原文(…)」行或源码行对应的上游深链) ==")
+                out.append("\n== 行为语义(notes,复杂问法自动并入) ==")
                 out.extend(picked)
     # 支持性/版本题:产品行为变更常只记录在 CHANGELOG(实录 Q200 "通过AI发送文案能否改"答案在
     # DWS_AGENT_PRODUCT 条目)。只用 ASCII 实现词(含术语表映射)逐行 grep,最多 6 行。
@@ -838,20 +876,70 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
         action_ascii = {v for g in _TERM_GROUPS[:12] for v in g if re.fullmatch(r"[a-z\-]+", v)}
         ascii_terms = {v for w in kw for v in _VARIANTS.get(w, (w,))
                        if re.fullmatch(r"[a-z][a-z0-9_\-]{3,}", v) and v not in action_ascii}
-        if os.path.exists(cl) and ascii_terms:
-            lines = []
-            for line in open(cl, encoding="utf-8", errors="replace"):
+        # 问句点名的版本号本身就是检索键:「提示要 1.0.7 以上,1.0.7 在哪下」的答案是
+        # 「`dws upgrade` requires v1.0.7+」,旧法只按 release/beta 等词 grep,命中的是最新几条
+        # 发布说明,模型据此答成「不存在 1.0.7」(R10.6.0 Q259)。版本号行排在词命中行之前。
+        vers = [v for v in dict.fromkeys(re.findall(r"(?<![\d.])v?(\d+\.\d+\.\d+(?:-[a-z]+\.\d+)?)(?![\d.])", q))]
+        if os.path.exists(cl) and (ascii_terms or vers or intent["version"]):
+            src_lines = open(cl, encoding="utf-8", errors="replace").read().splitlines()
+            # 每行归属的版本标题:命中行不带版本时,模型会把 1.0.62-beta.8 的条目算到问句里的 1.0.64 头上
+            heads, cur = [], ""
+            for line in src_lines:
+                # 规范标题 ## [x.y.z] - 日期;也容忍 ## x.y.z 与尾部 (yanked)
+                m = re.match(r"^## \[?(\d+\.\d+\.\d+[^\]\s]*|Unreleased)\]?(?:\s*-\s*(\d{4}-\d\d-\d\d))?", line, re.I)
+                if m:
+                    cur = m.group(1) + (f" · {m.group(2)}" if m.group(2) else "")
+                heads.append(cur)
+            released = [h.split(" · ")[0] for h, l in zip(heads, src_lines)
+                        if l.startswith("## ") and re.match(r"\d", h) and "yanked" not in l.lower()]   # 跳过 Unreleased/撤回
+            lines, seen = [], set()
+
+            def add(i):
+                t = src_lines[i].strip()[:420]
+                if i not in seen:
+                    seen.add(i)
+                    lines.append(t if t.startswith("## ") else f"[{heads[i] or '未发布'}] {t}")
+            # 问句点名的版本号本身就是检索键(R10.6.0 Q259「要 1.0.7 以上」答成「不存在 1.0.7」):
+            # 先给该版本标题行(含发布日期),再给正文里引用它的第一条;CHANGELOG 没有的版本直接说没有。
+            missing = []
+            for v in vers:
+                exact = re.compile(r"(?<![\d.])v?" + re.escape(v) + r"(?![\d])(?!\.\d)(?!-)")
+                hi = [i for i, l in enumerate(src_lines) if re.match(r"^## \[?" + re.escape(v) + r"[\]\s]", l + " ")]
+                body = [i for i, l in enumerate(src_lines) if not l.startswith("#") and exact.search(l)]
+                if not hi and not body and v.startswith("1."):   # 「3.5.1 文档」之类不是 dws 版本
+                    missing.append(v)
+                for i in hi[:1] + body[:1]:
+                    add(i)
+            for i, line in enumerate(src_lines):
+                if len(lines) >= 6 + len(vers):
+                    break
                 low = line.lower()
-                if any(re.search(r"(?<![a-z0-9])" + re.escape(t) + r"(?![a-z0-9])", low) for t in ascii_terms):
+                if line.startswith("#"):
+                    continue   # 版本标题只在点名该版本时给(上方),词命中只取正文条目
+                if ascii_terms and any(re.search(r"(?<![a-z0-9])" + re.escape(t) + r"(?![a-z0-9])", low) for t in ascii_terms):
                     # 单行放宽到 420:CHANGELOG 条目常把结论放在句尾(实录 Q200 "change the displayed
                     # label" 在第 230 字符后被截掉,模型据前半句答成"不可改")。
-                    lines.append(line.strip()[:420])
-                    if len(lines) >= 6:
-                        break
+                    add(i)
+            if missing and released:
+                lines.append(f"CHANGELOG 没有 {'、'.join(missing)} 的条目")
+            if released and (any(v.startswith("1.") for v in vers)
+                             or re.search(r"最新|升级|新版|哪个版本|什么版本|latest|upgrade", q)):
+                # 「我是 1.0.58 要升级吗」「最新版是多少」都需要和最新版比,只给点名版本那一行答不了
+                stable = next((v for v in released if "-" not in v), None)
+                date = lambda v: next((h.split(" · ")[1] for h in heads if h.startswith(v + " · ")), "")
+                dated = lambda v: f"{v}({date(v)})" if date(v) else v
+                latest = f"CHANGELOG 记录的最新正式版 {dated(stable)}" if stable else ""
+                if released[0] != stable:
+                    latest += f"{',' if latest else 'CHANGELOG 记录的'}最新预发布版 {dated(released[0])}"
+                lines.append(latest)
             if lines:
                 changelog_hits = len(lines)
-                out.append("\n== CHANGELOG 命中行(版本/行为变更以此为准) ==")
+                out.append("\n== CHANGELOG 命中行(方括号内是该行所属版本与日期;版本/行为变更以此为准) ==")
                 out.extend("  " + l for l in lines)
+    # notes 正文里的源码位置是内部写法(`internal/x.go` / `file.go:L12`),不是出处;
+    # 契约在回填时按「本轮是否带出 notes」决定是否附禁引(R10.6.0 Q227/Q232/Q242 泄露 notes 文件名)。
+    with_notes = bool(notes_hit) or any(r["layer"] == "notes" for r in body_docs)
+    out[contract_at:contract_at] = _evidence_contract(intent, has_card=bool(card_items), with_notes=with_notes)
     out.append("\n== 检索审计 ==")
     out.append(f"已检索: card/cmd/short/flag/find/notes/changelog · 关键词: {' '.join(raw_terms)}"
                f" · 命中: card={len(card_items)}(fast={int(card_fast)})"
@@ -862,12 +950,12 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
     if card_fast:
         hint.insert(0, "答案卡为 full 且首名明显胜出:仅按卡内 CLI 契约直接作答,无需再 cat")
     if intent["howmany"]:
-        hint.insert(0, "⚠️数值/时限类:上文若无确切数字,必须二级拉源码后 grep 常量(如 DefaultRefreshTokenLifetime),禁止用「无固定时长」回避")
+        hint.insert(0, "⚠️数值/时限类:上文无确切数字时二级拉源码 grep 常量,禁止用「无固定时长」回避")
     if intent["why"]:
         hint.append("机制结论须落到源码函数并复述其行为")
     out.append(";".join(hint))
 
-    if not (cmds or shorts or flag_hits or docs_hits or notes_hit):
+    if not (cmds or shorts or flag_hits or docs_hits or notes_hit or changelog_hits):
         print("\n".join(_evidence_contract(intent, has_card=False)))
         print("== 检索审计 ==")
         print(f"已检索: cmd/short/flag/find · 关键词: {' '.join(raw_terms)} · 命中: 0")
@@ -893,7 +981,7 @@ def show_cmd(r, full=True):
     if r.get("when"):
         print(f"  适用: {r['when']}")
     for d in r.get("defs", [])[:1]:
-        print(f"  源码: {d['file']}:{d['line']}")
+        print(f"  引用: {_src_link(d['file'], d['line'])}")
     if full:
         for f in r.get("flags", []):
             marks = "".join(["(必填)" if f.get("required") else "",
@@ -906,7 +994,7 @@ def show_cmd(r, full=True):
 
 def show_short(r):
     print(f"● dws {r['product']} {r['cmd']}  —  {r['desc']}")
-    print(f"  源码: {r['file']}:{r['line']}")
+    print(f"  引用: {_src_link(r['file'], r['line'])}")
     for f in r.get("flags", []):
         print(f"    --{f['name']}  {f['type']}  {f.get('desc','')}")
 
@@ -1034,8 +1122,11 @@ def main():
             print("不存在:", sys.argv[2])
             return 1
         body = open(p, encoding="utf-8", errors="replace").read()
-        if os.path.relpath(p, ROOT).startswith("notes" + os.sep):
+        rel_p = os.path.relpath(p, ROOT)
+        if rel_p.startswith("notes" + os.sep):
             body = notes_refs.expand(ROOT, os.path.basename(p), body)
+        link = _doc_link(rel_p)
+        print(f"引用: {link}" if link else "引用: 无(内部篇,只作依据;文件名不得出现在回复里)")
         sys.stdout.write(body)
     else:
         print(__doc__)

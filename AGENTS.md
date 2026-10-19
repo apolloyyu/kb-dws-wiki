@@ -9,7 +9,7 @@ kb-dingtalk-open-platform 范式:**事实走确定性层(零 LLM),行为语义�
 | 层 | 内容 | 生成方式 | 可信度/用途 |
 |---|---|---|---|
 | `cards/` | 每条主命令/shortcut 的紧凑卡(cmd、描述、flags、源码、相关命令) | 从 graph 确定性生成,数量/完整率地板 | `completeness: full` 且 ctx 标 `fast=1` 时仅可直接回答卡内 CLI 契约；partial 必须继续查正文 |
-| `graph/` | commands.jsonl(规范路径+完整 Usage+flags 完整度+源码行号)、shortcuts.jsonl(+xxx 短命令) | 源码静态提取,lint 对账 | **命中即事实**,可直接回引 文件:行号 |
+| `graph/` | commands.jsonl(规范路径+完整 Usage+flags 完整度+源码行号)、shortcuts.jsonl(+xxx 短命令) | 源码静态提取,lint 对账 | **命中即事实**;回复里引用输出中的「引用:」深链,不写裸 文件:行号 |
 | `docs/` | command-index.md、CHANGELOG.md、products/**(上游人写的产品线文档) | 逐字镜像 | 与上游仓库原文一致 |
 | `notes/` | 行为语义篇(投递模型/锁/ACK 等"为什么") | LLM 实读源码生成+人工审阅 | 加速层,行号结论仍以源码为准 |
 

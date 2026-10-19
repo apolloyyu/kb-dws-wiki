@@ -1,6 +1,6 @@
 ---
 source_path: "skills/mono/references/products/whiteboard/open-nodes-v1/06-vector-icon-path.md"
-source_commit: "92cb3f513"
+source_commit: "45ba34430"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 

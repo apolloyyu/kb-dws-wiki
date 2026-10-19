@@ -17,5 +17,5 @@ visible_flags: 0
 - dws contact user get
 - dws contact user get-by-dingtalk-id
 - dws contact user get-by-open-dingtalk-id
+- dws contact user get-open-dingtalk-id
 - dws contact user invite
-- dws contact user profile

@@ -5,8 +5,8 @@ completeness: full
 usage: dws chat group notice edit
 description: 修改群公告
 example: dws chat group notice edit --conversation-id <openConversationId> --notice-id <dataId> --content "更新后的公告内容"
-source: internal/helpers/chat.go:11143
-visible_flags: 5
+source: internal/helpers/chat.go:11170
+visible_flags: 7
 
 ## Flags
 - --conversation-id <String> required: 群聊 openConversationId (必填)
@@ -14,6 +14,8 @@ visible_flags: 5
 - --content <String> required: 公告新正文，Markdown 格式 (必填)
 - --sticky <Bool>: 是否吊顶置顶（不传按 false 处理）
 - --send-ding <Bool>: 是否发 DING 提醒（默认 false）
+- --no-card <Bool>: 仅更新公告，不发送群聊公告卡片
+- --must-read <Bool>: 设置新人必看，可传 false 关闭
 
 ## Related
 - dws chat group notice create

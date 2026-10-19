@@ -4,7 +4,7 @@ kind: command
 completeness: partial
 usage: dws dingtalk-tag connect restart
 description: —
-source: internal/helpers/deap_agent_adapter.go:372
+source: internal/helpers/deap_agent_adapter.go:381
 visible_flags: 1
 partial_reason: missing_description
 

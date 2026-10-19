@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat category list
 description: 获取用户自定义会话分组
 example: dws chat category list
-source: internal/helpers/chat.go:6292
+source: internal/helpers/chat.go:6305
 visible_flags: 0
 
 ## Flags

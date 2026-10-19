@@ -17,5 +17,5 @@ partial_reason: unverified_flags,missing_description,missing_source
 - dws contact user get
 - dws contact user get-by-dingtalk-id
 - dws contact user get-by-open-dingtalk-id
+- dws contact user get-open-dingtalk-id
 - dws contact user get-self
-- dws contact user invite

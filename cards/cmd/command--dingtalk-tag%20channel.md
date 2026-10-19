@@ -4,7 +4,7 @@ kind: command
 completeness: full
 usage: dws dingtalk-tag channel
 description: 数字员工本地 Channel 机器协议
-source: internal/helpers/deap_agent_channel.go:341
+source: internal/helpers/deap_agent_channel.go:343
 visible_flags: 0
 
 ## Flags

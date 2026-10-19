@@ -39,10 +39,6 @@
 {"completeness": "full", "key": "aitable advperm role-get", "kind": "command", "path": "cards/cmd/command--aitable%20advperm%20role-get.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable advperm role-list", "kind": "command", "path": "cards/cmd/command--aitable%20advperm%20role-list.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable advperm role-update", "kind": "command", "path": "cards/cmd/command--aitable%20advperm%20role-update.md", "product": "aitable"}
-{"completeness": "full", "key": "aitable api-key", "kind": "command", "path": "cards/cmd/command--aitable%20api-key.md", "product": "aitable"}
-{"completeness": "partial", "key": "aitable api-key create", "kind": "command", "path": "cards/cmd/command--aitable%20api-key%20create.md", "product": "aitable"}
-{"completeness": "partial", "key": "aitable api-key list", "kind": "command", "path": "cards/cmd/command--aitable%20api-key%20list.md", "product": "aitable"}
-{"completeness": "partial", "key": "aitable api-key revoke", "kind": "command", "path": "cards/cmd/command--aitable%20api-key%20revoke.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable app", "kind": "command", "path": "cards/cmd/command--aitable%20app.md", "product": "aitable"}
 {"completeness": "partial", "key": "aitable attachment", "kind": "command", "path": "cards/cmd/command--aitable%20attachment.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable attachment remove", "kind": "command", "path": "cards/cmd/command--aitable%20attachment%20remove.md", "product": "aitable"}
@@ -153,6 +149,11 @@
 {"completeness": "full", "key": "aitable section move-node", "kind": "command", "path": "cards/cmd/command--aitable%20section%20move-node.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable section rename", "kind": "command", "path": "cards/cmd/command--aitable%20section%20rename.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable section reorder", "kind": "command", "path": "cards/cmd/command--aitable%20section%20reorder.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable supabase", "kind": "command", "path": "cards/cmd/command--aitable%20supabase.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable supabase api-key", "kind": "command", "path": "cards/cmd/command--aitable%20supabase%20api-key.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable supabase api-key create", "kind": "command", "path": "cards/cmd/command--aitable%20supabase%20api-key%20create.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable supabase api-key list", "kind": "command", "path": "cards/cmd/command--aitable%20supabase%20api-key%20list.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable supabase api-key revoke", "kind": "command", "path": "cards/cmd/command--aitable%20supabase%20api-key%20revoke.md", "product": "aitable"}
 {"completeness": "partial", "key": "aitable table", "kind": "command", "path": "cards/cmd/command--aitable%20table.md", "product": "aitable"}
 {"completeness": "partial", "key": "aitable table create", "kind": "command", "path": "cards/cmd/command--aitable%20table%20create.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable table delete", "kind": "command", "path": "cards/cmd/command--aitable%20table%20delete.md", "product": "aitable"}
@@ -526,6 +527,7 @@
 {"completeness": "full", "key": "contact user get", "kind": "command", "path": "cards/cmd/command--contact%20user%20get.md", "product": "contact"}
 {"completeness": "full", "key": "contact user get-by-dingtalk-id", "kind": "command", "path": "cards/cmd/command--contact%20user%20get-by-dingtalk-id.md", "product": "contact"}
 {"completeness": "full", "key": "contact user get-by-open-dingtalk-id", "kind": "command", "path": "cards/cmd/command--contact%20user%20get-by-open-dingtalk-id.md", "product": "contact"}
+{"completeness": "full", "key": "contact user get-open-dingtalk-id", "kind": "command", "path": "cards/cmd/command--contact%20user%20get-open-dingtalk-id.md", "product": "contact"}
 {"completeness": "full", "key": "contact user get-self", "kind": "command", "path": "cards/cmd/command--contact%20user%20get-self.md", "product": "contact"}
 {"completeness": "full", "key": "contact user invite", "kind": "command", "path": "cards/cmd/command--contact%20user%20invite.md", "product": "contact"}
 {"completeness": "partial", "key": "contact user profile", "kind": "command", "path": "cards/cmd/command--contact%20user%20profile.md", "product": "contact"}
@@ -1018,6 +1020,8 @@
 {"completeness": "full", "key": "oa approval ding-info", "kind": "command", "path": "cards/cmd/command--oa%20approval%20ding-info.md", "product": "oa"}
 {"completeness": "full", "key": "oa approval forecast-process", "kind": "command", "path": "cards/cmd/command--oa%20approval%20forecast-process.md", "product": "oa"}
 {"completeness": "full", "key": "oa approval form-schema", "kind": "command", "path": "cards/cmd/command--oa%20approval%20form-schema.md", "product": "oa"}
+{"completeness": "partial", "key": "oa approval image", "kind": "command", "path": "cards/cmd/command--oa%20approval%20image.md", "product": "oa"}
+{"completeness": "partial", "key": "oa approval image upload", "kind": "command", "path": "cards/cmd/command--oa%20approval%20image%20upload.md", "product": "oa"}
 {"completeness": "full", "key": "oa approval list-by-admin", "kind": "command", "path": "cards/cmd/command--oa%20approval%20list-by-admin.md", "product": "oa"}
 {"completeness": "partial", "key": "oa approval list-cc", "kind": "command", "path": "cards/cmd/command--oa%20approval%20list-cc.md", "product": "oa"}
 {"completeness": "partial", "key": "oa approval list-executed", "kind": "command", "path": "cards/cmd/command--oa%20approval%20list-executed.md", "product": "oa"}

@@ -5,7 +5,7 @@ completeness: full
 usage: dws contact label list
 description: 获取企业所有角色列表
 example: dws contact label list
-source: internal/helpers/contact.go:1956
+source: internal/helpers/contact.go:2034
 visible_flags: 0
 
 ## Flags

@@ -4,7 +4,7 @@ kind: command
 completeness: partial
 usage: dws dingtalk-tag run trace
 description: —
-source: internal/helpers/deap_agent.go:623
+source: internal/helpers/deap_agent.go:629
 visible_flags: 3
 partial_reason: missing_description
 

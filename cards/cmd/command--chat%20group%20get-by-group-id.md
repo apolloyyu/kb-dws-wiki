@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat group get-by-group-id
 description: 根据群号获取群聊信息
 example: dws chat group get-by-group-id --group-id 12345678
-source: internal/helpers/chat.go:6751
+source: internal/helpers/chat.go:6764
 visible_flags: 1
 
 ## Flags

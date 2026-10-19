@@ -4,7 +4,7 @@ kind: command
 completeness: partial
 usage: dws dingtalk-tag capability mcp create
 description: —
-source: internal/helpers/deap_agent_skill_mcp.go:705
+source: internal/helpers/deap_agent_skill_mcp.go:709
 visible_flags: 2
 partial_reason: missing_description
 

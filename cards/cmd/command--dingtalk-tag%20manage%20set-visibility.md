@@ -4,7 +4,7 @@ kind: command
 completeness: partial
 usage: dws dingtalk-tag manage set-visibility
 description: —
-source: internal/helpers/deap_agent.go:457
+source: internal/helpers/deap_agent.go:460
 visible_flags: 4
 partial_reason: missing_description
 

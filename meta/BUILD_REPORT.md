@@ -1,11 +1,11 @@
 # 构建对账
 
-- 源码 commit:92cb3f513
+- 源码 commit:45ba34430
 - 镜像文件:221
-- 主命令:1247(带 flags:929,归属未定:185)
+- 主命令:1251(带 flags:928,归属未定:188)
 - shortcuts:490
-- 答案卡:1737(full:1315,75.7%;partial:422)
-- 文档索引:230 篇
+- 答案卡:1741(full:1315,75.5%;partial:426)
+- 文档索引:231 篇
 
 ## 归属未定(退回源码 grep,不影响存在性判断)
 - agoal contract
@@ -31,6 +31,8 @@
 - aitable import
 - aitable record
 - aitable section
+- aitable supabase
+- aitable supabase api-key
 - aitable table
 - aitable template
 - aitable view
@@ -171,6 +173,7 @@
 - minutes upload
 - oa approval
 - oa approval attachment
+- oa approval image
 - oa approval template
 - plugin
 - plugin config

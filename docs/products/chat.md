@@ -1,6 +1,6 @@
 ---
 source_path: "skills/mono/references/products/chat.md"
-source_commit: "92cb3f513"
+source_commit: "45ba34430"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 
@@ -360,6 +360,8 @@ Flags:
       --content string     公告正文，Markdown 格式 (必填)
       --sticky             是否吊顶置顶（默认 false）
       --send-ding          是否发 DING 提醒（默认 false）
+      --no-card            仅发布公告，不发送群聊公告卡片
+      --must-read          设为新人必看
       --run-at string      定时发布时间 ISO-8601（传入则定时发布）
 ```
 
@@ -375,6 +377,8 @@ Flags:
       --content string     公告新正文，Markdown 格式 (必填)
       --sticky             是否吊顶置顶
       --send-ding          是否发 DING 提醒
+      --no-card            仅更新公告，不发送群聊公告卡片
+      --must-read          设置新人必看，可传 false 关闭
 ```
 
 #### 查看群公告详情

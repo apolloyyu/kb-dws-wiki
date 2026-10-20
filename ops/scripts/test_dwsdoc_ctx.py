@@ -21,6 +21,19 @@ def run_dwsdoc(*args):
 
 
 class DwsdocCtxContractTest(unittest.TestCase):
+    def test_inherited_flags_are_not_denied_by_leaf_card(self):
+        for q in ('请解释 dws auth login --profile "<corpId>:<userId>"，保留占位符，不要执行',
+                  'dws event consume --client-id abc 怎么用', 'dws chat message list --format json',
+                  'dws auth login -f table', 'dws auth login -v', 'dws auth login -y',
+                  'dws auth login -vy', 'dws auth login -o result.json'):
+            out = run_dwsdoc('ctx', q)
+            self.assertIn('fast=0', out)
+            self.assertIn('# 根命令参数与叶子参数的证据范围', out)
+            self.assertIn('bindPersistentFlags', out)
+        out = run_dwsdoc('ctx', 'dws agoal strategy detail --profile-id abc')
+        self.assertNotIn('# 根命令参数与叶子参数的证据范围', out)
+        self.assertIn('card=1(fast=1)', run_dwsdoc('ctx', 'dws auth login'))
+
     def test_event_transport_contract_is_expanded(self):
         out = run_dwsdoc("ctx", "dws event consume 心跳与断连怎么处理")
         self.assertIn("fast=0", out)

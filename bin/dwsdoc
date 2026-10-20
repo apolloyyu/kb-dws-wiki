@@ -252,6 +252,7 @@ def _intent(q, subject_q=None):
                                    r"|(?:access[_ -]?token|refresh[_ -]?token|令牌|token)[^，,。；;\n]{0,30}(?:应用|机器人|robot|bot)", credential_subject))
                           and any(k in q for k in ("reset", "重置", "清除", "删除", "恢复", "损坏", "迁移",
                                                    "失败", "无法", "不能", "异常", "不匹配"))),
+        "global_flags": _subject("global_flags", q, r"全局参数|继承参数"),
         "truncated": _looks_truncated(q),
         "trouble": (any(k in q for k in ("报错", "错误", "失败", "异常", "打不开", "无权限", "暂无权限", "提示", "问题"))
                     or bool(re.search(r"\b(error|failed|failure|exception|denied|required unless|param_error)\b", q))),
@@ -356,7 +357,14 @@ def _subject(intent_name, q, fallback):
     """意图的主题词来自声明该意图的 note 的 triggers:(加 note 不用改代码);无声明时用 fallback。"""
     terms = [t for fn, body in _notes() if intent_name in notes_refs.declared_intents(body)
              for t in notes_refs.triggers(body)]
-    return any(t in q for t in terms) if terms else bool(re.search(fallback, q))
+    def matches(term):
+        if re.fullmatch(r"-[a-z]", term):
+            # 短参数可在同一个短参数 token 中组合；不与 --long 或路径片段混淆。
+            return bool(re.search(r"(?<![a-z0-9_-])-[a-z]*" + re.escape(term[1:]) + r"[a-z]*(?![a-z0-9_-])", q))
+        if term.startswith("--"):
+            return bool(re.search(r"(?<![a-z0-9_-])" + re.escape(term) + r"(?![a-z0-9_-])", q))
+        return term in q
+    return any(matches(t) for t in terms) if terms else bool(re.search(fallback, q))
 
 
 def _owned_intents():
@@ -758,7 +766,7 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
     card_blocked = any(intent[k] for k in
                        ("challenge", "why", "howmany", "support", "capability", "validation", "mechanism",
                         "truncated", "trouble", "enumerate", "version", "semantic", "access", "origin",
-                        "ratelimit", "lifetime", "event_runtime", "auth_recovery"))
+                        "ratelimit", "lifetime", "event_runtime", "auth_recovery", "global_flags"))
     card_fast = bool(top_card and top_card["full"] and _card_confident(top_family, top_card)
                      and not card_blocked and not focused_docs)
     card_items = [top_card] if top_card else []
@@ -824,7 +832,7 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
     # 正文回答，只有同时属于上述复杂意图时才补 notes，避免无关语义篇干扰。
     _needs_notes = any(intent[k] for k in
                        ("why", "howmany", "capability", "card_capability", "validation", "mechanism", "trouble",
-                        "access", "origin", "ratelimit", "lifetime", "event_runtime", "auth_recovery")) or event_credentials
+                        "access", "origin", "ratelimit", "lifetime", "event_runtime", "auth_recovery", "global_flags")) or event_credentials
     _mech = _needs_notes
     # full 卡 + 首名明显胜出 + 非机制/数值/支持/排障/枚举题时，正文归零；
     # 任一条件不满足就保持 R10.1 的 1~2 篇正文，准确率优先。
@@ -938,15 +946,20 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
                         event_credentials or intent["auth_recovery"]) else 0
                     ranked.append((-priority - (distinct * 100 + total), fn, body))
             ranked.sort()
-            owned_n = sum(1 for r in ranked if r[0] == -10**9)
+            # 根命令参数是补充契约，不挤掉原本用于参数校验/机制的语义证据。
+            global_n = sum(1 for score, _, body in ranked if score == -10**9
+                           and "global_flags" in notes_refs.declared_intents(body))
+            owned_n = sum(1 for r in ranked if r[0] == -10**9) - global_n
             if owned_n:
                 # 意图专属 note 已整篇并入,不再带泛相关 note 分散注意;两个专属意图同时命中时两篇都带。
                 # 例外 lifetime:有效期 note 只回答「多久」,刷新失败/状态判断的机制在泛 auth note 里,
                 # 排障类追问(Q173「判断状态不准」、Q267「refreshToken 没过期却报错」)两者都要。
-                lifetime_only = all("lifetime" in notes_refs.declared_intents(b) for sc_, _, b in ranked if sc_ == -10**9)
+                lifetime_only = all("lifetime" in notes_refs.declared_intents(b) for sc_, _, b in ranked
+                                    if sc_ == -10**9 and "global_flags" not in notes_refs.declared_intents(b))
                 needs_auth_context = event_credentials or intent["auth_recovery"]
                 note_limit = owned_n + (2 if lifetime_only else 1 if needs_auth_context else 0)
                 note_limit = min(note_limit, 3)
+            note_limit += global_n
             for score, fn, body in ranked[:note_limit]:
                 # frontmatter/导语不是小节，命中泛词时不应与真正相关的小节争 top2。
                 secs = [s for s in re.split(r"\n(?=#{2,3} )", body)

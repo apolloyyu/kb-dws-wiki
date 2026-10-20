@@ -377,6 +377,15 @@ class DwsdocCtxContractTest(unittest.TestCase):
         self.assertNotIn("--ai-tag", out)
         self.assertNotIn("--client-token", out)
 
+    def test_capability_question_keeps_long_modifier_before_action(self):
+        for q in ("钉钉表格可以根据字段分配查看权限吗",
+                  "可以按照成员所在部门配置记录的查看范围吗？",
+                  "消息能按发送者和群聊分别限制可见范围吗?"):
+            out = run_dwsdoc("ctx", q)
+            self.assertIn("fast=0", out, q)
+            self.assertIn("- capability：", out, q)
+        self.assertIn("fast=1", run_dwsdoc("ctx", "dws auth login 文档在哪"))
+
     def test_challenge_turns_off_fast_card(self):
         # R10.5 回退 Q175:用户质疑后仍走快卡,模型复读卡片
         out = run_dwsdoc("ctx", "所以你的意思dws auth login 判断状态其实不准的对吧？")

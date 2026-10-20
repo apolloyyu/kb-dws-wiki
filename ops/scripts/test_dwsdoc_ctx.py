@@ -4,6 +4,7 @@ import os
 import re
 import subprocess
 import unittest
+from test_dwsdoc_subjects import SubjectEvidenceTest  # 主门禁同时执行主体/小节回归。
 
 
 REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))

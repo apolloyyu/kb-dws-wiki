@@ -41,6 +41,7 @@ _TERM_GROUPS = [
     ("上传", "upload"), ("下载", "download"), ("导出", "export"), ("导入", "import"),
     ("取消", "撤回", "cancel", "recall", "withdraw"),
     ("同意", "通过", "审批通过", "approve"), ("拒绝", "驳回", "reject", "refuse"),
+    ("刷新", "refresh"), ("重连", "reconnect"),
     ("添加", "加入", "add", "join"), ("转发", "forward"), ("绑定", "bind"),
     ("授权", "authorize", "grant"),
     ("解析", "提取", "读取", "投影", "parse", "extract", "read", "pull", "project"),
@@ -355,9 +356,19 @@ def _owned_contract(intent, q=""):
 _GH = notes_refs.GH
 
 
+def _source_prefix(ref=""):
+    if not ref:
+        try:
+            with open(os.path.join(ROOT, "meta", "MANIFEST.json"), encoding="utf-8") as f:
+                ref = json.load(f).get("source_commit", "")
+        except (OSError, ValueError):
+            ref = ""
+    return _GH.replace("/blob/main/", f"/blob/{ref}/") if re.fullmatch(r"[0-9a-f]{7,40}", ref) else _GH
+
+
 def _src_link(file, line=None):
     """源码 文件:行号 → 可点的上游深链。模型只需照抄,不再按 skill 里的模板自己拼。"""
-    return _GH + file + (f"#L{line}" if line else "")
+    return _source_prefix() + file + (f"#L{line}" if line else "")
 
 
 def _doc_link(path):
@@ -370,7 +381,65 @@ def _doc_link(path):
     if m:
         return m.group(1).strip()
     m = re.search(r'(?m)^source_path:\s*"?([^"\n]+)"?', head)
-    return _GH + m.group(1).strip() if m else ""
+    ref = re.search(r'(?m)^source_commit:\s*"?([0-9a-f]{7,40})', head)
+    return _source_prefix(ref.group(1) if ref else "") + m.group(1).strip() if m else ""
+
+
+def _document_focus(q, raw_terms, rows):
+    """精确标识符优先于产品总览；只读镜像正文，不从语义补字段。"""
+    tokens = re.findall(r"[A-Za-z_][A-Za-z0-9_.]*", " ".join(raw_terms))
+    # 只把类型式名称视作强锚点。UserID/CorpID等身份字段与Windows等平台名
+    # 会跨很多产品出现，不应使登录/事件问题跳到提及这些词的其他产品。
+    identity_fields = {"userid", "corpid", "clientid", "agentid", "appid", "appkey",
+                       "sourceid", "unifiedappid", "openid", "unionid", "requestid", "traceid"}
+    symbols = {t.lower() for t in tokens if 6 <= len(t) <= 60
+               and re.fullmatch(r"[A-Z][A-Za-z0-9]*", t)
+               and len(re.findall(r"[A-Z]", t)) >= 2 and re.search(r"[a-z]", t)
+               and t.lower() not in identity_fields}
+    # 产品用语到模型名的策展词汇，不含字段值/答案。只在明确OA场景启用。
+    if re.search(r"审批|\boa\b", q) and "附件" in q:
+        symbols.add("ddattachment")
+    if not symbols:
+        return [], []
+    ranked = []
+    for row in rows:
+        if row["layer"] not in ("docs", "mirror"):
+            continue
+        path = os.path.join(ROOT, row["path"])
+        if not os.path.isfile(path):
+            continue
+        with open(path, encoding="utf-8", errors="replace") as f:
+            body = f.read()
+        headings = re.findall(r"(?m)^(#{1,4}) (.+)$", body)
+        matches = [s for s in symbols if re.search(r"(?<![a-z0-9_])" + re.escape(s) + r"(?![a-z0-9_])", body.lower())]
+        if matches:
+            # 专门的小节比根标题中的顺带提及更精确；仍保留第二篇工作流作为候选。
+            heading_hits = sum(len(level) for level, title in headings
+                               if any(s in title.lower() for s in matches))
+            ranked.append((-heading_hits, -len(matches), len(body), row["path"], row))
+    ranked.sort(key=lambda x: x[:4])
+    # 类型名仅在标题命中时作为强锚点提升，正文提及仍沿用原检索排序。
+    picked = [r for hs, _, _, _, r in ranked if hs < 0][:2]
+    return picked, sorted(symbols)
+
+
+def _focused_body(body, symbols):
+    """保留通用导语和完整命中小节，避免长文头部截断恰好删掉目标模型。"""
+    parts = re.split(r"(?m)(?=^#{2,4} )", body)
+    if not any(any(t in s.split("\n", 1)[0].lower() for t in symbols) for s in parts[1:]):
+        return body
+    selected, keep_level = [], None
+    for sec in parts[1:]:
+        head = sec.split("\n", 1)[0]
+        level = len(head.split(" ", 1)[0])
+        if keep_level is not None and level <= keep_level:
+            keep_level = None
+        if keep_level is None and (any(t in head.lower() for t in symbols)
+                                   or re.search(r"通用(?:约束|规则|要求)", head)):
+            keep_level = level
+        if keep_level is not None:
+            selected.append(sec)
+    return parts[0] + "\n> 摘录：通用导语与命中小节；其余内容请用 cat 读取完整原文。\n\n" + "\n".join(selected)
 
 
 def _evidence_contract(intent=None, has_card=True, with_notes=False):
@@ -559,6 +628,14 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
     cmds = _prefer_explicit(command_rows, cmds, lambda r: r["cmd"])
     shorts = _prefer_explicit(shortcut_rows, shorts,
                               lambda r: f"{r.get('product', '')} {r['cmd']}".strip())
+    event_credentials = bool(re.search(r"监听|事件|推送", q) and re.search(r"token|凭据|令牌|刷新", q))
+    explicit_command = bool(re.search(r"\bdws\s+[a-z][a-z-]*\s+[a-z+]", q))
+    if event_credentials and not explicit_command:
+        # 持续监听+凭据是event问题，不让credential稀有词把首卡带到dev MCP验密钥。
+        event_cmd = next((r for r in command_rows if r["cmd"] == "event consume"), None)
+        if event_cmd:
+            event_cmd["_ctx_score"] = max([r.get("_ctx_score", 0) for r in cmds + shorts] or [0]) + 10
+            cmds = [event_cmd] + [r for r in cmds if r != event_cmd]
     if intent["card_capability"]:
         # 能力题优先读取/搜索消息的入口，不能让 send/update/read-status 仅因含 card/read
         # 抢走首卡；仍只在检索已命中的候选内重排，不凭空注入命令。
@@ -640,6 +717,7 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
                 sd.append((-sc, r["path"], r))
         sd.sort()
         docs_hits = [r for _, _, r in sd]
+    focused_docs, focus_symbols = _document_focus(q, raw_terms, doc_rows)
 
     # 答案卡分支可由 --full 或 KB_NO_CARDS=1 一键关闭；卡片不存在也自动退化旧全文。
     cards_enabled = (not force_full and os.environ.get("KB_NO_CARDS") != "1"
@@ -663,7 +741,7 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
                         "truncated", "trouble", "enumerate", "version", "semantic", "access", "origin",
                         "ratelimit", "lifetime"))
     card_fast = bool(top_card and top_card["full"] and _card_confident(top_family, top_card)
-                     and not card_blocked)
+                     and not card_blocked and not focused_docs)
     card_items = [top_card] if top_card else []
 
     # 支持性/枚举题：否定前先看到"知识库里存在什么"。清单来自已算好的 IDF 命中，不加检索；
@@ -727,7 +805,7 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
     # 正文回答，只有同时属于上述复杂意图时才补 notes，避免无关语义篇干扰。
     _needs_notes = any(intent[k] for k in
                        ("why", "howmany", "capability", "card_capability", "validation", "mechanism", "trouble",
-                        "access", "origin", "ratelimit", "lifetime"))
+                        "access", "origin", "ratelimit", "lifetime")) or event_credentials
     _mech = _needs_notes
     # full 卡 + 首名明显胜出 + 非机制/数值/支持/排障/枚举题时，正文归零；
     # 任一条件不满足就保持 R10.1 的 1~2 篇正文，准确率优先。
@@ -759,12 +837,15 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
                                          hit_rank.get(r["path"], len(hit_rank)),
                                          not r["path"].endswith("-index.md"), r["path"]))
         primary_docs = product_docs + [r for r in primary_docs if r not in product_docs]
+    primary_docs = focused_docs + [r for r in primary_docs if r not in focused_docs]
     body_docs = (primary_docs or docs_hits)[:_n_body]
     for i, r in enumerate(body_docs):
         p = os.path.join(ROOT, r["path"])
         if not os.path.exists(p):
             continue
         body = open(p, encoding="utf-8", errors="replace").read()
+        if r in focused_docs:
+            body = _focused_body(body, focus_symbols)
         if r["layer"] == "notes":   # notes 当正文展开时同样去 frontmatter 并展开依据标记,不给模型看原始 {{…}}
             body = notes_refs.expand(ROOT, os.path.basename(r["path"]),
                                      re.sub(r"^---\n.*?\n---\n", "", body, count=1, flags=re.S))
@@ -851,8 +932,10 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
                 def _sec_score(sec):
                     low = sec.lower()
                     head = low.splitlines()[0]
+                    # 监听刷新问题优先auth的刷新小节；其余问题保留原有排序权重。
+                    heading_weight = 8 if event_credentials and fn == "auth-and-credentials.md" else 3
                     return (sum(_w(w) for w in words if _hit(w, low))
-                            + 3 * sum(1 for w in words if _hit(w, head)))
+                            + heading_weight * sum(1 for w in words if _hit(w, head)))
                 sc = sorted(((_sec_score(s), i, s) for i, s in enumerate(secs)), key=lambda x: (-x[0], x[1]))
                 # 排障/机制题的正解小节常排第 3(实录 Q283 "扇出还是独占"被锁/消费端两节压住)
                 n_secs = 3 if (intent["trouble"] or intent["why"] or intent["mechanism"]) else 2

@@ -203,8 +203,15 @@ def _looks_truncated(q):
     return bool(re.search(r"(?:[:,=]|=>)\s*$", q))
 
 
-def _intent(q):
+def _intent(q, subject_q=None):
     """问法预判:一次到位决定额外带料,避免模型查完再查。"""
+    subject_q = subject_q if subject_q is not None else q
+    # 省略主体的追问继承凭据归属；当前明确询问 CLI 认证故障时可切换主体。
+    # “已经运行过 auth login”仅是排障历史，不能清掉前文的产品 token 主体。
+    current_auth_failure = bool(re.search(
+        r"\bdws\s+auth\s+(?:login|status|reset)\b[^。；;\n]{0,40}(?:失败|异常|报错|无法|不能|清除|删除|范围)", q))
+    auth_history = bool(re.search(r"(?:已经|已运行|已执行|试过|试了|运行过|执行过|运行了|执行了)[^，,。；;\n]{0,30}\bdws\s+auth\b", q))
+    credential_subject = q if current_auth_failure and not auth_history else subject_q
     support = (any(k in q for k in ("支持", "有没有", "有吗", "能不能", "可以吗", "是否", "会不会", "会被", "能否",
                                     "是不是", "对吗", "对不对", "拉不到", "拿不到", "收不到", "查不到"))
                or bool(re.search(r"不是.{0,15}(?:吗|吧)|一样(?:吗|吧)", q))
@@ -222,6 +229,7 @@ def _intent(q):
     #（实录 Q283-285：notes 有"扇出还是独占"一节却未进上下文，模型按队列直觉答成排他消费）。
     mechanism = any(k in q for k in ("生命周期", "并发", "加锁", "锁机制", "路由", "重试", "ack", "回调",
                                          "投递", "状态机", "自动刷新", "自动注入", "缓存机制",
+                                         "心跳", "断连", "断线", "断开", "网络中断", "保活", "重连", "ping", "pong", "机制",
                                          "多个", "都能", "都会", "同时", "每个", "各自", "都收到", "扇出", "独占", "排他",
                                          "只有一个", "其余", "没反应", "没有反应", "收不到"))
     return {
@@ -234,25 +242,35 @@ def _intent(q):
         "card_capability": card_capability,
         "validation": validation,
         "mechanism": mechanism,
+        "event_runtime": (_subject("event_runtime", subject_q, r"event consume|事件监听|stream")
+                          and (mechanism or any(k in q for k in ("为什么", "原理", "源码", "隔离", "共享", "异常", "失败", "冲突", "怎么分清", "client-id", "clientid")))),
+        "auth_recovery": (_subject("auth_recovery", subject_q, r"dws auth|认证重置|登录态")
+                          and (re.search(r"\bdws\s+auth\s+reset\b[^。；;\n]{0,100}(?:删除|清除|清理|影响|范围|作用|干什么|做什么|会删|会清)", q)
+                               or not re.search(
+                                   r"clienttoken|webhook|开放平台|appkey|appsecret|应用凭证"
+                                   r"|(?:应用|机器人|robot|bot)[^，,。；;\n]{0,50}(?:access[_ -]?token|refresh[_ -]?token|令牌|token)"
+                                   r"|(?:access[_ -]?token|refresh[_ -]?token|令牌|token)[^，,。；;\n]{0,30}(?:应用|机器人|robot|bot)", credential_subject))
+                          and any(k in q for k in ("reset", "重置", "清除", "删除", "恢复", "损坏", "迁移",
+                                                   "失败", "无法", "不能", "异常", "不匹配"))),
         "truncated": _looks_truncated(q),
         "trouble": (any(k in q for k in ("报错", "错误", "失败", "异常", "打不开", "无权限", "暂无权限", "提示", "问题"))
                     or bool(re.search(r"\b(error|failed|failure|exception|denied|required unless|param_error)\b", q))),
         "enumerate": any(k in q for k in ("全部", "所有", "有哪些", "哪些", "盘点", "枚举", "什么类型", "哪种类型")),
         # 「群里谁能和数字员工对话/怎么拉进群」:答案是 dingtalk-tag 的可见范围与 connect 白名单,
         # 不是 chat 的 add-bot/@所有人(实录 2026-10-10:检索给出 add-bot,模型据此编出 robotCode 入群并在群内复读)。
-        "access": (_subject("access", q, r"数字员工|dingtalk-tag|agent-uuid")
+        "access": (_subject("access", subject_q, r"数字员工|dingtalk-tag|agent-uuid")
                    and any(k in q for k in ("群", "别人", "他人", "其他人", "所有人", "全员", "成员", "同事", "大家",
                                             "谁能", "白名单", "可见", "对话", "聊天", "拉进", "加入", "可用范围", "使用范围",
                                             "robotcode", "robot-code", "机器人"))),
         # 「数字员工在哪创建/是不是 DEAP 智能体/怎么开通」:dws 文档只写了 manage create 与 deap-dev,
         # 只给一句「关系未说明」时模型会在推测与撤回间摇摆(实录 2026-10-12 正式群)。
-        "origin": (_subject("origin", q, r"数字员工|dingtalk-tag|agent-uuid|digital_employee")
+        "origin": (_subject("origin", subject_q, r"数字员工|dingtalk-tag|agent-uuid|digital_employee")
                    and any(k in q for k in ("deap", "智能体", "助理", "ai助理", "ai 助理", "创建", "新建", "添加", "界面", "平台", "在哪", "哪里", "哪儿", "入口",
                                             "开通", "灰度", "申请", "not_enabled", "一回事", "同一个", "什么关系", "改名"))),
         # 「登录态/token 多久过期、扫码要多久内确认」:答案只在源码常量里(docs/notes 都没写),
         # R10.6.0 Q168-171 答成「源码中未找到」。主题词取自声明 lifetime 的 note 的 triggers。
         # 「dws … 授权就不会丢」也是在问登录态;PAT 授权(行为授权)是另一回事,不算
-        "lifetime": ((_subject("lifetime", q, r"refresh_token|登录态")
+        "lifetime": ((_subject("lifetime", subject_q, r"refresh_token|登录态")
                       or ("dws" in q and re.search(r"授权|登录", q) and "pat" not in q))
                      and any(k in q for k in ("多久", "多长时间", "有效期", "过期", "失效", "掉线", "不能用了",
                                               "第二天", "隔天", "几天", "几分钟", "超时", "时长", "一个月",
@@ -544,7 +562,8 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
         # 追问时把上一问主要实体/动作拼进来,避免「那标准版呢」只用「标准版」检索导致篇目不相关
         prev_t = [w for w in re.split(r"[\s,，、]+", prev_q.lower()) if w and len(w) > 1]
         raw_terms = list(dict.fromkeys(prev_t[-6:] + raw_terms))  # 只取上一问末 6 词避免过长
-    intent = _intent(q)
+    # 上问只补主体；支持/机制/故障等意图仍取当前问句，避免继承旧问题的判断。
+    intent = _intent(q, " ".join((prev_q.lower(), q)) if prev_q else None)
     # 三表匹配:整句优先(精确);整句无果时逐词 OR 按命中词数排序。
     # 自然问句("oa 审批 实例 发起 附件 是否")整句永远匹配不到命令名,不降级则 cmd 恒为 0,
     # 模型会据此误判"命令不存在"(实录 Q238:把正确答案自我更正成错的)。
@@ -739,7 +758,7 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
     card_blocked = any(intent[k] for k in
                        ("challenge", "why", "howmany", "support", "capability", "validation", "mechanism",
                         "truncated", "trouble", "enumerate", "version", "semantic", "access", "origin",
-                        "ratelimit", "lifetime"))
+                        "ratelimit", "lifetime", "event_runtime", "auth_recovery"))
     card_fast = bool(top_card and top_card["full"] and _card_confident(top_family, top_card)
                      and not card_blocked and not focused_docs)
     card_items = [top_card] if top_card else []
@@ -805,7 +824,7 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
     # 正文回答，只有同时属于上述复杂意图时才补 notes，避免无关语义篇干扰。
     _needs_notes = any(intent[k] for k in
                        ("why", "howmany", "capability", "card_capability", "validation", "mechanism", "trouble",
-                        "access", "origin", "ratelimit", "lifetime")) or event_credentials
+                        "access", "origin", "ratelimit", "lifetime", "event_runtime", "auth_recovery")) or event_credentials
     _mech = _needs_notes
     # full 卡 + 首名明显胜出 + 非机制/数值/支持/排障/枚举题时，正文归零；
     # 任一条件不满足就保持 R10.1 的 1~2 篇正文，准确率优先。
@@ -915,7 +934,9 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
                 elif declared:
                     continue   # 声明了专属意图的 note 只随该意图并入,不参与泛关键词竞争
                 elif distinct:
-                    ranked.append((-(distinct * 100 + total), fn, body))
+                    priority = 10**8 if fn == "auth-and-credentials.md" and (
+                        event_credentials or intent["auth_recovery"]) else 0
+                    ranked.append((-priority - (distinct * 100 + total), fn, body))
             ranked.sort()
             owned_n = sum(1 for r in ranked if r[0] == -10**9)
             if owned_n:
@@ -923,7 +944,8 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
                 # 例外 lifetime:有效期 note 只回答「多久」,刷新失败/状态判断的机制在泛 auth note 里,
                 # 排障类追问(Q173「判断状态不准」、Q267「refreshToken 没过期却报错」)两者都要。
                 lifetime_only = all("lifetime" in notes_refs.declared_intents(b) for sc_, _, b in ranked if sc_ == -10**9)
-                note_limit = owned_n + (2 if lifetime_only else 0)
+                needs_auth_context = event_credentials or intent["auth_recovery"]
+                note_limit = owned_n + (2 if lifetime_only else 1 if needs_auth_context else 0)
                 note_limit = min(note_limit, 3)
             for score, fn, body in ranked[:note_limit]:
                 # frontmatter/导语不是小节，命中泛词时不应与真正相关的小节争 top2。
@@ -933,9 +955,10 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
                     low = sec.lower()
                     head = low.splitlines()[0]
                     # 监听刷新问题优先auth的刷新小节；其余问题保留原有排序权重。
-                    heading_weight = 8 if event_credentials and fn == "auth-and-credentials.md" else 3
+                    heading_weight = 8 if (event_credentials or intent["auth_recovery"]) and fn == "auth-and-credentials.md" else 3
+                    refresh_focus = 10000 if fn == "auth-and-credentials.md" and "刷新" in q and "刷新" in head else 0
                     return (sum(_w(w) for w in words if _hit(w, low))
-                            + heading_weight * sum(1 for w in words if _hit(w, head)))
+                            + heading_weight * sum(1 for w in words if _hit(w, head)) + refresh_focus)
                 sc = sorted(((_sec_score(s), i, s) for i, s in enumerate(secs)), key=lambda x: (-x[0], x[1]))
                 # 排障/机制题的正解小节常排第 3(实录 Q283 "扇出还是独占"被锁/消费端两节压住)
                 n_secs = 3 if (intent["trouble"] or intent["why"] or intent["mechanism"]) else 2

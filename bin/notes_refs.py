@@ -122,6 +122,15 @@ def load_check(root):
 def expand(root, fn, body, checks=None):
     """ctx 输出前展开标记:quote 现场取镜像原文,code/absent 读构建核对结果。"""
     checks = checks if checks is not None else load_check(root)
+    # 构建核对的行号属于 MANIFEST 固定源码，不能给会随主干漂移的链接。
+    source_prefix = GH
+    try:
+        with open(os.path.join(root, "meta", "MANIFEST.json"), encoding="utf-8") as handle:
+            commit = json.load(handle).get("source_commit", "")
+        if re.fullmatch(r"[0-9a-f]{7,40}", commit):
+            source_prefix = GH.replace("/blob/main/", f"/blob/{commit}/")
+    except (OSError, ValueError):
+        pass
 
     def sub(m):
         kind, arg = m.group(1), m.group(2).strip()
@@ -142,7 +151,7 @@ def expand(root, fn, body, checks=None):
             # 给可点的上游深链而不是裸「路径:行号」:后者会被模型原样当出处写进回复
             path, needle = _split(arg)
             at = f"#L{r['line']}" if r and r.get("line") else ""
-            return f"(源码依据: {GH}{path}{at})"
+            return f"(源码依据: {source_prefix}{path}{at})"
         term, _, spec = arg.partition("@")
         return f"(源码核对: {spec.split()[0] if spec.split() else spec} 中无「{term.strip()}」)"
 

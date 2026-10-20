@@ -21,6 +21,65 @@ def run_dwsdoc(*args):
 
 
 class DwsdocCtxContractTest(unittest.TestCase):
+    def test_event_transport_contract_is_expanded(self):
+        out = run_dwsdoc("ctx", "dws event consume 心跳与断连怎么处理")
+        self.assertIn("fast=0", out)
+        self.assertIn("SYSTEM ping", out)
+        self.assertIn("不能证明服务端如何重投", out)
+        self.assertNotIn("服务端据未确认状态重投", out)
+        self.assertNotIn("/blob/main/internal/event/", out)
+        unrelated = run_dwsdoc("ctx", "日历事件有哪些类型")
+        self.assertNotIn("SYSTEM ping", unrelated)
+
+    def test_reset_scope_is_not_profile_local(self):
+        out = run_dwsdoc("ctx", "dws auth reset --profile abc 清除范围是什么")
+        self.assertIn("所有 profile", out)
+        self.assertIn("不证明服务端令牌吊销", out)
+        self.assertIn("先恢复或统一原登录密钥", out)
+        login = run_dwsdoc("ctx", "dws auth login")
+        self.assertNotIn("# 认证重置与恢复的作用域", login)
+
+    def test_auth_failure_original_wording_and_followup(self):
+        out = run_dwsdoc("ctx", "二号 Token 刷新失败: 旧版登录态已无法由当前认证服务刷新；本地 profile 已保留，请重新运行 dws auth login 完成一次重新授权；Token 自动刷新一直失败，什么解决")
+        self.assertIn("所有 profile", out)
+        followup = run_dwsdoc("ctx", "--prev", "Token 刷新失败，请重新运行 dws auth login", "二号 重新授权后，新的 token 格式还是不能正常自动刷新")
+        self.assertIn("所有 profile", followup)
+        self.assertIn("lockedRefresh", followup)
+
+    def test_event_followup_uses_previous_subject_only(self):
+        out = run_dwsdoc("ctx", "--prev", "二号 事件监听连接会突然断开，比如网络中断等问题怎么处理的", "二号 怎么检测到断连，有心跳包吗")
+        self.assertIn("SYSTEM ping", out)
+        self.assertIn("本地 IPC", out)
+        repeat = run_dwsdoc("ctx", "事件监听持续机制是什么样的，如果token过期了会发生什么")
+        self.assertIn("SYSTEM ping", repeat)
+        self.assertIn("lockedRefresh", repeat)
+        simple = run_dwsdoc("ctx", "--prev", "事件监听的机制是什么", "dws auth login")
+        self.assertNotIn("SYSTEM ping", simple)
+
+    def test_product_tokens_do_not_trigger_login_reset(self):
+        for q in ("dws aitable +record-write-result 的 clientToken 不匹配怎么办", "Webhook Token 失效怎么办", "开放平台应用 access_token 刷新失败怎么办", "dws aitable +record-write-result 的 clientToken 不匹配，已经运行 dws auth login 仍失败怎么办", "我已运行 dws auth status，开放平台应用 access_token 刷新失败怎么办"):
+            with self.subTest(q=q):
+                out = run_dwsdoc("ctx", q)
+                self.assertNotIn("# 认证重置与恢复的作用域", out)
+
+    def test_explicit_reset_wins_over_credential_field_words(self):
+        for q in ("dws auth reset 会删除应用凭证吗", "dws auth reset 删除 appSecret 吗", "dws auth reset，清除应用凭证吗", "dws auth reset, 清除 appSecret 吗"):
+            out = run_dwsdoc("ctx", q)
+            self.assertIn("# 认证重置与恢复的作用域", out)
+            self.assertIn("应用凭证", out)
+
+    def test_credential_owner_wins_over_login_history(self):
+        for owner in ("企业内部应用的 access_token", "机器人的 access_token", "第三方应用 refresh_token"):
+            for history in ("我已经运行 dws auth login，", "我已经运行 dws auth status，"):
+                with self.subTest(owner=owner, history=history):
+                    out = run_dwsdoc("ctx", history + owner + " 刷新失败怎么办")
+                    self.assertNotIn("# 认证重置与恢复的作用域", out)
+                    followup = run_dwsdoc("ctx", "--prev", history + owner + " 刷新失败怎么办", "还是刷新失败，怎么恢复？")
+                    self.assertNotIn("# 认证重置与恢复的作用域", followup)
+        for current in ("现在问 dws auth login 报错无法登录怎么恢复", "现在运行 dws auth login 报错无法登录怎么恢复", "现在问 dws auth login，报错无法登录怎么恢复"):
+            switched = run_dwsdoc("ctx", "--prev", "机器人的 access_token 失效", current)
+            self.assertIn("# 认证重置与恢复的作用域", switched)
+
     def test_exact_command_keeps_fast_card(self):
         out = run_dwsdoc("ctx", "dws auth login")
         self.assertIn("card=1(fast=1)", out)
@@ -343,7 +402,7 @@ class DwsdocCtxContractTest(unittest.TestCase):
             out = run_dwsdoc("ctx", q)
             self.assertIn("--- notes/token-lifetime.md", out, q)
             self.assertIn("- lifetime：", out, q)
-            self.assertIn("(源码依据: https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli/blob/main/", out, q)
+            self.assertRegex(out, r"\(源码依据: https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli/blob/[0-9a-f]{7,40}/", q)
         for q in ("扫码登录要在几分钟内完成", "隔几天不用 dws 就要重新登录吗", "dws 每次都要重新扫码，很烦",
                   "dws 掉线了", "dws 授权过期了怎么办"):
             self.assertIn("--- notes/token-lifetime.md", run_dwsdoc("ctx", q), q)

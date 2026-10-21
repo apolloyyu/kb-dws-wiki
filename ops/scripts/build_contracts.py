@@ -11,7 +11,7 @@ import re
 import sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from build_dws_kb import _scan_block, shortcut_identity
+from build_dws_kb import _scan_block, _top_fields, shortcut_identity
 
 
 def strings(text):
@@ -27,6 +27,63 @@ def strings(text):
 def literal_block(text, name):
     match = re.search(r'\b' + name + r':\s*\[\][\w.]+\s*\{', text)
     return _scan_block(text, match.end() - 1) if match else ''
+
+
+def command_handlers(repo, source, commit):
+    """Copy literal leaf handlers, matched to their own indexed definition.
+
+    These are source excerpts, not inferred runtime contracts. Wrappers and
+    transitive callees remain outside this projection.
+    """
+    cache, result = {}, []
+    for line in (repo / 'graph/commands.jsonl').read_text().splitlines():
+        row = json.loads(line)
+        if not row.get('defs'):
+            continue
+        ref = row['defs'][0]
+        path = source / ref['file']
+        if not path.is_file():
+            continue
+        if path not in cache:
+            text = path.read_text()
+            literals = []
+            for match in re.finditer(r'&cobra\.Command\{', text):
+                spec = _scan_block(text, match.end() - 1)
+                fields = _top_fields(spec)
+                a, z = fields.get('Use', (0, 0))
+                use = strings(spec[a:z])
+                if use:
+                    literals.append({'spec': spec, 'fields': fields, 'offset': match.end(),
+                                     'line': text[:match.start()].count('\n') + 1,
+                                     'end_line': text[:match.end() + len(spec)].count('\n') + 1,
+                                     'leaf': use[0].split()[0]})
+            cache[path] = (text, literals)
+        text, literals = cache[path]
+        candidates = [lit for lit in literals if lit['leaf'] == row['cmd'].split()[-1]
+                      and lit['line'] - 3 <= ref['line'] <= lit['end_line']]
+        if len(candidates) != 1:
+            continue
+        lit = candidates[0]
+        handlers = []
+        for field in ('PreRunE', 'RunE', 'PreRun', 'Run'):
+            if field not in lit['fields']:
+                continue
+            a, z = lit['fields'][field]
+            expr = lit['spec'][a:z].strip()
+            if not expr.startswith('func'):
+                continue  # Function references need separate call-graph coverage.
+            brace = expr.find('{')
+            if brace < 0:
+                continue
+            body = _scan_block(expr, brace)
+            handlers.append({'hook': field, 'source': body,
+                             'line': text[:lit['offset'] + a].count('\n') + 1})
+        if handlers:
+            result.append({'path': row['cmd'], 'file': ref['file'], 'source_commit': commit,
+                           'source_sha256': hashlib.sha256(path.read_bytes()).hexdigest(),
+                           'handlers': handlers,
+                           'coverage': 'literal leaf handler bodies only; wrappers and transitive callees not modeled'})
+    return result
 
 
 def build(repo, source, commit):
@@ -90,7 +147,7 @@ def build(repo, source, commit):
                                  'type': match[1].split('Var')[0], 'help': args[-1],
                                  'file': 'internal/app/flags.go', 'line': text[:match.start()].count('\n') + 1})
     target = repo / 'graph/contract-details.json'
-    payload = {'source_commit': commit, 'shortcuts': rows, 'root_flags': global_flags,
+    payload = {'source_commit': commit, 'shortcuts': rows, 'commands': command_handlers(repo, source, commit), 'root_flags': global_flags,
                'coverage': 'literal source declarations; helper-injected flags and custom runtime validation are not fully modeled'}
     target.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + '\n')
     return {'shortcut_contracts': len(rows), 'root_flags': len(global_flags), 'path': str(target)}

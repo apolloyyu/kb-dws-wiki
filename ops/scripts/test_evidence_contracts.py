@@ -127,6 +127,20 @@ class EvidenceTest(unittest.TestCase):
         self.assertIn('dwsdoc contract', result)
         self.assertNotIn('总量截断', result)
 
+    def test_handler_evidence_is_bound_to_its_own_command(self):
+        details = DOC['contract_details']()
+        reset = next(x for x in details['commands'] if x['path'] == 'auth reset')
+        migrate = next(x for x in details['commands'] if x['path'] == 'auth migrate-keychain')
+        self.assertIn('authDeleteAllTokenData', reset['handlers'][0]['source'])
+        self.assertNotIn('GetBool("dry-run")', reset['handlers'][0]['source'])
+        self.assertTrue(any('GetBool("dry-run")' in h['source'] for h in migrate['handlers']))
+        self.assertIn('transitive callees not modeled', reset['coverage'])
+        row = next(r for r in DOC['load']('commands.jsonl') if r['cmd'] == 'auth reset')
+        text = DOC['render_contract']('auth reset', 'command', row)
+        self.assertIn('root_runtime_semantics: not established', text)
+        self.assertIn('source_handler: RunE', text)
+        self.assertNotIn('migrationResults', text)
+
 
 if __name__ == '__main__':
     unittest.main()

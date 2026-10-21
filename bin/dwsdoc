@@ -592,13 +592,21 @@ def render_contract(path, kind, row):
                      + ': ' + (flag.get('help') or flag.get('desc') or ''))
     inherited = details.get('root_flags', [])
     if inherited:
-        lines.append('root_declared: ' + ', '.join('--' + r['name'] for r in inherited))
+        lines.append('root_syntax_declared: ' + ', '.join('--' + r['name'] for r in inherited))
+        lines.append('root_runtime_semantics: not established by syntax declarations')
     for rule in supplement.get('constraints', []):
         lines.append('constraint: ' + json.dumps(rule, ensure_ascii=False))
     for example in supplement.get('examples', []):
         lines.append('source_example: ' + example)
     for message in supplement.get('validation_messages', []):
         lines.append('source_validation_message: ' + message)
+    handler = next((r for r in details.get('commands', []) if r['path'] == path), None)
+    if handler:
+        lines.append('handler_coverage: ' + handler['coverage'])
+        for hook in handler['handlers']:
+            lines.append(f"引用: {_src_link(handler['file'], hook['line'])}")
+            lines.append('source_handler: ' + hook['hook'])
+            lines.append('````go\n' + hook['source'].strip() + '\n````')
     lines.append('source_coverage: ' + details['coverage'])
     return '\n'.join(lines)
 

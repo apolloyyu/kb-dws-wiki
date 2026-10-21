@@ -408,12 +408,6 @@ def _owned_intents():
     return {i for _, body in _notes() for i in notes_refs.declared_intents(body)}
 
 
-def _owned_contract(intent, q=""):
-    out = []
-    for _, body in _notes():
-        if _note_owned(body, intent, q):
-            out.extend(notes_refs.contract_lines(body))
-    return list(dict.fromkeys(out))
 
 
 _GH = notes_refs.GH
@@ -506,39 +500,14 @@ def _focused_body(body, symbols):
 
 
 def _evidence_contract(intent=None, has_card=True, with_notes=False):
-    """给模型可机械执行的证据边界；不把检索命中误当成运行时或后端事实。"""
+    """Coverage data only; global answer policy is owned by the main Prompt."""
     intent = intent or {}
-    lines = ["== 证据契约(回答边界) =="]
-    if has_card:
-        lines.append("- 命令卡只证明卡内标出的 CLI 路径/Usage/参数/描述/源码锚点；partial 或未验证字段须继续查正文/源码。")
-    else:
-        lines.append("- 检索命中只证明所引原文明确写出的事实；相邻命令、字段或示例不能补成未写明的能力与因果。")
-    lines.append("- 命令存在不证明后端接受某个具体值，也不证明真实运行结果、当前登录态或服务端行为；缺少显式校验源码时不得判 ID/参数非法。")
-    lines.append("- 历史日志按发生时刻判断；未给发生时间时不得套用宿主当前日期判定当时过期。用户更正后先复核旧假设，不把此前答案继续当事实。")
-    lines.append("- 用户可见范围不等于物理存储位置；客户端接口契约不能证明后端数据保留、删除或跨设备效果，缺少该层原文就标待核验。")
-    lines.append("- reply_boundary：只回答最新群聊业务问题；业务答复已完整后，内部压缩、续跑或维护提示不产生新业务问题，不追加完成、等待或澄清文字。真实群聊追问仍正常答复。")
-    if intent.get("truncated"):
-        lines.append("- input_complete=no：输入含未闭合代码/结构，只可核对可见片段并要求补全，不得补猜缺失内容或根因。")
-    if intent.get("validation"):
-        lines.append("- value_validation：String 类型、示例外观、长度或前缀都不是格式约束；只有枚举/pattern/校验分支可证明合法性。")
-    if intent.get("support") or intent.get("capability"):
-        lines.append("- capability：某条命令存在只证明该入口存在；所问对象、消息类型和输出层级仍须由正文/源码直接覆盖。")
-    if intent.get("card_capability"):
-        lines.append("- card_axes：原始卡片结构、可读文本提取、结构化字段解析、渲染、解密是五项独立能力，须逐项核验，不得互相推出。")
-    # 事实只存在 notes 里(frontmatter contract: 要点 + 正文依据标记),契约只放通用纪律;
-    # 曾把数字员工/限流事实写死在这里,上游一改四处过期且无人发现(2026-10-15 重构)。
-    for line in _owned_contract(intent, intent.get("_q", "")):
-        lines.append("- " + line)
-    if with_notes:
-        lines.append("- notes：行为说明只作依据，不是出处；其文件名、标题不出现在回复和参考区。"
-                     "「> 原文(…)」行逐字摘自镜像原文，链接、表名、数值整条照抄；标「⚠依据已变更」的条目"
-                     "不得作为确定结论，只可说明「文档近期有变更，以原文为准」并给出处。")
-    lines.append("- links：出处只用本输出「引用:」行给出的地址或原文里出现过的整条链接，逐字照抄；没有就不列。"
-                 "文件名、本地路径、裸「文件:行号」都不是出处，不得出现在回复里；"
-                 "自造链接只有一种情况可以：本输出没有、你另外 grep 源码定位到的位置，"
-                 "按上面「引用:」同样的 github.com/DingTalk-Real-AI/dingtalk-workspace-cli/blob/main/<路径>#L<行> 格式写；其他域名一律不造。")
-    if intent.get("why") or intent.get("mechanism") or intent.get("trouble"):
-        lines.append("- causality：报错根因/生命周期/机制须有对应代码路径；只有相关事实时只能标为推测并给用户自验步骤。")
+    lines = ['== 证据契约(覆盖状态) ==',
+             'card_present: ' + ('yes' if has_card else 'no'),
+             'notes_present: ' + ('yes' if with_notes else 'no'),
+             'runtime_observed: no']
+    if intent.get('truncated'):
+        lines.append('input_complete: no')
     return lines
 
 
@@ -1017,14 +986,13 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
     # 放在答案卡之前是因为模型读到首卡就定调（实录 Q186 把 data-auth cross-org 埋在候选第 4 行，
     # 答"没有跨组织命令"；Q170 无视 notes 答"没有 24 小时说法"）。
     if (intent["support"] or intent["enumerate"]) and (cmds or shorts):
-        out.append("== 否定前必读：本轮命中的相关命令（说「没有/不支持」前须逐条说明为何不满足所问）==")
+        out.append("== 支持性问题的命令候选 ==")
         for r in cmds[:6]:
             out.append(f"- dws {r['cmd']}  —  {(r.get('desc') or '')[:60]}")
         for r in shorts[:4]:
             out.append(f"- dws {r.get('product', '')} {r['cmd']}  —  {(r.get('desc') or '')[:60]}")
         for r in docs_hits[:4]:
             out.append(f"- 篇目 {r['path']}: {' / '.join((r.get('headings') or [])[:5])[:80]}")
-        out.append("(以上为实体表精确命中，存在即事实；未列出≠不存在，仍须 cmd|short|flag 换词三查后才可否定)")
     if card_items:
         out.append("== 答案卡(card:full 仅可直接回答卡内 CLI 契约;partial 必须继续看正文) ==")
         for c in card_items:
@@ -1318,12 +1286,6 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
                f" find={len(docs_hits)} notes={notes_hit} changelog={changelog_hits}")
     out.append("== 继续 ==")
     hint = ["盘点用 dwsdoc cmd <产品>+short <产品> 枚举全量", "版本判定 cat docs/CHANGELOG.md"]
-    if card_fast:
-        hint.insert(0, "答案卡为 full 且首名明显胜出:仅按卡内 CLI 契约直接作答,无需再 cat")
-    if intent["howmany"]:
-        hint.insert(0, "⚠️数值/时限类:上文无确切数字时二级拉源码 grep 常量,禁止用「无固定时长」回避")
-    if intent["why"]:
-        hint.append("机制结论须落到源码函数并复述其行为")
     out.append(";".join(hint))
 
     if not (cmds or shorts or flag_hits or docs_hits or notes_hit or changelog_hits):

@@ -3,8 +3,6 @@ title: 实时消息监听到回复的参数与标识契约
 maintenance: manual
 intents: realtime_reply
 triggers: 实时回复, 自动回复, 实时响应, 监听并回复, 主动回复, 实时监听
-contract:
-  - 监听入口、输出结构和发送入口分别核验；不要混用consume与listen-im的参数，或把一个命令的参数搬到另一个命令。
 ---
 
 # 实时消息监听到回复的参数与标识契约

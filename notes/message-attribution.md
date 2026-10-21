@@ -3,8 +3,6 @@ title: 消息角标、产品标识与发送入口的范围
 maintenance: manual
 intents: message_attribution
 triggers: 通过AI发送, AI发送, AI角标, AI标识, 消息小尾巴, DWS_AGENT_PRODUCT, ai-tag, clawType
-contract:
-  - 角标开关、产品标识和客户端最终显示是不同层次；须核验当前发送入口，不能查一条机器人入口就否定其他发送入口，也不能承诺任意自定义展示文案。
 ---
 
 # 消息角标、产品标识与发送入口的范围

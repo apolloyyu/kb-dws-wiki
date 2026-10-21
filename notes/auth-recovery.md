@@ -3,8 +3,6 @@ title: 认证重置与恢复的作用域
 maintenance: manual
 intents: auth_recovery
 triggers: dws auth, auth login, auth reset, 登录态, 认证服务, profile, keychain
-contract:
-  - 区分单 profile 退出、全量 reset、密钥迁移；恢复建议必须说明影响范围与前提，不将 reset 当无损重试。
 ---
 
 # 认证重置与恢复的作用域
@@ -14,7 +12,7 @@ contract:
 - 重新授权保留指定身份须显式携带该身份的 profile；不要保证裸 login 一定保留原身份。退出命令也有范围：裸 logout 默认退出全部账号；组织选择器退出该组织全部账号，精确账号或本地 profile 名才限制为一个账号。恢复单个账号不应建议裸 logout。
   {{code: internal/app/auth_command.go | targetCorpID, historyProfileSelector, historyProfileSelectorExplicit, err := resolveAuthLoginTarget}}
   {{code: internal/app/auth_command.go | 默认退出全部账号。--profile 传组织时退出该组织全部账号}}
-- auth status 的 refresh_token_valid 由 IsRefreshTokenValid 计算，包含时间比较，不是只检查数据存在。普通 status 在 access token 失效而 refresh token 有效时会尝试刷新；readonly 模式不刷新。历史输出必须按实际执行时刻、版本和所选 profile 核对，不能拿宿主今天的日期证明历史请求过期；用户报告了后续成功时必须区分各次请求，不能坚持旧的失败假设。
+- auth status 的 refresh_token_valid 由 IsRefreshTokenValid 计算，包含时间比较，不是只检查数据存在。普通 status 在 access token 失效而 refresh token 有效时会尝试刷新；readonly 模式不刷新。
   {{code: internal/app/auth_command.go | resp.RefreshTokenValid = data.IsRefreshTokenValid()}}
   {{code: internal/auth/token.go | return time.Now().Before(t.RefreshExpAt)}}
   {{code: internal/app/auth_command.go | if !data.IsAccessTokenValid() && data.IsRefreshTokenValid()}}

@@ -3,8 +3,6 @@ title: 根命令参数与叶子参数的证据范围
 maintenance: manual
 intents: global_flags
 triggers: 全局参数, 继承参数, --profile, --client-id, --client-secret, --debug, --dry-run, --fields, --format, -f, --jq, --mock, --timeout, --verbose, -v, --yes, -y, --output, -o, --token
-contract:
-  - 叶子命令卡的 visible_flags 只说明该卡列出的局部定义；判断参数是否支持必须同时核对根命令注册与对应命令的局部定义、示例和使用代码，不能据叶子表缺项直接否定。
 ---
 
 # 根命令参数与叶子参数的证据范围

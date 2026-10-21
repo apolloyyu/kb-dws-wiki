@@ -3,9 +3,6 @@ title: 事件系统的来源、投递与心跳边界
 maintenance: manual
 intents: event_runtime
 triggers: event consume, event listen, 事件监听, 事件订阅, stream, 长连接, 个人事件, event bus, 事件总线, websocket, 心跳, 断连, heartbeat, ping, pong, IPC
-contract:
-  - 先区分个人 Stream、应用 Stream 与本地 IPC；客户端 ACK、缓冲、去重不能证明服务端重投、端到端可靠性或用户业务处理成功。
-  - 类型声明只证明协议存在；实际启用、发送频率与超时检测须沿收发循环核验。取票刷新不证明既有连接在令牌到期瞬间断开，也不能承诺刷新后监听无损连续。
 ---
 
 # 事件系统的来源、投递与心跳边界

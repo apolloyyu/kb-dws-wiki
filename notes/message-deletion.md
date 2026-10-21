@@ -3,8 +3,6 @@ title: 清空会话记录的调用与作用域
 maintenance: manual
 intents: message_deletion
 triggers: 删除聊天记录, 清空聊天记录, 删除个人聊天记录, 清空会话, 聊天记录删除, 聊天记录清理
-contract:
-  - 清空记录、撤回消息和清除红点不同；本人可见范围不证明云端物理删除、数据保留或跨设备同步机制。
 ---
 
 # 清空会话记录的调用与作用域

@@ -3,8 +3,6 @@ title: 个人行为检索、业务变更记录与本地审计的范围
 maintenance: manual
 intents: behavior_records
 triggers: 操作记录, 行为记录, 自动写日报
-contract:
-  - 一个模块的types枚举不代表整个DWS的能力；个人行为、业务数据变更、界面点击和本地CLI审计是不同对象。未覆盖的产品路径先查产品文档及通用OpenAPI边界，不直接全局否定。
 ---
 
 # 个人行为检索、业务变更记录与本地审计的范围

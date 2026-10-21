@@ -3,8 +3,6 @@ title: AI表格产品权限与接口授权的边界
 maintenance: manual
 intents: table_permissions
 triggers: 字段权限, 列权限, 查看权限, 字段级权限, 高级权限
-contract:
-  - 先确认AI表格还是电子表格；产品数据访问规则、API授权范围与视图隐藏字段是不同层，不能互相替代。
 ---
 
 # AI表格产品权限与接口授权的边界

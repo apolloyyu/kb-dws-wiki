@@ -32,7 +32,7 @@ class DwsdocCtxContractTest(unittest.TestCase):
             self.assertIn('裸 logout 默认退出全部账号', out)
         out = run_dwsdoc('ctx', '使用 DWS CLI 删除个人聊天记录，云端也会被删吗')
         self.assertIn('clear_conversation_messages', out)
-        self.assertIn('本人可见范围不证明云端物理删除', out)
+        self.assertIn('仅清空当前用户视角的消息', out)
         self.assertNotIn('# 清空会话记录的调用与作用域', run_dwsdoc('ctx', '删除邮件记录'))
         self.assertIn('投影前另有解密分支', run_dwsdoc('ctx', '卡片消息能不能解析'))
         self.assertIn('按字段或行配置权限', run_dwsdoc('ctx', '钉钉表格可以根据字段分配查看权限吗'))
@@ -164,31 +164,31 @@ class DwsdocCtxContractTest(unittest.TestCase):
     def test_exact_command_keeps_fast_card(self):
         out = run_dwsdoc("ctx", "dws auth login")
         self.assertIn("card=1(fast=1)", out)
-        self.assertIn("== 证据契约(回答边界) ==", out)
-        self.assertIn("命令卡只证明", out)
+        self.assertIn("== 证据契约(覆盖状态) ==", out)
+        self.assertIn("card_present: yes", out)
 
     def test_natural_login_question_keeps_full_context(self):
         out = run_dwsdoc("ctx", "dws 怎么登录")
         self.assertIn("card=1(fast=0)", out)
-        self.assertIn("== 证据契约(回答边界) ==", out)
-        self.assertIn("命令卡只证明", out)
+        self.assertIn("== 证据契约(覆盖状态) ==", out)
+        self.assertIn("card_present: yes", out)
 
     def test_support_and_card_capability_force_full_context(self):
         out = run_dwsdoc("ctx", "dws 能解析卡片消息吗")
         self.assertIn("card=1(fast=0)", out)
-        self.assertIn("原始卡片结构、可读文本提取、结构化字段解析、渲染、解密", out)
-        self.assertIn("某条命令存在只证明该入口存在", out)
+        self.assertIn("投影前另有解密分支", out)
+        self.assertIn("runtime_observed: no", out)
 
     def test_id_format_claim_forces_full_context(self):
         out = run_dwsdoc("ctx", "oa approval detail 的 instance-id 格式必须是 UUID 吗")
         self.assertIn("card=1(fast=0)", out)
-        self.assertIn("String 类型、示例外观、长度或前缀都不是格式约束", out)
-        self.assertIn("缺少显式校验源码时不得判 ID/参数非法", out)
+        self.assertIn("card_present: yes", out)
+        self.assertIn("runtime_observed: no", out)
 
     def test_error_causality_forces_full_context(self):
         out = run_dwsdoc("ctx", "oa approval detail 返回 PARAM_ERROR 的根因是什么")
         self.assertIn("card=1(fast=0)", out)
-        self.assertIn("报错根因/生命周期/机制须有对应代码路径", out)
+        self.assertIn("runtime_observed: no", out)
 
     def test_enumeration_forces_full_context(self):
         out = run_dwsdoc("ctx", "oa approval 有哪些命令")
@@ -197,7 +197,7 @@ class DwsdocCtxContractTest(unittest.TestCase):
     def test_unclosed_structured_input_forces_full_context(self):
         out = run_dwsdoc("ctx", 'oa approval detail {"instanceId":"abc"')
         self.assertIn("fast=0", out)
-        self.assertIn("input_complete=no", out)
+        self.assertIn("input_complete: no", out)
 
     def test_embedded_command_and_backend_validation_evidence(self):
         out = run_dwsdoc(
@@ -256,7 +256,7 @@ class DwsdocCtxContractTest(unittest.TestCase):
 
     def test_cross_boundary_tokenization_and_cross_org_listing(self):
         out = run_dwsdoc("ctx", "获取消息好像拉不到非本组织的群信息？")
-        self.assertIn("否定前必读", out)
+        self.assertIn("支持性问题的命令候选", out)
         head = out.split("== 答案卡", 1)[0]
         self.assertIn("data-auth cross-org", head)
         self.assertIn("card=1(fast=0)", out)
@@ -278,13 +278,13 @@ class DwsdocCtxContractTest(unittest.TestCase):
     def test_explicit_full_disables_cards(self):
         out = run_dwsdoc("ctx", "--full", "dws 怎么登录")
         self.assertIn("card=0(fast=0)", out)
-        self.assertIn("检索命中只证明所引原文明确写出的事实", out)
+        self.assertIn("runtime_observed: no", out)
 
     def test_card_command_also_prints_contract(self):
         out = run_dwsdoc("card", "oa approval detail")
         self.assertIn("# dws oa approval detail", out)
-        self.assertIn("== 证据契约(回答边界) ==", out)
-        self.assertIn("运行结果、当前登录态或服务端行为", out)
+        self.assertIn("== 证据契约(覆盖状态) ==", out)
+        self.assertIn("runtime_observed: no", out)
 
 
     def test_digital_employee_group_access_uses_whitelist_note(self):
@@ -297,12 +297,12 @@ class DwsdocCtxContractTest(unittest.TestCase):
             # 上游 10-13(a3c7d486) 起正式 connect 绑定走平台访问策略,不再是「默认仅主管+白名单」
             self.assertRegex(out, r"> 原文\(https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli/blob/[0-9a-f]+/docs/digital-employee-adapters\.md\): `manage create` 创建并通过正式", q)
             self.assertIn("platform", out, q)
-            self.assertIn("- access：", out, q)
+            self.assertIn("notes_present: yes", out, q)
             self.assertIn("card=1(fast=0)", out, q)
             self.assertRegex(out, r"(?m)^# dws dingtalk-tag ", q)
             self.assertNotIn("add-bot --robot-code", out, q)
-            self.assertIn("不叠加本地白名单", out, q)
-            self.assertIn("- notes：行为说明只作依据", out, q)
+            self.assertIn("runtimeBindingId", out, q)
+            self.assertNotIn("- notes：行为说明只作依据", out, q)
 
     def test_digital_employee_origin_uses_origin_note(self):
         # 实录 2026-10-12:把 DEAP 智能体/企业自建 Agent 接口列为创建方式,随后又称「关系未说明」并撤回
@@ -310,7 +310,7 @@ class DwsdocCtxContractTest(unittest.TestCase):
                   "AI 助理改名为数字员工了吗", "数字员工怎么创建"):
             out = run_dwsdoc("ctx", q)
             self.assertIn("notes/digital-employee.md", out, q)
-            self.assertIn("- origin：", out, q)
+            self.assertIn("notes_present: yes", out, q)
             self.assertIn("card=1(fast=0)", out, q)
             self.assertRegex(out, r"(?m)^# dws dingtalk-tag manage create", q)
             self.assertIn("manage detail --agent-uuid", out, q)
@@ -329,7 +329,7 @@ class DwsdocCtxContractTest(unittest.TestCase):
             out = run_dwsdoc("ctx", q)
             self.assertIn("> 原文(https://open.dingtalk.com/document/development/dws-cli-log", out, q)
             self.assertIn(form, out, q)
-            self.assertIn("其他域名一律不造", out, q)
+            self.assertNotIn("其他域名一律不造", out, q)
             self.assertNotIn("⚠依据已变更(", out, q)
             self.assertNotIn("{{", out, q)
 
@@ -358,7 +358,7 @@ class DwsdocCtxContractTest(unittest.TestCase):
         for fact in ("DEAP 1.0", "mcp-gw.dingtalk.com", "notable/share/form", "默认仅主管"):
             self.assertNotIn(fact, code, f"dwsdoc 里不得写死事实: {fact}")
         out = run_dwsdoc("ctx", "dws发送消息限流规则是什么")
-        self.assertIn("- ratelimit：", out)
+        self.assertIn("rate-limit-and-backend.md", out)
         out = run_dwsdoc("ctx", "dws chat message list 怎么用")
         self.assertNotIn("- ratelimit：", out)
         self.assertNotIn("- deap1：", out)
@@ -389,7 +389,7 @@ class DwsdocCtxContractTest(unittest.TestCase):
         for q in ("在三方应用群内添加数字员工（类似本群的钉仔）怎么做", "数字员工怎么创建",
                   "DEAP 平台创建的智能体是数字员工吗", "怎么给群里加一个数字员工", "数字员工可以在界面上创建吗"):
             out = run_dwsdoc("ctx", q)
-            self.assertIn("- deap1：", out, q)
+            self.assertIn("notes_present: yes", out, q)
             self.assertIn("DEAP 1.0 的 AI 助理", out, q)
             self.assertIn("notes/digital-employee.md", out, q)
             self.assertNotIn("拿 DEAP 后台显示的智能体 ID", out, q)
@@ -410,7 +410,7 @@ class DwsdocCtxContractTest(unittest.TestCase):
     def test_digital_employee_vs_robot_uses_access_note(self):
         out = run_dwsdoc("ctx", "数字员工和机器人有什么区别")
         self.assertIn("notes/digital-employee.md", out)
-        self.assertIn("- access：", out)
+        self.assertIn("notes_present: yes", out)
 
     def test_robot_join_group_without_digital_employee_keeps_chat_context(self):
         out = run_dwsdoc("ctx", "怎么把机器人拉进群")
@@ -424,8 +424,9 @@ class DwsdocCtxContractTest(unittest.TestCase):
                   "你之前说过dws的部分接口并不跟openapi共享的我记得"):
             out = run_dwsdoc("ctx", q)
             self.assertIn("notes/rate-limit-and-backend.md", out, q)
-            self.assertIn("- ratelimit：", out, q)
-            self.assertIn("mcp-gw.dingtalk.com", out, q)
+            self.assertIn("rate-limit-and-backend.md", out, q)
+            self.assertIn("走钉钉 MCP 网关", out, q)
+            self.assertIn("direct_runtime.go", out, q)
             self.assertIn("只有 `dws api` 直连 OpenAPI", out, q)
             self.assertNotIn("ctx 总量截断", out, q)
 
@@ -438,7 +439,7 @@ class DwsdocCtxContractTest(unittest.TestCase):
         # R10.5 回退 Q250/Q251:flag 只按名子串匹配,自然问句召不回 --ai-tag(答案在 help「AI 发送角标」)
         for q in ("现在为何通过dws发送的都会显示ai发送？", "如何让消息不带ai标识"):
             out = run_dwsdoc("ctx", q)
-            self.assertIn("--ai-tag(Bool)", out, q)
+            self.assertRegex(out, r"--ai-tag\s*\(Bool\)", q)
 
     def test_help_text_flag_recall_does_not_add_noise(self):
         # 单个泛词(发送/消息)或偶撞词不得把无关 flag 拉进来
@@ -452,7 +453,7 @@ class DwsdocCtxContractTest(unittest.TestCase):
                   "消息能按发送者和群聊分别限制可见范围吗?"):
             out = run_dwsdoc("ctx", q)
             self.assertIn("fast=0", out, q)
-            self.assertIn("- capability：", out, q)
+            self.assertIn("runtime_observed: no", out, q)
         self.assertIn("fast=1", run_dwsdoc("ctx", "dws auth login 文档在哪"))
 
     def test_challenge_turns_off_fast_card(self):
@@ -463,13 +464,13 @@ class DwsdocCtxContractTest(unittest.TestCase):
 
     def test_prev_question_joins_follow_up_terms(self):
         out = run_dwsdoc("ctx", "--prev", "dws 发送消息怎么不显示AI标识", "那默认是true还是false")
-        self.assertIn("--ai-tag(Bool)", out)
+        self.assertRegex(out, r"--ai-tag\s*\(Bool\)")
 
     def test_any_merged_notes_forbid_citing_note_files(self):
         # R10.6.0 盲测 Q227/Q232/Q242:禁引只在专属 note 命中时出现,泛 notes 并入时回复参考区列出 notes/event-system.md
         out = run_dwsdoc("ctx", "二号 如果在同一台机器上启用多个事件监听，这个应该是可行的吧")
         self.assertIn("== 行为语义(notes", out)
-        self.assertIn("- notes：行为说明只作依据，不是出处", out)
+        self.assertIn("notes_present: yes", out)
 
     def test_every_cited_source_has_a_link(self):
         # 只给本地路径时模型把 auth-and-credentials.md、event.md 当出处(10-15 全量 14/300 题);每个出处都附可照抄的引用行
@@ -492,7 +493,7 @@ class DwsdocCtxContractTest(unittest.TestCase):
                   "How long does the dws refresh token last?"):
             out = run_dwsdoc("ctx", q)
             self.assertIn("--- notes/token-lifetime.md", out, q)
-            self.assertIn("- lifetime：", out, q)
+            self.assertIn("token-lifetime.md", out, q)
             self.assertRegex(out, r"\(源码依据: https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli/blob/[0-9a-f]{7,40}/", q)
         for q in ("扫码登录要在几分钟内完成", "隔几天不用 dws 就要重新登录吗", "dws 每次都要重新扫码，很烦",
                   "dws 掉线了", "dws 授权过期了怎么办"):

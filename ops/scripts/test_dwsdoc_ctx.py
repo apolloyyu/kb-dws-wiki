@@ -21,6 +21,30 @@ def run_dwsdoc(*args):
 
 
 class DwsdocCtxContractTest(unittest.TestCase):
+    def test_repaired_source_and_scope_contracts(self):
+        for q in ['如何实时监听群消息，并主动回复', '如果没有直接@你，会实时监听群消息，并主动回复吗？通过DWS对接Agent']:
+            out = run_dwsdoc('ctx', q)
+            self.assertIn('指定群的监听参数是 chat-id 或 chat-query', out)
+            self.assertIn('监听我的所有单聊消息', out)
+        for q in ['dws auth status refresh_token_valid=true 为什么没有成功', 'dws auth login重新授权后还是不能自动刷新']:
+            out = run_dwsdoc('ctx', q)
+            self.assertIn('包含时间比较', out)
+            self.assertIn('裸 logout 默认退出全部账号', out)
+        out = run_dwsdoc('ctx', '使用 DWS CLI 删除个人聊天记录，云端也会被删吗')
+        self.assertIn('clear_conversation_messages', out)
+        self.assertIn('本人可见范围不证明云端物理删除', out)
+        self.assertNotIn('# 清空会话记录的调用与作用域', run_dwsdoc('ctx', '删除邮件记录'))
+        self.assertIn('投影前另有解密分支', run_dwsdoc('ctx', '卡片消息能不能解析'))
+        self.assertIn('按字段或行配置权限', run_dwsdoc('ctx', '钉钉表格可以根据字段分配查看权限吗'))
+        self.assertNotIn('# AI表格产品权限', run_dwsdoc('ctx', '用户详情的字段查看权限'))
+        self.assertNotIn('# AI表格产品权限', run_dwsdoc('ctx', '--prev', 'AI表格的字段查看权限', '邮件附件查看权限失败'))
+        self.assertNotIn('# 认证重置与恢复的作用域', run_dwsdoc('ctx', 'dws chat +messages-mget --profile corp:user 查看消息状态和卡片能否解析'))
+        switched = run_dwsdoc('ctx', '--prev', 'dws auth status token 刷新异常', 'dws chat +messages-mget --profile corp:user 查看消息状态和卡片能否解析')
+        self.assertNotIn('# 认证重置与恢复的作用域', switched)
+        self.assertIn('notes/auth-and-credentials.md', switched)  # 原有--prev回退仍保留；新增认证恢复note不得挤占。
+        for q in ['auth reset 会删除哪些数据', 'auth login 重新授权失败']:
+            self.assertIn('# 认证重置与恢复的作用域', run_dwsdoc('ctx', q))
+
     def test_workflow_questions_expand_parameter_and_scope_evidence(self):
         out = run_dwsdoc('ctx', '获取消息拉不到非本组织的群信息')
         self.assertIn('--target-org-id 和 --all 必须且只能指定一个', out)
@@ -42,6 +66,8 @@ class DwsdocCtxContractTest(unittest.TestCase):
             ('IM查询已完成，设置邮件自动回复', '# 实时消息监听到回复的参数与标识契约'),
             ('IM查询已完成；设置邮件自动回复', '# 实时消息监听到回复的参数与标识契约'),
             ('邮件新消息自动回复失败', '# 实时消息监听到回复的参数与标识契约'),
+            ('监听群消息，然后自动回复邮件失败为什么', '# 实时消息监听到回复的参数与标识契约'),
+            ('监听群消息，并自动回复日历邀请', '# 实时消息监听到回复的参数与标识契约'),
             ('日历提醒消息实时回复', '# 实时消息监听到回复的参数与标识契约'),
             ('获取非本组织的邮件消息', '# 跨组织消息数据授权的目标与范围')]:
             self.assertNotIn(title, run_dwsdoc('ctx', question))
@@ -196,7 +222,8 @@ class DwsdocCtxContractTest(unittest.TestCase):
         self.assertIn("# dws chat message list", out)
         self.assertIn("消息结果投影与卡片读取边界", out)
         self.assertIn("可识别的富内容卡片还会提取 `items[].data.text`", out)
-        self.assertIn("加密的 card/robot ciphertext", out)
+        self.assertIn("尚未解密的 ciphertext", out)
+        self.assertIn("投影前另有解密分支", out)
         self.assertIn("card=1(fast=0)", out)
 
     def test_generic_support_uses_product_context_without_unrelated_notes(self):
@@ -268,7 +295,7 @@ class DwsdocCtxContractTest(unittest.TestCase):
             self.assertIn("notes/digital-employee.md", out, q)
             self.assertIn("allowed-groups", out, q)
             # 上游 10-13(a3c7d486) 起正式 connect 绑定走平台访问策略,不再是「默认仅主管+白名单」
-            self.assertIn("> 原文(docs/digital-employee-adapters.md): `manage create` 创建并通过正式", out, q)
+            self.assertRegex(out, r"> 原文\(https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli/blob/[0-9a-f]+/docs/digital-employee-adapters\.md\): `manage create` 创建并通过正式", q)
             self.assertIn("platform", out, q)
             self.assertIn("- access：", out, q)
             self.assertIn("card=1(fast=0)", out, q)

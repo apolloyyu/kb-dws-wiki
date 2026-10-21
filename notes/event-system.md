@@ -62,6 +62,10 @@ contract:
   {{code: internal/app/event_command.go | identityHash = strings.TrimSpace(identityHashFlag)}}
 
 ## 平台与强制模式
+- 停止订阅、清理本地状态与停止 bus 是不同步骤。当前个人事件 stop 的实现先逐个删除订阅，再清理本地状态和停止消费者，最后在无剩余订阅时停止 bus。因此不能只凭「signal bus ... not supported by windows」就推导订阅永远清理不掉、必定复用失效订阅或云端不再推送；历史报错仍需对照当时版本和逐步日志。发布说明只证明其明确写出的修复项，不证明这一整条因果链或修复已覆盖所有场景。
+  {{code: internal/app/event_personal_command.go | if err := personalDeleteSubscription(client, ctx, id)}}
+  {{code: internal/app/event_personal_command.go | if err := personalRemoveRunStates(workDir, subscribeIDs)}}
+  {{code: internal/app/event_personal_command.go | if err := personalStopBus(busctl.StopConfig}}
 - Windows IPC 使用命名管道，其余平台使用 Unix socket；不能把某个历史 stop 缺陷泛化为 Windows 不支持事件。具体修复版本另查 CHANGELOG。
   {{code: internal/event/endpoint.go | if goos == "windows"}}
   {{code: internal/event/endpoint.go | return `\\.\pipe\dws-event-`}}

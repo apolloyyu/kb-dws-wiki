@@ -5,7 +5,7 @@ completeness: full
 usage: dws drive +delete
 description: 将已确认节点移入回收站
 source: internal/shortcut/drive/operations.go:303
-visible_flags: 2
+visible_flags: 1
 
 ## Flags
 - --node <String>: 节点 ID
@@ -15,5 +15,5 @@ visible_flags: 2
 - dws drive +create-folder
 - dws drive +create-shortcut
 - dws drive +download
+- dws drive +find-file
 - dws drive +info
-- dws drive +inspect

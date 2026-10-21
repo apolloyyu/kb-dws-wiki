@@ -13,9 +13,9 @@ visible_flags: 3
 - --role-ids <StringSlice>: 要整体设置的群身份 openRoleId 列表；必须包含至少一个非空 openRoleId，且不能包含空值或仅含空白的元素
 
 ## Related
+- dws chat +at-me
 - dws chat +bot-find
 - dws chat +bot-search
+- dws chat +broadcast
 - dws chat +category-add-conversation
 - dws chat +category-create
-- dws chat +category-delete
-- dws chat +category-list

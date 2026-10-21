@@ -12,9 +12,9 @@ visible_flags: 2
 - --user <String>: 用户 userId 或 openDingTalkId
 
 ## Related
+- dws chat +at-me
 - dws chat +bot-find
 - dws chat +bot-search
+- dws chat +broadcast
 - dws chat +category-add-conversation
 - dws chat +category-create
-- dws chat +category-delete
-- dws chat +category-list

@@ -11,9 +11,9 @@ visible_flags: 1
 - --depts <StringSlice>: 部门 ID 列表，逗号分隔；--depts 每项都必须为正整数且不能重复
 
 ## Related
+- dws contact +by-mobile
+- dws contact +dept-members
 - dws contact +friend-list
 - dws contact +friend-remove
 - dws contact +friend-request-accept
 - dws contact +friend-request-list
-- dws contact +friend-request-reject
-- dws contact +friend-request-send

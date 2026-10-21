@@ -12,9 +12,9 @@ visible_flags: 2
 - --content <String>: 完整纪要字面量、@相对文件或 - 表示 stdin
 
 ## Related
+- dws minutes +action-items
 - dws minutes +apply-permission
+- dws minutes +detail
 - dws minutes +download
 - dws minutes +export-pack
-- dws minutes +list-all
-- dws minutes +list-mine
-- dws minutes +list-shared
+- dws minutes +latest

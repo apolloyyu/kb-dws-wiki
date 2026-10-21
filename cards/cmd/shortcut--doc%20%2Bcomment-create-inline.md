@@ -17,9 +17,9 @@ visible_flags: 7
 - --mention <StringSlice>: 被 @ 的用户 uid，多个值用逗号分隔；不要传 JSON 数组
 
 ## Related
+- dws doc +access-change
+- dws doc +access-grant
+- dws doc +access-revoke
 - dws doc +background-delete
 - dws doc +background-update
 - dws doc +checkpoint-update
-- dws doc +comment-create
-- dws doc +comment-delete
-- dws doc +comment-list

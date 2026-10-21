@@ -15,9 +15,9 @@ visible_flags: 5
 - --users <StringSlice>: 目标 userId 或 openDingTalkId 列表（不传返回全部接收者）
 
 ## Related
+- dws chat +at-me
 - dws chat +bot-find
 - dws chat +bot-search
+- dws chat +broadcast
 - dws chat +category-add-conversation
 - dws chat +category-create
-- dws chat +category-delete
-- dws chat +category-list

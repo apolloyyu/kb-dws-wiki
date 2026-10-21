@@ -11,9 +11,9 @@ visible_flags: 1
 - --task-id <String>: 待办任务 ID
 
 ## Related
+- dws todo +assign
+- dws todo +assign-multi
 - dws todo +comment
 - dws todo +create
-- dws todo +get-my-tasks
-- dws todo +list-attachment
-- dws todo +list-comment
-- dws todo +list-sub
+- dws todo +created-todos
+- dws todo +due-today

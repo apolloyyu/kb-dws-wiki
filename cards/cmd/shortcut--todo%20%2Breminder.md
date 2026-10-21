@@ -15,9 +15,9 @@ visible_flags: 5
 - --at <String>: customTime 的 ISO8601 时间；
 
 ## Related
+- dws todo +assign
+- dws todo +assign-multi
 - dws todo +comment
 - dws todo +create
-- dws todo +get
-- dws todo +get-my-tasks
-- dws todo +list-attachment
-- dws todo +list-comment
+- dws todo +created-todos
+- dws todo +due-today

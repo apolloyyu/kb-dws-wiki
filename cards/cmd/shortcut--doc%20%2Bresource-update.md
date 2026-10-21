@@ -15,9 +15,9 @@ visible_flags: 5
 - --file <String>: 工作目录内已存在封面图片的相对路径
 
 ## Related
+- dws doc +access-change
+- dws doc +access-grant
+- dws doc +access-revoke
 - dws doc +background-delete
 - dws doc +background-update
 - dws doc +checkpoint-update
-- dws doc +comment-create
-- dws doc +comment-create-inline
-- dws doc +comment-delete

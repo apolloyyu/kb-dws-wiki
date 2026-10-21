@@ -12,9 +12,9 @@ visible_flags: 2
 - --category-ids <StringSlice>: 目标分组 ID 列表
 
 ## Related
+- dws chat +at-me
 - dws chat +bot-find
 - dws chat +bot-search
+- dws chat +broadcast
 - dws chat +category-create
 - dws chat +category-delete
-- dws chat +category-list
-- dws chat +category-list-conversations

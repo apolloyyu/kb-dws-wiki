@@ -12,9 +12,9 @@ visible_flags: 2
 - --content <String>: 评论内容
 
 ## Related
+- dws todo +assign
+- dws todo +assign-multi
 - dws todo +create
+- dws todo +created-todos
+- dws todo +due-today
 - dws todo +get
-- dws todo +get-my-tasks
-- dws todo +list-attachment
-- dws todo +list-comment
-- dws todo +list-sub

@@ -16,4 +16,4 @@ visible_flags: 1
 - dws drive +create-shortcut
 - dws drive +delete
 - dws drive +download
-- dws drive +info
+- dws drive +find-file

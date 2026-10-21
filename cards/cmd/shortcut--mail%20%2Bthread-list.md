@@ -20,6 +20,6 @@ visible_flags: 7
 - dws mail +contact-list
 - dws mail +draft-create
 - dws mail +draft-edit
+- dws mail +find-mail-user
 - dws mail +folder-list
 - dws mail +message
-- dws mail +messages

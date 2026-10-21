@@ -12,9 +12,9 @@ visible_flags: 2
 - --resource-id <String>: 附件 resourceId；--resource-id 必须是附件回执返回的 UUID
 
 ## Related
+- dws doc +access-change
+- dws doc +access-grant
+- dws doc +access-revoke
 - dws doc +background-delete
 - dws doc +background-update
 - dws doc +checkpoint-update
-- dws doc +comment-create
-- dws doc +comment-create-inline
-- dws doc +comment-delete

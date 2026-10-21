@@ -13,9 +13,9 @@ visible_flags: 3
 - --conversation-id <String>: 消息所在会话 openConversationId；省略从消息精确解析
 
 ## Related
+- dws chat +at-me
 - dws chat +bot-find
 - dws chat +bot-search
+- dws chat +broadcast
 - dws chat +category-add-conversation
 - dws chat +category-create
-- dws chat +category-delete
-- dws chat +category-list

@@ -15,9 +15,9 @@ visible_flags: 5
 - --resolve-status <String>: 解决状态: resolved / unresolved
 
 ## Related
+- dws doc +access-change
+- dws doc +access-grant
+- dws doc +access-revoke
 - dws doc +background-delete
 - dws doc +background-update
 - dws doc +checkpoint-update
-- dws doc +comment-create
-- dws doc +comment-create-inline
-- dws doc +comment-delete

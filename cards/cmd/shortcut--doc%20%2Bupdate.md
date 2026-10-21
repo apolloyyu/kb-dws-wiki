@@ -24,9 +24,9 @@ visible_flags: 14
 - --expected-revision <Int>: 仅 overwrite+jsonml：传给服务端执行原子 revision 条件写
 
 ## Related
+- dws doc +access-change
+- dws doc +access-grant
+- dws doc +access-revoke
 - dws doc +background-delete
 - dws doc +background-update
 - dws doc +checkpoint-update
-- dws doc +comment-create
-- dws doc +comment-create-inline
-- dws doc +comment-delete

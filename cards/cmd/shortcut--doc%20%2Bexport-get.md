@@ -11,9 +11,9 @@ visible_flags: 1
 - --job-id <String>: 导出任务 ID
 
 ## Related
+- dws doc +access-change
+- dws doc +access-grant
+- dws doc +access-revoke
 - dws doc +background-delete
 - dws doc +background-update
 - dws doc +checkpoint-update
-- dws doc +comment-create
-- dws doc +comment-create-inline
-- dws doc +comment-delete

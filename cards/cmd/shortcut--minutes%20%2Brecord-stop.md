@@ -12,9 +12,9 @@ visible_flags: 2
 - --session-id <String>: AI 助理会话 ID (可选)
 
 ## Related
+- dws minutes +action-items
 - dws minutes +apply-permission
+- dws minutes +detail
 - dws minutes +download
 - dws minutes +export-pack
-- dws minutes +list-all
-- dws minutes +list-mine
-- dws minutes +list-shared
+- dws minutes +latest

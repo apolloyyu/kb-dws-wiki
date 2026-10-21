@@ -17,9 +17,9 @@ visible_flags: 7
 - --required-blocks <StringSlice>: 要求至少出现一次的块类型，如heading,paragraph,table（Markdown）或h1,p,table（JSONML）
 
 ## Related
+- dws doc +access-change
+- dws doc +access-grant
+- dws doc +access-revoke
 - dws doc +background-delete
 - dws doc +background-update
 - dws doc +checkpoint-update
-- dws doc +comment-create
-- dws doc +comment-create-inline
-- dws doc +comment-delete

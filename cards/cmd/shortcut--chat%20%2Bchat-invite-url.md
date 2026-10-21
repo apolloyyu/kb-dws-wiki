@@ -14,9 +14,9 @@ visible_flags: 4
 - --expires-seconds <Int>: 链接有效期（秒），0 表示永久
 
 ## Related
+- dws chat +at-me
 - dws chat +bot-find
 - dws chat +bot-search
+- dws chat +broadcast
 - dws chat +category-add-conversation
 - dws chat +category-create
-- dws chat +category-delete
-- dws chat +category-list

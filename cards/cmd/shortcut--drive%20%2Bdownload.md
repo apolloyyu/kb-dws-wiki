@@ -16,5 +16,5 @@ visible_flags: 2
 - dws drive +create-folder
 - dws drive +create-shortcut
 - dws drive +delete
+- dws drive +find-file
 - dws drive +info
-- dws drive +inspect

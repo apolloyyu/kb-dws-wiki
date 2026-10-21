@@ -12,9 +12,9 @@ visible_flags: 2
 - --sync <Bool>: [兼容提示] 已迁移，请使用 +sync-asr
 
 ## Related
+- dws minutes +action-items
 - dws minutes +apply-permission
+- dws minutes +detail
 - dws minutes +download
 - dws minutes +export-pack
-- dws minutes +list-all
-- dws minutes +list-mine
-- dws minutes +list-shared
+- dws minutes +latest

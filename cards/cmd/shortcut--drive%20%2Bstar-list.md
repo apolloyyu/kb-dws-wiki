@@ -5,13 +5,12 @@ completeness: full
 usage: dws drive +star-list
 description: 严格分页列出当前用户收藏
 source: internal/shortcut/drive/catalog_operations.go:278
-visible_flags: 4
+visible_flags: 3
 
 ## Flags
 - --limit <Int>: —
 - --cursor <String>: 分页游标
 - --content-types <StringSlice>: 内容类型过滤
-- --node <String>: 节点 ID
 
 ## Related
 - dws drive +copy
@@ -19,4 +18,4 @@ visible_flags: 4
 - dws drive +create-shortcut
 - dws drive +delete
 - dws drive +download
-- dws drive +info
+- dws drive +find-file

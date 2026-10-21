@@ -15,9 +15,9 @@ visible_flags: 5
 - --page-limit <Int>: —
 
 ## Related
+- dws minutes +action-items
 - dws minutes +apply-permission
+- dws minutes +detail
 - dws minutes +download
 - dws minutes +export-pack
-- dws minutes +list-all
-- dws minutes +list-shared
-- dws minutes +mindmap
+- dws minutes +latest

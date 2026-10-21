@@ -11,9 +11,9 @@ visible_flags: 0
 - none
 
 ## Related
+- dws contact +by-mobile
+- dws contact +dept-members
 - dws contact +friend-list
 - dws contact +friend-remove
 - dws contact +friend-request-accept
 - dws contact +friend-request-list
-- dws contact +friend-request-reject
-- dws contact +friend-request-send

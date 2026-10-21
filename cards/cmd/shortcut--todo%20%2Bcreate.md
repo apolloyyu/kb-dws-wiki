@@ -14,9 +14,9 @@ visible_flags: 4
 - --priority <Int>: 优先级；--priority 仅接受 10/20/30/40
 
 ## Related
+- dws todo +assign
+- dws todo +assign-multi
 - dws todo +comment
+- dws todo +created-todos
+- dws todo +due-today
 - dws todo +get
-- dws todo +get-my-tasks
-- dws todo +list-attachment
-- dws todo +list-comment
-- dws todo +list-sub

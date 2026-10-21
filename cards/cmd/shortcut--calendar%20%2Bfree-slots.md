@@ -1,0 +1,21 @@
+# dws calendar +free-slots
+
+kind: shortcut
+completeness: full
+usage: dws calendar +free-slots
+description: 找我某天工作时段内的空闲时间段（默认今天 09:00-18:00）
+source: internal/shortcut/smart/free_slots.go:40
+visible_flags: 3
+
+## Flags
+- --in-days <Int>: 几天后（可选，0=今天默认）
+- --from <Int>: 工作时段起始小时（可选，默认 9）
+- --to <Int>: 工作时段结束小时（可选，默认 18）
+
+## Related
+- dws calendar +agenda
+- dws calendar +attendee-list
+- dws calendar +book
+- dws calendar +book-list
+- dws calendar +book-search
+- dws calendar +cancel-event

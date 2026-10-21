@@ -12,9 +12,9 @@ visible_flags: 2
 - --exclude-muted <Bool>: 排除已免打扰会话
 
 ## Related
+- dws chat +at-me
 - dws chat +bot-find
 - dws chat +bot-search
+- dws chat +broadcast
 - dws chat +category-add-conversation
 - dws chat +category-create
-- dws chat +category-delete
-- dws chat +category-list

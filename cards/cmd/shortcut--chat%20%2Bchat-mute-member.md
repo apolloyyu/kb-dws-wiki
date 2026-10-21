@@ -14,9 +14,9 @@ visible_flags: 4
 - --off <Bool>: 移出禁言名单（不传则加入禁言名单）
 
 ## Related
+- dws chat +at-me
 - dws chat +bot-find
 - dws chat +bot-search
+- dws chat +broadcast
 - dws chat +category-add-conversation
 - dws chat +category-create
-- dws chat +category-delete
-- dws chat +category-list

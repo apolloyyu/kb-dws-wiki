@@ -17,5 +17,5 @@ visible_flags: 3
 - dws drive +create-folder
 - dws drive +delete
 - dws drive +download
+- dws drive +find-file
 - dws drive +info
-- dws drive +inspect

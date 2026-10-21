@@ -19,9 +19,9 @@ visible_flags: 9
 - --overwrite <Bool>: 允许覆盖工作目录内已存在的目标文件（默认拒绝）
 
 ## Related
+- dws chat +at-me
 - dws chat +bot-find
 - dws chat +bot-search
+- dws chat +broadcast
 - dws chat +category-add-conversation
 - dws chat +category-create
-- dws chat +category-delete
-- dws chat +category-list

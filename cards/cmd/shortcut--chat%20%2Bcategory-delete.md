@@ -11,9 +11,9 @@ visible_flags: 1
 - --category-id <Int>: 会话分组 ID
 
 ## Related
+- dws chat +at-me
 - dws chat +bot-find
 - dws chat +bot-search
+- dws chat +broadcast
 - dws chat +category-add-conversation
 - dws chat +category-create
-- dws chat +category-list
-- dws chat +category-list-conversations

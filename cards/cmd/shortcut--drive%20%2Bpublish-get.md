@@ -5,11 +5,10 @@ completeness: full
 usage: dws drive +publish-get
 description: 查询文件互联网公开状态
 source: internal/shortcut/drive/catalog_operations.go:353
-visible_flags: 3
+visible_flags: 1
 
 ## Flags
 - --node <String>: 文件 ID
-- --permission <String>: —
 
 ## Related
 - dws drive +copy
@@ -17,4 +16,4 @@ visible_flags: 3
 - dws drive +create-shortcut
 - dws drive +delete
 - dws drive +download
-- dws drive +info
+- dws drive +find-file

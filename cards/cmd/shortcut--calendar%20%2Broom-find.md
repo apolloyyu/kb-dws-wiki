@@ -19,7 +19,7 @@ visible_flags: 7
 ## Related
 - dws calendar +agenda
 - dws calendar +attendee-list
+- dws calendar +book
 - dws calendar +book-list
 - dws calendar +book-search
-- dws calendar +freebusy
-- dws calendar +room-groups
+- dws calendar +cancel-event

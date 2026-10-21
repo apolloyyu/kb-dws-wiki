@@ -23,9 +23,9 @@ visible_flags: 13
 - --speaker-insights <Bool>: 继续创建并等待发言人总结
 
 ## Related
+- dws minutes +action-items
 - dws minutes +apply-permission
+- dws minutes +detail
 - dws minutes +download
 - dws minutes +export-pack
-- dws minutes +list-all
-- dws minutes +list-mine
-- dws minutes +list-shared
+- dws minutes +latest

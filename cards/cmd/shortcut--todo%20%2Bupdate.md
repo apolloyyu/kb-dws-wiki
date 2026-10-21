@@ -5,7 +5,7 @@ completeness: full
 usage: dws todo +update
 description: 更新待办并读回验证
 source: internal/shortcut/todo/lifecycle.go:221
-visible_flags: 5
+visible_flags: 4
 
 ## Flags
 - --task-id <String>: 待办 taskId
@@ -14,9 +14,9 @@ visible_flags: 5
 - --priority <Int>: 新优先级；--priority 仅接受 10/20/30/40
 
 ## Related
+- dws todo +assign
+- dws todo +assign-multi
 - dws todo +comment
 - dws todo +create
-- dws todo +get
-- dws todo +get-my-tasks
-- dws todo +list-attachment
-- dws todo +list-comment
+- dws todo +created-todos
+- dws todo +due-today

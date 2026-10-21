@@ -12,9 +12,9 @@ visible_flags: 2
 - --remark <String>: 好友申请验证留言（可选）
 
 ## Related
+- dws contact +by-mobile
+- dws contact +dept-members
 - dws contact +friend-list
 - dws contact +friend-remove
 - dws contact +friend-request-accept
 - dws contact +friend-request-list
-- dws contact +friend-request-reject
-- dws contact +get-roster

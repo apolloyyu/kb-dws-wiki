@@ -13,9 +13,9 @@ visible_flags: 3
 - --content <String>: —
 
 ## Related
+- dws doc +access-change
+- dws doc +access-grant
+- dws doc +access-revoke
 - dws doc +background-delete
 - dws doc +background-update
 - dws doc +comment-create
-- dws doc +comment-create-inline
-- dws doc +comment-delete
-- dws doc +comment-list

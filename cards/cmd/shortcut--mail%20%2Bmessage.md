@@ -15,6 +15,6 @@ visible_flags: 2
 - dws mail +contact-list
 - dws mail +draft-create
 - dws mail +draft-edit
+- dws mail +find-mail-user
 - dws mail +folder-list
 - dws mail +messages
-- dws mail +tag-list

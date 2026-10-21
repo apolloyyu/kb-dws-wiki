@@ -12,9 +12,9 @@ visible_flags: 2
 - --alias <String>: 同意后为该好友设置的备注名（可选）
 
 ## Related
+- dws contact +by-mobile
+- dws contact +dept-members
 - dws contact +friend-list
 - dws contact +friend-remove
 - dws contact +friend-request-list
 - dws contact +friend-request-reject
-- dws contact +friend-request-send
-- dws contact +get-roster

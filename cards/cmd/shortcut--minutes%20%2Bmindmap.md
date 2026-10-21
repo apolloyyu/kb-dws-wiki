@@ -14,9 +14,9 @@ visible_flags: 4
 - --resume <Bool>: 只继续轮询，不重复创建任务
 
 ## Related
+- dws minutes +action-items
 - dws minutes +apply-permission
+- dws minutes +detail
 - dws minutes +download
 - dws minutes +export-pack
-- dws minutes +list-all
-- dws minutes +list-mine
-- dws minutes +list-shared
+- dws minutes +latest

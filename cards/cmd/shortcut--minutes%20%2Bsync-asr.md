@@ -11,9 +11,9 @@ visible_flags: 1
 - --words <StringSlice>: 同步后的完整目标热词集合，逗号分隔
 
 ## Related
+- dws minutes +action-items
 - dws minutes +apply-permission
+- dws minutes +detail
 - dws minutes +download
 - dws minutes +export-pack
-- dws minutes +list-all
-- dws minutes +list-mine
-- dws minutes +list-shared
+- dws minutes +latest

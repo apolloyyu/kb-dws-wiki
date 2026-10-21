@@ -736,6 +736,36 @@ SC_FLAG = re.compile(r'\{\s*Name:\s*"([\w-]+)"\s*,\s*Type:\s*shortcut\.Flag(\w+)
 SC_DESC = re.compile(r'(?:Short|Summary|Desc(?:ription)?):\s*"((?:[^"\\]|\\.)*)"')
 
 
+def shortcut_identity(text, spec):
+    """Resolve declared service, never infer the CLI namespace from its folder."""
+    fields = _top_fields(spec)
+    def literal(name):
+        a, z = fields.get(name, (0, 0))
+        expr = spec[a:z].strip()
+        match = re.fullmatch(r'"([^"\n]+)"', expr)
+        if match:
+            return match[1]
+        if re.fullmatch(r'\w+', expr):
+            constant = re.search(r'(?m)^\s*(?:const\s+)?' + re.escape(expr)
+                                 + r'\s*(?:string\s*)?=\s*"([^"\n]+)"', text)
+            if constant:
+                return constant[1]
+        return ''
+    a, z = fields.get('Command', (0, 0))
+    command_match = re.fullmatch(r'\s*"([^"\n]+)"\s*', spec[a:z])
+    command = command_match[1] if command_match else ''
+    service = literal('Service')
+    if not command.startswith('+'):
+        return None
+    if not service:
+        raise ValueError('Unresolved shortcut Service: ' + command)
+    declared = service + ' ' + command
+    for match in re.finditer(r'\b(?:PrimaryCLIPath|CLIPath):\s*"([^"\n]+)"', spec):
+        if match[1].strip() != declared:
+            raise ValueError('Shortcut identity mismatch: ' + declared + ' / ' + match[1])
+    return service, command
+
+
 def extract_shortcuts(src):
     out = []
     root = os.path.join(src, "internal", "shortcut")
@@ -744,20 +774,24 @@ def extract_shortcuts(src):
             if not fn.endswith(".go") or fn.endswith("_test.go"):
                 continue
             path = os.path.join(dirpath, fn)
-            lines = open(path, encoding="utf-8", errors="replace").read().splitlines()
-            marks = [(i, SC_CMD.search(l).group(1))
-                     for i, l in enumerate(lines) if SC_CMD.search(l)]
-            for mi, (i, name) in enumerate(marks):
-                end = marks[mi + 1][0] if mi + 1 < len(marks) else min(i + 80, len(lines))
-                seg = "\n".join(lines[i:end])
-                dm = SC_DESC.search(seg)
+            with open(path, encoding="utf-8", errors="replace") as stream:
+                text = stream.read()
+            for match in re.finditer(r'shortcut\.Shortcut\{', text):
+                spec = _scan_block(text, match.end() - 1)
+                identity = shortcut_identity(text, spec)
+                if identity is None:
+                    continue
+                service, command = identity
+                fields = _top_fields(spec)
+                a, z = fields.get('Flags', (0, 0))
                 flags = [{"name": f[0], "type": f[1], "desc": (f[2] or "")[:120]}
-                         for f in SC_FLAG.findall(seg)]
-                out.append({"cmd": name,
-                            "product": rel(dirpath, root).split(os.sep)[0],
-                            "desc": (dm.group(1) if dm else "")[:160],
-                            "flags": flags,
-                            "file": rel(path, src), "line": i + 1})
+                         for f in SC_FLAG.findall(spec[a:z])]
+                a, z = fields.get('Description', (0, 0))
+                desc = re.match(r'\s*"((?:[^"\\]|\\.)*)"', spec[a:z])
+                out.append({"cmd": command, "product": service,
+                            "desc": (desc[1] if desc else "")[:160],
+                            "flags": flags, "file": rel(path, src),
+                            "line": text[:match.end()].count("\n") + spec[:fields["Command"][0]].count("\n") + 1})
     return out
 
 
@@ -910,6 +944,9 @@ def main():
     with open(os.path.join(REPO, "graph", "shortcuts.jsonl"), "w", encoding="utf-8") as f:
         for r in shortcuts:
             f.write(json.dumps(r, ensure_ascii=False) + "\n")
+
+    from build_contracts import build as build_contracts
+    print(build_contracts(REPO, src, commit))
 
     # 图谱落盘后立即生成答案卡；build_cards 自带原子替换与三道地板，失败则本构建失败，
     # 不允许每日流水线把半套/低覆盖率卡片 push 出去。

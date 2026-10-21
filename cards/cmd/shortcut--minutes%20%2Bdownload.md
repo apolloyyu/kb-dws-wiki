@@ -15,9 +15,9 @@ visible_flags: 5
 - --output-dir <String>: —
 
 ## Related
+- dws minutes +action-items
 - dws minutes +apply-permission
+- dws minutes +detail
 - dws minutes +export-pack
+- dws minutes +latest
 - dws minutes +list-all
-- dws minutes +list-mine
-- dws minutes +list-shared
-- dws minutes +mindmap

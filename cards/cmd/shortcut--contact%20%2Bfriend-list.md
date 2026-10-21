@@ -12,9 +12,9 @@ visible_flags: 2
 - --size <Int>: 每页数量（--size 必须大于 0 且不超过 100），默认 20
 
 ## Related
+- dws contact +by-mobile
+- dws contact +dept-members
 - dws contact +friend-remove
 - dws contact +friend-request-accept
 - dws contact +friend-request-list
 - dws contact +friend-request-reject
-- dws contact +friend-request-send
-- dws contact +get-roster

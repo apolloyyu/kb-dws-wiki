@@ -12,9 +12,9 @@ visible_flags: 2
 - --off <Bool>: 恢复接收 @所有人通知（不传则关闭通知）
 
 ## Related
+- dws chat +at-me
 - dws chat +bot-find
 - dws chat +bot-search
+- dws chat +broadcast
 - dws chat +category-add-conversation
 - dws chat +category-create
-- dws chat +category-delete
-- dws chat +category-list

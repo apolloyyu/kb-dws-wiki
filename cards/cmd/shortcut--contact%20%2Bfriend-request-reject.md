@@ -11,9 +11,9 @@ visible_flags: 1
 - --from <String>: 对方开放钉钉号ID（openDingTalkId）；--from 不能为空白
 
 ## Related
+- dws contact +by-mobile
+- dws contact +dept-members
 - dws contact +friend-list
 - dws contact +friend-remove
 - dws contact +friend-request-accept
 - dws contact +friend-request-list
-- dws contact +friend-request-send
-- dws contact +get-roster

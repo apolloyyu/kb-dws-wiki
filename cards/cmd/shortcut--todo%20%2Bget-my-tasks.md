@@ -19,9 +19,9 @@ visible_flags: 9
 - --max-pages <Int>: —
 
 ## Related
+- dws todo +assign
+- dws todo +assign-multi
 - dws todo +comment
 - dws todo +create
-- dws todo +get
-- dws todo +list-attachment
-- dws todo +list-comment
-- dws todo +list-sub
+- dws todo +created-todos
+- dws todo +due-today

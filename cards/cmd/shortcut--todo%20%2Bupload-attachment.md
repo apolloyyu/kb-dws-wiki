@@ -12,9 +12,9 @@ visible_flags: 2
 - --file-path <String>: 本地文件路径
 
 ## Related
+- dws todo +assign
+- dws todo +assign-multi
 - dws todo +comment
 - dws todo +create
-- dws todo +get
-- dws todo +get-my-tasks
-- dws todo +list-attachment
-- dws todo +list-comment
+- dws todo +created-todos
+- dws todo +due-today

@@ -13,9 +13,9 @@ visible_flags: 3
 - --size <String>: —
 
 ## Related
+- dws todo +assign
+- dws todo +assign-multi
 - dws todo +comment
 - dws todo +create
-- dws todo +get
-- dws todo +get-my-tasks
-- dws todo +list-attachment
-- dws todo +list-sub
+- dws todo +created-todos
+- dws todo +due-today

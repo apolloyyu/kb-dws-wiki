@@ -12,9 +12,9 @@ visible_flags: 2
 - --permission <String>: 申请权限
 
 ## Related
+- dws minutes +action-items
+- dws minutes +detail
 - dws minutes +download
 - dws minutes +export-pack
+- dws minutes +latest
 - dws minutes +list-all
-- dws minutes +list-mine
-- dws minutes +list-shared
-- dws minutes +mindmap

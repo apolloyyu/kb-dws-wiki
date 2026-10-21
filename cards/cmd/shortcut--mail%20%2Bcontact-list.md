@@ -15,7 +15,7 @@ visible_flags: 3
 ## Related
 - dws mail +draft-create
 - dws mail +draft-edit
+- dws mail +find-mail-user
 - dws mail +folder-list
 - dws mail +message
 - dws mail +messages
-- dws mail +tag-list

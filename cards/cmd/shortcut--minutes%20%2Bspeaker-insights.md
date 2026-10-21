@@ -15,9 +15,9 @@ visible_flags: 5
 - --task-id <String>: 先前 create 返回的异步 taskId，恢复时用于输出追踪
 
 ## Related
+- dws minutes +action-items
 - dws minutes +apply-permission
+- dws minutes +detail
 - dws minutes +download
 - dws minutes +export-pack
-- dws minutes +list-all
-- dws minutes +list-mine
-- dws minutes +list-shared
+- dws minutes +latest

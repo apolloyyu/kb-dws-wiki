@@ -1,5 +1,6 @@
 ---
 title: 会话与消息(chat)
+maintenance: manual
 source_refs: internal/helpers/chat.go, internal/helpers/chat_media_upload.go, internal/shortcut/chat/unified_send.go, internal/shortcut/chat/chat_message.go, internal/shortcut/chat/chat_group.go, internal/shortcut/chat/chat_bot.go, internal/shortcut/chat/lark_alignment.go, internal/shortcut/chat/resource_download.go, internal/shortcut/chatmsg/chatmsg.go, internal/shortcut/builtin/builtin.go, internal/shortcut/adapter.go, internal/shortcut/runner.go, internal/helpers/ding.go, internal/shortcut/ding/ding.go
 ---
 
@@ -60,7 +61,13 @@ chat 能力分两层组织:原子 MCP 命令层与快捷命令层;DING 消息独
 
 `internal/shortcut/chatmsg/chatmsg.go` 提供 `ProjectMessageV1`、`MessageResultContract` 只读投影;另有 `card_update.go`、`card_ref.go`、`send_status.go`、`search.go`。
 
-`chat message list` 的稳定输出包含 `messageId` 与 `text`(`internal/helpers/chat.go:3301-3313`)。投影层会从 `content` / `text` 等字段读取内容并经 `CleanText` 生成可读文本(`internal/shortcut/chatmsg/chatmsg.go:238-259,347-370`)；对可识别的富内容卡片还会提取 `items[].data.text`(`:1196-1266,1284-1313`)。因此，命令没有承诺把任意卡片还原成完整原始 JSON 或结构化字段，但也不能概括成「卡片只有 msgType、没有任何可读文本」。
+消息投影的稳定输出包含 `messageId` 与 `text`。投影层会从 `content` / `text` 等字段读取内容并经 `CleanText` 生成可读文本；对可识别的富内容卡片还会提取 `items[].data.text`。因此，命令没有承诺把任意卡片还原成完整原始 JSON 或结构化字段，但也不能概括成「卡片只有 msgType、没有任何可读文本」。以下依据由构建核对后给出上游源码链接；本文的内部篇名和路径不是用户参考出处。
+
+{{code: internal/shortcut/chatmsg/chatmsg.go | func ProjectMessageV1(m map[string]any, includeReactions bool)}}
+{{code: internal/shortcut/chatmsg/chatmsg.go | func Text(m map[string]any) any}}
+{{code: internal/shortcut/chatmsg/chatmsg.go | func richItemTexts(node any) []string}}
+{{code: internal/shortcut/chatmsg/chatmsg.go | text, _ := data["text"].(string)}}
+{{code: internal/shortcut/chatmsg/chatmsg.go | return "[加密消息，无法解码]"}}
 
 卡片能力须分开判断：
 
@@ -68,7 +75,10 @@ chat 能力分两层组织:原子 MCP 命令层与快捷命令层;DING 消息独
 - **可读文本**：可识别富内容卡片会提取可读文本；
 - **结构化解析**：只证明源码明确投影的字段，不能从可读文本反推完整结构；
 - **渲染**：发送/更新卡片命令不证明读取路径能还原渲染结果；
-- **解密**：加密的 card/robot ciphertext 只返回「无法解码」标记，不应与普通富内容卡片混为一谈。
+- **解密**：CleanText 遇到尚未解密的 ciphertext 会输出「无法解码」标记；但智能读取路径在投影前另有解密分支，是否运行取决于后端能力、构建与策略。不能由 CleanText 单个分支断言整条读取链路没有解密能力，也不应与普通富内容卡片混为一谈。
+  {{code: internal/shortcut/chatmsg/decrypt.go | DecryptChatMessageItems decrypts encrypted message items in place before}}
+  {{code: internal/shortcut/chatmsg/decrypt.go | command exit code stays unchanged.}}
+  {{code: internal/shortcut/chatmsg/decrypt.go | messageDecryptClient == nil || messageDecryptClient.BackendReady == nil}}
 
 ## DING 消息
 

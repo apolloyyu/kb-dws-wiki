@@ -21,6 +21,146 @@ def run_dwsdoc(*args):
 
 
 class DwsdocCtxContractTest(unittest.TestCase):
+    def test_repaired_source_and_scope_contracts(self):
+        for q in ['如何实时监听群消息，并主动回复', '如果没有直接@你，会实时监听群消息，并主动回复吗？通过DWS对接Agent']:
+            out = run_dwsdoc('ctx', q)
+            self.assertIn('指定群的监听参数是 chat-id 或 chat-query', out)
+            self.assertIn('监听我的所有单聊消息', out)
+        for q in ['dws auth status refresh_token_valid=true 为什么没有成功', 'dws auth login重新授权后还是不能自动刷新']:
+            out = run_dwsdoc('ctx', q)
+            self.assertIn('包含时间比较', out)
+            self.assertIn('裸 logout 默认退出全部账号', out)
+        out = run_dwsdoc('ctx', '使用 DWS CLI 删除个人聊天记录，云端也会被删吗')
+        self.assertIn('clear_conversation_messages', out)
+        self.assertIn('本人可见范围不证明云端物理删除', out)
+        self.assertNotIn('# 清空会话记录的调用与作用域', run_dwsdoc('ctx', '删除邮件记录'))
+        self.assertIn('投影前另有解密分支', run_dwsdoc('ctx', '卡片消息能不能解析'))
+        self.assertIn('按字段或行配置权限', run_dwsdoc('ctx', '钉钉表格可以根据字段分配查看权限吗'))
+        self.assertNotIn('# AI表格产品权限', run_dwsdoc('ctx', '用户详情的字段查看权限'))
+        self.assertNotIn('# AI表格产品权限', run_dwsdoc('ctx', '--prev', 'AI表格的字段查看权限', '邮件附件查看权限失败'))
+        self.assertNotIn('# 认证重置与恢复的作用域', run_dwsdoc('ctx', 'dws chat +messages-mget --profile corp:user 查看消息状态和卡片能否解析'))
+        switched = run_dwsdoc('ctx', '--prev', 'dws auth status token 刷新异常', 'dws chat +messages-mget --profile corp:user 查看消息状态和卡片能否解析')
+        self.assertNotIn('# 认证重置与恢复的作用域', switched)
+        self.assertIn('notes/auth-and-credentials.md', switched)  # 原有--prev回退仍保留；新增认证恢复note不得挤占。
+        for q in ['auth reset 会删除哪些数据', 'auth login 重新授权失败']:
+            self.assertIn('# 认证重置与恢复的作用域', run_dwsdoc('ctx', q))
+
+    def test_workflow_questions_expand_parameter_and_scope_evidence(self):
+        out = run_dwsdoc('ctx', '获取消息拉不到非本组织的群信息')
+        self.assertIn('--target-org-id 和 --all 必须且只能指定一个', out)
+        out = run_dwsdoc('ctx', '如何做到单聊或者群聊的实时回复')
+        self.assertIn('群自动回复使用顶层', out)
+        self.assertIn('统一发送入口的群目标参数是group', out)
+        for question in ['chat消息如何自动回复', 'IM实时回复']:
+            self.assertIn('群自动回复使用顶层', run_dwsdoc('ctx', question))
+        out = run_dwsdoc('ctx', 'DWS能获取用户在钉钉及宜搭的操作记录不')
+        self.assertIn('企业内部应用 + App Token + 服务端 OpenAPI', out)
+        self.assertIn('audit是本地CLI操作审计', out)
+
+    def test_new_workflow_notes_do_not_capture_other_products(self):
+        for question, title in [
+            ('mapping字段的参数是什么意思', '# 事件系统的来源、投递与心跳边界'),
+            ('宜搭附件通过 drive download 能断点续传吗', '# 个人行为检索、业务变更记录与本地审计的范围'),
+            ('跨组织日历数据导入', '# 跨组织消息数据授权的目标与范围'),
+            ('设置邮件自动回复', '# 实时消息监听到回复的参数与标识契约'),
+            ('IM查询已完成，设置邮件自动回复', '# 实时消息监听到回复的参数与标识契约'),
+            ('IM查询已完成；设置邮件自动回复', '# 实时消息监听到回复的参数与标识契约'),
+            ('邮件新消息自动回复失败', '# 实时消息监听到回复的参数与标识契约'),
+            ('监听群消息，然后自动回复邮件失败为什么', '# 实时消息监听到回复的参数与标识契约'),
+            ('监听群消息，并自动回复日历邀请', '# 实时消息监听到回复的参数与标识契约'),
+            ('日历提醒消息实时回复', '# 实时消息监听到回复的参数与标识契约'),
+            ('获取非本组织的邮件消息', '# 跨组织消息数据授权的目标与范围')]:
+            self.assertNotIn(title, run_dwsdoc('ctx', question))
+
+    def test_message_attribution_uses_primary_source_and_scope(self):
+        out = run_dwsdoc('ctx', '“通过AI发送”文案支持修改吗')
+        self.assertIn('fast=0', out)
+        self.assertIn('# 消息角标、产品标识与发送入口的范围', out)
+        self.assertIn('DWS_AGENT_PRODUCT', out)
+        self.assertIn('原生用户消息 send/reply 提供 ai-tag 开关', out)
+        self.assertIn('internal/helpers/chat.go', out)
+        self.assertNotIn('# 消息角标、产品标识与发送入口的范围',
+                         run_dwsdoc('ctx', 'dws chat message list'))
+
+    def test_event_followup_preserves_active_implementation_boundary(self):
+        out = run_dwsdoc('ctx', '怎么检测到断连，有心跳包吗')
+        self.assertIn('不能把协议类型或静默接收分支称为已经启用', out)
+        out = run_dwsdoc('ctx', '事件监听持续机制是什么样的，如果token过期了会发生什么')
+        self.assertIn('既有 WebSocket', out)
+        self.assertIn('不能由取票刷新逻辑推导', out)
+
+    def test_inherited_flags_are_not_denied_by_leaf_card(self):
+        for q in ('请解释 dws auth login --profile "<corpId>:<userId>"，保留占位符，不要执行',
+                  'dws event consume --client-id abc 怎么用', 'dws chat message list --format json',
+                  'dws auth login -f table', 'dws auth login -v', 'dws auth login -y',
+                  'dws auth login -vy', 'dws auth login -o result.json'):
+            out = run_dwsdoc('ctx', q)
+            self.assertIn('fast=0', out)
+            self.assertIn('# 根命令参数与叶子参数的证据范围', out)
+            self.assertIn('bindPersistentFlags', out)
+        out = run_dwsdoc('ctx', 'dws agoal strategy detail --profile-id abc')
+        self.assertNotIn('# 根命令参数与叶子参数的证据范围', out)
+        self.assertIn('card=1(fast=1)', run_dwsdoc('ctx', 'dws auth login'))
+
+    def test_event_transport_contract_is_expanded(self):
+        out = run_dwsdoc("ctx", "dws event consume 心跳与断连怎么处理")
+        self.assertIn("fast=0", out)
+        self.assertIn("SYSTEM ping", out)
+        self.assertIn("不能证明服务端如何重投", out)
+        self.assertNotIn("服务端据未确认状态重投", out)
+        self.assertNotIn("/blob/main/internal/event/", out)
+        unrelated = run_dwsdoc("ctx", "日历事件有哪些类型")
+        self.assertNotIn("SYSTEM ping", unrelated)
+
+    def test_reset_scope_is_not_profile_local(self):
+        out = run_dwsdoc("ctx", "dws auth reset --profile abc 清除范围是什么")
+        self.assertIn("所有 profile", out)
+        self.assertIn("不证明服务端令牌吊销", out)
+        self.assertIn("先恢复或统一原登录密钥", out)
+        login = run_dwsdoc("ctx", "dws auth login")
+        self.assertNotIn("# 认证重置与恢复的作用域", login)
+
+    def test_auth_failure_original_wording_and_followup(self):
+        out = run_dwsdoc("ctx", "二号 Token 刷新失败: 旧版登录态已无法由当前认证服务刷新；本地 profile 已保留，请重新运行 dws auth login 完成一次重新授权；Token 自动刷新一直失败，什么解决")
+        self.assertIn("所有 profile", out)
+        followup = run_dwsdoc("ctx", "--prev", "Token 刷新失败，请重新运行 dws auth login", "二号 重新授权后，新的 token 格式还是不能正常自动刷新")
+        self.assertIn("所有 profile", followup)
+        self.assertIn("lockedRefresh", followup)
+
+    def test_event_followup_uses_previous_subject_only(self):
+        out = run_dwsdoc("ctx", "--prev", "二号 事件监听连接会突然断开，比如网络中断等问题怎么处理的", "二号 怎么检测到断连，有心跳包吗")
+        self.assertIn("SYSTEM ping", out)
+        self.assertIn("本地 IPC", out)
+        repeat = run_dwsdoc("ctx", "事件监听持续机制是什么样的，如果token过期了会发生什么")
+        self.assertIn("SYSTEM ping", repeat)
+        self.assertIn("lockedRefresh", repeat)
+        simple = run_dwsdoc("ctx", "--prev", "事件监听的机制是什么", "dws auth login")
+        self.assertNotIn("SYSTEM ping", simple)
+
+    def test_product_tokens_do_not_trigger_login_reset(self):
+        for q in ("dws aitable +record-write-result 的 clientToken 不匹配怎么办", "Webhook Token 失效怎么办", "开放平台应用 access_token 刷新失败怎么办", "dws aitable +record-write-result 的 clientToken 不匹配，已经运行 dws auth login 仍失败怎么办", "我已运行 dws auth status，开放平台应用 access_token 刷新失败怎么办"):
+            with self.subTest(q=q):
+                out = run_dwsdoc("ctx", q)
+                self.assertNotIn("# 认证重置与恢复的作用域", out)
+
+    def test_explicit_reset_wins_over_credential_field_words(self):
+        for q in ("dws auth reset 会删除应用凭证吗", "dws auth reset 删除 appSecret 吗", "dws auth reset，清除应用凭证吗", "dws auth reset, 清除 appSecret 吗"):
+            out = run_dwsdoc("ctx", q)
+            self.assertIn("# 认证重置与恢复的作用域", out)
+            self.assertIn("应用凭证", out)
+
+    def test_credential_owner_wins_over_login_history(self):
+        for owner in ("企业内部应用的 access_token", "机器人的 access_token", "第三方应用 refresh_token"):
+            for history in ("我已经运行 dws auth login，", "我已经运行 dws auth status，"):
+                with self.subTest(owner=owner, history=history):
+                    out = run_dwsdoc("ctx", history + owner + " 刷新失败怎么办")
+                    self.assertNotIn("# 认证重置与恢复的作用域", out)
+                    followup = run_dwsdoc("ctx", "--prev", history + owner + " 刷新失败怎么办", "还是刷新失败，怎么恢复？")
+                    self.assertNotIn("# 认证重置与恢复的作用域", followup)
+        for current in ("现在问 dws auth login 报错无法登录怎么恢复", "现在运行 dws auth login 报错无法登录怎么恢复", "现在问 dws auth login，报错无法登录怎么恢复"):
+            switched = run_dwsdoc("ctx", "--prev", "机器人的 access_token 失效", current)
+            self.assertIn("# 认证重置与恢复的作用域", switched)
+
     def test_exact_command_keeps_fast_card(self):
         out = run_dwsdoc("ctx", "dws auth login")
         self.assertIn("card=1(fast=1)", out)
@@ -82,7 +222,8 @@ class DwsdocCtxContractTest(unittest.TestCase):
         self.assertIn("# dws chat message list", out)
         self.assertIn("消息结果投影与卡片读取边界", out)
         self.assertIn("可识别的富内容卡片还会提取 `items[].data.text`", out)
-        self.assertIn("加密的 card/robot ciphertext", out)
+        self.assertIn("尚未解密的 ciphertext", out)
+        self.assertIn("投影前另有解密分支", out)
         self.assertIn("card=1(fast=0)", out)
 
     def test_generic_support_uses_product_context_without_unrelated_notes(self):
@@ -154,7 +295,7 @@ class DwsdocCtxContractTest(unittest.TestCase):
             self.assertIn("notes/digital-employee.md", out, q)
             self.assertIn("allowed-groups", out, q)
             # 上游 10-13(a3c7d486) 起正式 connect 绑定走平台访问策略,不再是「默认仅主管+白名单」
-            self.assertIn("> 原文(docs/digital-employee-adapters.md): `manage create` 创建并通过正式", out, q)
+            self.assertRegex(out, r"> 原文\(https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli/blob/[0-9a-f]+/docs/digital-employee-adapters\.md\): `manage create` 创建并通过正式", q)
             self.assertIn("platform", out, q)
             self.assertIn("- access：", out, q)
             self.assertIn("card=1(fast=0)", out, q)
@@ -305,6 +446,15 @@ class DwsdocCtxContractTest(unittest.TestCase):
         self.assertNotIn("--ai-tag", out)
         self.assertNotIn("--client-token", out)
 
+    def test_capability_question_keeps_long_modifier_before_action(self):
+        for q in ("钉钉表格可以根据字段分配查看权限吗",
+                  "可以按照成员所在部门配置记录的查看范围吗？",
+                  "消息能按发送者和群聊分别限制可见范围吗?"):
+            out = run_dwsdoc("ctx", q)
+            self.assertIn("fast=0", out, q)
+            self.assertIn("- capability：", out, q)
+        self.assertIn("fast=1", run_dwsdoc("ctx", "dws auth login 文档在哪"))
+
     def test_challenge_turns_off_fast_card(self):
         # R10.5 回退 Q175:用户质疑后仍走快卡,模型复读卡片
         out = run_dwsdoc("ctx", "所以你的意思dws auth login 判断状态其实不准的对吧？")
@@ -343,7 +493,7 @@ class DwsdocCtxContractTest(unittest.TestCase):
             out = run_dwsdoc("ctx", q)
             self.assertIn("--- notes/token-lifetime.md", out, q)
             self.assertIn("- lifetime：", out, q)
-            self.assertIn("(源码依据: https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli/blob/main/", out, q)
+            self.assertRegex(out, r"\(源码依据: https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli/blob/[0-9a-f]{7,40}/", q)
         for q in ("扫码登录要在几分钟内完成", "隔几天不用 dws 就要重新登录吗", "dws 每次都要重新扫码，很烦",
                   "dws 掉线了", "dws 授权过期了怎么办"):
             self.assertIn("--- notes/token-lifetime.md", run_dwsdoc("ctx", q), q)

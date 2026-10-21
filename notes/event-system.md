@@ -1,76 +1,73 @@
 ---
-title: 事件系统(event bus / consume / 订阅)
-source_refs: internal/event/types.go, internal/event/bus/hub.go, internal/event/bus/daemon.go, internal/event/bus/lockfile.go, internal/event/busctl/spawn.go, internal/event/busctl/discover.go, internal/event/source/dingtalk.go, internal/event/source/portal_ticket.go, internal/event/source/personal.go, internal/event/transport/protocol.go, internal/event/endpoint.go, internal/event/consume/run.go, internal/event/consume/pipeline.go, internal/event/dedup/lru.go, internal/event/registry/catchall.go, internal/app/event_command.go, internal/app/event_listen_im.go
+title: 事件系统的来源、投递与心跳边界
+maintenance: manual
+intents: event_runtime
+triggers: event consume, event listen, 事件监听, 事件订阅, stream, 长连接, 个人事件, event bus, 事件总线, websocket, 心跳, 断连, heartbeat, ping, pong, IPC
+contract:
+  - 先区分个人 Stream、应用 Stream 与本地 IPC；客户端 ACK、缓冲、去重不能证明服务端重投、端到端可靠性或用户业务处理成功。
+  - 类型声明只证明协议存在；实际启用、发送频率与超时检测须沿收发循环核验。取票刷新不证明既有连接在令牌到期瞬间断开，也不能承诺刷新后监听无损连续。
 ---
 
-# 事件系统(event bus / consume / 订阅)
+# 事件系统的来源、投递与心跳边界
 
-事件系统由本地 event bus、云端长连接源、bus→consumer 帧协议与消费端组成。
+## 云端控制帧与本地心跳
+- 个人源用 WebSocket 读取云端帧；SYSTEM ping 回复 pong 并回传 Data；disconnect 先确认，再返回可重试错误，由重连循环重新取票。不能把这条个人链路说成应用 Stream SDK 的行为。
+  {{code: internal/event/source/personal.go | conn.ReadMessage()}}
+  {{code: internal/event/source/personal.go | payload.NewDataFrameAckPong(df.GetMessageId())}}
+  {{code: internal/event/source/personal.go | resp.Data = df.Data}}
+  {{code: internal/event/source/personal.go | personal source: server requested reconnect}}
+  {{code: internal/event/source/personal.go | 先确认控制帧，再由重连循环关闭本连接并重新申请 ticket。}}
+- 上述 ping 分支只证明收到云端 ping 时回应，不证明服务端发送周期或“长时间没收到 ping 就断连”的超时策略。个人源读取失败会进入重连流程；服务器发 disconnect 也会要求重连。
+  {{code: internal/event/source/personal.go | personal source: read websocket:}}
+- 本地 IPC 定义了 heartbeat 帧类型，consume 读到时静默处理；v1 总线读循环忽略 heartbeat/future 入站帧。不能把协议类型或静默接收分支称为已经启用的周期性 IPC 健康检查，更不能用它证明云端存活。
+  {{code: internal/event/transport/protocol.go | FrameTypeHeartbeat}}
+  {{code: internal/event/consume/run.go | case transport.FrameTypeHeartbeat:}}
+  {{code: internal/event/consume/run.go | // silent}}
+  {{code: internal/event/bus/daemon.go | Heartbeat / future client→bus frames: ignored for v1.}}
 
-## 核心类型
+## 令牌、取票与既有连接
+- 取票前通过 AccessTokenProvider 取得访问令牌；取票收到401且配置了刷新回调时，刷新后重试一次。连接建立后的读取循环依赖读取结果和收到的系统控制帧，不能由取票刷新逻辑推导既有 WebSocket 在令牌过期瞬间的服务端行为，也不能承诺刷新过程事件绝不丢失。
+  {{code: internal/event/source/personal.go | resolveSourceAccessToken(ctx, s.cfg.AccessTokenProvider}}
+  {{code: internal/event/source/personal.go | if status == http.StatusUnauthorized && s.cfg.ForceRefreshToken != nil}}
+  {{code: internal/event/source/personal.go | Retry once with the freshly rotated token; a second 401 stays fatal.}}
+  {{code: internal/event/source/personal.go | messageType, data, err := conn.ReadMessage()}}
 
-`internal/event/types.go`:
+## ACK 与可靠性
+- 个人源的非 SYSTEM 帧先构造 RawEvent 并 emit，再发送成功 ACK；ACK 写失败返回可重试错误。这里只证明客户端顺序，不能证明服务端如何重投、是否无限重试或消费者已经完成业务处理。
+  {{code: internal/event/source/personal.go | emit(raw)}}
+  {{code: internal/event/source/personal.go | resp := payload.NewSuccessDataFrameResponse()}}
+  {{code: internal/event/source/personal.go | personal source: write ack:}}
+- bus 在投递前用 RawEvent.DedupKey() 做 LRU 去重，默认容量 8192；配置可覆盖容量。不能据此承诺 exactly-once、持久去重或断线期间绝不丢事件。
+  {{code: internal/event/bus/daemon.go | if dd.Seen(raw.DedupKey())}}
+  {{code: internal/event/bus/daemon.go | dd := dedup.NewWithCapacity(cfg.DedupCapacity)}}
+  {{code: internal/event/dedup/lru.go | const DefaultCapacity = 8192}}
 
-- `SourceKind`:`app_stream` / `personal_stream`;
-- `RawEvent`:`event_id` / `event_type` / `data` / `headers` / `subscribe_id` 等;
-- `EmitFn`;
-- `DedupKey()`;
-- `ClientIDHash()` / `IdentityHash()`:sha256 前 8 字节,用于路径与 IPC 命名。
+## 多消费者与进程锁
+- Hub.Deliver 收集全部匹配者（matcher 命中的消费者），再逐个投递，是匹配后的扇出；并非多个消费者自动独占一条事件。满缓冲采用 drop-oldest，因此 ACK 也不能证明每个消费者都收到了。
+  {{code: internal/event/bus/hub.go | matched = append(matched, c)}}
+  {{code: internal/event/bus/hub.go | for _, c := range matched}}
+  {{code: internal/event/bus/hub.go | oldest entry in any full sendCh}}
+- bus.lock 是 bus 工作目录内的单实例锁；目录包含 edition/source_kind/identity_hash。不能把它解释为只允许一个 consumer。
+  {{code: internal/event/bus/lockfile.go | bus single-instance lock}}
+  {{code: internal/event/bus/lockfile.go | (<ConfigDir>/events/<edition>/<source_kind>/<identity_hash>/).}}
+- `--client-id` 是根命令的持久参数，不能因叶子命令卡没有重复列出就断言它不存在。它的语义是覆盖 OAuth 客户端 ID，不能单凭此参数承诺两条个人事件源相互隔离；隔离还要沿实际身份/源的选择路径核验。
+  {{code: internal/app/flags.go | cmd.PersistentFlags().StringVar(&flags.ClientID, "client-id"}}
 
-## 本地 event bus
+## 个人源的身份隔离
+- 常规个人源把 Identity.Key() 哈希后作为 identity_hash。企业和用户均非空时，Key 包含 corpId、userId、clientId、sourceId；否则优先 LocalSubject，再使用 unknown 分支。应用 ID 与组织/用户 ID 是不同维度，不能用「每个 clientId 一条连接」概括所有个人源。runtime token 模式另接受传入的 identity-hash，不能用常规分支替它推导身份。
+  {{code: internal/event/personal/client.go | "corp_user", corpID, userID, clientID, sourceID}}
+  {{code: internal/event/personal/client.go | "local_subject", localSubject, clientID, sourceID}}
+  {{code: internal/event/personal/client.go | "unknown", corpID, userID, clientID, sourceID}}
+  {{code: internal/app/event_command.go | identityHash = dwsevent.IdentityHash(identity.Key())}}
+  {{code: internal/app/event_command.go | identityHash = strings.TrimSpace(identityHashFlag)}}
 
-`internal/event/bus/hub.go`:`Hub` / `Consumer`,`consumerMatcher` 支持 event_type 通配符 + 正则 filter + subscribe_id 精确匹配。提供 `NewHub`、`Register`、`Deliver`(满缓冲 drop-oldest,`DefaultSendBuffer`=100)、`Broadcast`、`Snapshot`、`StopConsumers`。
-
-同目录相关文件:`daemon.go`(IPC wire 读写)、`lockfile.go`(单实例锁)、`meta.go`(bus.meta)、`metrics.go`、`tuning.go`(env 调参)。
-
-`busctl/spawn.go` 负责 fork 隐藏的 `dws event _bus` 守护进程;配套 `discover.go`、`status.go`、`stop.go`。
-
-## 云端 → bus:长连接
-
-云端到 bus 的传输是长连接,不是轮询:
-
-- `internal/event/source/dingtalk.go` 的 `DingtalkSource` 封装 `dingtalk-stream-sdk-go`(`client.NewStreamClient`),即 DingTalk Stream WebSocket;
-- `portal_ticket.go` 通过 portal 取票建联;
-- `source/personal.go` 为个人 Stream 源;
-- `state.go` 为连接状态机。
-
-## bus → consumer:帧协议与端点
-
-- `internal/event/transport/protocol.go`:JSON 帧,包括 `hello` / `hello_ack` / `event` / `heartbeat` / `source_state` / `bye` / `status_req` / `credential_update` 等;
-- `internal/event/endpoint.go` 的 `IPCEndpoint()`:Windows 使用命名管道 `\\.\pipe\dws-event-...`,其余平台使用 Unix socket。
-
-## 消费端
-
-`internal/event/consume/run.go` 的 `Run`:发现/fork bus 并 dial。相关文件:`pipeline.go`、`router.go`、`sink.go`、`formatter.go`(默认 NDJSON 输出到 stdout)、`run_many.go`、`validate.go`。
-
-去重:`dedup/lru.go`;`registry/catchall.go` 提供 `CatchAllEventTypes()`。
-
-## 命令与配置
-
-命令入口:`internal/app/event_command.go` 的 `newEventCommand`(`Use` 为 `event`,基于 DingTalk Stream 长连接)。子命令包括:
-
-- `event listen-im`(`internal/app/event_listen_im.go`):按 at-me / sender / group / all-direct / all-group 意图编译为个人 EventKey;
-- `consume`:NDJSON 输出,支持 `--flatten`、`--max-events` / `--duration`;
-- `list`、`schema`、`status`、`stop`、隐藏的 `_bus`。
-
-`--as` 仅支持 `user`(app/bot 未开放)。相关环境变量:`DWS_STREAM_TICKET_MODE` / `SOURCE_ID` / `URL`。
-
-## 行为语义与常见误解(评测驱动补全;人工核实于 commit 3fd0d97)
-
-### 事件投递给谁(扇出还是独占?)
- 全部匹配者(**扇出**)。`Hub.Deliver`(`internal/event/bus/hub.go:297`)先收集所有 matcher 命中的 consumer 再逐一投递,不存在"只有第一个能收到";实例间隔离靠 `subscribe_id` 精确匹配。误解澄清:"后续实例连上了但拿不到投递"不是锁导致的——先查其 filter/`--subscribe-id` 是否匹配。
-
-### bus.lock 单实例锁锁的是什么
- 锁的是 **bus 守护进程的单实例**(`internal/event/bus/lockfile.go:31`,`Acquire` 写入 PID 见 `:59`),与 consumer 数量无关。多个 consume 共享同一个 bus、经 IPC 连接,不会因该锁收不到事件。
-
-### --force 何时生效
- 仅 `--foreground` 模式(`internal/app/event_command.go:336-337` 帮助原文:"仅 --foreground 模式生效:跳过单实例锁(慎用:会让云事件被随机切分)")。
-
-### 个人事件 ACK 机制
- 有。`PersonalSource.handleFrame`(`internal/event/source/personal.go:336`)每收一帧即回写 `NewSuccessDataFrameResponse`(`:344`);写 ACK 失败按 `retryPersonal` 断线重连(`:349`),服务端据未确认状态重投。误解澄清:"个人事件 fire-and-forget、无 ACK"与源码相悖。
-
-### 重连重复投递与去重(LRU)
- bus 内置 LRU 去重集合,容量 `DefaultCapacity = 8192`(`internal/event/dedup/lru.go:28`),专为吸收 Stream SDK 重连时的重复投递;业务侧仍建议按事件唯一 ID 做幂等(LRU 只护住重连窗口,不是端到端 exactly-once)。
-
-### Windows 支持与传输(命名管道)
- 支持:Windows 使用命名管道 `\\.\pipe\dws-event-…`(`internal/event/endpoint.go:70-71`),其余平台 Unix socket。历史缺陷:`event stop` 在 Windows 上曾因信号实现失效,已于 1.0.59-beta.3 修复(见 `docs/CHANGELOG.md`)。
+## 平台与强制模式
+- 停止订阅、清理本地状态与停止 bus 是不同步骤。当前个人事件 stop 的实现先逐个删除订阅，再清理本地状态和停止消费者，最后在无剩余订阅时停止 bus。因此不能只凭「signal bus ... not supported by windows」就推导订阅永远清理不掉、必定复用失效订阅或云端不再推送；历史报错仍需对照当时版本和逐步日志。发布说明只证明其明确写出的修复项，不证明这一整条因果链或修复已覆盖所有场景。
+  {{code: internal/app/event_personal_command.go | if err := personalDeleteSubscription(client, ctx, id)}}
+  {{code: internal/app/event_personal_command.go | if err := personalRemoveRunStates(workDir, subscribeIDs)}}
+  {{code: internal/app/event_personal_command.go | if err := personalStopBus(busctl.StopConfig}}
+- Windows IPC 使用命名管道，其余平台使用 Unix socket；不能把某个历史 stop 缺陷泛化为 Windows 不支持事件。具体修复版本另查 CHANGELOG。
+  {{code: internal/event/endpoint.go | if goos == "windows"}}
+  {{code: internal/event/endpoint.go | return `\\.\pipe\dws-event-`}}
+- `--force` 只在 `--foreground` 模式生效，跳过单实例锁；帮助原文提示这可能让云事件随机切分，不是推荐的多消费者分发方式。
+  {{code: internal/app/event_command.go | 仅 --foreground 模式生效：跳过单实例锁}}

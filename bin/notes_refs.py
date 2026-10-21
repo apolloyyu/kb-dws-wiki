@@ -13,6 +13,9 @@ import glob
 import json
 import os
 import re
+import sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import evidence_sections
 
 MARKER = re.compile(r"\{\{(quote|code|absent|confirmed):\s*([^{}\s][^{}]*?)\s*\}\}")
 WARN = "⚠依据已变更({})，此条待复核，不得作为确定结论"
@@ -119,7 +122,7 @@ def load_check(root):
     return out
 
 
-def expand(root, fn, body, checks=None):
+def expand(root, fn, body, checks=None, query="", source_budget=6000, seen_sources=None):
     """ctx 输出前展开标记:quote 现场取镜像原文,code/absent 读构建核对结果。"""
     checks = checks if checks is not None else load_check(root)
     # 构建核对的行号属于 MANIFEST 固定源码，不能给会随主干漂移的链接。
@@ -131,6 +134,17 @@ def expand(root, fn, body, checks=None):
             source_prefix = GH.replace("/blob/main/", f"/blob/{commit}/")
     except (OSError, ValueError):
         pass
+
+    raw_sources = {}
+    try:
+        with open(os.path.join(root, "graph", "note-sources.json"), encoding="utf-8") as handle:
+            payload = json.load(handle)
+        if len(commit) >= 7 and payload.get("source_commit", "").startswith(commit):
+            raw_sources = {(r['path'], r['needle']): r for r in payload['entries']}
+    except (OSError, ValueError, UnboundLocalError):
+        pass
+    excerpts, seen = [], set()
+    shared_seen = seen_sources if seen_sources is not None else set()
 
     def sub(m):
         kind, arg = m.group(1), m.group(2).strip()
@@ -159,11 +173,29 @@ def expand(root, fn, body, checks=None):
             # 给可点的上游深链而不是裸「路径:行号」:后者会被模型原样当出处写进回复
             path, needle = _split(arg)
             at = f"#L{r['line']}" if r and r.get("line") else ""
+            raw = raw_sources.get((path, needle))
+            if raw and (path, raw['line']) not in seen and (raw['source_commit'], path, raw['line'], raw['end_line']) not in shared_seen:
+                seen.add((path, raw['line']))
+                prefix = body[:m.start()]
+                section = prefix[prefix.rfind("\n## "):] if "\n## " in prefix else prefix
+                score = evidence_sections.relevance(section + "\n" + needle, query)
+                code = (f"source_url: {source_prefix}{path}#L{raw['line']}\n"
+                        f"coverage: {raw['coverage']}\n```go\n{raw['source']}\n```")
+                excerpts.append((score, len(excerpts), code, (raw['source_commit'], path, raw['line'], raw['end_line'])))
             return f"(源码依据: {source_prefix}{path}{at})"
         term, _, spec = arg.partition("@")
         return f"(源码核对: {spec.split()[0] if spec.split() else spec} 中无「{term.strip()}」)"
 
-    return MARKER.sub(sub, body)
+    expanded = MARKER.sub(sub, body)
+    selected, used = [], 0
+    for score, order, code, key in sorted(excerpts, key=lambda item: (-item[0], item[1])):
+        if used + len(code) <= source_budget:
+            selected.append((order, code))
+            shared_seen.add(key)
+            used += len(code)
+    prefix = ("== 定位锚点的完整函数原文 ==\n" + "\n\n".join(code for _, code in sorted(selected))
+              + f"\nfunction_coverage: {len(selected)}/{len(excerpts)}; remaining anchors retain source links\n\n") if excerpts else ""
+    return prefix + expanded
 
 
 def contract_lines(body):

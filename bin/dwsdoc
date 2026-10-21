@@ -538,7 +538,7 @@ def contract_details():
     return {'shortcuts': [], 'root_flags': [], 'coverage': 'supplement missing'}
 
 
-def render_contract(path, kind, row):
+def render_contract(path, kind, row, handler_cap=None):
     details = contract_details()
     supplement = next((r for r in details['shortcuts'] if r['path'] == path), {})
     lines = [f'== 命令契约: dws {path} ==', f'# dws {path}',
@@ -571,11 +571,15 @@ def render_contract(path, kind, row):
         lines.append('source_validation_message: ' + message)
     handler = next((r for r in details.get('commands', []) if r['path'] == path), None)
     if handler:
-        lines.append('handler_coverage: ' + handler['coverage'])
-        for hook in handler['handlers']:
+        handlers = handler['handlers']
+        deferred = handler_cap is not None and sum(len(hook['source']) for hook in handlers) > handler_cap
+        lines.append('handler_coverage: ' + ('deferred complete bodies; dwsdoc contract ' + json.dumps(path)
+                     if deferred else handler['coverage']))
+        for hook in handlers:
             lines.append(f"引用: {_src_link(handler['file'], hook['line'])}")
             lines.append('source_handler: ' + hook['hook'])
-            lines.append('````go\n' + hook['source'].strip() + '\n````')
+            if not deferred:
+                lines.append('````go\n' + hook['source'].strip() + '\n````')
     lines.append('source_coverage: ' + details['coverage'])
     return '\n'.join(lines)
 
@@ -676,57 +680,7 @@ def check_contract(command):
 
 
 def pack_context(entries, cap):
-    """Pack whole evidence groups; omitted groups remain discoverable by title.
-
-    Semantic and release evidence keep budget before supplemental declarations.
-    No code fence, table row, URL or contract is sliced to meet the cap.
-    """
-    whole = '\n'.join(entries)
-    if len(whole) <= cap:
-        return whole
-    groups = []
-    for entry in entries:
-        if entry.lstrip().startswith('==') or not groups:
-            groups.append([entry])
-        else:
-            groups[-1].append(entry)
-    bodies = ['\n'.join(group) for group in groups]
-    def priority(i):
-        title = bodies[i].lstrip().splitlines()[0]
-        if any(key in title for key in ('证据契约', '检索审计', '== 继续')):
-            return 0
-        if any(key in title for key in ('行为语义', 'CHANGELOG')):
-            return 1
-        if '篇目[' in title:
-            return 2
-        if '命令契约:' in title or '答案卡' in title:
-            return 3
-        return 4
-    # The reserve holds every omitted title and its continuation address.
-    notices = []
-    for body in bodies:
-        title = body.lstrip().splitlines()[0]
-        match = re.search(r'命令契约: dws (.+?) ==', title)
-        continuation = 'dwsdoc contract ' + json.dumps(match[1]) if match else ''
-        match_doc = re.search(r'篇目\[.*?\] (\S+)', title)
-        if match_doc:
-            continuation = 'dwsdoc cat ' + match_doc[1]
-        if 'CHANGELOG' in title:
-            continuation = 'dwsdoc cat docs/CHANGELOG.md'
-        notices.append(title + (' | ' + continuation if continuation else ''))
-    reserve = len('\n'.join(notices)) + 100
-    chosen, used = set(), 0
-    for i in sorted(range(len(bodies)), key=lambda n: (priority(n), n)):
-        size = len(bodies[i]) + 1
-        if used + size + reserve <= cap:
-            chosen.add(i)
-            used += size
-    deferred = [notices[i] for i in range(len(bodies)) if i not in chosen]
-    result = '\n'.join(body for i, body in enumerate(bodies) if i in chosen)
-    result += '\n== 证据覆盖 ==\ncoverage: excerpt; 未展开完整单元:\n' + '\n'.join(deferred)
-    if len(result) > cap:
-        raise ValueError('context metadata exceeds budget')
-    return result
+    return evidence_sections.pack_groups(entries, cap)
 
 
 def _flag_recall(terms, rows, cap=2):
@@ -771,7 +725,7 @@ _FLAG_EN_STOP = {"the", "and", "for", "not", "use", "with", "from", "this", "tha
                  "dws", "dev", "id", "api", "json", "data", "success", "code", "https", "http", "cli", "command"}
 
 
-def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
+def ctx_impl(q, raw_terms, force_full=False, prev_q="", raw_question=None):
     """打包检索。prev_q 为上一问全文,用于追问场景补充语境(如「那标准版呢」)。异常由 main 捕获转 CTX_ERROR。"""
     out = []
     previous_subject = evidence_sections.previous_questions(prev_q).lower()
@@ -1153,6 +1107,7 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
                 note_limit = owned_n + (2 if lifetime_only else 1 if needs_auth_context else 0)
                 note_limit = min(note_limit, 3)
             note_limit += global_n
+            source_seen = set()
             for score, fn, body in ranked[:note_limit]:
                 # frontmatter/导语不是小节，命中泛词时不应与真正相关的小节争 top2。
                 secs = [s for s in re.split(r"\n(?=#{2,3} )", body)
@@ -1173,9 +1128,8 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
                     hit = [re.sub(r"^---\n.*?\n---\n", "", body, count=1, flags=re.S).strip()]
                 text = "\n".join(hit) if hit else _cut(body, 2000)
                 # 专属 note 整篇并入不截断:截断会切掉开通/入群等后半节(依据标记展开后更长)
-                text = notes_refs.expand(ROOT, fn, text, checks)
-                picked.append(f"--- notes/{fn} · 引用: 无(内部篇,只作依据) ---\n"
-                              + (text if score == -10**9 else _cut(text, 3000)))
+                text = notes_refs.expand(ROOT, fn, text, checks, query=" ".join((q, previous_subject)), source_budget=6000 // max(1, note_limit), seen_sources=source_seen)
+                picked.append(f"--- notes/{fn} · 引用: 无(内部篇,只作依据) ---\n" + text)
             if picked:
                 notes_hit = len(picked)
                 out.append("\n== 行为语义(notes,复杂问法自动并入) ==")
@@ -1263,11 +1217,12 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
         # Exact references in selected semantic evidence drive supplementary
         # contracts. Each flag remains attached to its own path.
         evidence_text = '\n'.join(out[:notes_hit + 1]) if notes_hit else ''
+        evidence_text = re.sub(r'(?ms)^(`{3,})go[^\n]*\n.*?^\1[ \t]*$', '', evidence_text)
         selected_paths = list(explicit_paths)
         explicit_count = len(selected_paths)
         selected_paths += [p for p in evidence_sections.referenced_commands(evidence_text, paths)
                            if p not in selected_paths]
-        limit = max(explicit_count, 1)
+        limit = max(explicit_count, 3)
         deferred = selected_paths[limit:]
         selected_paths = selected_paths[:limit]
         if selected_paths:
@@ -1275,7 +1230,7 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
             # projection; do not carry two different representations of it.
             duplicate_bodies = {c['body'] for c in card_items if c['key'] in selected_paths}
             out = [line for line in out if line not in duplicate_bodies]
-            out[0:0] = [render_contract(p, *paths[p]) for p in selected_paths]
+            out[0:0] = [render_contract(p, *paths[p], handler_cap=3000) for p in selected_paths]
             if deferred:
                 out.append('\n== 未展开命令契约 ==\ncount: ' + str(len(deferred))
                            + '\npaths: ' + ', '.join(deferred[:5]))
@@ -1295,6 +1250,9 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
         print("== 继续 ==")
         print("换中文能力词/英文命令词重试 ctx(如 永久授权→permanent);仍无→二级拉源码 grep;查不到只可标「待确认」。")
         return 1
+    timing = evidence_sections.time_fields(raw_question if raw_question is not None else q, prev_q)
+    if timing:
+        out.insert(0, timing)
     text = pack_context(out, _CTX_TOTAL_CAP)
     print(text)
     return 0
@@ -1405,7 +1363,7 @@ def main():
             terms = args
             if len(terms) == 1:
                 terms = [w for w in re.split(r"[\s,，、]+", terms[0]) if w]
-            return ctx_impl(q, terms, force_full=force_full, prev_q=prev_q)
+            return ctx_impl(q, terms, force_full=force_full, prev_q=prev_q, raw_question=" ".join(args))
         except Exception as e:
             print(f"CTX_ERROR: {type(e).__name__}: {e};请改用分步命令(cmd/short/flag→find→cat)")
             return 1

@@ -975,6 +975,8 @@ def main():
     for r in stale:
         print(f"NOTES_STALE {r['note']} {r['kind']}: {r['detail']}")
     print(f"notes 依据核对: {len(checks)} 处,失效 {len(stale)} 处")
+    from build_note_sources import build as build_note_sources
+    print(build_note_sources(REPO, src, commit))
 
     # graph/cards/meta 全部落盘后跑 ctx 契约回归；候选排序、复杂问法回退或证据边界
     # 任一漂移都必须让每日确定性构建失败，不能只靠单独手工执行测试发现。

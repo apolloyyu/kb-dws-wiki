@@ -8,6 +8,9 @@ contract:
 ---
 
 # 认证重置与恢复的作用域
+- 旧凭据需重新授权的专门错误码，只证明客户端将该返回分类为 requiresReauthorization；不能由错误文案推断服务端协议升级、Token格式变更或排除服务端缺陷。先按可核验分类给恢复建议；用户已重登仍复现时，应继续核对同次调用与版本，不重复承诺登录必能修复。
+  {{code: internal/auth/oauth_helpers.go | const legacyMCPRefreshRejectedCode = "invalidParameter.authCode.notFound"}}
+  {{code: internal/auth/oauth_helpers.go | return strings.TrimSpace(e.Code) == legacyMCPRefreshRejectedCode}}
 - `auth reset` 调用 DeleteAllTokenData，清理所有 profile 及旧格式 token 数据；还清理本地兼容入口、应用凭证和运行时缓存。即使带 profile，也不能把这条全量清理描述为仅重置当前用户。清理的是本机配置，不证明服务端令牌吊销。
   {{code: internal/app/auth_command.go | Use:               "reset"}}
   {{code: internal/app/auth_command.go | if err := authDeleteAllTokenData(configDir)}}

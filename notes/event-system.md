@@ -2,9 +2,10 @@
 title: 事件系统的来源、投递与心跳边界
 maintenance: manual
 intents: event_runtime
-triggers: event consume, event listen, 事件监听, 事件订阅, stream, 长连接, 个人事件, event bus, 事件总线, websocket
+triggers: event consume, event listen, 事件监听, 事件订阅, stream, 长连接, 个人事件, event bus, 事件总线, websocket, 心跳, 断连, heartbeat, ping, pong, IPC
 contract:
   - 先区分个人 Stream、应用 Stream 与本地 IPC；客户端 ACK、缓冲、去重不能证明服务端重投、端到端可靠性或用户业务处理成功。
+  - 类型声明只证明协议存在；实际启用、发送频率与超时检测须沿收发循环核验。取票刷新不证明既有连接在令牌到期瞬间断开，也不能承诺刷新后监听无损连续。
 ---
 
 # 事件系统的来源、投递与心跳边界
@@ -16,10 +17,20 @@ contract:
   {{code: internal/event/source/personal.go | resp.Data = df.Data}}
   {{code: internal/event/source/personal.go | personal source: server requested reconnect}}
   {{code: internal/event/source/personal.go | 先确认控制帧，再由重连循环关闭本连接并重新申请 ticket。}}
-- 本地 IPC 另有 heartbeat 帧类型；consume 读到该帧时静默处理。这不是云端 SYSTEM ping，也不能由类型声明推导固定发送间隔或业务事件超时。
+- 上述 ping 分支只证明收到云端 ping 时回应，不证明服务端发送周期或“长时间没收到 ping 就断连”的超时策略。个人源读取失败会进入重连流程；服务器发 disconnect 也会要求重连。
+  {{code: internal/event/source/personal.go | personal source: read websocket:}}
+- 本地 IPC 定义了 heartbeat 帧类型，consume 读到时静默处理；v1 总线读循环忽略 heartbeat/future 入站帧。不能把协议类型或静默接收分支称为已经启用的周期性 IPC 健康检查，更不能用它证明云端存活。
   {{code: internal/event/transport/protocol.go | FrameTypeHeartbeat}}
   {{code: internal/event/consume/run.go | case transport.FrameTypeHeartbeat:}}
   {{code: internal/event/consume/run.go | // silent}}
+  {{code: internal/event/bus/daemon.go | Heartbeat / future client→bus frames: ignored for v1.}}
+
+## 令牌、取票与既有连接
+- 取票前通过 AccessTokenProvider 取得访问令牌；取票收到401且配置了刷新回调时，刷新后重试一次。连接建立后的读取循环依赖读取结果和收到的系统控制帧，不能由取票刷新逻辑推导既有 WebSocket 在令牌过期瞬间的服务端行为，也不能承诺刷新过程事件绝不丢失。
+  {{code: internal/event/source/personal.go | resolveSourceAccessToken(ctx, s.cfg.AccessTokenProvider}}
+  {{code: internal/event/source/personal.go | if status == http.StatusUnauthorized && s.cfg.ForceRefreshToken != nil}}
+  {{code: internal/event/source/personal.go | Retry once with the freshly rotated token; a second 401 stays fatal.}}
+  {{code: internal/event/source/personal.go | messageType, data, err := conn.ReadMessage()}}
 
 ## ACK 与可靠性
 - 个人源的非 SYSTEM 帧先构造 RawEvent 并 emit，再发送成功 ACK；ACK 写失败返回可重试错误。这里只证明客户端顺序，不能证明服务端如何重投、是否无限重试或消费者已经完成业务处理。

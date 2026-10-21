@@ -212,6 +212,14 @@ def _intent(q, subject_q=None):
         r"\bdws\s+auth\s+(?:login|status|reset)\b[^。；;\n]{0,40}(?:失败|异常|报错|无法|不能|清除|删除|范围)", q))
     auth_history = bool(re.search(r"(?:已经|已运行|已执行|试过|试了|运行过|执行过|运行了|执行了)[^，,。；;\n]{0,30}\bdws\s+auth\b", q))
     credential_subject = q if current_auth_failure and not auth_history else subject_q
+    # “消息”可指邮件、审批、日程通知。工作流note只在明确IM主体时整篇并入；
+    # 主体未明的泛问法仍走正常文档召回，不据泛词改写产品范围。
+    im_pattern = r"(?<![a-z0-9])(?:chat|im)(?![a-z0-9])|listen-im|单聊|群聊|聊天|即时通信|即时消息|群信息|群消息"
+    workflow_clauses = [s for s in re.split(r"[。；;，,\n]+", q) if s.strip()]
+    def im_workflow(name, fallback):
+        # 仅控制新增工作流note的整篇补料；原有--prev检索、命令卡和文档召回仍保留。
+        return any(re.search(im_pattern, clause, re.I) and _subject(name, clause, fallback)
+                   for clause in workflow_clauses)
     support = (any(k in q for k in ("支持", "有没有", "有吗", "能不能", "可以吗", "是否", "会不会", "会被", "能否",
                                     "是不是", "对吗", "对不对", "拉不到", "拿不到", "收不到", "查不到"))
                or bool(re.search(r"不是.{0,15}(?:吗|吧)|一样(?:吗|吧)", q))
@@ -230,9 +238,10 @@ def _intent(q, subject_q=None):
     #（实录 Q283-285：notes 有"扇出还是独占"一节却未进上下文，模型按队列直觉答成排他消费）。
     mechanism = any(k in q for k in ("生命周期", "并发", "加锁", "锁机制", "路由", "重试", "ack", "回调",
                                          "投递", "状态机", "自动刷新", "自动注入", "缓存机制",
-                                         "心跳", "断连", "断线", "断开", "网络中断", "保活", "重连", "ping", "pong", "机制",
+                                         "心跳", "断连", "断线", "断开", "网络中断", "保活", "重连", "机制",
                                          "多个", "都能", "都会", "同时", "每个", "各自", "都收到", "扇出", "独占", "排他",
                                          "只有一个", "其余", "没反应", "没有反应", "收不到"))
+    mechanism = mechanism or bool(re.search(r"(?<![a-z0-9])(?:ping|pong)(?![a-z0-9])", q, re.I))
     return {
         "_q": q,
         "why":     any(k in q for k in ("为什么", "原理", "机制", "不一致", "冲突", "原因", "根因", "归因",
@@ -243,6 +252,10 @@ def _intent(q, subject_q=None):
         "card_capability": card_capability,
         "validation": validation,
         "mechanism": mechanism,
+        "message_attribution": _subject("message_attribution", subject_q, r"ai角标|clawtype|dws_agent_product"),
+        "cross_org_data": im_workflow("cross_org_data", r"跨组织|非本组织"),
+        "realtime_reply": im_workflow("realtime_reply", r"实时回复|自动回复"),
+        "behavior_records": _subject("behavior_records", subject_q, r"操作记录|行为记录"),
         "event_runtime": (_subject("event_runtime", subject_q, r"event consume|事件监听|stream")
                           and (mechanism or any(k in q for k in ("为什么", "原理", "源码", "隔离", "共享", "异常", "失败", "冲突", "怎么分清", "client-id", "clientid")))),
         "auth_recovery": (_subject("auth_recovery", subject_q, r"dws auth|认证重置|登录态")
@@ -364,6 +377,9 @@ def _subject(intent_name, q, fallback):
             return bool(re.search(r"(?<![a-z0-9_-])-[a-z]*" + re.escape(term[1:]) + r"[a-z]*(?![a-z0-9_-])", q))
         if term.startswith("--"):
             return bool(re.search(r"(?<![a-z0-9_-])" + re.escape(term) + r"(?![a-z0-9_-])", q))
+        if re.fullmatch(r"[a-zA-Z][a-zA-Z0-9_. -]*", term):
+            return bool(re.search(r"(?<![a-zA-Z0-9])" + re.escape(term)
+                                  + r"(?![a-zA-Z0-9])", q, re.I))
         return term in q
     return any(matches(t) for t in terms) if terms else bool(re.search(fallback, q))
 
@@ -478,6 +494,8 @@ def _evidence_contract(intent=None, has_card=True, with_notes=False):
     else:
         lines.append("- 检索命中只证明所引原文明确写出的事实；相邻命令、字段或示例不能补成未写明的能力与因果。")
     lines.append("- 命令存在不证明后端接受某个具体值，也不证明真实运行结果、当前登录态或服务端行为；缺少显式校验源码时不得判 ID/参数非法。")
+    lines.append("- 历史日志按发生时刻判断；未给发生时间时不得套用宿主当前日期判定当时过期。用户更正后先复核旧假设，不把此前答案继续当事实。")
+    lines.append("- 用户可见范围不等于物理存储位置；客户端接口契约不能证明后端数据保留、删除或跨设备效果，缺少该层原文就标待核验。")
     if intent.get("truncated"):
         lines.append("- input_complete=no：输入含未闭合代码/结构，只可核对可见片段并要求补全，不得补猜缺失内容或根因。")
     if intent.get("validation"):
@@ -767,7 +785,7 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
     card_blocked = any(intent[k] for k in
                        ("challenge", "why", "howmany", "support", "capability", "validation", "mechanism",
                         "truncated", "trouble", "enumerate", "version", "semantic", "access", "origin",
-                        "ratelimit", "lifetime", "event_runtime", "auth_recovery", "global_flags"))
+                        "ratelimit", "lifetime", "event_runtime", "auth_recovery", "global_flags", "message_attribution", "cross_org_data", "realtime_reply", "behavior_records"))
     card_fast = bool(top_card and top_card["full"] and _card_confident(top_family, top_card)
                      and not card_blocked and not focused_docs)
     card_items = [top_card] if top_card else []
@@ -833,7 +851,7 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
     # 正文回答，只有同时属于上述复杂意图时才补 notes，避免无关语义篇干扰。
     _needs_notes = any(intent[k] for k in
                        ("why", "howmany", "capability", "card_capability", "validation", "mechanism", "trouble",
-                        "access", "origin", "ratelimit", "lifetime", "event_runtime", "auth_recovery", "global_flags")) or event_credentials
+                        "access", "origin", "ratelimit", "lifetime", "event_runtime", "auth_recovery", "global_flags", "message_attribution", "cross_org_data", "realtime_reply", "behavior_records")) or event_credentials
     _mech = _needs_notes
     # full 卡 + 首名明显胜出 + 非机制/数值/支持/排障/枚举题时，正文归零；
     # 任一条件不满足就保持 R10.1 的 1~2 篇正文，准确率优先。

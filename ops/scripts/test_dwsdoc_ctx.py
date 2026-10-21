@@ -21,6 +21,48 @@ def run_dwsdoc(*args):
 
 
 class DwsdocCtxContractTest(unittest.TestCase):
+    def test_workflow_questions_expand_parameter_and_scope_evidence(self):
+        out = run_dwsdoc('ctx', '获取消息拉不到非本组织的群信息')
+        self.assertIn('--target-org-id 和 --all 必须且只能指定一个', out)
+        out = run_dwsdoc('ctx', '如何做到单聊或者群聊的实时回复')
+        self.assertIn('群自动回复使用顶层', out)
+        self.assertIn('统一发送入口的群目标参数是group', out)
+        for question in ['chat消息如何自动回复', 'IM实时回复']:
+            self.assertIn('群自动回复使用顶层', run_dwsdoc('ctx', question))
+        out = run_dwsdoc('ctx', 'DWS能获取用户在钉钉及宜搭的操作记录不')
+        self.assertIn('企业内部应用 + App Token + 服务端 OpenAPI', out)
+        self.assertIn('audit是本地CLI操作审计', out)
+
+    def test_new_workflow_notes_do_not_capture_other_products(self):
+        for question, title in [
+            ('mapping字段的参数是什么意思', '# 事件系统的来源、投递与心跳边界'),
+            ('宜搭附件通过 drive download 能断点续传吗', '# 个人行为检索、业务变更记录与本地审计的范围'),
+            ('跨组织日历数据导入', '# 跨组织消息数据授权的目标与范围'),
+            ('设置邮件自动回复', '# 实时消息监听到回复的参数与标识契约'),
+            ('IM查询已完成，设置邮件自动回复', '# 实时消息监听到回复的参数与标识契约'),
+            ('IM查询已完成；设置邮件自动回复', '# 实时消息监听到回复的参数与标识契约'),
+            ('邮件新消息自动回复失败', '# 实时消息监听到回复的参数与标识契约'),
+            ('日历提醒消息实时回复', '# 实时消息监听到回复的参数与标识契约'),
+            ('获取非本组织的邮件消息', '# 跨组织消息数据授权的目标与范围')]:
+            self.assertNotIn(title, run_dwsdoc('ctx', question))
+
+    def test_message_attribution_uses_primary_source_and_scope(self):
+        out = run_dwsdoc('ctx', '“通过AI发送”文案支持修改吗')
+        self.assertIn('fast=0', out)
+        self.assertIn('# 消息角标、产品标识与发送入口的范围', out)
+        self.assertIn('DWS_AGENT_PRODUCT', out)
+        self.assertIn('原生用户消息 send/reply 提供 ai-tag 开关', out)
+        self.assertIn('internal/helpers/chat.go', out)
+        self.assertNotIn('# 消息角标、产品标识与发送入口的范围',
+                         run_dwsdoc('ctx', 'dws chat message list'))
+
+    def test_event_followup_preserves_active_implementation_boundary(self):
+        out = run_dwsdoc('ctx', '怎么检测到断连，有心跳包吗')
+        self.assertIn('不能把协议类型或静默接收分支称为已经启用', out)
+        out = run_dwsdoc('ctx', '事件监听持续机制是什么样的，如果token过期了会发生什么')
+        self.assertIn('既有 WebSocket', out)
+        self.assertIn('不能由取票刷新逻辑推导', out)
+
     def test_inherited_flags_are_not_denied_by_leaf_card(self):
         for q in ('请解释 dws auth login --profile "<corpId>:<userId>"，保留占位符，不要执行',
                   'dws event consume --client-id abc 怎么用', 'dws chat message list --format json',

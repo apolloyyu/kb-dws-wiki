@@ -274,7 +274,7 @@ class NoteExpansionTest(unittest.TestCase):
         self.assertEqual(out.count(table), 1)
         self.assertLess(out.index(table), out.index('Qualified interpretation'))
         self.assertIn('"kind":"derived_summary"', out)
-        self.assertIn('(原文依据: https://example.invalid/source', out)
+        self.assertIn('[原文依据](https://example.invalid/source)', out)
         self.assertIn('引用原文已不存在: docs/missing.md', out)
         self.assertIn('"version":{"updated_at":"2026-01-01"}', out)
 

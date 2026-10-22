@@ -295,7 +295,7 @@ class DwsdocCtxContractTest(unittest.TestCase):
             self.assertIn("notes/digital-employee.md", out, q)
             self.assertIn("allowed-groups", out, q)
             # 上游 10-13(a3c7d486) 起正式 connect 绑定走平台访问策略,不再是「默认仅主管+白名单」
-            self.assertRegex(out, r"> 原文\(https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli/blob/[0-9a-f]+/docs/digital-employee-adapters\.md\): `manage create` 创建并通过正式", q)
+            self.assertRegex(out, r"> 原文\(\[DWS 文档依据\]\(https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli/blob/[0-9a-f]+/docs/digital-employee-adapters\.md\)\): `manage create` 创建并通过正式", q)
             self.assertIn("platform", out, q)
             self.assertIn("notes_present: yes", out, q)
             self.assertIn("card=1(fast=0)", out, q)
@@ -327,7 +327,7 @@ class DwsdocCtxContractTest(unittest.TestCase):
             self.assertNotIn("alidocs.dingtalk.com", fh.read(), "note 里不得写死链接")
         for q in ("数字员工灰度怎么申请", "DIGITAL_EMPLOYEE_NOT_ENABLED 怎么开通", "数字员工怎么开通"):
             out = run_dwsdoc("ctx", q)
-            self.assertIn("> 原文(https://open.dingtalk.com/document/development/dws-cli-log", out, q)
+            self.assertIn("> 原文([DWS 文档依据](https://open.dingtalk.com/document/development/dws-cli-log)", out, q)
             self.assertIn(form, out, q)
             self.assertNotIn("其他域名一律不造", out, q)
             self.assertNotIn("⚠依据已变更(", out, q)
@@ -494,7 +494,7 @@ class DwsdocCtxContractTest(unittest.TestCase):
             out = run_dwsdoc("ctx", q)
             self.assertIn("--- notes/token-lifetime.md", out, q)
             self.assertIn("token-lifetime.md", out, q)
-            self.assertRegex(out, r"\(源码依据: https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli/blob/[0-9a-f]{7,40}/", q)
+            self.assertRegex(out, r"\[源码依据\]\(https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli/blob/[0-9a-f]{7,40}/", q)
         for q in ("扫码登录要在几分钟内完成", "隔几天不用 dws 就要重新登录吗", "dws 每次都要重新扫码，很烦",
                   "dws 掉线了", "dws 授权过期了怎么办"):
             self.assertIn("--- notes/token-lifetime.md", run_dwsdoc("ctx", q), q)
@@ -506,7 +506,7 @@ class DwsdocCtxContractTest(unittest.TestCase):
             self.assertNotIn("notes/token-lifetime.md", run_dwsdoc("ctx", q), q)
         # 依据须有构建核对记录(带行号深链),新 note 不能等 ECS 重建才有
         out = run_dwsdoc("ctx", "dws 登录态多久过期")
-        self.assertRegex(out, r"源码依据: https://\S+#L\d+")
+        self.assertRegex(out, r"\[源码依据\]\(https://\S+#L\d+\)")
         self.assertNotIn("依据已变更(", out)
 
     def test_named_version_is_a_changelog_key(self):

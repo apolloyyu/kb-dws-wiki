@@ -546,11 +546,11 @@ def render_contract(path, kind, row, handler_cap=None):
              f"source_commit: {supplement.get('source_commit') or details.get('source_commit') or 'unknown'}"]
     if kind == 'command':
         for ref in row.get('defs', [])[:1]:
-            lines.append(f"引用: {_src_link(ref['file'], ref['line'])}")
+            lines.append(f"引用: {notes_refs.source_citation(_src_link(ref['file'], ref['line']))}")
         if row.get('usage'):
             lines.append('usage: dws ' + row['usage'])
     else:
-        lines.append(f"引用: {_src_link(row['file'], row['line'])}")
+        lines.append(f"引用: {notes_refs.source_citation(_src_link(row['file'], row['line']))}")
     if supplement.get('source_aliases'):
         lines.append('source_declared_aliases: ' + json.dumps(supplement['source_aliases'], ensure_ascii=False))
     for rule in supplement.get('source_message_constraints', []):
@@ -582,7 +582,7 @@ def render_contract(path, kind, row, handler_cap=None):
         lines.append('handler_coverage: ' + ('deferred complete bodies; dwsdoc contract ' + json.dumps(path)
                      if deferred else handler['coverage']))
         for hook in handlers:
-            lines.append(f"引用: {_src_link(handler['file'], hook['line'])}")
+            lines.append(f"引用: {notes_refs.source_citation(_src_link(handler['file'], hook['line']))}")
             lines.append('source_handler: ' + hook['hook'])
             if not deferred:
                 lines.append('````go\n' + hook['source'].strip() + '\n````')
@@ -974,7 +974,7 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q="", raw_question=None):
             out.append(c["body"])
             m = re.search(r"(?m)^source: ([^\s:]+):(\d+)", c["body"])
             if m:
-                out.append(f"引用: {_src_link(m.group(1), m.group(2))}")
+                out.append(f"引用: {notes_refs.source_citation(_src_link(m.group(1), m.group(2)))}")
         seen_cards = {(c["kind"], c["key"]) for c in card_items}
         other_cmds = []
         for r in cmds[:8]:
@@ -995,7 +995,7 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q="", raw_question=None):
             for r in cmds[:8]:
                 out.append(f"● dws {r['cmd']}  —  {r['desc']}")
                 for d in r.get("defs", [])[:1]:
-                    out.append(f"  引用: {_src_link(d['file'], d['line'])}")
+                    out.append(f"  引用: {notes_refs.source_citation(_src_link(d['file'], d['line']))}")
                 if len(cmds) <= 3:
                     for f in r.get("flags", []):
                         marks = "(必填)" if f.get("required") else ""
@@ -1003,7 +1003,7 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q="", raw_question=None):
         if shorts:
             out.append("== 短命令命中(short) ==")
             for r in shorts[:6]:
-                out.append(f"● dws {r['product']} {r['cmd']}  —  {r['desc']}\n  引用: {_src_link(r['file'], r['line'])}")
+                out.append(f"● dws {r['product']} {r['cmd']}  —  {r['desc']}\n  引用: {notes_refs.source_citation(_src_link(r['file'], r['line']))}")
     if flag_hits:
         out.append("== flag 命中 ==")
         out.extend(flag_hits[:8])
@@ -1073,7 +1073,7 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q="", raw_question=None):
             body += f"\n[正文覆盖: excerpt; 未展开小节: {selection['omitted_units']}; 完整: dwsdoc cat {r['path']}]"
         out.append(f"\n== 篇目[{i+1}/{len(body_docs)}] {r['path']} [{r['layer']}] ==")
         link = _doc_link(r["path"])
-        out.append(f"引用: {link}" if link else "引用: 无(内部篇,只作依据)")
+        out.append(f"引用: {notes_refs.source_citation(link, 'DWS 文档依据')}" if link else "引用: 无(内部篇,只作依据)")
         out.append(body)
         if r['layer'] in ('docs', 'mirror'):
             document_projections.append((body, original_body, r['path']))
@@ -1306,7 +1306,7 @@ def show_cmd(r, full=True):
     if r.get("when"):
         print(f"  适用: {r['when']}")
     for d in r.get("defs", [])[:1]:
-        print(f"  引用: {_src_link(d['file'], d['line'])}")
+        print(f"  引用: {notes_refs.source_citation(_src_link(d['file'], d['line']))}")
     if full:
         for f in r.get("flags", []):
             marks = "".join(["(必填)" if f.get("required") else "",
@@ -1314,12 +1314,12 @@ def show_cmd(r, full=True):
             print(f"    --{f['name']}"
                   + (f"/-{f['short']}" if f.get("short") else "")
                   + f"  {f['type']}{marks}  {f.get('help','')}"
-                  + f"  [{f.get('file', '')}:{f['line']}]")
+                  + (f"  {notes_refs.source_citation(_src_link(f['file'], f['line']))}" if f.get('file') else ''))
 
 
 def show_short(r):
     print(f"● dws {r['product']} {r['cmd']}  —  {r['desc']}")
-    print(f"  引用: {_src_link(r['file'], r['line'])}")
+    print(f"  引用: {notes_refs.source_citation(_src_link(r['file'], r['line']))}")
     for f in r.get("flags", []):
         print(f"    --{f['name']}  {f['type']}  {f.get('desc','')}")
 
@@ -1347,6 +1347,9 @@ def card_impl(q):
         if shown:
             print("\n---\n")
         print(card["body"])
+        source = re.search(r"(?m)^source: ([^\s:]+):(\d+)", card["body"])
+        if source:
+            print(f"引用: {notes_refs.source_citation(_src_link(source[1], source[2]))}")
         shown += 1
         if shown >= 3:
             break
@@ -1490,7 +1493,7 @@ def main():
         if rel_p.startswith("notes" + os.sep):
             body = notes_refs.expand(ROOT, os.path.basename(p), body)
         link = _doc_link(rel_p)
-        print(f"引用: {link}" if link else "引用: 无(内部篇,只作依据;文件名不得出现在回复里)")
+        print(f"引用: {notes_refs.source_citation(link, 'DWS 文档依据')}" if link else "引用: 无(内部篇,只作依据;文件名不得出现在回复里)")
         sys.stdout.write(body)
     else:
         print(__doc__)

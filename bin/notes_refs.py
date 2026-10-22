@@ -14,12 +14,25 @@ import json
 import os
 import re
 import sys
+from urllib.parse import quote
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import evidence_sections
 
 MARKER = re.compile(r"\{\{(quote|code|absent|confirmed):\s*([^{}\s][^{}]*?)\s*\}\}")
 WARN = "⚠依据已变更({})，此条待复核，不得作为确定结论"
 GH = "https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli/blob/main/"
+
+
+def source_citation(url, label="DWS 源码依据"):
+    """Render a copyable Markdown citation; retain raw URLs in source metadata."""
+    if not url.startswith(('https://', 'http://')):
+        return '无(未提供公开来源)'
+    label = re.sub(r'\s+', ' ', label).strip()
+    label = re.sub(r'([\\\[\]`*_<>])', r'\\\1', label)
+    # Encode Markdown delimiters/whitespace, preserving existing escapes, the
+    # query string, and the fixed revision/line fragment of the source URL.
+    destination = quote(url, safe=":/?#@!$&'*+,;=%~-._")
+    return f'[{label}]({destination})'
 
 
 def parse(body):
@@ -170,13 +183,13 @@ def expand(root, fn, body, checks=None, query="", source_budget=6000, seen_sourc
                 block = evidence_sections.literal_block(handle.read(), no)
             version = {key: meta[key] for key in ("source_commit", "updated_at") if meta.get(key)}
             standalone = re.match(r'\s*(?:\||`{3,}|~{3,}|#{1,6}\s)', block['body'])
-            quoted = f"> 原文({src}{when}):" + ('\n' if standalone else ' ') + block['body']
+            quoted = f"> 原文({source_citation(src, 'DWS 文档依据')}{when}):" + ('\n' if standalone else ' ') + block['body']
             unit = evidence_sections.source_unit(quoted, [src], version=version, scope=block['scope'])
             if unit not in seen and unit not in shared_seen:
                 quotes.append(unit)
                 seen.add(unit)
                 shared_seen.add(unit)
-            return f"(原文依据: {src}{when})"
+            return source_citation(src, '原文依据') + when
         if kind == "confirmed":
             return f"(人工确认: {arg};源码与文档中无此信息)"
         r = checks.get((fn, kind, arg))
@@ -192,13 +205,13 @@ def expand(root, fn, body, checks=None, query="", source_budget=6000, seen_sourc
                 section = prefix[prefix.rfind("\n## "):] if "\n## " in prefix else prefix
                 score = evidence_sections.relevance(section + "\n" + needle, query)
                 source_ref = f"{source_prefix}{path}#L{raw['line']}"
-                code = (f"source_url: {source_ref}\n"
+                code = (f"引用: {source_citation(source_ref, '源码依据')}\n"
                         f"coverage: {raw['coverage']}\n```go\n{raw['source']}\n```")
                 unit = evidence_sections.source_unit(code, [source_ref], version=raw['source_commit'])
                 if unit not in seen and unit not in shared_seen:
                     seen.add(unit)
                     excerpts.append((score, len(excerpts), unit, unit))
-            return f"(源码依据: {source_prefix}{path}{at})"
+            return source_citation(source_prefix + path + at, '源码依据')
         term, _, spec = arg.partition("@")
         return f"(源码核对: {spec.split()[0] if spec.split() else spec} 中无「{term.strip()}」)"
 

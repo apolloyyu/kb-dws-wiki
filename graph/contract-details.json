@@ -16,7 +16,13 @@
       "examples": [
         "dws attendance +check-result --users userId1,userId2 --start 2026-04-01 --end 2026-04-30 --limit 50"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "offset": "0",
+        "limit": "100"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "attendance +check-record",
@@ -33,7 +39,10 @@
       "examples": [
         "dws attendance +check-record --users userId1 --start 2026-04-01 --end 2026-04-30"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "attendance +list-approve",
@@ -51,7 +60,10 @@
       "examples": [
         "dws attendance +list-approve --users userId1 --types overtime,leave --start 2026-04-01 --end 2026-04-30"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "attendance +get-approve-template",
@@ -66,7 +78,10 @@
       "examples": [
         "dws attendance +get-approve-template --type leave"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "attendance +calculate-approve-duration",
@@ -95,7 +110,10 @@
         "dws attendance +calculate-approve-duration --biz-type 1 --duration-mode 3 --start \"2026-09-01 19:00:00\" --end \"2026-09-02 07:00:00\" --new-overtime --detail-list '[{\"workDate\":\"2026-09-01 00:00:00\",\"durationInHour\":\"4\"},{\"workDate\":\"2026-09-02 00:00:00\",\"durationInHour\":\"7\"}]'",
         "dws attendance +calculate-approve-duration --biz-type 3 --duration-mode 2 --start 2026-09-01 --end 2026-09-01 --half-start AM --half-end PM"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "attendance +check-companion-schedules",
@@ -119,7 +137,10 @@
         "dws attendance +check-companion-schedules --approve-type 2 --starts \"2026-08-31 09:00:00\" --ends \"2026-08-31 18:00:00\" --principal-users userId1,userId2 --duration-unit HOUR",
         "多个时间段可按相同顺序传入：--starts \"2026-08-31 09:00:00,2026-09-01 09:00:00\" --ends \"2026-08-31 18:00:00,2026-09-01 18:00:00\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "attendance +get-complex-overtime-setting",
@@ -135,7 +156,10 @@
         "dws attendance +get-complex-overtime-setting --users userId1,userId2 --work-date 2026-08-31",
         "dws attendance +get-complex-overtime-setting --users userId1"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "attendance +get-schedule",
@@ -152,7 +176,10 @@
       "examples": [
         "dws attendance +get-schedule --users user001,user002 --start 2026-04-01 --end 2026-04-30"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "attendance +import-schedule",
@@ -168,7 +195,10 @@
       "examples": [
         "dws attendance +import-schedule --group-id 123456 --schedules '[{\"userId\":\"user001\",\"workDate\":\"2026-04-22 09:00:00\",\"classId\":123,\"isRest\":\"N\"}]'"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "attendance +search-class",
@@ -186,7 +216,13 @@
       "examples": [
         "dws attendance +search-class --query \"早班\" --filter-type MINE_OWN"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "page": "1",
+        "limit": "20"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "attendance +get-class",
@@ -202,7 +238,10 @@
         "dws attendance +get-class --class-id 12345",
         "dws attendance +get-class --class-id 1170996821"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "attendance +create-class",
@@ -218,7 +257,10 @@
       "examples": [
         "dws attendance +create-class --name \"早班\" --class-vo '{\"sections\":[{\"times\":[{\"checkType\":\"OnDuty\",\"checkTime\":\"08:00\",\"across\":0},{\"checkType\":\"OffDuty\",\"checkTime\":\"17:00\",\"across\":0}]}]}'"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "attendance +update-class",
@@ -233,7 +275,10 @@
       "examples": [
         "dws attendance +update-class --class-id 1170996821 --name \"新早班\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "attendance +get-adjustment-rule",
@@ -248,7 +293,10 @@
       "examples": [
         "dws attendance +get-adjustment-rule --adjustment-id 12345"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "attendance +search-adjustment-rule",
@@ -261,7 +309,13 @@
       "examples": [
         "dws attendance +search-adjustment-rule --query \"标准\" --page 1 --limit 50"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "page": "1",
+        "limit": "20"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "attendance +get-overtime-rule",
@@ -276,7 +330,10 @@
       "examples": [
         "dws attendance +get-overtime-rule --overtime-id 12345"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "attendance +search-overtime-rule",
@@ -289,7 +346,13 @@
       "examples": [
         "dws attendance +search-overtime-rule --query \"节假日\" --page 1 --limit 50"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "page": "1",
+        "limit": "20"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "attendance +search-group",
@@ -308,7 +371,13 @@
       "examples": [
         "dws attendance +search-group --query \"研发\" --type FIXED --limit 50"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "page": "1",
+        "limit": "20"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "attendance +get-group",
@@ -323,7 +392,10 @@
       "examples": [
         "dws attendance +get-group --group-id 123456"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "attendance +get-group-filtered",
@@ -338,7 +410,10 @@
       "examples": [
         "dws attendance +get-group-filtered --group-id 123456 --member --position"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "attendance +update-group-members",
@@ -353,7 +428,10 @@
       "examples": [
         "dws attendance +update-group-members --group-id 123456 --add-users userId1,userId2"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "attendance +create-group",
@@ -375,7 +453,10 @@
       "examples": [
         "dws attendance +create-group --name \"研发考勤组\" --type FIXED --group-vo '{\"defaultClassId\":1170996821,\"workDayClassList\":[0,1170996821,0,0,0,0,0]}'"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "attendance +update-group",
@@ -400,7 +481,10 @@
       "examples": [
         "dws attendance +update-group --group-id 123456 --name \"研发考勤组\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "attendance +get-summary",
@@ -422,7 +506,10 @@
       "examples": [
         "dws attendance +get-summary --user USER_ID --date 2026-03-12 --stats-type week"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "attendance +get-self-setting",
@@ -447,7 +534,10 @@
       "examples": [
         "dws attendance +get-self-setting --setting-scene checkRemind --user USER_ID"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "attendance +get-global-setting",
@@ -477,7 +567,10 @@
       "examples": [
         "dws attendance +get-global-setting --scope 企业 --setting-scene checkRemind"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "attendance +list-report-columns",
@@ -490,7 +583,10 @@
       "examples": [
         "dws attendance +list-report-columns"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "attendance +query-report-data",
@@ -508,7 +604,10 @@
       "examples": [
         "dws attendance +query-report-data --users userId1,userId2 --columns 1001,1002 --start \"2026-03-01 00:00:00\" --end \"2026-03-31 23:59:59\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "attendance +query-report-leave",
@@ -525,7 +624,10 @@
       "examples": [
         "dws attendance +query-report-leave --users userId1 --leave-names 年假,病假 --start \"2026-03-01 00:00:00\" --end \"2026-03-31 23:59:59\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "attendance +list-leave-types",
@@ -538,7 +640,10 @@
       "examples": [
         "dws attendance +list-leave-types"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "attendance +get-leave-balance",
@@ -553,7 +658,10 @@
       "examples": [
         "dws attendance +get-leave-balance --users userId1,userId2 --leave-code a1b2c3d4-e5f6-7890-abcd-ef1234567890"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "attendance +get-leave-records",
@@ -570,7 +678,10 @@
       "examples": [
         "dws attendance +get-leave-records --user USER_ID --leave-code a1b2c3d4-e5f6-7890-abcd-ef1234567890 --start 2026-04-01 --end 2026-04-22"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "attendance +update-leave-type",
@@ -595,7 +706,10 @@
       "examples": [
         "dws attendance +update-leave-type --leave-code a1b2c3d4-e5f6-7890-abcd-ef1234567890 --name \"事假（修改版）\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "attendance +save-leave-balance",
@@ -613,7 +727,10 @@
       "examples": [
         "dws attendance +save-leave-balance --target user001 --leave-code a1b2c3d4-e5f6-7890-abcd-ef1234567890 --num 8 --reason \"年度发放\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "attendance +get-checkin-record",
@@ -632,7 +749,10 @@
       "examples": [
         "dws attendance +get-checkin-record --operator-corp-id dingXXX --operator-staff-id op001 --staff-ids user001,user002 --start \"2026-04-01 00:00:00\" --end \"2026-04-07 00:00:00\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "attendance +boss-check",
@@ -663,7 +783,10 @@
       "examples": [
         "dws attendance +boss-check --plan-id 123456 --time \"2026-04-21 08:30\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "contact +friend-list",
@@ -677,7 +800,13 @@
         "dws contact +friend-list",
         "dws contact +friend-list --cursor 100 --size 50"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "cursor": "0",
+        "size": "20"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "contact +friend-request-list",
@@ -691,7 +820,13 @@
         "dws contact +friend-request-list",
         "dws contact +friend-request-list --size 50"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "cursor": "0",
+        "size": "20"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "contact +friend-request-send",
@@ -707,7 +842,10 @@
         "dws contact +friend-request-send --to alice",
         "dws contact +friend-request-send --to alice --remark \"我是研发部的 Bob\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "contact +friend-request-accept",
@@ -723,7 +861,10 @@
         "dws contact +friend-request-accept --from alice",
         "dws contact +friend-request-accept --from alice --alias \"Alice Li\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "contact +friend-request-reject",
@@ -738,7 +879,10 @@
       "examples": [
         "dws contact +friend-request-reject --from alice"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "contact +friend-remove",
@@ -753,7 +897,10 @@
       "examples": [
         "dws contact +friend-remove --friend alice"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "contact +list-followings",
@@ -766,7 +913,10 @@
       "examples": [
         "dws contact +list-followings"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "contact +search-user",
@@ -781,7 +931,10 @@
       "examples": [
         "dws contact +search-user --query \"张三\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "contact +search-mobile",
@@ -796,7 +949,10 @@
       "examples": [
         "dws contact +search-mobile --mobile 13800138000"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "contact +list-roles",
@@ -809,7 +965,10 @@
       "examples": [
         "dws contact +list-roles"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "contact +list-role-members",
@@ -824,7 +983,10 @@
       "examples": [
         "dws contact +list-role-members --id 12345"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "contact +list-sub-depts",
@@ -839,7 +1001,10 @@
       "examples": [
         "dws contact +list-sub-depts --dept 1"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "contact +list-dept-members",
@@ -854,7 +1019,10 @@
       "examples": [
         "dws contact +list-dept-members --depts 12345,67890"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "contact +list-roster-fields",
@@ -867,7 +1035,10 @@
       "examples": [
         "dws contact +list-roster-fields"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "contact +get-roster",
@@ -881,7 +1052,10 @@
         "dws contact +get-roster --staff-id STAFF_ID",
         "dws contact +get-roster --staff-id STAFF_ID --fields fieldCode1,fieldCode2"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "devdoc +search-docs",
@@ -896,7 +1070,13 @@
       "examples": [
         "dws devdoc +search-docs --query \"OAuth2 接入\" --size 10 --format json"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "page": "1",
+        "size": "10"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "calendar +agenda",
@@ -910,7 +1090,10 @@
         "dws calendar +agenda",
         "dws calendar +agenda --start \"2026-03-10T00:00:00+08:00\" --end \"2026-03-31T23:59:59+08:00\" --limit 50"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "calendar +attendee-list",
@@ -925,7 +1108,10 @@
       "examples": [
         "dws calendar +attendee-list --event EVENT_ID"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "calendar +room-search",
@@ -940,7 +1126,10 @@
       "examples": [
         "dws calendar +room-search --room-name 永澄亭"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "calendar +room-find",
@@ -953,7 +1142,10 @@
       "examples": [
         "dws calendar +room-find --start \"2026-03-10T14:00:00+08:00\" --end \"2026-03-10T15:00:00+08:00\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "calendar +room-groups",
@@ -966,7 +1158,10 @@
       "examples": [
         "dws calendar +room-groups"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "calendar +freebusy",
@@ -990,7 +1185,10 @@
       "examples": [
         "dws calendar +freebusy --users userId1,userId2 --start \"2026-03-10T14:00:00+08:00\" --end \"2026-03-10T18:00:00+08:00\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "calendar +book-list",
@@ -1003,7 +1201,10 @@
       "examples": [
         "dws calendar +book-list"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "calendar +book-search",
@@ -1018,7 +1219,10 @@
       "examples": [
         "dws calendar +book-search --query \"项目\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +messages-edit",
@@ -1037,7 +1241,12 @@
       "examples": [
         "dws chat +messages-edit --group <openConversationId> --message-id <openMessageId> --text \"更新后的内容\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "as": "user"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "chat +recent-conversations",
@@ -1062,7 +1271,12 @@
         "--total-timeout 必须在 1-3600 之间",
         "使用非首页 --cursor 时必须显式传入上次结果中的同一 --end",
         "使用非首页 --cursor 时必须显式传入上次结果中的同一 --start"
-      ]
+      ],
+      "source_aliases": {},
+      "source_defaults": {
+        "cursor": "0"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "chat +messages-send-by-bot",
@@ -1080,7 +1294,10 @@
       "examples": [
         "dws chat +messages-send-by-bot --robot-code <robotCode> --group <openConversationId> --title \"日报\" --content \"## 今日完成\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +messages-batch-send-by-bot",
@@ -1097,7 +1314,10 @@
       "examples": [
         "dws chat +messages-batch-send-by-bot --robot-code <robotCode> --users userId1,userId2 --title \"提醒\" --content \"请提交周报\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +messages-send-by-webhook",
@@ -1114,7 +1334,10 @@
       "examples": [
         "dws chat +messages-send-by-webhook --token <token> --title \"告警\" --content \"CPU 超 90%\" --at-all"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +messages-recall",
@@ -1127,7 +1350,16 @@
       "examples": [
         "dws chat +messages-recall --conversation-id <openConversationId> --msg-id <openMessageId>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {
+        "group": "conversation-id",
+        "id": "conversation-id",
+        "chat": "conversation-id",
+        "message-id": "msg-id",
+        "message-ids": "msg-id"
+      },
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +messages-recall-by-bot",
@@ -1144,7 +1376,10 @@
       "examples": [
         "dws chat +messages-recall-by-bot --robot-code <robotCode> --group <openConversationId> --keys key1,key2"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +messages-batch-recall-by-bot",
@@ -1160,7 +1395,10 @@
       "examples": [
         "dws chat +messages-batch-recall-by-bot --robot-code <robotCode> --keys key1,key2"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +messages-list",
@@ -1175,7 +1413,16 @@
       "examples": [
         "dws chat +messages-list --group <openConversationId> --time \"2025-03-01 00:00:00\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {
+        "conversation-id": "group",
+        "id": "group",
+        "size": "limit"
+      },
+      "source_defaults": {
+        "forward": "true"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "chat +messages-list-direct",
@@ -1191,7 +1438,15 @@
         "dws chat +messages-list-direct --user <userId> --time \"2025-03-01 00:00:00\"",
         "dws chat +messages-list-direct --open-dingtalk-id <openDingTalkId> --time \"2025-03-01 00:00:00\" --forward=false --page-all"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {
+        "size": "limit"
+      },
+      "source_defaults": {
+        "forward": "true",
+        "page-limit": "50"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "chat +messages-list-unread-conversations",
@@ -1204,7 +1459,10 @@
       "examples": [
         "dws chat +messages-list-unread-conversations --count 20"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +messages-mget",
@@ -1219,7 +1477,10 @@
       "examples": [
         "dws chat +messages-mget --msg-ids msgId1,msgId2"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +messages-query-send-status",
@@ -1234,7 +1495,10 @@
       "examples": [
         "dws chat +messages-query-send-status --open-task-id <openTaskId>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +messages-read-status",
@@ -1258,7 +1522,13 @@
       "examples": [
         "dws chat +messages-read-status --conversation-id <openConversationId> --message-id <openMessageId>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {
+        "group": "conversation-id",
+        "id": "conversation-id"
+      },
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +messages-add-emoji",
@@ -1275,7 +1545,10 @@
       "examples": [
         "dws chat +messages-add-emoji --conversation-id <openConversationId> --msg-id <openMsgId> --emoji \"赞\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +messages-remove-emoji",
@@ -1292,7 +1565,10 @@
       "examples": [
         "dws chat +messages-remove-emoji --conversation-id <openConversationId> --msg-id <openMsgId> --emoji \"赞\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +messages-add-text-emotion",
@@ -1312,7 +1588,10 @@
       "examples": [
         "dws chat +messages-add-text-emotion --conversation-id <openConversationId> --msg-id <openMsgId> --emotion-id <id> --emotion-name \"赞\" --text \"nice\" --background-id im_bg_5"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +messages-remove-text-emotion",
@@ -1332,7 +1611,10 @@
       "examples": [
         "dws chat +messages-remove-text-emotion --conversation-id <openConversationId> --msg-id <openMsgId> --emotion-id <id> --emotion-name \"赞\" --text \"nice\" --background-id im_bg_5"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +messages-create-text-emotion",
@@ -1348,7 +1630,10 @@
       "examples": [
         "dws chat +messages-create-text-emotion --emotion-name \"赞\" --text \"nice\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +messages-send-card",
@@ -1363,7 +1648,12 @@
         "dws chat +messages-send-card --receiver <userId>",
         "dws chat +messages-send-card --group <openConversationId>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "flow-status": "3"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "chat +messages-update-card",
@@ -1380,7 +1670,10 @@
       "examples": [
         "dws chat +messages-update-card --biz-id <bizId> --content \"内容\" --flow-status 3"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +messages-resource-url",
@@ -1409,7 +1702,15 @@
       "examples": [
         "dws chat +messages-resource-url --type mediaId --resource-id <mediaId> --message-id <openMessageId> --open-conversation-id <openConversationId>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {
+        "msg-id": "message-id",
+        "open-message-id": "message-id"
+      },
+      "source_defaults": {
+        "type": "mediaId"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "chat +messages-forward",
@@ -1426,7 +1727,10 @@
       "examples": [
         "dws chat +messages-forward --src-conversation-id <srcCid> --msg-id <msgId> --dest-conversation-id <destCid>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +messages-combine-forward",
@@ -1443,7 +1747,10 @@
       "examples": [
         "dws chat +messages-combine-forward --src-conversation-id <srcCid> --msg-ids id1,id2 --dest-conversation-id <destCid>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +messages-forward-topic",
@@ -1461,7 +1768,10 @@
       "examples": [
         "dws chat +messages-forward-topic --src-msg-id <msgId> --src-conversation-id <srcCid> --src-thread-id <threadId> --dest-conversation-id <destCid>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +messages-set-pin",
@@ -1477,7 +1787,10 @@
       "examples": [
         "dws chat +messages-set-pin --open-conversation-id <openConversationId> --msg-id <openMessageId>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +messages-unset-pin",
@@ -1493,7 +1806,10 @@
       "examples": [
         "dws chat +messages-unset-pin --open-conversation-id <openConversationId> --msg-id <openMessageId>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +messages-list-pin",
@@ -1508,7 +1824,10 @@
       "examples": [
         "dws chat +messages-list-pin --open-conversation-id <openConversationId>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +messages-set-top",
@@ -1524,7 +1843,10 @@
       "examples": [
         "dws chat +messages-set-top --open-conversation-id <openConversationId> --msg-id <openMessageId>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +messages-unset-top",
@@ -1540,7 +1862,10 @@
       "examples": [
         "dws chat +messages-unset-top --open-conversation-id <openConversationId> --msg-id <openMessageId>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +bot-search",
@@ -1553,7 +1878,12 @@
       "examples": [
         "dws chat +bot-search --page 1 --name \"日报\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "page": "1"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "chat +bot-find",
@@ -1574,7 +1904,14 @@
       "examples": [
         "dws chat +bot-find --query \"日报\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {
+        "keyword": "query"
+      },
+      "source_defaults": {
+        "limit": "20"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "chat +conversation-info",
@@ -1587,7 +1924,10 @@
       "examples": [
         "dws chat +conversation-info --group <openConversationId>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +conversation-set-top",
@@ -1609,7 +1949,10 @@
         "dws chat +conversation-set-top --conversation-id <openConversationId>",
         "dws chat +conversation-set-top --conversation-ids <cid1>,<cid2> --off"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +conversation-mute",
@@ -1624,7 +1967,10 @@
       "examples": [
         "dws chat +conversation-mute --conversation-id <openConversationId>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +conversation-mute-at-all",
@@ -1639,7 +1985,10 @@
       "examples": [
         "dws chat +conversation-mute-at-all --conversation-id <openConversationId>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +conversation-mute-red-envelope",
@@ -1654,7 +2003,10 @@
       "examples": [
         "dws chat +conversation-mute-red-envelope --conversation-id <openConversationId>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +conversation-mark-unread",
@@ -1669,7 +2021,10 @@
       "examples": [
         "dws chat +conversation-mark-unread --conversation-id <openConversationId>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +conversation-clear-red-point",
@@ -1684,7 +2039,10 @@
       "examples": [
         "dws chat +conversation-clear-red-point --conversation-id <openConversationId>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +conversation-clear-all-red-point",
@@ -1697,7 +2055,10 @@
       "examples": [
         "dws chat +conversation-clear-all-red-point"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +conversation-list",
@@ -1711,7 +2072,13 @@
         "dws chat +conversation-list --limit 50",
         "dws chat +conversation-list --page-all --limit 100"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "limit": "100",
+        "page-limit": "50"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "chat +conversation-list-top",
@@ -1732,7 +2099,12 @@
         "dws chat +conversation-list-top --type direct --limit 1000",
         "dws chat +conversation-list-top --limit 1000"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "type": "all"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "chat +conversation-clear-messages",
@@ -1747,7 +2119,10 @@
       "examples": [
         "dws chat +conversation-clear-messages --conversation-id <openConversationId>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +conversation-mark-read",
@@ -1763,7 +2138,10 @@
       "examples": [
         "dws chat +conversation-mark-read --conversation-id <openConversationId> --message-id <openMessageId>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +conversation-hide",
@@ -1778,7 +2156,10 @@
       "examples": [
         "dws chat +conversation-hide --conversation-id <openConversationId>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +category-list",
@@ -1791,7 +2172,10 @@
       "examples": [
         "dws chat +category-list"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +category-list-conversations",
@@ -1807,7 +2191,10 @@
         "dws chat +category-list-conversations --category-id <categoryId>",
         "dws chat +category-list-conversations --category-id <分组ID>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +category-create",
@@ -1824,7 +2211,10 @@
       ],
       "validation_messages": [
         "--title 不能为空"
-      ]
+      ],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +category-delete",
@@ -1839,7 +2229,10 @@
       "examples": [
         "dws chat +category-delete --category-id <分组ID>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +category-rename",
@@ -1857,7 +2250,10 @@
       ],
       "validation_messages": [
         "--title 不能为空"
-      ]
+      ],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +category-add-conversation",
@@ -1873,7 +2269,10 @@
       "examples": [
         "dws chat +category-add-conversation --group <openConversationId> --category-ids 123,456"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +category-remove-conversation",
@@ -1889,7 +2288,10 @@
       "examples": [
         "dws chat +category-remove-conversation --group <openConversationId> --category-ids 123,456"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +chat-create",
@@ -1917,7 +2319,12 @@
         "dws chat +chat-create --name \"项目冲刺群\" --users userId1,userId2",
         "dws chat +chat-create --name \"合作群\" --member-query \"张三,李四\" --type EXTERNAL"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "type": "INTERNAL"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "chat +chat-update",
@@ -1933,7 +2340,10 @@
       "examples": [
         "dws chat +chat-update --group <群名或openConversationId> --name \"新群名\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +messages-reply",
@@ -1961,7 +2371,15 @@
       "examples": [
         "dws chat +messages-reply --group <openConversationId> --message-id <openMessageId> --content \"收到\" --idempotency-key <key>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {
+        "message-id": "ref-msg-id",
+        "idempotency-key": "uuid"
+      },
+      "source_defaults": {
+        "as": "user"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "chat +flag-create",
@@ -1982,7 +2400,10 @@
       "examples": [
         "dws chat +flag-create --message-id <openMessageId> --conversation-id <openConversationId>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +flag-cancel",
@@ -2003,7 +2424,10 @@
       "examples": [
         "dws chat +flag-cancel --message-id <openMessageId> --conversation-id <openConversationId>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +flag-list",
@@ -2044,7 +2468,17 @@
         "--page-size/--size 必须在 1-30 之间",
         "--page-limit 仅与 --page-all 一起使用",
         "--page-limit 必须在 1-500 之间"
-      ]
+      ],
+      "source_aliases": {
+        "size": "page-size"
+      },
+      "source_defaults": {
+        "page-size": "20",
+        "size": "20",
+        "cursor": "0",
+        "page-limit": "20"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "chat +feed-group-query-item",
@@ -2060,7 +2494,10 @@
       "examples": [
         "dws chat +feed-group-query-item --category-id <分组ID> --conversation-ids <openConversationId1>,<openConversationId2>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +chat-list",
@@ -2100,7 +2537,17 @@
         "--page-size/--limit 必须在 1-100 之间",
         "--page-limit 仅与 --page-all 一起使用",
         "--page-limit 必须在 1-500 之间"
-      ]
+      ],
+      "source_aliases": {
+        "limit": "page-size",
+        "cursor": "page-token"
+      },
+      "source_defaults": {
+        "page-size": "20",
+        "page-delay": "0",
+        "page-limit": "50"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "chat +messages-resource-download",
@@ -2124,7 +2571,16 @@
         "dws chat +messages-resource-download --type fileId --resource-id <fileId> --output ./downloads/",
         "dws chat +messages-resource-download --resource-id <mediaId> --message-id <openMessageId> --open-conversation-id <openConversationId> --output ./downloads/"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "type": "mediaId",
+        "output": ".",
+        "part-size": "0",
+        "retries": "2",
+        "retry-delay": "200"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "chat +messages-send",
@@ -2244,6 +2700,70 @@
         "--identity webhook 不接受 --at-open-dingtalk-ids",
         "--uuid 当前仅 user 身份的下层支持",
         "--identity webhook 当前下层只支持 text/markdown"
+      ],
+      "source_aliases": {
+        "as": "identity",
+        "chat-id": "group",
+        "file-path": "file",
+        "idempotency-key": "uuid"
+      },
+      "source_defaults": {
+        "identity": "user",
+        "expires-seconds": "0"
+      },
+      "source_message_constraints": [
+        {
+          "when_flag": "identity",
+          "when_value": "bot",
+          "kind": "required",
+          "flags": [
+            "robot-code"
+          ],
+          "source_message": "--identity bot 必须指定 --robot-code",
+          "coverage": "literal source validation-message declaration; not runtime execution"
+        },
+        {
+          "when_flag": "identity",
+          "when_value": "bot",
+          "kind": "forbidden",
+          "flags": [
+            "user",
+            "open-dingtalk-id",
+            "webhook-token"
+          ],
+          "source_message": "--identity bot 不接受 --user、--open-dingtalk-id 或 --webhook-token",
+          "coverage": "literal source validation-message declaration; not runtime execution"
+        },
+        {
+          "when_flag": "identity",
+          "when_value": "bot",
+          "kind": "forbidden",
+          "flags": [
+            "at-mobiles"
+          ],
+          "source_message": "--identity bot 不接受 --at-mobiles",
+          "coverage": "literal source validation-message declaration; not runtime execution"
+        },
+        {
+          "when_flag": "identity",
+          "when_value": "webhook",
+          "kind": "required",
+          "flags": [
+            "webhook-token"
+          ],
+          "source_message": "--identity webhook 必须指定 --webhook-token",
+          "coverage": "literal source validation-message declaration; not runtime execution"
+        },
+        {
+          "when_flag": "identity",
+          "when_value": "webhook",
+          "kind": "forbidden",
+          "flags": [
+            "at-open-dingtalk-ids"
+          ],
+          "source_message": "--identity webhook 不接受 --at-open-dingtalk-ids",
+          "coverage": "literal source validation-message declaration; not runtime execution"
+        }
       ]
     },
     {
@@ -2292,7 +2812,20 @@
         "--limit/--page-size/--size 必须在 1-100 之间",
         "--page-limit 仅与 --page-all 一起使用",
         "--page-limit 必须在 1-500 之间"
-      ]
+      ],
+      "source_aliases": {
+        "keyword": "query",
+        "page-size": "limit",
+        "size": "limit",
+        "page-token": "cursor"
+      },
+      "source_defaults": {
+        "page-delay": "0",
+        "limit": "20",
+        "cursor": "0",
+        "page-limit": "50"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "chat +chat-members-get",
@@ -2308,7 +2841,10 @@
       "examples": [
         "dws chat +chat-members-get --id <openConversationId> --users odid1,odid2"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +chat-transfer-owner",
@@ -2324,7 +2860,10 @@
       "examples": [
         "dws chat +chat-transfer-owner --group <openConversationId> --new-owner <openDingTalkId>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +chat-invite-url",
@@ -2347,7 +2886,12 @@
         "dws chat +chat-invite-url --group <openConversationId>",
         "dws chat +chat-invite-url --group \"项目群\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {
+        "group-query": "chat-query"
+      },
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +chat-quit",
@@ -2362,7 +2906,10 @@
       "examples": [
         "dws chat +chat-quit --group <openConversationId>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +chat-update-icon",
@@ -2378,7 +2925,10 @@
       "examples": [
         "dws chat +chat-update-icon --group <openConversationId> --icon-media-id <mediaId>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +chat-update-settings",
@@ -2395,7 +2945,10 @@
       "examples": [
         "dws chat +chat-update-settings --group <openConversationId> --setting-key searchable --status 1"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +chat-dismiss",
@@ -2410,7 +2963,10 @@
       "examples": [
         "dws chat +chat-dismiss --group <openConversationId>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +chat-set-history",
@@ -2432,7 +2988,10 @@
       "examples": [
         "dws chat +chat-set-history --group <openConversationId> --option RECENT_100"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +chat-update-nick",
@@ -2448,7 +3007,10 @@
       "examples": [
         "dws chat +chat-update-nick --group <openConversationId> --nick \"我的群昵称\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +chat-update-alias",
@@ -2464,7 +3026,10 @@
       "examples": [
         "dws chat +chat-update-alias --group <openConversationId> --alias-title \"项目A群\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +chat-list-mine",
@@ -2482,7 +3047,10 @@
       "examples": [
         "dws chat +chat-list-mine --role OWNER"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +chat-list-all",
@@ -2500,7 +3068,13 @@
         "--limit 必须在 1-200 之间",
         "--page-limit 仅与 --page-all 一起使用",
         "--page-limit 必须在 1-500 之间"
-      ]
+      ],
+      "source_aliases": {},
+      "source_defaults": {
+        "limit": "100",
+        "page-limit": "50"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "chat +chat-list-join-requests",
@@ -2513,7 +3087,12 @@
       "examples": [
         "dws chat +chat-list-join-requests --limit 30"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "limit": "20"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "chat +chat-audit-join",
@@ -2540,7 +3119,10 @@
       "examples": [
         "dws chat +chat-audit-join --group <openConversationId> --record-id 123 --applicant <userId> --inviter <userId> --status AuditApprove"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +chat-get-by-id",
@@ -2555,7 +3137,10 @@
       "examples": [
         "dws chat +chat-get-by-id --group-id 12345678"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +chat-add-bot",
@@ -2571,7 +3156,10 @@
       "examples": [
         "dws chat +chat-add-bot --robot-code <robotCode> --id <openConversationId>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +chat-bots",
@@ -2594,7 +3182,12 @@
         "dws chat +chat-bots --group <openConversationId>",
         "dws chat +chat-bots --group \"项目群\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {
+        "group-query": "chat-query"
+      },
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +chat-remove-bot",
@@ -2610,7 +3203,10 @@
       "examples": [
         "dws chat +chat-remove-bot --id <openConversationId> --bot-id <openBotId>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +chat-set-admin",
@@ -2626,7 +3222,10 @@
       "examples": [
         "dws chat +chat-set-admin --group <openConversationId> --users userId1,userId2"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +chat-mute",
@@ -2641,7 +3240,10 @@
       "examples": [
         "dws chat +chat-mute --group <openConversationId>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +chat-mute-member",
@@ -2657,7 +3259,10 @@
       "examples": [
         "dws chat +chat-mute-member --group <openConversationId> --users userId1 --mute-time 3600000"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +chat-role-list",
@@ -2672,7 +3277,10 @@
       "examples": [
         "dws chat +chat-role-list --group <openConversationId>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +chat-role-add",
@@ -2688,7 +3296,10 @@
       "examples": [
         "dws chat +chat-role-add --group <openConversationId> --name \"管理员\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +chat-role-update",
@@ -2705,7 +3316,10 @@
       "examples": [
         "dws chat +chat-role-update --group <openConversationId> --role-id <openRoleId> --name \"新名称\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +chat-role-remove",
@@ -2721,7 +3335,10 @@
       "examples": [
         "dws chat +chat-role-remove --group <openConversationId> --role-id <openRoleId>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +chat-role-set-user",
@@ -2738,7 +3355,10 @@
       "examples": [
         "dws chat +chat-role-set-user --group <openConversationId> --user <userId> --role-ids roleId1,roleId2"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +chat-role-remove-user",
@@ -2755,7 +3375,10 @@
       "examples": [
         "dws chat +chat-role-remove-user --group <openConversationId> --user <userId> --role-ids roleId1"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +chat-role-query-user",
@@ -2771,7 +3394,10 @@
       "examples": [
         "dws chat +chat-role-query-user --group <openConversationId> --user <userId>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aisearch +search-person",
@@ -2784,7 +3410,12 @@
       ],
       "constraints": [],
       "examples": [],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "dimensions": "all"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "aisearch +search-enterprise",
@@ -2797,7 +3428,12 @@
       ],
       "constraints": [],
       "examples": [],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "types": "im"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "aisearch +search-behavior",
@@ -2817,7 +3453,13 @@
       "required": [],
       "constraints": [],
       "examples": [],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "types": "all",
+        "behavior": "all"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "whiteboard +query",
@@ -2839,7 +3481,12 @@
         "dws whiteboard +query --node <DOC_ID> --part-id <WHITEBOARD_PART_ID>",
         "dws whiteboard +query --node <WHITEBOARD_NODE_ID> --view all"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "view": "summary"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "whiteboard +update",
@@ -2856,7 +3503,10 @@
         "dws whiteboard +update --node <DOC_ID> --part-id <WHITEBOARD_PART_ID> --source @whiteboard.json",
         "dws whiteboard +update --node <WHITEBOARD_NODE_ID> --expected-revision 12 --request-id wb-update-001 --source @whiteboard.json"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "whiteboard +diff",
@@ -2878,7 +3528,12 @@
         "dws whiteboard +diff --node <DOC_ID> --part-id <WHITEBOARD_PART_ID> --source @whiteboard.json",
         "dws whiteboard +diff --node <WHITEBOARD_NODE_ID> --page-id <PAGE_ID> --source @whiteboard.json --identity-map @identity-map.json"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "comparison": "semantic"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "mail +thread-list",
@@ -2894,7 +3549,12 @@
       "examples": [
         "dws mail +thread-list --email user@company.com --folder 104 --limit 20"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "limit": "20"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "mail +folder-list",
@@ -2909,7 +3569,10 @@
       "examples": [
         "dws mail +folder-list --email user@company.com"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "mail +tag-list",
@@ -2924,7 +3587,10 @@
       "examples": [
         "dws mail +tag-list --email user@company.com"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "mail +user-search",
@@ -2946,7 +3612,10 @@
         "dws mail +user-search --keyword \"张三\"",
         "dws mail +user-search --email user@company.com --employee-no \"E123456\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "mail +template-list",
@@ -2962,7 +3631,10 @@
       "examples": [
         "dws mail +template-list --email user@company.com --limit 20"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "mail +contact-list",
@@ -2978,7 +3650,10 @@
       "examples": [
         "dws mail +contact-list --email user@company.com --limit 20"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "mail +draft-create",
@@ -3002,7 +3677,10 @@
         }
       ],
       "examples": [],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "mail +draft-edit",
@@ -3026,7 +3704,10 @@
         }
       ],
       "examples": [],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "mail +template-create",
@@ -3042,7 +3723,10 @@
       ],
       "constraints": [],
       "examples": [],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "mail +template-update",
@@ -3065,7 +3749,10 @@
         }
       ],
       "examples": [],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "mail +message",
@@ -3078,7 +3765,10 @@
       ],
       "constraints": [],
       "examples": [],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "mail +messages",
@@ -3091,7 +3781,10 @@
       ],
       "constraints": [],
       "examples": [],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "mail +thread",
@@ -3104,7 +3797,10 @@
       ],
       "constraints": [],
       "examples": [],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +record-upsert-by-key",
@@ -3122,7 +3818,10 @@
       "examples": [
         "dws aitable +record-upsert-by-key --base-id B --table-id T --key-field-id fldKey --key-value TASK-001 --cells '{\"fldStatus\":\"进行中\"}'"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +table-copy",
@@ -3140,7 +3839,12 @@
       "examples": [
         "dws aitable +table-copy --source-base-id B1 --source-table-id T1 --target-base-id B2 --new-name \"任务副本\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "max-records": "10000"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "aitable +record-bulk-patch",
@@ -3157,7 +3861,12 @@
       "examples": [
         "dws aitable +record-bulk-patch --base-id B --table-id T --query \"待处理\" --patch '{\"fldStatus\":\"完成\"}'"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "max-matches": "1000"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "aitable +base-schema-snapshot",
@@ -3172,7 +3881,10 @@
       "examples": [
         "dws aitable +base-schema-snapshot --base-id BASE_ID"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +base-bootstrap",
@@ -3188,7 +3900,10 @@
       "examples": [
         "dws aitable +base-bootstrap --name \"项目管理\" --tables '[{\"name\":\"任务\",\"fields\":[]}]'"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +data-query",
@@ -3203,7 +3918,10 @@
       ],
       "constraints": [],
       "examples": [],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +import-file",
@@ -3264,7 +3982,10 @@
         "首次导入必须同时提供 --base-id 和 --file；续等使用 --resume-import-id",
         "--timeout 必须大于 0",
         "--header-row 必须大于 0"
-      ]
+      ],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +record-batch-create",
@@ -3279,7 +4000,10 @@
       ],
       "constraints": [],
       "examples": [],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +field-create",
@@ -3294,7 +4018,10 @@
       ],
       "constraints": [],
       "examples": [],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +dashboard-list",
@@ -3307,7 +4034,10 @@
       ],
       "constraints": [],
       "examples": [],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +attachment-put",
@@ -3331,7 +4061,12 @@
       "examples": [
         "dws aitable +attachment-put --base-id B --table-id T --record-id R --field-id F --file ./report.pdf --mode replace"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "mode": "append"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "aitable +attachment-remove",
@@ -3349,7 +4084,10 @@
       "examples": [
         "dws aitable +attachment-remove --base-id B --table-id T --record-id R --field-id F --clear-all"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +field-run-ai",
@@ -3364,7 +4102,10 @@
       ],
       "constraints": [],
       "examples": [],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +url-resolve",
@@ -3381,7 +4122,12 @@
         "dws aitable +url-resolve --url 'https://alidocs.dingtalk.com/i/nodes/BASE_ID?iframeQuery=sheetId%3DTABLE_ID%26viewId%3DVIEW_ID' --verify",
         "dws aitable +url-resolve --url \"https://alidocs.dingtalk.com/i/nodes/BASE_ID?iframeQuery=sheetId%3DTABLE_ID\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "verify": "false"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "aitable +base-list",
@@ -3395,7 +4141,10 @@
         "dws aitable +base-list",
         "dws aitable +base-list --limit 5 --cursor NEXT"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +base-search",
@@ -3410,7 +4159,10 @@
       "examples": [
         "dws aitable +base-search --query \"项目管理\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +base-get",
@@ -3425,7 +4177,10 @@
       "examples": [
         "dws aitable +base-get --base-id BASE_ID"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +base-get-primary-doc-id",
@@ -3442,7 +4197,10 @@
       "examples": [
         "dws aitable +base-get-primary-doc-id --base-id B --table-id T --record-id R"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +base-update",
@@ -3458,7 +4216,10 @@
       "examples": [
         "dws aitable +base-update --base-id BASE_ID --name \"新名称\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +base-delete",
@@ -3473,7 +4234,10 @@
       "examples": [
         "dws aitable +base-delete --base-id BASE_ID"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +base-copy",
@@ -3489,7 +4253,10 @@
         "dws aitable +base-copy --base-id BASE_ID --new-name \"副本名称\"",
         "dws aitable +base-copy --base-id BASE_URL --target-folder-id FOLDER_URL --only-struct"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +table-get",
@@ -3505,7 +4272,10 @@
         "dws aitable +table-get --base-id BASE_ID",
         "dws aitable +table-get --base-id B --table-ids tbl1,tbl2"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +table-update",
@@ -3521,7 +4291,10 @@
       "examples": [
         "dws aitable +table-update --base-id B --table-id T --name \"新表名\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +table-delete",
@@ -3537,7 +4310,10 @@
       "examples": [
         "dws aitable +table-delete --base-id B --table-id T"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +field-get",
@@ -3553,7 +4329,10 @@
       "examples": [
         "dws aitable +field-get --base-id B --table-id T"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +field-update",
@@ -3570,7 +4349,10 @@
       "examples": [
         "dws aitable +field-update --base-id B --table-id T --field-id F --name \"新名\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +field-delete",
@@ -3587,7 +4369,10 @@
       "examples": [
         "dws aitable +field-delete --base-id B --table-id T --field-id F"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +record-query",
@@ -3619,7 +4404,12 @@
         "dws aitable +record-query --base-id B --table-id T --query \"关键词\" --limit 50",
         "dws aitable +record-query --base-id B --table-id T --record-ids R1,R2 --field-ids F_NAME,F_STATUS"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "max-records": "10000"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "aitable +record-update",
@@ -3636,7 +4426,10 @@
       "examples": [
         "dws aitable +record-update --base-id B --table-id T --records '[{\"recordId\":\"rec\",\"cells\":{\"fldStatusId\":\"已完成\"}}]'"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +record-delete",
@@ -3653,7 +4446,10 @@
       "examples": [
         "dws aitable +record-delete --base-id B --table-id T --record-ids rec1,rec2"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +record-query-empty",
@@ -3669,7 +4465,10 @@
       "examples": [
         "dws aitable +record-query-empty --base-id B --table-id T"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +record-history-list",
@@ -3686,7 +4485,10 @@
       "examples": [
         "dws aitable +record-history-list --base-id B --table-id T --record-id R"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +record-share-url",
@@ -3703,7 +4505,10 @@
       "examples": [
         "dws aitable +record-share-url --base-id B --table-id T --record-ids rec1,rec2"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +record-upsert",
@@ -3720,7 +4525,10 @@
       "examples": [
         "dws aitable +record-upsert --base-id B --table-id T --records '[{\"cells\":{\"fldTitle\":\"任务\"}}]' --client-token <NEW_UUID_V4>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +record-primary-doc-get",
@@ -3737,7 +4545,10 @@
       "examples": [
         "dws aitable +record-primary-doc-get --base-id B --table-id T --record-id R"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +record-primary-doc-create",
@@ -3755,7 +4566,10 @@
       "examples": [
         "dws aitable +record-primary-doc-create --base-id B --table-id T --field-id F --record-id R"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +template-search",
@@ -3768,7 +4582,10 @@
       "examples": [
         "dws aitable +template-search --query \"项目管理\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +attachment-upload",
@@ -3785,7 +4602,10 @@
       "examples": [
         "dws aitable +attachment-upload --base-id B --file-name report.xlsx --size 204800"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +view-get",
@@ -3801,7 +4621,10 @@
       "examples": [
         "dws aitable +view-get --base-id B --table-id T"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +view-update",
@@ -3818,7 +4641,10 @@
       "examples": [
         "dws aitable +view-update --base-id B --table-id T --view-id V --config '{\"visibleFieldIds\":[\"fld1\"]}'"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +view-duplicate",
@@ -3835,7 +4661,10 @@
       "examples": [
         "dws aitable +view-duplicate --base-id B --table-id T --view-id V"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +view-delete",
@@ -3852,7 +4681,10 @@
       "examples": [
         "dws aitable +view-delete --base-id B --table-id T --view-id V"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +view-get-lock",
@@ -3869,7 +4701,10 @@
       "examples": [
         "dws aitable +view-get-lock --base-id B --table-id T --view-id V"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +view-lock",
@@ -3887,7 +4722,10 @@
         "dws aitable +view-lock --base-id B --table-id T --view-id V",
         "dws aitable +view-lock --base-id B --table-id T --view-id V --off"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +view-get-frozen-cols",
@@ -3904,7 +4742,10 @@
       "examples": [
         "dws aitable +view-get-frozen-cols --base-id B --table-id T --view-id V"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +view-set-frozen-cols",
@@ -3922,7 +4763,10 @@
       "examples": [
         "dws aitable +view-set-frozen-cols --base-id B --table-id T --view-id V --count 1"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +view-get-row-height",
@@ -3939,7 +4783,10 @@
       "examples": [
         "dws aitable +view-get-row-height --base-id B --table-id T --view-id V"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +view-set-row-height",
@@ -3957,7 +4804,10 @@
       "examples": [
         "dws aitable +view-set-row-height --base-id B --table-id T --view-id V --cell-height 56"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +view-set-fill-color-rule",
@@ -3975,7 +4825,10 @@
       "examples": [
         "dws aitable +view-set-fill-color-rule --base-id B --table-id T --view-id V --json '[]'"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +form-list",
@@ -3991,7 +4844,10 @@
       "examples": [
         "dws aitable +form-list --base-id B --table-id T"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +form-delete",
@@ -4008,7 +4864,10 @@
       "examples": [
         "dws aitable +form-delete --base-id B --table-id T --view-id V"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +form-update",
@@ -4025,7 +4884,10 @@
       "examples": [
         "dws aitable +form-update --base-id B --table-id T --view-id V --title \"员工信息收集\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +form-field-list",
@@ -4042,7 +4904,10 @@
       "examples": [
         "dws aitable +form-field-list --base-id B --table-id T --view-id V"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +form-field-update",
@@ -4060,7 +4925,10 @@
       "examples": [
         "dws aitable +form-field-update --base-id B --table-id T --view-id V --field-id F --required true"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +form-field-hide",
@@ -4079,7 +4947,10 @@
       "examples": [
         "dws aitable +form-field-hide --base-id B --table-id T --view-id V --field-id F --hidden true"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +form-share-get",
@@ -4096,7 +4967,10 @@
       "examples": [
         "dws aitable +form-share-get --base-id B --table-id T --view-id V"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +form-share-update",
@@ -4150,7 +5024,10 @@
         "dws aitable +form-share-update --base-id B --table-id T --view-id V --enabled true --form-name \"活动报名\" --format json",
         "dws aitable +form-share-update --base-id B --table-id T --view-id V --form-name \"活动报名\" --anonymous-submit true --format json"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +workflow-enable",
@@ -4166,7 +5043,10 @@
       "examples": [
         "dws aitable +workflow-enable --base-id B --workflow-id W"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +workflow-disable",
@@ -4182,7 +5062,10 @@
       "examples": [
         "dws aitable +workflow-disable --base-id B --workflow-id W"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +workflow-get",
@@ -4198,7 +5081,10 @@
       "examples": [
         "dws aitable +workflow-get --base-id B --workflow-id W"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +workflow-list",
@@ -4218,7 +5104,12 @@
       "examples": [
         "dws aitable +workflow-list --base-id B"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "page-limit": "50"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "aitable +dashboard-config-example",
@@ -4231,7 +5122,10 @@
       "examples": [
         "dws aitable +dashboard-config-example"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +dashboard-get",
@@ -4247,7 +5141,10 @@
       "examples": [
         "dws aitable +dashboard-get --base-id B --dashboard-id D"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +dashboard-update",
@@ -4263,7 +5160,10 @@
       "examples": [
         "dws aitable +dashboard-update --base-id B --dashboard-id D --name \"新名称\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +dashboard-delete",
@@ -4279,7 +5179,10 @@
       "examples": [
         "dws aitable +dashboard-delete --base-id B --dashboard-id D"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +dashboard-arrange",
@@ -4295,7 +5198,10 @@
       "examples": [
         "dws aitable +dashboard-arrange --base-id B --dashboard-id D"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +dashboard-share-get",
@@ -4311,7 +5217,10 @@
       "examples": [
         "dws aitable +dashboard-share-get --base-id B --dashboard-id D"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +dashboard-share-update",
@@ -4333,7 +5242,10 @@
       "examples": [
         "dws aitable +dashboard-share-update --base-id B --dashboard-id D --enabled true --share-type PUBLIC"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +chart-widgets-example",
@@ -4346,7 +5258,10 @@
       "examples": [
         "dws aitable +chart-widgets-example"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +chart-get",
@@ -4363,7 +5278,10 @@
       "examples": [
         "dws aitable +chart-get --base-id B --dashboard-id D --chart-id C"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +chart-update",
@@ -4381,7 +5299,10 @@
       "examples": [
         "dws aitable +chart-update --base-id B --dashboard-id D --chart-id C --config '{\"chartName\":\"柱图\"}'"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +chart-delete",
@@ -4398,7 +5319,10 @@
       "examples": [
         "dws aitable +chart-delete --base-id B --dashboard-id D --chart-id C"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +chart-share-get",
@@ -4415,7 +5339,10 @@
       "examples": [
         "dws aitable +chart-share-get --base-id B --dashboard-id D --chart-id C"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +chart-share-update",
@@ -4438,7 +5365,10 @@
       "examples": [
         "dws aitable +chart-share-update --base-id B --dashboard-id D --chart-id C --enabled true --share-type ORG"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +export-data",
@@ -4465,7 +5395,10 @@
       "examples": [
         "dws aitable +export-data --base-id B --scope all --format excel"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +import-upload",
@@ -4482,7 +5415,10 @@
       "examples": [
         "dws aitable +import-upload --base-id B --file-name data.xlsx --file-size 204800"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +import-data",
@@ -4498,7 +5434,10 @@
         "dws aitable +import-data --import-id IMPORT_ID",
         "dws aitable +import-data --import-id IMPORT_ID --table-id T"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +advperm-enable",
@@ -4513,7 +5452,10 @@
       "examples": [
         "dws aitable +advperm-enable --base-id B"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +advperm-disable",
@@ -4528,7 +5470,10 @@
       "examples": [
         "dws aitable +advperm-disable --base-id B"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +role-list",
@@ -4543,7 +5488,10 @@
       "examples": [
         "dws aitable +role-list --base-id B"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +role-get",
@@ -4559,7 +5507,10 @@
       "examples": [
         "dws aitable +role-get --base-id B --role-id R"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +role-create",
@@ -4575,7 +5526,10 @@
       "examples": [
         "dws aitable +role-create --base-id B --name \"市场可读\" --sub-roles '[{\"targetId\":\"tbl\",\"targetType\":\"sheet\",\"authLevel\":\"read\"}]'"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +role-update",
@@ -4591,7 +5545,10 @@
       "examples": [
         "dws aitable +role-update --base-id B --role-id R --name \"新名字\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +role-delete",
@@ -4607,7 +5564,10 @@
       "examples": [
         "dws aitable +role-delete --base-id B --role-id R"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +section-create",
@@ -4623,7 +5583,12 @@
       "examples": [
         "dws aitable +section-create --base-id B --name 我的文件夹"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "index": "-1"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "aitable +section-rename",
@@ -4640,7 +5605,10 @@
       "examples": [
         "dws aitable +section-rename --base-id B --section-id S --new-name 新名称"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +section-delete",
@@ -4656,7 +5624,10 @@
       "examples": [
         "dws aitable +section-delete --base-id B --section-id S"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +section-reorder",
@@ -4673,7 +5644,10 @@
       "examples": [
         "dws aitable +section-reorder --base-id B --section-id S --target-index 0"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +section-list-empty",
@@ -4688,7 +5662,10 @@
       "examples": [
         "dws aitable +section-list-empty --base-id B"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +section-list-nodes",
@@ -4703,7 +5680,10 @@
       "examples": [
         "dws aitable +section-list-nodes --base-id B"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +section-move-node",
@@ -4719,7 +5699,12 @@
       "examples": [
         "dws aitable +section-move-node --base-id B --node-id N --new-parent-section-id S"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "target-index": "-1"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "aitable +workflow-deploy",
@@ -4735,7 +5720,12 @@
       "examples": [
         "dws aitable +workflow-deploy --base-id B --dsl '{\"version\":\"workflow-dsl/v1\",\"name\":\"提醒\",\"nodes\":[]}' --enable"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "locale": "zh-CN"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "aitable +datasource-create",
@@ -4753,7 +5743,10 @@
         "dws aitable +datasource-create --base-id BASE123 --datasource-type OA --source-config '{\"processCode\":\"PROC-XXXX\",\"name\":\"采购申请\",\"dataType\":\"recent_time\",\"recentDays\":\"30d\",\"iconUrl\":\"https://example.com/icon.png\",\"url\":\"https://example.com/oa\"}'",
         "dws aitable +datasource-create --base-id BASE123 --datasource-type OA --source-config '{\"processCode\":\"PROC-XXXX\",\"name\":\"采购申请\",\"dataType\":\"time_range\",\"startDate\":\"2025-01-01\",\"endDate\":\"2025-12-31\",\"iconUrl\":\"https://example.com/icon.png\",\"url\":\"https://example.com/oa\"}' --auto"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +datasource-update",
@@ -4770,7 +5763,10 @@
         "dws aitable +datasource-update --base-id BASE123 --table-id TBL456 --auto",
         "dws aitable +datasource-update --base-id BASE123 --table-id TBL456 --source-config '{\"processCode\":\"PROC-YYYY\",\"name\":\"出差申请\",\"dataType\":\"recent_time\",\"recentDays\":\"30d\",\"iconUrl\":\"https://example.com/icon.png\",\"url\":\"https://example.com/oa\"}'"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +datasource-sync",
@@ -4787,7 +5783,10 @@
         "dws aitable +datasource-sync --base-id BASE123 --table-ids TBL1,TBL2",
         "dws aitable +datasource-sync --base-id BASE123 --table-ids TBL1"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +datasource-sync-status",
@@ -4804,7 +5803,10 @@
       "examples": [
         "dws aitable +datasource-sync-status --base-id BASE123 --table-id TBL456 --task-ids TASK1,TASK2"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +datasource-get-config",
@@ -4820,7 +5822,10 @@
       "examples": [
         "dws aitable +datasource-get-config --base-id BASE123 --table-id TBL456"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +datasource-list-sources",
@@ -4836,7 +5841,10 @@
       "examples": [
         "dws aitable +datasource-list-sources --base-id BASE123 --datasource-type OA"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +datasource-get-fields",
@@ -4853,7 +5861,10 @@
       "examples": [
         "dws aitable +datasource-get-fields --base-id BASE123 --datasource-type OA --source-config '{\"processCode\":\"PROC-XXXX\",\"name\":\"采购申请\",\"dataType\":\"recent_time\",\"recentDays\":\"30d\",\"iconUrl\":\"https://example.com/icon.png\",\"url\":\"https://example.com/oa\"}'"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +table-bootstrap",
@@ -4870,7 +5881,10 @@
       "examples": [
         "dws aitable +table-bootstrap --base-id BASE_ID --name \"任务\" --fields '[{\"fieldName\":\"标题\",\"type\":\"text\"}]'"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +record-download-attachment",
@@ -4888,7 +5902,10 @@
       ],
       "constraints": [],
       "examples": [],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +record-write-result",
@@ -4903,7 +5920,10 @@
       ],
       "constraints": [],
       "examples": [],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +view-preset-apply",
@@ -4930,7 +5950,10 @@
       "examples": [
         "dws aitable +view-preset-apply --base-id B --table-id T --name \"待处理\" --view-type Grid --config '{\"visibleFieldIds\":[\"fld1\"]}'"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "drive +find-file",
@@ -4946,7 +5969,10 @@
         "dws drive +find-file --query 季度汇报",
         "dws drive +find-file --query 合同"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "minutes +transcript",
@@ -4965,7 +5991,12 @@
         "dws minutes +transcript --id <taskUuid>",
         "dws minutes +transcript --keyword 周会"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "page-limit": "100"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "todo +created-todos",
@@ -4978,7 +6009,10 @@
       "examples": [
         "dws todo +created-todos"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "attendance +this-month",
@@ -4991,7 +6025,10 @@
       "examples": [
         "dws attendance +this-month"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +resolve-table",
@@ -5007,7 +6044,12 @@
       "examples": [
         "dws aitable +resolve-table --base B --name 任务"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "fuzzy": "false"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "chat +group-members",
@@ -5025,7 +6067,14 @@
       "validation_messages": [
         "--page-delay 必须在0–60000之间",
         "--page-limit 必须在 1-500 之间"
-      ]
+      ],
+      "source_aliases": {},
+      "source_defaults": {
+        "cursor": "0",
+        "page-delay": "0",
+        "page-limit": "50"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "chat +chat-members-list",
@@ -5042,7 +6091,17 @@
       "validation_messages": [
         "--page-delay 必须在0–60000之间",
         "--page-limit 必须在 1-500 之间"
-      ]
+      ],
+      "source_aliases": {
+        "chat": "conversation-id",
+        "open-conversation-id": "conversation-id"
+      },
+      "source_defaults": {
+        "cursor": "0",
+        "page-delay": "0",
+        "page-limit": "50"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "attendance +my-attendance",
@@ -5055,7 +6114,10 @@
       "examples": [
         "dws attendance +my-attendance"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +record-share-links",
@@ -5073,7 +6135,10 @@
         "dws aitable +record-share-links --base B --table T --record-ids rec1,rec2,rec3",
         "dws aitable +record-share-links --base B --table T --record-ids rec1 --view-id viw_VIP"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "mail +find-mail-user",
@@ -5089,7 +6154,10 @@
         "dws mail +find-mail-user --query \"张三\"",
         "dws mail +find-mail-user --query alice --limit 10"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "wiki +resolve-space",
@@ -5105,7 +6173,10 @@
         "dws wiki +resolve-space --name \"产品文档\"",
         "dws wiki +resolve-space --name 产品文档"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "calendar +free",
@@ -5122,7 +6193,10 @@
       "examples": [
         "dws calendar +free --who 张三 --start \"2026-03-10T14:00:00+08:00\" --end \"2026-03-10T18:00:00+08:00\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "contact +org",
@@ -5137,7 +6211,10 @@
       "examples": [
         "dws contact +org --name 张三"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "minutes +replace-batch",
@@ -5158,7 +6235,13 @@
         "dws minutes +replace-batch --id <taskUuid> --pair \"张三=>张三丰\"",
         "dws minutes +replace-batch --id <taskUuid> --pair \"Q2=>第二季度\" --pair \"PM=>产品经理\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "failure-policy": "stop",
+        "page-limit": "100"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "chat +unread-chats",
@@ -5173,7 +6256,10 @@
         "dws chat +unread-chats --count 20",
         "dws chat +unread-chats --exclude-muted"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +list-tables",
@@ -5188,7 +6274,10 @@
       "examples": [
         "dws aitable +list-tables --base B"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "calendar +respond-event",
@@ -5212,7 +6301,10 @@
         "dws calendar +respond-event --event EVENT_ID --response decline",
         "dws calendar +respond-event --event EVENT_ID --response tentative"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "doc +access-grant",
@@ -5225,7 +6317,10 @@
       "examples": [
         "dws doc +access-grant --node <DOC_ID> --to 张三,李四 --role READER"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "doc +access-change",
@@ -5238,7 +6333,10 @@
       "examples": [
         "dws doc +access-change --node <DOC_ID> --to 张三 --role EDITOR"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "doc +access-revoke",
@@ -5251,7 +6349,10 @@
       "examples": [
         "dws doc +access-revoke --node <DOC_ID> --to 张三"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "doc +grant-and-share",
@@ -5266,7 +6367,10 @@
       "examples": [
         "dws doc +grant-and-share --node <DOC_ID> --url https://alidocs.dingtalk.com/i/nodes/<DOC_ID> --to 张三,李四 --role READER"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "contact +resolve-dept",
@@ -5281,7 +6385,10 @@
       "examples": [
         "dws contact +resolve-dept --name 技术部"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +resolve-base",
@@ -5296,7 +6403,12 @@
       "examples": [
         "dws aitable +resolve-base --name 项目管理"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "fuzzy": "false"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "contact +team",
@@ -5311,7 +6423,10 @@
       "examples": [
         "dws contact +team --name 张三"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "aitable +find-record",
@@ -5328,7 +6443,10 @@
         "dws aitable +find-record --base B --table T",
         "dws aitable +find-record --base B --table T --query 张三"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +dm",
@@ -5344,7 +6462,10 @@
       "examples": [
         "dws chat +dm --to 张三 --content \"周报发我一下\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +chat-messages",
@@ -5477,7 +6598,22 @@
         "--max-results 不能小于 0",
         "--max-items 与 --max-results 不能同时使用",
         "--overwrite 仅与 --output 一起使用"
-      ]
+      ],
+      "source_aliases": {
+        "conversation-id": "group",
+        "id": "group",
+        "open-conversation-id": "conversation-id",
+        "start-time": "start",
+        "end-time": "end",
+        "sort": "order",
+        "size": "limit",
+        "page-size": "limit",
+        "max-results": "max-items"
+      },
+      "source_defaults": {
+        "page-limit": "50"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "mail +triage",
@@ -5491,7 +6627,12 @@
         "dws mail +triage --limit 20 --format json",
         "dws mail +triage --query \"isRead:false\" --format json"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "limit": "20"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "calendar +find-room",
@@ -5507,7 +6648,10 @@
       "examples": [
         "dws calendar +find-room --start \"2026-03-10T14:00:00+08:00\" --end \"2026-03-10T15:00:00+08:00\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "calendar +invite",
@@ -5524,7 +6668,10 @@
         "dws calendar +invite --event EVENT_ID --with 张三",
         "dws calendar +invite --event EVENT_ID --with 张三,李四"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "contact +lookup",
@@ -5539,7 +6686,10 @@
       "examples": [
         "dws contact +lookup --name 张三"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "calendar +reschedule",
@@ -5556,7 +6706,10 @@
       "examples": [
         "dws calendar +reschedule --event EVENT_ID --start \"2026-03-10T15:00:00+08:00\" --end \"2026-03-10T16:00:00+08:00\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "todo +due-today",
@@ -5570,7 +6723,10 @@
         "dws todo +due-today",
         "dws todo +due-today --role-types creator,executor"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "mail +recent-mail",
@@ -5585,7 +6741,10 @@
         "dws mail +recent-mail --limit 30",
         "dws mail +recent-mail --email user@company.com --folder 2"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "doc +doc-append",
@@ -5602,7 +6761,10 @@
         "dws doc +doc-append --doc DOC_ID --content \"补充说明：本方案已评审通过。\"",
         "dws doc +doc-append --doc \"https://alidocs.dingtalk.com/i/nodes/<DOC_UUID>\" --content \"追加一行备注\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "calendar +conflicts",
@@ -5616,7 +6778,10 @@
         "dws calendar +conflicts",
         "dws calendar +conflicts --in-days 1"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +search-msg",
@@ -5753,7 +6918,29 @@
         "dws chat +search-msg --group <openConversationId> --query \"changefree\"",
         "dws chat +search-msg --senders <openDingTalkId> --at-me --days 3 --page-all"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {
+        "keyword": "query",
+        "text": "query",
+        "text-query": "query",
+        "conversation-id": "group",
+        "id": "group",
+        "chat-id": "groups",
+        "is-at-me": "at-me",
+        "chat-type": "conversation-type",
+        "start-time": "start",
+        "end-time": "end",
+        "sort": "order",
+        "page-size": "limit",
+        "page-token": "cursor"
+      },
+      "source_defaults": {
+        "days": "7",
+        "limit": "100",
+        "cursor": "0",
+        "page-limit": "20"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "calendar +book",
@@ -5771,7 +6958,10 @@
         "dws calendar +book --title \"周会\" --start \"2026-03-10T14:00:00+08:00\" --end \"2026-03-10T15:00:00+08:00\"",
         "dws calendar +book --title \"Q1 复盘会\" --start \"2026-03-10T14:00:00+08:00\" --end \"2026-03-10T15:00:00+08:00\" --with 张三,李四"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "doc +find-doc",
@@ -5787,7 +6977,10 @@
         "dws doc +find-doc --query 季度汇报",
         "dws doc +find-doc --query 合同 --limit 10"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +my-groups",
@@ -5806,7 +6999,13 @@
         "--limit 必须在 1-200 之间",
         "--page-limit 仅与 --page-all 一起使用",
         "--page-limit 必须在 1-500 之间"
-      ]
+      ],
+      "source_aliases": {},
+      "source_defaults": {
+        "limit": "200",
+        "page-limit": "50"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "calendar +cancel-event",
@@ -5821,7 +7020,10 @@
       "examples": [
         "dws calendar +cancel-event --event EVENT_ID"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "todo +assign",
@@ -5837,7 +7039,10 @@
       "examples": [
         "dws todo +assign --to 张三 --task \"整理周报\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "wiki +wiki-new-doc",
@@ -5853,7 +7058,10 @@
       "examples": [
         "dws wiki +wiki-new-doc --space \"产品文档库\" --title \"需求评审纪要\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "calendar +my-free",
@@ -5867,7 +7075,10 @@
         "dws calendar +my-free",
         "dws calendar +my-free --start 2026-07-10T09:00:00+08:00 --end 2026-07-10T18:00:00+08:00"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "todo +todo-done",
@@ -5882,7 +7093,10 @@
       "examples": [
         "dws todo +todo-done --task 周报"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "contact +dept-members",
@@ -5897,7 +7111,10 @@
       "examples": [
         "dws contact +dept-members --dept 技术部"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +send-to-group",
@@ -5913,7 +7130,10 @@
       "examples": [
         "dws chat +send-to-group --group 项目冲刺 --content \"今天 5 点前提交进度\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "minutes +minutes-search",
@@ -5928,7 +7148,10 @@
       "examples": [
         "dws minutes +minutes-search --query 周会"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "doc +share-doc",
@@ -5944,7 +7167,10 @@
       "examples": [
         "dws doc +share-doc --to 张三 --url https://docs.dingtalk.com/xxx --note \"帮忙过一下\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "calendar +today",
@@ -5957,7 +7183,10 @@
       "examples": [
         "dws calendar +today"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "calendar +free-slots",
@@ -5971,7 +7200,10 @@
         "dws calendar +free-slots",
         "dws calendar +free-slots --in-days 1 --from 9 --to 20"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "calendar +next-event",
@@ -5984,7 +7216,10 @@
       "examples": [
         "dws calendar +next-event"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "contact +me",
@@ -5997,7 +7232,10 @@
       "examples": [
         "dws contact +me"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "todo +overdue",
@@ -6010,7 +7248,10 @@
       "examples": [
         "dws todo +overdue"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "minutes +detail",
@@ -6042,7 +7283,14 @@
         "dws minutes +detail --ids <uuid1,uuid2> --artifacts summary,transcript --transcript-output file",
         "dws minutes +detail --id <taskUuid> --direction 1 --transcript-output both"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "page-limit": "100",
+        "transcript-output": "inline",
+        "output-dir": "minutes-transcripts"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "minutes +latest",
@@ -6056,7 +7304,10 @@
         "dws minutes +latest",
         "dws minutes +latest --keyword 周会"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "mail +unread-mail",
@@ -6071,7 +7322,10 @@
         "dws mail +unread-mail --email user@company.com",
         "dws mail +unread-mail --size 50"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "minutes +action-items",
@@ -6085,7 +7339,10 @@
         "dws minutes +action-items --id <taskUuid>",
         "dws minutes +action-items"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "calendar +tomorrow",
@@ -6098,7 +7355,10 @@
       "examples": [
         "dws calendar +tomorrow"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "todo +remind",
@@ -6113,7 +7373,10 @@
       "examples": [
         "dws todo +remind --task \"交周报\" --at 2026-03-10T18:00:00+08:00"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +broadcast",
@@ -6129,7 +7392,10 @@
       "examples": [
         "dws chat +broadcast --to \"张三,李四,王五\" --content \"今晚 8 点上线，请留意\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "calendar +suggest-time",
@@ -6147,7 +7413,10 @@
         "dws calendar +suggest-time --with 张三,李四 --start \"2026-03-10T09:00:00+08:00\" --end \"2026-03-10T18:00:00+08:00\"",
         "dws calendar +suggest-time --with 张三,李四,王五 --start \"2026-03-10T09:00:00+08:00\" --end \"2026-03-10T18:00:00+08:00\" --duration 30"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +at-me",
@@ -6175,7 +7444,17 @@
       "validation_messages": [
         "--page-limit 仅与 --page-all 一起使用",
         "--page-limit 必须在 1-500 之间"
-      ]
+      ],
+      "source_aliases": {
+        "group-query": "chat-query"
+      },
+      "source_defaults": {
+        "days": "7",
+        "limit": "50",
+        "cursor": "0",
+        "page-limit": "50"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "todo +get-related-tasks",
@@ -6190,7 +7469,10 @@
         "dws todo +get-related-tasks --role-types creator,executor",
         "dws todo +get-related-tasks --status TODO"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "calendar +week",
@@ -6203,7 +7485,10 @@
       "examples": [
         "dws calendar +week"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "todo +assign-multi",
@@ -6219,7 +7504,10 @@
       "examples": [
         "dws todo +assign-multi --to \"张三,李四\" --task \"周五前提交排期\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "mail +search-mail",
@@ -6236,7 +7524,10 @@
         "dws mail +search-mail --query \"from:alice AND date>2025-06-01T00:00:00Z\"",
         "dws mail +search-mail --email user@company.com --query \"hasAttachments:true\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "chat +thread-replies",
@@ -6290,7 +7581,17 @@
         "asc 必须与 --page-all 一起使用",
         "--page-limit 仅与 --page-all 一起使用",
         "--page-limit 必须在 1-500 之间"
-      ]
+      ],
+      "source_aliases": {
+        "topic-id": "thread-id",
+        "page-size": "limit",
+        "sort": "order"
+      },
+      "source_defaults": {
+        "page-delay": "0",
+        "page-limit": "50"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "contact +by-mobile",
@@ -6305,7 +7606,10 @@
       "examples": [
         "dws contact +by-mobile --mobile 13800138000"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "minutes +search",
@@ -6334,7 +7638,14 @@
         "dws minutes +search --query \"周会\" --scope all",
         "dws minutes +search --start \"2026-08-01T00:00:00+08:00\" --scope mine --page-all"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "scope": "all",
+        "limit": "20",
+        "page-limit": "100"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "minutes +download",
@@ -6348,7 +7659,12 @@
         "dws minutes +download --id <taskUuid> --output ./meeting-media",
         "dws minutes +download --ids <uuid1,uuid2> --output-dir ./minutes-downloads"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "output-dir": "minutes-downloads"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "minutes +upload",
@@ -6362,7 +7678,10 @@
         "dws minutes +upload --file ./meeting.mp3 --title \"项目周会\"",
         "dws minutes +upload --file ./meeting.mp4 --input-language zh"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "minutes +upload-and-notify",
@@ -6375,7 +7694,10 @@
       "examples": [
         "dws minutes +upload-and-notify --file ./meeting.mp3 --title \"项目周会\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "minutes +update",
@@ -6391,7 +7713,10 @@
       "examples": [
         "dws minutes +update --id <taskUuid> --title \"Q3 项目复盘\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "minutes +apply-permission",
@@ -6414,7 +7739,10 @@
         "dws minutes +apply-permission --id <taskUuid> --permission view",
         "dws minutes +apply-permission --id <taskUuid> --permission edit"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "minutes +summary",
@@ -6431,7 +7759,10 @@
         "dws minutes +summary --id <taskUuid> --content @summary.md",
         "dws minutes +summary --id <taskUuid> --content -"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "minutes +speaker-replace",
@@ -6448,7 +7779,12 @@
       "examples": [
         "dws minutes +speaker-replace --id <taskUuid> --from \"发言人1\" --to \"张三\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "page-limit": "100"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "minutes +list-mine",
@@ -6463,7 +7799,13 @@
       ],
       "validation_messages": [
         "--limit 和 --page-limit 必须大于 0"
-      ]
+      ],
+      "source_aliases": {},
+      "source_defaults": {
+        "limit": "10",
+        "page-limit": "100"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "minutes +list-shared",
@@ -6478,7 +7820,13 @@
       ],
       "validation_messages": [
         "--limit 和 --page-limit 必须大于 0"
-      ]
+      ],
+      "source_aliases": {},
+      "source_defaults": {
+        "limit": "10",
+        "page-limit": "100"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "minutes +list-all",
@@ -6493,7 +7841,13 @@
       ],
       "validation_messages": [
         "--limit 和 --page-limit 必须大于 0"
-      ]
+      ],
+      "source_aliases": {},
+      "source_defaults": {
+        "limit": "10",
+        "page-limit": "100"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "minutes +record-start",
@@ -6506,7 +7860,10 @@
       "examples": [
         "dws minutes +record-start --session-id <sessionId>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "minutes +record-pause",
@@ -6521,7 +7878,10 @@
       "examples": [
         "dws minutes +record-pause --id <taskUuid>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "minutes +record-resume",
@@ -6536,7 +7896,10 @@
       "examples": [
         "dws minutes +record-resume --id <taskUuid>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "minutes +record-stop",
@@ -6551,7 +7914,10 @@
       "examples": [
         "dws minutes +record-stop --id <taskUuid>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "minutes +record-wrap-up",
@@ -6569,7 +7935,14 @@
       ],
       "validation_messages": [
         "等待超时、轮询间隔和逐字稿页数上限必须大于 0"
-      ]
+      ],
+      "source_aliases": {},
+      "source_defaults": {
+        "wait-timeout": "90",
+        "poll-interval": "3",
+        "page-limit": "100"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "minutes +upload-and-analyze",
@@ -6583,7 +7956,15 @@
         "dws minutes +upload-and-analyze --file ./meeting.mp3 --title \"项目周会\"",
         "dws minutes +upload-and-analyze --file ./meeting.mp4 --artifacts transcript,summary --mindmap"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "complete-timeout": "90",
+        "poll-interval": "3",
+        "wait-timeout": "180",
+        "page-limit": "100"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "minutes +mindmap",
@@ -6601,7 +7982,13 @@
       ],
       "validation_messages": [
         "--timeout 和 --interval 必须大于 0"
-      ]
+      ],
+      "source_aliases": {},
+      "source_defaults": {
+        "timeout": "90",
+        "interval": "3"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "minutes +speaker-insights",
@@ -6619,7 +8006,13 @@
       ],
       "validation_messages": [
         "--timeout 和 --interval 必须大于 0"
-      ]
+      ],
+      "source_aliases": {},
+      "source_defaults": {
+        "timeout": "180",
+        "interval": "3"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "minutes +prepare-asr",
@@ -6634,7 +8027,10 @@
       "examples": [
         "dws minutes +prepare-asr --words \"DWS,听记\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "minutes +sync-asr",
@@ -6649,7 +8045,10 @@
       "examples": [
         "dws minutes +sync-asr --words \"DWS,听记\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "minutes +export-pack",
@@ -6666,7 +8065,12 @@
         "dws minutes +export-pack --id <taskUuid> --output ./minutes-export",
         "dws minutes +export-pack --id <taskUuid> --output ./minutes-export --include-media"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "page-limit": "100"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "minutes +share",
@@ -6682,7 +8086,10 @@
       ],
       "validation_messages": [
         "听记和成员标识数量必须各为 1..50"
-      ]
+      ],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "minutes +unshare",
@@ -6698,7 +8105,10 @@
       ],
       "validation_messages": [
         "听记和成员 UID 数量必须各为 1..50"
-      ]
+      ],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "agoal +report-statistics-list",
@@ -6711,7 +8121,10 @@
       "examples": [
         "dws agoal +report-statistics-list --keyword <KEYWORD>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "agoal +obj-template-list",
@@ -6724,7 +8137,13 @@
       "examples": [
         "dws agoal +obj-template-list --keyword <KEYWORD> --page 1 --page-size 20"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "page": "1",
+        "page-size": "20"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "agoal +contract-fields",
@@ -6737,7 +8156,10 @@
       "examples": [
         "dws agoal +contract-fields --keyword <KEYWORD>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "agoal +user-rules",
@@ -6750,7 +8172,10 @@
       "examples": [
         "dws agoal +user-rules --rule-id <RULE_ID>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "agoal +report-submit-detail",
@@ -6772,7 +8197,13 @@
       "examples": [
         "dws agoal +report-submit-detail --template-id <TEMPLATE_ID> --submit-state NOT_SUBMITTED --page 1 --page-size 20"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "page": "1",
+        "page-size": "20"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "todo +create",
@@ -6786,7 +8217,10 @@
       ],
       "constraints": [],
       "examples": [],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "todo +update",
@@ -6808,7 +8242,10 @@
         }
       ],
       "examples": [],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "todo +search",
@@ -6826,7 +8263,12 @@
       ],
       "constraints": [],
       "examples": [],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "max-pages": "40"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "todo +comment",
@@ -6840,7 +8282,10 @@
       ],
       "constraints": [],
       "examples": [],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "todo +reminder",
@@ -6862,7 +8307,10 @@
         "必须且只能选择 --clear 或 --base-time",
         "--base-time=dueTime 要求 --due-date-offset",
         "--base-time=customTime 要求 --at"
-      ]
+      ],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "todo +upload-attachment",
@@ -6876,7 +8324,10 @@
       ],
       "constraints": [],
       "examples": [],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "todo +get-my-tasks",
@@ -6894,7 +8345,15 @@
       "examples": [
         "dws todo +get-my-tasks --status false --priority 40,30"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "page": "1",
+        "size": "20",
+        "role-types": "executor",
+        "max-pages": "40"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "todo +list-sub",
@@ -6909,7 +8368,10 @@
       "examples": [
         "dws todo +list-sub --task-id <taskId>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "todo +get",
@@ -6924,7 +8386,10 @@
       "examples": [
         "dws todo +get --task-id <taskId>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "todo +list-attachment",
@@ -6939,7 +8404,10 @@
       "examples": [
         "dws todo +list-attachment --task-id <taskId>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "todo +list-comment",
@@ -6954,7 +8422,13 @@
       "examples": [
         "dws todo +list-comment --task-id <taskId>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "page": "1",
+        "size": "20"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "devapp +list",
@@ -6967,7 +8441,10 @@
       "examples": [
         "dws devapp +list"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "devapp +get",
@@ -6982,7 +8459,10 @@
       "examples": [
         "dws devapp +get --unified-app-id <UNIFIED_APP_ID>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "devapp +create",
@@ -6997,7 +8477,10 @@
       "examples": [
         "dws devapp +create --name <NAME>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "devapp +update",
@@ -7012,7 +8495,10 @@
       "examples": [
         "dws devapp +update --unified-app-id <UNIFIED_APP_ID>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "devapp +delete",
@@ -7027,7 +8513,10 @@
       "examples": [
         "dws devapp +delete --unified-app-id <UNIFIED_APP_ID>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "devapp +enable",
@@ -7042,7 +8531,10 @@
       "examples": [
         "dws devapp +enable --unified-app-id <UNIFIED_APP_ID>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "devapp +disable",
@@ -7057,7 +8549,10 @@
       "examples": [
         "dws devapp +disable --unified-app-id <UNIFIED_APP_ID>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "devapp +credentials-get",
@@ -7072,7 +8567,10 @@
       "examples": [
         "dws devapp +credentials-get --unified-app-id <UNIFIED_APP_ID>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "devapp +webapp-get",
@@ -7087,7 +8585,10 @@
       "examples": [
         "dws devapp +webapp-get --unified-app-id <UNIFIED_APP_ID>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "devapp +webapp-config",
@@ -7102,7 +8603,10 @@
       "examples": [
         "dws devapp +webapp-config --unified-app-id <UNIFIED_APP_ID>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "devapp +permission-list",
@@ -7117,7 +8621,12 @@
       "examples": [
         "dws devapp +permission-list --unified-app-id <UNIFIED_APP_ID>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "auth-status": "ALL"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "devapp +permission-add",
@@ -7131,7 +8640,10 @@
       ],
       "constraints": [],
       "examples": [],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "devapp +permission-remove",
@@ -7145,7 +8657,10 @@
       ],
       "constraints": [],
       "examples": [],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "devapp +member-list",
@@ -7160,7 +8675,10 @@
       "examples": [
         "dws devapp +member-list --unified-app-id <UNIFIED_APP_ID> --user-id <USER_ID>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "devapp +member-add",
@@ -7177,7 +8695,10 @@
       "examples": [
         "dws devapp +member-add --unified-app-id <UNIFIED_APP_ID> --user-ids <VALUES> --member-type <MEMBER_TYPE>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "devapp +member-remove",
@@ -7194,7 +8715,10 @@
       "examples": [
         "dws devapp +member-remove --unified-app-id <UNIFIED_APP_ID> --user-ids <VALUES> --member-type <MEMBER_TYPE>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "devapp +security-config",
@@ -7207,7 +8731,10 @@
       ],
       "constraints": [],
       "examples": [],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "devapp +robot-get",
@@ -7222,7 +8749,10 @@
       "examples": [
         "dws devapp +robot-get --unified-app-id <UNIFIED_APP_ID>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "devapp +robot-config",
@@ -7243,7 +8773,10 @@
       "examples": [
         "dws devapp +robot-config --unified-app-id <UNIFIED_APP_ID> --name <BOT_NAME> --mode STREAM"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "devapp +robot-enable",
@@ -7258,7 +8791,10 @@
       "examples": [
         "dws devapp +robot-enable --unified-app-id <UNIFIED_APP_ID>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "devapp +robot-disable",
@@ -7273,7 +8809,10 @@
       "examples": [
         "dws devapp +robot-disable --unified-app-id <UNIFIED_APP_ID>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "devapp +event-list",
@@ -7288,7 +8827,10 @@
       "examples": [
         "dws devapp +event-list --unified-app-id <UNIFIED_APP_ID>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "devapp +event-subscribe",
@@ -7304,7 +8846,10 @@
       "examples": [
         "dws devapp +event-subscribe --unified-app-id <UNIFIED_APP_ID> --event-codes <EVENT_CODES>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "devapp +event-unsubscribe",
@@ -7318,7 +8863,10 @@
       ],
       "constraints": [],
       "examples": [],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "devapp +version-create",
@@ -7333,7 +8881,10 @@
       "examples": [
         "dws devapp +version-create --unified-app-id <UNIFIED_APP_ID> --desc <DESCRIPTION>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "devapp +version-list",
@@ -7348,7 +8899,10 @@
       "examples": [
         "dws devapp +version-list --unified-app-id <UNIFIED_APP_ID>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "devapp +version-get",
@@ -7364,7 +8918,10 @@
       "examples": [
         "dws devapp +version-get --unified-app-id <UNIFIED_APP_ID> --version-id <VERSION_ID>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "devapp +version-check-approval",
@@ -7380,7 +8937,10 @@
       "examples": [
         "dws devapp +version-check-approval --unified-app-id <UNIFIED_APP_ID> --version-id <VERSION_ID>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "devapp +version-publish",
@@ -7394,7 +8954,10 @@
       ],
       "constraints": [],
       "examples": [],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "devapp +version-status",
@@ -7410,7 +8973,10 @@
       "examples": [
         "dws devapp +version-status --unified-app-id <UNIFIED_APP_ID> --version-id <VERSION_ID>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "ding +list",
@@ -7424,7 +8990,12 @@
         "dws ding +list --type ALL",
         "dws ding +list --type DELETED"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "type": "ALL"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "ding +receiver-status",
@@ -7439,7 +9010,10 @@
       "examples": [
         "dws ding +receiver-status --ding-id <DING_ID>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "live +list-my-lives",
@@ -7452,7 +9026,10 @@
       "examples": [
         "dws live +list-my-lives --format json"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "doc +script",
@@ -7479,7 +9056,12 @@
         "init-draft不接受content/node",
         "node不能为空",
         "parse必须且只能提供content或node"
-      ]
+      ],
+      "source_aliases": {},
+      "source_defaults": {
+        "doc-format": "markdown"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "doc +media-list",
@@ -7494,7 +9076,10 @@
       "examples": [
         "dws doc +media-list --node <DOC_ID>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "doc +media-insert",
@@ -7519,7 +9104,10 @@
         "dws doc +media-insert --node <DOC_ID> --file ./report.pdf",
         "dws doc +media-insert --node <DOC_ID> --file ./image.png --ref-block <BLOCK_ID> --where after"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "doc +media-download",
@@ -7535,7 +9123,12 @@
       "examples": [
         "dws doc +media-download --node <DOC_ID> --resource-id <RESOURCE_ID> --output ./downloads/"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "output": "."
+      },
+      "source_message_constraints": []
     },
     {
       "path": "doc +media-preview",
@@ -7551,7 +9144,10 @@
       "examples": [
         "dws doc +media-preview --node <DOC_ID> --resource-id <RESOURCE_ID>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "doc +resource-update",
@@ -7567,7 +9163,12 @@
         "dws doc +resource-update --node <DOC_ID> --image https://example.com/cover.png",
         "dws doc +resource-update --node <DOC_ID> --file ./cover.png"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "position": "0.5"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "doc +resource-download",
@@ -7582,7 +9183,12 @@
       "examples": [
         "dws doc +resource-download --node <DOC_ID> --output ./cover.png"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "output": "."
+      },
+      "source_message_constraints": []
     },
     {
       "path": "doc +resource-delete",
@@ -7597,7 +9203,10 @@
       "examples": [
         "dws doc +resource-delete --node <DOC_ID>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "doc +background-update",
@@ -7613,7 +9222,10 @@
       "examples": [
         "dws doc +background-update --node <DOC_ID> --color \"#E8F2FE\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "doc +background-delete",
@@ -7628,7 +9240,10 @@
       "examples": [
         "dws doc +background-delete --node <DOC_ID>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "doc +review",
@@ -7643,7 +9258,10 @@
       "examples": [
         "dws doc +review --node <DOC_ID>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "doc +comment-update",
@@ -7660,7 +9278,10 @@
       "examples": [
         "dws doc +comment-update --node <DOC_ID> --comment-key <COMMENT_KEY> --content \"已按最新数据修正\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "doc +comment-delete",
@@ -7676,7 +9297,10 @@
       "examples": [
         "dws doc +comment-delete --node <DOC_ID> --comment-key <COMMENT_KEY>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "doc +create",
@@ -7695,7 +9319,12 @@
         "dws doc +create --name \"项目周报\" --content \"# 本周进展\"",
         "dws doc +create --name \"模板\" --content @body.json --doc-format jsonml"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "doc-format": "markdown"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "doc +fetch",
@@ -7728,7 +9357,14 @@
         "dws doc +fetch --node <DOC_ID>",
         "dws doc +fetch --query \"项目周报\" --scope keyword --keyword \"结论\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "context-unit": "characters",
+        "detail": "simple",
+        "scope": "full"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "doc +inspect",
@@ -7744,7 +9380,10 @@
         "dws doc +inspect --node <DOC_ID>",
         "dws doc +inspect --node <DOC_ID> --include-style --include-permissions --include-comments"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "doc +update",
@@ -7775,7 +9414,12 @@
         "dws doc +update --node <DOC_ID> --command append --content \"补充说明\"",
         "dws doc +update --node <DOC_ID> --command block_insert_before --before-block-id <BLOCK_ID> --content \"发布说明\" --heading-level 1"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "doc-format": "markdown"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "doc +checkpoint-update",
@@ -7797,7 +9441,12 @@
         "dws doc +checkpoint-update --node <DOC_ID> --mode append --content @section.md",
         "dws doc +checkpoint-update --node <DOC_ID> --mode overwrite --content @document.md"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "mode": "append"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "doc +export",
@@ -7819,7 +9468,14 @@
         "dws doc +export --node <DOC_ID> --export-format docx --output ./exports/",
         "dws doc +export --node <DOC_ID> --export-format markdown --output ./document.md"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "export-format": "docx",
+        "output": ".",
+        "max-polls": "30"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "doc +import",
@@ -7835,7 +9491,10 @@
         "dws doc +import --file ./report.docx",
         "dws doc +import --file ./notes.md --workspace <WORKSPACE_ID> --name \"会议纪要\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "doc +create-from-template",
@@ -7853,7 +9512,10 @@
       "examples": [
         "dws doc +create-from-template --template-id <TEMPLATE_ID> --name \"我的周报\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "doc +media-upload",
@@ -7867,7 +9529,10 @@
       ],
       "constraints": [],
       "examples": [],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "doc +search",
@@ -7881,7 +9546,13 @@
         "dws doc +search --query \"会议纪要\" --page-all --max-pages 20",
         "dws doc +search --query \"周报\" --limit 10"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "max-pages": "20",
+        "max-items": "500"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "doc +list",
@@ -7895,7 +9566,13 @@
         "dws doc +list --folder DOC_FOLDER_NODE_ID",
         "dws doc +list --workspace WS_ID --limit 20"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "max-pages": "20",
+        "max-items": "500"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "doc +copy",
@@ -7910,7 +9587,10 @@
       "examples": [
         "dws doc +copy --node DOC_ID --folder TARGET_FOLDER_NODE_ID"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "doc +move",
@@ -7925,7 +9605,10 @@
       "examples": [
         "dws doc +move --node DOC_ID --folder TARGET_FOLDER_NODE_ID"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "doc +comment-list",
@@ -7950,7 +9633,10 @@
         "dws doc +comment-list --node DOC_ID --limit 20",
         "dws doc +comment-list --node DOC_ID --limit 20 --cursor NEXT_TOKEN"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "doc +comment-create",
@@ -7967,7 +9653,10 @@
         "dws doc +comment-create --node <DOC_ID> --content \"请补充数据来源\"",
         "dws doc +comment-create --node <DOC_ID> --selection \"计划下周发布\" --content \"请确认日期\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "doc +comment-reply",
@@ -7984,7 +9673,10 @@
       "examples": [
         "dws doc +comment-reply --node DOC_ID --comment-key COMMENT_KEY --content \"同意\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "doc +comment-create-inline",
@@ -8003,7 +9695,10 @@
       "examples": [
         "dws doc +comment-create --node DOC_ID --block-id BLOCK_ID --start 0 --end 10 --content \"这里需要修改\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "doc +export-submit",
@@ -8024,7 +9719,12 @@
       "examples": [
         "dws doc +export-submit --node DOC_ID --export-format markdown"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "export-format": "docx"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "doc +export-get",
@@ -8040,7 +9740,10 @@
         "dws doc +export-get --job-id JOB_ID",
         "dws doc +export-get --job-id JOB_ID --output ./exports/"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "doc +version-save",
@@ -8055,7 +9758,10 @@
       "examples": [
         "dws doc +version-save --node DOC_ID"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "doc +version-list",
@@ -8070,7 +9776,10 @@
       "examples": [
         "dws doc +version-list --node DOC_ID"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "doc +version-revert",
@@ -8087,7 +9796,10 @@
         "dws doc +version-revert --node DOC_ID --version 3",
         "dws doc +version-revert --node DOC_ID --version 3 --yes"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "doc +template-list",
@@ -8106,7 +9818,13 @@
         "dws doc +template-list --source PUBLIC",
         "dws doc +template-list --source PUBLIC --page-all --max-pages 20"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "max-pages": "20",
+        "max-items": "500"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "doc +template-search",
@@ -8126,7 +9844,10 @@
       "examples": [
         "dws doc +template-search --query \"周报\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "doc +template-apply",
@@ -8141,7 +9862,10 @@
       "examples": [
         "dws doc +template-apply --template-id TPL_ID --name \"我的周报\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "report +report-latest",
@@ -8155,7 +9879,10 @@
         "dws report +report-latest",
         "dws report +report-latest --start \"2026-03-01T00:00:00+08:00\" --end \"2026-03-20T00:00:00+08:00\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "report +inbox-list",
@@ -8171,7 +9898,13 @@
       "examples": [
         "dws report +inbox-list --start \"2026-03-10T00:00:00+08:00\" --end \"2026-03-10T23:59:59+08:00\" --cursor 0 --size 20"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "cursor": "0",
+        "size": "20"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "report +outbox-list",
@@ -8184,7 +9917,13 @@
       "examples": [
         "dws report +outbox-list --cursor 0 --size 20"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "cursor": "0",
+        "size": "20"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "report +template-search",
@@ -8199,7 +9938,10 @@
       "examples": [
         "dws report +template-search --query 周报"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "oa +list-pending",
@@ -8212,7 +9954,10 @@
       "examples": [
         "dws oa +list-pending --start 1785513600000 --end 1788191999000 --page 1 --limit 20"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "oa +list-forms",
@@ -8225,7 +9970,13 @@
       "examples": [
         "dws oa +list-forms --cursor 0 --limit 100"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "cursor": "0",
+        "limit": "100"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "oa +search-forms",
@@ -8240,7 +9991,10 @@
       "examples": [
         "dws oa +search-forms --query 报销"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "oa +pending",
@@ -8253,7 +10007,10 @@
       "examples": [
         "dws oa +pending --limit 10"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "oa +done-approvals",
@@ -8266,7 +10023,10 @@
       "examples": [
         "dws oa +done-approvals --limit 10"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "oa +my-initiated",
@@ -8281,7 +10041,13 @@
         "dws oa +my-initiated --query 报销",
         "dws oa +my-initiated --page 2 --limit 50"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "page": "1",
+        "limit": "20"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "oa +approve-by",
@@ -8297,7 +10063,10 @@
         "dws oa +approve-by --keyword 报销",
         "dws oa +approve-by --keyword 出差单 --comment \"同意\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "sheet +list-sheets",
@@ -8312,7 +10081,10 @@
       "examples": [
         "dws sheet +list-sheets --node NODE_ID"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "sheet +read",
@@ -8333,7 +10105,10 @@
       "examples": [
         "dws sheet +read --node NODE_ID --sheet-id SHEET_ID --range \"A1:D10\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "drive +version-history",
@@ -8348,7 +10123,12 @@
       "examples": [
         "dws drive +version-history --node <dentryUuid> --limit 20"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "limit": "20"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "drive +version-get",
@@ -8364,7 +10144,10 @@
       "examples": [
         "dws drive +version-get --node <dentryUuid> --version 3"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "drive +version-download",
@@ -8381,7 +10164,10 @@
       "examples": [
         "dws drive +version-download --node <dentryUuid> --version 3 --output downloads/report-v3.pdf"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "drive +version-revert",
@@ -8397,7 +10183,10 @@
       "examples": [
         "dws drive +version-revert --node <dentryUuid> --version 3"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "drive +recycle-list",
@@ -8410,7 +10199,12 @@
       "examples": [
         "dws drive +recycle-list --limit 20"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "limit": "20"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "drive +recycle-restore",
@@ -8425,7 +10219,10 @@
       "examples": [
         "dws drive +recycle-restore --id <recycleItemId>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "drive +star-list",
@@ -8438,7 +10235,12 @@
       "examples": [
         "dws drive +star-list --limit 20"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "limit": "20"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "drive +publish-get",
@@ -8453,7 +10255,10 @@
       "examples": [
         "dws drive +publish-get --node <dentryUuid>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "drive +upload",
@@ -8491,7 +10296,10 @@
         "dws drive +upload --file report.pdf",
         "dws drive +upload --file notes.txt --workspace <workspaceId>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "drive +inspect",
@@ -8507,7 +10315,10 @@
         "dws drive +inspect --node <dentryUuid>",
         "dws drive +inspect --node <dentryUuid> --include-stats --include-publish"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "drive +create-folder",
@@ -8523,7 +10334,10 @@
         "dws drive +create-folder --name \"项目资料\"",
         "dws drive +create-folder --name \"子目录\" --folder <dentryUuid>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "drive +create-shortcut",
@@ -8538,7 +10352,10 @@
       "examples": [
         "dws drive +create-shortcut --node <SOURCE_NODE> --folder <TARGET_FOLDER>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "drive +rename",
@@ -8554,7 +10371,10 @@
       "examples": [
         "dws drive +rename --node <dentryUuid> --name \"新名称\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "drive +delete",
@@ -8569,7 +10389,10 @@
       "examples": [
         "dws drive +delete --node <dentryUuid>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "drive +list",
@@ -8583,7 +10406,14 @@
         "dws drive +list --limit 20",
         "dws drive +list --folder <dentryUuid> --order-by name --order asc"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "limit": "20",
+        "max-pages": "20",
+        "max-items": "500"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "drive +info",
@@ -8598,7 +10428,10 @@
       "examples": [
         "dws drive +info --node <dentryUuid>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "drive +download",
@@ -8614,7 +10447,10 @@
       "examples": [
         "dws drive +download --node <dentryUuid> --output downloads/report.pdf"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "drive +search",
@@ -8635,7 +10471,13 @@
         "dws drive +search --query \"季度汇报\"",
         "dws drive +search --query \"合同\" --target file --extensions pdf,docx"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "max-pages": "20",
+        "max-items": "500"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "drive +search-docs",
@@ -8650,7 +10492,10 @@
       "examples": [
         "dws drive +search-docs --query \"季度汇报\""
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "drive +copy",
@@ -8665,7 +10510,10 @@
       "examples": [
         "dws drive +copy --node <nodeId> --folder <targetFolderId>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "drive +move",
@@ -8680,7 +10528,10 @@
       "examples": [
         "dws drive +move --node <nodeId> --folder <targetFolderId>"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "drive +recent",
@@ -8694,7 +10545,13 @@
         "dws drive +recent",
         "dws drive +recent --operate-type 1 --creator-type 1"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {
+        "max-pages": "20",
+        "max-items": "500"
+      },
+      "source_message_constraints": []
     },
     {
       "path": "pat +browser-policy",
@@ -8709,7 +10566,10 @@
       "examples": [
         "dws pat +browser-policy --enabled=false --dry-run --format json"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     },
     {
       "path": "pat +authorize",
@@ -8722,7 +10582,10 @@
       "examples": [
         "dws pat +authorize --format json"
       ],
-      "validation_messages": []
+      "validation_messages": [],
+      "source_aliases": {},
+      "source_defaults": {},
+      "source_message_constraints": []
     }
   ],
   "commands": [

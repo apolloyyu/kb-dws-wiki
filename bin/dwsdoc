@@ -543,7 +543,7 @@ def render_contract(path, kind, row, handler_cap=None):
     supplement = next((r for r in details['shortcuts'] if r['path'] == path), {})
     lines = [f'== 命令契约: dws {path} ==', f'# dws {path}',
              'coverage: indexed leaf flags; custom runtime validation not executed',
-             f"source_commit: {supplement.get('source_commit') or 'see KB manifest'}"]
+             f"source_commit: {supplement.get('source_commit') or details.get('source_commit') or 'unknown'}"]
     if kind == 'command':
         for ref in row.get('defs', [])[:1]:
             lines.append(f"引用: {_src_link(ref['file'], ref['line'])}")
@@ -551,6 +551,10 @@ def render_contract(path, kind, row, handler_cap=None):
             lines.append('usage: dws ' + row['usage'])
     else:
         lines.append(f"引用: {_src_link(row['file'], row['line'])}")
+    if supplement.get('source_aliases'):
+        lines.append('source_declared_aliases: ' + json.dumps(supplement['source_aliases'], ensure_ascii=False))
+    for rule in supplement.get('source_message_constraints', []):
+        lines.append('source_mode_parameter_contract: ' + json.dumps(rule, ensure_ascii=False))
     for flag in row.get('flags', []):
         name = flag['name']
         required = flag.get('required') or name in supplement.get('required', [])
@@ -567,8 +571,10 @@ def render_contract(path, kind, row, handler_cap=None):
         lines.append('constraint: ' + json.dumps(rule, ensure_ascii=False))
     for example in supplement.get('examples', []):
         lines.append('source_example: ' + example)
+    projected_messages = {r['source_message'] for r in supplement.get('source_message_constraints', [])}
     for message in supplement.get('validation_messages', []):
-        lines.append('source_validation_message: ' + message)
+        if message not in projected_messages:
+            lines.append('source_validation_message: ' + message)
     handler = next((r for r in details.get('commands', []) if r['path'] == path), None)
     if handler:
         handlers = handler['handlers']
@@ -655,7 +661,7 @@ def check_contract(command):
                     except (csv.Error, StopIteration):
                         errors.append('invalid CSV: ' + name)
                 else:
-                    values[name] = value if equal or value else True
+                    values[name] = (value if equal or value else True) if flag_type in ('bool', 'count') else value
         i += 1
     usage = row.get('usage', '')
     # Positionals need an actual Usage declaration; a parent-path prefix alone
@@ -674,13 +680,28 @@ def check_contract(command):
         present = sum(name in values for name in rule['flags'])
         if (rule['kind'] == 'AtLeastOne' and present == 0) or (rule['kind'] == 'MutuallyExclusive' and present > 1):
             errors.append('constraint mismatch: ' + json.dumps(rule, ensure_ascii=False))
+    effective = dict(supplement.get('source_defaults', {}))
+    effective.update(values)
+    for alias, canonical in supplement.get('source_aliases', {}).items():
+        if alias in values and values[alias] not in ('', None):
+            effective[canonical] = values[alias]
+    def nonempty(name):
+        value = effective.get(name)
+        return len(value) > 0 if isinstance(value, list) else value not in (None, '')
+    for rule in supplement.get('source_message_constraints', []):
+        if effective.get(rule['when_flag']) != rule['when_value']:
+            continue
+        violated = ([name for name in rule['flags'] if nonempty(name)] if rule['kind'] == 'forbidden'
+                    else [name for name in rule['flags'] if not nonempty(name)])
+        if violated:
+            errors.append('source declared mode conflict: ' + rule['source_message'])
     return {'path': path, 'declaration_check_pass': not unknown and not errors,
             'unknown_indexed_flags': unknown, 'errors': errors,
             'coverage': details['coverage'], 'runtime_validation': 'not executed'}
 
 
 def pack_context(entries, cap):
-    return evidence_sections.pack_groups(entries, cap)
+    return evidence_sections.pack_groups(evidence_sections.annotate_groups(entries), cap)
 
 
 def _flag_recall(terms, rows, cap=2):
@@ -1035,6 +1056,7 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q="", raw_question=None):
         primary_docs = product_docs + [r for r in primary_docs if r not in product_docs]
     primary_docs = focused_docs + [r for r in primary_docs if r not in focused_docs]
     body_docs = (primary_docs or docs_hits)[:_n_body]
+    document_projections = []
     for i, r in enumerate(body_docs):
         p = os.path.join(ROOT, r["path"])
         if not os.path.exists(p):
@@ -1045,6 +1067,7 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q="", raw_question=None):
         if r["layer"] == "notes":   # notes 当正文展开时同样去 frontmatter 并展开依据标记,不给模型看原始 {{…}}
             body = notes_refs.expand(ROOT, os.path.basename(r["path"]),
                                      re.sub(r"^---\n.*?\n---\n", "", body, count=1, flags=re.S))
+        original_body = body
         body, selection = evidence_sections.select(body, q, body_cap, symbols=focus_symbols)
         if selection['coverage'] != 'full':
             body += f"\n[正文覆盖: excerpt; 未展开小节: {selection['omitted_units']}; 完整: dwsdoc cat {r['path']}]"
@@ -1052,6 +1075,8 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q="", raw_question=None):
         link = _doc_link(r["path"])
         out.append(f"引用: {link}" if link else "引用: 无(内部篇,只作依据)")
         out.append(body)
+        if r['layer'] in ('docs', 'mirror'):
+            document_projections.append((body, original_body, r['path']))
     others = [r["path"] for r in docs_hits if r not in body_docs][:8]
     if others:
         out.append("\n== 其他篇目(未展开) ==")
@@ -1212,6 +1237,7 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q="", raw_question=None):
         semantic = out[index:index + notes_hit + 1]
         del out[index:index + notes_hit + 1]
         out[0:0] = semantic
+    selected_paths = []
     if not card_fast:
         paths = known_paths
         # Exact references in selected semantic evidence drive supplementary
@@ -1253,6 +1279,16 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q="", raw_question=None):
     timing = evidence_sections.time_fields(raw_question if raw_question is not None else q, prev_q)
     if timing:
         out.insert(0, timing)
+    if len('\n'.join(out)) > _CTX_TOTAL_CAP:
+        # Use the existing complete-block selector to leave space for source
+        # supplements and contracts. A document projection keeps its scope and
+        # continuation; raw tables, fences and source units are never sliced.
+        for old_body, original_body, path in document_projections:
+            body, selection = evidence_sections.select(original_body, q, min(body_cap, 3500),
+                                                       symbols=list(focus_symbols) + selected_paths)
+            if selection['coverage'] != 'full':
+                body += f"\n[正文覆盖: excerpt; 未展开小节: {selection['omitted_units']}; 完整: dwsdoc cat {path}]"
+            out = [body if item == old_body else item for item in out]
     text = pack_context(out, _CTX_TOTAL_CAP)
     print(text)
     return 0
@@ -1337,6 +1373,33 @@ def main():
         print(__doc__)
         return 2
     op = sys.argv[1]
+    if op == 'compose':
+        try:
+            if len(sys.argv) != 4 or sys.argv[2] != '--input':
+                raise ValueError('usage: dwsdoc compose --input <json-file|->')
+            def unique_object(pairs):
+                result = {}
+                for key, value in pairs:
+                    if key in result:
+                        raise ValueError('duplicate JSON key: ' + key)
+                    result[key] = value
+                return result
+            if sys.argv[3] == '-':
+                data = sys.stdin.read(262145)
+            else:
+                with open(sys.argv[3], encoding='utf-8') as stream:
+                    data = stream.read(262145)
+            if len(data) > 262144:
+                raise ValueError('input exceeds 262144 characters')
+            import command_examples
+            payload = json.loads(data, object_pairs_hook=unique_object)
+            result = command_examples.compose(payload, load('commands.jsonl'),
+                                              load('shortcuts.jsonl'), contract_details(), check_contract)
+        except (ValueError, TypeError, OSError, RecursionError) as error:
+            result = {'declaration_check_pass': False, 'errors': [str(error)],
+                      'argv': [], 'shell_text': None, 'runtime_validation': 'not executed'}
+        print(json.dumps(result, ensure_ascii=True))
+        return 0 if result['declaration_check_pass'] else 1
     if op == 'check':
         result = check_contract(' '.join(sys.argv[2:]))
         print(json.dumps(result, ensure_ascii=False))

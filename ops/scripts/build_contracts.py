@@ -29,6 +29,44 @@ def literal_block(text, name):
     return _scan_block(text, match.end() - 1) if match else ''
 
 
+def literal_field(spec, name):
+    fields = _top_fields(spec)
+    if name not in fields:
+        return None
+    a, z = fields[name]
+    value = spec[a:z].strip()
+    if not value.startswith(('"', '`')):
+        return None
+    found = strings(value)
+    return found[0] if found else None
+
+
+def project_message_constraints(messages, enums, flag_names):
+    """Literal declared-message conflicts, not general Go/runtime validation.
+
+    Only complete mode/required-or-forbidden sentences with named schema flags
+    are projected. Conditional prose, credentials categories and other shapes
+    remain raw source messages; no missing condition is inferred.
+    """
+    rows = []
+    for message in messages:
+        match = re.fullmatch(r'--([a-z0-9-]+) ([A-Za-z0-9_-]+) (?:当前)?不接受 (.+)', message)
+        kind = 'forbidden'
+        if not match:
+            match = re.fullmatch(r'--([a-z0-9-]+) ([A-Za-z0-9_-]+) 必须指定 (--[a-z0-9-]+)', message)
+            kind = 'required'
+        if not match or match[2] not in enums.get(match[1], []):
+            continue
+        flags = re.findall(r'--([a-z0-9-]+)', match[3])
+        separators = re.sub(r'--[a-z0-9-]+', '', match[3])
+        if not flags or not set(flags) <= flag_names or not re.fullmatch(r'[、或和/,\s]*', separators):
+            continue
+        rows.append({'when_flag': match[1], 'when_value': match[2], 'kind': kind,
+                     'flags': flags, 'source_message': message,
+                     'coverage': 'literal source validation-message declaration; not runtime execution'})
+    return rows
+
+
 def command_handlers(repo, source, commit):
     """Copy literal leaf handlers, matched to their own indexed definition.
 
@@ -108,9 +146,15 @@ def build(repo, source, commit):
             raise ValueError('Graph/source shortcut identity mismatch: ' + str(identity))
         details = {'path': f"{row['product']} {row['cmd']}", 'file': row['file'],
                    'source_commit': commit, 'source_sha256': hashlib.sha256(path.read_bytes()).hexdigest(),
-                   'enums': {}, 'required': [], 'constraints': [], 'examples': [], 'validation_messages': []}
+                   'enums': {}, 'required': [], 'constraints': [], 'examples': [], 'validation_messages': [],
+                   'source_aliases': {}, 'source_defaults': {}, 'source_message_constraints': []}
+        flag_descriptions = {}
         for match in re.finditer(r'\{\s*Name:\s*"([^"\n]+)"', spec):
             flag = _scan_block(spec, match.start())
+            flag_descriptions[match[1]] = literal_field(flag, 'Desc') or ''
+            default = literal_field(flag, 'Default')
+            if default is not None:
+                details['source_defaults'][match[1]] = default
             enum = strings(literal_block(flag, 'Enum'))
             if enum:
                 details['enums'][match[1]] = enum
@@ -133,6 +177,13 @@ def build(repo, source, commit):
                     message = strings(match[1])
                     if message:
                         details['validation_messages'].append(message[0])
+        names = set(flag_descriptions)
+        for name, desc in flag_descriptions.items():
+            alias = re.match(r'^--([a-z0-9-]+)\s*的.*别名', desc)
+            if alias and alias[1] in names and details['enums'].get(name) == details['enums'].get(alias[1]):
+                details['source_aliases'][name] = alias[1]
+        details['source_message_constraints'] = project_message_constraints(
+            details['validation_messages'], details['enums'], names)
         rows.append(details)
     global_flags = []
     root_path = source / 'internal/app/flags.go'

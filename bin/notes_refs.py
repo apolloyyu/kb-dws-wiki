@@ -2,8 +2,8 @@
 """notes 依据标记的解析、展开与核对(bin/dwsdoc 与 build_dws_kb.py 共用,python3 stdlib)。
 
 notes 只写判断,原文与源码依据用标记引用,不在 note 里转述:
-  {{quote: <docs/ 下路径> | <原文片段>}}   ctx 输出时替换为镜像原文中含该片段的整行(逐字)
-  {{code: <源码路径> | <源码片段>}}        每日构建核对源码仍含该片段;ctx 只显示出处
+  {{quote: <docs/ 下路径> | <原文片段>}}   ctx 展开包含该片段的完整原文块，并保留出处
+  {{code: <源码路径> | <源码片段>}}        每日构建核对;ctx 展开已提取的完整函数并保留出处
   {{absent: <词> @ <glob> [!排除后缀]}}   每日构建核对源码中该词仍为 0 处(否定类结论的依据)
   {{confirmed: <谁 日期>}}                人工确认,无法自动核对,原样标注
 依据失效时 ctx 在该处输出 ⚠ 警告,模型不得把该条当确定结论;构建只记录不失败。
@@ -38,10 +38,11 @@ def quote_line(root, arg):
     fp = os.path.join(root, path)
     if not needle or not os.path.isfile(fp):
         return None
-    lines = open(fp, encoding="utf-8", errors="replace").read().splitlines()
+    with open(fp, encoding="utf-8", errors="replace") as handle:
+        lines = handle.read().splitlines()
     for i, line in enumerate(lines, 1):
         if needle in line:
-            return line.strip(), i, _frontmatter(lines)
+            return line, i, _frontmatter(lines)
     return None
 
 
@@ -52,7 +53,9 @@ def _frontmatter(lines):
             if line.strip() == "---":
                 break
             k, _, v = line.partition(":")
-            meta[k.strip()] = v.split("#", 1)[0].strip().strip('"')
+            value = v.strip()
+            quoted = re.match(r'''^(["'])(.*?)\1(?:\s+#.*)?$''', value)
+            meta[k.strip()] = quoted[2] if quoted else re.split(r"\s+#", value, maxsplit=1)[0]
     return meta
 
 
@@ -123,10 +126,10 @@ def load_check(root):
 
 
 def expand(root, fn, body, checks=None, query="", source_budget=6000, seen_sources=None):
-    """ctx 输出前展开标记:quote 现场取镜像原文,code/absent 读构建核对结果。"""
+    """Source units precede the derived note; unresolved anchors retain links."""
     checks = checks if checks is not None else load_check(root)
     # 构建核对的行号属于 MANIFEST 固定源码，不能给会随主干漂移的链接。
-    source_prefix = GH
+    source_prefix, commit = GH, ""
     try:
         with open(os.path.join(root, "meta", "MANIFEST.json"), encoding="utf-8") as handle:
             commit = json.load(handle).get("source_commit", "")
@@ -143,7 +146,7 @@ def expand(root, fn, body, checks=None, query="", source_budget=6000, seen_sourc
             raw_sources = {(r['path'], r['needle']): r for r in payload['entries']}
     except (OSError, ValueError, UnboundLocalError):
         pass
-    excerpts, seen = [], set()
+    excerpts, quotes, seen = [], [], set()
     shared_seen = seen_sources if seen_sources is not None else set()
 
     def sub(m):
@@ -163,7 +166,17 @@ def expand(root, fn, body, checks=None, query="", source_budget=6000, seen_sourc
                 src = prefix + meta["source_path"].lstrip("/")
             src = src or _split(arg)[0]
             when = f" · {meta['updated_at'][:10]}" if meta.get("updated_at") else ""
-            return f"> 原文({src}{when}): {line}"
+            with open(os.path.join(root, _split(arg)[0]), encoding="utf-8", newline="") as handle:
+                block = evidence_sections.literal_block(handle.read(), no)
+            version = {key: meta[key] for key in ("source_commit", "updated_at") if meta.get(key)}
+            standalone = re.match(r'\s*(?:\||`{3,}|~{3,}|#{1,6}\s)', block['body'])
+            quoted = f"> 原文({src}{when}):" + ('\n' if standalone else ' ') + block['body']
+            unit = evidence_sections.source_unit(quoted, [src], version=version, scope=block['scope'])
+            if unit not in seen and unit not in shared_seen:
+                quotes.append(unit)
+                seen.add(unit)
+                shared_seen.add(unit)
+            return f"(原文依据: {src}{when})"
         if kind == "confirmed":
             return f"(人工确认: {arg};源码与文档中无此信息)"
         r = checks.get((fn, kind, arg))
@@ -174,14 +187,17 @@ def expand(root, fn, body, checks=None, query="", source_budget=6000, seen_sourc
             path, needle = _split(arg)
             at = f"#L{r['line']}" if r and r.get("line") else ""
             raw = raw_sources.get((path, needle))
-            if raw and (path, raw['line']) not in seen and (raw['source_commit'], path, raw['line'], raw['end_line']) not in shared_seen:
-                seen.add((path, raw['line']))
+            if raw:
                 prefix = body[:m.start()]
                 section = prefix[prefix.rfind("\n## "):] if "\n## " in prefix else prefix
                 score = evidence_sections.relevance(section + "\n" + needle, query)
-                code = (f"source_url: {source_prefix}{path}#L{raw['line']}\n"
+                source_ref = f"{source_prefix}{path}#L{raw['line']}"
+                code = (f"source_url: {source_ref}\n"
                         f"coverage: {raw['coverage']}\n```go\n{raw['source']}\n```")
-                excerpts.append((score, len(excerpts), code, (raw['source_commit'], path, raw['line'], raw['end_line'])))
+                unit = evidence_sections.source_unit(code, [source_ref], version=raw['source_commit'])
+                if unit not in seen and unit not in shared_seen:
+                    seen.add(unit)
+                    excerpts.append((score, len(excerpts), unit, unit))
             return f"(源码依据: {source_prefix}{path}{at})"
         term, _, spec = arg.partition("@")
         return f"(源码核对: {spec.split()[0] if spec.split() else spec} 中无「{term.strip()}」)"
@@ -193,9 +209,12 @@ def expand(root, fn, body, checks=None, query="", source_budget=6000, seen_sourc
             selected.append((order, code))
             shared_seen.add(key)
             used += len(code)
-    prefix = ("== 定位锚点的完整函数原文 ==\n" + "\n\n".join(code for _, code in sorted(selected))
-              + f"\nfunction_coverage: {len(selected)}/{len(excerpts)}; remaining anchors retain source links\n\n") if excerpts else ""
-    return prefix + expanded
+    prefix = "\n\n".join(quotes + [code for _, code in sorted(selected)])
+    coverage = (f"function_coverage: {len(selected)}/{len(excerpts)}; remaining anchors retain source links\n"
+                if excerpts else "")
+    summary = evidence_sections.source_unit(coverage + expanded, ["notes/" + fn],
+                                           version=commit, kind='derived_summary')
+    return prefix + ("\n\n" if prefix else "") + summary
 
 
 def contract_lines(body):

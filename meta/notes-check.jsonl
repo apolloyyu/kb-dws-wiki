@@ -1,3 +1,8 @@
+{"note": "chat-and-messaging.md", "kind": "code", "arg": "internal/shortcut/chatmsg/chatmsg.go | func ProjectMessageV1(m map[string]any, includeReactions bool)", "ok": true, "detail": "", "line": 347}
+{"note": "chat-and-messaging.md", "kind": "code", "arg": "internal/shortcut/chatmsg/chatmsg.go | func Text(m map[string]any) any", "ok": true, "detail": "", "line": 240}
+{"note": "chat-and-messaging.md", "kind": "code", "arg": "internal/shortcut/chatmsg/chatmsg.go | func richItemTexts(node any) []string", "ok": true, "detail": "", "line": 1312}
+{"note": "chat-and-messaging.md", "kind": "code", "arg": "internal/shortcut/chatmsg/decrypt.go | DecryptChatMessageItems decrypts encrypted message items in place before", "ok": true, "detail": "", "line": 40}
+{"note": "chat-and-messaging.md", "kind": "code", "arg": "internal/shortcut/chatmsg/decrypt.go | messageDecryptClient == nil || messageDecryptClient.BackendReady == nil", "ok": true, "detail": "", "line": 48}
 {"note": "digital-employee.md", "kind": "quote", "arg": "docs/products/dingtalk-tag/dingtalk-tag-index.md | 数字员工标识只使用", "ok": true, "detail": "", "line": 41}
 {"note": "digital-employee.md", "kind": "quote", "arg": "docs/products/dingtalk-tag/dingtalk-tag-index.md | deap-dev", "ok": true, "detail": "", "line": 42}
 {"note": "digital-employee.md", "kind": "confirmed", "arg": "产品方 2026-10-15", "ok": true, "detail": "", "line": 0}
@@ -12,6 +17,11 @@
 {"note": "digital-employee.md", "kind": "quote", "arg": "docs/skills/dingtalk-tag.md | robotUid", "ok": true, "detail": "", "line": 52}
 {"note": "digital-employee.md", "kind": "quote", "arg": "docs/skills/dingtalk-tag.md | 不要回退到机器人创建流程", "ok": true, "detail": "", "line": 53}
 {"note": "digital-employee.md", "kind": "absent", "arg": "robotcode @ internal/helpers/deap_agent*.go", "ok": true, "detail": "", "line": 0}
+{"note": "event-system.md", "kind": "code", "arg": "internal/event/bus/lockfile.go | func Acquire(path string)", "ok": true, "detail": "", "line": 71}
+{"note": "event-system.md", "kind": "code", "arg": "internal/app/event_command.go | 仅 --foreground 模式生效：跳过单实例锁", "ok": true, "detail": "", "line": 351}
+{"note": "event-system.md", "kind": "code", "arg": "internal/event/source/personal.go | emit(raw)", "ok": true, "detail": "", "line": 364}
+{"note": "event-system.md", "kind": "code", "arg": "internal/event/source/personal.go | resp := payload.NewSuccessDataFrameResponse()", "ok": true, "detail": "", "line": 342}
+{"note": "event-system.md", "kind": "code", "arg": "internal/event/source/personal.go | personal source: write ack:", "ok": true, "detail": "", "line": 370}
 {"note": "rate-limit-and-backend.md", "kind": "quote", "arg": "docs/upstream/architecture.md | execute MCP JSON-RPC calls", "ok": true, "detail": "", "line": 16}
 {"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/app/direct_runtime.go | mcp-gw.dingtalk.com", "ok": true, "detail": "", "line": 116}
 {"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/app/server_failure_classifier.go | WithOperation(\"tools/call\")", "ok": true, "detail": "", "line": 140}

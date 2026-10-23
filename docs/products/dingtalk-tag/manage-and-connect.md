@@ -1,6 +1,6 @@
 ---
 source_path: "skills/mono/references/products/dingtalk-tag/manage-and-connect.md"
-source_commit: "45ba34430"
+source_commit: "52f38a4a6"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 

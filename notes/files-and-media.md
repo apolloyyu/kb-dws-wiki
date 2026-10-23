@@ -1,6 +1,6 @@
 ---
 title: 富媒体与文件
-source_refs: internal/helpers/drive.go, internal/helpers/drive_transfer.go, internal/helpers/doc_media_upload.go, internal/helpers/chat_media_upload.go, internal/helpers/doc.go, internal/helpers/sheet.go, internal/localio/download.go, internal/localio/upload.go, internal/localio/publish.go, internal/localio/input.go
+source_refs: internal/helpers/drive.go, internal/helpers/drive_transfer.go, internal/helpers/doc_media_upload.go, internal/helpers/chat_media_upload.go, internal/helpers/doc.go, internal/helpers/sheet.go, internal/shortcut/doc/content_shortcuts.go, internal/shortcut/doc/common.go, internal/localio/download.go, internal/localio/upload.go, internal/localio/publish.go, internal/localio/input.go
 ---
 
 # 富媒体与文件
@@ -45,13 +45,24 @@ source_refs: internal/helpers/drive.go, internal/helpers/drive_transfer.go, inte
 
 ## 媒体上传（文档附件 / 群文件）
 
-- 文档媒体上传：`internal/helpers/doc_media_upload.go` 的 `runDocMediaUpload`，流程为 `get_doc_attachment_upload_info` → PUT；doc media 命令组在 doc.go 约 L2847。
+- 文档媒体上传：`internal/helpers/doc_media_upload.go` 的 `runDocMediaUpload`，流程为 `get_doc_attachment_upload_info` → PUT；doc media 命令组在 doc.go 约 L2966。
 - 群聊文件上传：`internal/helpers/chat_media_upload.go`，命令挂在 chat.go 约 L2130。
 
 ## doc / sheet 命令组织
 
-- 文档：`newDocCommand()`（internal/helpers/doc.go 约 L1154）；快捷层在 `internal/shortcut/doc/`。
+- 文档：`newDocCommand()`（internal/helpers/doc.go 约 L1249）；快捷层在 `internal/shortcut/doc/`。
 - 电子表格：`newSheetCommand()`（internal/helpers/sheet.go 约 L23），按能力细分为 `sheet_dimension` / `sheet_chart` / `sheet_comment` / `sheet_float_image` / `sheet_filter_view` / `sheet_batch.go` 等文件；快捷层在 `internal/shortcut/sheet/`。
+
+## 文档创建的标题去重（doc +create / doc create）
+
+Markdown 正文开头与文档名相同的一级标题会在写入前被剥离，避免标题既进文档名又进正文：
+
+- 实现为 `helpers.StripDuplicateTitle(markdown, name)`（internal/helpers/doc.go L5284）；`dws doc +create` 在 `--doc-format markdown` 且内容与名称均非空时调用（internal/shortcut/doc/content_shortcuts.go L106），标准命令 `dws doc create` 在 markdown 分支同样调用（doc.go L1741），JSONML 分支不做去重；
+- `+create` 省略 `--name` 时先由 `docDefaultTitle` 从 Markdown 首个一级标题推断名称（content_shortcuts.go L103），再执行同一去重，因此推断出的标题也会被剥离；
+- 判定规则：先跳过前导空行；首个非空行不是 `# ` 开头、或其前导空格超过 3 个（4 空格 / Tab 缩进即缩进代码块）时原样返回；标题文本经 `normalizeHeadingText`（doc.go L5323）去掉尾部 ATX `#` 与 `**` / `__` / `~~` / `*` / `_` / 反引号 后小写比较，与文档名不同则原样返回；
+- 正文只剩该标题时结果为空字符串，`markdown` 参数不再下发（`--dry-run` 预览里也没有 `markdown` 字段）；
+- 去重发生在分片（`SplitMarkdownForAppend`）与回读校验之前，`+create` 的回读校验比对的是剥离后的正文；
+- `--content` 的字面量 / `-`（stdin）/ `@file` 三种输入都保留内容首尾空白（TrimSpace 后的值只用于判定 `-` 与 `@` 前缀），并统一把 CRLF / CR 归一为 LF（internal/shortcut/doc/common.go L63）。
 
 ## internal/localio：产品共享的安全本地 I/O
 

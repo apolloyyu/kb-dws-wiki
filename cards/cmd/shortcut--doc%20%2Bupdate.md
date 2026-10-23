@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws doc +update
 description: 追加、覆盖或按 block 精确更新文档内容
-source: internal/shortcut/doc/content_shortcuts.go:426
+source: internal/shortcut/doc/content_shortcuts.go:429
 visible_flags: 14
 
 ## Flags

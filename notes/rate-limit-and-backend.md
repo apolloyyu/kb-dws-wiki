@@ -2,9 +2,13 @@
 title: dws 的限流与后端调用路径
 maintenance: manual
 intents: ratelimit
+contract:
+  - ratelimit：dws 产品命令走钉钉 MCP 网关(mcp-gw.dingtalk.com)，不走开放平台 OpenAPI；开放平台「调用频次与限流」的 QPS、月调用量、IP 维度、90018/90002/90020、升级专业版扩容只适用于 dws api 直调 OpenAPI，不得套用到产品命令；RATE_LIMIT_ERROR 阈值/计数维度/恢复时间/能否提升 dws 未说明，不得给具体数字；--page-delay 只能推荐给命令卡里有该参数的命令。
 ---
 
 # dws 的限流与后端调用路径
+
+回答「dws 为什么被限流 / 限流阈值是多少 / 怎么提升 / RATE_LIMIT_ERROR 是什么 / dws 是不是走 OpenAPI」时以本篇为准。本篇只写判断;原文由依据标记在输出时从镜像层逐字取出,源码依据由每日构建核对。
 
 ## 两条调用路径:产品命令 ≠ OpenAPI
 
@@ -40,7 +44,7 @@ intents: ratelimit
 - 分页拉取时加间隔:`--page-delay <毫秒>` 只能推荐给命令卡里有该参数的命令(如 `chat +chat-messages`、`+recent-conversations` 等);其他命令(如 `chat message search-advanced`)没有这个参数,不得推荐。
   {{quote: docs/products/chat.md | `--page-delay` 默认 200ms}}
 - 需要实时收消息时用事件订阅(`dws event consume`),不要高频轮询拉消息。
-- 排障证据字段：报错中的 Trace ID 和 Server Code。
+- 持续限流时保留报错里的 Trace ID 和 Server Code,到 dws 开源仓库提 issue 或通过开放平台工单反馈。
 
 ## 容易混淆的同名概念
 

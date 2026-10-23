@@ -3,9 +3,13 @@ title: dws 登录态与 token 的有效期、登录等待时长
 maintenance: manual
 intents: lifetime
 triggers: refresh_token, refresh token, refreshtoken, refreshexpires, refresh_expires, 登录态, 登录状态, dws auth, auth login, auth status, --token, --device, 设备码, 扫码登录, 重新登录, 重新扫码, 掉线
+contract:
+  - lifetime：下列时长都是 dws CLI 在本地写入或等待的值，只证明 CLI 怎么记录、等多久；服务端实际何时让 refresh_token 失效、刷新时是否续期，源码证明不了，回答须写明这一点，不得说成「钉钉规定」。
 ---
 
 # dws 登录态与 token 的有效期
+
+回答「登录态多久过期 / refresh_token 有效期 / 手动导入的 token 能用多久 / 扫码要在多久内确认」时以本篇为准。本篇只写判断;源码依据由每日构建核对,上游改了会提示「依据已变更」。
 
 ## 登录后 CLI 本地记录的到期时间
 

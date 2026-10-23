@@ -24,7 +24,6 @@ kb-dingtalk-open-platform 范式:**事实走确定性层(零 LLM),行为语义�
 1. **命令/flag 存在性与拼写** → `python3 bin/dwsdoc cmd|short|flag <词>`
    命中即得 flags 全表+源码行号;查不到≠不存在,回退源码 grep(见 4)。
 2. **产品用法/使用场景** → `python3 bin/dwsdoc find <词>` 定位 `docs/products/<产品>.md` 后 cat 原文。
-   - 点名控件/模型等精确标识符时，`ctx`优先展开匹配的小节，保留通用约束与引用，并明确标注为摘录；不能用模板定义替代提交值格式。镜像引用按其`source_commit`固定，不把main的新行为当作用户旧版本事实。
 3. **行为语义(为什么/机制)** → `notes/` 对应篇;结论须以其标注的 文件:行号 回源码复核。
 4. **兜底** → dws 源码仓库(github.com/DingTalk-Real-AI/dingtalk-workspace-cli)grep,
    版本判定看 `docs/CHANGELOG.md`(本库镜像,与上游同源)。

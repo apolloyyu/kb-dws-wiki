@@ -3,9 +3,15 @@ title: 数字员工(dingtalk-tag):是什么、怎么建、怎么开通、群里�
 maintenance: manual
 intents: origin, access
 triggers: 数字员工, dingtalk-tag, agent-uuid, agentuuid, digital_employee
+contract:
+  - deap1：现在的数字员工 = dws dingtalk-tag(标识 agentUuid)；DEAP 平台界面「创建智能体/助理→发布→加到群」是 DEAP 1.0 的 AI 助理，不得列为数字员工的创建、配置或入群方式(含「方式一：DEAP 平台可视化创建」)。
+  - access：正式 connect 绑定(platform 策略)时谁能对话由平台按可见范围(set-visibility+publish)控制，群内已入群后原生 @ 即回复，不叠加本地白名单；只有无服务端绑定的旧本地通道才用 connect --allowed-users/--allowed-groups 白名单；入群操作方式文档未说明，只答「文档未说明」；应用机器人命令(add-bot/robotCode)不得套用到数字员工。
+  - origin：创建走 manage create(只建草稿)→set-visibility→publish；开通填 notes 里逐字给出的灰度申请表，申请表只用于申请开通，不当作咨询渠道。
 ---
 
 # 数字员工(dingtalk-tag)
+
+回答数字员工的定义、创建、开通、群里谁能对话、和机器人/DEAP 的关系时以本篇为准。本篇只写判断;原文由依据标记在输出时从镜像层逐字取出,上游改了会随之更新。直接给结论,不要先推测再改口。
 
 ## 是什么、和 DEAP 1.0 助理的区别
 

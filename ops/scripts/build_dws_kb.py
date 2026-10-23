@@ -945,9 +945,6 @@ def main():
         for r in shortcuts:
             f.write(json.dumps(r, ensure_ascii=False) + "\n")
 
-    from build_contracts import build as build_contracts
-    print(build_contracts(REPO, src, commit))
-
     # 图谱落盘后立即生成答案卡；build_cards 自带原子替换与三道地板，失败则本构建失败，
     # 不允许每日流水线把半套/低覆盖率卡片 push 出去。
     card_script = os.path.join(HERE, "build_cards.py")
@@ -975,9 +972,6 @@ def main():
     for r in stale:
         print(f"NOTES_STALE {r['note']} {r['kind']}: {r['detail']}")
     print(f"notes 依据核对: {len(checks)} 处,失效 {len(stale)} 处")
-    from build_note_sources import build as build_note_sources
-    print(build_note_sources(REPO, src, commit))
-
     # graph/cards/meta 全部落盘后跑 ctx 契约回归；候选排序、复杂问法回退或证据边界
     # 任一漂移都必须让每日确定性构建失败，不能只靠单独手工执行测试发现。
     ctx_test = subprocess.run([sys.executable, os.path.join(HERE, "test_dwsdoc_ctx.py")],

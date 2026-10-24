@@ -7,7 +7,7 @@
 {"note": "digital-employee.md", "kind": "quote", "arg": "docs/products/dingtalk-tag/dingtalk-tag-index.md | deap-dev", "ok": true, "detail": "", "line": 42}
 {"note": "digital-employee.md", "kind": "confirmed", "arg": "产品方 2026-10-15", "ok": true, "detail": "", "line": 0}
 {"note": "digital-employee.md", "kind": "quote", "arg": "docs/products/dingtalk-tag/dingtalk-tag-index.md | 创建 / 新建数字员工", "ok": true, "detail": "", "line": 22}
-{"note": "digital-employee.md", "kind": "quote", "arg": "docs/external/open-platform/dws-cli-log.md | 数字员工创建灰度申请", "ok": true, "detail": "", "line": 105}
+{"note": "digital-employee.md", "kind": "quote", "arg": "docs/external/open-platform/dws-cli-log.md | 数字员工创建灰度申请", "ok": true, "detail": "", "line": 168}
 {"note": "digital-employee.md", "kind": "code", "arg": "internal/helpers/deap_agent_access_policy.go | validMachineString(b.RuntimeBindingID)", "ok": true, "detail": "", "line": 23}
 {"note": "digital-employee.md", "kind": "quote", "arg": "docs/upstream/digital-employee-adapters.md | 钉钉平台保证私聊可见即可以聊天", "ok": true, "detail": "", "line": 72}
 {"note": "digital-employee.md", "kind": "quote", "arg": "docs/upstream/digital-employee-adapters.md | 投递权限由平台生效", "ok": true, "detail": "", "line": 74}

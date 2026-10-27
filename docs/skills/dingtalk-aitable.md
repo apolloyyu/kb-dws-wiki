@@ -1,6 +1,6 @@
 ---
 source_path: "skills/multi/dingtalk-aitable/SKILL.md"
-source_commit: "52f38a4a6"
+source_commit: "49a591be1"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 

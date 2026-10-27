@@ -4,7 +4,7 @@ kind: command
 completeness: full
 usage: dws auth migrate-keychain
 description: 将 macOS 系统 Keychain 登录态安全迁移到 file-DEK
-source: internal/app/auth_command.go:707
+source: internal/app/auth_command.go:693
 visible_flags: 1
 
 ## Flags
@@ -16,4 +16,4 @@ visible_flags: 1
 - dws auth import
 - dws auth login
 - dws auth logout
-- dws auth reset
+- dws auth provider-login

@@ -23,4 +23,4 @@ partial_reason: unverified_flags,empty_flag_name
 - dws auth login
 - dws auth logout
 - dws auth migrate-keychain
-- dws auth reset
+- dws auth provider-login

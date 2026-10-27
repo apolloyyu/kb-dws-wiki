@@ -38,16 +38,16 @@
 {"note": "rate-limit-and-backend.md", "kind": "absent", "arg": "x-ratelimit @ internal/transport/*.go !_test.go", "ok": true, "detail": "", "line": 0}
 {"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/shortcut/chat/active_conversations_result.go | details[\"retryAfter\"]", "ok": true, "detail": "", "line": 164}
 {"note": "token-lifetime.md", "kind": "code", "arg": "pkg/config/constants.go | DefaultRefreshTokenLifetime = 30 * 24 * time.Hour", "ok": true, "detail": "", "line": 127}
-{"note": "token-lifetime.md", "kind": "code", "arg": "internal/auth/oauth_helpers.go | RefreshExpAt: now.Add(config.DefaultRefreshTokenLifetime)", "ok": true, "detail": "", "line": 374}
-{"note": "token-lifetime.md", "kind": "code", "arg": "internal/auth/oauth_helpers.go | updated, err := p.parseTokenResponse(resp)", "ok": true, "detail": "", "line": 235}
+{"note": "token-lifetime.md", "kind": "code", "arg": "internal/auth/oauth_helpers.go | RefreshExpAt: now.Add(config.DefaultRefreshTokenLifetime)", "ok": true, "detail": "", "line": 422}
+{"note": "token-lifetime.md", "kind": "code", "arg": "internal/auth/oauth_helpers.go | updated, err := p.parseTokenResponse(resp)", "ok": true, "detail": "", "line": 244}
 {"note": "token-lifetime.md", "kind": "code", "arg": "internal/auth/force_refresh.go | refresh_token 已过期", "ok": true, "detail": "", "line": 153}
 {"note": "token-lifetime.md", "kind": "code", "arg": "pkg/config/constants.go | DefaultAccessTokenExpiry = 7200", "ok": true, "detail": "", "line": 124}
-{"note": "token-lifetime.md", "kind": "code", "arg": "internal/auth/oauth_helpers.go | expiresIn = config.DefaultAccessTokenExpiry", "ok": true, "detail": "", "line": 368}
-{"note": "token-lifetime.md", "kind": "code", "arg": "internal/auth/token.go | Give 5-minute buffer before actual expiry", "ok": true, "detail": "", "line": 245}
-{"note": "token-lifetime.md", "kind": "code", "arg": "internal/app/auth_command.go | json:\"refresh_expires_at,omitempty\"", "ok": true, "detail": "", "line": 1894}
+{"note": "token-lifetime.md", "kind": "code", "arg": "internal/auth/oauth_helpers.go | expiresIn = config.DefaultAccessTokenExpiry", "ok": true, "detail": "", "line": 416}
+{"note": "token-lifetime.md", "kind": "code", "arg": "internal/auth/token.go | Give 5-minute buffer before actual expiry", "ok": true, "detail": "", "line": 252}
+{"note": "token-lifetime.md", "kind": "code", "arg": "internal/app/auth_command.go | json:\"refresh_expires_at,omitempty\"", "ok": true, "detail": "", "line": 1880}
 {"note": "token-lifetime.md", "kind": "code", "arg": "pkg/config/constants.go | ManualTokenExpiry = 24 * time.Hour", "ok": true, "detail": "", "line": 114}
-{"note": "token-lifetime.md", "kind": "code", "arg": "internal/app/auth_command.go | ExpiresAt:   time.Now().Add(config.ManualTokenExpiry)", "ok": true, "detail": "", "line": 189}
-{"note": "token-lifetime.md", "kind": "code", "arg": "internal/app/auth_command.go | AccessToken: cfg.Token,", "ok": true, "detail": "", "line": 188}
+{"note": "token-lifetime.md", "kind": "code", "arg": "internal/app/auth_command.go | ExpiresAt:   time.Now().Add(config.ManualTokenExpiry)", "ok": true, "detail": "", "line": 191}
+{"note": "token-lifetime.md", "kind": "code", "arg": "internal/app/auth_command.go | AccessToken: cfg.Token,", "ok": true, "detail": "", "line": 190}
 {"note": "token-lifetime.md", "kind": "code", "arg": "internal/auth/device_flow.go | maxPollTotalWait = 10 * time.Minute", "ok": true, "detail": "", "line": 44}
 {"note": "token-lifetime.md", "kind": "code", "arg": "internal/auth/device_flow.go | elapsed >= maxPollTotalWait || elapsed >= deadline", "ok": true, "detail": "", "line": 527}
 {"note": "token-lifetime.md", "kind": "code", "arg": "internal/auth/device_flow.go | resp.ExpiresIn = 900", "ok": true, "detail": "", "line": 453}

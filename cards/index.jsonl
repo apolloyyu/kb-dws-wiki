@@ -275,6 +275,7 @@
 {"completeness": "full", "key": "auth login", "kind": "command", "path": "cards/cmd/command--auth%20login.md", "product": "auth"}
 {"completeness": "partial", "key": "auth logout", "kind": "command", "path": "cards/cmd/command--auth%20logout.md", "product": "auth"}
 {"completeness": "full", "key": "auth migrate-keychain", "kind": "command", "path": "cards/cmd/command--auth%20migrate-keychain.md", "product": "auth"}
+{"completeness": "full", "key": "auth provider-login", "kind": "command", "path": "cards/cmd/command--auth%20provider-login.md", "product": "auth"}
 {"completeness": "partial", "key": "auth reset", "kind": "command", "path": "cards/cmd/command--auth%20reset.md", "product": "auth"}
 {"completeness": "partial", "key": "auth status", "kind": "command", "path": "cards/cmd/command--auth%20status.md", "product": "auth"}
 {"completeness": "full", "key": "calendar", "kind": "command", "path": "cards/cmd/command--calendar.md", "product": "calendar"}

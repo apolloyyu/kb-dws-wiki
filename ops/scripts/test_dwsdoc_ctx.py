@@ -2,6 +2,7 @@
 """dwsdoc ctx/card 的快路径与证据边界回归测试。"""
 import os
 import re
+import runpy
 import subprocess
 import unittest
 
@@ -44,6 +45,19 @@ class DwsdocCtxContractTest(unittest.TestCase):
         self.assertIn("card=1(fast=1)", out)
         self.assertIn("== 证据契约(回答边界) ==", out)
         self.assertIn("命令卡只证明", out)
+
+    def test_related_tie_does_not_make_card_confident(self):
+        confident = runpy.run_path(DWSDOC)["_card_confident"]
+        rows = [{"cmd": "auth login", "_ctx_score": 10, "_ctx_name_score": 5},
+                {"cmd": "auth provider-login", "_ctx_score": 10, "_ctx_name_score": 5}]
+        card = {"kind": "command", "body": "## Related\n- dws auth provider-login\n"}
+        self.assertFalse(confident(rows, card))
+        self.assertFalse(confident(rows, {"kind": "command", "body": ""}))
+        self.assertFalse(confident([]))
+        rows[0]["_ctx_score"] = 12
+        self.assertTrue(confident(rows, card))
+        rows[0]["_ctx_score"] = 2000
+        self.assertTrue(confident(rows, card))
 
     def test_natural_login_question_keeps_full_context(self):
         out = run_dwsdoc("ctx", "dws 怎么登录")

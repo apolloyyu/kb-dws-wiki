@@ -408,7 +408,7 @@ def _evidence_contract(intent=None, has_card=True, with_notes=False):
 
 
 def _card_confident(rows, card=None):
-    """首名明显胜出，或同分第二名是首卡确定性 Related 兄弟时才走快路径。"""
+    """只有首名明显胜出才走快路径；Related 兄弟同分仍属自然问句歧义。"""
     if not rows:
         return False
     top = rows[0].get("_ctx_score", 0)
@@ -417,13 +417,10 @@ def _card_confident(rows, card=None):
         return name_score > 0
     second = rows[1].get("_ctx_score", 0) if len(rows) > 1 else 0
     clear = not second or top >= second * 1.15
-    sibling_tie = False
-    if card and len(rows) > 1 and second and abs(top - second) < 1e-6:
-        r = rows[1]
-        key = (r["cmd"].strip() if card["kind"] == "command"
-               else f"{r.get('product', '')} {r['cmd']}".strip())
-        sibling_tie = f"- dws {key}\n" in card["body"] + "\n"
-    return name_score > 0 and top >= 6 and (clear or sibling_tie)
+    # Related 只说明命令彼此相关,不能消除自然问句的歧义。2026-10-27 上游新增
+    # `auth provider-login` 后,它与 `auth login` 同分且出现在 Related 中,旧逻辑反而
+    # 把「dws 怎么登录」从 fast=0 升成 fast=1,候选越多越确定,违背置信度语义。
+    return name_score > 0 and top >= 6 and clear
 
 
 def _flag_recall(terms, rows, cap=2):

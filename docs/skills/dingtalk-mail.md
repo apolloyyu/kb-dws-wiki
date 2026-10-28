@@ -1,6 +1,6 @@
 ---
 source_path: "skills/multi/dingtalk-mail/SKILL.md"
-source_commit: "ee61f8945"
+source_commit: "cd84af493"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 

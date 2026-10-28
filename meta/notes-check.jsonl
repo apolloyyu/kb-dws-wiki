@@ -13,7 +13,7 @@
 {"note": "digital-employee.md", "kind": "quote", "arg": "docs/upstream/digital-employee-adapters.md | 投递权限由平台生效", "ok": true, "detail": "", "line": 74}
 {"note": "digital-employee.md", "kind": "code", "arg": "internal/helpers/deap_agent_runtime.go | employeeBindingAccessPolicy(r.cfg.Binding) == \"platform\"", "ok": true, "detail": "", "line": 244}
 {"note": "digital-employee.md", "kind": "quote", "arg": "docs/upstream/digital-employee-adapters.md | 其他本地通道和机器人保留本地用户/群白名单", "ok": true, "detail": "", "line": 74}
-{"note": "digital-employee.md", "kind": "quote", "arg": "docs/products/dingtalk-tag/manage-and-connect.md | 默认仅主管可用", "ok": true, "detail": "", "line": 41}
+{"note": "digital-employee.md", "kind": "quote", "arg": "docs/products/dingtalk-tag/manage-and-connect.md | 默认仅主管可用", "ok": true, "detail": "", "line": 43}
 {"note": "digital-employee.md", "kind": "quote", "arg": "docs/skills/dingtalk-tag.md | robotUid", "ok": true, "detail": "", "line": 52}
 {"note": "digital-employee.md", "kind": "quote", "arg": "docs/skills/dingtalk-tag.md | 不要回退到机器人创建流程", "ok": true, "detail": "", "line": 53}
 {"note": "digital-employee.md", "kind": "absent", "arg": "robotcode @ internal/helpers/deap_agent*.go", "ok": true, "detail": "", "line": 0}

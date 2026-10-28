@@ -1,10 +1,13 @@
 ---
 source_path: "skills/mono/references/products/wiki.md"
-source_commit: "49a591be1"
+source_commit: "ee61f8945"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 
 # 知识库 (wiki) 命令参考
+
+脑图创建边界：`wiki node create --type amind` 只创建空白文件，不携带初始化主题内容。用户要求按已有内容或层级创建脑图时，转 [独立脑图](./mind.md) 的 `dws mind create`；不向 wiki 命令猜传 source。
+
 
 ## 查询命令帮助
 

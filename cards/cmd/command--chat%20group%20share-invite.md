@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat group share-invite
 description: 分享群聊链接到会话
 example: dws chat group share-invite --source <被分享群openConversationId> --target <目标会话openConversationId>
-source: internal/helpers/chat.go:11368
+source: internal/helpers/chat.go:11744
 visible_flags: 6
 
 ## Flags
@@ -22,4 +22,4 @@ visible_flags: 6
 - dws chat group create
 - dws chat group dismiss
 - dws chat group get-by-group-id
-- dws chat group get-mute-config
+- dws chat group get-info-by-invite-url

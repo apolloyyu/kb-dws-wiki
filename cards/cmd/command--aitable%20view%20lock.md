@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable view lock
 description: 锁定/解锁视图
 example: dws aitable view lock --base-id BASE_ID --table-id TABLE_ID --view-id VIEW_ID
-source: internal/helpers/aitable.go:5949
+source: internal/helpers/aitable.go:6026
 visible_flags: 4
 
 ## Flags

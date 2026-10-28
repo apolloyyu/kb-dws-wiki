@@ -4,7 +4,7 @@ kind: command
 completeness: partial
 usage: dws wiki permission set-share-scope
 description: —
-source: internal/helpers/wiki.go:1021
+source: internal/helpers/wiki.go:1022
 visible_flags: 6
 partial_reason: missing_description
 

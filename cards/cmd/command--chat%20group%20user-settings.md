@@ -18,4 +18,4 @@ partial_reason: unverified_flags,missing_description,missing_source
 - dws chat group create
 - dws chat group dismiss
 - dws chat group get-by-group-id
-- dws chat group get-mute-config
+- dws chat group get-info-by-invite-url

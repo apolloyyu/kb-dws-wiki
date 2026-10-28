@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat group list-join-validations
 description: 分页拉取入群验证记录
 example: dws chat group list-join-validations
-source: internal/helpers/chat.go:10101
+source: internal/helpers/chat.go:10225
 visible_flags: 2
 
 ## Flags
@@ -18,4 +18,4 @@ visible_flags: 2
 - dws chat group create
 - dws chat group dismiss
 - dws chat group get-by-group-id
-- dws chat group get-mute-config
+- dws chat group get-info-by-invite-url

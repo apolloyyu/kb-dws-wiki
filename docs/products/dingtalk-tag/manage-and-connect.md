@@ -1,6 +1,6 @@
 ---
 source_path: "skills/mono/references/products/dingtalk-tag/manage-and-connect.md"
-source_commit: "49a591be1"
+source_commit: "ee61f8945"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 
@@ -56,7 +56,7 @@ dws dingtalk-tag manage create \
   --dry-run --format json
 ```
 
-create 只创建草稿并返回 `agentUuid`。名称、描述和主程序类型必填；必须显式传 `--type open_code|local_agent`，不可为空；部门可不传，由服务端补操作人的主任职部门。create 支持可选 --prompt；local_agent 创建时省略则由 DWS 自动保存默认人设，发布时不会再写入人设。open_code 省略时仅提醒发布前补齐，不阻断草稿创建。显式空字符串或纯空白无效。其他发布所需配置由服务端校验。创建成功后必须立即保存 `agentUuid`；后续失败只从 detail/save-draft/publish 恢复。
+create 只创建草稿并返回 `agentUuid`。名称、描述和主程序类型必填；必须显式传 `--type qwenwork|local_agent`，不可为空；部门可不传，由服务端补操作人的主任职部门。create 支持可选 --prompt；local_agent 创建时省略则由 DWS 自动保存默认人设，发布时不会再写入人设。qwenwork 省略时仅提醒发布前补齐，不阻断草稿创建。显式空字符串或纯空白无效。其他发布所需配置由服务端校验。创建成功后必须立即保存 `agentUuid`；后续失败只从 detail/save-draft/publish 恢复。
 
 ## 修改：按字段更新
 

@@ -1,10 +1,12 @@
 ---
 source_path: "skills/mono/references/products/whiteboard.md"
-source_commit: "49a591be1"
+source_commit: "ee61f8945"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 
 # 钉钉白板内容操作
+
+OpenNodes 不是白板专属名称：独立脑图的 mind-v1 页面/主题树使用 [mind.md](./mind.md)，不能传给白板；仅提到 OpenNodes 而目标未明时先消歧。
 
 本页覆盖两个相互独立的目标，不能互相推断、转换或回退：
 

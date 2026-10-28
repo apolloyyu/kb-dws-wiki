@@ -1,11 +1,11 @@
 # 构建对账
 
-- 源码 commit:49a591be1
-- 镜像文件:221
-- 主命令:1252(带 flags:929,归属未定:188)
-- shortcuts:490
-- 答案卡:1742(full:1315,75.5%;partial:427)
-- 文档索引:231 篇
+- 源码 commit:ee61f8945
+- 镜像文件:223
+- 主命令:1271(带 flags:940,归属未定:190)
+- shortcuts:501
+- 答案卡:1772(full:1331,75.1%;partial:441)
+- 文档索引:233 篇
 
 ## 归属未定(退回源码 grep,不影响存在性判断)
 - agoal contract
@@ -97,6 +97,7 @@
 - dev app member
 - dev app permission
 - dev app robot
+- dev app scope
 - dev app security
 - dev app version
 - dev app webapp
@@ -159,6 +160,7 @@
 - mcp
 - mcp published
 - mcp url
+- mind node
 - minutes audio-memo
 - minutes get
 - minutes hot-word

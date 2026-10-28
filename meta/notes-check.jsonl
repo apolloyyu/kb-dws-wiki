@@ -24,15 +24,18 @@
 {"note": "event-system.md", "kind": "code", "arg": "internal/event/source/personal.go | personal source: write ack:", "ok": true, "detail": "", "line": 370}
 {"note": "rate-limit-and-backend.md", "kind": "quote", "arg": "docs/upstream/architecture.md | execute MCP JSON-RPC calls", "ok": true, "detail": "", "line": 16}
 {"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/app/direct_runtime.go | mcp-gw.dingtalk.com", "ok": true, "detail": "", "line": 116}
-{"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/app/server_failure_classifier.go | WithOperation(\"tools/call\")", "ok": true, "detail": "", "line": 140}
+{"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/app/server_failure_classifier.go | operation := \"tools/call\"", "ok": true, "detail": "", "line": 161}
 {"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/app/api_command.go | 直接调用钉钉 OpenAPI", "ok": true, "detail": "", "line": 64}
 {"note": "rate-limit-and-backend.md", "kind": "code", "arg": "README_zh.md | 仅通过 MCP 默认凭证登录不支持 Raw API 调用", "ok": true, "detail": "", "line": 647}
-{"note": "rate-limit-and-backend.md", "kind": "absent", "arg": "RATE_LIMIT_ERROR @ internal/**/*.go", "ok": true, "detail": "", "line": 0}
-{"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/transport/diagnostics.go | server_error_code", "ok": true, "detail": "", "line": 155}
-{"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/transport/diagnostics.go | \"retryable\", \"server_retryable\"", "ok": true, "detail": "", "line": 51}
+{"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/app/server_failure_classifier.go | if code == \"RATE_LIMIT_ERROR\"", "ok": true, "detail": "", "line": 49}
+{"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/app/server_failure_classifier.go | 请等待 10 秒后重试", "ok": true, "detail": "", "line": 52}
+{"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/transport/diagnostics.go | server_error_code", "ok": true, "detail": "", "line": 362}
+{"note": "rate-limit-and-backend.md", "kind": "absent", "arg": "qps @ internal/**/*.go", "ok": true, "detail": "", "line": 0}
+{"note": "rate-limit-and-backend.md", "kind": "absent", "arg": "限流阈值 @ internal/**/*.go", "ok": true, "detail": "", "line": 0}
+{"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/transport/diagnostics.go | \"retryable\", \"server_retryable\"", "ok": true, "detail": "", "line": 64}
 {"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/transport/client.go | defaultMaxRetries    = 1", "ok": true, "detail": "", "line": 68}
 {"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/transport/client.go | statusCode == http.StatusTooManyRequests || statusCode >= http.StatusInternalServerError", "ok": true, "detail": "", "line": 1009}
-{"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/app/runner.go | \"business_error\",", "ok": true, "detail": "", "line": 952}
+{"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/app/runner.go | \"business_error\",", "ok": true, "detail": "", "line": 988}
 {"note": "rate-limit-and-backend.md", "kind": "quote", "arg": "docs/products/chat.md | `--page-delay` 默认 200ms", "ok": true, "detail": "", "line": 32}
 {"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/helpers/devapp_connect.go | \"user-rate-limit\", 20", "ok": true, "detail": "", "line": 624}
 {"note": "rate-limit-and-backend.md", "kind": "absent", "arg": "x-ratelimit @ internal/transport/*.go !_test.go", "ok": true, "detail": "", "line": 0}

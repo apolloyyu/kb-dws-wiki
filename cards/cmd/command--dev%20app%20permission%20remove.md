@@ -4,7 +4,7 @@ kind: command
 completeness: partial
 usage: dws dev app permission remove
 description: —
-source: internal/helpers/devapp.go:977
+source: internal/helpers/devapp.go:1135
 visible_flags: 2
 partial_reason: missing_description
 

@@ -4,7 +4,7 @@ kind: command
 completeness: partial
 usage: dws dev app version list
 description: —
-source: internal/helpers/devapp.go:1576
+source: internal/helpers/devapp.go:1734
 visible_flags: 1
 partial_reason: missing_description
 

@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable advperm enable
 description: 开启高级权限总开关
 example: dws aitable advperm enable --base-id BASE_ID
-source: internal/helpers/aitable.go:8546
+source: internal/helpers/aitable.go:8706
 visible_flags: 1
 
 ## Flags
@@ -13,8 +13,8 @@ visible_flags: 1
 
 ## Related
 - dws aitable advperm disable
+- dws aitable advperm role-copy
 - dws aitable advperm role-create
 - dws aitable advperm role-delete
 - dws aitable advperm role-get
 - dws aitable advperm role-list
-- dws aitable advperm role-update

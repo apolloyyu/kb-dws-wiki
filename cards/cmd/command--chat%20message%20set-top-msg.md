@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat message set-top-msg
 description: 置顶消息
 example: dws chat message set-top-msg --open-conversation-id <openConversationId> --message-id <openMessageId>
-source: internal/helpers/chat.go:10614
+source: internal/helpers/chat.go:10990
 visible_flags: 2
 
 ## Flags

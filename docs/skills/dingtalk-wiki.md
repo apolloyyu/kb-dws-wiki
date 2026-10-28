@@ -1,6 +1,6 @@
 ---
 source_path: "skills/multi/dingtalk-wiki/SKILL.md"
-source_commit: "49a591be1"
+source_commit: "ee61f8945"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 
@@ -16,6 +16,9 @@ metadata:
 ---
 
 # 钉钉知识库 Skill
+
+
+脑图创建边界：`wiki node create --type amind` 只创建空白文件，不携带初始化主题内容。用户要求按已有内容或层级创建脑图时，转 [独立脑图](../dingtalk-misc/references/mind.md) 的 `dws mind create`；不向 wiki 命令猜传 source。
 
 <!-- DWS_RUNTIME_CONTRACT_START -->
 ## 最小 DWS 执行契约

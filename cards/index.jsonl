@@ -34,10 +34,14 @@
 {"completeness": "partial", "key": "aitable advperm", "kind": "command", "path": "cards/cmd/command--aitable%20advperm.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable advperm disable", "kind": "command", "path": "cards/cmd/command--aitable%20advperm%20disable.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable advperm enable", "kind": "command", "path": "cards/cmd/command--aitable%20advperm%20enable.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable advperm role-copy", "kind": "command", "path": "cards/cmd/command--aitable%20advperm%20role-copy.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable advperm role-create", "kind": "command", "path": "cards/cmd/command--aitable%20advperm%20role-create.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable advperm role-delete", "kind": "command", "path": "cards/cmd/command--aitable%20advperm%20role-delete.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable advperm role-get", "kind": "command", "path": "cards/cmd/command--aitable%20advperm%20role-get.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable advperm role-list", "kind": "command", "path": "cards/cmd/command--aitable%20advperm%20role-list.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable advperm role-members-add", "kind": "command", "path": "cards/cmd/command--aitable%20advperm%20role-members-add.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable advperm role-members-update", "kind": "command", "path": "cards/cmd/command--aitable%20advperm%20role-members-update.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable advperm role-query-user", "kind": "command", "path": "cards/cmd/command--aitable%20advperm%20role-query-user.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable advperm role-update", "kind": "command", "path": "cards/cmd/command--aitable%20advperm%20role-update.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable app", "kind": "command", "path": "cards/cmd/command--aitable%20app.md", "product": "aitable"}
 {"completeness": "partial", "key": "aitable attachment", "kind": "command", "path": "cards/cmd/command--aitable%20attachment.md", "product": "aitable"}
@@ -98,6 +102,7 @@
 {"completeness": "full", "key": "aitable field run-ai", "kind": "command", "path": "cards/cmd/command--aitable%20field%20run-ai.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable field search-options", "kind": "command", "path": "cards/cmd/command--aitable%20field%20search-options.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable field update", "kind": "command", "path": "cards/cmd/command--aitable%20field%20update.md", "product": "aitable"}
+{"completeness": "full", "key": "aitable field-group", "kind": "command", "path": "cards/cmd/command--aitable%20field-group.md", "product": "aitable"}
 {"completeness": "partial", "key": "aitable form", "kind": "command", "path": "cards/cmd/command--aitable%20form.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable form create", "kind": "command", "path": "cards/cmd/command--aitable%20form%20create.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable form delete", "kind": "command", "path": "cards/cmd/command--aitable%20form%20delete.md", "product": "aitable"}
@@ -114,6 +119,7 @@
 {"completeness": "full", "key": "aitable form share get", "kind": "command", "path": "cards/cmd/command--aitable%20form%20share%20get.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable form share notify", "kind": "command", "path": "cards/cmd/command--aitable%20form%20share%20notify.md", "product": "aitable"}
 {"completeness": "partial", "key": "aitable form share update", "kind": "command", "path": "cards/cmd/command--aitable%20form%20share%20update.md", "product": "aitable"}
+{"completeness": "full", "key": "aitable form share url", "kind": "command", "path": "cards/cmd/command--aitable%20form%20share%20url.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable form submit", "kind": "command", "path": "cards/cmd/command--aitable%20form%20submit.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable form update", "kind": "command", "path": "cards/cmd/command--aitable%20form%20update.md", "product": "aitable"}
 {"completeness": "partial", "key": "aitable import", "kind": "command", "path": "cards/cmd/command--aitable%20import.md", "product": "aitable"}
@@ -351,8 +357,11 @@
 {"completeness": "full", "key": "chat group create", "kind": "command", "path": "cards/cmd/command--chat%20group%20create.md", "product": "chat"}
 {"completeness": "full", "key": "chat group dismiss", "kind": "command", "path": "cards/cmd/command--chat%20group%20dismiss.md", "product": "chat"}
 {"completeness": "full", "key": "chat group get-by-group-id", "kind": "command", "path": "cards/cmd/command--chat%20group%20get-by-group-id.md", "product": "chat"}
+{"completeness": "full", "key": "chat group get-info-by-invite-url", "kind": "command", "path": "cards/cmd/command--chat%20group%20get-info-by-invite-url.md", "product": "chat"}
 {"completeness": "full", "key": "chat group get-mute-config", "kind": "command", "path": "cards/cmd/command--chat%20group%20get-mute-config.md", "product": "chat"}
 {"completeness": "full", "key": "chat group invite-url", "kind": "command", "path": "cards/cmd/command--chat%20group%20invite-url.md", "product": "chat"}
+{"completeness": "full", "key": "chat group join-by-group-id", "kind": "command", "path": "cards/cmd/command--chat%20group%20join-by-group-id.md", "product": "chat"}
+{"completeness": "full", "key": "chat group join-by-invite-url", "kind": "command", "path": "cards/cmd/command--chat%20group%20join-by-invite-url.md", "product": "chat"}
 {"completeness": "full", "key": "chat group list-all", "kind": "command", "path": "cards/cmd/command--chat%20group%20list-all.md", "product": "chat"}
 {"completeness": "full", "key": "chat group list-join-validations", "kind": "command", "path": "cards/cmd/command--chat%20group%20list-join-validations.md", "product": "chat"}
 {"completeness": "full", "key": "chat group list-my-groups", "kind": "command", "path": "cards/cmd/command--chat%20group%20list-my-groups.md", "product": "chat"}
@@ -392,7 +401,7 @@
 {"completeness": "full", "key": "chat group-role set-user", "kind": "command", "path": "cards/cmd/command--chat%20group-role%20set-user.md", "product": "chat"}
 {"completeness": "full", "key": "chat group-role update", "kind": "command", "path": "cards/cmd/command--chat%20group-role%20update.md", "product": "chat"}
 {"completeness": "full", "key": "chat hide", "kind": "command", "path": "cards/cmd/command--chat%20hide.md", "product": "chat"}
-{"completeness": "full", "key": "chat list-all-conversations", "kind": "command", "path": "cards/cmd/command--chat%20list-all-conversations.md", "product": "chat"}
+{"completeness": "partial", "key": "chat list-all-conversations", "kind": "command", "path": "cards/cmd/command--chat%20list-all-conversations.md", "product": "chat"}
 {"completeness": "full", "key": "chat list-top-conversations", "kind": "command", "path": "cards/cmd/command--chat%20list-top-conversations.md", "product": "chat"}
 {"completeness": "full", "key": "chat mark-read", "kind": "command", "path": "cards/cmd/command--chat%20mark-read.md", "product": "chat"}
 {"completeness": "full", "key": "chat mark-unread", "kind": "command", "path": "cards/cmd/command--chat%20mark-unread.md", "product": "chat"}
@@ -619,6 +628,9 @@
 {"completeness": "partial", "key": "dev app robot get", "kind": "command", "path": "cards/cmd/command--dev%20app%20robot%20get.md", "product": "dev"}
 {"completeness": "partial", "key": "dev app robot result", "kind": "command", "path": "cards/cmd/command--dev%20app%20robot%20result.md", "product": "dev"}
 {"completeness": "partial", "key": "dev app robot submit", "kind": "command", "path": "cards/cmd/command--dev%20app%20robot%20submit.md", "product": "dev"}
+{"completeness": "partial", "key": "dev app scope", "kind": "command", "path": "cards/cmd/command--dev%20app%20scope.md", "product": "dev"}
+{"completeness": "partial", "key": "dev app scope get", "kind": "command", "path": "cards/cmd/command--dev%20app%20scope%20get.md", "product": "dev"}
+{"completeness": "partial", "key": "dev app scope set", "kind": "command", "path": "cards/cmd/command--dev%20app%20scope%20set.md", "product": "dev"}
 {"completeness": "partial", "key": "dev app security", "kind": "command", "path": "cards/cmd/command--dev%20app%20security.md", "product": "dev"}
 {"completeness": "partial", "key": "dev app security config", "kind": "command", "path": "cards/cmd/command--dev%20app%20security%20config.md", "product": "dev"}
 {"completeness": "partial", "key": "dev app update", "kind": "command", "path": "cards/cmd/command--dev%20app%20update.md", "product": "dev"}
@@ -959,6 +971,13 @@
 {"completeness": "full", "key": "mcp published tools", "kind": "command", "path": "cards/cmd/command--mcp%20published%20tools.md", "product": "mcp"}
 {"completeness": "partial", "key": "mcp url", "kind": "command", "path": "cards/cmd/command--mcp%20url.md", "product": "mcp"}
 {"completeness": "full", "key": "mcp url get", "kind": "command", "path": "cards/cmd/command--mcp%20url%20get.md", "product": "mcp"}
+{"completeness": "full", "key": "mind", "kind": "command", "path": "cards/cmd/command--mind.md", "product": "mind"}
+{"completeness": "partial", "key": "mind create", "kind": "command", "path": "cards/cmd/command--mind%20create.md", "product": "mind"}
+{"completeness": "partial", "key": "mind node", "kind": "command", "path": "cards/cmd/command--mind%20node.md", "product": "mind"}
+{"completeness": "partial", "key": "mind node create", "kind": "command", "path": "cards/cmd/command--mind%20node%20create.md", "product": "mind"}
+{"completeness": "partial", "key": "mind node delete", "kind": "command", "path": "cards/cmd/command--mind%20node%20delete.md", "product": "mind"}
+{"completeness": "partial", "key": "mind node list", "kind": "command", "path": "cards/cmd/command--mind%20node%20list.md", "product": "mind"}
+{"completeness": "partial", "key": "mind node update", "kind": "command", "path": "cards/cmd/command--mind%20node%20update.md", "product": "mind"}
 {"completeness": "partial", "key": "minutes", "kind": "command", "path": "cards/cmd/command--minutes.md", "product": "minutes"}
 {"completeness": "partial", "key": "minutes audio-memo", "kind": "command", "path": "cards/cmd/command--minutes%20audio-memo.md", "product": "minutes"}
 {"completeness": "full", "key": "minutes audio-memo list", "kind": "command", "path": "cards/cmd/command--minutes%20audio-memo%20list.md", "product": "minutes"}
@@ -1276,13 +1295,17 @@
 {"completeness": "full", "key": "aitable +chart-get", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bchart-get.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +chart-share-get", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bchart-share-get.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +chart-share-update", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bchart-share-update.md", "product": "aitable"}
+{"completeness": "full", "key": "aitable +chart-templates", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bchart-templates.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +chart-update", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bchart-update.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +chart-widgets-example", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bchart-widgets-example.md", "product": "aitable"}
+{"completeness": "full", "key": "aitable +charts-create", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bcharts-create.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +dashboard-arrange", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bdashboard-arrange.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +dashboard-config-example", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bdashboard-config-example.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +dashboard-delete", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bdashboard-delete.md", "product": "aitable"}
+{"completeness": "full", "key": "aitable +dashboard-diagnose", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bdashboard-diagnose.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +dashboard-get", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bdashboard-get.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +dashboard-list", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bdashboard-list.md", "product": "aitable"}
+{"completeness": "full", "key": "aitable +dashboard-preview", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bdashboard-preview.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +dashboard-share-get", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bdashboard-share-get.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +dashboard-share-update", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bdashboard-share-update.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +dashboard-update", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bdashboard-update.md", "product": "aitable"}
@@ -1300,6 +1323,7 @@
 {"completeness": "full", "key": "aitable +field-get", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bfield-get.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +field-run-ai", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bfield-run-ai.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +field-update", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bfield-update.md", "product": "aitable"}
+{"completeness": "full", "key": "aitable +field-wait-ai", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bfield-wait-ai.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +find-record", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bfind-record.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +form-delete", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bform-delete.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +form-field-hide", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bform-field-hide.md", "product": "aitable"}
@@ -1313,6 +1337,7 @@
 {"completeness": "full", "key": "aitable +import-file", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bimport-file.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +import-upload", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bimport-upload.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +list-tables", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Blist-tables.md", "product": "aitable"}
+{"completeness": "full", "key": "aitable +read-batch", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bread-batch.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +record-batch-create", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Brecord-batch-create.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +record-bulk-patch", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Brecord-bulk-patch.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +record-delete", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Brecord-delete.md", "product": "aitable"}
@@ -1330,10 +1355,14 @@
 {"completeness": "full", "key": "aitable +record-write-result", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Brecord-write-result.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +resolve-base", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bresolve-base.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +resolve-table", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bresolve-table.md", "product": "aitable"}
+{"completeness": "full", "key": "aitable +role-copy", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Brole-copy.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +role-create", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Brole-create.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +role-delete", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Brole-delete.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +role-get", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Brole-get.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +role-list", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Brole-list.md", "product": "aitable"}
+{"completeness": "full", "key": "aitable +role-members-add", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Brole-members-add.md", "product": "aitable"}
+{"completeness": "full", "key": "aitable +role-members-update", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Brole-members-update.md", "product": "aitable"}
+{"completeness": "full", "key": "aitable +role-query-user", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Brole-query-user.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +role-update", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Brole-update.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +section-create", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bsection-create.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +section-delete", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bsection-delete.md", "product": "aitable"}
@@ -1347,6 +1376,7 @@
 {"completeness": "full", "key": "aitable +table-delete", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Btable-delete.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +table-get", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Btable-get.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +table-update", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Btable-update.md", "product": "aitable"}
+{"completeness": "full", "key": "aitable +task-report", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Btask-report.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +template-search", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Btemplate-search.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +url-resolve", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Burl-resolve.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable +view-delete", "kind": "shortcut", "path": "cards/cmd/shortcut--aitable%20%2Bview-delete.md", "product": "aitable"}

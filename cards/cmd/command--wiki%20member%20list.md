@@ -5,7 +5,7 @@ completeness: full
 usage: dws wiki member list
 description: 查询知识库成员列表
 example: dws wiki member list --workspace <workspaceId>
-source: internal/helpers/wiki.go:820
+source: internal/helpers/wiki.go:821
 visible_flags: 4
 
 ## Flags

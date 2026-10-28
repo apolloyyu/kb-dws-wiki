@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat group set-admin
 description: 设置 / 取消群管理员
 example: dws chat group set-admin --conversation-id <openConversationId> --users userId1,userId2
-source: internal/helpers/chat.go:8701
+source: internal/helpers/chat.go:8825
 visible_flags: 4
 
 ## Flags
@@ -20,4 +20,4 @@ visible_flags: 4
 - dws chat group create
 - dws chat group dismiss
 - dws chat group get-by-group-id
-- dws chat group get-mute-config
+- dws chat group get-info-by-invite-url

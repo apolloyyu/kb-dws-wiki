@@ -3,7 +3,7 @@ title: dws 的限流与后端调用路径
 maintenance: manual
 intents: ratelimit
 contract:
-  - ratelimit：dws 产品命令走钉钉 MCP 网关(mcp-gw.dingtalk.com)，不走开放平台 OpenAPI；开放平台「调用频次与限流」的 QPS、月调用量、IP 维度、90018/90002/90020、升级专业版扩容只适用于 dws api 直调 OpenAPI，不得套用到产品命令；RATE_LIMIT_ERROR 阈值/计数维度/恢复时间/能否提升 dws 未说明，不得给具体数字；--page-delay 只能推荐给命令卡里有该参数的命令。
+  - ratelimit：dws 产品命令走钉钉 MCP 网关(mcp-gw.dingtalk.com)，不走开放平台 OpenAPI；开放平台「调用频次与限流」的 QPS、月调用量、IP 维度、90018/90002/90020、升级专业版扩容只适用于 dws api 直调 OpenAPI，不得套用到产品命令；RATE_LIMIT_ERROR 的阈值/计数维度/能否提升 dws 未说明，不得给具体数字，但 dws 对该错误码固定提示「等待 10 秒后重试」，可照此转述并说明那是客户端重试建议、不是服务端承诺的恢复时间；--page-delay 只能推荐给命令卡里有该参数的命令。
 ---
 
 # dws 的限流与后端调用路径
@@ -15,7 +15,7 @@ contract:
 - **产品命令(chat、doc、aitable、calendar、todo 等)走钉钉 MCP 网关,不走开放平台 OpenAPI。** 报错体里的 `"operation": "tools/call"` 与 `server_key`(如 `chat`)就是 MCP 工具调用的标识。
   {{quote: docs/upstream/architecture.md | execute MCP JSON-RPC calls}}
   {{code: internal/app/direct_runtime.go | mcp-gw.dingtalk.com}}
-  {{code: internal/app/server_failure_classifier.go | WithOperation("tools/call")}}
+  {{code: internal/app/server_failure_classifier.go | operation := "tools/call"}}
 - **只有 `dws api` 直连 OpenAPI**(`api.dingtalk.com` / `oapi.dingtalk.com`),且必须提供自有应用 Client ID/Client Secret;仅用 MCP 默认凭证登录不支持。
   {{code: internal/app/api_command.go | 直接调用钉钉 OpenAPI}}
   {{code: README_zh.md | 仅通过 MCP 默认凭证登录不支持 Raw API 调用}}
@@ -23,9 +23,13 @@ contract:
 ## 限流规则不能互相套用
 
 - 开放平台文档「调用频次与限流」里的规则——单应用 20/60 QPS、标准版 5000 次/月、IP 20 秒 10000 次、错误码 90018/90002/90020/`Forbidden.AccessDenied.*`、「升级专业版扩容」——**只适用于直接调 OpenAPI 或 `dws api`**。dws 产品命令走 MCP 网关,这些数值、错误码和扩容方式都不能套到产品命令上。
-- MCP 网关返回的限流(如 `server_error_code: "RATE_LIMIT_ERROR"`)由服务端决定,dws 只原样透传服务端给的错误码。**阈值、计数维度(按人/按应用/按组织/按接口)、恢复时间、能否申请提升,dws 源码与文档都没有写**,回答写「dws 文档未说明」,不得给具体数字。
-  {{absent: RATE_LIMIT_ERROR @ internal/**/*.go}}
+- MCP 网关返回的限流(`server_error_code: "RATE_LIMIT_ERROR"`)由服务端判定,dws 透传该错误码;但 dws 对这个码有专门分类,会把面向用户的提示改写成固定文案「等待 10 秒后重试」。**这 10 秒是 dws 客户端给的重试建议,不是服务端承诺的恢复时间,也不代表限额口径**;可以照 dws 的文案转述,但要说明它的来源。
+  {{code: internal/app/server_failure_classifier.go | if code == "RATE_LIMIT_ERROR"}}
+  {{code: internal/app/server_failure_classifier.go | 请等待 10 秒后重试}}
   {{code: internal/transport/diagnostics.go | server_error_code}}
+- **阈值、计数维度(按人/按应用/按组织/按接口)、能否申请提升,dws 源码与文档仍然没有写**,这几项一律回答「dws 文档未说明」,不得给具体数字。
+  {{absent: qps @ internal/**/*.go}}
+  {{absent: 限流阈值 @ internal/**/*.go}}
 - 报错里的 `retryable` 来自服务端返回的同名字段,dws 不自行判断;它不代表 dws 会自动重试这次业务错误。
   {{code: internal/transport/diagnostics.go | "retryable", "server_retryable"}}
 

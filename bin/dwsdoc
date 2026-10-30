@@ -1123,7 +1123,7 @@ def main():
         shown = full or [r for _, _, r in rows]
         if not full and shown:
             print(f"(没有同时含全部 {len(words)} 个词的篇目;以下按命中词数排序)")
-        for r in shown[:30]:
+        for r in (full or shown[:30]):  # 全中照旧全列(枚举题要看全量)；只有部分命中才截 30
             print(f"{r['path']}  [{r['layer']}]  {' / '.join(r.get('headings', [])[:4])}")
         if not shown:
             print(f"篇目标题层无命中({' / '.join(words)});可换词,或 cmd/short/flag 查命令,或回退源码 grep")

@@ -417,6 +417,7 @@ class DwsdocCtxContractTest(unittest.TestCase):
         self.assertIn("按命中词数排序", one)
         self.assertIn("docs/products/event.md", run_dwsdoc("find", "event"))
         self.assertIn("篇目标题层无命中", run_dwsdoc("find", "不存在的词xyz 另一个xyz"))
+        self.assertGreater(len(run_dwsdoc("find", "md").splitlines()), 30)   # 全中照旧全列，不截断
 
 if __name__ == "__main__":
     unittest.main()

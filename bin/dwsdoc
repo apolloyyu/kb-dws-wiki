@@ -1107,12 +1107,26 @@ def main():
                     n += 1
         print(f"-- {n} 处定义")
     elif op == "find":
+        # 引号多词(find 'channel 登记')按整串子串匹配恒为 0，且无命中时不输出任何提示(与 dkdoc 同修)：
+        # 拆词，全部词命中优先，否则按命中词数取部分命中；都没有时明确说无命中。
+        words = [w for w in re.split(r"[\s,，、]+", q) if w] or [q]
         mp = os.path.join(ROOT, "meta", "documents.jsonl")
+        rows = []
         for l in open(mp, encoding="utf-8"):
             r = json.loads(l)
             hay = (r["path"] + " " + " ".join(r.get("headings", []))).lower()
-            if q in hay:
-                print(f"{r['path']}  [{r['layer']}]  {' / '.join(r.get('headings', [])[:4])}")
+            k = sum(1 for w in words if w in hay)
+            if k:
+                rows.append((-k, len(rows), r))
+        rows.sort(key=lambda x: (x[0], x[1]))
+        full = [r for k, _, r in rows if -k == len(words)]
+        shown = full or [r for _, _, r in rows]
+        if not full and shown:
+            print(f"(没有同时含全部 {len(words)} 个词的篇目;以下按命中词数排序)")
+        for r in shown[:30]:
+            print(f"{r['path']}  [{r['layer']}]  {' / '.join(r.get('headings', [])[:4])}")
+        if not shown:
+            print(f"篇目标题层无命中({' / '.join(words)});可换词,或 cmd/short/flag 查命令,或回退源码 grep")
     elif op == "cat":
         p = os.path.join(ROOT, sys.argv[2])
         if not os.path.abspath(p).startswith(ROOT) or not os.path.exists(p):

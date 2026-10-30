@@ -410,5 +410,13 @@ class DwsdocCtxContractTest(unittest.TestCase):
             self.assertNotIn("最新正式版", out, q)
             self.assertNotIn("CHANGELOG 没有", out, q)
 
+    def test_find_splits_quoted_words_and_says_when_nothing_hits(self):
+        # 引号多词按整串子串匹配恒为 0 且无任何输出(与 dkdoc 同修)
+        one = run_dwsdoc("find", "event 订阅 取消")
+        self.assertIn("docs/products/event.md", one)
+        self.assertIn("按命中词数排序", one)
+        self.assertIn("docs/products/event.md", run_dwsdoc("find", "event"))
+        self.assertIn("篇目标题层无命中", run_dwsdoc("find", "不存在的词xyz 另一个xyz"))
+
 if __name__ == "__main__":
     unittest.main()

@@ -6,7 +6,7 @@ usage: dws chat group rename
 description: Update the display name of a group chat.
 example: dws chat group rename --id <openconversation_id> --name "新群名"
 use_when: When the agent is rebranding or clarifying the purpose of an existing group.
-source: internal/helpers/chat.go:3671
+source: internal/helpers/chat.go:3795
 visible_flags: 2
 
 ## Flags
@@ -19,4 +19,4 @@ visible_flags: 2
 - dws chat group create
 - dws chat group dismiss
 - dws chat group get-by-group-id
-- dws chat group get-mute-config
+- dws chat group get-info-by-invite-url

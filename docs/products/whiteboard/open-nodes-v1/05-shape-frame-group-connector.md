@@ -1,6 +1,6 @@
 ---
 source_path: "skills/mono/references/products/whiteboard/open-nodes-v1/05-shape-frame-group-connector.md"
-source_commit: "49a591be1"
+source_commit: "cd84af493"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 

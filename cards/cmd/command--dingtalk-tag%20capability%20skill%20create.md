@@ -4,7 +4,7 @@ kind: command
 completeness: partial
 usage: dws dingtalk-tag capability skill create
 description: —
-source: internal/helpers/deap_agent_skill_mcp.go:499
+source: internal/helpers/deap_agent_skill_mcp.go:535
 visible_flags: 2
 partial_reason: missing_description
 

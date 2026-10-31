@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable form delete
 description: 删除表单
 example: dws aitable form delete --base-id BASE_ID --table-id TABLE_ID --view-id VIEW_ID --yes
-source: internal/helpers/aitable.go:6543
+source: internal/helpers/aitable.go:6668
 visible_flags: 3
 
 ## Flags

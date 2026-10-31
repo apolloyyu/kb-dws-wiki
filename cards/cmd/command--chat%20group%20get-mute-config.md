@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat group get-mute-config
 description: 查询群用户禁言配置
 example: dws chat group get-mute-config --conversation-id <openConversationId>
-source: internal/helpers/chat.go:8488
+source: internal/helpers/chat.go:8612
 visible_flags: 2
 
 ## Flags
@@ -18,4 +18,4 @@ visible_flags: 2
 - dws chat group create
 - dws chat group dismiss
 - dws chat group get-by-group-id
-- dws chat group invite-url
+- dws chat group get-info-by-invite-url

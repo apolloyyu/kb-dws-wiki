@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +workflow-enable
 description: 启用指定 Base 中的自动化工作流
-source: internal/shortcut/aitable/aitable.go:2149
+source: internal/shortcut/aitable/aitable.go:2191
 visible_flags: 2
 
 ## Flags

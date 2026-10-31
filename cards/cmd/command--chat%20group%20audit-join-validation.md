@@ -5,7 +5,7 @@ completeness: partial
 usage: dws chat group audit-join-validation
 description: 审批入群验证（通过、拒绝、删除）
 example: dws chat group audit-join-validation --conversation-id <openConversationId> --record-id 123456 --applicant <userId> --inviter <userId> --status AuditApprove
-source: internal/helpers/chat.go:10156
+source: internal/helpers/chat.go:10280
 visible_flags: 5
 partial_reason: unverified_flags
 
@@ -21,5 +21,5 @@ partial_reason: unverified_flags
 - dws chat group create
 - dws chat group dismiss
 - dws chat group get-by-group-id
+- dws chat group get-info-by-invite-url
 - dws chat group get-mute-config
-- dws chat group invite-url

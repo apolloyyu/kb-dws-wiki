@@ -3,9 +3,9 @@
 kind: command
 completeness: full
 usage: dws aitable field run-ai
-description: 触发 AI 字段运行
+description: 提交 AI 字段运行任务（异步）
 example: dws aitable field run-ai --base-id BASE_ID --table-id TABLE_ID --field-ids fldAI1,fldAI2
-source: internal/helpers/aitable.go:3473
+source: internal/helpers/aitable.go:3542
 visible_flags: 4
 
 ## Flags

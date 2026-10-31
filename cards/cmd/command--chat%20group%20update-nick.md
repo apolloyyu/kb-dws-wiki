@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat group update-nick
 description: 设置或清除用户在群内的群昵称
 example: dws chat group update-nick --conversation-id <openConversationId> --nick "我的群昵称"
-source: internal/helpers/chat.go:10736
+source: internal/helpers/chat.go:11112
 visible_flags: 2
 
 ## Flags
@@ -18,4 +18,4 @@ visible_flags: 2
 - dws chat group create
 - dws chat group dismiss
 - dws chat group get-by-group-id
-- dws chat group get-mute-config
+- dws chat group get-info-by-invite-url

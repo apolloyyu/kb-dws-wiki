@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable advperm role-delete
 description: 删除自定义角色（不可逆）
 example: dws aitable advperm role-delete --base-id BASE_ID --role-id ROLE_ID --yes
-source: internal/helpers/aitable.go:8843
+source: internal/helpers/aitable.go:9003
 visible_flags: 2
 
 ## Flags
@@ -15,7 +15,7 @@ visible_flags: 2
 ## Related
 - dws aitable advperm disable
 - dws aitable advperm enable
+- dws aitable advperm role-copy
 - dws aitable advperm role-create
 - dws aitable advperm role-get
 - dws aitable advperm role-list
-- dws aitable advperm role-update

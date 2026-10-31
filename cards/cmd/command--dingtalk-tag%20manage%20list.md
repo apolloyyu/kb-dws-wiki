@@ -10,7 +10,7 @@ partial_reason: missing_description
 
 ## Flags
 - --keyword <String>: 按名称或职责等可见信息模糊匹配
-- --type <String>: 按主程序类型筛选：open_code 或 local_agent；对应 MCP 字段 type，不传表示不过滤
+- --type <String>: 按主程序类型筛选：qwenwork 或 local_agent；对应 MCP 字段 type，不传表示不过滤
 - --page <Int>: 页码
 - --page-size <Int>: 每页数量
 

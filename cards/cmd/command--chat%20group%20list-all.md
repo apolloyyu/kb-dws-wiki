@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat group list-all
 description: 分页拉取我所有群列表
 example: dws chat group list-all
-source: internal/helpers/chat.go:10046
+source: internal/helpers/chat.go:10170
 visible_flags: 2
 
 ## Flags
@@ -18,4 +18,4 @@ visible_flags: 2
 - dws chat group create
 - dws chat group dismiss
 - dws chat group get-by-group-id
-- dws chat group get-mute-config
+- dws chat group get-info-by-invite-url

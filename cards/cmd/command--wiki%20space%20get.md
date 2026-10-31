@@ -5,7 +5,7 @@ completeness: full
 usage: dws wiki space get
 description: 查看知识库详情
 example: dws wiki space get --workspace <workspaceId>
-source: internal/helpers/wiki.go:288
+source: internal/helpers/wiki.go:289
 visible_flags: 1
 
 ## Flags

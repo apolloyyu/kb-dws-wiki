@@ -6,7 +6,7 @@ usage: dws chat group create
 description: Create a new internal group chat with a set of initial members.
 example: dws chat group create --name "Q1 项目冲刺群" --users userId1,userId2,userId3
 use_when: When the agent needs to spin up a dedicated group for a new project, incident, or discussion thread.
-source: internal/helpers/chat.go:3439
+source: internal/helpers/chat.go:3563
 visible_flags: 3
 
 ## Flags
@@ -19,5 +19,5 @@ visible_flags: 3
 - dws chat group bots
 - dws chat group dismiss
 - dws chat group get-by-group-id
+- dws chat group get-info-by-invite-url
 - dws chat group get-mute-config
-- dws chat group invite-url

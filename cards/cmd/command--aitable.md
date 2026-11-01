@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable
 description: AI 表格操作
 example: dws aitable base [list|search|get|get-primary-doc-id|create|update|delete|copy] Base 管理
-source: internal/helpers/aitable.go:2403
+source: internal/helpers/aitable.go:2466
 visible_flags: 0
 
 ## Flags
@@ -15,6 +15,6 @@ visible_flags: 0
 - dws aitable advperm
 - dws aitable advperm disable
 - dws aitable advperm enable
+- dws aitable advperm role-copy
 - dws aitable advperm role-create
 - dws aitable advperm role-delete
-- dws aitable advperm role-get

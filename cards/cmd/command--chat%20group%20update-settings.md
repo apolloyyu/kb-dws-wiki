@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat group update-settings
 description: 更新群设置
 example: dws chat group update-settings --conversation-id <openConversationId> --setting-key searchable --status 1
-source: internal/helpers/chat.go:8151
+source: internal/helpers/chat.go:8275
 visible_flags: 3
 
 ## Flags
@@ -19,4 +19,4 @@ visible_flags: 3
 - dws chat group create
 - dws chat group dismiss
 - dws chat group get-by-group-id
-- dws chat group get-mute-config
+- dws chat group get-info-by-invite-url

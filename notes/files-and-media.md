@@ -1,11 +1,11 @@
 ---
 title: 富媒体与文件
-source_refs: internal/helpers/drive.go, internal/helpers/drive_transfer.go, internal/helpers/doc_media_upload.go, internal/helpers/chat_media_upload.go, internal/helpers/doc.go, internal/helpers/sheet.go, internal/shortcut/doc/content_shortcuts.go, internal/shortcut/doc/common.go, internal/localio/download.go, internal/localio/upload.go, internal/localio/publish.go, internal/localio/input.go
+source_refs: internal/helpers/drive.go, internal/helpers/drive_transfer.go, internal/helpers/doc_media_upload.go, internal/helpers/chat_media_upload.go, internal/helpers/form_share.go, internal/helpers/sheet_float_image_file.go, internal/helpers/aitable.go, internal/helpers/aitable_form_share_result.go, internal/helpers/doc.go, internal/helpers/sheet.go, internal/shortcut/doc/content_shortcuts.go, internal/shortcut/doc/common.go, internal/localio/download.go, internal/localio/upload.go, internal/localio/publish.go, internal/localio/input.go
 ---
 
 # 富媒体与文件
 
-本篇覆盖云盘上传/下载、文档与群聊媒体上传、doc/sheet 命令组织，以及产品共享的安全本地 I/O（`internal/localio`）。
+本篇覆盖云盘上传/下载、文档与群聊媒体上传、AI 表格表单封面与二维码、doc/sheet 命令组织，以及产品共享的安全本地 I/O（`internal/localio`）。
 
 ## 云盘命令（internal/helpers/drive.go）
 
@@ -47,6 +47,20 @@ source_refs: internal/helpers/drive.go, internal/helpers/drive_transfer.go, inte
 
 - 文档媒体上传：`internal/helpers/doc_media_upload.go` 的 `runDocMediaUpload`，流程为 `get_doc_attachment_upload_info` → PUT；doc media 命令组在 doc.go 约 L2966。
 - 群聊文件上传：`internal/helpers/chat_media_upload.go`，命令挂在 chat.go 约 L2130。
+
+## 表单封面与二维码（internal/helpers/form_share.go）
+
+`dws aitable form share update` 的封面有三个互斥入口（`MarkFlagsMutuallyExclusive` + `corecmd.MutuallyExclusive`，aitable.go L10112 / L10125）：`--form-cover`（已公开的 URL）、`--form-cover-file`（本地图片）、`--form-cover-resource-id`（当前 Base 已上传的图片资源 ID）。标准命令与 shortcut 共用 `RunAitableFormShareUpdate`（form_share.go L133）。
+
+- `--form-cover` 只校验 URL 结构，不验证可达性或图片内容（`ValidateFormShareURL`，L64）：必须字面 `https://` 前缀且主机名精确匹配 `formCoverAllowedHosts`（L54，共 6 个：img.alicdn.com、static.dingtalk.com、down-cdn.dingtalk.com、alidocs.oss-cn-zhangjiakou / alidocs2.oss-cn-zhangjiakou / alidocs.oss-cn-hangzhou.aliyuncs.com），端口只允许缺省或 443；含空白、未编码引号/括号、鉴权信息、查询参数、片段或 `/core/api/resources` 内部鉴权路径一律拒绝；空值/空白值直接报错，即省略保留原封面、不支持清空。
+- `--form-cover-file` 的本地文件须为非空普通文件（复用 sheet 浮动图片的 `openFloatImageLocalFileNamed` / `validateFloatImageFileInfoNamed`，sheet_float_image_file.go L121 / L157），大小 ≤ 10 MiB，并用 `image.DecodeConfig` 嗅探真实格式、只接受 PNG/JPEG/GIF；`mimeType` 与上传文件名的扩展名都按嗅探结果重写，不信任输入文件名（L161-171）。
+- 上传复用文档附件凭证契约：`get_doc_attachment_upload_info`（`resolveFloatImageUploadInfo`，封面路径把 `baseId` 当 `nodeId` 传入）→ PUT（`putFloatImageFileWithClient`）。该 PUT 客户端 5 分钟超时、`CheckRedirect` 返回 `http.ErrUseLastResponse`（不跟随重定向）、只接受 200，错误文案固定，不把签名 URL 或响应体写进错误；它有意不复用 `doc.defaultHTTPPutFile` 与 `localio.PutFile`（sheet_float_image_file.go L311-344）。
+- 凭证本身也受校验：`uploadUrl` 必须是 HTTPS（仅当 `DWS_ALLOW_HTTP_ENDPOINTS=1` 且主机为 localhost / 127.0.0.1 / ::1 时放行 HTTP），`resourceUrl` 必须是不带 host、query、fragment 的相对路径（L264-291）。
+- `--dry-run` 不上传，`formCoverResourceId` 用占位符 `<uploaded-image-resource-id>`（form_share.go L172-175）。
+- 本地封面上传成功但 `update_share_form` 失败时，`formCoverUpdateError`（L195）克隆原错误而不是包装重放：保留错误分类/退出码与原始诊断，把 `formCoverResourceId` 补进 `details`，并置 `Retryable=false`、`RetryableSet=true`、`RetryAfterSeconds=nil`、`NextRetryAt=nil`，即整条命令禁止自动重试、清除重试时间建议；提示先回读 `form share get`，勿重复上传或原样重放（重放会再上传一个资源），且资源已公开无法随后续配置失败回滚。
+- 终态校验里回读的 `formCover` 只是公开 URL，不能证明由哪个资源 ID 生成，因此 `formCoverResourceId` 保持 unverified（aitable_form_share_result.go L165）；判定为部分失败时仍从请求里把 `formCoverResourceId` 带进 `details`（L82）。
+
+`dws aitable form share url` 先用与 `share get` 相同的只读退避重试读取 `get_share_form_config`，读取成功后才生成一次链接和二维码（aitable.go L6467-6475）：`writeFormShareURL`（form_share.go L92）只在 `enabled` 为真、未 `punished` 且 `shareFormUuid` 非空时交付链接；指定 `--qr-file` 时用 `qrcode.Encode(link, qrcode.Medium, 512)` 生成 PNG，并经 `localio.PublishBytes`（`BaseDir: "."`、`PreferredName: "form-qr.png"`）走与远端下载相同的符号链接安全 + fsync + 原子 no-clobber 落盘，结果里返回绝对路径。
 
 ## doc / sheet 命令组织
 

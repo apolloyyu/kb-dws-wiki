@@ -4,7 +4,7 @@ kind: command
 completeness: partial
 usage: dws dingtalk-tag manage delete
 description: —
-source: internal/helpers/deap_agent.go:546
+source: internal/helpers/deap_agent.go:565
 visible_flags: 1
 partial_reason: missing_description
 

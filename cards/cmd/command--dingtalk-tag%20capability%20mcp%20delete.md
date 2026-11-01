@@ -4,7 +4,7 @@ kind: command
 completeness: partial
 usage: dws dingtalk-tag capability mcp delete
 description: —
-source: internal/helpers/deap_agent_skill_mcp.go:809
+source: internal/helpers/deap_agent_skill_mcp.go:845
 visible_flags: 2
 partial_reason: missing_description
 

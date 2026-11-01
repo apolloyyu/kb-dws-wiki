@@ -4,7 +4,7 @@ kind: command
 completeness: partial
 usage: dws dingtalk-tag capability skill query
 description: —
-source: internal/helpers/deap_agent_skill_mcp.go:689
+source: internal/helpers/deap_agent_skill_mcp.go:725
 visible_flags: 3
 partial_reason: missing_description
 

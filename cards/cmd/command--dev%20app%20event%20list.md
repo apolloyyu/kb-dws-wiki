@@ -4,7 +4,7 @@ kind: command
 completeness: partial
 usage: dws dev app event list
 description: —
-source: internal/helpers/devapp.go:308
+source: internal/helpers/devapp.go:386
 visible_flags: 2
 partial_reason: missing_description
 

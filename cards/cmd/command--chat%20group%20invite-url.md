@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat group invite-url
 description: 获取群邀请链接
 example: dws chat group invite-url --conversation-id <openConversationId>
-source: internal/helpers/chat.go:7929
+source: internal/helpers/chat.go:8053
 visible_flags: 2
 
 ## Flags
@@ -18,4 +18,4 @@ visible_flags: 2
 - dws chat group create
 - dws chat group dismiss
 - dws chat group get-by-group-id
-- dws chat group get-mute-config
+- dws chat group get-info-by-invite-url

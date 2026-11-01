@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat group quit
 description: 退出群聊
 example: dws chat group quit --conversation-id <openConversationId>
-source: internal/helpers/chat.go:8044
+source: internal/helpers/chat.go:8168
 visible_flags: 1
 
 ## Flags
@@ -17,4 +17,4 @@ visible_flags: 1
 - dws chat group create
 - dws chat group dismiss
 - dws chat group get-by-group-id
-- dws chat group get-mute-config
+- dws chat group get-info-by-invite-url

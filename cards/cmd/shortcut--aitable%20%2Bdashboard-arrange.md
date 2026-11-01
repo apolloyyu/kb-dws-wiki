@@ -3,8 +3,8 @@
 kind: shortcut
 completeness: full
 usage: dws aitable +dashboard-arrange
-description: 对指定仪表盘做服务端智能布局重排
-source: internal/shortcut/aitable/aitable.go:2442
+description: 统一按行重排仪表盘图表位置和尺寸
+source: internal/shortcut/aitable/aitable.go:2484
 visible_flags: 2
 
 ## Flags

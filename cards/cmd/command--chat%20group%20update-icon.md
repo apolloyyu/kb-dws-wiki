@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat group update-icon
 description: 更新群头像
 example: dws chat group update-icon --conversation-id <openConversationId> --icon-media-id <mediaId>
-source: internal/helpers/chat.go:8096
+source: internal/helpers/chat.go:8220
 visible_flags: 2
 
 ## Flags
@@ -18,4 +18,4 @@ visible_flags: 2
 - dws chat group create
 - dws chat group dismiss
 - dws chat group get-by-group-id
-- dws chat group get-mute-config
+- dws chat group get-info-by-invite-url

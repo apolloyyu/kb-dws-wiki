@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat mute
 description: 会话消息免打扰
 example: dws chat mute --conversation-id <openConversationId>
-source: internal/helpers/chat.go:7984
+source: internal/helpers/chat.go:8108
 visible_flags: 4
 
 ## Flags

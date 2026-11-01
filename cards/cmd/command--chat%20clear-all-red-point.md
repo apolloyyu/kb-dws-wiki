@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat clear-all-red-point
 description: 清除所有会话红点（全部已读）
 example: dws chat clear-all-red-point
-source: internal/helpers/chat.go:10372
+source: internal/helpers/chat.go:10751
 visible_flags: 0
 
 ## Flags

@@ -10,7 +10,7 @@ partial_reason: missing_description
 
 ## Flags
 - --agent-uuid <String> required: 数字员工 ID
-- --visibility <String> required: 可见范围：ALL 表示本企业全员可见；PARTIAL 表示仅指定成员/部门可见（配合 --user-ids/--dept-ids）
+- --visibility <String> required: 可见范围：ALL 表示本企业全员可见；PARTIAL 表示仅指定成员/部门可见（配合 --user-ids/--dept-ids）(可选: ALL|PARTIAL)
 - --user-ids <StringSlice>: 指定可见成员 userId，可重复或用英文逗号分隔；全量替换，未提供则清空成员维度
 - --dept-ids <StringSlice>: 指定可见部门 ID，可重复或用英文逗号分隔；全量替换，未提供则清空部门维度
 

@@ -4,7 +4,7 @@ kind: command
 completeness: partial
 usage: dws dingtalk-tag capability skill delete
 description: —
-source: internal/helpers/deap_agent_skill_mcp.go:651
+source: internal/helpers/deap_agent_skill_mcp.go:687
 visible_flags: 2
 partial_reason: missing_description
 

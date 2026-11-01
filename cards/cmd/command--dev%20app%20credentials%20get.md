@@ -4,7 +4,7 @@ kind: command
 completeness: partial
 usage: dws dev app credentials get
 description: —
-source: internal/helpers/devapp.go:596
+source: internal/helpers/devapp.go:674
 visible_flags: 1
 partial_reason: missing_description
 

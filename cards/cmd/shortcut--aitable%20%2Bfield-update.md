@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +field-update
 description: 更新字段名称 / 说明 / 配置 / AI 配置（类型不可改）
-source: internal/shortcut/aitable/aitable.go:610
+source: internal/shortcut/aitable/aitable.go:623
 visible_flags: 7
 
 ## Flags
@@ -14,7 +14,7 @@ visible_flags: 7
 - --name <String>: 新字段名（可选）
 - --description <String>: 字段说明；显式空字符串清除说明，省略保留
 - --config <String>: 字段配置 JSON（可选）
-- --ai-config <String>: AI 配置 JSON（可选）
+- --ai-config <String>: AI 配置 JSON；内置插件传 type=builtin/pluginId/formData/referFieldIds，可选 autoRecompute，不要求 prompt/outputType；由 MCP 校验和转换
 
 ## Related
 - dws aitable +advperm-disable

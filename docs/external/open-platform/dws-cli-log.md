@@ -1,8 +1,8 @@
 ---
 source_kb: "kb-dingtalk-open-platform"
-source_path: "docs/01-应用开发/05-QzuirX2lH7-钉钉-CLI/0026-dws-cli-log.md"
+source_path: "docs/01-应用开发/05-QzuirX2lH7-钉钉-CLI/0029-dws-cli-log.md"
 source_url: "https://open.dingtalk.com/document/development/dws-cli-log"
-updated_at: "2026-10-23 09:32:45"
+updated_at: "2026-10-29 15:05:52"
 layer: mirror   # 外部来源逐字镜像,勿手工修改
 ---
 
@@ -15,12 +15,12 @@ group: "应用开发"
 tab: "钉钉 CLI"
 breadcrumb: "更新日志"
 doc_id: "JqaPUpyWXl"
-updated_at: "2026-10-23 09:32:45"
+updated_at: "2026-10-29 15:05:52"
 ---
 
 > Source: https://open.dingtalk.com/document/development/dws-cli-log
 > Path: 应用开发 / 钉钉 CLI / 更新日志
-> Updated: 2026-10-23 09:32:45
+> Updated: 2026-10-29 15:05:52
 
 # 更新日志
 
@@ -49,6 +49,90 @@ dws upgrade --list
 
   ![image](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/6160536871/p1094200.png)
 
+## **2026-10-28**
+
+### **更新说明**
+
+本周重点：**支持脑图创建**、**AI 表格高级权限与成体系搭建**、**凭群号或邀请链接申请入群**三大方向，同时权限管理改版升级，使用钉钉DWS CLI更安全。建议通过 `dws upgrade` 升级到最新版[v1.0.63](https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli/releases/tag/v1.0.63)。
+
+### 新增功能
+
+#### **脑图：独立创建，主题增删改查**
+
+新增独立脑图能力：可以创建带页面、主题和层级的脑图文件，也可以查询主题树、新增子主题、修改主题文字、删除主题（连同整个子树一起删）。独立脑图与知识库空白脑图文件、AI 听记内置思维导图是相互独立的入口，按需选择。
+
+- 相关命令：`dws mind create`、`dws mind node list`、`dws mind node create`、`dws mind node update`、`dws mind node delete`
+
+#### **AI 表格：角色成员精细管，整套 Base 一次搭**
+
+高级权限的自定义角色现在可以管成员了：追加或整体替换角色成员、复制角色配置、查某个用户实际命中哪些角色；搭一整套 Base 也有了计划化方式——按依赖顺序一次建好多张表、字段、视图、记录和图表，中断后能从断点续跑。
+
+- **高级权限角色成员**
+
+  对开启高级权限的 Base，可以给自定义角色追加成员或整体替换成员、复制一个角色的配置（不复制成员）、查询某个用户实际命中哪些角色，成员变动即刻生效到对应角色的可见范围。
+
+  - 相关命令：`dws aitable +role-members-add`、`dws aitable +role-members-update`、`dws aitable +role-copy`、`dws aitable +role-query-user`
+- **一张计划表搭出整套 Base**
+
+  新增按依赖计划搭建 AI 表格：在一个 JSON 计划文件里按顺序声明多张表、字段、视图、记录、图表布局和 AI 任务，CLI 逐步执行，每一步写完都读回核对真实结果；中途中断会保存检查点，之后可以从断点继续，也可以只做只读续验、确认已建到哪一步。
+
+  - 相关命令：`dws aitable +build-plan --plan plan.json --checkpoint task.json`、`dws aitable +build-plan-verify`（只读续验）、`dws aitable +build-plan --resume`（断点续跑）
+- **批量读、图表模板与 AI 字段**
+
+  批量读取记录增加了边界保护，一次读取有明确的数量上限；建图表可以先取对应图表类型的官方模板、再批量创建；AI 字段现在可以直接配置提示词并一键运行整列或指定记录，字段也支持分组管理。
+
+  - 相关命令：`dws aitable +read-batch`、`dws aitable +chart-templates`、`dws aitable +charts-create`、`dws aitable +field-run-ai`
+
+#### **群聊：凭群号或邀请链接申请入群**
+
+不用先找人拉群了：输入数字群号即可申请加入（需要管理员审批的群会返回"待审批"结果）；拿到群邀请链接也能直接查到这个群并申请入群，链接里的凭证信息不会明文显示在结果中。
+
+- 相关命令：`dws chat group join-by-group-id --group-id <群号>`、`dws chat group join-by-invite-url --invite-url <邀请链接>`
+
+#### **聊天：全部会话一键翻到底**
+
+`chat list-all-conversations` 新增 `--page-all`：自动连续翻页、直到读完全部会话，还可以限制最多读多少页、每页多少条以及页与页之间的等待时间；不加该参数时保持原来的单页行为不变。
+
+- 相关命令：`dws chat list-all-conversations --page-all`
+
+#### **MCP 市场一搜就有**
+
+新增 `dws mcp market search`：按名称关键词搜索钉钉 MCP 市场，返回每个 MCP 的编号、名称、描述、服务名、提供方、是否官方、是否收费，搜到后可以直接衔接查询它的工具清单和接入地址。支持 `--limit` 控制单页数量、`--cursor` 续页；只覆盖已上架市场的 MCP，企业内发布但未上架市场的搜不到。
+
+- 相关命令：`dws mcp market search`、`dws mcp published tools <mcpId>`、`dws mcp url get <mcpId>`
+
+#### **开放平台：应用可见范围可查可设**
+
+企业内部应用和三方应用的可见人员范围现在可以查询和设置。设置是全量替换语义：这次没传进去的原有范围会被移除，所以改之前先用 get 拿到完整集合再一起传入。命令支持先本地预览（`--dry-run`）、再服务端预检（`--precheck-only`，只出计划不写入）、确认后正式执行，避免误删可见范围。
+
+- 相关命令：`dws dev app scope get`、`dws dev app scope set`
+
+#### **安全升级：权限管控更精细**
+
+DWS CLI 权限管控体系完成安全升级，新增「组织级 → 渠道级 → 人员/权限项级」三层管控，每一次 CLI 调用均经由认证与权限校验，管理员可按需收紧至最小权限，确保数据安全可控。
+
+- **组织总开关**：控制组织成员是否可通过 DWS CLI 访问个人数据，默认开启；关闭后所有渠道立即阻断、已登录会话即刻失效。
+- **Agent 渠道管控**：按渠道独立管控权限——千问办公（与钉钉深度集成，默认开启）、其他渠道（Codex、Cursor 等第三方 Agent，默认关闭）、企业自建 Agent（可单独「添加」为独立渠道，实现精细化管控）。未添加的自建 Agent 统一归入"其他渠道"，默认不可用。
+- **CLI 管控配置**：按业务域（群聊、通讯录、文档、日历、AI 表格、OA 审批等）逐项设置可用范围，每项权限标注风险等级（低/中/高），支持全员可用或指定人员，实现最小权限原则。
+- **操作日志**：组织维度下可查看所有成员的 CLI 调用记录（成员、指令、成功/失败），用于安全审计与异常定位。
+- **成员权限申请**：管理员可选择性开启申请通道（默认关闭），范围外成员可主动发起使用申请，审批通过 OA 流程完成，开通结果可追溯。
+
+详见文档：[钉钉DWS权限管控指南](0003-dws-permission-management-guide.md)。
+
+### **体验优化**
+
+#### **表单分享：更新后逐项核对实际生效配置**
+
+更新 AI 表格表单分享后，CLI 会逐项读回权限、匿名填写、查看范围、通知、时间和封面等配置，与服务端实际生效的值比对：不一致就明确报"部分失败"，不会把没生效的配置说成成功；本地上传封面后配置更新失败时，整条命令不再自动重试，也不会重复上传封面。
+
+- 相关命令：`dws aitable +form-share-update`、`dws aitable +form-share-get`
+
+### **问题优化**
+
+- **限流错误说人话**：触发服务端限流时，错误信息会明确说明"当前请求频率过高、本次请求被限流"，并提示等待 10 秒后重试；其他错误码保持原有处理。
+- **npm 安装更稳**：支持 `DWS_NO_SKILLS=1` 只装二进制、不装技能包；技能缓存刷新失败不会再把已经装好的 CLI 和技能一起回滚；安装包里没有可用技能且没有本地来源时会明确报安装失败，不再误报"安装成功"。
+- **文档创建去掉重复标题**：`dws doc +create` 创建文档时，如果正文第一个一级标题和文档名重复，会自动去掉这个标题再写入，文档里不再出现两个一模一样的标题；其他标题、代码块里的内容不受影响。
+
 ## **2026-10-20**
 
 ### **更新说明**
@@ -73,19 +157,19 @@ dws upgrade --list
 - 相关命令：`dws chat message send`、`dws chat +messages-send`
 - 示例：`dws chat message send --open-dingtalk-id <openDingTalkId> --content '这是架构图 ![架构图](./arch.png)'`
 
-### OA 审批：图片控件上传
+#### **OA 审批：图片控件上传**
 
 新增图片上传命令：检查本地图片、超过 2MB 自动压缩，上传后返回图片编号，填进审批单的图片控件即可提交；同步修正联系人控件的取值格式与部门 ID 的核验指引。
 
 - 相关命令：`dws oa approval image upload`
 
-### 群公告：静默发布与新人必看
+#### **群公告：静默发布与新人必看**
 
 创建和编辑群公告支持 `--no-card` 静默发布与 `--must-read` 新人必看；不需要时把对应参数设为 `false` 即可关闭。
 
 - 相关命令：`dws chat group notice create`、`dws chat group notice edit`
 
-### AI 卡片：长正文标准输入与预览摘要自定义
+#### **AI 卡片：长正文标准输入与预览摘要自定义**
 
 - **标准输入读取**：卡片内容很长时，用 `--content -` 改从管道读入，不受命令行参数长度限制。
 - **预览摘要自定义**：发卡命令支持 `--summary` 自定义会话列表里显示的预览文字，不传则用默认文案。
@@ -156,10 +240,10 @@ AI 卡片（A2UI）是钉钉会话中的可交互富卡片：一张卡上可组�
 
   相关文档：
 
-  - [DWS 创建与校验](../../05-互动卡片/03-lHGhOeTVdR-JSON-构建卡片（AI）/0014-json-card-dws-create-and-validate.md)
+  - [DWS 创建与校验](../../05-互动卡片/03-lHGhOeTVdR-JSON-构建卡片（AI）/0015-json-card-dws-create-and-validate.md)
   - [使用示例](../../05-互动卡片/03-lHGhOeTVdR-JSON-构建卡片（AI）/0013-json-card-usage-examples.md)
-  - [Agent Skill 创建与校验](../../05-互动卡片/03-lHGhOeTVdR-JSON-构建卡片（AI）/0015-json-card-agent-skill-create-and-validate.md)
-  - [DWS 发送与更新](../../05-互动卡片/03-lHGhOeTVdR-JSON-构建卡片（AI）/0017-json-card-dws-send-and-update.md)
+  - [Agent Skill 创建与校验](../../05-互动卡片/03-lHGhOeTVdR-JSON-构建卡片（AI）/0017-json-card-agent-skill-create-and-validate.md)
+  - [DWS 发送与更新](../../05-互动卡片/03-lHGhOeTVdR-JSON-构建卡片（AI）/0019-json-card-dws-send-and-update.md)
 
 #### **数字员工（灰度中）：管理、发布、身份登录与本地接入全链路打通**
 

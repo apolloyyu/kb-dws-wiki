@@ -1,6 +1,6 @@
 ---
 source_path: "CHANGELOG.md"
-source_commit: "cd84af493"
+source_commit: "1610a0aed"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 
@@ -11,6 +11,12 @@ All notable changes to this project will be documented in this file.
 The format is inspired by [Keep a Changelog](https://keepachangelog.com/) and this project follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
+
+## [1.0.67-beta.1] - 2026-11-02
+
+### Changed
+
+- **Runtime payload** — 升级至 20261028，纳入最新平台配置，同步六平台资源、完整性校验、运行时集成及安装打包兼容性。
 
 ## [1.0.66] - 2026-10-28
 

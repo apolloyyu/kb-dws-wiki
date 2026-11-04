@@ -271,6 +271,13 @@ def _intent(q):
                      # 须是关于两者关系的问句,「不是 dws,而是问 openapi」这类声明不算。
                      or bool("dws" in q and re.search(r"(?:openapi|open api)\s*(?:吗|么|嘛|呢|\?|？)"
                                                       r"|(?:openapi|open api).{0,8}(?:共享|一样|一套|同一|区别|关系)", q)),
+        # 「CLI 怎么开通/组织已禁止 CLI 数据访问/生效范围」:几层开关散在开放平台文档站几篇里,模型读到后把只属于
+        # 生效范围的时延套到组织总开关上、编出原文没有的取值(11-04 验收 13 道目标题新答 8 个 C)。
+        # 主题词取自声明 cliperm 的 note 的 triggers;另认「CLI + 开通/权限/授权/禁止」这类问法(「CLI怎么开通」
+        # 「dingtalk cli 要组织授权吗」),cli 须是独立词(client_id 不算)。
+        "cliperm": (_subject("cliperm", q, r"cli ?(?:数据访问|使用权限|权限|设置|管控)|组织总开关")
+                    or bool(re.search(r"(?<![a-z])cli(?![a-z]).{0,12}(?:开通|权限|授权|数据访问|访问个人数据|管控"
+                                      r"|总开关|渠道开关|禁止)|(?:开通|授权|禁止|允许).{0,6}(?<![a-z])cli(?![a-z])", q))),
         "version": (any(k in q for k in ("版本", "兼容", "升级", "上线", "发布版", "还能用", "正常使用"))
                     or bool(re.search(r"\bv?\d+\.\d+(?:\.\d+)?\b", q))),
         "semantic": (any(k in q for k in ("只是", "还是", "云端", "本地", "其他人", "影响", "区别", "范围", "限制",
@@ -750,10 +757,11 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
     # 复杂问法的答案常在 notes 而非产品文档；能力边界、值校验、机制和排障
     # 不能因答案卡退出 fast 后只塞一篇泛产品文档。普通支持性判断由命令卡+产品
     # 正文回答，只有同时属于上述复杂意图时才补 notes，避免无关语义篇干扰。
-    _needs_notes = any(intent[k] for k in
-                       ("why", "howmany", "capability", "card_capability", "validation", "mechanism", "trouble",
-                        "access", "origin", "ratelimit", "lifetime"))
-    _mech = _needs_notes
+    _mech = any(intent[k] for k in
+                ("why", "howmany", "capability", "card_capability", "validation", "mechanism", "trouble",
+                 "access", "origin", "ratelimit", "lifetime"))
+    # cliperm 只决定带上管控 note,不改正文篇数,也不退出答案卡快路径(否则会多展开一篇无关产品文档,如 chat.md)
+    _needs_notes = _mech or intent["cliperm"]
     # full 卡 + 首名明显胜出 + 非机制/数值/支持/排障/枚举题时，正文归零；
     # 任一条件不满足就保持 R10.1 的 1~2 篇正文，准确率优先。
     _n_body = 0 if card_fast else (1 if (_mech and not (cmds or shorts))
@@ -839,7 +847,7 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
             pass
 
     notes_hit = 0
-    if not card_fast and _needs_notes:
+    if (not card_fast or intent["cliperm"]) and _needs_notes:
         nd = os.path.join(ROOT, "notes")
         # 整句常匹配不上,按词拆(去掉问法词本身),命中任一实词即取该节。
         words = kw
@@ -980,7 +988,8 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
                f" find={len(docs_hits)} notes={notes_hit} changelog={changelog_hits}")
     out.append("== 继续 ==")
     hint = ["盘点用 dwsdoc cmd <产品>+short <产品> 枚举全量", "版本判定 cat docs/CHANGELOG.md"]
-    if card_fast and not ext_added:   # 另展开了外部篇时「仅按卡作答、无需再 cat」与正文矛盾,不给
+    # 另展开了外部篇或带了管控 note 时「仅按卡作答、无需再 cat」与正文矛盾,不给
+    if card_fast and not ext_added and not notes_hit:
         hint.insert(0, "答案卡为 full 且首名明显胜出:仅按卡内 CLI 契约直接作答,无需再 cat")
     if intent["howmany"]:
         hint.insert(0, "⚠️数值/时限类:上文无确切数字时二级拉源码 grep 常量,禁止用「无固定时长」回避")

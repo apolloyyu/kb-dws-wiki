@@ -436,6 +436,28 @@ class DwsdocCtxContractTest(unittest.TestCase):
         self.assertIn("card=1(fast=1)", out)   # 快卡仍在,只是不再叫模型只按卡作答
         self.assertNotIn("仅按卡内 CLI 契约直接作答", out)
 
+    def test_cli_permission_question_gets_control_note(self):
+        # 11-04 验收:展开管控原文后,13 道目标题新答 8 个 C 是同一种串层——把只属于生效范围的时延套到组织总开关,
+        # 或编出原文没有的生效范围取值。管控 note 把几层开关与时延串起来,依据逐字取自镜像。
+        for q in ("CLI怎么开通", "当前组织已禁止CLI 数据访问权限 请联系组织管理员在后台安全设置中授权 在哪里操作",
+                  "dingtalk cli 要组织授权才能使用吗", "允许成员通过 CLI 访问个人数据", "其他渠道的生效范围怎么设置"):
+            out = run_dwsdoc("ctx", q)
+            self.assertIn("--- notes/cli-permission-control.md", out, q)
+            self.assertIn("- cliperm_timing：", out, q)
+            self.assertIn("> 原文(https://open.dingtalk.com/document/development/", out, q)
+            self.assertNotIn("⚠依据已变更(", out, q)
+            self.assertNotIn("{{", out, q)
+            self.assertNotIn("仅按卡内 CLI 契约直接作答", out, q)   # 带了 note 就不叫模型只按卡作答
+        # 只多带 note,不退出快卡路径:否则会多展开一篇无关产品正文(实测 chat.md)
+        out = run_dwsdoc("ctx", "当前组织已禁止CLI 数据访问权限 请联系组织管理员在后台安全设置中授权 在哪里操作")
+        self.assertIn("(fast=1)", out)
+        self.assertNotRegex(out, r"(?m)^== 篇目\[\d+/\d+\] docs/products/")
+        for q in ("dws cli 怎么开启 debug 日志", "client_id 权限不足", "dws chat message list 怎么用",
+                  "dws auth login 报错 invalid_client", "dws cli 版本怎么升级", "dws发送消息限流规则是什么"):
+            out = run_dwsdoc("ctx", q)
+            self.assertNotIn("notes/cli-permission-control.md", out, q)
+            self.assertNotIn("- cliperm_", out, q)
+
     def test_open_platform_docs_stay_out_of_command_questions(self):
         # 同分时外部篇不能靠路径字母序(docs/external < docs/products)当首篇;更新日志仍只在版本问法参与
         for q in ("dws chat 怎么给群发消息", "dws auth login", "dws chat message list 怎么用"):

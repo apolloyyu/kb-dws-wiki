@@ -1,6 +1,6 @@
 {
   "name": "DWS Agent Wiki(模型生成)",
-  "build_time": "2026-11-04T07:03:05+08:00",
+  "build_time": "2026-11-04T07:06:36+08:00",
   "source_commit": "1610a0aed",
   "pages": 233,
   "spec_version": "1.0",
@@ -34,5 +34,5 @@
   "shortcuts": 501,
   "cards": 1772,
   "cards_full": 1331,
-  "notes_commit": "cd84af493"
+  "notes_commit": "1610a0aed"
 }

@@ -6,7 +6,7 @@ usage: dws minutes get summary
 description: Retrieve the AI-generated summary of a meeting note.
 example: dws minutes get summary --id <taskUuid>
 use_when: When the agent needs a concise recap of a meeting for reporting or follow-up.
-source: internal/helpers/minutes.go:230
+source: internal/helpers/minutes.go:239
 visible_flags: 0
 
 ## Flags

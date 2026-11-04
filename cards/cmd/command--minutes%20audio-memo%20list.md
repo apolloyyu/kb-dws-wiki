@@ -5,7 +5,7 @@ completeness: full
 usage: dws minutes audio-memo list
 description: 查询语音备忘列表
 example: dws minutes audio-memo list
-source: internal/helpers/minutes.go:2079
+source: internal/helpers/minutes.go:2089
 visible_flags: 4
 
 ## Flags

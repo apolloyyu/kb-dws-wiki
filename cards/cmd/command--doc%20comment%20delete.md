@@ -5,7 +5,7 @@ completeness: full
 usage: dws doc comment delete
 description: 删除文档评论
 example: dws doc comment delete --node DOC_ID --comment-key COMMENT_KEY --yes
-source: internal/helpers/doc.go:3509
+source: internal/helpers/doc.go:3611
 visible_flags: 2
 
 ## Flags

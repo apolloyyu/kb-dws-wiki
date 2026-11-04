@@ -1,6 +1,6 @@
 ---
 source_path: "docs/event-subprocess-contract.md"
-source_commit: "1610a0aed"
+source_commit: "8fc32dbd2"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 
@@ -100,7 +100,8 @@ Ownership-based cleanup:
 
 ### 5. Subscription-create retry orchestration and local guard
 
-This policy covers all 26 public personal-event keys (16 IM, 7 OA, and 3 Todo) and every logical
+This policy covers all 33 public personal-event keys (16 IM, 7 OA, 1 VoIP, 3 Todo, 2 contact,
+1 card, 2 Minutes, and 1 calendar) and every logical
 subscription in a multi-event command. It applies only before the ready
 marker; reconnecting an established Stream remains a separate mechanism.
 

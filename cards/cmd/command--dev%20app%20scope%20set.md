@@ -4,7 +4,7 @@ kind: command
 completeness: partial
 usage: dws dev app scope set
 description: —
-source: internal/helpers/devapp.go:734
+source: internal/helpers/devapp.go:735
 visible_flags: 8
 partial_reason: missing_description
 

@@ -6,7 +6,7 @@ usage: dws todo task get
 description: Retrieve the full details of a todo item by ID.
 example: dws todo task get --task-id <taskId>
 use_when: When the agent inspects a specific todo's content, due date, and executors.
-source: internal/helpers/todo.go:511
+source: internal/helpers/todo.go:510
 visible_flags: 1
 
 ## Flags

@@ -5,7 +5,7 @@ completeness: full
 usage: dws minutes record start
 description: 发起听记（开始录音）
 example: dws minutes record start
-source: internal/helpers/minutes.go:670
+source: internal/helpers/minutes.go:679
 visible_flags: 0
 
 ## Flags

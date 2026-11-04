@@ -6,7 +6,7 @@ usage: dws minutes get keywords
 description: Retrieve the extracted keywords of a meeting note.
 example: dws minutes get keywords --id <taskUuid>
 use_when: When the agent needs topical tags for a meeting without pulling the full transcript or summary.
-source: internal/helpers/minutes.go:282
+source: internal/helpers/minutes.go:291
 visible_flags: 0
 
 ## Flags

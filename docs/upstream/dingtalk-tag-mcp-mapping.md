@@ -1,6 +1,6 @@
 ---
 source_path: "docs/dingtalk-tag-mcp-mapping.md"
-source_commit: "1610a0aed"
+source_commit: "8fc32dbd2"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 

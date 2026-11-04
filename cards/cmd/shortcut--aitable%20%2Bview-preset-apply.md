@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +view-preset-apply
 description: 按视图精确名称幂等创建或更新预设；Gantt 可用独立 timebar 完成专用两步写入
-source: internal/shortcut/aitable/view_preset.go:23
+source: internal/shortcut/aitable/view_preset.go:24
 visible_flags: 6
 
 ## Flags

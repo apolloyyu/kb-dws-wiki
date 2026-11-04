@@ -5,7 +5,7 @@ completeness: full
 usage: dws todo tag delete
 description: 删除待办标签
 example: dws todo tag delete --tag-codes code1,code2 --yes
-source: internal/helpers/todo.go:1539
+source: internal/helpers/todo.go:1538
 visible_flags: 1
 
 ## Flags

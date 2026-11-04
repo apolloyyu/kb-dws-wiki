@@ -6,7 +6,7 @@ usage: dws doc folder create
 description: Create a new folder inside a DingTalk Docs knowledge base or drive location.
 example: dws doc folder create --name "项目资料"
 use_when: When the agent organizes output into a fresh folder before writing files into it.
-source: internal/helpers/doc.go:2013
+source: internal/helpers/doc.go:2072
 visible_flags: 3
 
 ## Flags

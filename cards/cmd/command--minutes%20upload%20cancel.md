@@ -6,7 +6,7 @@ usage: dws minutes upload cancel
 description: Cancel an in-progress meeting-note file upload session.
 example: dws minutes upload cancel --session-id <sessionId>
 use_when: When the agent aborts a multi-step upload due to user cancellation or upstream error.
-source: internal/helpers/minutes.go:1646
+source: internal/helpers/minutes.go:1655
 visible_flags: 1
 
 ## Flags

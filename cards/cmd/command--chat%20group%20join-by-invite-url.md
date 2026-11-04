@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat group join-by-invite-url
 description: 通过群邀请链接申请加入群聊
 example: dws chat group join-by-invite-url --invite-url "https://qr.dingtalk.com/action/joingroup?code=xxx"
-source: internal/helpers/chat.go:10553
+source: internal/helpers/chat.go:10614
 visible_flags: 1
 
 ## Flags

@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable form share url
 description: 获取可复制的表单分享链接
 example: dws aitable form share url --base-id BASE_ID --table-id TABLE_ID --view-id VIEW_ID
-source: internal/helpers/aitable.go:6448
+source: internal/helpers/aitable.go:6472
 visible_flags: 4
 
 ## Flags

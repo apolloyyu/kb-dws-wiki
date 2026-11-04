@@ -1,10 +1,10 @@
 # 构建对账
 
-- 源码 commit:1610a0aed
+- 源码 commit:8fc32dbd2
 - 镜像文件:223
-- 主命令:1271(带 flags:940,归属未定:190)
+- 主命令:1293(带 flags:956,归属未定:192)
 - shortcuts:501
-- 答案卡:1772(full:1331,75.1%;partial:441)
+- 答案卡:1794(full:1331,74.2%;partial:463)
 - 文档索引:233 篇
 
 ## 归属未定(退回源码 grep,不影响存在性判断)
@@ -102,6 +102,7 @@
 - dev app version
 - dev app webapp
 - dev doc
+- dev liteapp
 - dev mcp
 - dev mcp auth
 - dev mcp credential
@@ -171,6 +172,7 @@
 - minutes speaker
 - minutes speaker summary
 - minutes tag
+- minutes template
 - minutes update
 - minutes upload
 - oa approval

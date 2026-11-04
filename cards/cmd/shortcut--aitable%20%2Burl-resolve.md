@@ -3,7 +3,7 @@
 kind: shortcut
 completeness: full
 usage: dws aitable +url-resolve
-description: 解析 AI 表格 URL 中的 baseId/tableId/viewId/recordId
+description: 解析 AI 表格表、视图、记录、字段、表单、App/Page、Application 和流程 URL
 source: internal/shortcut/aitable/url_resolve.go:20
 visible_flags: 2
 

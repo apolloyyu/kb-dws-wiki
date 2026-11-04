@@ -1,6 +1,6 @@
 ---
 source_path: "skills/multi/dingtalk-chat/SKILL.md"
-source_commit: "1610a0aed"
+source_commit: "8fc32dbd2"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 
@@ -83,7 +83,7 @@ metadata:
 
 ## 写生命周期
 
-- 钉钉回复任务：接入方默认先发 A2UI 占位、执行中更新；主动发送默认完整投递。按[占位与流式](references/card/a2ui.md)执行。
+- 钉钉回复任务：接入方默认先发 A2UI 占位、执行中更新；主动发送默认完整投递。按[占位与流式](references/card/a2ui.md)执行；卡片摘要与转发同见此文。
 - 多步骤写先校验目标、限制、内容、确认，再沿稳定 ID 串行执行并验证；不截断或换目标。临时资源保留 ID/阶段，失败仅做已授权清理。
 
 ## 上下文预算

@@ -5,7 +5,7 @@ completeness: full
 usage: dws todo tag update
 description: 更新待办标签
 example: dws todo tag update --user-tags '[{"code":"code1","name":"新名称"}]'
-source: internal/helpers/todo.go:1591
+source: internal/helpers/todo.go:1590
 visible_flags: 1
 
 ## Flags

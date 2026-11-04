@@ -4,7 +4,7 @@ kind: command
 completeness: partial
 usage: dws dev app event subscribe
 description: —
-source: internal/helpers/devapp.go:422
+source: internal/helpers/devapp.go:423
 visible_flags: 2
 partial_reason: missing_description
 

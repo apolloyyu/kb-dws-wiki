@@ -5,7 +5,7 @@ completeness: full
 usage: dws todo task add-participant
 description: 添加待办参与人
 example: dws todo task add-participant --task-id <taskId> --participants <USER_ID_1>,<USER_ID_2>
-source: internal/helpers/todo.go:761
+source: internal/helpers/todo.go:760
 visible_flags: 2
 
 ## Flags

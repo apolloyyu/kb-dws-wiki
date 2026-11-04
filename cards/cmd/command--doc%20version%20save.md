@@ -5,7 +5,7 @@ completeness: full
 usage: dws doc version save
 description: 手动保存文档版本快照
 example: dws doc version save --node DOC_ID
-source: internal/helpers/doc.go:4499
+source: internal/helpers/doc.go:4601
 visible_flags: 1
 
 ## Flags

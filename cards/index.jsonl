@@ -26,6 +26,10 @@
 {"completeness": "full", "key": "aicard explain", "kind": "command", "path": "cards/cmd/command--aicard%20explain.md", "product": "aicard"}
 {"completeness": "full", "key": "aicard lint", "kind": "command", "path": "cards/cmd/command--aicard%20lint.md", "product": "aicard"}
 {"completeness": "partial", "key": "aicard preview", "kind": "command", "path": "cards/cmd/command--aicard%20preview.md", "product": "aicard"}
+{"completeness": "full", "key": "aicard template", "kind": "command", "path": "cards/cmd/command--aicard%20template.md", "product": "aicard"}
+{"completeness": "partial", "key": "aicard template create", "kind": "command", "path": "cards/cmd/command--aicard%20template%20create.md", "product": "aicard"}
+{"completeness": "partial", "key": "aicard template get", "kind": "command", "path": "cards/cmd/command--aicard%20template%20get.md", "product": "aicard"}
+{"completeness": "partial", "key": "aicard template update", "kind": "command", "path": "cards/cmd/command--aicard%20template%20update.md", "product": "aicard"}
 {"completeness": "partial", "key": "aisearch", "kind": "command", "path": "cards/cmd/command--aisearch.md", "product": "aisearch"}
 {"completeness": "full", "key": "aisearch behavior", "kind": "command", "path": "cards/cmd/command--aisearch%20behavior.md", "product": "aisearch"}
 {"completeness": "full", "key": "aisearch enterprise", "kind": "command", "path": "cards/cmd/command--aisearch%20enterprise.md", "product": "aisearch"}
@@ -651,6 +655,13 @@
 {"completeness": "partial", "key": "dev connect stop", "kind": "command", "path": "cards/cmd/command--dev%20connect%20stop.md", "product": "dev"}
 {"completeness": "partial", "key": "dev doc", "kind": "command", "path": "cards/cmd/command--dev%20doc.md", "product": "dev"}
 {"completeness": "partial", "key": "dev doc search", "kind": "command", "path": "cards/cmd/command--dev%20doc%20search.md", "product": "dev"}
+{"completeness": "partial", "key": "dev liteapp", "kind": "command", "path": "cards/cmd/command--dev%20liteapp.md", "product": "dev"}
+{"completeness": "partial", "key": "dev liteapp create", "kind": "command", "path": "cards/cmd/command--dev%20liteapp%20create.md", "product": "dev"}
+{"completeness": "partial", "key": "dev liteapp credential", "kind": "command", "path": "cards/cmd/command--dev%20liteapp%20credential.md", "product": "dev"}
+{"completeness": "partial", "key": "dev liteapp delete", "kind": "command", "path": "cards/cmd/command--dev%20liteapp%20delete.md", "product": "dev"}
+{"completeness": "partial", "key": "dev liteapp detail", "kind": "command", "path": "cards/cmd/command--dev%20liteapp%20detail.md", "product": "dev"}
+{"completeness": "partial", "key": "dev liteapp list", "kind": "command", "path": "cards/cmd/command--dev%20liteapp%20list.md", "product": "dev"}
+{"completeness": "partial", "key": "dev liteapp update", "kind": "command", "path": "cards/cmd/command--dev%20liteapp%20update.md", "product": "dev"}
 {"completeness": "partial", "key": "dev mcp", "kind": "command", "path": "cards/cmd/command--dev%20mcp.md", "product": "dev"}
 {"completeness": "partial", "key": "dev mcp auth", "kind": "command", "path": "cards/cmd/command--dev%20mcp%20auth.md", "product": "dev"}
 {"completeness": "full", "key": "dev mcp auth get", "kind": "command", "path": "cards/cmd/command--dev%20mcp%20auth%20get.md", "product": "dev"}
@@ -1016,8 +1027,19 @@
 {"completeness": "full", "key": "minutes speaker summary create", "kind": "command", "path": "cards/cmd/command--minutes%20speaker%20summary%20create.md", "product": "minutes"}
 {"completeness": "full", "key": "minutes speaker summary get", "kind": "command", "path": "cards/cmd/command--minutes%20speaker%20summary%20get.md", "product": "minutes"}
 {"completeness": "partial", "key": "minutes tag", "kind": "command", "path": "cards/cmd/command--minutes%20tag.md", "product": "minutes"}
+{"completeness": "partial", "key": "minutes tag add", "kind": "command", "path": "cards/cmd/command--minutes%20tag%20add.md", "product": "minutes"}
+{"completeness": "partial", "key": "minutes tag create", "kind": "command", "path": "cards/cmd/command--minutes%20tag%20create.md", "product": "minutes"}
+{"completeness": "partial", "key": "minutes tag delete", "kind": "command", "path": "cards/cmd/command--minutes%20tag%20delete.md", "product": "minutes"}
 {"completeness": "full", "key": "minutes tag list", "kind": "command", "path": "cards/cmd/command--minutes%20tag%20list.md", "product": "minutes"}
 {"completeness": "full", "key": "minutes tag query", "kind": "command", "path": "cards/cmd/command--minutes%20tag%20query.md", "product": "minutes"}
+{"completeness": "partial", "key": "minutes tag remove", "kind": "command", "path": "cards/cmd/command--minutes%20tag%20remove.md", "product": "minutes"}
+{"completeness": "partial", "key": "minutes template", "kind": "command", "path": "cards/cmd/command--minutes%20template.md", "product": "minutes"}
+{"completeness": "partial", "key": "minutes template create", "kind": "command", "path": "cards/cmd/command--minutes%20template%20create.md", "product": "minutes"}
+{"completeness": "partial", "key": "minutes template delete", "kind": "command", "path": "cards/cmd/command--minutes%20template%20delete.md", "product": "minutes"}
+{"completeness": "partial", "key": "minutes template list-custom", "kind": "command", "path": "cards/cmd/command--minutes%20template%20list-custom.md", "product": "minutes"}
+{"completeness": "partial", "key": "minutes template list-system", "kind": "command", "path": "cards/cmd/command--minutes%20template%20list-system.md", "product": "minutes"}
+{"completeness": "partial", "key": "minutes template set-default", "kind": "command", "path": "cards/cmd/command--minutes%20template%20set-default.md", "product": "minutes"}
+{"completeness": "partial", "key": "minutes template update", "kind": "command", "path": "cards/cmd/command--minutes%20template%20update.md", "product": "minutes"}
 {"completeness": "partial", "key": "minutes update", "kind": "command", "path": "cards/cmd/command--minutes%20update.md", "product": "minutes"}
 {"completeness": "full", "key": "minutes update summary", "kind": "command", "path": "cards/cmd/command--minutes%20update%20summary.md", "product": "minutes"}
 {"completeness": "full", "key": "minutes update title", "kind": "command", "path": "cards/cmd/command--minutes%20update%20title.md", "product": "minutes"}
@@ -1655,7 +1677,7 @@
 {"completeness": "full", "key": "doc +template-apply", "kind": "shortcut", "path": "cards/cmd/shortcut--doc%20%2Btemplate-apply.md", "product": "doc"}
 {"completeness": "full", "key": "doc +template-list", "kind": "shortcut", "path": "cards/cmd/shortcut--doc%20%2Btemplate-list.md", "product": "doc"}
 {"completeness": "full", "key": "doc +template-search", "kind": "shortcut", "path": "cards/cmd/shortcut--doc%20%2Btemplate-search.md", "product": "doc"}
-{"completeness": "full", "key": "doc +update", "kind": "shortcut", "path": "cards/cmd/shortcut--doc%20%2Bupdate.md", "product": "doc"}
+{"completeness": "partial", "key": "doc +update", "kind": "shortcut", "path": "cards/cmd/shortcut--doc%20%2Bupdate.md", "product": "doc"}
 {"completeness": "full", "key": "doc +version-list", "kind": "shortcut", "path": "cards/cmd/shortcut--doc%20%2Bversion-list.md", "product": "doc"}
 {"completeness": "full", "key": "doc +version-revert", "kind": "shortcut", "path": "cards/cmd/shortcut--doc%20%2Bversion-revert.md", "product": "doc"}
 {"completeness": "full", "key": "doc +version-save", "kind": "shortcut", "path": "cards/cmd/shortcut--doc%20%2Bversion-save.md", "product": "doc"}

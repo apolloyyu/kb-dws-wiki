@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat group-role remove
 description: 删除群身份
 example: dws chat group-role remove --conversation-id <openConversationId> --role-id <openRoleId>
-source: internal/helpers/chat.go:9107
+source: internal/helpers/chat.go:9168
 visible_flags: 2
 
 ## Flags

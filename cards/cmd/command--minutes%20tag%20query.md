@@ -5,7 +5,7 @@ completeness: full
 usage: dws minutes tag query
 description: 根据标签ID查询听记列表
 example: dws minutes tag query --tag-id <tagId>
-source: internal/helpers/minutes.go:2004
+source: internal/helpers/minutes.go:2013
 visible_flags: 3
 
 ## Flags
@@ -14,4 +14,8 @@ visible_flags: 3
 - --cursor <String>: 分页 token (首页留空)
 
 ## Related
+- dws minutes tag add
+- dws minutes tag create
+- dws minutes tag delete
 - dws minutes tag list
+- dws minutes tag remove

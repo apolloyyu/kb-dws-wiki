@@ -5,7 +5,7 @@ completeness: full
 usage: dws todo task remove-participant
 description: 移除待办参与人
 example: dws todo task remove-participant --task-id <taskId> --participants <USER_ID_1>,<USER_ID_2>
-source: internal/helpers/todo.go:819
+source: internal/helpers/todo.go:818
 visible_flags: 2
 
 ## Flags

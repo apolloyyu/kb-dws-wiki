@@ -5,7 +5,7 @@ completeness: partial
 usage: dws event consume [event_key...]
 description: 订阅事件流并输出到 stdout
 example: dws event consume user_card_action_triggered --flatten -f ndjson
-source: internal/app/event_command.go:145
+source: internal/app/event_command.go:146
 visible_flags: 0
 partial_reason: unverified_flags
 

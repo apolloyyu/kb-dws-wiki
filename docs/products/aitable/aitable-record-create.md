@@ -1,6 +1,6 @@
 ---
 source_path: "skills/mono/references/products/aitable/aitable-record-create.md"
-source_commit: "1610a0aed"
+source_commit: "8fc32dbd2"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 
@@ -30,8 +30,8 @@ Flags:
 | 错误 | 说明 |
 |------|------|
 | 参数名用 `--data` | ❌ 参数名是 `--records`，不是 `--data` |
-| cells key 用字段名 | ❌ cells key 必须是 fieldId（如 `fldXXX`），不是字段名称（如 `"课程名称"`） |
-| 不先获取 fieldId | ❌ 必须先 `field get` 获取 fieldId，再写入记录 |
+| cells key 使用不存在、重名或未精确匹配的字段名 | 支持 fieldId 或当前表内唯一字段名；推荐 fieldId，字段名须精确匹配 |
+| 猜测 fieldId | 使用 fieldId 时，先 `field get` 获取真实 ID；也可使用已确认的当前表内唯一字段名 |
 | 单次超 100 条 | ❌ 单次最多 100 条，超过需分批 |
 | 附件/图片字段直传 URL | ❌ 严禁 `{"url":"https://..."}` — 会触发 TIMEOUT_ERROR。必须先 `attachment upload` 获取 `fileToken`，再用 `{"fileToken":"ft_xxx"}` 写入。详见 [aitable-attachment.md](./aitable-attachment.md) |
 

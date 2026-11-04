@@ -5,7 +5,7 @@ completeness: full
 usage: dws todo task remove-executor
 description: 移除待办执行人
 example: dws todo task remove-executor --task-id <taskId> --executors <USER_ID_1>,<USER_ID_2>
-source: internal/helpers/todo.go:701
+source: internal/helpers/todo.go:700
 visible_flags: 2
 
 ## Flags

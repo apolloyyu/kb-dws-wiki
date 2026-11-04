@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +record-batch-create
 description: 批量新增记录，100 条分片并按返回 ID 独立验证；已有 recordId 明确拒绝
-source: internal/shortcut/aitable/parity_create.go:23
+source: internal/shortcut/aitable/parity_create.go:27
 visible_flags: 3
 
 ## Flags

@@ -5,7 +5,7 @@ completeness: full
 usage: dws todo comment delete
 description: 删除待办评论
 example: dws todo comment delete --task-id <taskId> --comment-id <commentId>
-source: internal/helpers/todo.go:1419
+source: internal/helpers/todo.go:1418
 visible_flags: 2
 
 ## Flags

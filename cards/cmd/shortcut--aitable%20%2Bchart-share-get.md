@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +chart-share-get
 description: 查询 chart 的分享配置
-source: internal/shortcut/aitable/aitable.go:2786
+source: internal/shortcut/aitable/aitable.go:2825
 visible_flags: 3
 
 ## Flags

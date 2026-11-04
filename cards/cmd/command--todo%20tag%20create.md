@@ -5,7 +5,7 @@ completeness: full
 usage: dws todo tag create
 description: 创建待办标签
 example: dws todo tag create --name "标签名"
-source: internal/helpers/todo.go:1686
+source: internal/helpers/todo.go:1685
 visible_flags: 1
 
 ## Flags

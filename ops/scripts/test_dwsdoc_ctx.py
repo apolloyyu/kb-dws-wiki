@@ -419,5 +419,84 @@ class DwsdocCtxContractTest(unittest.TestCase):
         self.assertIn("篇目标题层无命中", run_dwsdoc("find", "不存在的词xyz 另一个xyz"))
         self.assertGreater(len(run_dwsdoc("find", "md").splitlines()), 30)   # 全中照旧全列，不截断
 
+    def test_cli_permission_question_expands_open_platform_doc(self):
+        # 11-02 日评:CLI 开通/组织权限/渠道开关只写在开放平台「钉钉 CLI」分类,本库此前只镜像更新日志,
+        # 21 题依据都在这几篇,正文一篇没展开(实录:「组织管理员如何管理 CLI 权限」展开 attendance.md;
+        # 「当前组织已禁止 CLI 数据访问权限」快卡命中 chat data-auth cross-org,正文清零)
+        for q, doc in (("组织管理员如何管理组织的 CLI 权限", "dws-permission-management-guide.md"),
+                       ("如何开通组织成员CLI权限申请", "cli-permissions-organizational-members.md"),
+                       ('个人数据授权管理页面显示"当前组织已禁止CLI数据访问权限"，请联系组织管理员',
+                        "dws-permission-management-guide.md")):
+            out = run_dwsdoc("ctx", q)
+            m = re.search(r"(?m)^== 篇目\[\d+/\d+\] docs/external/open-platform/" + re.escape(doc)
+                          + r" \[docs\] ==\n(.*)$", out)
+            self.assertTrue(m, q)
+            self.assertTrue(m.group(1).startswith("引用: https://open.dingtalk.com/document/"), q)
+        out = run_dwsdoc("ctx", '个人数据授权管理页面显示"当前组织已禁止CLI数据访问权限"，请联系组织管理员')
+        self.assertIn("card=1(fast=1)", out)   # 快卡仍在,只是不再叫模型只按卡作答
+        self.assertNotIn("仅按卡内 CLI 契约直接作答", out)
+
+    def test_open_platform_docs_stay_out_of_command_questions(self):
+        # 同分时外部篇不能靠路径字母序(docs/external < docs/products)当首篇;更新日志仍只在版本问法参与
+        for q in ("dws chat 怎么给群发消息", "dws auth login", "dws chat message list 怎么用"):
+            out = run_dwsdoc("ctx", q)
+            self.assertNotRegex(out, r"(?m)^== 篇目\[\d+/\d+\] docs/external/", q)
+        self.assertIn("仅按卡内 CLI 契约直接作答", run_dwsdoc("ctx", "dws auth login"))
+        # 更新日志小标题含「AI 表格：角色成员精细管」,不限版本问法时会被当外部首篇追加
+        self.assertNotIn("dws-cli-log.md", run_dwsdoc("ctx", "AI 表格角色成员怎么管"))
+        self.assertRegex(run_dwsdoc("ctx", "dws 最新版本更新了什么"),
+                         r"(?m)^== 篇目\[\d+/\d+\] docs/external/open-platform/dws-cli-log\.md ")
+
+    def test_find_lists_open_platform_docs(self):
+        self.assertIn("docs/external/open-platform/cli-permissions-organizational-members.md",
+                      run_dwsdoc("find", "CLI 权限"))
+
+    def test_unindexed_external_mirror_is_searchable(self):
+        # staging 只带新增镜像文件、不重建 meta/documents.jsonl,外部篇也要进检索;已索引的以索引为准
+        import tempfile
+        fn = runpy.run_path(DWSDOC, run_name="dwsdoc_test_module")["_doc_rows"]
+        with tempfile.TemporaryDirectory() as root:
+            ext = os.path.join(root, "docs", "external", "kb")
+            os.makedirs(ext)
+            os.makedirs(os.path.join(root, "meta"))
+            with open(os.path.join(root, "meta", "documents.jsonl"), "w", encoding="utf-8") as fh:
+                fh.write('{"doc_id": "a", "path": "docs/external/kb/a.md", "layer": "docs", "headings": ["索引标题"]}\n')
+            for name in ("a", "b"):
+                with open(os.path.join(ext, name + ".md"), "w", encoding="utf-8") as fh:
+                    fh.write("---\nsource_url: https://example.com\n# 不是标题\n---\n# 文件标题\n正文\n## 小节\n")
+            old = fn.__globals__["ROOT"]
+            fn.__globals__["ROOT"] = root
+            try:
+                rows = fn()
+            finally:
+                fn.__globals__["ROOT"] = old
+        self.assertEqual([(r["path"], r["headings"]) for r in rows],
+                         [("docs/external/kb/a.md", ["索引标题"]), ("docs/external/kb/b.md", ["文件标题", "小节"])])
+        self.assertEqual(rows[1]["layer"], "docs")
+
+
+class ExternalMirrorTargetsTest(unittest.TestCase):
+    def test_sections_select_and_fall_back_to_previous_mirror(self):
+        # 按分类节选篇,不逐篇点名;开放平台库读不到时沿用上一版镜像,不因此删掉已镜像篇
+        import tempfile
+        targets = runpy.run_path(os.path.join(REPO, "ops", "scripts", "build_dws_kb.py"),
+                                 run_name="build_dws_kb_test")["external_targets"]
+        rows = [{"tab": "钉钉 CLI", "slug": "faq", "breadcrumb": ["常见问题"]},
+                {"tab": "钉钉 CLI", "slug": "openclaw", "breadcrumb": ["OpenClaw 接入"]},
+                {"tab": "应用开发", "slug": "other", "breadcrumb": ["新手入门"]},
+                {"tab": "钉钉 CLI", "slug": "dws-cli-log", "breadcrumb": ["新手入门"]}]
+        self.assertEqual(targets(rows, "/nonexistent"),
+                         [("open-platform", "dws-cli-log"), ("open-platform", "faq")])
+        with tempfile.TemporaryDirectory() as prev:
+            os.makedirs(os.path.join(prev, "open-platform"))
+            for name in ("dws-cli-log.md", "faq.md", "notes.txt"):
+                open(os.path.join(prev, "open-platform", name), "w").close()
+            self.assertEqual(targets([], prev), [("open-platform", "dws-cli-log"), ("open-platform", "faq")])
+            # 索引还在但字段改名、一篇都选不出,同样沿用上一版
+            self.assertEqual(targets([{"category": "钉钉 CLI", "slug": "faq"}], prev),
+                             [("open-platform", "dws-cli-log"), ("open-platform", "faq")])
+        self.assertEqual(targets([], "/nonexistent"), [("open-platform", "dws-cli-log")])
+
+
 if __name__ == "__main__":
     unittest.main()

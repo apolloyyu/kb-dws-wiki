@@ -472,6 +472,13 @@ def _supplement_rows():
     return rows
 
 
+def _sup_relevant(words):
+    """运营补充篇只在像是讲这件事时参与排序：命中两个以上不同的查询词，或一个英文/数字标识符、一个三字以上的中文词；
+    只撞上一个常见短词不算(与 dkdoc 同口径)。"""
+    words = set(words)
+    return len(words) >= 2 or any(re.search(r"[a-z0-9]", w) or len(w) >= 3 for w in words)
+
+
 def _supplement_cite(r):
     """运营补充篇没有可对外访问的地址:不给链接,要求回答注明来源与日期;冲突不按编辑日期裁决。"""
     day = r.get("updated_at") or ""
@@ -723,7 +730,8 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
     doc_hays = [(r["path"] + " " + " ".join(r.get("headings", []))).lower() for r in doc_rows]
     # 完整自然问句不能只按空格拆:"卡片消息能不能解析"须拆出 卡片/消息/解析，
     # 否则 notes 明明有实据仍会 0 命中。复用实体检索的脚本分段+领域最长匹配。
-    kw = _tokenize(raw_terms, doc_hays)
+    # 分词只用官方篇的词料：运营篇的标题/小标题(如「安装和使用」)会改变其它问题的最长匹配，把外部篇挤出正文(实测)
+    kw = _tokenize(raw_terms, [h for r, h in zip(doc_rows, doc_hays) if r.get("layer") != "supplement"])
     kw = [w for w in kw if w not in _STOP and len(w) > 1]
     if not kw:
         kw = [w.lower() for w in raw_terms if w.lower() not in _STOP and len(w) > 1] or [q]
@@ -738,6 +746,8 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
         sd = []
         for r, hay in zip(doc_rows, doc_hays):
             sc = sum(_w(w) for w in kw if _hit(w, hay))
+            if sc and r.get("layer") == "supplement" and not _sup_relevant([w for w in kw if _hit(w, hay)]):
+                sc = 0
             if sc:
                 # 同分时外部镜像篇排在本库篇之后:否则首名只取决于路径字母序(docs/external 在
                 # docs/products 前),「dws chat 怎么给群发消息」会把事件订阅篇顶成首篇。

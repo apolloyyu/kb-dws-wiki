@@ -602,6 +602,34 @@ class SupplementDocsTest(unittest.TestCase):
             self.assertIn(self.twin["path"], out)
             self.assertLess(out.index(self.twin["path"]), out.index(twin))
 
+    def test_unrelated_questions_unchanged(self):
+        """运营篇不改变无关问题的检索：分词只用官方篇的词料(运营篇小标题「安装和使用」曾把外部安装指南挤出正文)；
+        只撞上一个常见短词(「含义」)的运营篇不参与排序。对口问题照常展开。"""
+        vocab = ("---\ntitle: 错误码 ZZ-7319 的含义\nsource: ops\nupdated_at: 2026-11-05\n---\n## 安装和使用说明\n"
+                 "接口返回 ZZ-7319 表示示例环境的调用配额已用完，次日零点恢复。\n")
+        qs = ("DWS是什么？如何安装和使用 DWS（钉钉开发者工具）？我没有开发者权限也能用吗？",
+              "dws chat 消息里 msgType 参数的含义", "钉钉开发者后台关闭了dws cli 文档导出后，使用dws上传文档失败，怎么回事")
+        def root(td, files):
+            shutil.copytree(os.path.join(REPO, "bin"), os.path.join(td, "bin"))
+            for name in os.listdir(REPO):
+                if name not in ("bin", "supplement") and not name.startswith("."):
+                    os.symlink(os.path.join(REPO, name), os.path.join(td, name))
+            os.makedirs(os.path.join(td, "supplement"))
+            for fn, text in files.items():
+                with open(os.path.join(td, "supplement", fn), "w", encoding="utf-8") as f:
+                    f.write(text)
+            return td
+
+        def run(r, q):  # 检索审计行里的命中计数会把运营篇算进去，其余逐字节比
+            out = subprocess.run(["python3", os.path.join(r, "bin", "dwsdoc"), "ctx", q], cwd=r, text=True,
+                                 capture_output=True, timeout=60).stdout
+            return re.sub(r"(?m)^.*\bfind=\d+.*$", "", out)
+        with tempfile.TemporaryDirectory() as t0, tempfile.TemporaryDirectory() as t1:
+            bare, with_sup = root(t0, {}), root(t1, {"zz-test-ops-vocab.md": vocab})
+            for q in qs:
+                self.assertEqual(run(bare, q), run(with_sup, q), q)
+            self.assertIn("supplement/zz-test-ops-vocab.md [supplement]", run(with_sup, "错误码 ZZ-7319 是什么意思"))
+
     def test_edge_files_do_not_break_retrieval(self):
         nofm = self.cli("cat", "supplement/zz-test-ops-nofm.md").stdout
         self.assertIn("没有 frontmatter", nofm)

@@ -4,7 +4,7 @@ kind: command
 completeness: partial
 usage: dws aitable workflow run
 description: —
-source: internal/helpers/aitable.go:7673
+source: internal/helpers/aitable.go:7704
 visible_flags: 4
 partial_reason: missing_description
 

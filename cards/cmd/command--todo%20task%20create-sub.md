@@ -5,7 +5,7 @@ completeness: full
 usage: dws todo task create-sub
 description: 创建子待办
 example: dws todo task create-sub --parent-id <parentId> --title "子任务标题" --executors userId1,userId2 --priority 40
-source: internal/helpers/todo.go:176
+source: internal/helpers/todo.go:175
 visible_flags: 6
 
 ## Flags

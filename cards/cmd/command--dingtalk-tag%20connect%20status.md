@@ -4,7 +4,7 @@ kind: command
 completeness: partial
 usage: dws dingtalk-tag connect status
 description: —
-source: internal/helpers/deap_agent_adapter.go:327
+source: internal/helpers/deap_agent_adapter.go:355
 visible_flags: 1
 partial_reason: missing_description
 

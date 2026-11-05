@@ -6,7 +6,7 @@ usage: dws minutes list all
 description: List all meeting notes the user has access to, filterable by keyword and time range.
 example: dws minutes list all
 use_when: When the agent needs a broad search across the user's full minutes library.
-source: internal/helpers/minutes.go:132
+source: internal/helpers/minutes.go:141
 visible_flags: 1
 
 ## Flags

@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +field-get
 description: 批量获取字段详情（含类型相关完整配置）
-source: internal/shortcut/aitable/aitable.go:571
+source: internal/shortcut/aitable/aitable.go:604
 visible_flags: 3
 
 ## Flags

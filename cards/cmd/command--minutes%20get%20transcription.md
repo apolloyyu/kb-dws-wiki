@@ -6,7 +6,7 @@ usage: dws minutes get transcription
 description: Retrieve the raw speech-to-text transcription of a meeting note.
 example: dws minutes get transcription --id <taskUuid>
 use_when: When the agent needs the full verbatim transcript for deep analysis or quoting.
-source: internal/helpers/minutes.go:326
+source: internal/helpers/minutes.go:335
 visible_flags: 3
 
 ## Flags

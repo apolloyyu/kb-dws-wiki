@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat group join-by-group-id
 description: 通过群号申请加入群聊
 example: dws chat group join-by-group-id --group-id 123456
-source: internal/helpers/chat.go:10394
+source: internal/helpers/chat.go:10455
 visible_flags: 1
 
 ## Flags

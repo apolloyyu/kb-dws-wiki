@@ -4,7 +4,7 @@ kind: command
 completeness: full
 usage: dws event _bus
 description: Internal event bus daemon (do not call directly)
-source: internal/app/event_command.go:599
+source: internal/app/event_command.go:622
 visible_flags: 6
 
 ## Flags

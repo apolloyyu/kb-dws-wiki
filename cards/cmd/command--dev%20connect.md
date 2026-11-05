@@ -23,4 +23,5 @@ partial_reason: unverified_flags,too_many_flags:29
 ## Related
 - dws dev app
 - dws dev doc
+- dws dev liteapp
 - dws dev mcp

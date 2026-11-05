@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws whiteboard +diff
 description: 读取当前白板并预览 proposed OpenNodes 更新的节点、媒体与风险变化
-source: internal/shortcut/whiteboard/diff.go:80
+source: internal/shortcut/whiteboard/diff.go:81
 visible_flags: 7
 
 ## Flags

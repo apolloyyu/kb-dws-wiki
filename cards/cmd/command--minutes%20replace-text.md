@@ -6,7 +6,7 @@ usage: dws minutes replace-text
 description: Find and replace matching text across a meeting note's transcript paragraphs and summary.
 example: dws minutes replace-text --id <taskUuid> --search "旧文字" --replace "新文字"
 use_when: When the agent corrects a systemic transcription mistake (e.g. wrong product name) throughout a note.
-source: internal/helpers/minutes.go:1407
+source: internal/helpers/minutes.go:1416
 visible_flags: 3
 
 ## Flags

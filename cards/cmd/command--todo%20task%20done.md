@@ -6,7 +6,7 @@ usage: dws todo task done
 description: Update the completion status of a todo's executor (mark done or undone).
 example: dws todo task done --task-id <taskId> --status true
 use_when: When the agent marks an action item as completed after confirming the work is finished.
-source: internal/helpers/todo.go:450
+source: internal/helpers/todo.go:449
 visible_flags: 2
 
 ## Flags

@@ -15,4 +15,5 @@ partial_reason: unverified_flags,missing_description,missing_source
 ## Related
 - dws dev connect
 - dws dev doc
+- dws dev liteapp
 - dws dev mcp

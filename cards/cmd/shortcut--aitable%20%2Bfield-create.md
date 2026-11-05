@@ -3,8 +3,8 @@
 kind: shortcut
 completeness: full
 usage: dws aitable +field-create
-description: 批量新增字段，15 个分片并核对新字段 ID、类型与配置
-source: internal/shortcut/aitable/parity_create.go:45
+description: 批量新增字段，15 个分片并核对新字段 ID、类型与配置；result.fields 返回逐字段 url，result.links 提供上下文，定位由 Web 处理
+source: internal/shortcut/aitable/parity_create.go:49
 visible_flags: 4
 
 ## Flags

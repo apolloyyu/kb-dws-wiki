@@ -4,7 +4,7 @@ kind: command
 completeness: partial
 usage: dws dev app robot submit
 description: —
-source: internal/helpers/devapp.go:1349
+source: internal/helpers/devapp.go:1350
 visible_flags: 6
 partial_reason: missing_description
 

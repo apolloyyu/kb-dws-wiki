@@ -4,7 +4,7 @@ kind: shortcut
 completeness: partial
 usage: dws aitable +record-query
 description: —
-source: internal/shortcut/aitable/aitable.go:712
+source: internal/shortcut/aitable/aitable.go:747
 visible_flags: 13
 partial_reason: missing_description
 

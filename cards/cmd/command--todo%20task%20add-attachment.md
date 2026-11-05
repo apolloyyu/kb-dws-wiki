@@ -5,7 +5,7 @@ completeness: partial
 usage: dws todo task add-attachment
 description: 上传待办附件
 example: dws todo task add-attachment --task-id <taskId> --file <filePath>
-source: internal/helpers/todo.go:1039
+source: internal/helpers/todo.go:1038
 visible_flags: 1
 partial_reason: unverified_flags
 

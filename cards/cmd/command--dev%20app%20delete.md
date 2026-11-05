@@ -4,7 +4,7 @@ kind: command
 completeness: partial
 usage: dws dev app delete
 description: —
-source: internal/helpers/devapp.go:870
+source: internal/helpers/devapp.go:871
 visible_flags: 2
 partial_reason: missing_description
 

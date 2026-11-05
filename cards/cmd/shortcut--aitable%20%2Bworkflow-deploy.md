@@ -3,8 +3,8 @@
 kind: shortcut
 completeness: full
 usage: dws aitable +workflow-deploy
-description: 创建或更新完整 workflow-dsl/v1，检查 valid/flowId；新建默认验证 STOP，--enable 验证 RUNNING
-source: internal/shortcut/aitable/workflow_deploy.go:17
+description: 创建或更新完整 workflow-dsl/v1，检查 valid/flowId；新建默认验证 STOP，--enable 验证 RUNNING；result.url/links 保留目标标识，定位由 Web 处理
+source: internal/shortcut/aitable/workflow_deploy.go:18
 visible_flags: 5
 
 ## Flags

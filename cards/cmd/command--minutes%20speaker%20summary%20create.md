@@ -5,7 +5,7 @@ completeness: full
 usage: dws minutes speaker summary create
 description: 触发创建发言人段落总结任务
 example: dws minutes speaker summary create --ids <uuid1,uuid2>
-source: internal/helpers/minutes.go:1138
+source: internal/helpers/minutes.go:1147
 visible_flags: 1
 
 ## Flags

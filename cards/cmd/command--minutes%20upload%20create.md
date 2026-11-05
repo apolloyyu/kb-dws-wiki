@@ -6,7 +6,7 @@ usage: dws minutes upload create
 description: Create a file upload session for producing a meeting note from a local audio/video file.
 example: dws minutes upload create --file-name "meeting.mp4" --file-size 102400
 use_when: When the agent begins uploading a recording to be turned into a meeting note.
-source: internal/helpers/minutes.go:1478
+source: internal/helpers/minutes.go:1487
 visible_flags: 6
 
 ## Flags

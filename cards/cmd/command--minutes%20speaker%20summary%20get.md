@@ -5,7 +5,7 @@ completeness: full
 usage: dws minutes speaker summary get
 description: 查询发言人段落总结结果
 example: dws minutes speaker summary get --ids <uuid1,uuid2>
-source: internal/helpers/minutes.go:1193
+source: internal/helpers/minutes.go:1202
 visible_flags: 1
 
 ## Flags

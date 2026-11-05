@@ -5,7 +5,7 @@ completeness: full
 usage: dws todo comment list
 description: 查询待办评论列表
 example: dws todo comment list --task-id <taskId>
-source: internal/helpers/todo.go:1364
+source: internal/helpers/todo.go:1363
 visible_flags: 3
 
 ## Flags

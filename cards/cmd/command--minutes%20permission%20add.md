@@ -4,7 +4,7 @@ kind: command
 completeness: partial
 usage: dws minutes permission add
 description: —
-source: internal/helpers/minutes.go:1708
+source: internal/helpers/minutes.go:1717
 visible_flags: 6
 partial_reason: missing_description
 

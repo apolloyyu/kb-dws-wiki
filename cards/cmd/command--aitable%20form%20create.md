@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable form create
 description: 创建表单视图
 example: dws aitable form create --base-id BASE_ID --table-id TABLE_ID --name "员工信息收集"
-source: internal/helpers/aitable.go:6537
+source: internal/helpers/aitable.go:6561
 visible_flags: 6
 
 ## Flags

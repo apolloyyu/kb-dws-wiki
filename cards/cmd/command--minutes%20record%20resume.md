@@ -5,7 +5,7 @@ completeness: full
 usage: dws minutes record resume
 description: 恢复听记录音
 example: dws minutes record resume --id <taskUuid>
-source: internal/helpers/minutes.go:767
+source: internal/helpers/minutes.go:776
 visible_flags: 0
 
 ## Flags

@@ -3,8 +3,8 @@
 kind: shortcut
 completeness: full
 usage: dws aitable +import-file
-description: 申请上传、PUT 本地 CSV/XLS/XLSX，并用同一 importId 触发导入；也可只续等已有任务
-source: internal/shortcut/aitable/import_file.go:66
+description: 申请上传、PUT 本地 CSV/XLS/XLSX，并用同一 importId 触发导入；也可只续等已有任务。
+source: internal/shortcut/aitable/import_file.go:67
 visible_flags: 8
 
 ## Flags

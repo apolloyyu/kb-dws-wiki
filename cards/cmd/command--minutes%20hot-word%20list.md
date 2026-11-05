@@ -5,7 +5,7 @@ completeness: full
 usage: dws minutes hot-word list
 description: 查询我的热词列表
 example: dws minutes hot-word list
-source: internal/helpers/minutes.go:1308
+source: internal/helpers/minutes.go:1317
 visible_flags: 0
 
 ## Flags

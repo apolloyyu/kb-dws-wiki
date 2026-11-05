@@ -6,7 +6,7 @@ usage: dws minutes speaker replace
 description: Reassign speaker labels in a meeting note (e.g. map "Speaker 1" to a specific user).
 example: dws minutes speaker replace --id <taskUuid> --from "张三" --to "李四"
 use_when: When the agent cleans up speaker diarization after automatic labels came out wrong.
-source: internal/helpers/minutes.go:1070
+source: internal/helpers/minutes.go:1079
 visible_flags: 4
 
 ## Flags

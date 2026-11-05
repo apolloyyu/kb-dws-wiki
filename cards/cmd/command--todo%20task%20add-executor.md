@@ -5,7 +5,7 @@ completeness: full
 usage: dws todo task add-executor
 description: 添加待办执行人
 example: dws todo task add-executor --task-id <taskId> --executors <USER_ID_1>,<USER_ID_2>
-source: internal/helpers/todo.go:640
+source: internal/helpers/todo.go:639
 visible_flags: 2
 
 ## Flags

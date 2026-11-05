@@ -520,5 +520,42 @@ class ExternalMirrorTargetsTest(unittest.TestCase):
         self.assertEqual(targets([], "/nonexistent"), [("open-platform", "dws-cli-log")])
 
 
+class SupplementDocsTest(unittest.TestCase):
+    """运营补充篇(supplement/,ops 从钉钉文档同步):能被 ctx/find/cat 命中,不给链接、不露 frontmatter,
+    同分不压官方首篇;没有运营篇时其余输出不变(由空目录重放逐字节比对保证)。"""
+    SAMPLE = "zz-test-ops-sample.md"
+
+    def setUp(self):
+        self.dir = os.path.join(REPO, "supplement")
+        self.made_dir = not os.path.isdir(self.dir)
+        os.makedirs(self.dir, exist_ok=True)
+        self.path = os.path.join(self.dir, self.SAMPLE)
+        with open(self.path, "w", encoding="utf-8") as f:
+            f.write("---\ntitle: dws 开源交流群怎么加入\nsource: ops\nupdated_at: 2026-11-05T18:00:00+08:00\n"
+                    "stage: trial\nquestions:\n  - dws 交流群群号是多少\n  - 怎么加入 dws 开源交流群\n---\n"
+                    "开发者可以扫描 dws 开源仓库 README 里的二维码加入开源交流群，入群后按群公告提问。\n")
+
+    def tearDown(self):
+        os.remove(self.path)
+        if self.made_dir:
+            os.rmdir(self.dir)
+
+    def test_ctx_find_cat_hit_without_link(self):
+        out = run_dwsdoc("ctx", "dws 交流群群号是多少")
+        self.assertRegex(out, r"(?m)^== 篇目\[\d+/\d+\] supplement/zz-test-ops-sample.md \[supplement\] ==")
+        self.assertIn("钉仔运营补充说明,更新于 2026-11-05", out)
+        self.assertIn("README 里的二维码", out)
+        self.assertNotIn("source: ops", out)        # frontmatter 不进正文
+        self.assertIn("supplement/zz-test-ops-sample.md", run_dwsdoc("find", "交流群"))
+        cat = run_dwsdoc("cat", "supplement/zz-test-ops-sample.md")
+        self.assertIn("据钉仔运营补充说明(2026-11-05)", cat)
+        self.assertNotIn("questions:", cat)
+        self.assertNotIn("http", cat.splitlines()[0])
+
+    def test_command_questions_keep_official_first(self):
+        for q in ("dws chat 怎么给群发消息", "dws auth login", "dws chat message list 怎么用"):
+            self.assertNotIn("supplement/", run_dwsdoc("ctx", q), q)
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -394,7 +394,7 @@ def _md_headings(path):
 
 
 def _doc_rows():
-    """meta/documents.jsonl + 尚未进索引的外部镜像篇。测试分支只带新增的镜像文件、没有重建索引,
+    """meta/documents.jsonl + 尚未进索引的外部镜像篇 + 运营补充篇。测试分支只带新增的镜像文件、没有重建索引,
     外部篇也要能被检索到;索引里已有的以索引为准。"""
     mp = os.path.join(ROOT, "meta", "documents.jsonl")
     rows = [json.loads(l) for l in open(mp, encoding="utf-8") if l.strip()] if os.path.exists(mp) else []
@@ -406,7 +406,59 @@ def _doc_rows():
             if fn.endswith(".md") and rp not in seen:
                 rows.append({"doc_id": fn[:-3], "path": rp, "layer": "docs",
                              "headings": _md_headings(os.path.join(dirpath, fn))})
+    return rows + _supplement_rows()
+
+
+# 运营补充篇(supplement/,ops 从钉钉文档同步的整段/整篇内容):不在 docs/ 下,构建器 rmtree(docs) 不会删,
+# 也不进 meta 索引。运营文档多半没有小标题,匹配用 标题 + 小标题 + 「希望能答对的问法」 + 首段;
+# 正文首段之外不参与排序,避免泛词把整篇带到无关问题上。
+SUPPLEMENT = "supplement"
+_SUP_LEAD = 200
+
+
+def _supplement_meta(path):
+    """(frontmatter 字典, 去掉 frontmatter 的正文)。只认 title/updated_at/questions 这几个简单字段。"""
+    text = open(path, encoding="utf-8", errors="replace").read()
+    meta, body = {}, text
+    m = re.match(r"---\n(.*?)\n---\n?", text, re.S)
+    if m:
+        body = text[m.end():]
+        key = None
+        for line in m.group(1).splitlines():
+            item = re.match(r"\s+-\s+(.*)", line)
+            if item and key:
+                meta.setdefault(key, []).append(item.group(1).strip().strip('"'))
+                continue
+            kv = re.match(r"([A-Za-z_]+):\s*(.*)", line)
+            if kv:
+                key, val = kv.group(1), kv.group(2).strip().strip('"')
+                if val:
+                    meta[key] = val
+    return meta, body
+
+
+def _supplement_rows():
+    sd = os.path.join(ROOT, SUPPLEMENT)
+    if not os.path.isdir(sd):
+        return []
+    rows = []
+    for fn in sorted(os.listdir(sd)):
+        if not fn.endswith(".md"):
+            continue
+        meta, body = _supplement_meta(os.path.join(sd, fn))
+        qs = meta.get("questions") if isinstance(meta.get("questions"), list) else []
+        lead = re.sub(r"\s+", " ", re.sub(r"(?m)^#.*$", "", body)).strip()[:_SUP_LEAD]
+        heads = [meta.get("title") or fn[:-3]] + _md_headings(os.path.join(sd, fn)) + qs + ([lead] if lead else [])
+        rows.append({"doc_id": fn[:-3], "path": f"{SUPPLEMENT}/{fn}", "layer": "supplement",
+                     "headings": heads, "updated_at": str(meta.get("updated_at") or "")[:10]})
     return rows
+
+
+def _supplement_cite(r):
+    """运营补充篇没有可对外访问的地址:不给链接,要求回答注明来源与日期。"""
+    day = r.get("updated_at") or ""
+    return (f"引用: 无链接(钉仔运营补充说明,更新于 {day or '日期未知'})。可作依据;回答注明「据钉仔运营补充说明"
+            f"({day})」,不给链接、不提文件名;与官方文档说法冲突时以日期较新者为准并说明差异")
 
 
 def _evidence_contract(intent=None, has_card=True, with_notes=False):
@@ -668,8 +720,10 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
             sc = sum(_w(w) for w in kw if _hit(w, hay))
             if sc:
                 # 同分时外部镜像篇排在本库篇之后:否则首名只取决于路径字母序(docs/external 在
-                # docs/products 前),「dws chat 怎么给群发消息」会把事件订阅篇顶成首篇
-                sd.append((-sc, r["path"].startswith("docs/external/"), r["path"], r))
+                # docs/products 前),「dws chat 怎么给群发消息」会把事件订阅篇顶成首篇。
+                # 运营补充篇再排在外部篇之后:只有分数严格最高才当首篇。
+                tier = 2 if r.get("layer") == "supplement" else int(r["path"].startswith("docs/external/"))
+                sd.append((-sc, tier, r["path"], r))
         sd.sort(key=lambda x: x[:3])
         docs_hits = [r for *_, r in sd]
 
@@ -801,6 +855,9 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
                      and docs_hits[0] not in body_docs)
     if ext_added:
         body_docs = body_docs + [docs_hits[0]]
+    # 运营补充篇同理:相关度第一时追加展开(快卡/产品根文档占满名额时它只剩标题),不替换已有正文。
+    if docs_hits and docs_hits[0].get("layer") == "supplement" and docs_hits[0] not in body_docs:
+        body_docs = body_docs + [docs_hits[0]]
     for i, r in enumerate(body_docs):
         p = os.path.join(ROOT, r["path"])
         if not os.path.exists(p):
@@ -809,11 +866,16 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
         if r["layer"] == "notes":   # notes 当正文展开时同样去 frontmatter 并展开依据标记,不给模型看原始 {{…}}
             body = notes_refs.expand(ROOT, os.path.basename(r["path"]),
                                      re.sub(r"^---\n.*?\n---\n", "", body, count=1, flags=re.S))
+        elif r["layer"] == "supplement":
+            body = _supplement_meta(p)[1]
         if len(body) > body_cap:
             body = _cut(body, body_cap) + f"\n…[已截断,完整: dwsdoc cat {r['path']}]"
         out.append(f"\n== 篇目[{i+1}/{len(body_docs)}] {r['path']} [{r['layer']}] ==")
-        link = _doc_link(r["path"])
-        out.append(f"引用: {link}" if link else "引用: 无(内部篇,只作依据)")
+        if r["layer"] == "supplement":
+            out.append(_supplement_cite(r))
+        else:
+            link = _doc_link(r["path"])
+            out.append(f"引用: {link}" if link else "引用: 无(内部篇,只作依据)")
         out.append(body)
     others = [r["path"] for r in docs_hits if r not in body_docs][:8]
     if others:
@@ -1179,6 +1241,11 @@ def main():
         rel_p = os.path.relpath(p, ROOT)
         if rel_p.startswith("notes" + os.sep):
             body = notes_refs.expand(ROOT, os.path.basename(p), body)
+        if rel_p.startswith(SUPPLEMENT + os.sep):
+            meta, body = _supplement_meta(p)
+            print(_supplement_cite({"updated_at": str(meta.get("updated_at") or "")[:10]}))
+            sys.stdout.write(body)
+            return 0
         link = _doc_link(rel_p)
         print(f"引用: {link}" if link else "引用: 无(内部篇,只作依据;文件名不得出现在回复里)")
         sys.stdout.write(body)

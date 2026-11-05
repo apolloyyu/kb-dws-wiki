@@ -78,6 +78,23 @@ UPSTREAM_DOCS = (
 # 不删文件——外部库缺失不能让 dws 库丢掉 notes 的依据。
 OPEN_PLATFORM_KB = os.environ.get("OPEN_PLATFORM_KB") or os.path.expanduser("~/knowledge-git/kb-dingtalk-open-platform")
 EXTERNAL = (("open-platform", "dws-cli-log"),)
+# 按分类整节镜像(不逐篇点名):CLI 开通、组织权限管控、渠道开关这类事实只写在开放平台文档站「钉钉 CLI」
+# 分类里,dws 源码与上游文档都没有;这几节新增的篇目随开放平台库自动进来。OpenClaw/Agent 案例等
+# 第三方集成节不镜像,免得挤占命令题的检索。
+EXTERNAL_SECTIONS = (("open-platform", "钉钉 CLI", ("新手入门", "进阶实战", "常见问题")),)
+
+
+def external_targets(rows, prev):
+    """(库, slug) 清单:固定篇 + 分类节。外部库读不到、或该节一篇都选不出(索引字段改名等)时沿用上一版
+    已镜像的篇目,不因此丢文件;这些篇由 mirror_external 按「读不到,沿用上一版镜像」告警。"""
+    out = list(EXTERNAL)
+    for kb, tab, sections in EXTERNAL_SECTIONS:
+        sel = [(kb, r["slug"]) for r in rows
+               if r.get("tab") == tab and r.get("slug") and (r.get("breadcrumb") or [""])[0] in sections]
+        if not sel and os.path.isdir(os.path.join(prev, kb)):
+            sel = [(kb, fn[:-3]) for fn in sorted(os.listdir(os.path.join(prev, kb))) if fn.endswith(".md")]
+        out += sel
+    return list(dict.fromkeys(out))
 
 
 def mirror_external(docs, prev):
@@ -87,7 +104,7 @@ def mirror_external(docs, prev):
     mp = os.path.join(OPEN_PLATFORM_KB, "meta", "documents.jsonl")
     if os.path.exists(mp):
         rows = load_jsonl(mp)
-    for kb, slug in EXTERNAL:
+    for kb, slug in external_targets(rows, prev):
         dp_rel = os.path.join("external", kb, slug + ".md")
         dp = os.path.join(docs, dp_rel)
         os.makedirs(os.path.dirname(dp), exist_ok=True)

@@ -271,6 +271,13 @@ def _intent(q):
                      # 须是关于两者关系的问句,「不是 dws,而是问 openapi」这类声明不算。
                      or bool("dws" in q and re.search(r"(?:openapi|open api)\s*(?:吗|么|嘛|呢|\?|？)"
                                                       r"|(?:openapi|open api).{0,8}(?:共享|一样|一套|同一|区别|关系)", q)),
+        # 「CLI 怎么开通/组织已禁止 CLI 数据访问/生效范围」:几层开关散在开放平台文档站几篇里,模型读到后把只属于
+        # 生效范围的时延套到组织总开关上、编出原文没有的取值(11-04 验收 13 道目标题新答 8 个 C)。
+        # 主题词取自声明 cliperm 的 note 的 triggers;另认「CLI + 开通/权限/授权/禁止」这类问法(「CLI怎么开通」
+        # 「dingtalk cli 要组织授权吗」),cli 须是独立词(client_id 不算)。
+        "cliperm": (_subject("cliperm", q, r"cli ?(?:数据访问|使用权限|权限|设置|管控)|组织总开关")
+                    or bool(re.search(r"(?<![a-z])cli(?![a-z]).{0,12}(?:开通|权限|授权|数据访问|访问个人数据|管控"
+                                      r"|总开关|渠道开关|禁止)|(?:开通|授权|禁止|允许).{0,6}(?<![a-z])cli(?![a-z])", q))),
         "version": (any(k in q for k in ("版本", "兼容", "升级", "上线", "发布版", "还能用", "正常使用"))
                     or bool(re.search(r"\bv?\d+\.\d+(?:\.\d+)?\b", q))),
         "semantic": (any(k in q for k in ("只是", "还是", "云端", "本地", "其他人", "影响", "区别", "范围", "限制",
@@ -371,6 +378,35 @@ def _doc_link(path):
         return m.group(1).strip()
     m = re.search(r'(?m)^source_path:\s*"?([^"\n]+)"?', head)
     return _GH + m.group(1).strip() if m else ""
+
+
+# 外部来源镜像里只在版本/更新类问法参与排序的篇(更新日志);其余外部篇(开放平台「钉钉 CLI」分类的
+# 开通/权限/常见问题)和镜像文档一样参与检索。
+_VERSION_ONLY = ("docs/external/open-platform/dws-cli-log.md",)
+
+
+def _md_headings(path):
+    """与构建器 headings() 同口径:跳过开头 frontmatter,取前 12 个 # 标题。"""
+    lines = open(path, encoding="utf-8", errors="replace").read().splitlines()
+    if lines and lines[0] == "---" and "---" in lines[1:]:
+        lines = lines[lines.index("---", 1) + 1:]
+    return [l.lstrip("# ").strip() for l in lines if l.startswith("#")][:12]
+
+
+def _doc_rows():
+    """meta/documents.jsonl + 尚未进索引的外部镜像篇。测试分支只带新增的镜像文件、没有重建索引,
+    外部篇也要能被检索到;索引里已有的以索引为准。"""
+    mp = os.path.join(ROOT, "meta", "documents.jsonl")
+    rows = [json.loads(l) for l in open(mp, encoding="utf-8") if l.strip()] if os.path.exists(mp) else []
+    seen = {r["path"] for r in rows}
+    for dirpath, dirs, files in os.walk(os.path.join(ROOT, "docs", "external")):
+        dirs.sort()
+        for fn in sorted(files):
+            rp = os.path.relpath(os.path.join(dirpath, fn), ROOT)
+            if fn.endswith(".md") and rp not in seen:
+                rows.append({"doc_id": fn[:-3], "path": rp, "layer": "docs",
+                             "headings": _md_headings(os.path.join(dirpath, fn))})
+    return rows
 
 
 def _evidence_contract(intent=None, has_card=True, with_notes=False):
@@ -605,16 +641,13 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
              "几个", "多久", "时长", "过期", "为什么", "原理", "机制", "原因", "怎么回事",
              "需要", "客户端", "吗", "呢", "的", "做"}
     docs_hits = []
-    mp = os.path.join(ROOT, "meta", "documents.jsonl")
-    doc_rows = []
-    if os.path.exists(mp):
-        doc_rows = [json.loads(l) for l in open(mp, encoding="utf-8") if l.strip()]
+    doc_rows = _doc_rows()
     # 专属 note(声明 intents)只随意图整篇并入,不当泛检索正文:否则标题「怎么开通」会让
-    # 「dws 怎么开通」把数字员工 note 当首篇。外部来源镜像(如开放平台更新日志)只在版本/
-    # 更新类问法参与排序,其余时候只作为 note 依据被引用。两者同时退出分词词表与排序。
+    # 「dws 怎么开通」把数字员工 note 当首篇。外部更新日志只在版本/更新类问法参与排序,
+    # 其余时候只作为 note 依据被引用。两者同时退出分词词表与排序。
     owned_notes = {f"notes/{fn}" for fn, b in _notes() if notes_refs.declared_intents(b)}
     doc_rows = [r for r in doc_rows if r["path"] not in owned_notes
-                and (intent["version"] or not r["path"].startswith("docs/external/"))]
+                and (intent["version"] or r["path"] not in _VERSION_ONLY)]
     doc_hays = [(r["path"] + " " + " ".join(r.get("headings", []))).lower() for r in doc_rows]
     # 完整自然问句不能只按空格拆:"卡片消息能不能解析"须拆出 卡片/消息/解析，
     # 否则 notes 明明有实据仍会 0 命中。复用实体检索的脚本分段+领域最长匹配。
@@ -634,9 +667,11 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
         for r, hay in zip(doc_rows, doc_hays):
             sc = sum(_w(w) for w in kw if _hit(w, hay))
             if sc:
-                sd.append((-sc, r["path"], r))
-        sd.sort()
-        docs_hits = [r for _, _, r in sd]
+                # 同分时外部镜像篇排在本库篇之后:否则首名只取决于路径字母序(docs/external 在
+                # docs/products 前),「dws chat 怎么给群发消息」会把事件订阅篇顶成首篇
+                sd.append((-sc, r["path"].startswith("docs/external/"), r["path"], r))
+        sd.sort(key=lambda x: x[:3])
+        docs_hits = [r for *_, r in sd]
 
     # 答案卡分支可由 --full 或 KB_NO_CARDS=1 一键关闭；卡片不存在也自动退化旧全文。
     cards_enabled = (not force_full and os.environ.get("KB_NO_CARDS") != "1"
@@ -722,10 +757,11 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
     # 复杂问法的答案常在 notes 而非产品文档；能力边界、值校验、机制和排障
     # 不能因答案卡退出 fast 后只塞一篇泛产品文档。普通支持性判断由命令卡+产品
     # 正文回答，只有同时属于上述复杂意图时才补 notes，避免无关语义篇干扰。
-    _needs_notes = any(intent[k] for k in
-                       ("why", "howmany", "capability", "card_capability", "validation", "mechanism", "trouble",
-                        "access", "origin", "ratelimit", "lifetime"))
-    _mech = _needs_notes
+    _mech = any(intent[k] for k in
+                ("why", "howmany", "capability", "card_capability", "validation", "mechanism", "trouble",
+                 "access", "origin", "ratelimit", "lifetime"))
+    # cliperm 只决定带上管控 note,不改正文篇数,也不退出答案卡快路径(否则会多展开一篇无关产品文档,如 chat.md)
+    _needs_notes = _mech or intent["cliperm"]
     # full 卡 + 首名明显胜出 + 非机制/数值/支持/排障/枚举题时，正文归零；
     # 任一条件不满足就保持 R10.1 的 1~2 篇正文，准确率优先。
     _n_body = 0 if card_fast else (1 if (_mech and not (cmds or shorts))
@@ -757,6 +793,14 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
                                          not r["path"].endswith("-index.md"), r["path"]))
         primary_docs = product_docs + [r for r in primary_docs if r not in product_docs]
     body_docs = (primary_docs or docs_hits)[:_n_body]
+    # 外部镜像篇(开放平台 CLI 开通/权限/常见问题)相关度第一时追加展开:命令卡一命中,产品根文档会占满
+    # 正文名额,快卡还会把正文清零,真正相关的外部篇只剩标题(实录:「组织管理员如何管理 CLI 权限」展开的是
+    # attendance.md;「当前组织已禁止 CLI 数据访问权限」快卡命中 chat data-auth cross-org)。只追加不替换;
+    # 外部篇不排第一的题正文不变。
+    ext_added = bool(docs_hits and docs_hits[0]["path"].startswith("docs/external/")
+                     and docs_hits[0] not in body_docs)
+    if ext_added:
+        body_docs = body_docs + [docs_hits[0]]
     for i, r in enumerate(body_docs):
         p = os.path.join(ROOT, r["path"])
         if not os.path.exists(p):
@@ -803,7 +847,7 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
             pass
 
     notes_hit = 0
-    if not card_fast and _needs_notes:
+    if (not card_fast or intent["cliperm"]) and _needs_notes:
         nd = os.path.join(ROOT, "notes")
         # 整句常匹配不上,按词拆(去掉问法词本身),命中任一实词即取该节。
         words = kw
@@ -944,7 +988,8 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
                f" find={len(docs_hits)} notes={notes_hit} changelog={changelog_hits}")
     out.append("== 继续 ==")
     hint = ["盘点用 dwsdoc cmd <产品>+short <产品> 枚举全量", "版本判定 cat docs/CHANGELOG.md"]
-    if card_fast:
+    # 另展开了外部篇或带了管控 note 时「仅按卡作答、无需再 cat」与正文矛盾,不给
+    if card_fast and not ext_added and not notes_hit:
         hint.insert(0, "答案卡为 full 且首名明显胜出:仅按卡内 CLI 契约直接作答,无需再 cat")
     if intent["howmany"]:
         hint.insert(0, "⚠️数值/时限类:上文无确切数字时二级拉源码 grep 常量,禁止用「无固定时长」回避")
@@ -1110,10 +1155,8 @@ def main():
         # 引号多词(find 'channel 登记')按整串子串匹配恒为 0，且无命中时不输出任何提示(与 dkdoc 同修)：
         # 拆词，全部词命中优先，否则按命中词数取部分命中；都没有时明确说无命中。
         words = [w for w in re.split(r"[\s,，、]+", q) if w] or [q]
-        mp = os.path.join(ROOT, "meta", "documents.jsonl")
         rows = []
-        for l in open(mp, encoding="utf-8"):
-            r = json.loads(l)
+        for r in _doc_rows():
             hay = (r["path"] + " " + " ".join(r.get("headings", []))).lower()
             k = sum(1 for w in words if w in hay)
             if k:

@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
 """dwsdoc ctx/card 的快路径与证据边界回归测试。"""
+import json
 import os
 import re
 import runpy
+import shutil
 import subprocess
+import tempfile
 import unittest
 
 
@@ -521,40 +524,100 @@ class ExternalMirrorTargetsTest(unittest.TestCase):
 
 
 class SupplementDocsTest(unittest.TestCase):
-    """运营补充篇(supplement/,ops 从钉钉文档同步):能被 ctx/find/cat 命中,不给链接、不露 frontmatter,
-    同分不压官方首篇;没有运营篇时其余输出不变(由空目录重放逐字节比对保证)。"""
+    """运营补充篇(supplement/,ops 从钉钉文档同步):能被 ctx/find/cat 命中,不给链接、不露 frontmatter,冲突不按日期裁决,
+    同分不压官方篇;无 frontmatter/无日期/BOM/坏格式/读不了都不拖垮检索。全部在临时知识库根里跑(复制 bin/,其余顶层
+    条目软链回本库),中断也不会在真实库留下样例。没有运营篇时其余输出不变,由空目录重放逐字节比对保证。"""
     SAMPLE = "zz-test-ops-sample.md"
 
+    @classmethod
+    def setUpClass(cls):
+        with open(os.path.join(REPO, "meta", "documents.jsonl"), encoding="utf-8") as f:
+            rows = [json.loads(l) for l in f if l.strip()]
+        cls.twin = next(r for r in rows if r["path"].startswith("docs/products/") and r.get("headings")
+                        and 6 <= len(r["headings"][0]) <= 30)
+
     def setUp(self):
-        self.dir = os.path.join(REPO, "supplement")
-        self.made_dir = not os.path.isdir(self.dir)
-        os.makedirs(self.dir, exist_ok=True)
-        self.path = os.path.join(self.dir, self.SAMPLE)
-        with open(self.path, "w", encoding="utf-8") as f:
-            f.write("---\ntitle: dws 开源交流群怎么加入\nsource: ops\nupdated_at: 2026-11-05T18:00:00+08:00\n"
-                    "stage: trial\nquestions:\n  - dws 交流群群号是多少\n  - 怎么加入 dws 开源交流群\n---\n"
-                    "开发者可以扫描 dws 开源仓库 README 里的二维码加入开源交流群，入群后按群公告提问。\n")
+        self.tmp = tempfile.TemporaryDirectory()
+        self.root = self.tmp.name
+        shutil.copytree(os.path.join(REPO, "bin"), os.path.join(self.root, "bin"))
+        for name in os.listdir(REPO):
+            if name not in ("bin", "supplement") and not name.startswith("."):
+                os.symlink(os.path.join(REPO, name), os.path.join(self.root, name))
+        files = {
+            self.SAMPLE: "---\ntitle: dws 开源交流群怎么加入\nsource: ops\nupdated_at: 2026-11-05T18:00:00+08:00\n"
+                         "stage: trial\nquestions:\n  - dws 交流群群号是多少\n  - 怎么加入 dws 开源交流群\n---\n"
+                         "开发者可以扫描 dws 开源仓库 README 里的二维码加入开源交流群，入群后按群公告提问。\n",
+            "zz-test-ops-twin.md": f"---\ntitle: {self.twin['headings'][0]}\nsource: ops\nupdated_at: 2026-11-05\n---\n"
+                                   "同名运营补充篇正文。\n",
+            "zz-test-ops-nofm.md": "没有 frontmatter 的运营补充篇正文。\n",
+            "zz-test-ops-nodate.md": "---\ntitle: 无日期运营篇\nsource: ops\n---\n没有日期的运营补充篇正文。\n",
+            "zz-test-ops-bom.md": "﻿---\ntitle: 带BOM运营篇\nsource: ops\nupdated_at: 2026-11-04T09:00:00+08:00\n---\n"
+                                  "开头带 BOM 的运营补充篇正文。\n",
+            "zz-test-ops-bad.md": "---\ntitle: 坏格式运营篇\nupdated_at: 2026-11-05\n  - 普通字段后面跟了列表项\n---\n坏格式运营篇正文。\n",
+            "zz-test-ops-noperm.md": "---\ntitle: 读不了的运营篇\n---\n正文\n",
+        }
+        os.makedirs(os.path.join(self.root, "supplement"))
+        for fn, text in files.items():
+            with open(os.path.join(self.root, "supplement", fn), "w", encoding="utf-8") as f:
+                f.write(text)
+        self.noperm = os.path.join(self.root, "supplement", "zz-test-ops-noperm.md")
+        os.chmod(self.noperm, 0)
 
     def tearDown(self):
-        os.remove(self.path)
-        if self.made_dir:
-            os.rmdir(self.dir)
+        os.chmod(self.noperm, 0o600)
+        self.tmp.cleanup()
+
+    def cli(self, *args, ok=True):
+        p = subprocess.run(["python3", os.path.join(self.root, "bin", "dwsdoc"), *args], cwd=self.root,
+                           text=True, capture_output=True, timeout=60)
+        if ok and p.returncode != 0:
+            raise AssertionError(f"dwsdoc {' '.join(args)} rc={p.returncode}\nstdout={p.stdout}\nstderr={p.stderr}")
+        return p
 
     def test_ctx_find_cat_hit_without_link(self):
-        out = run_dwsdoc("ctx", "dws 交流群群号是多少")
+        r = self.cli("ctx", "dws 交流群群号是多少")
+        out = r.stdout
         self.assertRegex(out, r"(?m)^== 篇目\[\d+/\d+\] supplement/zz-test-ops-sample.md \[supplement\] ==")
         self.assertIn("钉仔运营补充说明,更新于 2026-11-05", out)
         self.assertIn("README 里的二维码", out)
         self.assertNotIn("source: ops", out)        # frontmatter 不进正文
-        self.assertIn("supplement/zz-test-ops-sample.md", run_dwsdoc("find", "交流群"))
-        cat = run_dwsdoc("cat", "supplement/zz-test-ops-sample.md")
+        self.assertIn("不按日期裁决", out)
+        self.assertNotIn("日期较新者为准", out)
+        if not os.access(self.noperm, os.R_OK):    # root 下 chmod 0 仍可读,跳过
+            self.assertIn("跳过运营补充篇 supplement/zz-test-ops-noperm.md", r.stderr)
+        self.assertIn("supplement/zz-test-ops-sample.md", self.cli("find", "交流群").stdout)
+        cat = self.cli("cat", "supplement/zz-test-ops-sample.md").stdout
         self.assertIn("据钉仔运营补充说明(2026-11-05)", cat)
         self.assertNotIn("questions:", cat)
         self.assertNotIn("http", cat.splitlines()[0])
 
     def test_command_questions_keep_official_first(self):
         for q in ("dws chat 怎么给群发消息", "dws auth login", "dws chat message list 怎么用"):
-            self.assertNotIn("supplement/", run_dwsdoc("ctx", q), q)
+            self.assertNotIn(self.SAMPLE, self.cli("ctx", q).stdout, q)
+
+    def test_same_title_ranks_after_official(self):
+        out = self.cli("ctx", self.twin["headings"][0]).stdout
+        twin = "supplement/zz-test-ops-twin.md"
+        if twin in out:
+            self.assertIn(self.twin["path"], out)
+            self.assertLess(out.index(self.twin["path"]), out.index(twin))
+
+    def test_edge_files_do_not_break_retrieval(self):
+        nofm = self.cli("cat", "supplement/zz-test-ops-nofm.md").stdout
+        self.assertIn("没有 frontmatter", nofm)
+        self.assertIn("更新日期未知", nofm)
+        nodate = self.cli("cat", "supplement/zz-test-ops-nodate.md").stdout
+        self.assertIn("「据钉仔运营补充说明」", nodate)
+        self.assertNotIn("()", nodate)
+        bom = self.cli("cat", "supplement/zz-test-ops-bom.md").stdout
+        self.assertIn("更新于 2026-11-04", bom)
+        self.assertNotIn("title:", bom)
+        self.assertIn("supplement/zz-test-ops-bom.md", self.cli("find", "带BOM运营篇").stdout)
+        self.assertIn("坏格式运营篇正文", self.cli("cat", "supplement/zz-test-ops-bad.md").stdout)
+        if not os.access(self.noperm, os.R_OK):
+            r = self.cli("cat", "supplement/zz-test-ops-noperm.md", ok=False)
+            self.assertEqual(r.returncode, 1)
+            self.assertIn("读不了运营补充篇", r.stdout)
 
 
 if __name__ == "__main__":

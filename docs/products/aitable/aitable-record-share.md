@@ -1,6 +1,6 @@
 ---
 source_path: "skills/mono/references/products/aitable/aitable-record-share.md"
-source_commit: "cd84af493"
+source_commit: "1610a0aed"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 

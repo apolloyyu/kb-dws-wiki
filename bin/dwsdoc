@@ -394,7 +394,7 @@ def _md_headings(path):
 
 
 def _doc_rows():
-    """meta/documents.jsonl + 尚未进索引的外部镜像篇。测试分支只带新增的镜像文件、没有重建索引,
+    """meta/documents.jsonl + 尚未进索引的外部镜像篇 + 运营补充篇。测试分支只带新增的镜像文件、没有重建索引,
     外部篇也要能被检索到;索引里已有的以索引为准。"""
     mp = os.path.join(ROOT, "meta", "documents.jsonl")
     rows = [json.loads(l) for l in open(mp, encoding="utf-8") if l.strip()] if os.path.exists(mp) else []
@@ -406,7 +406,86 @@ def _doc_rows():
             if fn.endswith(".md") and rp not in seen:
                 rows.append({"doc_id": fn[:-3], "path": rp, "layer": "docs",
                              "headings": _md_headings(os.path.join(dirpath, fn))})
+    return rows + _supplement_rows()
+
+
+# 运营补充篇(supplement/,ops 从钉钉文档同步的整段/整篇内容):不在 docs/ 下,构建器 rmtree(docs) 不会删,
+# 也不进 meta 索引。运营文档多半没有小标题,匹配用 标题 + 小标题 + 「希望能答对的问法」 + 首段;
+# 正文首段之外不参与排序,避免泛词把整篇带到无关问题上。
+SUPPLEMENT = "supplement"
+_SUP_LEAD = 200
+
+
+def _supplement_meta(path):
+    """(frontmatter 字典, 去掉 frontmatter 的正文)。只认 title/updated_at/questions 这几个简单字段。
+    utf-8-sig 去掉开头的 BOM;CRLF 由文本模式读取统一成 \\n。"""
+    text = open(path, encoding="utf-8-sig", errors="replace").read()
+    meta, body = {}, text
+    m = re.match(r"---\n(.*?)\n---\n?", text, re.S)
+    if m:
+        body = text[m.end():]
+        key = None
+        for line in m.group(1).splitlines():
+            item = re.match(r"\s+-\s+(.*)", line)
+            if item and key:
+                if isinstance(meta.get(key, []), list):   # 普通字段后面跟列表项:忽略,不抛错
+                    meta.setdefault(key, []).append(item.group(1).strip().strip('"'))
+                continue
+            kv = re.match(r"([A-Za-z_]+):\s*(.*)", line)
+            if kv:
+                key, val = kv.group(1), kv.group(2).strip().strip('"')
+                if val:
+                    meta[key] = val
+    return meta, body
+
+
+def _sup_text(meta, key):
+    return meta[key] if isinstance(meta.get(key), str) else ""
+
+
+_SUP_ROWS = None
+
+
+def _supplement_rows():
+    """运营补充篇的检索行(本进程只读一次盘,正文挂在 _body 上供 ctx 复用)。单篇读不了(同步中途被删、权限等)
+    就跳过并在 stderr 提示,不拖垮整个检索。"""
+    global _SUP_ROWS
+    if _SUP_ROWS is not None:
+        return _SUP_ROWS
+    sd = os.path.join(ROOT, SUPPLEMENT)
+    rows = []
+    for fn in (sorted(os.listdir(sd)) if os.path.isdir(sd) else []):
+        if not fn.endswith(".md"):
+            continue
+        try:
+            meta, body = _supplement_meta(os.path.join(sd, fn))
+        except OSError as e:
+            print(f"dwsdoc: 跳过运营补充篇 {SUPPLEMENT}/{fn}: {e}", file=sys.stderr)
+            continue
+        qs = meta.get("questions") if isinstance(meta.get("questions"), list) else []
+        lead = re.sub(r"\s+", " ", re.sub(r"(?m)^#.*$", "", body)).strip()[:_SUP_LEAD]
+        md_heads = [l.lstrip("# ").strip() for l in body.splitlines() if l.startswith("#")][:12]  # 同 _md_headings
+        heads = [_sup_text(meta, "title") or fn[:-3]] + md_heads + qs + ([lead] if lead else [])
+        rows.append({"doc_id": fn[:-3], "path": f"{SUPPLEMENT}/{fn}", "layer": "supplement",
+                     "headings": heads, "updated_at": _sup_text(meta, "updated_at")[:10], "_body": body})
+    _SUP_ROWS = rows
     return rows
+
+
+def _sup_relevant(words):
+    """运营补充篇只在像是讲这件事时参与排序：命中两个以上不同的查询词，或一个英文/数字标识符、一个三字以上的中文词；
+    只撞上一个常见短词不算(与 dkdoc 同口径)。"""
+    words = set(words)
+    return len(words) >= 2 or any(re.search(r"[a-z0-9]", w) or len(w) >= 3 for w in words)
+
+
+def _supplement_cite(r):
+    """运营补充篇没有可对外访问的地址:不给链接,要求回答注明来源与日期;冲突不按编辑日期裁决。"""
+    day = r.get("updated_at") or ""
+    label = f"钉仔运营补充说明({day})" if day else "钉仔运营补充说明"
+    return (f"引用: 无链接(钉仔运营补充说明,{'更新于 ' + day if day else '更新日期未知'})。可作依据;回答注明「据{label}」,"
+            "不给链接、不提文件名;与官方文档说法不一致时不按日期裁决:命令、参数、权限、错误码、限额等以现行官方文档为准,"
+            "运营说明只在它写明的适用范围和生效时间内补充;判断不了就两种说法都说明并标注待核实")
 
 
 def _evidence_contract(intent=None, has_card=True, with_notes=False):
@@ -651,7 +730,8 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
     doc_hays = [(r["path"] + " " + " ".join(r.get("headings", []))).lower() for r in doc_rows]
     # 完整自然问句不能只按空格拆:"卡片消息能不能解析"须拆出 卡片/消息/解析，
     # 否则 notes 明明有实据仍会 0 命中。复用实体检索的脚本分段+领域最长匹配。
-    kw = _tokenize(raw_terms, doc_hays)
+    # 分词只用官方篇的词料：运营篇的标题/小标题(如「安装和使用」)会改变其它问题的最长匹配，把外部篇挤出正文(实测)
+    kw = _tokenize(raw_terms, [h for r, h in zip(doc_rows, doc_hays) if r.get("layer") != "supplement"])
     kw = [w for w in kw if w not in _STOP and len(w) > 1]
     if not kw:
         kw = [w.lower() for w in raw_terms if w.lower() not in _STOP and len(w) > 1] or [q]
@@ -666,10 +746,14 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
         sd = []
         for r, hay in zip(doc_rows, doc_hays):
             sc = sum(_w(w) for w in kw if _hit(w, hay))
+            if sc and r.get("layer") == "supplement" and not _sup_relevant([w for w in kw if _hit(w, hay)]):
+                sc = 0
             if sc:
                 # 同分时外部镜像篇排在本库篇之后:否则首名只取决于路径字母序(docs/external 在
-                # docs/products 前),「dws chat 怎么给群发消息」会把事件订阅篇顶成首篇
-                sd.append((-sc, r["path"].startswith("docs/external/"), r["path"], r))
+                # docs/products 前),「dws chat 怎么给群发消息」会把事件订阅篇顶成首篇。
+                # 运营补充篇再排在外部篇之后:只有分数严格最高才当首篇。
+                tier = 2 if r.get("layer") == "supplement" else int(r["path"].startswith("docs/external/"))
+                sd.append((-sc, tier, r["path"], r))
         sd.sort(key=lambda x: x[:3])
         docs_hits = [r for *_, r in sd]
 
@@ -801,19 +885,25 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
                      and docs_hits[0] not in body_docs)
     if ext_added:
         body_docs = body_docs + [docs_hits[0]]
+    # 运营补充篇同理:相关度第一时追加展开(快卡/产品根文档占满名额时它只剩标题),不替换已有正文。
+    if docs_hits and docs_hits[0].get("layer") == "supplement" and docs_hits[0] not in body_docs:
+        body_docs = body_docs + [docs_hits[0]]
     for i, r in enumerate(body_docs):
         p = os.path.join(ROOT, r["path"])
         if not os.path.exists(p):
             continue
-        body = open(p, encoding="utf-8", errors="replace").read()
+        body = r["_body"] if r["layer"] == "supplement" else open(p, encoding="utf-8", errors="replace").read()
         if r["layer"] == "notes":   # notes 当正文展开时同样去 frontmatter 并展开依据标记,不给模型看原始 {{…}}
             body = notes_refs.expand(ROOT, os.path.basename(r["path"]),
                                      re.sub(r"^---\n.*?\n---\n", "", body, count=1, flags=re.S))
         if len(body) > body_cap:
             body = _cut(body, body_cap) + f"\n…[已截断,完整: dwsdoc cat {r['path']}]"
         out.append(f"\n== 篇目[{i+1}/{len(body_docs)}] {r['path']} [{r['layer']}] ==")
-        link = _doc_link(r["path"])
-        out.append(f"引用: {link}" if link else "引用: 无(内部篇,只作依据)")
+        if r["layer"] == "supplement":
+            out.append(_supplement_cite(r))
+        else:
+            link = _doc_link(r["path"])
+            out.append(f"引用: {link}" if link else "引用: 无(内部篇,只作依据)")
         out.append(body)
     others = [r["path"] for r in docs_hits if r not in body_docs][:8]
     if others:
@@ -1175,6 +1265,15 @@ def main():
         if not os.path.abspath(p).startswith(ROOT) or not os.path.exists(p):
             print("不存在:", sys.argv[2])
             return 1
+        if os.path.relpath(p, ROOT).startswith(SUPPLEMENT + os.sep):
+            try:
+                meta, body = _supplement_meta(p)
+            except OSError as e:
+                print(f"读不了运营补充篇 {sys.argv[2]}: {e}")
+                return 1
+            print(_supplement_cite({"updated_at": _sup_text(meta, "updated_at")[:10]}))
+            sys.stdout.write(body)
+            return 0
         body = open(p, encoding="utf-8", errors="replace").read()
         rel_p = os.path.relpath(p, ROOT)
         if rel_p.startswith("notes" + os.sep):

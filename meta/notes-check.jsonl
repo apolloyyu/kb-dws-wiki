@@ -3,6 +3,21 @@
 {"note": "chat-and-messaging.md", "kind": "code", "arg": "internal/shortcut/chatmsg/chatmsg.go | func richItemTexts(node any) []string", "ok": true, "detail": "", "line": 1312}
 {"note": "chat-and-messaging.md", "kind": "code", "arg": "internal/shortcut/chatmsg/decrypt.go | DecryptChatMessageItems decrypts encrypted message items in place before", "ok": true, "detail": "", "line": 40}
 {"note": "chat-and-messaging.md", "kind": "code", "arg": "internal/shortcut/chatmsg/decrypt.go | messageDecryptClient == nil || messageDecryptClient.BackendReady == nil", "ok": true, "detail": "", "line": 48}
+{"note": "cli-permission-control.md", "kind": "quote", "arg": "docs/external/open-platform/dws-permission-management-guide.md | 「DWS CLI管理」卡片右上角开关", "ok": true, "detail": "", "line": 55}
+{"note": "cli-permission-control.md", "kind": "quote", "arg": "docs/external/open-platform/dws-permission-management-guide.md | 当组织总开关关闭时，该组织成员没有CLI的使用权限", "ok": true, "detail": "", "line": 59}
+{"note": "cli-permission-control.md", "kind": "quote", "arg": "docs/external/open-platform/dws-permission-management-guide.md | 与钉钉深度集成，开箱即用，默认开启", "ok": true, "detail": "", "line": 43}
+{"note": "cli-permission-control.md", "kind": "quote", "arg": "docs/external/open-platform/dws-permission-management-guide.md | 默认关闭，其他渠道包含企业自建Agent和其他Agent产品", "ok": true, "detail": "", "line": 44}
+{"note": "cli-permission-control.md", "kind": "quote", "arg": "docs/external/open-platform/dws-permission-management-guide.md | **启用开关**：控制该渠道 CLI 能力是否可用", "ok": true, "detail": "", "line": 87}
+{"note": "cli-permission-control.md", "kind": "quote", "arg": "docs/external/open-platform/dws-permission-management-guide.md | **生效范围**：支持全员可用，或按部门、角色圈选", "ok": true, "detail": "", "line": 88}
+{"note": "cli-permission-control.md", "kind": "quote", "arg": "docs/external/open-platform/dws-permission-management-guide.md | 生效范围选择部分成员可用", "ok": true, "detail": "", "line": 145}
+{"note": "cli-permission-control.md", "kind": "quote", "arg": "docs/external/open-platform/dws-permission-management-guide.md | **可用范围**：全员可用或指定人员", "ok": true, "detail": "", "line": 107}
+{"note": "cli-permission-control.md", "kind": "quote", "arg": "docs/external/open-platform/cli-permissions-organizational-members.md | **申请开关位置**：CLI 设置页 -Agent渠道-设置-组织成员权限申请开关", "ok": true, "detail": "", "line": 33}
+{"note": "cli-permission-control.md", "kind": "quote", "arg": "docs/external/open-platform/dingtalk-dws-cli-install-guide.md | 管理员收到请求卡片后进行审批", "ok": true, "detail": "", "line": 113}
+{"note": "cli-permission-control.md", "kind": "quote", "arg": "docs/external/open-platform/dws-permission-management-guide.md | 然后保存，5分钟后生效", "ok": true, "detail": "", "line": 85}
+{"note": "cli-permission-control.md", "kind": "quote", "arg": "docs/external/open-platform/cli-permissions-organizational-members.md | 生效范围修改保存后约 5 分钟生效", "ok": true, "detail": "", "line": 68}
+{"note": "cli-permission-control.md", "kind": "quote", "arg": "docs/external/open-platform/dws-permission-management-guide.md | 重新开启后成员需重新登录授权", "ok": true, "detail": "", "line": 127}
+{"note": "cli-permission-control.md", "kind": "quote", "arg": "docs/external/open-platform/dws-permission-management-guide.md | 按顺序检查四处", "ok": true, "detail": "", "line": 118}
+{"note": "cli-permission-control.md", "kind": "quote", "arg": "docs/external/open-platform/cli-permissions-organizational-members.md | ④ 该成员是否已通过权限申请审批", "ok": true, "detail": "", "line": 65}
 {"note": "digital-employee.md", "kind": "quote", "arg": "docs/products/dingtalk-tag/dingtalk-tag-index.md | 数字员工标识只使用", "ok": true, "detail": "", "line": 41}
 {"note": "digital-employee.md", "kind": "quote", "arg": "docs/products/dingtalk-tag/dingtalk-tag-index.md | deap-dev", "ok": true, "detail": "", "line": 42}
 {"note": "digital-employee.md", "kind": "confirmed", "arg": "产品方 2026-10-15", "ok": true, "detail": "", "line": 0}

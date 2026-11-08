@@ -1,10 +1,10 @@
 # 构建对账
 
-- 源码 commit:b05310159
+- 源码 commit:c631e4fbf
 - 镜像文件:236
-- 主命令:1293(带 flags:956,归属未定:192)
+- 主命令:1292(带 flags:955,归属未定:193)
 - shortcuts:501
-- 答案卡:1794(full:1331,74.2%;partial:463)
+- 答案卡:1793(full:1329,74.1%;partial:464)
 - 文档索引:247 篇
 
 ## 归属未定(退回源码 grep,不影响存在性判断)
@@ -136,6 +136,7 @@
 - drive publish
 - drive recycle
 - drive star
+- event
 - hrbrain profile
 - hrbrain search
 - hrbrain talent-pool

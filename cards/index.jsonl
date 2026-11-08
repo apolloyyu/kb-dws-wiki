@@ -854,8 +854,7 @@
 {"completeness": "full", "key": "drive task get", "kind": "command", "path": "cards/cmd/command--drive%20task%20get.md", "product": "drive"}
 {"completeness": "full", "key": "drive upload", "kind": "command", "path": "cards/cmd/command--drive%20upload.md", "product": "drive"}
 {"completeness": "full", "key": "drive upload-info", "kind": "command", "path": "cards/cmd/command--drive%20upload-info.md", "product": "drive"}
-{"completeness": "full", "key": "event", "kind": "command", "path": "cards/cmd/command--event.md", "product": "event"}
-{"completeness": "full", "key": "event _bus", "kind": "command", "path": "cards/cmd/command--event%20_bus.md", "product": "event"}
+{"completeness": "partial", "key": "event", "kind": "command", "path": "cards/cmd/command--event.md", "product": "event"}
 {"completeness": "partial", "key": "event consume", "kind": "command", "path": "cards/cmd/command--event%20consume.md", "product": "event"}
 {"completeness": "partial", "key": "event list", "kind": "command", "path": "cards/cmd/command--event%20list.md", "product": "event"}
 {"completeness": "partial", "key": "event schema", "kind": "command", "path": "cards/cmd/command--event%20schema.md", "product": "event"}

@@ -1,17 +1,18 @@
 # dws event
 
 kind: command
-completeness: full
+completeness: partial
 usage: dws event
-description: 事件订阅 (DingTalk Stream 长连接)
-source: internal/app/event_command.go:101
+description: —
+use_when: (derived parent:由规范子命令路径证明)
+source: —
 visible_flags: 0
+partial_reason: unverified_flags,missing_description,missing_source
 
 ## Flags
 - none
 
 ## Related
-- dws event _bus
 - dws event consume
 - dws event list
 - dws event schema

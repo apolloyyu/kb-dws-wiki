@@ -13,7 +13,6 @@ partial_reason: unverified_flags
 - none
 
 ## Related
-- dws event _bus
 - dws event list
 - dws event schema
 - dws event status

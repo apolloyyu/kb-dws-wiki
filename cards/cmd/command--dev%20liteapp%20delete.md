@@ -4,7 +4,7 @@ kind: command
 completeness: partial
 usage: dws dev liteapp delete <unifiedAppId>
 description: —
-source: internal/helpers/dev_liteapp.go:225
+source: internal/helpers/dev_liteapp.go:226
 visible_flags: 0
 partial_reason: missing_description
 

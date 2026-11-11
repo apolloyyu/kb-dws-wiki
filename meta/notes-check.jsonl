@@ -1,8 +1,8 @@
 {"note": "chat-and-messaging.md", "kind": "code", "arg": "internal/shortcut/chatmsg/chatmsg.go | func ProjectMessageV1(m map[string]any, includeReactions bool)", "ok": true, "detail": "", "line": 347}
 {"note": "chat-and-messaging.md", "kind": "code", "arg": "internal/shortcut/chatmsg/chatmsg.go | func Text(m map[string]any) any", "ok": true, "detail": "", "line": 240}
 {"note": "chat-and-messaging.md", "kind": "code", "arg": "internal/shortcut/chatmsg/chatmsg.go | func richItemTexts(node any) []string", "ok": true, "detail": "", "line": 1312}
-{"note": "chat-and-messaging.md", "kind": "code", "arg": "internal/shortcut/chatmsg/decrypt.go | DecryptChatMessageItems decrypts encrypted message items in place before", "ok": true, "detail": "", "line": 40}
-{"note": "chat-and-messaging.md", "kind": "code", "arg": "internal/shortcut/chatmsg/decrypt.go | messageDecryptClient == nil || messageDecryptClient.BackendReady == nil", "ok": true, "detail": "", "line": 48}
+{"note": "chat-and-messaging.md", "kind": "code", "arg": "internal/shortcut/chatmsg/decrypt.go | DecryptChatMessageItems decrypts encrypted message items in place before", "ok": true, "detail": "", "line": 65}
+{"note": "chat-and-messaging.md", "kind": "code", "arg": "internal/shortcut/chatmsg/decrypt.go | messageDecryptClient == nil || messageDecryptClient.BackendReady == nil", "ok": true, "detail": "", "line": 73}
 {"note": "cli-permission-control.md", "kind": "quote", "arg": "docs/external/open-platform/dws-permission-management-guide.md | 「DWS CLI管理」卡片右上角开关", "ok": true, "detail": "", "line": 55}
 {"note": "cli-permission-control.md", "kind": "quote", "arg": "docs/external/open-platform/dws-permission-management-guide.md | 当组织总开关关闭时，该组织成员没有CLI的使用权限", "ok": true, "detail": "", "line": 59}
 {"note": "cli-permission-control.md", "kind": "quote", "arg": "docs/external/open-platform/dws-permission-management-guide.md | 与钉钉深度集成，开箱即用，默认开启", "ok": true, "detail": "", "line": 43}
@@ -50,7 +50,7 @@
 {"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/transport/diagnostics.go | \"retryable\", \"server_retryable\"", "ok": true, "detail": "", "line": 64}
 {"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/transport/client.go | defaultMaxRetries    = 1", "ok": true, "detail": "", "line": 70}
 {"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/transport/client.go | statusCode == http.StatusTooManyRequests || statusCode >= http.StatusInternalServerError", "ok": true, "detail": "", "line": 1025}
-{"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/app/runner.go | \"business_error\",", "ok": true, "detail": "", "line": 989}
+{"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/app/runner.go | \"business_error\",", "ok": true, "detail": "", "line": 1005}
 {"note": "rate-limit-and-backend.md", "kind": "quote", "arg": "docs/products/chat.md | `--page-delay` 默认 200ms", "ok": true, "detail": "", "line": 32}
 {"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/helpers/devapp_connect.go | \"user-rate-limit\", 20", "ok": true, "detail": "", "line": 624}
 {"note": "rate-limit-and-backend.md", "kind": "absent", "arg": "x-ratelimit @ internal/transport/*.go !_test.go", "ok": true, "detail": "", "line": 0}

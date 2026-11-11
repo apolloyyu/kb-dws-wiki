@@ -6,7 +6,7 @@ usage: dws doc block update
 description: Update the content or properties of an existing block in a DingTalk Doc.
 example: dws doc block update --node DOC_ID --block-id BLOCK_ID --content "新内容"
 use_when: When the agent amends a specific paragraph or element without rewriting the whole document.
-source: internal/helpers/doc.go:2469
+source: internal/helpers/doc.go:2487
 visible_flags: 9
 partial_reason: unverified_flags
 

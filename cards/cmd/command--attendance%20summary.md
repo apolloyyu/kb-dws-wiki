@@ -6,7 +6,7 @@ usage: dws attendance summary
 description: Retrieve an aggregated attendance summary for a single user (totals of late, early-leave, absence, overtime).
 example: dws attendance summary --user USER_ID --date 2026-03-12 --stats-type week
 use_when: When the agent needs a quick attendance health check without pulling raw records.
-source: internal/helpers/attendance.go:2887
+source: internal/helpers/attendance.go:2900
 visible_flags: 3
 
 ## Flags

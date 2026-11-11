@@ -4,7 +4,7 @@ kind: command
 completeness: full
 usage: dws chat crypto
 description: 消息三方解密
-source: internal/helpers/chat_crypto_command.go:62
+source: internal/helpers/chat_crypto_command.go:63
 visible_flags: 0
 
 ## Flags

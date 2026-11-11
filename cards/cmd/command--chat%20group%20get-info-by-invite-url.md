@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat group get-info-by-invite-url
 description: 通过群邀请链接查询群信息
 example: dws chat group get-info-by-invite-url --invite-url "https://qr.dingtalk.com/action/joingroup?code=xxx"
-source: internal/helpers/chat.go:10540
+source: internal/helpers/chat.go:10559
 visible_flags: 1
 
 ## Flags

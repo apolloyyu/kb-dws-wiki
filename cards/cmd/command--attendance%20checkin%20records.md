@@ -5,7 +5,7 @@ completeness: full
 usage: dws attendance checkin records
 description: 查询指定员工的签到记录
 example: dws attendance checkin records --operator-corp-id dingXXXXXX --operator-staff-id op001 --staff-ids user001,user002 --start "2026-04-01 00:00:00" --end "2026-04-07 00:00:00"
-source: internal/helpers/attendance.go:4719
+source: internal/helpers/attendance.go:4733
 visible_flags: 5
 
 ## Flags

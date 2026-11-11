@@ -5,7 +5,7 @@ completeness: full
 usage: dws attendance group create
 description: 创建考勤组
 example: dws attendance group create --name "研发考勤组" --type FIXED --group-vo '{"defaultClassId":1170996821,"workDayClassList":[0,1170996821,0,0,0,0,0]}' --timeout 10
-source: internal/helpers/attendance.go:2417
+source: internal/helpers/attendance.go:2430
 visible_flags: 6
 
 ## Flags

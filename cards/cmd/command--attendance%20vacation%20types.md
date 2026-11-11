@@ -5,7 +5,7 @@ completeness: full
 usage: dws attendance vacation types
 description: 查询当前用户假期规则列表
 example: dws attendance vacation types
-source: internal/helpers/attendance.go:3688
+source: internal/helpers/attendance.go:3701
 visible_flags: 0
 
 ## Flags

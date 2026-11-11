@@ -1228,6 +1228,11 @@
 {"completeness": "full", "key": "skill install", "kind": "command", "path": "cards/cmd/command--skill%20install.md", "product": "skill"}
 {"completeness": "full", "key": "skill search", "kind": "command", "path": "cards/cmd/command--skill%20search.md", "product": "skill"}
 {"completeness": "full", "key": "skill setup", "kind": "command", "path": "cards/cmd/command--skill%20setup.md", "product": "skill"}
+{"completeness": "full", "key": "sport", "kind": "command", "path": "cards/cmd/command--sport.md", "product": "sport"}
+{"completeness": "full", "key": "sport competition", "kind": "command", "path": "cards/cmd/command--sport%20competition.md", "product": "sport"}
+{"completeness": "full", "key": "sport org", "kind": "command", "path": "cards/cmd/command--sport%20org.md", "product": "sport"}
+{"completeness": "full", "key": "sport stats", "kind": "command", "path": "cards/cmd/command--sport%20stats.md", "product": "sport"}
+{"completeness": "full", "key": "sport step", "kind": "command", "path": "cards/cmd/command--sport%20step.md", "product": "sport"}
 {"completeness": "full", "key": "todo", "kind": "command", "path": "cards/cmd/command--todo.md", "product": "todo"}
 {"completeness": "partial", "key": "todo comment", "kind": "command", "path": "cards/cmd/command--todo%20comment.md", "product": "todo"}
 {"completeness": "full", "key": "todo comment add", "kind": "command", "path": "cards/cmd/command--todo%20comment%20add.md", "product": "todo"}

@@ -3,7 +3,7 @@
 kind: shortcut
 completeness: full
 usage: dws aitable +chart-templates
-description: 解析 JSONC 模板，只输出指定图表类型的结构化配置
+description: 按类型读取结构化图表模板及服务端提供的原文说明
 source: internal/shortcut/aitable/chart_templates.go:18
 visible_flags: 2
 

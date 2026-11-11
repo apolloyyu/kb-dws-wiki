@@ -5,7 +5,7 @@ completeness: full
 usage: dws attendance boss-check
 description: BOSS 改签打卡记录
 example: dws attendance boss-check --plan-id 123456 --time "2025-04-21 08:30"
-source: internal/helpers/attendance.go:4817
+source: internal/helpers/attendance.go:4831
 visible_flags: 7
 
 ## Flags

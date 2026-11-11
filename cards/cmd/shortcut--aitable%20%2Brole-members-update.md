@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +role-members-update
 description: 完整替换自定义角色成员并显式保留默认角色
-source: internal/shortcut/aitable/aitable.go:3307
+source: internal/shortcut/aitable/aitable.go:3312
 visible_flags: 5
 
 ## Flags

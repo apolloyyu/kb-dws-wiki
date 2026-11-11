@@ -1,6 +1,6 @@
 ---
 source_path: "skills/mono/references/products/attendance-vacation.md"
-source_commit: "c631e4fbf"
+source_commit: "75d92ada5"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 

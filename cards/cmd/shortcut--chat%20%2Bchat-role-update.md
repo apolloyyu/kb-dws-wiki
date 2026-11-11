@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws chat +chat-role-update
 description: 更新群身份名称
-source: internal/shortcut/chat/chat_group.go:1862
+source: internal/shortcut/chat/chat_group.go:1864
 visible_flags: 3
 
 ## Flags

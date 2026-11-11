@@ -12,7 +12,7 @@ visible_flags: 5
 - --dashboard-id <String>: Dashboard ID
 - --expected-layout <String>: 可选完整设计 JSON 数组，每项 i/x/y/w/h 必填；比较全部根卡片，保持叠放设计
 - --regions <String>: 可选区域 JSON 数组，每项 id/x/y/w/h 必填，chartIds 可选；核验选中根卡片的并集覆盖
-- --is-app-mode <Bool>: 已确认的应用模式上下文
+- --is-app-mode <Bool>: 仅已确认应用模式时传 true，使用 48 列；未确认时不传 true，不把缺失/null 当作已确认 false
 
 ## Related
 - dws aitable +advperm-disable

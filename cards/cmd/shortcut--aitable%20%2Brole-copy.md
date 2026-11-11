@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +role-copy
 description: 复制自定义角色配置（不复制成员）
-source: internal/shortcut/aitable/aitable.go:3357
+source: internal/shortcut/aitable/aitable.go:3362
 visible_flags: 3
 
 ## Flags

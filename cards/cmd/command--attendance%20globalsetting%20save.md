@@ -5,7 +5,7 @@ completeness: full
 usage: dws attendance globalsetting save
 description: 更新保存全局规则设置（仅管理员）
 example: dws attendance globalsetting save --scope 企业 --setting-scene checkRemind --check-remind-corp=true --yes
-source: internal/helpers/attendance.go:3359
+source: internal/helpers/attendance.go:3372
 visible_flags: 3
 
 ## Flags

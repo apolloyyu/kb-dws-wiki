@@ -5,7 +5,7 @@ completeness: partial
 usage: dws sheet range set-style
 description: 设置指定单元格区域的样式
 example: dws sheet range set-style --node NODE_ID --sheet-id SHEET_ID --range "A1:B3"
-source: internal/helpers/sheet_style.go:488
+source: internal/helpers/sheet_style.go:489
 visible_flags: 21
 partial_reason: unverified_flags,too_many_flags:21
 

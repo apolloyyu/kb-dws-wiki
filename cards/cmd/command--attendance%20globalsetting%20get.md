@@ -5,7 +5,7 @@ completeness: full
 usage: dws attendance globalsetting get
 description: 查询全局规则设置（仅管理员）
 example: dws attendance globalsetting get --scope 企业 --setting-scene checkRemind
-source: internal/helpers/attendance.go:3292
+source: internal/helpers/attendance.go:3305
 visible_flags: 2
 
 ## Flags

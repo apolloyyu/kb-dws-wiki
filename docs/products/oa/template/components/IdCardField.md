@@ -1,6 +1,6 @@
 ---
 source_path: "skills/mono/references/products/oa/template/components/IdCardField.md"
-source_commit: "75d92ada5"
+source_commit: "a93ef83f2"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 

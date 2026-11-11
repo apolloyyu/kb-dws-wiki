@@ -1,6 +1,6 @@
 ---
 source_path: "docs/architecture.md"
-source_commit: "75d92ada5"
+source_commit: "a93ef83f2"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 

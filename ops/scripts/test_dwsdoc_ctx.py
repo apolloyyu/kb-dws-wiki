@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """dwsdoc ctx/card 的快路径与证据边界回归测试。"""
 import json
+import contextlib
+import io
 import os
 import re
 import runpy
@@ -8,6 +10,8 @@ import shutil
 import subprocess
 import tempfile
 import unittest
+import warnings
+from unittest.mock import patch
 
 
 REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
@@ -460,6 +464,25 @@ class DwsdocCtxContractTest(unittest.TestCase):
             out = run_dwsdoc("ctx", q)
             self.assertNotIn("notes/cli-permission-control.md", out, q)
             self.assertNotIn("- cliperm_", out, q)
+
+    def test_owned_source_survives_higher_ranked_unrelated_document(self):
+        # 新产品文档可能抢占首位：专属意图的相关原文仍须展开。
+        q = '个人数据授权管理页面显示"当前组织已禁止cli数据访问权限"，请联系组织管理员'
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", ResourceWarning)
+            mod = runpy.run_path(DWSDOC, run_name="dwsdoc_test_module")
+            ctx = mod["ctx_impl"]
+            rows = [r for r in mod["_doc_rows"]() if r["path"] != "docs/products/chat.md"]
+            rows.append({"path": "docs/products/chat.md", "layer": "docs", "headings": [q]})
+            out = io.StringIO()
+            terms = [w for w in re.split(r"[\s,，、]+", q) if w]
+            with patch.dict(ctx.__globals__, {"_doc_rows": lambda: rows}), contextlib.redirect_stdout(out):
+                self.assertEqual(ctx(q, terms), 0)
+        result = out.getvalue()
+        self.assertRegex(result, r"(?m)^== 篇目\[\d+/\d+\] docs/external/open-platform/"
+                                 r"dws-permission-management-guide\.md \[docs\] ==$")
+        others = result.split("== 其他篇目(未展开) ==", 1)[1]
+        self.assertEqual(others.splitlines()[1].strip(), "docs/products/chat.md")
 
     def test_open_platform_docs_stay_out_of_command_questions(self):
         # 同分时外部篇不能靠路径字母序(docs/external < docs/products)当首篇;更新日志仍只在版本问法参与

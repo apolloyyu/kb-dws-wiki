@@ -877,14 +877,27 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
                                          not r["path"].endswith("-index.md"), r["path"]))
         primary_docs = product_docs + [r for r in primary_docs if r not in product_docs]
     body_docs = (primary_docs or docs_hits)[:_n_body]
-    # 外部镜像篇(开放平台 CLI 开通/权限/常见问题)相关度第一时追加展开:命令卡一命中,产品根文档会占满
-    # 正文名额,快卡还会把正文清零,真正相关的外部篇只剩标题(实录:「组织管理员如何管理 CLI 权限」展开的是
-    # attendance.md;「当前组织已禁止 CLI 数据访问权限」快卡命中 chat data-auth cross-org)。只追加不替换;
-    # 外部篇不排第一的题正文不变。
-    ext_added = bool(docs_hits and docs_hits[0]["path"].startswith("docs/external/")
-                     and docs_hits[0] not in body_docs)
+    # 非外部篇排首位时，专属意图的 note 已声明原文出处；在这些外部出处内独立分词排序，
+    # 避免新增无关篇目改变全局分词或排序后把出处挤出快卡。只取有实际词命中的最高一篇。
+    owned_refs = {arg.partition("|")[0].strip()
+                  for _, body in _notes() if _note_owned(body, intent, q)
+                  for kind, arg, _ in notes_refs.parse(body) if kind == "quote"}
+    owned_rows = [(r, h) for r, h in zip(doc_rows, doc_hays)
+                  if r["path"].startswith("docs/external/") and r["path"] in owned_refs]
+    owned_external = None
+    if owned_rows:
+        owned_kw = [w for w in _tokenize(raw_terms, [h for _, h in owned_rows])
+                    if w not in _STOP and len(w) > 1]
+        owned_scores = [(sum(_w(w) for w in owned_kw if _hit(w, h)), r["path"], r)
+                        for r, h in owned_rows]
+        owned_scores.sort(key=lambda item: (-item[0], item[1]))
+        if owned_scores[0][0] > 0:
+            owned_external = owned_scores[0][2]
+    first_external = docs_hits[0] if docs_hits and docs_hits[0]["path"].startswith("docs/external/") else None
+    ext_doc = first_external or owned_external
+    ext_added = bool(ext_doc and ext_doc not in body_docs)
     if ext_added:
-        body_docs = body_docs + [docs_hits[0]]
+        body_docs = body_docs + [ext_doc]
     # 运营补充篇同理:相关度第一时追加展开(快卡/产品根文档占满名额时它只剩标题),不替换已有正文。
     if docs_hits and docs_hits[0].get("layer") == "supplement" and docs_hits[0] not in body_docs:
         body_docs = body_docs + [docs_hits[0]]

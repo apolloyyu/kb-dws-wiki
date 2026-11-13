@@ -1,10 +1,10 @@
 # 构建对账
 
-- 源码 commit:ca71531ee
+- 源码 commit:4cc7767c7
 - 镜像文件:237
-- 主命令:1297(带 flags:955,归属未定:193)
+- 主命令:1301(带 flags:956,归属未定:194)
 - shortcuts:501
-- 答案卡:1798(full:1334,74.2%;partial:464)
+- 答案卡:1802(full:1335,74.1%;partial:467)
 - 文档索引:248 篇
 
 ## 归属未定(退回源码 grep,不影响存在性判断)
@@ -196,6 +196,7 @@
 - todo comment
 - todo tag
 - todo task
+- voip minutes
 - wiki feed
 - wiki member
 - wiki node

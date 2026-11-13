@@ -1,6 +1,6 @@
 ---
 source_path: "CHANGELOG.md"
-source_commit: "ca71531ee"
+source_commit: "4cc7767c7"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 
@@ -11,6 +11,27 @@ All notable changes to this project will be documented in this file.
 The format is inspired by [Keep a Changelog](https://keepachangelog.com/) and this project follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
+
+## [1.0.69-beta.1] - 2026-11-13
+
+### Added
+
+- **Application event sending** — adds `dws event send` to send third-party events with enterprise application credentials, inline/file/stdin JSON payloads, case-preserving recipient deduplication, safe dry-run previews, and validated `ACCEPTED` / `DUPLICATE` receipts.
+
+### Changed
+
+- **VoIP MeetingSDK credentials** — reads the renamed `callerUserId`, keeps
+  rolling compatibility with `callerUid`, projects the non-sensitive SDK app
+  ID and expiry, reads the dynamic token from `body.sdkAuth.sdkToken` with a
+  legacy message-header fallback, and supports an explicit
+  `--include-voip-sdk-token` opt-in for digital employees that need the token
+  to join a call. Default
+  flattened and transport outputs continue to exclude sensitive credentials.
+
+### Removed
+
+- PR admission no longer applies a 30-file limit or protected-path restrictions based on the `ai-generated` label. The existing `AI Behavior` context continues to reject Draft or stale revisions; all nine required checks and peer review remain in place.
+
 
 ## [1.0.68] - 2026-11-11
 

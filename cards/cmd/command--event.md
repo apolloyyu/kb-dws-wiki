@@ -16,5 +16,6 @@ partial_reason: unverified_flags,missing_description,missing_source
 - dws event consume
 - dws event list
 - dws event schema
+- dws event send
 - dws event status
 - dws event stop

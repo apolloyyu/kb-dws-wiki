@@ -33,7 +33,7 @@
 {"note": "digital-employee.md", "kind": "quote", "arg": "docs/skills/dingtalk-tag.md | 不要回退到机器人创建流程", "ok": true, "detail": "", "line": 53}
 {"note": "digital-employee.md", "kind": "absent", "arg": "robotcode @ internal/helpers/deap_agent*.go", "ok": true, "detail": "", "line": 0}
 {"note": "event-system.md", "kind": "code", "arg": "internal/event/bus/lockfile.go | func Acquire(path string)", "ok": true, "detail": "", "line": 71}
-{"note": "event-system.md", "kind": "code", "arg": "internal/app/event_command.go | 仅 --foreground 模式生效：跳过单实例锁", "ok": true, "detail": "", "line": 363}
+{"note": "event-system.md", "kind": "code", "arg": "internal/app/event_command.go | 仅 --foreground 模式生效：跳过单实例锁", "ok": true, "detail": "", "line": 370}
 {"note": "event-system.md", "kind": "code", "arg": "internal/event/source/personal.go | emit(raw)", "ok": true, "detail": "", "line": 364}
 {"note": "event-system.md", "kind": "code", "arg": "internal/event/source/personal.go | resp := payload.NewSuccessDataFrameResponse()", "ok": true, "detail": "", "line": 342}
 {"note": "event-system.md", "kind": "code", "arg": "internal/event/source/personal.go | personal source: write ack:", "ok": true, "detail": "", "line": 370}

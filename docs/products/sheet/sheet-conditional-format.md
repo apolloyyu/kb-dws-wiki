@@ -1,6 +1,6 @@
 ---
 source_path: "skills/mono/references/products/sheet/sheet-conditional-format.md"
-source_commit: "ca71531ee"
+source_commit: "4cc7767c7"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 

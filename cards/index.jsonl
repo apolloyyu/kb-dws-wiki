@@ -858,6 +858,7 @@
 {"completeness": "partial", "key": "event consume", "kind": "command", "path": "cards/cmd/command--event%20consume.md", "product": "event"}
 {"completeness": "partial", "key": "event list", "kind": "command", "path": "cards/cmd/command--event%20list.md", "product": "event"}
 {"completeness": "partial", "key": "event schema", "kind": "command", "path": "cards/cmd/command--event%20schema.md", "product": "event"}
+{"completeness": "partial", "key": "event send", "kind": "command", "path": "cards/cmd/command--event%20send.md", "product": "event"}
 {"completeness": "partial", "key": "event status", "kind": "command", "path": "cards/cmd/command--event%20status.md", "product": "event"}
 {"completeness": "partial", "key": "event stop", "kind": "command", "path": "cards/cmd/command--event%20stop.md", "product": "event"}
 {"completeness": "full", "key": "hrbrain", "kind": "command", "path": "cards/cmd/command--hrbrain.md", "product": "hrbrain"}
@@ -1264,6 +1265,9 @@
 {"completeness": "full", "key": "todo task update", "kind": "command", "path": "cards/cmd/command--todo%20task%20update.md", "product": "todo"}
 {"completeness": "full", "key": "upgrade", "kind": "command", "path": "cards/cmd/command--upgrade.md", "product": "upgrade"}
 {"completeness": "partial", "key": "version", "kind": "command", "path": "cards/cmd/command--version.md", "product": "version"}
+{"completeness": "full", "key": "voip", "kind": "command", "path": "cards/cmd/command--voip.md", "product": "voip"}
+{"completeness": "partial", "key": "voip minutes", "kind": "command", "path": "cards/cmd/command--voip%20minutes.md", "product": "voip"}
+{"completeness": "partial", "key": "voip minutes auto-start", "kind": "command", "path": "cards/cmd/command--voip%20minutes%20auto-start.md", "product": "voip"}
 {"completeness": "full", "key": "whiteboard", "kind": "command", "path": "cards/cmd/command--whiteboard.md", "product": "whiteboard"}
 {"completeness": "partial", "key": "whiteboard create-with-content", "kind": "command", "path": "cards/cmd/command--whiteboard%20create-with-content.md", "product": "whiteboard"}
 {"completeness": "full", "key": "whiteboard export", "kind": "command", "path": "cards/cmd/command--whiteboard%20export.md", "product": "whiteboard"}

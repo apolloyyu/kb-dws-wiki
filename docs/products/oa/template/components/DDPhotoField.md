@@ -1,6 +1,6 @@
 ---
 source_path: "skills/mono/references/products/oa/template/components/DDPhotoField.md"
-source_commit: "a93ef83f2"
+source_commit: "ca71531ee"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 

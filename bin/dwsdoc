@@ -447,20 +447,33 @@ def _faq_score(qg, e):
     return best
 
 
+def _faq_body_start(lines):
+    """frontmatter 之后的第一行行号:原文句只能落在正文里。"""
+    if lines and lines[0].strip() == "---":
+        for k in range(1, len(lines)):
+            if lines[k].strip() == "---":
+                return k + 1
+    return 0
+
+
 def _faq_source(src):
-    """(库内路径, 正文行, 原文句起始行号) 或 None:出处篇不在本库、读不到或原文句已不在篇中都算失效。"""
+    """(库内路径, 正文行, 原文句起始行号) 或 None:出处篇不在本库、读不到、原文句已不在正文里都算失效。
+    只在版本类问法参与排序的篇(_VERSION_ONLY、CHANGELOG)不当相似问题出处，保持它们原有的限定。
+    按去空白/标点后的全文定位(归一化后比对，不是逐字节)。"""
     path = str(src.get("path") or "")
     quote = _faq_norm(src.get("quote") or "")
     parts = path.replace("\\", "/").split("/")
     fp = os.path.join(ROOT, path)
-    if len(quote) < 6 or not path or os.path.isabs(path) or ".." in parts or not os.path.isfile(fp):
+    if (len(quote) < 6 or not path or os.path.isabs(path) or ".." in parts or path in _VERSION_ONLY
+            or path.endswith("CHANGELOG.md") or not os.path.isfile(fp)):
         return None
     try:
         lines = open(fp, encoding="utf-8", errors="ignore").read().splitlines()
     except OSError:
         return None
+    body0 = _faq_body_start(lines)
     starts, buf, pos = [], [], 0
-    for l in lines:
+    for l in lines[body0:]:
         starts.append(pos)
         n = _faq_norm(l)
         buf.append(n)
@@ -468,7 +481,21 @@ def _faq_source(src):
     at = "".join(buf).find(quote)
     if at < 0:
         return None
-    return path, lines, max(k for k, s in enumerate(starts) if s <= at)
+    return path, lines, body0 + max(k for k, s in enumerate(starts) if s <= at)
+
+
+def _faq_hit(e, qg, nq):
+    """(分数, 有效出处列表) 或 None。单条坏数据只跳过这一条。"""
+    try:
+        s = _faq_score(qg, e)
+        if any(len(_faq_norm(k)) >= 6 and _faq_norm(k) in nq for k in e.get("keys") or []):
+            s = max(s, _FAQ_KEY_SCORE)   # keys：离线校验过的本簇特有错误码/报错原文，归一化后原样出现即命中
+        if s < _FAQ_MIN:
+            return None
+        srcs = [(r, x) for x in list(e["sources"])[:3] if isinstance(x, dict) and (r := _faq_source(x))]
+        return (s, srcs) if srcs else None
+    except (TypeError, KeyError, AttributeError, ValueError):
+        return None
 
 
 def faq_prefix(raw_query):
@@ -477,18 +504,9 @@ def faq_prefix(raw_query):
     if not entries:
         return ""
     cq = _faq_clean(raw_query)
-    qg, low = _faq_grams(cq), cq.lower()
-    # keys：条目里能唯一指认这类问题的错误码/错误信息原文/接口名(离线校验过在 ≥2 道原题里原样出现)，原样出现即算命中
-    key_hit = lambda e: any(len(k) >= 6 and k.lower() in low for k in e.get("keys") or [])  # noqa: E731
-    scored = sorted(((s, e) for e in entries if (s := max(_faq_score(qg, e), _FAQ_KEY_SCORE if key_hit(e) else 0))
-                     >= _FAQ_MIN), key=lambda x: -x[0])
-    hits = []
-    for s, e in scored:
-        srcs = [(r, x) for x in e["sources"][:3] if (r := _faq_source(x))]
-        if srcs:
-            hits.append((s, e, srcs))
-        if len(hits) >= _FAQ_MAX_HITS:
-            break
+    qg, nq = _faq_grams(cq), _faq_norm(cq)
+    hits = sorted(((h[0], e, h[1]) for e in entries if (h := _faq_hit(e, qg, nq))), key=lambda x: -x[0])
+    hits = hits[:_FAQ_MAX_HITS]
     if not hits:
         return ""
     parts = ["== 相似问题（日评里反复出现、已核实出处的问题；不是答案，结论以官方原文为准；与所问不是同一件事就忽略本块）=="]
@@ -497,11 +515,11 @@ def faq_prefix(raw_query):
         parts.append(f"[{e.get('id', 'faq')}] 相似问法：{e['question']}（相似度 {s:.2f}）")
         for (path, _lines, _i), src in srcs:
             parts.append(f"  出处：{path}" + (f" · {_doc_link(path)}" if _doc_link(path) else ""))
-            parts.append(f"  原文：「{src['quote'][:200]}」")
+            parts.append(f"  原文：「{src['quote']}」")
         for p in (e.get("pitfalls") or [])[:2]:
-            parts.append(f"  常见误答：{p[:120]}")
+            parts.append(f"  常见误答：{p}")
         (path, lines, i), _src = srcs[0]
-        lo = max(0, i - _FAQ_EXCERPT_LINES // 2)
+        lo = max(_faq_body_start(lines), i - _FAQ_EXCERPT_LINES // 2)
         excerpts.append(f"== 相似问题出处原文：{path} 第 {lo + 1} 行起 ==\n"
                         + _cut("\n".join(lines[lo:i + _FAQ_EXCERPT_LINES]), _FAQ_EXCERPT_CAP))
     return "\n".join(parts + excerpts) + "\n"
@@ -1346,9 +1364,15 @@ def main():
                 pre = faq_prefix(" ".join(args))
             except Exception:  # 相似问题块只是附加提示：出错就不加，不影响原检索
                 pre = ""
+            import contextlib
+            import io
+            buf = io.StringIO()
+            with contextlib.redirect_stdout(buf):   # 报错时(下方 CTX_ERROR)不加相似问题块，首行仍是 CTX_ERROR
+                rc = ctx_impl(q, terms, force_full=force_full, prev_q=prev_q)
             if pre:
                 print(pre)
-            return ctx_impl(q, terms, force_full=force_full, prev_q=prev_q)
+            sys.stdout.write(buf.getvalue())
+            return rc
         except Exception as e:
             print(f"CTX_ERROR: {type(e).__name__}: {e};请改用分步命令(cmd/short/flag→find→cat)")
             return 1

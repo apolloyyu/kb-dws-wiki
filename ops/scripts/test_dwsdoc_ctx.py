@@ -546,6 +546,60 @@ class ExternalMirrorTargetsTest(unittest.TestCase):
         self.assertEqual(targets([], "/nonexistent"), [("open-platform", "dws-cli-log")])
 
 
+class FaqEntriesTest(unittest.TestCase):
+    """相似问题(faq/faq.jsonl)：命中时只在原 ctx 输出前加一块(出处、原文句、常见误答、出处片段)，其余逐字不变；
+    原文句已不在出处篇、出处不在本库/越出库根、坏行、非 live 条目都不出块；无关问题输出不变。临时知识库根里跑。"""
+    QUOTE = "PAT 是 **Personal Action Token(行为授权)**,不是 Personal Access Token"
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.root = self.tmp.name
+        shutil.copytree(os.path.join(REPO, "bin"), os.path.join(self.root, "bin"))
+        for name in os.listdir(REPO):
+            if name not in ("bin", "faq") and not name.startswith("."):
+                os.symlink(os.path.join(REPO, name), os.path.join(self.root, name))
+        entries = [
+            {"id": "faq-test-live", "question": "dws 的 PAT 是什么，和登录有什么关系", "status": "live",
+             "variants": ["PAT 权限管控在哪里"], "pitfalls": ["把 PAT 说成登录方式或 Personal Access Token"],
+             "sources": [{"path": "notes/auth-and-credentials.md", "quote": self.QUOTE}]},
+            {"id": "faq-test-stale", "question": "dws 怎么一次删除全部待办", "status": "live",
+             "sources": [{"path": "notes/auth-and-credentials.md", "quote": "这句原文已经不在出处篇里了，条目应当失效"}]},
+            {"id": "faq-test-escape", "question": "dws 配置文件放在哪个目录", "status": "live",
+             "sources": [{"path": "../../etc/hosts", "quote": "localhost localhost"}]},
+            {"id": "faq-test-suspended", "question": "dws 怎么查看日程忙闲", "status": "suspended",
+             "sources": [{"path": "notes/auth-and-credentials.md", "quote": self.QUOTE}]},
+        ]
+        os.makedirs(os.path.join(self.root, "faq"))
+        with open(os.path.join(self.root, "faq", "faq.jsonl"), "w", encoding="utf-8") as f:
+            f.write("{坏行\n" + "".join(json.dumps(e, ensure_ascii=False) + "\n" for e in entries))
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def cli(self, *args):
+        p = subprocess.run(["python3", os.path.join(self.root, "bin", "dwsdoc"), *args], cwd=self.root,
+                           text=True, capture_output=True, timeout=60)
+        return p.stdout
+
+    def test_hit_prefix_and_rest_unchanged(self):
+        q = "dws 的 PAT 是什么，跟登录有啥关系"
+        out = self.cli("ctx", q)
+        self.assertTrue(out.startswith("== 相似问题"), out[:200])
+        self.assertIn("[faq-test-live]", out)
+        self.assertIn("常见误答：把 PAT 说成登录方式", out)
+        self.assertIn(f"「{self.QUOTE}」", out)
+        self.assertIn("== 相似问题出处原文：notes/auth-and-credentials.md", out)
+        if not os.path.exists(os.path.join(REPO, "faq")):
+            self.assertTrue(out.endswith(run_dwsdoc("ctx", q)))
+
+    def test_invalid_or_unrelated_no_block(self):
+        for q in ("dws 怎么一次删除全部待办", "dws 配置文件放在哪个目录", "dws 怎么查看日程忙闲", "dws 怎么发群消息"):
+            out = self.cli("ctx", q)
+            self.assertNotIn("== 相似问题", out, q)
+            if not os.path.exists(os.path.join(REPO, "faq")):
+                self.assertEqual(out, run_dwsdoc("ctx", q), q)
+
+
 class SupplementDocsTest(unittest.TestCase):
     """运营补充篇(supplement/,ops 从钉钉文档同步):能被 ctx/find/cat 命中,不给链接、不露 frontmatter,冲突不按日期裁决,
     同分不压官方篇;无 frontmatter/无日期/BOM/坏格式/读不了都不拖垮检索。全部在临时知识库根里跑(复制 bin/,其余顶层

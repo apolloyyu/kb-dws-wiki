@@ -1367,8 +1367,12 @@ def main():
             import contextlib
             import io
             buf = io.StringIO()
-            with contextlib.redirect_stdout(buf):   # 报错时(下方 CTX_ERROR)不加相似问题块，首行仍是 CTX_ERROR
-                rc = ctx_impl(q, terms, force_full=force_full, prev_q=prev_q)
+            try:
+                with contextlib.redirect_stdout(buf):   # 报错时(下方 CTX_ERROR)不加相似问题块，首行仍是 CTX_ERROR
+                    rc = ctx_impl(q, terms, force_full=force_full, prev_q=prev_q)
+            except SystemExit:   # 与 dkdoc 对称：已产生的输出照常写出再退出，不加相似问题块
+                sys.stdout.write(buf.getvalue())
+                raise
             if pre:
                 print(pre)
             sys.stdout.write(buf.getvalue())

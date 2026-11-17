@@ -5,7 +5,7 @@ completeness: full
 usage: dws doc template apply
 description: 应用文档模板
 example: dws doc template apply --template-id TPL_ID --name "我的周报"
-source: internal/helpers/doc.go:4912
+source: internal/helpers/doc.go:4930
 visible_flags: 4
 
 ## Flags

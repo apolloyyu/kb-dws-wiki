@@ -5,7 +5,7 @@ completeness: full
 usage: dws attendance schedule import
 description: 导入排班记录到排班制考勤组
 example: dws attendance schedule import --groupId 123456
-source: internal/helpers/attendance.go:4268
+source: internal/helpers/attendance.go:4281
 visible_flags: 3
 
 ## Flags

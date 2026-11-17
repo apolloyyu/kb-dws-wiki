@@ -5,7 +5,7 @@ completeness: partial
 usage: dws chat list-all-conversations
 description: 分页获取当前用户的全部会话列表
 example: dws chat list-all-conversations
-source: internal/helpers/chat.go:10851
+source: internal/helpers/chat.go:10870
 visible_flags: 3
 partial_reason: unverified_flags
 

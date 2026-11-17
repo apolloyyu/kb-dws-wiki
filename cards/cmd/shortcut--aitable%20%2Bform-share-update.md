@@ -4,7 +4,7 @@ kind: shortcut
 completeness: partial
 usage: dws aitable +form-share-update
 description: 部分更新分享表单配置，并返回经服务端回读和 CP 投影校验的真实终态
-source: internal/shortcut/aitable/aitable.go:2064
+source: internal/shortcut/aitable/aitable.go:2069
 visible_flags: 22
 partial_reason: too_many_flags:22
 

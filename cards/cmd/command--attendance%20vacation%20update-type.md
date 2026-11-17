@@ -5,7 +5,7 @@ completeness: full
 usage: dws attendance vacation update-type
 description: 更新假期规则
 example: dws attendance vacation update-type --leave-code a1b2c3d4-e5f6-7890-abcd-ef1234567890 --name "事假（修改版）"
-source: internal/helpers/attendance.go:3871
+source: internal/helpers/attendance.go:3884
 visible_flags: 8
 
 ## Flags

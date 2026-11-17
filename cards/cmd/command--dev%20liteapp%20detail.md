@@ -4,7 +4,7 @@ kind: command
 completeness: partial
 usage: dws dev liteapp detail <unifiedAppId>
 description: —
-source: internal/helpers/dev_liteapp.go:296
+source: internal/helpers/dev_liteapp.go:297
 visible_flags: 0
 partial_reason: missing_description
 

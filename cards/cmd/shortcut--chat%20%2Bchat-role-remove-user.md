@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws chat +chat-role-remove-user
 description: 移除用户的指定群身份
-source: internal/shortcut/chat/chat_group.go:2225
+source: internal/shortcut/chat/chat_group.go:2227
 visible_flags: 3
 
 ## Flags

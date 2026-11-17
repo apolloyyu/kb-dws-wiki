@@ -5,7 +5,7 @@ completeness: full
 usage: dws attendance group update
 description: 更新考勤组配置（仅修改需要变更的字段）
 example: dws attendance group update --group-id 123456 --name "研发考勤组" --timeout 10
-source: internal/helpers/attendance.go:2669
+source: internal/helpers/attendance.go:2682
 visible_flags: 8
 
 ## Flags

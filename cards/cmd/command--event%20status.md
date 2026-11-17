@@ -4,7 +4,7 @@ kind: command
 completeness: partial
 usage: dws event status
 description: 显示个人事件订阅和本地消费状态
-source: internal/app/event_command.go:922
+source: internal/app/event_command.go:943
 visible_flags: 11
 partial_reason: unverified_flags
 
@@ -20,8 +20,8 @@ partial_reason: unverified_flags
 - … 3 more; use dwsdoc cmd/short for full flags
 
 ## Related
-- dws event _bus
 - dws event consume
 - dws event list
 - dws event schema
+- dws event send
 - dws event stop

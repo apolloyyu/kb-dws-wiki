@@ -5,7 +5,7 @@ completeness: full
 usage: dws attendance selfsetting get
 description: 查询个人规则设置
 example: dws attendance selfsetting get --setting-scene checkRemind --user CURRENT_USER_ID
-source: internal/helpers/attendance.go:3033
+source: internal/helpers/attendance.go:3046
 visible_flags: 2
 
 ## Flags

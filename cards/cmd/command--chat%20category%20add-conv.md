@@ -5,7 +5,7 @@ completeness: full
 usage: dws chat category add-conv
 description: 将会话移动到指定的自定义分组中
 example: dws chat category add-conv --conversation-id <openConversationId> --category-ids 123,456
-source: internal/helpers/chat.go:6687
+source: internal/helpers/chat.go:6706
 visible_flags: 2
 
 ## Flags

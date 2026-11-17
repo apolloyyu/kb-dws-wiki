@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +role-members-add
 description: 向自定义角色增量追加成员
-source: internal/shortcut/aitable/aitable.go:3275
+source: internal/shortcut/aitable/aitable.go:3280
 visible_flags: 3
 
 ## Flags

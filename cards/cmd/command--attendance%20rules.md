@@ -6,7 +6,7 @@ usage: dws attendance rules
 description: Query the attendance group the user belongs to along with its attendance rules (schedule, locations, shifts).
 example: dws attendance rules --date 2026-03-14
 use_when: When the agent needs to know the user's expected work schedule or attendance policies before interpreting records.
-source: internal/helpers/attendance.go:2957
+source: internal/helpers/attendance.go:2970
 visible_flags: 1
 
 ## Flags

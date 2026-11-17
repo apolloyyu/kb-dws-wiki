@@ -5,7 +5,7 @@ completeness: partial
 usage: dws chat message list-favorites
 description: 查询收藏的消息列表
 example: dws chat message list-favorites
-source: internal/helpers/chat.go:10111
+source: internal/helpers/chat.go:10130
 visible_flags: 2
 partial_reason: unverified_flags
 

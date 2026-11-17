@@ -1,11 +1,11 @@
 # 构建对账
 
-- 源码 commit:8fc32dbd2
-- 镜像文件:223
-- 主命令:1293(带 flags:956,归属未定:192)
+- 源码 commit:4cc7767c7
+- 镜像文件:237
+- 主命令:1301(带 flags:956,归属未定:194)
 - shortcuts:501
-- 答案卡:1794(full:1331,74.2%;partial:463)
-- 文档索引:233 篇
+- 答案卡:1802(full:1335,74.1%;partial:467)
+- 文档索引:248 篇
 
 ## 归属未定(退回源码 grep,不影响存在性判断)
 - agoal contract
@@ -136,6 +136,7 @@
 - drive publish
 - drive recycle
 - drive star
+- event
 - hrbrain profile
 - hrbrain search
 - hrbrain talent-pool
@@ -195,6 +196,7 @@
 - todo comment
 - todo tag
 - todo task
+- voip minutes
 - wiki feed
 - wiki member
 - wiki node

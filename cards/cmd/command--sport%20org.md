@@ -4,7 +4,7 @@ kind: command
 completeness: full
 usage: dws sport org
 description: 企业开通状态
-source: internal/helpers/sport.go:147
+source: internal/helpers/sport.go:171
 visible_flags: 0
 
 ## Flags

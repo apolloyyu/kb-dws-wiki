@@ -4,7 +4,7 @@ kind: command
 completeness: full
 usage: dws sport step
 description: 步数榜单与明细
-source: internal/helpers/sport.go:180
+source: internal/helpers/sport.go:204
 visible_flags: 0
 
 ## Flags

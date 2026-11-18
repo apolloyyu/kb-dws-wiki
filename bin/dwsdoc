@@ -335,6 +335,43 @@ def _notes():
     return _NOTES_CACHE
 
 
+# notes 在输出里只用中性名称「内部说明「标题」」,不给文件路径:模型写参考区时照抄它读过的篇目路径,
+# 「引用: 无」和契约里的禁引挡不住(11-18 对照 7 题把 notes/event-system.md 等列进参考)。
+# cat 同时认这个名称和原路径。
+NOTE_CITE = "引用: 无(内部说明只作依据,不是出处;名称不写进回复;出处用条目里的「源码依据」或「> 原文」链接)"
+
+
+def _note_title(fn):
+    for f, body in _notes():
+        if f == fn:
+            m = re.search(r"(?m)^title:\s*(.+)$", body[:800]) or re.search(r"(?m)^# (.+)$", body)
+            return m.group(1).strip() if m else fn[:-3]
+    return fn[:-3]
+
+
+def _note_short(title):
+    return re.split(r"[(（:：]", title, maxsplit=1)[0].strip() or title
+
+
+def _note_label(path):
+    return f"内部说明「{_note_short(_note_title(os.path.basename(path)))}」"
+
+
+def _shown(path):
+    """输出里的篇目名:notes 换成中性名称,其余照旧给路径。"""
+    return _note_label(path) if path.startswith("notes/") else path
+
+
+def _note_path(arg):
+    """内部说明「标题」/标题(全称或短称) → notes/<文件名>;不是 notes 名称时 None。"""
+    key = re.sub(r"^内部说明", "", arg.strip().strip("'\"").strip()).strip().strip("「」").strip()
+    for fn, _ in _notes():
+        t = _note_title(fn)
+        if key and key in (t, _note_short(t)):
+            return "notes/" + fn
+    return None
+
+
 def _note_owned(body, intent, q=""):
     """note 在 frontmatter 声明的 intents 任一命中时整篇并入。"""
     return any(intent.get(i) for i in notes_refs.declared_intents(body))
@@ -514,13 +551,14 @@ def faq_prefix(raw_query):
     for s, e, srcs in hits:
         parts.append(f"[{e.get('id', 'faq')}] 相似问法：{e['question']}（相似度 {s:.2f}）")
         for (path, _lines, _i), src in srcs:
-            parts.append(f"  出处：{path}" + (f" · {_doc_link(path)}" if _doc_link(path) else ""))
+            kind = "依据(不是出处)" if path.startswith("notes/") else "出处"
+            parts.append(f"  {kind}：{_shown(path)}" + (f" · {_doc_link(path)}" if _doc_link(path) else ""))
             parts.append(f"  原文：「{src['quote']}」")
         for p in (e.get("pitfalls") or [])[:2]:
             parts.append(f"  常见误答：{p}")
         (path, lines, i), _src = srcs[0]
         lo = max(_faq_body_start(lines), i - _FAQ_EXCERPT_LINES // 2)
-        excerpts.append(f"== 相似问题出处原文：{path} 第 {lo + 1} 行起 ==\n"
+        excerpts.append(f"== 相似问题出处原文：{_shown(path)} 第 {lo + 1} 行起 ==\n"
                         + _cut("\n".join(lines[lo:i + _FAQ_EXCERPT_LINES]), _FAQ_EXCERPT_CAP))
     return "\n".join(parts + excerpts) + "\n"
 
@@ -655,7 +693,7 @@ def _evidence_contract(intent=None, has_card=True, with_notes=False):
     for line in _owned_contract(intent, intent.get("_q", "")):
         lines.append("- " + line)
     if with_notes:
-        lines.append("- notes：行为说明只作依据，不是出处；其文件名、标题不出现在回复和参考区。"
+        lines.append("- notes：内部说明只作依据，不是出处；其名称、文件名不出现在回复和参考区，要给出处就用条目里的「源码依据」链接。"
                      "「> 原文(…)」行逐字摘自镜像原文，链接、表名、数值整条照抄；标「⚠依据已变更」的条目"
                      "不得作为确定结论，只可说明「文档近期有变更，以原文为准」并给出处。")
     lines.append("- links：出处只用本输出「引用:」行给出的地址或原文里出现过的整条链接，逐字照抄；没有就不列。"
@@ -937,7 +975,7 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
         for r in shorts[:4]:
             out.append(f"- dws {r.get('product', '')} {r['cmd']}  —  {(r.get('desc') or '')[:60]}")
         for r in docs_hits[:4]:
-            out.append(f"- 篇目 {r['path']}: {' / '.join((r.get('headings') or [])[:5])[:80]}")
+            out.append(f"- 篇目 {_shown(r['path'])}: {' / '.join((r.get('headings') or [])[:5])[:80]}")
         out.append("(以上为实体表精确命中，存在即事实；未列出≠不存在，仍须 cmd|short|flag 换词三查后才可否定)")
     if card_items:
         out.append("== 答案卡(card:full 仅可直接回答卡内 CLI 契约;partial 必须继续看正文) ==")
@@ -1054,11 +1092,15 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
         if r["layer"] == "notes":   # notes 当正文展开时同样去 frontmatter 并展开依据标记,不给模型看原始 {{…}}
             body = notes_refs.expand(ROOT, os.path.basename(r["path"]),
                                      re.sub(r"^---\n.*?\n---\n", "", body, count=1, flags=re.S))
+        is_note = r["path"].startswith("notes/")
         if len(body) > body_cap:
-            body = _cut(body, body_cap) + f"\n…[已截断,完整: dwsdoc cat {r['path']}]"
-        out.append(f"\n== 篇目[{i+1}/{len(body_docs)}] {r['path']} [{r['layer']}] ==")
+            cat_arg = f"'{_shown(r['path'])}'" if is_note else r["path"]
+            body = _cut(body, body_cap) + f"\n…[已截断,完整: dwsdoc cat {cat_arg}]"
+        out.append(f"\n== 篇目[{i+1}/{len(body_docs)}] {_shown(r['path'])} [{r['layer']}] ==")
         if r["layer"] == "supplement":
             out.append(_supplement_cite(r))
+        elif is_note:
+            out.append(NOTE_CITE)
         else:
             link = _doc_link(r["path"])
             out.append(f"引用: {link}" if link else "引用: 无(内部篇,只作依据)")
@@ -1066,7 +1108,7 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
     others = [r["path"] for r in docs_hits if r not in body_docs][:8]
     if others:
         out.append("\n== 其他篇目(未展开) ==")
-        out.extend("  " + p for p in others)
+        out.extend("  " + _shown(p) for p in others)
 
     # 机制类问法:直接并入 notes/ 命中节,免去"查完发现要读 notes"的第二轮。
     # 必须在"0 命中提前返回"之前执行——机制题常在三表查不到(问的是行为不是命令名),
@@ -1151,7 +1193,7 @@ def ctx_impl(q, raw_terms, force_full=False, prev_q=""):
                 text = "\n".join(hit) if hit else _cut(body, 2000)
                 # 专属 note 整篇并入不截断:截断会切掉开通/入群等后半节(依据标记展开后更长)
                 text = notes_refs.expand(ROOT, fn, text, checks)
-                picked.append(f"--- notes/{fn} · 引用: 无(内部篇,只作依据) ---\n"
+                picked.append(f"--- {_note_label(fn)} · {NOTE_CITE} ---\n"
                               + (text if score == -10**9 else _cut(text, 3000)))
             if picked:
                 notes_hit = len(picked)
@@ -1431,11 +1473,14 @@ def main():
         if not full and shown:
             print(f"(没有同时含全部 {len(words)} 个词的篇目;以下按命中词数排序)")
         for r in (full or shown[:30]):  # 全中照旧全列(枚举题要看全量)；只有部分命中才截 30
-            print(f"{r['path']}  [{r['layer']}]  {' / '.join(r.get('headings', [])[:4])}")
+            print(f"{_shown(r['path'])}  [{r['layer']}]  {' / '.join(r.get('headings', [])[:4])}")
+        if any(r["layer"] == "notes" for r in (full or shown[:30])):
+            print("(内部说明读全文: dwsdoc cat '内部说明「标题」';只作依据,不是出处,名称不写进回复)")
         if not shown:
             print(f"篇目标题层无命中({' / '.join(words)});可换词,或 cmd/short/flag 查命令,或回退源码 grep")
     elif op == "cat":
-        p = os.path.join(ROOT, sys.argv[2])
+        arg = _note_path(" ".join(sys.argv[2:])) or sys.argv[2]
+        p = os.path.join(ROOT, arg)
         if not os.path.abspath(p).startswith(ROOT) or not os.path.exists(p):
             print("不存在:", sys.argv[2])
             return 1
@@ -1452,6 +1497,9 @@ def main():
         rel_p = os.path.relpath(p, ROOT)
         if rel_p.startswith("notes" + os.sep):
             body = notes_refs.expand(ROOT, os.path.basename(p), body)
+            print(NOTE_CITE)
+            sys.stdout.write(body)
+            return 0
         link = _doc_link(rel_p)
         print(f"引用: {link}" if link else "引用: 无(内部篇,只作依据;文件名不得出现在回复里)")
         sys.stdout.write(body)

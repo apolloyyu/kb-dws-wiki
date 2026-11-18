@@ -1,6 +1,6 @@
 ---
 source_path: "skills/mono/references/products/mind/open-nodes-v1.md"
-source_commit: "4cc7767c7"
+source_commit: "38d49e4e6"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 

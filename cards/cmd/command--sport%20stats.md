@@ -4,7 +4,7 @@ kind: command
 completeness: full
 usage: dws sport stats
 description: 比赛参与与达标统计
-source: internal/helpers/sport.go:998
+source: internal/helpers/sport.go:1037
 visible_flags: 0
 
 ## Flags

@@ -46,6 +46,8 @@ source_refs: internal/helpers/drive.go, internal/helpers/drive_transfer.go, inte
 ## 媒体上传（文档附件 / 群文件）
 
 - 文档媒体上传：`internal/helpers/doc_media_upload.go` 的 `runDocMediaUpload`，流程为 `get_doc_attachment_upload_info` → PUT；doc media 命令组在 doc.go 约 L2966。
+- `insertDocMediaFile`（doc.go）改用 `decodeAttachmentUploadInfo` 解析上传回执：图片且 `resourceUrl` 非空、≤20MB 的内联图片允许缺 `resourceId`，否则缺 `resourceId` 直接报 "incomplete attachment upload info"。
+- 回执带 `resourceId` 时，插入的媒体元素 `properties` 里会附带 `extraData.resourceId`；无 `resourceId` 时只写 `src`。 （来源：`internal/helpers/doc.go:653-657`、`internal/helpers/doc.go:688-691`、`internal/helpers/doc.go:700`）
 - 群聊文件上传：`internal/helpers/chat_media_upload.go`，命令挂在 chat.go 约 L2130。
 
 ## 表单封面与二维码（internal/helpers/form_share.go）

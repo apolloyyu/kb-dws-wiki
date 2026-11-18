@@ -45,7 +45,7 @@ source_refs: Makefile, scripts/dev/build.sh, scripts/dev/build-all.sh, internal/
 | `verify.go` | SHA256 校验 |
 | `replacer.go` | `ReplaceSelf` 原子替换二进制 |
 | `rollback.go` | `RollbackManager`，备份存放于 `~/.dws/data/backups` |
-| `paths.go` | `EnsureUpgradeDirectories` 创建 `~/.dws`、`~/.dws/data/backups`、`~/.dws/cache/downloads`（0700）；`DownloadCacheDir` 为升级临时目录；Skill 安装以 `~/.agents/skills` 为 canonical，检测到的非 universal Agent 目录放相对链接（拒绝链接的文件系统回退直接拷贝），被替换的旧副本备份到 `~/.dws/skill-backups/<UTC 时间戳>/`（只保留最近 5 份，且只清理带 `.dws-skill-backup` 标记的目录），`.real` 等黑名单目录绝不触碰 |
+| `paths.go` | `EnsureUpgradeDirectories` 创建 `~/.dws`、`~/.dws/data/backups`、`~/.dws/cache/downloads`（0700）；`DownloadCacheDir` 为升级临时目录；Skill 安装以 `~/.agents/skills` 为 canonical，检测到的非 universal Agent 目录放相对链接（拒绝链接的文件系统回退直接拷贝），被替换的旧副本备份到 `~/.dws/skill-backups/<UTC 时间戳>/`（只保留最近 5 份，且只清理带 `.dws-skill-backup` 标记的目录），`.real` 等黑名单目录绝不触碰；新增 `.workbuddy/skills` 为 DWS-only 已知 Skill 目录（产品兼容保留），可用 `WORKBUDDY_CONFIG_DIR` 覆盖其根目录 （来源：`internal/upgrade/paths.go:105-113`、`internal/upgrade/paths.go:737-746`） |
 
 升级分两阶段：Phase 1 在临时目录内完成下载、SHA256 校验（优先 `checksums.txt`，退回 GitHub asset digest，两者都没有才跳过）、解压与新二进制验证，零副作用；Phase 2 才替换二进制并安装 Skill。用户可见 5 步：备份 → 下载 → 校验 → 解压验证 → 替换+安装。替换后调 `cli.InvalidatePersistedSchemaCacheIdentities` 丢弃持久化 Schema 身份，让下个进程按新二进制的实时声明重建；备份按 `Cleanup(5)` 只留最近 5 份。darwin 上新二进制若被 amfid SIGKILL（“signal: killed”），会 ad-hoc `codesign` + 去掉 `com.apple.quarantine` 后重试一次。
 

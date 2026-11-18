@@ -71,6 +71,7 @@ PAT 是 **Personal Action Token(行为授权)**,不是 Personal Access Token:
 | macOS | DEK 存系统 Keychain(go-keyring),密文在 `~/Library/Application Support/dws-cli`;`DWS_DISABLE_KEYCHAIN` 可回退 file-DEK |
 | Linux | file-DEK(`file_dek.go`,`~/.local/share/dws-cli/dek`)+ `.enc` 文件(`keychain_linux.go`) |
 | Windows | DPAPI + HKCU 注册表(`keychain_windows.go`) |
+- Windows 注册表命名空间:`registryPathForService` 改由 `registryNamespacePath(basePath, DWS_KEYCHAIN_DIR, DWS_KEYCHAIN_TEST_NAMESPACE)` 统一派生;原先对测试命名空间做 Clean/Abs/小写后 sha256 哈希并追加 `test-<hex>` 的逻辑及 `crypto/sha256` 依赖一并移除 （来源：`internal/keychain/keychain.go:29-38`、`internal/keychain/keychain_windows.go:16-21`、`internal/keychain/keychain_windows.go:62-69`）
 
 keychain 槽位(`internal/auth/keychain_store.go`):
 

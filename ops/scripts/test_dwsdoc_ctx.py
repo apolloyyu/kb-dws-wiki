@@ -27,6 +27,16 @@ def run_dwsdoc(*args):
     return p.stdout
 
 
+def note_label(fn):
+    """输出里 notes/<fn> 的称呼:不给文件名,只给标题(括号/冒号之前)。"""
+    with open(os.path.join(REPO, "notes", fn), encoding="utf-8") as fh:
+        title = re.search(r"(?m)^title:\s*(.+)$", fh.read(800)).group(1).strip()
+    return f"内部说明「{re.split(r'[(（:：]', title, maxsplit=1)[0].strip()}」"
+
+
+NOTE_PATH = re.compile(r"notes/[\w-]+\.md")
+
+
 class DwsdocCtxContractTest(unittest.TestCase):
     def test_ack_and_dedup_question_keeps_event_evidence(self):
         out = run_dwsdoc("ctx", "去重需要客户端做吗，服务端有没有 ACK 机制")
@@ -38,7 +48,7 @@ class DwsdocCtxContractTest(unittest.TestCase):
 
     def test_refresh_expiry_field_keeps_login_lifetime_note(self):
         out = run_dwsdoc("ctx", '"refreshExpiresAt": "2026-09-09T04:21:01.494Z"，那为啥没发刷新token回来')
-        self.assertIn("notes/token-lifetime.md", out)
+        self.assertIn(note_label("token-lifetime.md"), out)
         self.assertIn("30 天", out)
         self.assertIn("服务端是否同样续期", out)
 
@@ -190,7 +200,7 @@ class DwsdocCtxContractTest(unittest.TestCase):
         for q in ("如何让群所有人可以与数字员工对话", "数字员工怎么拉进群",
                   "怎么让别人也能和我的数字员工对话", "数字员工的 robotCode 在哪看"):
             out = run_dwsdoc("ctx", q)
-            self.assertIn("notes/digital-employee.md", out, q)
+            self.assertIn(note_label("digital-employee.md"), out, q)
             self.assertIn("allowed-groups", out, q)
             # 上游 10-13(a3c7d486) 起正式 connect 绑定走平台访问策略,不再是「默认仅主管+白名单」
             self.assertIn("> 原文(docs/digital-employee-adapters.md): `manage create` 创建并通过正式", out, q)
@@ -200,14 +210,14 @@ class DwsdocCtxContractTest(unittest.TestCase):
             self.assertRegex(out, r"(?m)^# dws dingtalk-tag ", q)
             self.assertNotIn("add-bot --robot-code", out, q)
             self.assertIn("不叠加本地白名单", out, q)
-            self.assertIn("- notes：行为说明只作依据", out, q)
+            self.assertIn("- notes：内部说明只作依据", out, q)
 
     def test_digital_employee_origin_uses_origin_note(self):
         # 实录 2026-10-12:把 DEAP 智能体/企业自建 Agent 接口列为创建方式,随后又称「关系未说明」并撤回
         for q in ("DEAP创建的智能体就是你所谓的数字员工吗", "那你说的数字员工到底在哪儿创建的？不是DEAP这？",
                   "AI 助理改名为数字员工了吗", "数字员工怎么创建"):
             out = run_dwsdoc("ctx", q)
-            self.assertIn("notes/digital-employee.md", out, q)
+            self.assertIn(note_label("digital-employee.md"), out, q)
             self.assertIn("- origin：", out, q)
             self.assertIn("card=1(fast=0)", out, q)
             self.assertRegex(out, r"(?m)^# dws dingtalk-tag manage create", q)
@@ -289,15 +299,15 @@ class DwsdocCtxContractTest(unittest.TestCase):
             out = run_dwsdoc("ctx", q)
             self.assertIn("- deap1：", out, q)
             self.assertIn("DEAP 1.0 的 AI 助理", out, q)
-            self.assertIn("notes/digital-employee.md", out, q)
+            self.assertIn(note_label("digital-employee.md"), out, q)
             self.assertNotIn("拿 DEAP 后台显示的智能体 ID", out, q)
             self.assertIn("(人工确认: 产品方 2026-10-15", out, q)
 
     def test_digital_employee_create_and_group_merges_both_notes(self):
         out = run_dwsdoc("ctx", "创建好的数字员工怎么拉进群")
         self.assertRegex(out, r"(?m)^# dws dingtalk-tag connect")
-        self.assertIn("notes/digital-employee.md", out)
-        self.assertIn("notes/digital-employee.md", out)
+        self.assertIn(note_label("digital-employee.md"), out)
+        self.assertIn(note_label("digital-employee.md"), out)
 
     def test_cmd_prefix_lists_all_hits(self):
         # 实录 R10.5.10:只显示前 12 条,模型答「oa approval 仅有 12 个子命令、不支持退回」
@@ -307,12 +317,12 @@ class DwsdocCtxContractTest(unittest.TestCase):
 
     def test_digital_employee_vs_robot_uses_access_note(self):
         out = run_dwsdoc("ctx", "数字员工和机器人有什么区别")
-        self.assertIn("notes/digital-employee.md", out)
+        self.assertIn(note_label("digital-employee.md"), out)
         self.assertIn("- access：", out)
 
     def test_robot_join_group_without_digital_employee_keeps_chat_context(self):
         out = run_dwsdoc("ctx", "怎么把机器人拉进群")
-        self.assertNotIn("notes/digital-employee.md", out)
+        self.assertNotIn(note_label("digital-employee.md"), out)
         self.assertIn("add-bot", out)
 
     def test_rate_limit_uses_mcp_gateway_note(self):
@@ -321,7 +331,7 @@ class DwsdocCtxContractTest(unittest.TestCase):
                   "使用dws总是返回限流的原因是什么", "dws使用的 也是 钉钉 OpenAPI 吗",
                   "你之前说过dws的部分接口并不跟openapi共享的我记得"):
             out = run_dwsdoc("ctx", q)
-            self.assertIn("notes/rate-limit-and-backend.md", out, q)
+            self.assertIn(note_label("rate-limit-and-backend.md"), out, q)
             self.assertIn("- ratelimit：", out, q)
             self.assertIn("mcp-gw.dingtalk.com", out, q)
             self.assertIn("只有 `dws api` 直连 OpenAPI", out, q)
@@ -330,7 +340,7 @@ class DwsdocCtxContractTest(unittest.TestCase):
     def test_rate_limit_note_not_pulled_by_unrelated_or_local_limit(self):
         for q in ("dws chat message list 怎么用", "dev connect --user-rate-limit 是什么"):
             out = run_dwsdoc("ctx", q)
-            self.assertNotIn("notes/rate-limit-and-backend.md", out, q)
+            self.assertNotIn(note_label("rate-limit-and-backend.md"), out, q)
 
     def test_natural_question_recalls_flag_by_help_text(self):
         # R10.5 回退 Q250/Q251:flag 只按名子串匹配,自然问句召不回 --ai-tag(答案在 help「AI 发送角标」)
@@ -358,7 +368,81 @@ class DwsdocCtxContractTest(unittest.TestCase):
         # R10.6.0 盲测 Q227/Q232/Q242:禁引只在专属 note 命中时出现,泛 notes 并入时回复参考区列出 notes/event-system.md
         out = run_dwsdoc("ctx", "二号 如果在同一台机器上启用多个事件监听，这个应该是可行的吧")
         self.assertIn("== 行为语义(notes", out)
-        self.assertIn("- notes：行为说明只作依据，不是出处", out)
+        self.assertIn("- notes：内部说明只作依据，不是出处", out)
+
+    def test_note_paths_never_shown(self):
+        # 11-18 对照 ctrl-164/168/248/272/277:模型把 ctx 里看到的 notes/<文件>.md(notes 节标题、否定前必读、
+        # 其他篇目)照抄进参考区,「引用: 无」和契约禁引都挡不住;notes 一律只给中性名称
+        cases = (("个人 IM 长连接监听 这个能力是否已经上线？", "event-system.md"),           # 否定前必读+其他篇目+notes 节
+                 ("你知道dws的登录态，如果我不使用它，多长时间会过期吗", "token-lifetime.md"),   # 专属 note 整篇并入
+                 ("invalidParameter.authCode.notFound刷新token是报回来这个错", "auth-and-credentials.md"),  # 只在其他篇目
+                 ("dws 多个 event consume 进程能同时订阅同一个事件吗", "event-system.md"))   # 非对照题的同类问法
+        for q, fn in cases:
+            for args in (("ctx", q), ("ctx", "--full", q)):
+                out = run_dwsdoc(*args)
+                self.assertNotRegex(out, NOTE_PATH, args)
+                self.assertIn(note_label(fn), out, args)
+        out = run_dwsdoc("ctx", cases[0][0])
+        self.assertIn("--- " + note_label("event-system.md") + " · 引用: 无(内部说明只作依据,不是出处", out)
+        self.assertIn("- 篇目 " + note_label("event-system.md") + ":", out)
+
+    def test_note_body_doc_header_uses_label(self):
+        # notes 作为正文篇目展开时(问法只命中 notes 小标题)同样不给路径;截断提示给可直接 cat 的名称
+        mod = runpy.run_path(DWSDOC)
+        self.assertEqual(mod["_shown"]("notes/event-system.md"), note_label("event-system.md"))
+        self.assertEqual(mod["_shown"]("docs/products/event.md"), "docs/products/event.md")
+        out = run_dwsdoc("ctx", "审计存储与链路")
+        heads = re.findall(r"(?m)^== 篇目\[\d+/\d+\] (.+?) \[notes\] ==\n(.*)$", out)
+        self.assertTrue(heads, out[:300])
+        for name, cite in heads:
+            self.assertTrue(name.startswith("内部说明「"), name)
+            self.assertTrue(cite.startswith("引用: 无(内部说明只作依据"), cite)
+        for m in re.findall(r"已截断,完整: dwsdoc cat (.+?)\]", out):
+            if "内部说明" in m:
+                self.assertTrue(m.startswith("'内部说明「"), m)
+        self.assertNotRegex(out, NOTE_PATH)
+
+    def test_every_note_has_its_own_name(self):
+        # 名称取自 title:没有 title 会退回文件名主干,短称重名会让 cat 读错篇
+        shorts = {}
+        for fn in sorted(os.listdir(os.path.join(REPO, "notes"))):
+            if fn.endswith(".md"):
+                label = note_label(fn)   # 无 title 时这里直接报错
+                self.assertNotIn(fn[:-3], label, fn)
+                shorts.setdefault(label, []).append(fn)
+        self.assertEqual({k: v for k, v in shorts.items() if len(v) > 1}, {})
+
+    def test_ctx_error_hides_note_paths(self):
+        main = runpy.run_path(DWSDOC)["main"]
+        def boom(*_a, **_k):
+            raise OSError(f"[Errno 13] Permission denied: '{os.path.join(REPO, 'notes', 'event-system.md')}'")
+        buf = io.StringIO()
+        with patch.dict(main.__globals__, {"ctx_impl": boom}), patch("sys.argv", ["dwsdoc", "ctx", "dws 事件"]), \
+                contextlib.redirect_stdout(buf):
+            self.assertEqual(main(), 1)
+        out = buf.getvalue()
+        self.assertTrue(out.startswith("CTX_ERROR: OSError"), out)
+        self.assertNotRegex(out, NOTE_PATH)
+        self.assertNotIn(REPO, out)
+        self.assertIn(note_label("event-system.md"), out)
+
+    def test_find_and_cat_take_note_label(self):
+        out = run_dwsdoc("find", "event")
+        self.assertNotRegex(out, NOTE_PATH)
+        self.assertIn(note_label("event-system.md") + "  [notes]", out)
+        self.assertIn("dwsdoc cat '内部说明「标题」'", out)
+        by_path = run_dwsdoc("cat", "notes/event-system.md")
+        self.assertTrue(by_path.startswith("引用: 无(内部说明只作依据,不是出处"), by_path[:80])
+        for arg in (note_label("event-system.md"), "事件系统", "事件系统(event bus / consume / 订阅)"):
+            self.assertEqual(run_dwsdoc("cat", arg), by_path, arg)
+        # 名称含空格、模型没加引号拆成多个参数时也认
+        self.assertEqual(run_dwsdoc("cat", *note_label("token-lifetime.md").split()),
+                         run_dwsdoc("cat", "notes/token-lifetime.md"))
+        p = subprocess.run(["python3", DWSDOC, "cat", "内部说明「不存在」"], cwd=REPO, text=True, capture_output=True)
+        self.assertEqual(p.returncode, 1)
+        self.assertIn("不存在", p.stdout)
+        # 非 notes 篇照旧按路径读、照旧给引用链接
+        self.assertIn("引用: https://", run_dwsdoc("cat", "docs/products/event.md").splitlines()[0])
 
     def test_every_cited_source_has_a_link(self):
         # 只给本地路径时模型把 auth-and-credentials.md、event.md 当出处(10-15 全量 14/300 题);每个出处都附可照抄的引用行
@@ -380,18 +464,18 @@ class DwsdocCtxContractTest(unittest.TestCase):
                   "我用 dws auth login --token 导入的 token，第二天就不能用了，正常吗",
                   "How long does the dws refresh token last?"):
             out = run_dwsdoc("ctx", q)
-            self.assertIn("--- notes/token-lifetime.md", out, q)
+            self.assertIn("--- " + note_label("token-lifetime.md"), out, q)
             self.assertIn("- lifetime：", out, q)
             self.assertIn("(源码依据: https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli/blob/main/", out, q)
         for q in ("扫码登录要在几分钟内完成", "隔几天不用 dws 就要重新登录吗", "dws 每次都要重新扫码，很烦",
                   "dws 掉线了", "dws 授权过期了怎么办"):
-            self.assertIn("--- notes/token-lifetime.md", run_dwsdoc("ctx", q), q)
+            self.assertIn("--- " + note_label("token-lifetime.md"), run_dwsdoc("ctx", q), q)
         # 第 3 轮审查的误触发:开放平台应用 access_token、业务字段里的「过期」、PAT 行为授权都不是 dws 登录态
         for q in ("dws chat message list 怎么用", "dws auth login", "dws 分页每页多少条", "dws 上传附件最大多大",
                   "开放平台 access_token 有效期多久", "企业内部应用 access_token 过期了怎么刷新",
                   "aitable 记录过期时间字段", "dws todo 截止时间过期提醒", "PAT 授权多久", "dws pat chmod 授权多久有效",
                   "token 怎么获取", "dws auth login 报错 invalid_client"):
-            self.assertNotIn("notes/token-lifetime.md", run_dwsdoc("ctx", q), q)
+            self.assertNotIn(note_label("token-lifetime.md"), run_dwsdoc("ctx", q), q)
         # 依据须有构建核对记录(带行号深链),新 note 不能等 ECS 重建才有
         out = run_dwsdoc("ctx", "dws 登录态多久过期")
         self.assertRegex(out, r"源码依据: https://\S+#L\d+")
@@ -449,7 +533,7 @@ class DwsdocCtxContractTest(unittest.TestCase):
         for q in ("CLI怎么开通", "当前组织已禁止CLI 数据访问权限 请联系组织管理员在后台安全设置中授权 在哪里操作",
                   "dingtalk cli 要组织授权才能使用吗", "允许成员通过 CLI 访问个人数据", "其他渠道的生效范围怎么设置"):
             out = run_dwsdoc("ctx", q)
-            self.assertIn("--- notes/cli-permission-control.md", out, q)
+            self.assertIn("--- " + note_label("cli-permission-control.md"), out, q)
             self.assertIn("- cliperm_timing：", out, q)
             self.assertIn("> 原文(https://open.dingtalk.com/document/development/", out, q)
             self.assertNotIn("⚠依据已变更(", out, q)
@@ -462,7 +546,7 @@ class DwsdocCtxContractTest(unittest.TestCase):
         for q in ("dws cli 怎么开启 debug 日志", "client_id 权限不足", "dws chat message list 怎么用",
                   "dws auth login 报错 invalid_client", "dws cli 版本怎么升级", "dws发送消息限流规则是什么"):
             out = run_dwsdoc("ctx", q)
-            self.assertNotIn("notes/cli-permission-control.md", out, q)
+            self.assertNotIn(note_label("cli-permission-control.md"), out, q)
             self.assertNotIn("- cliperm_", out, q)
 
     def test_owned_source_survives_higher_ranked_unrelated_document(self):
@@ -603,7 +687,9 @@ class FaqEntriesTest(unittest.TestCase):
         self.assertIn("[faq-test-live]", out)
         self.assertIn("常见误答：把 PAT 说成登录方式", out)
         self.assertIn(f"「{self.QUOTE}」", out)
-        self.assertIn("== 相似问题出处原文：notes/auth-and-credentials.md", out)
+        self.assertIn("== 相似问题出处原文：" + note_label("auth-and-credentials.md"), out)
+        self.assertIn("依据(不是出处)：" + note_label("auth-and-credentials.md"), out)
+        self.assertNotRegex(out, NOTE_PATH)
         self.assertTrue(out.endswith(self._run(self.base, "ctx", q)))
 
     def test_invalid_or_unrelated_no_block(self):

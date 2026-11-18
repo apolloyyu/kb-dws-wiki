@@ -693,7 +693,8 @@ def _evidence_contract(intent=None, has_card=True, with_notes=False):
     for line in _owned_contract(intent, intent.get("_q", "")):
         lines.append("- " + line)
     if with_notes:
-        lines.append("- notes：内部说明只作依据，不是出处；其名称、文件名不出现在回复和参考区，要给出处就用条目里的「源码依据」链接。"
+        lines.append("- notes：内部说明只作依据，不是出处；其名称、文件名不出现在回复和参考区；"
+                     "出处只能用条目里的「源码依据」链接或「> 原文(…)」括号里的 https 链接，都没有就不列。"
                      "「> 原文(…)」行逐字摘自镜像原文，链接、表名、数值整条照抄；标「⚠依据已变更」的条目"
                      "不得作为确定结论，只可说明「文档近期有变更，以原文为准」并给出处。")
     lines.append("- links：出处只用本输出「引用:」行给出的地址或原文里出现过的整条链接，逐字照抄；没有就不列。"
@@ -1420,7 +1421,9 @@ def main():
             sys.stdout.write(buf.getvalue())
             return rc
         except Exception as e:
-            print(f"CTX_ERROR: {type(e).__name__}: {e};请改用分步命令(cmd/short/flag→find→cat)")
+            # 异常文本可能带本地绝对路径或 notes 文件名(读 note 失败时),只给库内相对位置,notes 换中性名称
+            msg = re.sub(r"notes/[\w-]+\.md", lambda m: _shown(m.group(0)), str(e).replace(ROOT + os.sep, ""))
+            print(f"CTX_ERROR: {type(e).__name__}: {msg};请改用分步命令(cmd/short/flag→find→cat)")
             return 1
     q = " ".join(sys.argv[2:]).lower()
     if op == "card":

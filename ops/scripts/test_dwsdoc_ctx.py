@@ -387,15 +387,44 @@ class DwsdocCtxContractTest(unittest.TestCase):
         self.assertIn("- 篇目 " + note_label("event-system.md") + ":", out)
 
     def test_note_body_doc_header_uses_label(self):
-        # notes 作为正文篇目展开时同样不给路径;截断提示给可直接 cat 的名称
+        # notes 作为正文篇目展开时(问法只命中 notes 小标题)同样不给路径;截断提示给可直接 cat 的名称
         mod = runpy.run_path(DWSDOC)
         self.assertEqual(mod["_shown"]("notes/event-system.md"), note_label("event-system.md"))
         self.assertEqual(mod["_shown"]("docs/products/event.md"), "docs/products/event.md")
-        out = run_dwsdoc("ctx", "dws 事件系统 event bus consume 订阅 是怎么设计的")
-        for m in re.finditer(r"(?m)^== 篇目\[\d+/\d+\] (.+?) \[notes\] ==\n(.*)$", out):
-            self.assertTrue(m.group(1).startswith("内部说明「"), m.group(1))
-            self.assertTrue(m.group(2).startswith("引用: 无(内部说明只作依据"), m.group(2))
+        out = run_dwsdoc("ctx", "审计存储与链路")
+        heads = re.findall(r"(?m)^== 篇目\[\d+/\d+\] (.+?) \[notes\] ==\n(.*)$", out)
+        self.assertTrue(heads, out[:300])
+        for name, cite in heads:
+            self.assertTrue(name.startswith("内部说明「"), name)
+            self.assertTrue(cite.startswith("引用: 无(内部说明只作依据"), cite)
+        for m in re.findall(r"已截断,完整: dwsdoc cat (.+?)\]", out):
+            if "内部说明" in m:
+                self.assertTrue(m.startswith("'内部说明「"), m)
         self.assertNotRegex(out, NOTE_PATH)
+
+    def test_every_note_has_its_own_name(self):
+        # 名称取自 title:没有 title 会退回文件名主干,短称重名会让 cat 读错篇
+        shorts = {}
+        for fn in sorted(os.listdir(os.path.join(REPO, "notes"))):
+            if fn.endswith(".md"):
+                label = note_label(fn)   # 无 title 时这里直接报错
+                self.assertNotIn(fn[:-3], label, fn)
+                shorts.setdefault(label, []).append(fn)
+        self.assertEqual({k: v for k, v in shorts.items() if len(v) > 1}, {})
+
+    def test_ctx_error_hides_note_paths(self):
+        main = runpy.run_path(DWSDOC)["main"]
+        def boom(*_a, **_k):
+            raise OSError(f"[Errno 13] Permission denied: '{os.path.join(REPO, 'notes', 'event-system.md')}'")
+        buf = io.StringIO()
+        with patch.dict(main.__globals__, {"ctx_impl": boom}), patch("sys.argv", ["dwsdoc", "ctx", "dws 事件"]), \
+                contextlib.redirect_stdout(buf):
+            self.assertEqual(main(), 1)
+        out = buf.getvalue()
+        self.assertTrue(out.startswith("CTX_ERROR: OSError"), out)
+        self.assertNotRegex(out, NOTE_PATH)
+        self.assertNotIn(REPO, out)
+        self.assertIn(note_label("event-system.md"), out)
 
     def test_find_and_cat_take_note_label(self):
         out = run_dwsdoc("find", "event")
@@ -659,6 +688,8 @@ class FaqEntriesTest(unittest.TestCase):
         self.assertIn("常见误答：把 PAT 说成登录方式", out)
         self.assertIn(f"「{self.QUOTE}」", out)
         self.assertIn("== 相似问题出处原文：" + note_label("auth-and-credentials.md"), out)
+        self.assertIn("依据(不是出处)：" + note_label("auth-and-credentials.md"), out)
+        self.assertNotRegex(out, NOTE_PATH)
         self.assertTrue(out.endswith(self._run(self.base, "ctx", q)))
 
     def test_invalid_or_unrelated_no_block(self):

@@ -1,11 +1,11 @@
 # 构建对账
 
-- 源码 commit:38d49e4e6
-- 镜像文件:237
-- 主命令:1301(带 flags:956,归属未定:194)
-- shortcuts:501
-- 答案卡:1802(full:1335,74.1%;partial:467)
-- 文档索引:248 篇
+- 源码 commit:df0fb53b5
+- 镜像文件:238
+- 主命令:1305(带 flags:958,归属未定:195)
+- shortcuts:502
+- 答案卡:1807(full:1337,74.0%;partial:470)
+- 文档索引:249 篇
 
 ## 归属未定(退回源码 grep,不影响存在性判断)
 - agoal contract
@@ -180,6 +180,7 @@
 - oa approval attachment
 - oa approval image
 - oa approval template
+- outbound-call
 - plugin
 - plugin config
 - report

@@ -12,7 +12,7 @@ visible_flags: 6
 - --record-id <Int>: 申请记录 ID
 - --applicant <String>: 申请人 userId
 - --inviter <String>: 邀请人 userId
-- --status <String>: 审批动作
+- --status <String>: 审批动作: AuditApprove(通过) / AuditDelete(删除) / AuditIgnore(忽略) / AuditRefuse(拒绝) / AuditBlock(拒绝且拉黑)
 - --description <String>: 审批说明
 
 ## Related

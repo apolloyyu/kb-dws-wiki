@@ -17,5 +17,6 @@ visible_flags: 7
 - --detail-limit <Int>: —
 
 ## Related
+- dws whiteboard +insert-image
 - dws whiteboard +query
 - dws whiteboard +update

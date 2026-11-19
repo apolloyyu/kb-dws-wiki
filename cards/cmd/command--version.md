@@ -5,7 +5,7 @@ completeness: partial
 usage: dws version
 description: 显示版本信息
 example: dws version
-source: internal/app/root.go:1464
+source: internal/app/root.go:1477
 visible_flags: 0
 partial_reason: unverified_flags
 

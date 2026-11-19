@@ -1,8 +1,8 @@
 {
-  "build_time": "2026-11-19T07:05:36+08:00",
-  "cards": 1802,
-  "cards_full": 1335,
-  "commands": 1301,
+  "build_time": "2026-11-20T07:04:49+08:00",
+  "cards": 1807,
+  "cards_full": 1337,
+  "commands": 1305,
   "contact": "yuweilun.ywl",
   "id": "dws-wiki",
   "language": "zh-CN",
@@ -15,8 +15,8 @@
   "maintenance": "generated",
   "name": "DWS Agent Wiki(模型生成)",
   "notes_commit": "38d49e4e68997bca23621a272a27b0fbbfbed668",
-  "pages": 248,
-  "shortcuts": 501,
+  "pages": 249,
+  "shortcuts": 502,
   "snapshot": {
     "anchor": "9e3a5d6f",
     "documents": 10,
@@ -27,7 +27,7 @@
     "origin": "https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli",
     "type": "llm-gen"
   },
-  "source_commit": "38d49e4e6",
+  "source_commit": "df0fb53b5",
   "spec_version": "1.0",
   "tags": [
     "dingtalk",

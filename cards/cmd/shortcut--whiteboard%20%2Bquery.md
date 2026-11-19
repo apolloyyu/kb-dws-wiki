@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws whiteboard +query
 description: 严格读取文档内嵌或独立白板的 OpenNodes 快照
-source: internal/shortcut/whiteboard/whiteboard.go:209
+source: internal/shortcut/whiteboard/whiteboard.go:210
 visible_flags: 4
 
 ## Flags
@@ -15,4 +15,5 @@ visible_flags: 4
 
 ## Related
 - dws whiteboard +diff
+- dws whiteboard +insert-image
 - dws whiteboard +update

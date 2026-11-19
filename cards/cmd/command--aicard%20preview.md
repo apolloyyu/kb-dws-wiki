@@ -5,7 +5,7 @@ completeness: partial
 usage: dws aicard preview
 description: Send a real A2UI card to the signed-in user
 example: dws aicard preview --file card.a2ui.json --dry-run
-source: internal/helpers/aicard.go:110
+source: internal/helpers/aicard.go:109
 visible_flags: 3
 partial_reason: unverified_flags
 
@@ -15,6 +15,7 @@ partial_reason: unverified_flags
 - --support-forward <Bool>: Allow forwarding the preview card (default false)
 
 ## Related
+- dws aicard chart
 - dws aicard explain
 - dws aicard lint
 - dws aicard template

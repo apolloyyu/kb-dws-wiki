@@ -48,27 +48,27 @@
 {"note": "rate-limit-and-backend.md", "kind": "absent", "arg": "qps @ internal/**/*.go", "ok": true, "detail": "", "line": 0}
 {"note": "rate-limit-and-backend.md", "kind": "absent", "arg": "限流阈值 @ internal/**/*.go", "ok": true, "detail": "", "line": 0}
 {"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/transport/diagnostics.go | \"retryable\", \"server_retryable\"", "ok": true, "detail": "", "line": 64}
-{"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/transport/client.go | defaultMaxRetries    = 1", "ok": true, "detail": "", "line": 70}
-{"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/transport/client.go | statusCode == http.StatusTooManyRequests || statusCode >= http.StatusInternalServerError", "ok": true, "detail": "", "line": 1025}
-{"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/app/runner.go | \"business_error\",", "ok": true, "detail": "", "line": 1005}
+{"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/transport/client.go | defaultMaxRetries    = 1", "ok": true, "detail": "", "line": 71}
+{"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/transport/client.go | statusCode == http.StatusTooManyRequests || statusCode >= http.StatusInternalServerError", "ok": true, "detail": "", "line": 1029}
+{"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/app/runner.go | \"business_error\",", "ok": true, "detail": "", "line": 1042}
 {"note": "rate-limit-and-backend.md", "kind": "quote", "arg": "docs/products/chat.md | `--page-delay` 默认 200ms", "ok": true, "detail": "", "line": 32}
 {"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/helpers/devapp_connect.go | \"user-rate-limit\", 20", "ok": true, "detail": "", "line": 624}
 {"note": "rate-limit-and-backend.md", "kind": "absent", "arg": "x-ratelimit @ internal/transport/*.go !_test.go", "ok": true, "detail": "", "line": 0}
 {"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/shortcut/chat/active_conversations_result.go | details[\"retryAfter\"]", "ok": true, "detail": "", "line": 164}
 {"note": "token-lifetime.md", "kind": "code", "arg": "pkg/config/constants.go | DefaultRefreshTokenLifetime = 30 * 24 * time.Hour", "ok": true, "detail": "", "line": 127}
-{"note": "token-lifetime.md", "kind": "code", "arg": "internal/auth/oauth_helpers.go | RefreshExpAt: now.Add(config.DefaultRefreshTokenLifetime)", "ok": true, "detail": "", "line": 422}
-{"note": "token-lifetime.md", "kind": "code", "arg": "internal/auth/oauth_helpers.go | updated, err := p.parseTokenResponse(resp)", "ok": true, "detail": "", "line": 244}
+{"note": "token-lifetime.md", "kind": "code", "arg": "internal/auth/oauth_helpers.go | RefreshExpAt: now.Add(config.DefaultRefreshTokenLifetime)", "ok": true, "detail": "", "line": 423}
+{"note": "token-lifetime.md", "kind": "code", "arg": "internal/auth/oauth_helpers.go | updated, err := p.parseTokenResponse(resp)", "ok": true, "detail": "", "line": 245}
 {"note": "token-lifetime.md", "kind": "code", "arg": "internal/auth/force_refresh.go | refresh_token 已过期", "ok": true, "detail": "", "line": 153}
 {"note": "token-lifetime.md", "kind": "code", "arg": "pkg/config/constants.go | DefaultAccessTokenExpiry = 7200", "ok": true, "detail": "", "line": 124}
-{"note": "token-lifetime.md", "kind": "code", "arg": "internal/auth/oauth_helpers.go | expiresIn = config.DefaultAccessTokenExpiry", "ok": true, "detail": "", "line": 416}
-{"note": "token-lifetime.md", "kind": "code", "arg": "internal/auth/token.go | Give 5-minute buffer before actual expiry", "ok": true, "detail": "", "line": 252}
+{"note": "token-lifetime.md", "kind": "code", "arg": "internal/auth/oauth_helpers.go | expiresIn = config.DefaultAccessTokenExpiry", "ok": true, "detail": "", "line": 417}
+{"note": "token-lifetime.md", "kind": "code", "arg": "internal/auth/token.go | Give 5-minute buffer before actual expiry", "ok": true, "detail": "", "line": 253}
 {"note": "token-lifetime.md", "kind": "code", "arg": "internal/app/auth_command.go | json:\"refresh_expires_at,omitempty\"", "ok": true, "detail": "", "line": 1880}
 {"note": "token-lifetime.md", "kind": "code", "arg": "pkg/config/constants.go | ManualTokenExpiry = 24 * time.Hour", "ok": true, "detail": "", "line": 114}
 {"note": "token-lifetime.md", "kind": "code", "arg": "internal/app/auth_command.go | ExpiresAt:   time.Now().Add(config.ManualTokenExpiry)", "ok": true, "detail": "", "line": 191}
 {"note": "token-lifetime.md", "kind": "code", "arg": "internal/app/auth_command.go | AccessToken: cfg.Token,", "ok": true, "detail": "", "line": 190}
-{"note": "token-lifetime.md", "kind": "code", "arg": "internal/auth/device_flow.go | maxPollTotalWait = 10 * time.Minute", "ok": true, "detail": "", "line": 44}
-{"note": "token-lifetime.md", "kind": "code", "arg": "internal/auth/device_flow.go | elapsed >= maxPollTotalWait || elapsed >= deadline", "ok": true, "detail": "", "line": 527}
-{"note": "token-lifetime.md", "kind": "code", "arg": "internal/auth/device_flow.go | resp.ExpiresIn = 900", "ok": true, "detail": "", "line": 453}
+{"note": "token-lifetime.md", "kind": "code", "arg": "internal/auth/device_flow.go | maxPollTotalWait = 10 * time.Minute", "ok": true, "detail": "", "line": 45}
+{"note": "token-lifetime.md", "kind": "code", "arg": "internal/auth/device_flow.go | elapsed >= maxPollTotalWait || elapsed >= deadline", "ok": true, "detail": "", "line": 528}
+{"note": "token-lifetime.md", "kind": "code", "arg": "internal/auth/device_flow.go | resp.ExpiresIn = 900", "ok": true, "detail": "", "line": 454}
 {"note": "token-lifetime.md", "kind": "code", "arg": "pkg/config/constants.go | DeviceFlowTimeout = 16 * time.Minute", "ok": true, "detail": "", "line": 117}
 {"note": "token-lifetime.md", "kind": "code", "arg": "internal/auth/oauth_provider.go | oauthLoginTimeout         = 5 * time.Minute", "ok": true, "detail": "", "line": 47}
 {"note": "token-lifetime.md", "kind": "code", "arg": "internal/auth/oauth_provider.go | time.NewTimer(oauthLoginTimeout)", "ok": true, "detail": "", "line": 660}

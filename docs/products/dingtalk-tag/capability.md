@@ -1,6 +1,6 @@
 ---
 source_path: "skills/mono/references/products/dingtalk-tag/capability.md"
-source_commit: "38d49e4e6"
+source_commit: "df0fb53b5"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 

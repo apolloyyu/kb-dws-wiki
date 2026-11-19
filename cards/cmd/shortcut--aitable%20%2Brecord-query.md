@@ -16,7 +16,7 @@ partial_reason: missing_description
 - --filters <String>: —
 - --sort <String>: 排序条件 JSON 数组（可选）；fieldId 必须来自 field get，direction 仅用 asc/desc
 - --query <String>: 全文关键词（可选）
-- --limit <Int>: 默认单次最大记录数 100；--all 时作为每个请求的页大小，上限 20（可选）
+- --limit <Int>: 默认单次最大记录数 100；--all 普通查询时作为每个请求的页大小，上限 100；按 ID 查询仍按最多 20 条分片（可选）
 - … 5 more; use dwsdoc cmd/short for full flags
 
 ## Related

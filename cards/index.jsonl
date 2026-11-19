@@ -23,6 +23,7 @@
 {"completeness": "full", "key": "agoal user objectives", "kind": "command", "path": "cards/cmd/command--agoal%20user%20objectives.md", "product": "agoal"}
 {"completeness": "full", "key": "agoal user rules", "kind": "command", "path": "cards/cmd/command--agoal%20user%20rules.md", "product": "agoal"}
 {"completeness": "full", "key": "aicard", "kind": "command", "path": "cards/cmd/command--aicard.md", "product": "aicard"}
+{"completeness": "full", "key": "aicard chart", "kind": "command", "path": "cards/cmd/command--aicard%20chart.md", "product": "aicard"}
 {"completeness": "full", "key": "aicard explain", "kind": "command", "path": "cards/cmd/command--aicard%20explain.md", "product": "aicard"}
 {"completeness": "full", "key": "aicard lint", "kind": "command", "path": "cards/cmd/command--aicard%20lint.md", "product": "aicard"}
 {"completeness": "partial", "key": "aicard preview", "kind": "command", "path": "cards/cmd/command--aicard%20preview.md", "product": "aicard"}
@@ -1086,6 +1087,9 @@
 {"completeness": "partial", "key": "oa approval template detail", "kind": "command", "path": "cards/cmd/command--oa%20approval%20template%20detail.md", "product": "oa"}
 {"completeness": "partial", "key": "oa approval template list", "kind": "command", "path": "cards/cmd/command--oa%20approval%20template%20list.md", "product": "oa"}
 {"completeness": "partial", "key": "oa approval template update", "kind": "command", "path": "cards/cmd/command--oa%20approval%20template%20update.md", "product": "oa"}
+{"completeness": "partial", "key": "outbound-call", "kind": "command", "path": "cards/cmd/command--outbound-call.md", "product": "outbound-call"}
+{"completeness": "partial", "key": "outbound-call create", "kind": "command", "path": "cards/cmd/command--outbound-call%20create.md", "product": "outbound-call"}
+{"completeness": "partial", "key": "outbound-call detail", "kind": "command", "path": "cards/cmd/command--outbound-call%20detail.md", "product": "outbound-call"}
 {"completeness": "full", "key": "pat", "kind": "command", "path": "cards/cmd/command--pat.md", "product": "pat"}
 {"completeness": "full", "key": "pat browser-policy", "kind": "command", "path": "cards/cmd/command--pat%20browser-policy.md", "product": "pat"}
 {"completeness": "full", "key": "pat chmod", "kind": "command", "path": "cards/cmd/command--pat%20chmod.md", "product": "pat"}
@@ -1796,6 +1800,7 @@
 {"completeness": "full", "key": "todo +update", "kind": "shortcut", "path": "cards/cmd/shortcut--todo%20%2Bupdate.md", "product": "todo"}
 {"completeness": "full", "key": "todo +upload-attachment", "kind": "shortcut", "path": "cards/cmd/shortcut--todo%20%2Bupload-attachment.md", "product": "todo"}
 {"completeness": "full", "key": "whiteboard +diff", "kind": "shortcut", "path": "cards/cmd/shortcut--whiteboard%20%2Bdiff.md", "product": "whiteboard"}
+{"completeness": "full", "key": "whiteboard +insert-image", "kind": "shortcut", "path": "cards/cmd/shortcut--whiteboard%20%2Binsert-image.md", "product": "whiteboard"}
 {"completeness": "full", "key": "whiteboard +query", "kind": "shortcut", "path": "cards/cmd/shortcut--whiteboard%20%2Bquery.md", "product": "whiteboard"}
 {"completeness": "full", "key": "whiteboard +update", "kind": "shortcut", "path": "cards/cmd/shortcut--whiteboard%20%2Bupdate.md", "product": "whiteboard"}
 {"completeness": "full", "key": "wiki +resolve-space", "kind": "shortcut", "path": "cards/cmd/shortcut--wiki%20%2Bresolve-space.md", "product": "wiki"}

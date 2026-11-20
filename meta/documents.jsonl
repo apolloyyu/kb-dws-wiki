@@ -235,7 +235,7 @@
 {"doc_id": "upgrading", "path": "docs/upstream/upgrading.md", "layer": "docs", "headings": ["版本来源与升级方式", "选择版本", "安装来源决定升级方式", "官方平台资产下载"]}
 {"doc_id": "architecture-overview", "path": "notes/architecture-overview.md", "layer": "notes", "headings": ["架构总览", "程序入口", "根命令工厂", "Schema 运行时装配", "分层职责", "统一结果信封"]}
 {"doc_id": "audit-and-security", "path": "notes/audit-and-security.md", "layer": "notes", "headings": ["审计与安全", "审计事件与触发", "审计存储与链路", "本地凭据保护（internal/security）", "内容安全：提示注入扫描", "确认门控与 --yes"]}
-{"doc_id": "auth-and-credentials", "path": "notes/auth-and-credentials.md", "layer": "notes", "headings": ["认证与凭证(auth / PAT / profile / 密钥存储)", "登录方式", "第三方 OIDC 登录(provider-login / 分步换票)", "Token 结构", "Token 刷新", "auth status", "PAT(注意命名)", "keychain 存储", "profile 体系", "凭证注入", "过期表现"]}
+{"doc_id": "auth-and-credentials", "path": "notes/auth-and-credentials.md", "layer": "notes", "headings": ["认证与凭证(auth / PAT / profile / 密钥存储)", "登录方式", "第三方 OIDC 登录(provider-login / 分步换票)", "Token 结构", "Token 刷新", "auth status", "PAT(注意命名)", "keychain 存储", "profile 体系", "凭证注入", "认证链路的网络出口", "过期表现"]}
 {"doc_id": "build-and-release", "path": "notes/build-and-release.md", "layer": "notes", "headings": ["构建发布与版本", "Makefile 主要目标", "构建脚本", "版本变量", "自升级（dws upgrade）", "发布物", "测试与策略门"]}
 {"doc_id": "chat-and-messaging", "path": "notes/chat-and-messaging.md", "layer": "notes", "headings": ["会话与消息(chat)", "原子 MCP 命令层", "快捷命令层", "关键映射(消息)", "群管理映射", "机器人", "消息结果投影与卡片读取边界", "DING 消息"]}
 {"doc_id": "cli-permission-control", "path": "notes/cli-permission-control.md", "layer": "notes", "headings": ["DWS CLI 组织权限管控", "管控分几层,各自默认值", "生效时延:只有生效范围写了「约 5 分钟」", "成员用不了时的排查顺序"]}

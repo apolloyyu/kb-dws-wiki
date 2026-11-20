@@ -35,7 +35,7 @@ source_refs: Makefile, scripts/dev/build.sh, scripts/dev/build-all.sh, internal/
 
 ## 自升级（dws upgrade）
 
-命令入口 `internal/app/upgrade.go`，支持 `--check` / `--list` / `--all` / `--version` / `--rollback` / `--force` / `--skip-skills` / `--beta` / `--dry-run`；`--beta` 与 `--version` 互斥（装指定 beta 直接用 `--version vX.Y.Z-beta.N`）；`--dry-run`（“预览操作内容，不实际执行”）与 `-y`/`--yes` 是根命令持久 flag（`internal/app/flags.go`），`--list` 默认只显示最近 10 个版本，`--all` 显示所选轨道全部；嵌入模式（embedded）下禁用自升级。`internal/upgrade` 各模块：
+命令入口 `internal/app/upgrade.go`，支持 `--check` / `--list` / `--all` / `--version` / `--rollback` / `--force` / `--skip-skills` / `--beta` / `--dry-run`；`--beta` 与 `--version` 互斥（装指定 beta 直接用 `--version vX.Y.Z-beta.N`）；`--dry-run`（“预览操作内容，不实际执行”）与 `-y`/`--yes` 是根命令持久 flag（`internal/app/flags.go`），新增 `--proxy`（核心 HTTP 出口：auto、direct 或代理 URL）与 `--no-proxy`（直连目标 CSV；显式空值清空绕过列表）亦为根命令持久 flag，`--list` 默认只显示最近 10 个版本，`--all` 显示所选轨道全部；嵌入模式（embedded）下禁用自升级。`internal/upgrade` 各模块： （来源：`internal/app/flags.go:30-37`、`internal/app/flags.go:44-55`）
 
 | 模块 | 职责 |
 |---|---|

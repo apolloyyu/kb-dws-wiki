@@ -16,10 +16,13 @@ source_refs: cmd/main.go, internal/app/root.go, internal/app/schema_source_regis
 根命令工厂位于 `internal/app/root.go`:
 
 - `ExecuteWithTelemetry`(约 L94)是最外层入口;
+- outbound-call 命令失败时错误文案统一改写为 `outbound call failed`,避免上游错误回显私密会话内容; （来源：`internal/app/root.go:157-166`）
 - `NewRootCommand`(约 L767)构建完整的 Cobra 命令树;
 - `NewSchemaSourceRootCommand`(约 L783)构建 Schema 装配专用的声明树;
 - 二者汇聚于 `newRootCommandWithMode`;
+- `PersistentPreRunE` 中消费网络覆盖参数并经 `configureNetworkInvocation` 装配网络调用;`PersistentPostRunE` 与退出清理回调都会关闭 `flags.network`; （来源：`internal/app/root.go:931-946`、`internal/app/root.go:1027-1033`、`internal/app/root.go:1123-1131`、`internal/app/root.go:1152-1158`）
 - 约 L930–958 挂载 `cli.NewSchemaCommand()`、`cli.NewMCPCommand()`,以及 auth/profile/skill/config/doctor 等 utility 命令。
+- 其中 config 命令改由 `newConfigCommand(flags)` 构建,接收全局 `GlobalFlags`; （来源：`internal/app/root.go:1248-1254`）
 
 `internal/cobracmd/tree.go` 只提供树工具:`MergeCommandTree`、`ChildByName`、`NewGroupCommand`。
 
@@ -39,7 +42,7 @@ Schema 采用"声明即 Catalog"模式,没有 generate 产物:
 | corecmd | `internal/corecmd` | `Spec` / `ContractDecl` / `FlagSpec` / `Constraint`;`New` 构建 Cobra 命令 |
 | helpers | `internal/helpers` | 产品手写命令;leaf 框架在 `leaf.go` |
 | executor | `internal/executor` | `invocation.go` 定义 `Invocation` / `Result` / `Runner` |
-| apiclient | `internal/apiclient` | `client.go` 的 `APIClient.Do` |
+| apiclient | `internal/apiclient` | `client.go` 的 `APIClient.Do` 与 `UploadMultipart` 均改经 `netpolicy.Do` 发起请求 （来源：`internal/apiclient/client.go:22-28`、`internal/apiclient/client.go:215-221`、`internal/apiclient/client.go:279-285`） |
 | output | `internal/output` | 统一输出 |
 
 ## 统一结果信封

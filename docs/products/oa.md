@@ -1,6 +1,6 @@
 ---
 source_path: "skills/mono/references/products/oa.md"
-source_commit: "df0fb53b5"
+source_commit: "a0de865bf"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 

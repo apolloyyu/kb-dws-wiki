@@ -1,1 +1,38 @@
-{"build_time":"2026-11-20T07:04:49+08:00","cards":1807,"cards_full":1337,"commands":1305,"contact":"yuweilun.ywl","id":"dws-wiki","language":"zh-CN","layers":{"cards":"deterministic","docs":"mirror","graph":"extracted","notes":"generated+reviewed"},"maintenance":"generated","name":"DWS Agent Wiki(模型生成)","notes_commit":"df0fb53b5dcc8de64d49cfe0cce900eef4bc1d15","pages":249,"shortcuts":502,"snapshot":{"anchor":"9e3a5d6f","documents":10,"time":"2026-08-17T20:20:58+08:00"},"source":{"anchor":"9e3a5d6f","origin":"https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli","type":"llm-gen"},"source_commit":"df0fb53b5","spec_version":"1.0","tags":["dingtalk","dws","cli"],"visibility":"public"}
+{
+  "build_time": "2026-11-21T07:07:49+08:00",
+  "cards": 1807,
+  "cards_full": 1337,
+  "commands": 1305,
+  "contact": "yuweilun.ywl",
+  "id": "dws-wiki",
+  "language": "zh-CN",
+  "layers": {
+    "docs": "mirror",
+    "graph": "extracted",
+    "cards": "deterministic",
+    "notes": "generated+reviewed"
+  },
+  "maintenance": "generated",
+  "name": "DWS Agent Wiki(模型生成)",
+  "notes_commit": "df0fb53b5dcc8de64d49cfe0cce900eef4bc1d15",
+  "pages": 249,
+  "shortcuts": 502,
+  "snapshot": {
+    "anchor": "9e3a5d6f",
+    "documents": 10,
+    "time": "2026-08-17T20:20:58+08:00"
+  },
+  "source": {
+    "anchor": "9e3a5d6f",
+    "origin": "https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli",
+    "type": "llm-gen"
+  },
+  "source_commit": "a0de865bf",
+  "spec_version": "1.0",
+  "tags": [
+    "dingtalk",
+    "dws",
+    "cli"
+  ],
+  "visibility": "public"
+}

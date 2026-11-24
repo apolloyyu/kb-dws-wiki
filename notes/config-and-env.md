@@ -14,6 +14,7 @@ source_refs: pkg/config/constants.go, internal/plugin/loader.go, pkg/configmeta/
 ## settings.json
 
 `~/.dws/settings.json` 存储插件配置（pluginConfigs），由 `internal/plugin/loader.go` 的 `settingsPath()` / `loadSettings()` 读取，并经 `InjectPluginConfigEnv()` 注入环境变量。
+- `InjectPluginConfigEnv()` 的危险变量名拦截改为大小写不敏感（先 `strings.ToUpper`），名单新增 `DWS_PROXY` / `DWS_NO_PROXY` / `DWS_CA_BUNDLE`，移除原小写代理变量条目。 （来源：`internal/plugin/loader.go:593-599`、`internal/plugin/loader.go:609-615`）
 
 另有覆盖文件：`~/.dws/mcp_url`、`~/.dws/terminal_url` 可覆盖 MCP / 开放平台地址（`GetMCPBaseURL` / `GetTerminalBaseURL`，pkg/config/constants.go）。
 
@@ -42,6 +43,7 @@ source_refs: pkg/config/constants.go, internal/plugin/loader.go, pkg/configmeta/
 ## 代理
 
 使用 `http.ProxyFromEnvironment`，支持标准 `HTTP_PROXY` / `HTTPS_PROXY` / `NO_PROXY`（`internal/transport/client.go`、`internal/apiclient/client.go`）。
+- 出站 HTTP 请求不再直接调用 `c.HTTPClient.Do`，改经 `netpolicy.Do`（internal/netpolicy）执行，覆盖 apiclient 的 `Do` / `UploadMultipart` 与 transport 的 `doWithRetry`。 （来源：`internal/apiclient/client.go:215-221`、`internal/apiclient/client.go:279-285`、`internal/transport/client.go:909-915`）
 
 ## 日志
 

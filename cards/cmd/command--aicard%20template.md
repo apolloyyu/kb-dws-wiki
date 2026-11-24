@@ -11,6 +11,7 @@ visible_flags: 0
 - none
 
 ## Related
+- dws aicard chart
 - dws aicard explain
 - dws aicard lint
 - dws aicard preview

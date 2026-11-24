@@ -1,6 +1,6 @@
 ---
 source_path: "skills/mono/references/products/doc/doc-create.md"
-source_commit: "38d49e4e6"
+source_commit: "a0de865bf"
 layer: mirror   # 逐字镜像,正文与上游一致,勿手工修改
 ---
 

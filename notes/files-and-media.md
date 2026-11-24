@@ -46,6 +46,7 @@ source_refs: internal/helpers/drive.go, internal/helpers/drive_transfer.go, inte
 ## 媒体上传（文档附件 / 群文件）
 
 - 文档媒体上传：`internal/helpers/doc_media_upload.go` 的 `runDocMediaUpload`，流程为 `get_doc_attachment_upload_info` → PUT；doc media 命令组在 doc.go 约 L2966。
+- `internal/helpers/doc_media_upload.go` 新增导出函数 `RunDocMediaUploadWithFile(cmd, filePath, originalName, emit)`：由调用方提供已校验的文件快照，`originalName` 非空时覆盖 `--name` 作为显示名；`resourceUrl` 缺失判断改为 `strings.TrimSpace(resourceURL) == ""`，纯空白 `resourceUrl` 也报 "incomplete attachment upload info: missing resourceUrl"。 （来源：`internal/helpers/doc_media_upload.go:21-36`、`internal/helpers/doc_media_upload.go:43-51`、`internal/helpers/doc_media_upload.go:81-87`）
 - `insertDocMediaFile`（doc.go）改用 `decodeAttachmentUploadInfo` 解析上传回执：图片且 `resourceUrl` 非空、≤20MB 的内联图片允许缺 `resourceId`，否则缺 `resourceId` 直接报 "incomplete attachment upload info"。
 - 回执带 `resourceId` 时，插入的媒体元素 `properties` 里会附带 `extraData.resourceId`；无 `resourceId` 时只写 `src`。 （来源：`internal/helpers/doc.go:653-657`、`internal/helpers/doc.go:688-691`、`internal/helpers/doc.go:700`）
 - 群聊文件上传：`internal/helpers/chat_media_upload.go`，命令挂在 chat.go 约 L2130。
@@ -84,7 +85,7 @@ Markdown 正文开头与文档名相同的一级标题会在写入前被剥离�
 
 `internal/localio` 提供所有产品共用的安全文件操作：
 
-- **download.go `Download`**：`ValidateDownloadURL` 仅信任 `dingtalk.com` / 阿里云 OSS 的 HTTPS 地址；解析目标 IP 排除公网 IP 防 SSRF；用 `os.Root` 打开目录防符号链接逃逸；写临时文件 + fsync 后原子 rename 发布；单文件上限 512MB。
-- **upload.go `PutFile`**：向预签名 URL PUT 上传；拒绝 HTTP 重定向；上限 5GiB。
+- **download.go `Download`**：先调用 `ValidateDownloadURL` 校验 HTTPS 下载地址，再通过 `netpolicy.Do` 发起请求。安全 HTTP 客户端使用 `netpolicy.EnvironmentProxy`，可用 `NO_PROXY` 为匹配目标绕过代理。用 `os.Root` 打开目录防符号链接逃逸，写临时文件并 fsync 后原子落盘，单文件上限 512 MiB。 （来源：`internal/localio/download.go:100-106`、`internal/localio/download.go:340-348`）
+- **upload.go `PutFile`**：向预签名 URL PUT 上传；拒绝 HTTP 重定向；上限 5GiB；请求统一经 `netpolicy.Do` 发出。 （来源：`internal/localio/upload.go:6-12`、`internal/localio/upload.go:101-107`）
 - **publish.go `PublishBytes`**：字节内容的安全落盘发布。
 - **input.go `ReadTextInput`**：解析文本输入字面量 / `-`（stdin）/ `@file` 三种形式，上限 8MB。

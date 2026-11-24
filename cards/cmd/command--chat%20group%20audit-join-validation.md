@@ -3,15 +3,15 @@
 kind: command
 completeness: partial
 usage: dws chat group audit-join-validation
-description: 审批入群验证（通过、拒绝、删除）
+description: 审批入群验证（通过、删除、忽略、拒绝、拉黑）
 example: dws chat group audit-join-validation --conversation-id <openConversationId> --record-id 123456 --applicant <userId> --inviter <userId> --status AuditApprove
-source: internal/helpers/chat.go:10360
+source: internal/helpers/chat.go:10378
 visible_flags: 5
 partial_reason: unverified_flags
 
 ## Flags
 - --record-id <String> required: 申请记录 ID (必填)
-- --status <String> required: 审批动作，真机仅 AuditApprove/AuditDelete 可用；AuditIgnore/AuditRefuse/AuditBlock 服务端拒绝 (必填)
+- --status <String> required: 审批动作: AuditApprove(通过) / AuditDelete(删除) / AuditIgnore(忽略) / AuditRefuse(拒绝) / AuditBlock(拒绝且拉黑) (必填)
 - --applicant <String> required: 申请人 userId (必填)
 - --inviter <String> required: 邀请人 userId (必填)
 - --description <String>: 审批说明（可选）

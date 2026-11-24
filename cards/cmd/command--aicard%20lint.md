@@ -17,6 +17,7 @@ visible_flags: 6
 - --emit <Bool>: On success, return a JSON string array in data.a2uiMessages; write no file
 
 ## Related
+- dws aicard chart
 - dws aicard explain
 - dws aicard preview
 - dws aicard template

@@ -4,7 +4,7 @@ kind: command
 completeness: full
 usage: dws sport competition
 description: 运动比赛管理
-source: internal/helpers/sport.go:494
+source: internal/helpers/sport.go:496
 visible_flags: 0
 
 ## Flags

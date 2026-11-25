@@ -5,7 +5,7 @@ completeness: full
 usage: dws sport
 description: 企业运动健康
 example: dws sport org status 企业是否开通步数榜
-source: internal/helpers/sport.go:71
+source: internal/helpers/sport.go:72
 visible_flags: 0
 
 ## Flags

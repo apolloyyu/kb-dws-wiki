@@ -1,6 +1,6 @@
 {"note": "calendar-agenda-completeness.md", "kind": "code", "arg": "skills/multi/dingtalk-calendar/scripts/calendar_today_agenda.py | def select_calendars", "ok": true, "detail": "", "line": 86}
 {"note": "calendar-agenda-completeness.md", "kind": "code", "arg": "skills/mono/scripts/calendar_today_agenda.py | MAX_PAGES = 20", "ok": true, "detail": "", "line": 23}
-{"note": "calendar-agenda-completeness.md", "kind": "code", "arg": "skills/multi/dingtalk-calendar/scripts/calendar_today_agenda.py | target[\"sources\"].append(source)", "ok": true, "detail": "", "line": 249}
+{"note": "calendar-agenda-completeness.md", "kind": "code", "arg": "skills/multi/dingtalk-calendar/scripts/calendar_today_agenda.py | target[\"sources\"].append(source)", "ok": true, "detail": "", "line": 250}
 {"note": "chat-and-messaging.md", "kind": "code", "arg": "internal/shortcut/chatmsg/chatmsg.go | func ProjectMessageV1(m map[string]any, includeReactions bool)", "ok": true, "detail": "", "line": 347}
 {"note": "chat-and-messaging.md", "kind": "code", "arg": "internal/shortcut/chatmsg/chatmsg.go | func Text(m map[string]any) any", "ok": true, "detail": "", "line": 240}
 {"note": "chat-and-messaging.md", "kind": "code", "arg": "internal/shortcut/chatmsg/chatmsg.go | func richItemTexts(node any) []string", "ok": true, "detail": "", "line": 1312}
@@ -41,14 +41,14 @@
 {"note": "event-system.md", "kind": "code", "arg": "internal/event/source/personal.go | resp := payload.NewSuccessDataFrameResponse()", "ok": true, "detail": "", "line": 342}
 {"note": "event-system.md", "kind": "code", "arg": "internal/event/source/personal.go | personal source: write ack:", "ok": true, "detail": "", "line": 370}
 {"note": "outbound-call-receipts.md", "kind": "code", "arg": "internal/helpers/outbound_call_result.go | taskIDArg = \"TASK_ID\"", "ok": true, "detail": "", "line": 64}
-{"note": "outbound-call-receipts.md", "kind": "quote", "arg": "docs/products/outbound-call.md | 已有 taskId 时使用 `detail` 查询", "ok": true, "detail": "", "line": 16}
+{"note": "outbound-call-receipts.md", "kind": "quote", "arg": "docs/products/outbound-call.md | 已有 taskId 时使用 `detail` 查询", "ok": true, "detail": "", "line": 17}
 {"note": "rate-limit-and-backend.md", "kind": "quote", "arg": "docs/upstream/architecture.md | execute MCP JSON-RPC calls", "ok": true, "detail": "", "line": 16}
 {"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/app/direct_runtime.go | mcp-gw.dingtalk.com", "ok": true, "detail": "", "line": 116}
-{"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/app/server_failure_classifier.go | operation := \"tools/call\"", "ok": true, "detail": "", "line": 162}
+{"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/app/server_failure_classifier.go | operation := \"tools/call\"", "ok": true, "detail": "", "line": 241}
 {"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/app/api_command.go | 直接调用钉钉 OpenAPI", "ok": true, "detail": "", "line": 64}
 {"note": "rate-limit-and-backend.md", "kind": "code", "arg": "README_zh.md | 仅通过 MCP 默认凭证登录不支持 Raw API 调用", "ok": true, "detail": "", "line": 658}
-{"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/app/server_failure_classifier.go | if code == \"RATE_LIMIT_ERROR\"", "ok": true, "detail": "", "line": 49}
-{"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/app/server_failure_classifier.go | 请等待 10 秒后重试", "ok": true, "detail": "", "line": 52}
+{"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/app/server_failure_classifier.go | if code == \"RATE_LIMIT_ERROR\"", "ok": true, "detail": "", "line": 96}
+{"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/app/server_failure_classifier.go | 请等待 10 秒后重试", "ok": true, "detail": "", "line": 99}
 {"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/transport/diagnostics.go | server_error_code", "ok": true, "detail": "", "line": 362}
 {"note": "rate-limit-and-backend.md", "kind": "absent", "arg": "qps @ internal/**/*.go", "ok": true, "detail": "", "line": 0}
 {"note": "rate-limit-and-backend.md", "kind": "absent", "arg": "限流阈值 @ internal/**/*.go", "ok": true, "detail": "", "line": 0}

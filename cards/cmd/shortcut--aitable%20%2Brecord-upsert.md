@@ -10,7 +10,7 @@ visible_flags: 4
 ## Flags
 - --base-id <String>: Base ID
 - --table-id <String>: Table ID
-- --records <String>: 记录 JSON 数组，单次最多 100 条
+- --records <String>: 记录 JSON 数组，单次最多 100 条。
 - --client-token <String>: 可选 UUID v4；写入结果不明时必须复用原值对账
 
 ## Related

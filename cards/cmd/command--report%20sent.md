@@ -6,7 +6,7 @@ usage: dws report sent
 description: List reports the current user has created and sent out.
 example: dws report sent --cursor 0 --size 20
 use_when: When the agent reviews the user's own reporting history.
-source: internal/helpers/report.go:499
+source: internal/helpers/report.go:501
 visible_flags: 7
 
 ## Flags

@@ -4,7 +4,7 @@ kind: command
 completeness: full
 usage: dws aitable app
 description: 应用模式管理
-source: internal/helpers/aitable_app.go:31
+source: internal/helpers/aitable_app.go:32
 visible_flags: 0
 
 ## Flags

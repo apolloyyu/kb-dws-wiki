@@ -6,7 +6,7 @@ usage: dws report detail
 description: Retrieve the full details of a specific report entry, including fields and recipients.
 example: dws report detail --report-id <reportId>
 use_when: When the agent needs to read a report's content for summarization or follow-up.
-source: internal/helpers/report.go:475
+source: internal/helpers/report.go:477
 visible_flags: 1
 
 ## Flags

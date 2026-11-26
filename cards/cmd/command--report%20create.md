@@ -6,7 +6,7 @@ usage: dws report create
 description: Create a new report (DingTalk "Report" entry) based on a report template with filled-in content.
 example: dws report create --template-id TPL_ID --contents-file ./report.json --to-user-ids userId1,userId2
 use_when: When the agent submits a daily/weekly report on behalf of the user.
-source: internal/helpers/report.go:458
+source: internal/helpers/report.go:460
 visible_flags: 6
 
 ## Flags

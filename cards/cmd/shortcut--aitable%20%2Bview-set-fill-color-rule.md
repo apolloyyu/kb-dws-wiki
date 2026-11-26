@@ -11,7 +11,7 @@ visible_flags: 4
 - --base-id <String>: Base ID
 - --table-id <String>: Table ID
 - --view-id <String>: View ID
-- --json <String>: conditionalFormats JSON 数组
+- --json <String>: conditionalFormats JSON 数组（最多 40 条、整组替换；颜色用 red_light 等英文语义名）
 
 ## Related
 - dws aitable +advperm-disable

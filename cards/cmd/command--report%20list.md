@@ -6,7 +6,7 @@ usage: dws report list
 description: List reports the current user has received from others.
 example: dws report list --start "2026-03-10T00:00:00+08:00" --end "2026-03-10T23:59:59+08:00" --cursor 0 --size 20
 use_when: When the agent digests the user's incoming reports (e.g. team members' weeklies).
-source: internal/helpers/report.go:483
+source: internal/helpers/report.go:485
 visible_flags: 5
 
 ## Flags

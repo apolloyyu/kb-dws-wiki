@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable section list-nodes
 description: 列出全部节点
 example: dws aitable section list-nodes --base-id BASE_ID
-source: internal/helpers/aitable.go:9464
+source: internal/helpers/aitable.go:9484
 visible_flags: 1
 
 ## Flags

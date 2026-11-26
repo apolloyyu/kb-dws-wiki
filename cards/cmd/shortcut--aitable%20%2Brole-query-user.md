@@ -4,7 +4,7 @@ kind: shortcut
 completeness: full
 usage: dws aitable +role-query-user
 description: 查询用户实际命中的高级权限角色
-source: internal/shortcut/aitable/aitable.go:3390
+source: internal/shortcut/aitable/aitable.go:3412
 visible_flags: 2
 
 ## Flags

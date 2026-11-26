@@ -5,7 +5,7 @@ completeness: full
 usage: dws aitable view update timebar
 description: 更新视图 timebar 配置（仅 Gantt）
 example: dws aitable view update timebar --base-id BASE_ID --table-id TABLE_ID --view-id VIEW_ID --start-field fldStart --end-field fldEnd --timeline-scale month
-source: internal/helpers/aitable.go:5561
+source: internal/helpers/aitable.go:5572
 visible_flags: 7
 
 ## Flags
@@ -13,7 +13,7 @@ visible_flags: 7
 - --end-field <String>: 结束日期字段 ID
 - --display-field-id <String>: 时间条上显示的标题字段 ID
 - --timeline-scale <String>: 时间尺度: year|quarter|month|weeks
-- --color-configs <String>: 颜色配置 JSON 数组
+- --color-configs <String>: 颜色规则 JSON 数组：FILTER 固定/条件色或 SINGLE_OPTION 跟随单选字段；完整示例见本命令 help
 - --official-holiday <Bool>: 是否标注法定节假日
 - --json <String>: 完整 ganttTimebar 子块 JSON
 

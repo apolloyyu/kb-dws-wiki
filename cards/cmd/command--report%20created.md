@@ -5,7 +5,7 @@ completeness: full
 usage: dws report created
 description: [deprecated] 已废弃，请改用 `dws report outbox list`
 example: dws report created --cursor 0 --size 20
-source: internal/helpers/report.go:507
+source: internal/helpers/report.go:509
 visible_flags: 7
 
 ## Flags

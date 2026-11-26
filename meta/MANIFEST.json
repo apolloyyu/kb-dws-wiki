@@ -1,7 +1,7 @@
 {
-  "build_time": "2026-11-26T12:07:16+08:00",
+  "build_time": "2026-11-27T07:04:40+08:00",
   "cards": 1807,
-  "cards_full": 1337,
+  "cards_full": 1336,
   "commands": 1305,
   "contact": "yuweilun.ywl",
   "id": "dws-wiki",
@@ -27,7 +27,7 @@
     "origin": "https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli",
     "type": "llm-gen"
   },
-  "source_commit": "deac28aca",
+  "source_commit": "0d2f0ffec",
   "spec_version": "1.0",
   "tags": [
     "dingtalk",

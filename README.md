@@ -1,18 +1,17 @@
-# kb-dws-wiki — dws CLI 整理版知识库
+# DWS CLI 知识库
 
-DingTalk Workspace CLI(dws)的答疑知识库:基于源码由模型实读生成,每篇 frontmatter 的 `source_refs` 锚定事实来源,`meta/MANIFEST.json` 的 `source_commit` 锚定生成时的源码版本。
+本库为钉钉 Workspace CLI（DWS）提供命令契约、产品用法和运行行为说明。
 
-- Agent 使用入口:[AGENTS.md](AGENTS.md)(检索协议)
-- 篇目索引:[index.md](index.md) · 机器索引:`meta/documents.jsonl`
-- 答案卡:`cards/cmd/`(主命令+shortcut 一命令一卡) · 机器索引:`cards/index.jsonl`
-- 一次打包检索:`python3 bin/dwsdoc ctx '<完整问题>'`;仅 `card=1(fast=1)` 可按卡内 CLI 契约直答,复杂问法自动并入正文/notes 与证据边界
-- 上游源码:https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli
+## 查资料
 
-## 更新机制与协作规则
+- 按 [检索协议](AGENTS.md) 使用 `python3 bin/dwsdoc ctx '完整问题'`。看到 `card=1(fast=1)` 时可直接按卡片回答命令契约，复杂问题继续核对正文和源码。
+- [篇目索引](meta/documents.jsonl) 收录镜像正文和 notes。[答案卡索引](cards/index.jsonl) 收录主命令和快捷命令。
+- [DWS 上游源码](https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli) 提供行为依据，按对应提交核对实现。
 
-本仓库是**知识库组**的一员,遵循 KB Spec v1(布局与元数据见 `meta/MANIFEST.json`)。
+## 日更和审阅
 
-- **正规更新通道**:源码变更驱动的**增量链**(检测→确定性重建 docs/graph/cards → notes 定向生成与审阅→入库直推),由维护方平台调度;答案卡只依赖 graph schema,新增命令自动生成,无需逐命令维护
-- **可以手改的**:认知/策展层(如 TOPICS、README、AGENTS)欢迎直接 PR;
-- **不要手改的**:docs/、graph/、cards/(下次构建会覆盖;发现事实错误请提 Issue 触发重生成)
-- 勘误与建议:提 Issue,或联系维护人(MANIFEST 的 contact)。
+1. 定时任务拉取上游源码，重建 `docs/`、`graph/` 和 `cards/`，并重建索引和证据核对结果。[构建清单](meta/MANIFEST.json) 的 `source_commit` 标记这次确定性构建使用的源码版本。
+2. notes 选篇按每篇 frontmatter 的 `source_refs` 匹配改动文件。命中自动维护篇目时生成待审候选，批准后入库。`notes_commit` 记录增量审阅推进到的源码版本。标有 `maintenance: manual` 的篇目由维护者复核。
+3. 候选入库时把仍未覆盖的源码路径写入 `notes_uncovered`，后续日更继续检查这些路径。镜像须与当轮上游版本的正文相符。单测和测试覆盖对账配置由回归流程处理，篇目显式引用的测试仍可触发选篇。需要补行为说明时，按源码补写篇目和实际使用的 `source_refs`。
+
+维护说明和新增篇目通过代码评审提交。镜像正文、命令图、答案卡及生成索引由构建产出。勘误可通过 Issue 或构建清单的 `contact` 联系维护者。

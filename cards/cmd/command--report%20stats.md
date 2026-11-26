@@ -6,7 +6,7 @@ usage: dws report stats
 description: Retrieve aggregated statistics for a report entry by ID (views, likes, comments, etc.).
 example: dws report stats --report-id <reportId>
 use_when: When the agent measures engagement or reach of a report the user sent.
-source: internal/helpers/report.go:491
+source: internal/helpers/report.go:493
 visible_flags: 1
 
 ## Flags

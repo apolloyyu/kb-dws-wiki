@@ -12,7 +12,7 @@ visible_flags: 4
 ## Flags
 - --base-id <String>: Base ID，可通过 base list 或 base search 获取 (必填)
 - --table-id <String>: Table ID，可通过 base get 获取 (必填)
-- --records <String>: 待更新的记录内容列表 JSON 数组，单次最多 100 条 (必填)
+- --records <String>: 待更新的记录内容列表 JSON 数组，单次最多 100 条 (必填)。
 - --records-file <String>: 从文件读取 records JSON（替代 --records，适合 Windows 或超长数据）
 
 ## Related

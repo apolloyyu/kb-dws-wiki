@@ -5,7 +5,7 @@ completeness: full
 usage: dws report inbox
 description: 收件箱（我收到的日报）
 example: dws report inbox --start "2026-03-10T00:00:00+08:00" --end "2026-03-10T23:59:59+08:00" --cursor 0 --size 20
-source: internal/helpers/report.go:345
+source: internal/helpers/report.go:347
 visible_flags: 5
 
 ## Flags

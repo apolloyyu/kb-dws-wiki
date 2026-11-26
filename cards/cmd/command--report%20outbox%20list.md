@@ -5,7 +5,7 @@ completeness: full
 usage: dws report outbox list
 description: 列出我发出的日报
 example: dws report outbox list --cursor 0 --size 20
-source: internal/helpers/report.go:404
+source: internal/helpers/report.go:406
 visible_flags: 7
 
 ## Flags

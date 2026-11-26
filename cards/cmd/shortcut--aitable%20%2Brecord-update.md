@@ -10,7 +10,7 @@ visible_flags: 3
 ## Flags
 - --base-id <String>: Base ID
 - --table-id <String>: Table ID
-- --records <String>: 记录 JSON 数组，如 '[{\"recordId\":\"rec\",\"cells\":{...}}]'
+- --records <String>: 记录 JSON 数组，如 '[{\"recordId\":\"rec\",\"cells\":{...}}]'。
 
 ## Related
 - dws aitable +advperm-disable

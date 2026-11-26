@@ -5,8 +5,8 @@ completeness: full
 usage: dws upgrade
 description: 升级 DWS CLI 到最新版本
 example: dws upgrade
-source: internal/app/upgrade.go:103
-visible_flags: 8
+source: internal/app/upgrade.go:105
+visible_flags: 9
 
 ## Flags
 - --check <Bool>: 仅检查是否有新版本
@@ -17,6 +17,7 @@ visible_flags: 8
 - --rollback <Bool>: 回滚到上一版本
 - --force <Bool>: 即使已是最新版本也强制重新安装当前版本
 - --skip-skills <Bool>: 跳过技能包更新
+- --source <String>: 下载来源：auto 自动回退；github、npmmirror 固定来源
 
 ## Related
 - none

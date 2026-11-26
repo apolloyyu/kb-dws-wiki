@@ -114,7 +114,7 @@
 {"completeness": "partial", "key": "aitable form field", "kind": "command", "path": "cards/cmd/command--aitable%20form%20field.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable form field hide", "kind": "command", "path": "cards/cmd/command--aitable%20form%20field%20hide.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable form field list", "kind": "command", "path": "cards/cmd/command--aitable%20form%20field%20list.md", "product": "aitable"}
-{"completeness": "full", "key": "aitable form field update", "kind": "command", "path": "cards/cmd/command--aitable%20form%20field%20update.md", "product": "aitable"}
+{"completeness": "partial", "key": "aitable form field update", "kind": "command", "path": "cards/cmd/command--aitable%20form%20field%20update.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable form get", "kind": "command", "path": "cards/cmd/command--aitable%20form%20get.md", "product": "aitable"}
 {"completeness": "full", "key": "aitable form list", "kind": "command", "path": "cards/cmd/command--aitable%20form%20list.md", "product": "aitable"}
 {"completeness": "partial", "key": "aitable form questions", "kind": "command", "path": "cards/cmd/command--aitable%20form%20questions.md", "product": "aitable"}

@@ -12,7 +12,7 @@ visible_flags: 5
 ## Flags
 - --base-id <String>: Base ID，可通过 base list 或 base search 获取 (必填)
 - --table-id <String>: Table ID，可通过 base get 获取 (必填)
-- --records <String>: 待创建的记录列表 JSON 数组，单次最多 100 条 (必填)
+- --records <String>: 待创建的记录列表 JSON 数组，单次最多 100 条 (必填)。
 - --records-file <String>: 从文件读取 records JSON（替代 --records，适合 Windows 或超长数据）
 - --client-token <String>: 可选 UUID v4 幂等键；调用前持久化，超时后保留原值并只读对账，禁止自动重放
 

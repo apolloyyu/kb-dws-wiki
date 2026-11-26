@@ -1,3 +1,6 @@
+{"note": "calendar-agenda-completeness.md", "kind": "code", "arg": "skills/multi/dingtalk-calendar/scripts/calendar_today_agenda.py | def select_calendars", "ok": true, "detail": "", "line": 86}
+{"note": "calendar-agenda-completeness.md", "kind": "code", "arg": "skills/mono/scripts/calendar_today_agenda.py | MAX_PAGES = 20", "ok": true, "detail": "", "line": 23}
+{"note": "calendar-agenda-completeness.md", "kind": "code", "arg": "skills/multi/dingtalk-calendar/scripts/calendar_today_agenda.py | target[\"sources\"].append(source)", "ok": true, "detail": "", "line": 249}
 {"note": "chat-and-messaging.md", "kind": "code", "arg": "internal/shortcut/chatmsg/chatmsg.go | func ProjectMessageV1(m map[string]any, includeReactions bool)", "ok": true, "detail": "", "line": 347}
 {"note": "chat-and-messaging.md", "kind": "code", "arg": "internal/shortcut/chatmsg/chatmsg.go | func Text(m map[string]any) any", "ok": true, "detail": "", "line": 240}
 {"note": "chat-and-messaging.md", "kind": "code", "arg": "internal/shortcut/chatmsg/chatmsg.go | func richItemTexts(node any) []string", "ok": true, "detail": "", "line": 1312}
@@ -37,6 +40,8 @@
 {"note": "event-system.md", "kind": "code", "arg": "internal/event/source/personal.go | emit(raw)", "ok": true, "detail": "", "line": 364}
 {"note": "event-system.md", "kind": "code", "arg": "internal/event/source/personal.go | resp := payload.NewSuccessDataFrameResponse()", "ok": true, "detail": "", "line": 342}
 {"note": "event-system.md", "kind": "code", "arg": "internal/event/source/personal.go | personal source: write ack:", "ok": true, "detail": "", "line": 370}
+{"note": "outbound-call-receipts.md", "kind": "code", "arg": "internal/helpers/outbound_call_result.go | taskIDArg = \"TASK_ID\"", "ok": true, "detail": "", "line": 64}
+{"note": "outbound-call-receipts.md", "kind": "quote", "arg": "docs/products/outbound-call.md | 已有 taskId 时使用 `detail` 查询", "ok": true, "detail": "", "line": 16}
 {"note": "rate-limit-and-backend.md", "kind": "quote", "arg": "docs/upstream/architecture.md | execute MCP JSON-RPC calls", "ok": true, "detail": "", "line": 16}
 {"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/app/direct_runtime.go | mcp-gw.dingtalk.com", "ok": true, "detail": "", "line": 116}
 {"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/app/server_failure_classifier.go | operation := \"tools/call\"", "ok": true, "detail": "", "line": 162}
@@ -55,6 +60,8 @@
 {"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/helpers/devapp_connect.go | \"user-rate-limit\", 20", "ok": true, "detail": "", "line": 624}
 {"note": "rate-limit-and-backend.md", "kind": "absent", "arg": "x-ratelimit @ internal/transport/*.go !_test.go", "ok": true, "detail": "", "line": 0}
 {"note": "rate-limit-and-backend.md", "kind": "code", "arg": "internal/shortcut/chat/active_conversations_result.go | details[\"retryAfter\"]", "ok": true, "detail": "", "line": 164}
+{"note": "sport-admin-and-group-binding.md", "kind": "code", "arg": "internal/helpers/sport_read.go | func newSportOrgAdminCmd()", "ok": true, "detail": "", "line": 378}
+{"note": "sport-admin-and-group-binding.md", "kind": "code", "arg": "internal/helpers/sport.go | 与 group-id 至少一个", "ok": true, "detail": "", "line": 664}
 {"note": "token-lifetime.md", "kind": "code", "arg": "pkg/config/constants.go | DefaultRefreshTokenLifetime = 30 * 24 * time.Hour", "ok": true, "detail": "", "line": 127}
 {"note": "token-lifetime.md", "kind": "code", "arg": "internal/auth/oauth_helpers.go | RefreshExpAt: now.Add(config.DefaultRefreshTokenLifetime)", "ok": true, "detail": "", "line": 423}
 {"note": "token-lifetime.md", "kind": "code", "arg": "internal/auth/oauth_helpers.go | updated, err := p.parseTokenResponse(resp)", "ok": true, "detail": "", "line": 245}

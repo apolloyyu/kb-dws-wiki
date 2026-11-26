@@ -1,8 +1,6 @@
-# dws 域 — 检索协议(v3,答案卡加速 + 三层事实结构)
+# DWS 检索协议
 
-本库是 dws CLI(DingTalk Workspace CLI,开源命令行工具)的知识库,结构对齐
-kb-dingtalk-open-platform 范式:**事实走确定性层(零 LLM),行为语义走生成+审阅层**。
-构建信息见 `meta/MANIFEST.json`(source_commit / build_time / 各层统计)。
+在 `cards/` 和 `graph/` 查命令契约，在 `docs/` 查产品用法，在 `notes/` 查运行行为与边界。[构建清单](meta/MANIFEST.json) 记录确定性构建的 `source_commit`、增量审阅推进到的 `notes_commit` 和各层统计。
 
 ## 答案卡 + 三层结构
 
@@ -10,7 +8,7 @@ kb-dingtalk-open-platform 范式:**事实走确定性层(零 LLM),行为语义�
 |---|---|---|---|
 | `cards/` | 每条主命令/shortcut 的紧凑卡(cmd、描述、flags、源码、相关命令) | 从 graph 确定性生成,数量/完整率地板 | `completeness: full` 且 ctx 标 `fast=1` 时仅可直接回答卡内 CLI 契约；partial 必须继续查正文 |
 | `graph/` | commands.jsonl(规范路径+完整 Usage+flags 完整度+源码行号)、shortcuts.jsonl(+xxx 短命令) | 源码静态提取,lint 对账 | **命中即事实**;回复里引用输出中的「引用:」深链,不写裸 文件:行号 |
-| `docs/` | command-index.md、CHANGELOG.md、products/**(上游人写的产品线文档) | 逐字镜像 | 与上游仓库原文一致 |
+| `docs/` | 命令索引、更新日志、产品文档和 Skill 入口 | 从记录的上游路径镜像 | 用于核对产品用法，文件开头记录来源 |
 | `notes/` | 行为语义篇(投递模型/锁/ACK 等"为什么") | LLM 实读源码生成+人工审阅 | 加速层,行号结论仍以源码为准 |
 
 ## 检索顺序(强烈建议)
@@ -32,4 +30,10 @@ kb-dingtalk-open-platform 范式:**事实走确定性层(零 LLM),行为语义�
 
 - 说「命令/flag 不存在」前,必须三查皆空(ctx 审计行即凭证,或 cmd+short+flag 逐一查),并回源码枚举确认;
 - `docs/` 与 `notes/` 冲突时以 `docs/`(镜像)与源码为准;
-- 本库 `docs/`+`graph/`+`cards/` 由流水线确定性重建,**勿手工修改**;`notes/` 走候选-审阅制(dws_regen --deepen)。
+- `docs/`、`graph/`、`cards/` 和生成索引由流水线构建。notes 的候选经过审阅后入库。
+
+## 维护 notes
+
+- 在 `source_refs` 中列出正文实际依赖的上游相对路径。定时任务按路径精确选篇。章节中写出对应的源码文件名和行为依据，供增量更新定位。标为 `maintenance: manual` 的篇目由人维护。
+- 确定性构建和 notes 审阅各自记录源码版本。批准候选时，`notes_uncovered` 记录当轮待补路径，供后续日更继续核对。镜像覆盖依据当轮上游版本和正文。显式列入 `source_refs` 的测试路径也参与选篇。
+- 告警出现时先核对上游差异和镜像来源。需要补新的行为说明时，通过代码评审添加篇目及其 `source_refs`，再运行定时检查或后台检查，按差异审阅候选。

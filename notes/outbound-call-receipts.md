@@ -1,9 +1,15 @@
 ---
 title: AI 语音外呼回执与后续查询
-source_refs: internal/helpers/outbound_call_result.go, skills/mono/references/products/outbound-call.md
+source_refs: internal/helpers/outbound_call.go, internal/helpers/outbound_call_result.go, skills/mono/references/products/outbound-call.md, skills/multi/dingtalk-misc/references/outbound-call.md
 ---
 
 # AI 语音外呼回执与后续查询
+
+## 创建与查询的命令入口
+
+发起新的钉钉语音外呼时，使用 `dws outbound-call create`，执行前说明将由 AI 助手代为通话。查询已有任务的进展或听记时，用 `dws outbound-call detail` 并传入原任务 ID。电话 DING 使用 `dws ding`。
+
+发起前按[产品指南](https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli/blob/0d2f0ffecc56f3f9f2a31e70612ef9d11d70e98e/skills/mono/references/products/outbound-call.md)准备四栏任务正文，将完整文本作为 `--task` 的一个参数。`--opening` 先问好，再说明 AI 助手身份和来电目的，以问题结尾，并与任务流程、话术示例里的开场逐字一致。用 `--dry-run` 预览，用户确认后用 `--yes` 发起。
 
 ## 按任务回执查询
 

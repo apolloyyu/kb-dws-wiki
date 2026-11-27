@@ -1,6 +1,6 @@
 ---
 title: 富媒体与文件
-source_refs: internal/helpers/drive.go, internal/helpers/drive_transfer.go, internal/helpers/doc_media_upload.go, internal/helpers/chat_media_upload.go, internal/helpers/form_share.go, internal/helpers/sheet_float_image_file.go, internal/helpers/aitable.go, internal/helpers/aitable_form_share_result.go, internal/helpers/doc.go, internal/helpers/sheet.go, internal/shortcut/doc/content_shortcuts.go, internal/shortcut/doc/common.go, internal/localio/download.go, internal/localio/upload.go, internal/localio/publish.go, internal/localio/input.go
+source_refs: internal/helpers/drive.go, internal/helpers/drive_transfer.go, internal/helpers/doc_media_upload.go, internal/helpers/chat_media_upload.go, internal/helpers/form_share.go, internal/helpers/sheet_float_image_file.go, internal/helpers/aitable.go, internal/helpers/aitable_form_share_result.go, internal/helpers/doc.go, internal/helpers/sheet.go, internal/shortcut/doc/content_shortcuts.go, internal/shortcut/doc/common.go, internal/localio/download.go, internal/localio/upload.go, internal/localio/publish.go, internal/localio/input.go, internal/shortcut/aitable/attachment_composite.go, internal/shortcut/aitable/record_attachment_verification.go, skills/mono/references/products/aitable/aitable-attachment.md, skills/mono/scripts/upload_attachment.py, skills/multi/dingtalk-aitable/references/aitable/aitable-attachment.md, skills/multi/dingtalk-aitable/scripts/upload_attachment.py
 ---
 
 # 富媒体与文件
@@ -48,7 +48,14 @@ source_refs: internal/helpers/drive.go, internal/helpers/drive_transfer.go, inte
 - 文档媒体上传：`internal/helpers/doc_media_upload.go` 的 `runDocMediaUpload`，流程为 `get_doc_attachment_upload_info` → PUT；doc media 命令组在 doc.go 约 L2966。
 - `insertDocMediaFile`（doc.go）改用 `decodeAttachmentUploadInfo` 解析上传回执：图片且 `resourceUrl` 非空、≤20MB 的内联图片允许缺 `resourceId`，否则缺 `resourceId` 直接报 "incomplete attachment upload info"。
 - 回执带 `resourceId` 时，插入的媒体元素 `properties` 里会附带 `extraData.resourceId`；无 `resourceId` 时只写 `src`。 （来源：`internal/helpers/doc.go:653-657`、`internal/helpers/doc.go:688-691`、`internal/helpers/doc.go:700`）
+- `dws doc +media-insert` 通过服务端回读核对插入的媒体块。成功回执里的 `verified=true` 对应 `verificationScope=structural`，`clientVisibility=unknown` 表示网页和客户端的预览状态仍待验证。若已回读到媒体块但客户端预览为空，先检查本地网络能否访问 OSS 或 alidocs 预览域名，再刷新页面。 （来源：`internal/helpers/doc.go:770-804`）
 - 群聊文件上传：`internal/helpers/chat_media_upload.go`，命令挂在 chat.go 约 L2130。
+
+## AI 表格附件上传与核验
+
+- `dws aitable attachment upload` 申请 `uploadUrl`、`fileToken` 和 `uploadHeaders`。手工 PUT 时逐项传入返回的请求头，保持签名 `Content-Type` 的原值。`+attachment-put` 和 mono/multi 的 `upload_attachment.py` 都优先采用这些头，拒绝格式无效或重复的头。旧回执未给签名内容类型时，内置上传沿用请求 MIME。 （来源：`internal/helpers/aitable.go:4868-4897`、`internal/shortcut/aitable/attachment_composite.go:178-203`、`internal/shortcut/aitable/attachment_composite.go:245-292`）
+- 附件字段接受钉钉文档节点 URL。省略 `isLink` 时按链接保存。用户明确选择文件模式时传 JSON 布尔值 `isLink=false`，交由服务端校验权限和转存结果。附件列表按字段整体替换，清空用 `[]`。
+- 带读回校验的记录 Shortcut 对非空附件要求读回的稳定身份能与输入的 `fileToken` 或 `resourceId` 对应。只有 URL、文件名或大小时，身份还待核对。若写入受理后校验无法确认，回执状态为 `unknown`，错误码为 `ATTACHMENT_WRITE_UNCONFIRMED`，并标明 `retryable=false`。按原记录 ID 或回执的只读命令核对，分别报告原回执和独立核验的当前值。确定当前字段值后，首次写入是否造成该值仍要有独立证据。原子 `record update/upsert` 按其上游实际回执判断。 （来源：`internal/shortcut/aitable/record_attachment_verification.go:15-23`、`internal/shortcut/aitable/record_attachment_verification.go:101-141`）
 
 ## 表单封面与二维码（internal/helpers/form_share.go）
 
@@ -79,6 +86,12 @@ Markdown 正文开头与文档名相同的一级标题会在写入前被剥离�
 - 正文只剩该标题时结果为空字符串，`markdown` 参数不再下发（`--dry-run` 预览里也没有 `markdown` 字段）；
 - 去重发生在分片（`SplitMarkdownForAppend`）与回读校验之前，`+create` 的回读校验比对的是剥离后的正文；
 - `--content` 的字面量 / `-`（stdin）/ `@file` 三种输入都保留内容首尾空白（TrimSpace 后的值只用于判定 `-` 与 `@` 前缀），并统一把 CRLF / CR 归一为 LF（internal/shortcut/doc/common.go L63）。
+
+## 文档快捷命令的回读核验
+
+`content_shortcuts.go` 区分获取回读失败和回读内容不符合预期，对应 `common.go` 的 `doc_write_verification_unavailable` 与 `doc_write_verification_failed`。两种回执都记录写入步骤已经执行，核验仍未确认。先按 `nodeId` 读取目标文档，再根据实际内容决定恢复动作。
+
+JSONML 回读比较会归一化服务端在文档根节点补入的 `sectPr` 页面设置，以及空文本节点，再核对正文。 （来源：`internal/shortcut/doc/content_shortcuts.go:2078-2097`、`internal/shortcut/doc/content_shortcuts.go:2166-2193`）
 
 ## internal/localio：产品共享的安全本地 I/O
 

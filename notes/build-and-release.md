@@ -1,6 +1,6 @@
 ---
 title: 构建发布与版本
-source_refs: Makefile, scripts/dev/build.sh, scripts/dev/build-all.sh, internal/app/version.go, pkg/cli/cli.go, internal/app/upgrade.go, internal/upgrade/github.go, internal/upgrade/version.go, internal/upgrade/downloader.go, internal/upgrade/verify.go, internal/upgrade/replacer.go, internal/upgrade/rollback.go, Formula/dingtalk-workspace-cli.rb, .goreleaser.yaml, scripts/release/run-goreleaser-cross.sh, scripts/release/post-goreleaser.sh, scripts/release/publish-homebrew-formula.sh, build/homebrew.rb.tmpl, build/homebrew-release.rb.tmpl, internal/buildversion/version.go, internal/buildversion/stamp.go, internal/upgrade/paths.go, internal/app/flags.go
+source_refs: Makefile, scripts/dev/build.sh, scripts/dev/build-all.sh, internal/app/version.go, pkg/cli/cli.go, internal/app/upgrade.go, internal/upgrade/github.go, internal/upgrade/version.go, internal/upgrade/downloader.go, internal/upgrade/verify.go, internal/upgrade/replacer.go, internal/upgrade/rollback.go, Formula/dingtalk-workspace-cli.rb, .goreleaser.yaml, scripts/release/run-goreleaser-cross.sh, scripts/release/post-goreleaser.sh, scripts/release/publish-homebrew-formula.sh, build/homebrew.rb.tmpl, build/homebrew-release.rb.tmpl, internal/buildversion/version.go, internal/buildversion/stamp.go, internal/upgrade/paths.go, internal/app/flags.go, internal/upgrade/source.go, internal/upgrade/registry.go
 ---
 
 # 构建发布与版本
@@ -39,15 +39,26 @@ source_refs: Makefile, scripts/dev/build.sh, scripts/dev/build-all.sh, internal/
 
 | 模块 | 职责 |
 |---|---|
-| `github.go` | `Client` / `ReleaseTrack`（release / beta / all，`all` 供 `FetchAllReleases` 不过滤轨道），默认 `api.github.com`，仓库 `DingTalk-Real-AI/dingtalk-workspace-cli`；`DWS_UPGRADE_URL` 覆盖 API 地址、`DWS_UPGRADE_REPOSITORY` 覆盖 owner/repo、`GITHUB_TOKEN`/`GH_TOKEN` 提升限额；资产名固定 `dws-skills.zip` / `checksums.txt` |
+| `github.go` | `Client` / `ReleaseTrack`（release / beta / all，`all` 供 `FetchAllReleases` 不过滤轨道）；`NewClient` 默认查 npm Registry，仅当设置了 `DWS_UPGRADE_URL` 或 `DWS_UPGRADE_REPOSITORY` 时才用 GitHub（默认 `api.github.com`，仓库 `DingTalk-Real-AI/dingtalk-workspace-cli`）；`DWS_UPGRADE_URL` 覆盖 API 地址、`DWS_UPGRADE_REPOSITORY` 覆盖 owner/repo、`GITHUB_TOKEN`/`GH_TOKEN` 提升限额（`anonymous` 客户端不附带 token）；资产名固定 `dws-skills.zip` / `checksums.txt`；Registry 模式下 `--version` 先按 npm semver 校验再取该版本 manifest，而 `FetchLatestReleaseForTrack(all)` 直接报“未知升级轨道”（来源：`internal/upgrade/github.go:52-60`、`internal/upgrade/github.go:124-141`、`internal/upgrade/github.go:181-199`、`internal/upgrade/github.go:231-236`、`internal/upgrade/github.go:386-390`、`internal/upgrade/registry.go:78-84`） |
+| `registry.go` | npm Registry 版本源：默认 `https://registry.npmjs.org` 上的 `dingtalk-workspace-cli` 包，`DWS_UPGRADE_REGISTRY` 覆盖根地址（只接受无凭据/查询/片段的 HTTPS，loopback HTTP 例外）；校验包名、semver、`deprecated` 与 SHA-512/SHA-256 `integrity`；非公共发行版且未显式配置升级源时拒绝安装公开 npm 包（来源：`internal/upgrade/registry.go:26-30`、`internal/upgrade/registry.go:57-65`、`internal/upgrade/registry.go:88-100`、`internal/upgrade/registry.go:153-170`） |
+| `source.go` | `DownloadSource`（auto / github / npmmirror）与 `ParseDownloadSource`；`NewClientForSource` 固定来源时仍用 npm 主包元数据（`github` → npmjs，`npmmirror` → 镜像）且仅限公共发行版；`DownloadEvent` + `WithDownloadObserver` 同步上报来源/切换/尝试（来源：`internal/upgrade/source.go:19-32`、`internal/upgrade/source.go:43-60`、`internal/upgrade/source.go:64-88`） |
 | `version.go` | `CompareVersions` / `NeedsUpgrade` |
-| `downloader.go` | 下载发布包 |
-| `verify.go` | SHA256 校验 |
+| `downloader.go` | 下载发布包：默认 3 次尝试、单次 10 分钟超时、15 秒无进展停滞超时、1 GiB 上限；用 `Range` + `If-Match`（强 ETag）断点续传，412/416 或范围/ETag 不匹配则重下；拒绝 ≥10 跳、带凭据或 https→http 降级的重定向（来源：`internal/upgrade/downloader.go:41-49`、`internal/upgrade/downloader.go:186-192`、`internal/upgrade/downloader.go:203-208`、`internal/upgrade/downloader.go:222-243`） |
+| `verify.go` | SHA256 校验：`VerifySHA256` 先 hex 解码期望值并要求 32 字节（否则报“无效的 SHA256 校验值”），`ParseChecksumFile` 解析 `hash  filename` 行，`VerifyFileFromChecksums` 按文件名查表校验（来源：`internal/upgrade/verify.go:16-31`、`internal/upgrade/verify.go:52-67`、`internal/upgrade/verify.go:70-77`） |
 | `replacer.go` | `ReplaceSelf` 原子替换二进制 |
 | `rollback.go` | `RollbackManager`，备份存放于 `~/.dws/data/backups` |
 | `paths.go` | `EnsureUpgradeDirectories` 创建 `~/.dws`、`~/.dws/data/backups`、`~/.dws/cache/downloads`（0700）；`DownloadCacheDir` 为升级临时目录；Skill 安装以 `~/.agents/skills` 为 canonical，检测到的非 universal Agent 目录放相对链接（拒绝链接的文件系统回退直接拷贝），被替换的旧副本备份到 `~/.dws/skill-backups/<UTC 时间戳>/`（只保留最近 5 份，且只清理带 `.dws-skill-backup` 标记的目录），`.real` 等黑名单目录绝不触碰；新增 `.workbuddy/skills` 为 DWS-only 已知 Skill 目录（产品兼容保留），可用 `WORKBUDDY_CONFIG_DIR` 覆盖其根目录 （来源：`internal/upgrade/paths.go:105-113`、`internal/upgrade/paths.go:737-746`） |
 
-升级分两阶段：Phase 1 在临时目录内完成下载、SHA256 校验（优先 `checksums.txt`，退回 GitHub asset digest，两者都没有才跳过）、解压与新二进制验证，零副作用；Phase 2 才替换二进制并安装 Skill。用户可见 5 步：备份 → 下载 → 校验 → 解压验证 → 替换+安装。替换后调 `cli.InvalidatePersistedSchemaCacheIdentities` 丢弃持久化 Schema 身份，让下个进程按新二进制的实时声明重建；备份按 `Cleanup(5)` 只留最近 5 份。darwin 上新二进制若被 amfid SIGKILL（“signal: killed”），会 ad-hoc `codesign` + 去掉 `com.apple.quarantine` 后重试一次。
+升级分两阶段：Phase 1 在临时目录内完成下载、SHA256 校验（优先 `checksums.txt`，退回 GitHub asset digest，两者都没有才跳过）、解压与新二进制验证，零副作用；Phase 2 才替换二进制并安装 Skill。用户可见 5 步：备份 → 下载 → 校验 → 解压验证 → 替换+安装。替换后调 `cli.InvalidatePersistedSchemaCacheIdentities` 丢弃持久化 Schema 身份，让下个进程按新二进制的实时声明重建；备份按 `Cleanup(5)` 只留最近 5 份。darwin 上新二进制若被 amfid SIGKILL（“signal: killed”），会 ad-hoc `codesign` + 去掉 `com.apple.quarantine` 后重试一次。Phase 1 的下载按来源分三条路径：平台分包（`ResolvePlatformReleaseForSource` + `DownloadPlatformAssetForSource`）、npm 主包（`PrepareNPMPackage` 返回二进制归档、技能归档与 `checksums.txt` 内容）、GitHub 资产直下；npm 主包路径在替换前还要求新二进制的 `version` 输出确认目标版本，否则不替换（来源：`internal/app/upgrade.go:508-519`、`internal/app/upgrade.go:586-616`、`internal/app/upgrade.go:698-703`、`internal/app/upgrade.go:808-837`）。
+
+### 升级下载来源
+
+- `--source auto` 是默认模式，保留 `DWS_UPGRADE_*` 的来源配置。独立安装默认先下载 GitHub 同版本资源，遇到可重试的网络错误才切到 npmmirror 同版本分包。校验失败、磁盘错误和取消会终止升级。
+- 公共发行版可显式选择 `--source github` 或 `--source npmmirror`。两者分别从 npmjs 和 npmmirror 主包查版本与弃用状态，下载固定来源的资源，不回退。显式固定来源优先于 `DWS_UPGRADE_REGISTRY`、`DWS_UPGRADE_URL` 和 `DWS_UPGRADE_REPOSITORY`。
+- npm/pnpm 安装支持 `auto` 和 `npmmirror`，Homebrew 安装只接受 `auto`。包管理器接管这两类安装的升级流程，`--skip-skills` 和 `--rollback` 仅适用于独立安装。独立安装的回滚使用本地备份，只接受 `auto`。
+- npmmirror 分包先校验 npm integrity，再核对包身份、归档结构、资源大小和 SHA256，通过后才进入替换阶段。
+
+[固定版本的升级下载说明](https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli/blob/0d2f0ffecc56f3f9f2a31e70612ef9d11d70e98e/docs/upgrade-download-sources.md)
 
 ## 发布物
 
